@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "strict": true,
+    "strictNullChecks": false,
+    "baseUrl": ".",
+    "paths": {
+      "ynab-sdk-js": ["../../dist/index"]
+    }
+  },
+  "files": [
+    "index.ts"
+  ]
+}

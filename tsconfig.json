@@ -8,5 +8,5 @@
     "rootDir": "./src",
     "typeRoots": ["./node_modules/@types"]
   },
-  "files": ["./src/index.ts", "./src/examples/example.ts"]
+  "files": ["./src/index.ts"]
 }

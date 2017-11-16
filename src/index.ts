@@ -13,10 +13,13 @@ import { Configuration } from "./configuration";
 // This acts as a wrapper around the underlying objects exposed by api.ts
 export class Api {
   protected configuration: Configuration;
-  public constructor(bearerToken: string) {
+  public constructor(
+    accessToken: string,
+    baseUrl: string = "https://api.youneedabudget.com/v1"
+  ) {
     this.configuration = new Configuration({
-      apiKey: `Bearer ${bearerToken}`,
-      basePath: "http://localhost:3000/papi/v1"
+      apiKey: `Bearer ${accessToken}`,
+      basePath: baseUrl
     });
   }
 
