@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "YNAB Client SDK",
   "author": "You Need a Budget, LLC",
-  "keywords": ["fetch", "typescript", "swagger-client", "ynab"],
+  "keywords": [
+    "fetch",
+    "typescript",
+    "swagger-client",
+    "ynab"
+  ],
   "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -15,6 +20,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "jbash": "^1.35.0",
     "portable-fetch": "^3.0.0"
   },
   "devDependencies": {
