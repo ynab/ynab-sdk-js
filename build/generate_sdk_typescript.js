@@ -28,6 +28,7 @@ eval(`docker run --rm -v ${thisFolder}:/local swaggerapi/swagger-codegen-cli gen
     -l "typescript-fetch" \
     -c "/local/swagger-config-typescript.json" \
     -t "/local/swagger-templates/typescript-fetch" \
+    -DmodelPropertyNaming=original \
     -o "/local/${swaggerGeneratedOutputFolder}" `);
 
 // Remove the local copy of the spec
