@@ -7,6 +7,10 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ynab/ynab-sdk-js.git"
+  },
   "scripts": {
     "build": "tsc"
   },
