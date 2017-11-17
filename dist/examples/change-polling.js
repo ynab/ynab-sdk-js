@@ -103,3 +103,4 @@ function main() {
     });
 }
 main();
+//# sourceMappingURL=change-polling.js.map

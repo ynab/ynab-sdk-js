@@ -32,31 +32,32 @@ class Api {
         if (!this._months) {
             this._months = new api_1.MonthsApi(this.configuration);
         }
-        return this.months;
+        return this._months;
     }
     get payees() {
         if (!this._payees) {
             this._payees = new api_1.PayeesApi(this.configuration);
         }
-        return this.payees;
+        return this._payees;
     }
     get payeeLocations() {
         if (!this._payeeLocations) {
             this._payeeLocations = new api_1.PayeeLocationsApi(this.configuration);
         }
-        return this.payeeLocations;
+        return this._payeeLocations;
     }
     get transactions() {
         if (!this._transactions) {
             this._transactions = new api_1.TransactionsApi(this.configuration);
         }
-        return this.transactions;
+        return this._transactions;
     }
     get scheduledTransactions() {
         if (!this._scheduledTransactions) {
             this._scheduledTransactions = new api_1.ScheduledTransactionsApi(this.configuration);
         }
-        return this.scheduledTransactions;
+        return this._scheduledTransactions;
     }
 }
 exports.Api = Api;
+//# sourceMappingURL=index.js.map

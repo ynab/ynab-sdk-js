@@ -6,7 +6,8 @@
     "noImplicitAny": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "sourceMap": true
   },
   "files": [
     "./src/index.ts",
