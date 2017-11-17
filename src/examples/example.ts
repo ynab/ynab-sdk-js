@@ -17,7 +17,7 @@ async function main() {
     const allBudgets = allBudgetsResponse.data.budgets;
     console.log(`This user has ${allBudgets.length} budgets.`);
     for (let budget of allBudgets) {
-      let contents = await ynab.budgets.getBudgetContents(budget.id);
+      let budgetContents = await ynab.budgets.getBudgetContents(budget.id);
 
       console.log(`\nHere are all accounts for budget '${budget.id}':`);
       const accountsResponse = await ynab.accounts.getAccounts(budget.id);

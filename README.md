@@ -1,6 +1,12 @@
 ## YNAB Javascript SDK
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 TODO: This README was generated from Swagger-codegen, and needs to be edited to be YNAB specific.
+
+Notes about:
+Date format (DateWithoutTime)
+Millicents format
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 

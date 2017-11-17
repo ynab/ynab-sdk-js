@@ -1,4 +1,4 @@
-/// <reference path="./custom.d.ts" />
+/// <reference path="./portable-fetch.d.ts" />
 // tslint:disable
 /**
  * YNAB API Explorer
@@ -107,13 +107,13 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    dateFormat: string;
+    date_format: string;
     /**
      * Whether this account is on budget or not
      * @type {boolean}
      * @memberof Account
      */
-    onBudget: boolean;
+    on_budget: boolean;
     /**
      * Whether this account is closed or not
      * @type {boolean}
@@ -199,19 +199,19 @@ export interface BudgetSummary {
      * @type {string}
      * @memberof BudgetSummary
      */
-    lastAccessedOn: string;
+    last_accessed_on: string;
     /**
      * 
      * @type {string}
      * @memberof BudgetSummary
      */
-    dateFormat: string;
+    date_format: string;
     /**
      * 
      * @type {string}
      * @memberof BudgetSummary
      */
-    currencyFormat: string;
+    currency_format: string;
 }
 
 /**
@@ -245,7 +245,7 @@ export interface Category {
      * @type {string}
      * @memberof Category
      */
-    categoryGroupId: string;
+    category_group_id: string;
     /**
      * 
      * @type {string}
@@ -327,7 +327,7 @@ export interface CategoryGroupsWrapper {
      * @type {Array&lt;CategoryGroup&gt;}
      * @memberof CategoryGroupsWrapper
      */
-    categoryGroups: Array<CategoryGroup>;
+    category_groups: Array<CategoryGroup>;
 }
 
 /**
@@ -395,13 +395,13 @@ export interface MonthSummary {
      * @type {number}
      * @memberof MonthSummary
      */
-    toBeBudgeted: number;
+    to_be_budgeted: number;
     /**
      * 
      * @type {number}
      * @memberof MonthSummary
      */
-    ageOfMoney: number;
+    age_of_money: number;
 }
 
 /**
@@ -427,7 +427,7 @@ export interface Payee {
      * @type {string}
      * @memberof Payee
      */
-    transferAccountId: string;
+    transfer_account_id: string;
 }
 
 /**
@@ -447,7 +447,7 @@ export interface PayeeLocation {
      * @type {string}
      * @memberof PayeeLocation
      */
-    payeeId: string;
+    payee_id: string;
     /**
      * 
      * @type {number}
@@ -473,7 +473,7 @@ export interface PayeeLocationWrapper {
      * @type {PayeeLocation}
      * @memberof PayeeLocationWrapper
      */
-    payeeLocation: PayeeLocation;
+    payee_location: PayeeLocation;
 }
 
 /**
@@ -487,7 +487,7 @@ export interface PayeeLocationsWrapper {
      * @type {Array&lt;PayeeLocation&gt;}
      * @memberof PayeeLocationsWrapper
      */
-    payeeLocations: Array<PayeeLocation>;
+    payee_locations: Array<PayeeLocation>;
 }
 
 /**
@@ -561,7 +561,7 @@ export interface ResponseWrapper {
      * @type {number}
      * @memberof ResponseWrapper
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
 }
 
 /**
@@ -581,7 +581,7 @@ export interface ScheduledSubTransaction {
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    scheduledTransactionId: string;
+    scheduled_transaction_id: string;
     /**
      * The current balance of the account in millicents format
      * @type {number}
@@ -599,19 +599,19 @@ export interface ScheduledSubTransaction {
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    payeeId: string;
+    payee_id: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    categoryId: string;
+    category_id: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    transferAccountId: string;
+    transfer_account_id: string;
 }
 
 /**
@@ -625,7 +625,7 @@ export interface ScheduledTransactionDetailWrapper {
      * @type {ScheduledTransactionDetail}
      * @memberof ScheduledTransactionDetailWrapper
      */
-    scheduledTransaction: ScheduledTransactionDetail;
+    scheduled_transaction: ScheduledTransactionDetail;
 }
 
 /**
@@ -639,7 +639,7 @@ export interface ScheduledTransactionSummariesWrapper {
      * @type {Array&lt;ScheduledTransactionSummary&gt;}
      * @memberof ScheduledTransactionSummariesWrapper
      */
-    scheduledTransactions: Array<ScheduledTransactionSummary>;
+    scheduled_transactions: Array<ScheduledTransactionSummary>;
 }
 
 /**
@@ -689,25 +689,25 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    accountId: string;
+    account_id: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    payeeId: string;
+    payee_id: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    categoryId: string;
+    category_id: string;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to.
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    transferAccountId: string;
+    transfer_account_id: string;
 }
 
 /**
@@ -727,7 +727,7 @@ export interface SubTransaction {
      * @type {string}
      * @memberof SubTransaction
      */
-    transactionId: string;
+    transaction_id: string;
     /**
      * The current balance of the account in millicents format
      * @type {number}
@@ -745,19 +745,19 @@ export interface SubTransaction {
      * @type {string}
      * @memberof SubTransaction
      */
-    payeeId: string;
+    payee_id: string;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    categoryId: string;
+    category_id: string;
     /**
      * If a transfer, the account_id which the subtransaction transfers to.
      * @type {string}
      * @memberof SubTransaction
      */
-    transferAccountId: string;
+    transfer_account_id: string;
 }
 
 /**
@@ -841,25 +841,25 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    accountId: string;
+    account_id: string;
     /**
      * 
      * @type {string}
      * @memberof TransactionSummary
      */
-    payeeId: string;
+    payee_id: string;
     /**
      * 
      * @type {string}
      * @memberof TransactionSummary
      */
-    categoryId: string;
+    category_id: string;
     /**
      * If a transfer, the account_id which the transaction transfers to.
      * @type {string}
      * @memberof TransactionSummary
      */
-    transferAccountId: string;
+    transfer_account_id: string;
 }
 
 /**
@@ -879,7 +879,7 @@ export interface AccountResponse {
      * @type {number}
      * @memberof AccountResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {AccountWrapper}
@@ -905,7 +905,7 @@ export interface AccountsResponse {
      * @type {number}
      * @memberof AccountsResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {AccountsWrapper}
@@ -937,19 +937,19 @@ export interface BudgetDetail {
      * @type {string}
      * @memberof BudgetDetail
      */
-    lastAccessedOn: string;
+    last_accessed_on: string;
     /**
      * 
      * @type {string}
      * @memberof BudgetDetail
      */
-    dateFormat: string;
+    date_format: string;
     /**
      * 
      * @type {string}
      * @memberof BudgetDetail
      */
-    currencyFormat: string;
+    currency_format: string;
     /**
      * 
      * @type {Array&lt;Account&gt;}
@@ -967,13 +967,13 @@ export interface BudgetDetail {
      * @type {Array&lt;PayeeLocation&gt;}
      * @memberof BudgetDetail
      */
-    payeeLocations?: Array<PayeeLocation>;
+    payee_locations?: Array<PayeeLocation>;
     /**
      * 
      * @type {Array&lt;CategoryGroup&gt;}
      * @memberof BudgetDetail
      */
-    categoryGroups?: Array<CategoryGroup>;
+    category_groups?: Array<CategoryGroup>;
     /**
      * 
      * @type {Array&lt;Category&gt;}
@@ -1003,13 +1003,13 @@ export interface BudgetDetail {
      * @type {Array&lt;ScheduledTransactionSummary&gt;}
      * @memberof BudgetDetail
      */
-    scheduledTransactions?: Array<ScheduledTransactionSummary>;
+    scheduled_transactions?: Array<ScheduledTransactionSummary>;
     /**
      * 
      * @type {Array&lt;ScheduledSubTransaction&gt;}
      * @memberof BudgetDetail
      */
-    scheduledSubtransactions?: Array<ScheduledSubTransaction>;
+    scheduled_subtransactions?: Array<ScheduledSubTransaction>;
 }
 
 /**
@@ -1029,7 +1029,7 @@ export interface BudgetDetailResponse {
      * @type {number}
      * @memberof BudgetDetailResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {BudgetDetailWrapper}
@@ -1055,7 +1055,7 @@ export interface BudgetSummaryResponse {
      * @type {number}
      * @memberof BudgetSummaryResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {BudgetSummaryWrapper}
@@ -1081,7 +1081,7 @@ export interface CategoriesResponse {
      * @type {number}
      * @memberof CategoriesResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {CategoryGroupsWrapper}
@@ -1107,7 +1107,7 @@ export interface CategoryResponse {
      * @type {number}
      * @memberof CategoryResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {CategoryWrapper}
@@ -1139,13 +1139,13 @@ export interface MonthDetail {
      * @type {number}
      * @memberof MonthDetail
      */
-    toBeBudgeted: number;
+    to_be_budgeted: number;
     /**
      * 
      * @type {number}
      * @memberof MonthDetail
      */
-    ageOfMoney: number;
+    age_of_money: number;
     /**
      * The budget month categories
      * @type {Array&lt;Category&gt;}
@@ -1171,7 +1171,7 @@ export interface MonthDetailResponse {
      * @type {number}
      * @memberof MonthDetailResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {MonthDetailWrapper}
@@ -1197,7 +1197,7 @@ export interface MonthSummariesResponse {
      * @type {number}
      * @memberof MonthSummariesResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {MonthSummariesWrapper}
@@ -1223,7 +1223,7 @@ export interface PayeeLocationResponse {
      * @type {number}
      * @memberof PayeeLocationResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {PayeeLocationWrapper}
@@ -1249,7 +1249,7 @@ export interface PayeeLocationsResponse {
      * @type {number}
      * @memberof PayeeLocationsResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {PayeeLocationsWrapper}
@@ -1275,7 +1275,7 @@ export interface PayeeResponse {
      * @type {number}
      * @memberof PayeeResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {PayeeWrapper}
@@ -1301,7 +1301,7 @@ export interface PayeesResponse {
      * @type {number}
      * @memberof PayeesResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {PayeesWrapper}
@@ -1357,25 +1357,25 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    accountId: string;
+    account_id: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    payeeId: string;
+    payee_id: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    categoryId: string;
+    category_id: string;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to.
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    transferAccountId: string;
+    transfer_account_id: string;
     /**
      * If a split scheduled transaction, the sub-transactions.
      * @type {Array&lt;ScheduledSubTransaction&gt;}
@@ -1401,7 +1401,7 @@ export interface ScheduledTransactionDetailResponse {
      * @type {number}
      * @memberof ScheduledTransactionDetailResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {ScheduledTransactionDetailWrapper}
@@ -1427,7 +1427,7 @@ export interface ScheduledTransactionSummariesResponse {
      * @type {number}
      * @memberof ScheduledTransactionSummariesResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {ScheduledTransactionSummariesWrapper}
@@ -1489,25 +1489,25 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    accountId: string;
+    account_id: string;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetail
      */
-    payeeId: string;
+    payee_id: string;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetail
      */
-    categoryId: string;
+    category_id: string;
     /**
      * If a transfer, the account_id which the transaction transfers to.
      * @type {string}
      * @memberof TransactionDetail
      */
-    transferAccountId: string;
+    transfer_account_id: string;
     /**
      * If a split transaction, the sub-transactions.
      * @type {Array&lt;SubTransaction&gt;}
@@ -1533,7 +1533,7 @@ export interface TransactionDetailResponse {
      * @type {number}
      * @memberof TransactionDetailResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {TransactionDetailWrapper}
@@ -1559,7 +1559,7 @@ export interface TransactionSummariesResponse {
      * @type {number}
      * @memberof TransactionSummariesResponse
      */
-    serverKnowledge?: number;
+    server_knowledge?: number;
     /**
      * 
      * @type {TransactionSummariesWrapper}
