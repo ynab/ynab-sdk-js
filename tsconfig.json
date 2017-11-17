@@ -4,15 +4,13 @@
     "target": "es6",
     "module": "commonjs",
     "noImplicitAny": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "dist",
     "typeRoots": ["./node_modules/@types"],
     "sourceMap": true
   },
   "files": [
-    "./src/index.ts",
-    "./src/examples/example.ts",
-    "./src/examples/change-polling.ts",
-    "./src/examples/api-model-validator.ts"
+    "src/index.ts",
+    "src/examples/example.ts",
+    "src/examples/change-polling.ts"
   ]
 }
