@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path="./custom.d.ts" />
+/// <reference path="./portable-fetch.d.ts" />
 // tslint:disable
 /**
  * YNAB API Explorer
@@ -1854,3 +1854,4 @@ class TransactionsApi extends BaseAPI {
     }
 }
 exports.TransactionsApi = TransactionsApi;
+//# sourceMappingURL=api.js.map

@@ -24,7 +24,7 @@ function main() {
             const allBudgets = allBudgetsResponse.data.budgets;
             console.log(`This user has ${allBudgets.length} budgets.`);
             for (let budget of allBudgets) {
-                let contents = yield ynab.budgets.getBudgetContents(budget.id);
+                let budgetContents = yield ynab.budgets.getBudgetContents(budget.id);
                 console.log(`\nHere are all accounts for budget '${budget.id}':`);
                 const accountsResponse = yield ynab.accounts.getAccounts(budget.id);
                 const accounts = accountsResponse.data.accounts;
@@ -48,3 +48,4 @@ function main() {
     });
 }
 main();
+//# sourceMappingURL=example.js.map

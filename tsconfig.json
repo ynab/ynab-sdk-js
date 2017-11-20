@@ -4,9 +4,13 @@
     "target": "es6",
     "module": "commonjs",
     "noImplicitAny": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "typeRoots": ["./node_modules/@types"]
+    "outDir": "dist",
+    "typeRoots": ["./node_modules/@types"],
+    "sourceMap": true
   },
-  "files": ["./src/index.ts", "./src/examples/example.ts"]
+  "files": [
+    "src/index.ts",
+    "src/examples/example.ts",
+    "src/examples/change-polling.ts"
+  ]
 }

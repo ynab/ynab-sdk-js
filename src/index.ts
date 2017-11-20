@@ -13,10 +13,10 @@ import { Configuration } from "./configuration";
 // This acts as a wrapper around the underlying objects exposed by api.ts
 export class Api {
   protected configuration: Configuration;
-  public constructor(bearerToken: string) {
+  public constructor(bearerToken: string, basePath: string = null) {
     this.configuration = new Configuration({
       apiKey: `Bearer ${bearerToken}`,
-      basePath: "http://localhost:3000/papi/v1"
+      basePath: basePath || "https://api.youneedabudget.com/v1"
     });
   }
 
@@ -49,7 +49,7 @@ export class Api {
     if (!this._months) {
       this._months = new MonthsApi(this.configuration);
     }
-    return this.months;
+    return this._months;
   }
 
   protected _payees: PayeesApi;
@@ -57,7 +57,7 @@ export class Api {
     if (!this._payees) {
       this._payees = new PayeesApi(this.configuration);
     }
-    return this.payees;
+    return this._payees;
   }
 
   protected _payeeLocations: PayeeLocationsApi;
@@ -65,7 +65,7 @@ export class Api {
     if (!this._payeeLocations) {
       this._payeeLocations = new PayeeLocationsApi(this.configuration);
     }
-    return this.payeeLocations;
+    return this._payeeLocations;
   }
 
   protected _transactions: TransactionsApi;
@@ -73,7 +73,7 @@ export class Api {
     if (!this._transactions) {
       this._transactions = new TransactionsApi(this.configuration);
     }
-    return this.transactions;
+    return this._transactions;
   }
 
   protected _scheduledTransactions: ScheduledTransactionsApi;
@@ -83,6 +83,6 @@ export class Api {
         this.configuration
       );
     }
-    return this.scheduledTransactions;
+    return this._scheduledTransactions;
   }
 }
