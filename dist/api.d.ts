@@ -34,9 +34,9 @@ export interface FetchArgs {
  */
 export declare class BaseAPI {
     protected basePath: string;
-    protected fetch: FetchAPI;
+    protected fetchFunction: FetchAPI;
     protected configuration: Configuration;
-    constructor(configuration?: Configuration, basePath?: string, fetch?: FetchAPI);
+    constructor(configuration?: Configuration, basePath?: string, fetchFunction?: FetchAPI);
 }
 /**
  *
@@ -73,12 +73,6 @@ export interface Account {
      * @memberof Account
      */
     type: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Account
-     */
-    date_format: string;
     /**
      * Whether this account is on budget or not
      * @type {boolean}
@@ -163,22 +157,22 @@ export interface BudgetSummary {
     name: string;
     /**
      *
-     * @type {string}
+     * @type {Date}
      * @memberof BudgetSummary
      */
-    last_accessed_on: string;
+    last_accessed_on?: Date;
     /**
      *
-     * @type {string}
+     * @type {DateFormat}
      * @memberof BudgetSummary
      */
-    date_format: string;
+    date_format?: DateFormat;
     /**
      *
-     * @type {string}
+     * @type {CurrencyFormat}
      * @memberof BudgetSummary
      */
-    currency_format: string;
+    currency_format?: CurrencyFormat;
 }
 /**
  *
@@ -268,16 +262,10 @@ export interface CategoryGroup {
     name: string;
     /**
      * Whether or not the category group is hidden
-     * @type {boolean}
+     * @type {string}
      * @memberof CategoryGroup
      */
-    hidden: boolean;
-    /**
-     * Category group categories
-     * @type {Array&lt;Category&gt;}
-     * @memberof CategoryGroup
-     */
-    categories: Array<Category>;
+    hidden: string;
 }
 /**
  *
@@ -287,10 +275,10 @@ export interface CategoryGroup {
 export interface CategoryGroupsWrapper {
     /**
      *
-     * @type {Array&lt;CategoryGroup&gt;}
+     * @type {Array&lt;CategoryGroupWithCategories&gt;}
      * @memberof CategoryGroupsWrapper
      */
-    category_groups: Array<CategoryGroup>;
+    category_groups: Array<CategoryGroupWithCategories>;
 }
 /**
  *
@@ -304,6 +292,32 @@ export interface CategoryWrapper {
      * @memberof CategoryWrapper
      */
     category: Category;
+}
+/**
+ *
+ * @export
+ * @interface CurrencyFormat
+ */
+export interface CurrencyFormat {
+    /**
+     *
+     * @type {string}
+     * @memberof CurrencyFormat
+     */
+    locale: string;
+}
+/**
+ *
+ * @export
+ * @interface DateFormat
+ */
+export interface DateFormat {
+    /**
+     *
+     * @type {string}
+     * @memberof DateFormat
+     */
+    locale: string;
 }
 /**
  *
@@ -407,16 +421,16 @@ export interface PayeeLocation {
     payee_id: string;
     /**
      *
-     * @type {number}
+     * @type {string}
      * @memberof PayeeLocation
      */
-    latitude: number;
+    latitude: string;
     /**
      *
-     * @type {number}
+     * @type {string}
      * @memberof PayeeLocation
      */
-    longitude: number;
+    longitude: string;
 }
 /**
  *
@@ -478,10 +492,10 @@ export interface PayeesWrapper {
 export interface ResponseError {
     /**
      *
-     * @type {number}
+     * @type {string}
      * @memberof ResponseError
      */
-    id: number;
+    id: string;
     /**
      *
      * @type {string}
@@ -557,7 +571,7 @@ export interface ScheduledSubTransaction {
      */
     category_id: string;
     /**
-     *
+     * If a transfer, the account_id which the scheduled sub transaction transfers to
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
@@ -650,7 +664,7 @@ export interface ScheduledTransactionSummary {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the scheduled transaction transfers to.
+     * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
@@ -699,7 +713,7 @@ export interface SubTransaction {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the subtransaction transfers to.
+     * If a transfer, the account_id which the subtransaction transfers to
      * @type {string}
      * @memberof SubTransaction
      */
@@ -774,7 +788,7 @@ export interface TransactionSummary {
      */
     approved: boolean;
     /**
-     *
+     * Whether or not the transaction is approved
      * @type {string}
      * @memberof TransactionSummary
      */
@@ -798,7 +812,7 @@ export interface TransactionSummary {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the transaction transfers to.
+     *
      * @type {string}
      * @memberof TransactionSummary
      */
@@ -827,7 +841,7 @@ export interface AccountResponse {
      * @type {AccountWrapper}
      * @memberof AccountResponse
      */
-    data?: AccountWrapper;
+    data: AccountWrapper;
 }
 /**
  *
@@ -852,7 +866,7 @@ export interface AccountsResponse {
      * @type {AccountsWrapper}
      * @memberof AccountsResponse
      */
-    data?: AccountsWrapper;
+    data: AccountsWrapper;
 }
 /**
  *
@@ -874,22 +888,22 @@ export interface BudgetDetail {
     name: string;
     /**
      *
-     * @type {string}
+     * @type {Date}
      * @memberof BudgetDetail
      */
-    last_accessed_on: string;
+    last_accessed_on?: Date;
     /**
      *
-     * @type {string}
+     * @type {DateFormat}
      * @memberof BudgetDetail
      */
-    date_format: string;
+    date_format?: DateFormat;
     /**
      *
-     * @type {string}
+     * @type {CurrencyFormat}
      * @memberof BudgetDetail
      */
-    currency_format: string;
+    currency_format?: CurrencyFormat;
     /**
      *
      * @type {Array&lt;Account&gt;}
@@ -974,7 +988,7 @@ export interface BudgetDetailResponse {
      * @type {BudgetDetailWrapper}
      * @memberof BudgetDetailResponse
      */
-    data?: BudgetDetailWrapper;
+    data: BudgetDetailWrapper;
 }
 /**
  *
@@ -999,7 +1013,7 @@ export interface BudgetSummaryResponse {
      * @type {BudgetSummaryWrapper}
      * @memberof BudgetSummaryResponse
      */
-    data?: BudgetSummaryWrapper;
+    data: BudgetSummaryWrapper;
 }
 /**
  *
@@ -1024,7 +1038,38 @@ export interface CategoriesResponse {
      * @type {CategoryGroupsWrapper}
      * @memberof CategoriesResponse
      */
-    data?: CategoryGroupsWrapper;
+    data: CategoryGroupsWrapper;
+}
+/**
+ *
+ * @export
+ * @interface CategoryGroupWithCategories
+ */
+export interface CategoryGroupWithCategories {
+    /**
+     *
+     * @type {string}
+     * @memberof CategoryGroupWithCategories
+     */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CategoryGroupWithCategories
+     */
+    name: string;
+    /**
+     * Whether or not the category group is hidden
+     * @type {string}
+     * @memberof CategoryGroupWithCategories
+     */
+    hidden: string;
+    /**
+     * Category group categories
+     * @type {Array&lt;Category&gt;}
+     * @memberof CategoryGroupWithCategories
+     */
+    categories: Array<Category>;
 }
 /**
  *
@@ -1049,7 +1094,7 @@ export interface CategoryResponse {
      * @type {CategoryWrapper}
      * @memberof CategoryResponse
      */
-    data?: CategoryWrapper;
+    data: CategoryWrapper;
 }
 /**
  *
@@ -1086,7 +1131,7 @@ export interface MonthDetail {
      * @type {Array&lt;Category&gt;}
      * @memberof MonthDetail
      */
-    categories?: Array<Category>;
+    categories: Array<Category>;
 }
 /**
  *
@@ -1111,7 +1156,7 @@ export interface MonthDetailResponse {
      * @type {MonthDetailWrapper}
      * @memberof MonthDetailResponse
      */
-    data?: MonthDetailWrapper;
+    data: MonthDetailWrapper;
 }
 /**
  *
@@ -1136,7 +1181,7 @@ export interface MonthSummariesResponse {
      * @type {MonthSummariesWrapper}
      * @memberof MonthSummariesResponse
      */
-    data?: MonthSummariesWrapper;
+    data: MonthSummariesWrapper;
 }
 /**
  *
@@ -1161,7 +1206,7 @@ export interface PayeeLocationResponse {
      * @type {PayeeLocationWrapper}
      * @memberof PayeeLocationResponse
      */
-    data?: PayeeLocationWrapper;
+    data: PayeeLocationWrapper;
 }
 /**
  *
@@ -1186,7 +1231,7 @@ export interface PayeeLocationsResponse {
      * @type {PayeeLocationsWrapper}
      * @memberof PayeeLocationsResponse
      */
-    data?: PayeeLocationsWrapper;
+    data: PayeeLocationsWrapper;
 }
 /**
  *
@@ -1211,7 +1256,7 @@ export interface PayeeResponse {
      * @type {PayeeWrapper}
      * @memberof PayeeResponse
      */
-    data?: PayeeWrapper;
+    data: PayeeWrapper;
 }
 /**
  *
@@ -1236,7 +1281,7 @@ export interface PayeesResponse {
      * @type {PayeesWrapper}
      * @memberof PayeesResponse
      */
-    data?: PayeesWrapper;
+    data: PayeesWrapper;
 }
 /**
  *
@@ -1299,7 +1344,7 @@ export interface ScheduledTransactionDetail {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the scheduled transaction transfers to.
+     * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
@@ -1309,7 +1354,7 @@ export interface ScheduledTransactionDetail {
      * @type {Array&lt;ScheduledSubTransaction&gt;}
      * @memberof ScheduledTransactionDetail
      */
-    subtransactions?: Array<ScheduledSubTransaction>;
+    subtransactions: Array<ScheduledSubTransaction>;
 }
 /**
  *
@@ -1334,7 +1379,7 @@ export interface ScheduledTransactionDetailResponse {
      * @type {ScheduledTransactionDetailWrapper}
      * @memberof ScheduledTransactionDetailResponse
      */
-    data?: ScheduledTransactionDetailWrapper;
+    data: ScheduledTransactionDetailWrapper;
 }
 /**
  *
@@ -1359,7 +1404,7 @@ export interface ScheduledTransactionSummariesResponse {
      * @type {ScheduledTransactionSummariesWrapper}
      * @memberof ScheduledTransactionSummariesResponse
      */
-    data?: ScheduledTransactionSummariesWrapper;
+    data: ScheduledTransactionSummariesWrapper;
 }
 /**
  *
@@ -1404,7 +1449,7 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     *
+     * Whether or not the transaction is approved
      * @type {string}
      * @memberof TransactionDetail
      */
@@ -1428,7 +1473,7 @@ export interface TransactionDetail {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the transaction transfers to.
+     *
      * @type {string}
      * @memberof TransactionDetail
      */
@@ -1438,7 +1483,7 @@ export interface TransactionDetail {
      * @type {Array&lt;SubTransaction&gt;}
      * @memberof TransactionDetail
      */
-    subtransactions?: Array<SubTransaction>;
+    subtransactions: Array<SubTransaction>;
 }
 /**
  *
@@ -1463,7 +1508,7 @@ export interface TransactionDetailResponse {
      * @type {TransactionDetailWrapper}
      * @memberof TransactionDetailResponse
      */
-    data?: TransactionDetailWrapper;
+    data: TransactionDetailWrapper;
 }
 /**
  *
@@ -1488,7 +1533,7 @@ export interface TransactionSummariesResponse {
      * @type {TransactionSummariesWrapper}
      * @memberof TransactionSummariesResponse
      */
-    data?: TransactionSummariesWrapper;
+    data: TransactionSummariesWrapper;
 }
 /**
  * AccountsApi - fetch parameter creator
@@ -1503,14 +1548,14 @@ export declare const AccountsApiFetchParamCreator: (configuration?: Configuratio
  * @export
  */
 export declare const AccountsApiFp: (configuration?: Configuration) => {
-    getAccountById(budgetId: string, accountId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AccountResponse>;
-    getAccounts(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AccountsResponse>;
+    getAccountById(budgetId: string, accountId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<AccountResponse>;
+    getAccounts(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<AccountsResponse>;
 };
 /**
  * AccountsApi - factory interface
  * @export
  */
-export declare const AccountsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const AccountsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getAccountById(budgetId: string, accountId: string, options?: any): Promise<AccountResponse>;
     getAccounts(budgetId: string, options?: any): Promise<AccountsResponse>;
 };
@@ -1554,14 +1599,14 @@ export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration
  * @export
  */
 export declare const BudgetsApiFp: (configuration?: Configuration) => {
-    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse>;
-    getBudgets(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BudgetSummaryResponse>;
+    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse>;
+    getBudgets(options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetSummaryResponse>;
 };
 /**
  * BudgetsApi - factory interface
  * @export
  */
-export declare const BudgetsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const BudgetsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
     getBudgets(options?: any): Promise<BudgetSummaryResponse>;
 };
@@ -1604,14 +1649,14 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
  * @export
  */
 export declare const CategoriesApiFp: (configuration?: Configuration) => {
-    getCategories(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoriesResponse>;
-    getCategoryById(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryResponse>;
+    getCategories(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<CategoriesResponse>;
+    getCategoryById(budgetId: string, categoryId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<CategoryResponse>;
 };
 /**
  * CategoriesApi - factory interface
  * @export
  */
-export declare const CategoriesApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const CategoriesApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getCategories(budgetId: string, options?: any): Promise<CategoriesResponse>;
     getCategoryById(budgetId: string, categoryId: string, options?: any): Promise<CategoryResponse>;
 };
@@ -1655,14 +1700,14 @@ export declare const MonthsApiFetchParamCreator: (configuration?: Configuration)
  * @export
  */
 export declare const MonthsApiFp: (configuration?: Configuration) => {
-    getBudgetMonthById(budgetId: string, month: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse>;
-    getBudgetMonths(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MonthSummariesResponse>;
+    getBudgetMonthById(budgetId: string, month: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse>;
+    getBudgetMonths(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthSummariesResponse>;
 };
 /**
  * MonthsApi - factory interface
  * @export
  */
-export declare const MonthsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const MonthsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getBudgetMonthById(budgetId: string, month: string, options?: any): Promise<MonthDetailResponse>;
     getBudgetMonths(budgetId: string, options?: any): Promise<MonthSummariesResponse>;
 };
@@ -1707,15 +1752,15 @@ export declare const PayeeLocationsApiFetchParamCreator: (configuration?: Config
  * @export
  */
 export declare const PayeeLocationsApiFp: (configuration?: Configuration) => {
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationResponse>;
-    getPayeeLocations(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
+    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationResponse>;
+    getPayeeLocations(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
 };
 /**
  * PayeeLocationsApi - factory interface
  * @export
  */
-export declare const PayeeLocationsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const PayeeLocationsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): Promise<PayeeLocationResponse>;
     getPayeeLocations(budgetId: string, options?: any): Promise<PayeeLocationsResponse>;
     getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): Promise<PayeeLocationsResponse>;
@@ -1770,14 +1815,14 @@ export declare const PayeesApiFetchParamCreator: (configuration?: Configuration)
  * @export
  */
 export declare const PayeesApiFp: (configuration?: Configuration) => {
-    getPayeeById(budgetId: string, payeeId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeResponse>;
-    getPayees(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeesResponse>;
+    getPayeeById(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeResponse>;
+    getPayees(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeesResponse>;
 };
 /**
  * PayeesApi - factory interface
  * @export
  */
-export declare const PayeesApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const PayeesApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getPayeeById(budgetId: string, payeeId: string, options?: any): Promise<PayeeResponse>;
     getPayees(budgetId: string, options?: any): Promise<PayeesResponse>;
 };
@@ -1821,14 +1866,14 @@ export declare const ScheduledTransactionsApiFetchParamCreator: (configuration?:
  * @export
  */
 export declare const ScheduledTransactionsApiFp: (configuration?: Configuration) => {
-    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionDetailResponse>;
-    getScheduledTransactions(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionSummariesResponse>;
+    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionDetailResponse>;
+    getScheduledTransactions(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionSummariesResponse>;
 };
 /**
  * ScheduledTransactionsApi - factory interface
  * @export
  */
-export declare const ScheduledTransactionsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const ScheduledTransactionsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): Promise<ScheduledTransactionDetailResponse>;
     getScheduledTransactions(budgetId: string, options?: any): Promise<ScheduledTransactionSummariesResponse>;
 };
@@ -1874,16 +1919,16 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
  * @export
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionDetailResponse>;
+    getTransactions(budgetId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionDetailResponse>;
 };
 /**
  * TransactionsApi - factory interface
  * @export
  */
-export declare const TransactionsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const TransactionsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getTransactions(budgetId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;

@@ -9,7 +9,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const BASE_PATH = "{{{basePath}}}".replace(/\/+$/, "");
+const BASE_PATH = "https://api.youneedabudget.com/v1/";
 
 /**
  *
@@ -32,7 +32,7 @@ export interface FetchAPI {
 }
 
 /**
- *  
+ *
  * @export
  * @interface FetchArgs
  */
@@ -42,7 +42,7 @@ export interface FetchArgs {
 }
 
 /**
- * 
+ *
  * @export
  * @class BaseAPI
  */
@@ -58,7 +58,7 @@ export class BaseAPI {
 };
 
 /**
- * 
+ *
  * @export
  * @class RequiredError
  * @extends {Error}
@@ -264,7 +264,9 @@ export const {{classname}}Fp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response{{#returnType}}.json(){{/returnType}};
                     } else {
-                        throw response;
+                        return response{{#returnType}}.json(){{/returnType}}.then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };

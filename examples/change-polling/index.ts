@@ -1,5 +1,5 @@
-import * as ynabApi from "../index";
-import { ResponseWrapper, BudgetSummary, MonthDetail } from "../api";
+import ynabApi = require("../../dist/index.js");
+import { ResponseWrapper, BudgetSummary, MonthDetail } from "../../dist/api.js";
 import * as _ from "lodash";
 import { DateWithoutTime } from "./DateWithoutTime";
 const Validator = require("swagger-model-validator");
@@ -15,14 +15,14 @@ function checkForError(response: ResponseWrapper): void {
 async function main() {
   try {
     // You can get your API key from the My Account section of YNAB
-    const API_KEY = process.env.YNAB_API_KEY;
+    const API_KEY = process.env.YNAB_API_ACCESS_TOKEN;
     if (API_KEY == null || API_KEY == "") {
       console.warn(
-        "You will need to define the YNAB_API_KEY environment variable."
+        "You will need to define the YNAB_API_ACCESS_TOKEN environment variable."
       );
       process.exit(1);
     }
-    const ynab = new ynabApi.Api(API_KEY);
+    const ynab = new ynabApi(API_KEY);
 
     console.log(`Fetching budgets...`);
     const getBudgetsResponse = await ynab.budgets.getBudgets(0);
@@ -111,10 +111,6 @@ async function main() {
   } catch (e) {
     if (e instanceof Error) {
       console.error(`Error: ${e}`);
-    } else if (e.status && e.statusText) {
-      // This is what an error might look like:
-      //{"url":"http://localhost:3000/papi/v1/budgets","status":401,"statusText":"Unauthorized","headers":{"_headers":{"cache-control":["no-store"],"pragma":["no-cache"],"www-authenticate":["Bearer realm=\"Doorkeeper\", error=\"invalid_token\", error_description=\"The access token is invalid\""]}
-      console.error(`Error: ${e.status} - ${e.statusText}`);
     } else {
       console.error(`Error: ${JSON.stringify(e)}`);
     }

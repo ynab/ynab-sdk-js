@@ -5,12 +5,7 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "dist",
-    "typeRoots": ["./node_modules/@types"],
     "sourceMap": true
   },
-  "files": [
-    "src/index.ts",
-    "src/examples/example.ts",
-    "src/examples/change-polling.ts"
-  ]
+  "files": ["src/index.ts"]
 }
