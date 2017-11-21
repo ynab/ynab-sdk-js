@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const BASE_PATH = "https://api.youneedabudget.com/v1".replace(/\/+$/, "");
+const BASE_PATH = "https://api.youneedabudget.com/v1/";
 
 /**
  *
@@ -43,7 +43,7 @@ export interface FetchAPI {
 }
 
 /**
- *  
+ *
  * @export
  * @interface FetchArgs
  */
@@ -53,7 +53,7 @@ export interface FetchArgs {
 }
 
 /**
- * 
+ *
  * @export
  * @class BaseAPI
  */
@@ -69,7 +69,7 @@ export class BaseAPI {
 };
 
 /**
- * 
+ *
  * @export
  * @class RequiredError
  * @extends {Error}
@@ -105,12 +105,6 @@ export interface Account {
      * @memberof Account
      */
     type: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Account
-     */
-    date_format: string;
     /**
      * Whether this account is on budget or not
      * @type {boolean}
@@ -199,22 +193,22 @@ export interface BudgetSummary {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof BudgetSummary
      */
-    last_accessed_on: string;
+    last_accessed_on?: Date;
     /**
      * 
-     * @type {string}
+     * @type {DateFormat}
      * @memberof BudgetSummary
      */
-    date_format: string;
+    date_format?: DateFormat;
     /**
      * 
-     * @type {string}
+     * @type {CurrencyFormat}
      * @memberof BudgetSummary
      */
-    currency_format: string;
+    currency_format?: CurrencyFormat;
 }
 
 /**
@@ -307,16 +301,10 @@ export interface CategoryGroup {
     name: string;
     /**
      * Whether or not the category group is hidden
-     * @type {boolean}
+     * @type {string}
      * @memberof CategoryGroup
      */
-    hidden: boolean;
-    /**
-     * Category group categories
-     * @type {Array&lt;Category&gt;}
-     * @memberof CategoryGroup
-     */
-    categories: Array<Category>;
+    hidden: string;
 }
 
 /**
@@ -327,10 +315,10 @@ export interface CategoryGroup {
 export interface CategoryGroupsWrapper {
     /**
      * 
-     * @type {Array&lt;CategoryGroup&gt;}
+     * @type {Array&lt;CategoryGroupWithCategories&gt;}
      * @memberof CategoryGroupsWrapper
      */
-    category_groups: Array<CategoryGroup>;
+    category_groups: Array<CategoryGroupWithCategories>;
 }
 
 /**
@@ -345,6 +333,34 @@ export interface CategoryWrapper {
      * @memberof CategoryWrapper
      */
     category: Category;
+}
+
+/**
+ * 
+ * @export
+ * @interface CurrencyFormat
+ */
+export interface CurrencyFormat {
+    /**
+     * 
+     * @type {string}
+     * @memberof CurrencyFormat
+     */
+    locale: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface DateFormat
+ */
+export interface DateFormat {
+    /**
+     * 
+     * @type {string}
+     * @memberof DateFormat
+     */
+    locale: string;
 }
 
 /**
@@ -453,16 +469,16 @@ export interface PayeeLocation {
     payee_id: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PayeeLocation
      */
-    latitude: number;
+    latitude: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PayeeLocation
      */
-    longitude: number;
+    longitude: string;
 }
 
 /**
@@ -529,10 +545,10 @@ export interface PayeesWrapper {
 export interface ResponseError {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ResponseError
      */
-    id: number;
+    id: string;
     /**
      * 
      * @type {string}
@@ -610,7 +626,7 @@ export interface ScheduledSubTransaction {
      */
     category_id: string;
     /**
-     * 
+     * If a transfer, the account_id which the scheduled sub transaction transfers to
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
@@ -706,7 +722,7 @@ export interface ScheduledTransactionSummary {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the scheduled transaction transfers to.
+     * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
@@ -756,7 +772,7 @@ export interface SubTransaction {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the subtransaction transfers to.
+     * If a transfer, the account_id which the subtransaction transfers to
      * @type {string}
      * @memberof SubTransaction
      */
@@ -834,7 +850,7 @@ export interface TransactionSummary {
      */
     approved: boolean;
     /**
-     * 
+     * Whether or not the transaction is approved
      * @type {string}
      * @memberof TransactionSummary
      */
@@ -858,7 +874,7 @@ export interface TransactionSummary {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the transaction transfers to.
+     * 
      * @type {string}
      * @memberof TransactionSummary
      */
@@ -888,7 +904,7 @@ export interface AccountResponse {
      * @type {AccountWrapper}
      * @memberof AccountResponse
      */
-    data?: AccountWrapper;
+    data: AccountWrapper;
 }
 
 /**
@@ -914,7 +930,7 @@ export interface AccountsResponse {
      * @type {AccountsWrapper}
      * @memberof AccountsResponse
      */
-    data?: AccountsWrapper;
+    data: AccountsWrapper;
 }
 
 /**
@@ -937,22 +953,22 @@ export interface BudgetDetail {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof BudgetDetail
      */
-    last_accessed_on: string;
+    last_accessed_on?: Date;
     /**
      * 
-     * @type {string}
+     * @type {DateFormat}
      * @memberof BudgetDetail
      */
-    date_format: string;
+    date_format?: DateFormat;
     /**
      * 
-     * @type {string}
+     * @type {CurrencyFormat}
      * @memberof BudgetDetail
      */
-    currency_format: string;
+    currency_format?: CurrencyFormat;
     /**
      * 
      * @type {Array&lt;Account&gt;}
@@ -1038,7 +1054,7 @@ export interface BudgetDetailResponse {
      * @type {BudgetDetailWrapper}
      * @memberof BudgetDetailResponse
      */
-    data?: BudgetDetailWrapper;
+    data: BudgetDetailWrapper;
 }
 
 /**
@@ -1064,7 +1080,7 @@ export interface BudgetSummaryResponse {
      * @type {BudgetSummaryWrapper}
      * @memberof BudgetSummaryResponse
      */
-    data?: BudgetSummaryWrapper;
+    data: BudgetSummaryWrapper;
 }
 
 /**
@@ -1090,7 +1106,39 @@ export interface CategoriesResponse {
      * @type {CategoryGroupsWrapper}
      * @memberof CategoriesResponse
      */
-    data?: CategoryGroupsWrapper;
+    data: CategoryGroupsWrapper;
+}
+
+/**
+ * 
+ * @export
+ * @interface CategoryGroupWithCategories
+ */
+export interface CategoryGroupWithCategories {
+    /**
+     * 
+     * @type {string}
+     * @memberof CategoryGroupWithCategories
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CategoryGroupWithCategories
+     */
+    name: string;
+    /**
+     * Whether or not the category group is hidden
+     * @type {string}
+     * @memberof CategoryGroupWithCategories
+     */
+    hidden: string;
+    /**
+     * Category group categories
+     * @type {Array&lt;Category&gt;}
+     * @memberof CategoryGroupWithCategories
+     */
+    categories: Array<Category>;
 }
 
 /**
@@ -1116,7 +1164,7 @@ export interface CategoryResponse {
      * @type {CategoryWrapper}
      * @memberof CategoryResponse
      */
-    data?: CategoryWrapper;
+    data: CategoryWrapper;
 }
 
 /**
@@ -1154,7 +1202,7 @@ export interface MonthDetail {
      * @type {Array&lt;Category&gt;}
      * @memberof MonthDetail
      */
-    categories?: Array<Category>;
+    categories: Array<Category>;
 }
 
 /**
@@ -1180,7 +1228,7 @@ export interface MonthDetailResponse {
      * @type {MonthDetailWrapper}
      * @memberof MonthDetailResponse
      */
-    data?: MonthDetailWrapper;
+    data: MonthDetailWrapper;
 }
 
 /**
@@ -1206,7 +1254,7 @@ export interface MonthSummariesResponse {
      * @type {MonthSummariesWrapper}
      * @memberof MonthSummariesResponse
      */
-    data?: MonthSummariesWrapper;
+    data: MonthSummariesWrapper;
 }
 
 /**
@@ -1232,7 +1280,7 @@ export interface PayeeLocationResponse {
      * @type {PayeeLocationWrapper}
      * @memberof PayeeLocationResponse
      */
-    data?: PayeeLocationWrapper;
+    data: PayeeLocationWrapper;
 }
 
 /**
@@ -1258,7 +1306,7 @@ export interface PayeeLocationsResponse {
      * @type {PayeeLocationsWrapper}
      * @memberof PayeeLocationsResponse
      */
-    data?: PayeeLocationsWrapper;
+    data: PayeeLocationsWrapper;
 }
 
 /**
@@ -1284,7 +1332,7 @@ export interface PayeeResponse {
      * @type {PayeeWrapper}
      * @memberof PayeeResponse
      */
-    data?: PayeeWrapper;
+    data: PayeeWrapper;
 }
 
 /**
@@ -1310,7 +1358,7 @@ export interface PayeesResponse {
      * @type {PayeesWrapper}
      * @memberof PayeesResponse
      */
-    data?: PayeesWrapper;
+    data: PayeesWrapper;
 }
 
 /**
@@ -1374,7 +1422,7 @@ export interface ScheduledTransactionDetail {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the scheduled transaction transfers to.
+     * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
@@ -1384,7 +1432,7 @@ export interface ScheduledTransactionDetail {
      * @type {Array&lt;ScheduledSubTransaction&gt;}
      * @memberof ScheduledTransactionDetail
      */
-    subtransactions?: Array<ScheduledSubTransaction>;
+    subtransactions: Array<ScheduledSubTransaction>;
 }
 
 /**
@@ -1410,7 +1458,7 @@ export interface ScheduledTransactionDetailResponse {
      * @type {ScheduledTransactionDetailWrapper}
      * @memberof ScheduledTransactionDetailResponse
      */
-    data?: ScheduledTransactionDetailWrapper;
+    data: ScheduledTransactionDetailWrapper;
 }
 
 /**
@@ -1436,7 +1484,7 @@ export interface ScheduledTransactionSummariesResponse {
      * @type {ScheduledTransactionSummariesWrapper}
      * @memberof ScheduledTransactionSummariesResponse
      */
-    data?: ScheduledTransactionSummariesWrapper;
+    data: ScheduledTransactionSummariesWrapper;
 }
 
 /**
@@ -1482,7 +1530,7 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     * 
+     * Whether or not the transaction is approved
      * @type {string}
      * @memberof TransactionDetail
      */
@@ -1506,7 +1554,7 @@ export interface TransactionDetail {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the transaction transfers to.
+     * 
      * @type {string}
      * @memberof TransactionDetail
      */
@@ -1516,7 +1564,7 @@ export interface TransactionDetail {
      * @type {Array&lt;SubTransaction&gt;}
      * @memberof TransactionDetail
      */
-    subtransactions?: Array<SubTransaction>;
+    subtransactions: Array<SubTransaction>;
 }
 
 /**
@@ -1542,7 +1590,7 @@ export interface TransactionDetailResponse {
      * @type {TransactionDetailWrapper}
      * @memberof TransactionDetailResponse
      */
-    data?: TransactionDetailWrapper;
+    data: TransactionDetailWrapper;
 }
 
 /**
@@ -1568,7 +1616,7 @@ export interface TransactionSummariesResponse {
      * @type {TransactionSummariesWrapper}
      * @memberof TransactionSummariesResponse
      */
-    data?: TransactionSummariesWrapper;
+    data: TransactionSummariesWrapper;
 }
 
 
@@ -1682,7 +1730,9 @@ export const AccountsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -1701,7 +1751,9 @@ export const AccountsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -1876,7 +1928,9 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -1894,7 +1948,9 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2073,7 +2129,9 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2093,7 +2151,9 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2275,7 +2335,9 @@ export const MonthsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2294,7 +2356,9 @@ export const MonthsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2519,7 +2583,9 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2538,7 +2604,9 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2558,7 +2626,9 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2764,7 +2834,9 @@ export const PayeesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2783,7 +2855,9 @@ export const PayeesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2965,7 +3039,9 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2984,7 +3060,9 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3267,7 +3345,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3288,7 +3368,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3309,7 +3391,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3329,7 +3413,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3454,4 +3540,3 @@ export class TransactionsApi extends BaseAPI {
     }
 
 }
-

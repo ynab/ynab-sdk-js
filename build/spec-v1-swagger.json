@@ -873,7 +873,7 @@
           "type": "string"
         },
         "last_accessed_on": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "date-time"
         },
         "date_format": {
@@ -889,7 +889,7 @@
       "required": ["locale"],
       "properties": {
         "locale": {
-          "type": ["string", "null"]
+          "type": "string"
         }
       }
     },
@@ -898,7 +898,7 @@
       "required": ["locale"],
       "properties": {
         "locale": {
-          "type": ["string", "null"]
+          "type": "string"
         }
       }
     },
@@ -1056,7 +1056,7 @@
           "description": "Whether this account is closed or not"
         },
         "note": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "balance": {
           "type": "number",
@@ -1130,7 +1130,7 @@
         },
         "hidden": {
           "description": "Whether or not the category group is hidden",
-          "type": ["string", "null"]
+          "type": "string"
         }
       }
     },
@@ -1143,7 +1143,7 @@
           "required": ["categories"],
           "properties": {
             "categories": {
-              "type": ["array", "null"],
+              "type": "array",
               "description": "Category group categories",
               "items": {
                 "$ref": "#/definitions/Category"
@@ -1179,10 +1179,10 @@
         },
         "hidden": {
           "description": "Whether or not the category is hidden",
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "note": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "budgeted": {
           "type": "number",
@@ -1263,7 +1263,7 @@
         "transfer_account_id": {
           "description":
             "If a transfer payee, the account_id to which this payee transfers to",
-          "type": ["string", "null"]
+          "type": "string"
         }
       }
     },
@@ -1331,10 +1331,10 @@
           "format": "uuid"
         },
         "latitude": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "longitude": {
-          "type": ["string", "null"]
+          "type": "string"
         }
       }
     },
@@ -1420,7 +1420,7 @@
             "The current balance of the account in millicents format"
         },
         "memo": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "cleared": {
           "type": "string",
@@ -1432,7 +1432,7 @@
           "description": "Whether or not the transaction is approved"
         },
         "flag": {
-          "type": ["string", "null"],
+          "type": "string",
           "description": "Whether or not the transaction is approved"
         },
         "account_id": {
@@ -1440,15 +1440,15 @@
           "format": "uuid"
         },
         "payee_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "category_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         }
       }
@@ -1499,18 +1499,18 @@
             "The current balance of the account in millicents format"
         },
         "memo": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "payee_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "category_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the subtransaction transfers to"
@@ -1603,25 +1603,25 @@
             "The current balance of the account in millicents format"
         },
         "memo": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "flag": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "account_id": {
           "type": "string",
           "format": "uuid"
         },
         "payee_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "category_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the scheduled transaction transfers to"
@@ -1675,18 +1675,18 @@
             "The current balance of the account in millicents format"
         },
         "memo": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "payee_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "category_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": ["string", "null"],
+          "type": "string",
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the scheduled sub transaction transfers to"
@@ -1753,16 +1753,16 @@
           "format": "date"
         },
         "note": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "to_be_budgeted": {
-          "type": ["number", "null"],
+          "type": "number",
           "format": "1234000",
           "description":
             "The current balance of the account in millicents format"
         },
         "age_of_money": {
-          "type": ["number", "null"]
+          "type": "number"
         }
       }
     },
