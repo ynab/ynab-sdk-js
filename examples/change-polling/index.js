@@ -5,12 +5,6 @@ const _ = require("lodash");
 const DateWithoutTime_1 = require("./DateWithoutTime");
 const Validator = require("swagger-model-validator");
 let validator = new Validator();
-function checkForError(response) {
-    const error = response.error;
-    if (error) {
-        throw new Error(`${error.id} - ${error.name}: ${error.description}`);
-    }
-}
 async function main() {
     try {
         // You can get your API key from the My Account section of YNAB
@@ -22,7 +16,6 @@ async function main() {
         const ynab = new ynabApi(API_KEY);
         console.log(`Fetching budgets...`);
         const getBudgetsResponse = await ynab.budgets.getBudgets(0);
-        checkForError(getBudgetsResponse);
         const allBudgets = getBudgetsResponse.data.budgets;
         const pollWaitTimeInMs = 5000;
         if (allBudgets.length > 0) {
@@ -39,7 +32,6 @@ async function main() {
             }
             console.log(`Fetching contents of budget: ${budgetToFetch.name} - ${budgetToFetch.id}`);
             const budgetContents = await ynab.budgets.getBudgetContents(budgetToFetch.id);
-            checkForError(budgetContents);
             const categories = budgetContents.data.budget.categories;
             console.log(`Here is the budget data for the current month: `);
             const currentMonth = DateWithoutTime_1.DateWithoutTime.createForCurrentMonth();
@@ -55,17 +47,16 @@ async function main() {
             else {
                 console.error(`Could not find monthDetail for the current month: ${currentMonth}`);
             }
-            let lastServerKnowledge = budgetContents.server_knowledge;
+            let lastServerKnowledge = budgetContents.data.server_knowledge;
             function queueUpPoll() {
                 console.log(`Current server knowledge is: ${lastServerKnowledge}`);
                 console.log(`Will poll for changes in ${pollWaitTimeInMs}ms...`);
                 setTimeout(async () => {
                     console.log("Polling for changes now...");
                     const budgetChangesResponse = await ynab.budgets.getBudgetContents(budgetToFetch.id, lastServerKnowledge);
-                    checkForError(budgetChangesResponse);
-                    console.log(`Current server knowledge is now : ${budgetChangesResponse.server_knowledge}`);
-                    if (budgetChangesResponse.server_knowledge > lastServerKnowledge) {
-                        lastServerKnowledge = budgetChangesResponse.server_knowledge;
+                    console.log(`Current server knowledge is now : ${budgetChangesResponse.data.server_knowledge}`);
+                    if (budgetChangesResponse.data.server_knowledge > lastServerKnowledge) {
+                        lastServerKnowledge = budgetChangesResponse.data.server_knowledge;
                         console.log(`There have been some changes to the following entities: `);
                         console.log(JSON.stringify(budgetChangesResponse.data.budget, null, 2));
                     }

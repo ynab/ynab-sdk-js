@@ -1,16 +1,9 @@
 import ynabApi = require("../../dist/index.js");
-import { ResponseWrapper, BudgetSummary, MonthDetail } from "../../dist/api.js";
+import { ErrorResponse, BudgetSummary, MonthDetail } from "../../dist/api.js";
 import * as _ from "lodash";
 import { DateWithoutTime } from "./DateWithoutTime";
 const Validator = require("swagger-model-validator");
 let validator = new Validator();
-
-function checkForError(response: ResponseWrapper): void {
-  const error = response.error;
-  if (error) {
-    throw new Error(`${error.id} - ${error.name}: ${error.description}`);
-  }
-}
 
 async function main() {
   try {
@@ -26,7 +19,6 @@ async function main() {
 
     console.log(`Fetching budgets...`);
     const getBudgetsResponse = await ynab.budgets.getBudgets(0);
-    checkForError(getBudgetsResponse);
     const allBudgets = getBudgetsResponse.data.budgets;
 
     const pollWaitTimeInMs = 5000;
@@ -51,7 +43,6 @@ async function main() {
       const budgetContents = await ynab.budgets.getBudgetContents(
         budgetToFetch.id
       );
-      checkForError(budgetContents);
 
       const categories = budgetContents.data.budget.categories;
 
@@ -74,7 +65,7 @@ async function main() {
         );
       }
 
-      let lastServerKnowledge = budgetContents.server_knowledge;
+      let lastServerKnowledge = budgetContents.data.server_knowledge;
 
       function queueUpPoll() {
         console.log(`Current server knowledge is: ${lastServerKnowledge}`);
@@ -85,15 +76,16 @@ async function main() {
             budgetToFetch.id,
             lastServerKnowledge
           );
-          checkForError(budgetChangesResponse);
 
           console.log(
             `Current server knowledge is now : ${
-              budgetChangesResponse.server_knowledge
+              budgetChangesResponse.data.server_knowledge
             }`
           );
-          if (budgetChangesResponse.server_knowledge > lastServerKnowledge) {
-            lastServerKnowledge = budgetChangesResponse.server_knowledge;
+          if (
+            budgetChangesResponse.data.server_knowledge > lastServerKnowledge
+          ) {
+            lastServerKnowledge = budgetChangesResponse.data.server_knowledge;
             console.log(
               `There have been some changes to the following entities: `
             );
