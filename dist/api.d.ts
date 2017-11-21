@@ -101,6 +101,19 @@ export interface Account {
 /**
  *
  * @export
+ * @interface AccountResponse
+ */
+export interface AccountResponse {
+    /**
+     *
+     * @type {AccountWrapper}
+     * @memberof AccountResponse
+     */
+    data: AccountWrapper;
+}
+/**
+ *
+ * @export
  * @interface AccountWrapper
  */
 export interface AccountWrapper {
@@ -110,6 +123,19 @@ export interface AccountWrapper {
      * @memberof AccountWrapper
      */
     account: Account;
+}
+/**
+ *
+ * @export
+ * @interface AccountsResponse
+ */
+export interface AccountsResponse {
+    /**
+     *
+     * @type {AccountsWrapper}
+     * @memberof AccountsResponse
+     */
+    data: AccountsWrapper;
 }
 /**
  *
@@ -127,6 +153,19 @@ export interface AccountsWrapper {
 /**
  *
  * @export
+ * @interface BudgetDetailResponse
+ */
+export interface BudgetDetailResponse {
+    /**
+     *
+     * @type {BudgetDetailWrapper}
+     * @memberof BudgetDetailResponse
+     */
+    data: BudgetDetailWrapper;
+}
+/**
+ *
+ * @export
  * @interface BudgetDetailWrapper
  */
 export interface BudgetDetailWrapper {
@@ -136,6 +175,12 @@ export interface BudgetDetailWrapper {
      * @memberof BudgetDetailWrapper
      */
     budget: BudgetDetail;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof BudgetDetailWrapper
+     */
+    server_knowledge: number;
 }
 /**
  *
@@ -177,6 +222,19 @@ export interface BudgetSummary {
 /**
  *
  * @export
+ * @interface BudgetSummaryResponse
+ */
+export interface BudgetSummaryResponse {
+    /**
+     *
+     * @type {BudgetSummaryWrapper}
+     * @memberof BudgetSummaryResponse
+     */
+    data: BudgetSummaryWrapper;
+}
+/**
+ *
+ * @export
  * @interface BudgetSummaryWrapper
  */
 export interface BudgetSummaryWrapper {
@@ -186,6 +244,19 @@ export interface BudgetSummaryWrapper {
      * @memberof BudgetSummaryWrapper
      */
     budgets: Array<BudgetSummary>;
+}
+/**
+ *
+ * @export
+ * @interface CategoriesResponse
+ */
+export interface CategoriesResponse {
+    /**
+     *
+     * @type {CategoryGroupsWrapper}
+     * @memberof CategoriesResponse
+     */
+    data: CategoryGroupsWrapper;
 }
 /**
  *
@@ -283,6 +354,19 @@ export interface CategoryGroupsWrapper {
 /**
  *
  * @export
+ * @interface CategoryResponse
+ */
+export interface CategoryResponse {
+    /**
+     *
+     * @type {CategoryWrapper}
+     * @memberof CategoryResponse
+     */
+    data: CategoryWrapper;
+}
+/**
+ *
+ * @export
  * @interface CategoryWrapper
  */
 export interface CategoryWrapper {
@@ -322,6 +406,57 @@ export interface DateFormat {
 /**
  *
  * @export
+ * @interface ErrorDetail
+ */
+export interface ErrorDetail {
+    /**
+     *
+     * @type {string}
+     * @memberof ErrorDetail
+     */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ErrorDetail
+     */
+    name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ErrorDetail
+     */
+    description: string;
+}
+/**
+ *
+ * @export
+ * @interface ErrorResponse
+ */
+export interface ErrorResponse {
+    /**
+     *
+     * @type {ErrorDetail}
+     * @memberof ErrorResponse
+     */
+    error: ErrorDetail;
+}
+/**
+ *
+ * @export
+ * @interface MonthDetailResponse
+ */
+export interface MonthDetailResponse {
+    /**
+     *
+     * @type {MonthDetailWrapper}
+     * @memberof MonthDetailResponse
+     */
+    data: MonthDetailWrapper;
+}
+/**
+ *
+ * @export
  * @interface MonthDetailWrapper
  */
 export interface MonthDetailWrapper {
@@ -331,6 +466,19 @@ export interface MonthDetailWrapper {
      * @memberof MonthDetailWrapper
      */
     month: MonthDetail;
+}
+/**
+ *
+ * @export
+ * @interface MonthSummariesResponse
+ */
+export interface MonthSummariesResponse {
+    /**
+     *
+     * @type {MonthSummariesWrapper}
+     * @memberof MonthSummariesResponse
+     */
+    data: MonthSummariesWrapper;
 }
 /**
  *
@@ -435,6 +583,19 @@ export interface PayeeLocation {
 /**
  *
  * @export
+ * @interface PayeeLocationResponse
+ */
+export interface PayeeLocationResponse {
+    /**
+     *
+     * @type {PayeeLocationWrapper}
+     * @memberof PayeeLocationResponse
+     */
+    data: PayeeLocationWrapper;
+}
+/**
+ *
+ * @export
  * @interface PayeeLocationWrapper
  */
 export interface PayeeLocationWrapper {
@@ -444,6 +605,19 @@ export interface PayeeLocationWrapper {
      * @memberof PayeeLocationWrapper
      */
     payee_location: PayeeLocation;
+}
+/**
+ *
+ * @export
+ * @interface PayeeLocationsResponse
+ */
+export interface PayeeLocationsResponse {
+    /**
+     *
+     * @type {PayeeLocationsWrapper}
+     * @memberof PayeeLocationsResponse
+     */
+    data: PayeeLocationsWrapper;
 }
 /**
  *
@@ -461,6 +635,19 @@ export interface PayeeLocationsWrapper {
 /**
  *
  * @export
+ * @interface PayeeResponse
+ */
+export interface PayeeResponse {
+    /**
+     *
+     * @type {PayeeWrapper}
+     * @memberof PayeeResponse
+     */
+    data: PayeeWrapper;
+}
+/**
+ *
+ * @export
  * @interface PayeeWrapper
  */
 export interface PayeeWrapper {
@@ -474,6 +661,19 @@ export interface PayeeWrapper {
 /**
  *
  * @export
+ * @interface PayeesResponse
+ */
+export interface PayeesResponse {
+    /**
+     *
+     * @type {PayeesWrapper}
+     * @memberof PayeesResponse
+     */
+    data: PayeesWrapper;
+}
+/**
+ *
+ * @export
  * @interface PayeesWrapper
  */
 export interface PayeesWrapper {
@@ -483,50 +683,6 @@ export interface PayeesWrapper {
      * @memberof PayeesWrapper
      */
     payees: Array<Payee>;
-}
-/**
- *
- * @export
- * @interface ResponseError
- */
-export interface ResponseError {
-    /**
-     *
-     * @type {string}
-     * @memberof ResponseError
-     */
-    id: string;
-    /**
-     *
-     * @type {string}
-     * @memberof ResponseError
-     */
-    name: string;
-    /**
-     *
-     * @type {string}
-     * @memberof ResponseError
-     */
-    description: string;
-}
-/**
- *
- * @export
- * @interface ResponseWrapper
- */
-export interface ResponseWrapper {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof ResponseWrapper
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof ResponseWrapper
-     */
-    server_knowledge?: number;
 }
 /**
  *
@@ -580,6 +736,19 @@ export interface ScheduledSubTransaction {
 /**
  *
  * @export
+ * @interface ScheduledTransactionDetailResponse
+ */
+export interface ScheduledTransactionDetailResponse {
+    /**
+     *
+     * @type {ScheduledTransactionDetailWrapper}
+     * @memberof ScheduledTransactionDetailResponse
+     */
+    data: ScheduledTransactionDetailWrapper;
+}
+/**
+ *
+ * @export
  * @interface ScheduledTransactionDetailWrapper
  */
 export interface ScheduledTransactionDetailWrapper {
@@ -589,6 +758,19 @@ export interface ScheduledTransactionDetailWrapper {
      * @memberof ScheduledTransactionDetailWrapper
      */
     scheduled_transaction: ScheduledTransactionDetail;
+}
+/**
+ *
+ * @export
+ * @interface ScheduledTransactionSummariesResponse
+ */
+export interface ScheduledTransactionSummariesResponse {
+    /**
+     *
+     * @type {ScheduledTransactionSummariesWrapper}
+     * @memberof ScheduledTransactionSummariesResponse
+     */
+    data: ScheduledTransactionSummariesWrapper;
 }
 /**
  *
@@ -722,6 +904,19 @@ export interface SubTransaction {
 /**
  *
  * @export
+ * @interface TransactionDetailResponse
+ */
+export interface TransactionDetailResponse {
+    /**
+     *
+     * @type {TransactionDetailWrapper}
+     * @memberof TransactionDetailResponse
+     */
+    data: TransactionDetailWrapper;
+}
+/**
+ *
+ * @export
  * @interface TransactionDetailWrapper
  */
 export interface TransactionDetailWrapper {
@@ -731,6 +926,19 @@ export interface TransactionDetailWrapper {
      * @memberof TransactionDetailWrapper
      */
     transaction: TransactionDetail;
+}
+/**
+ *
+ * @export
+ * @interface TransactionSummariesResponse
+ */
+export interface TransactionSummariesResponse {
+    /**
+     *
+     * @type {TransactionSummariesWrapper}
+     * @memberof TransactionSummariesResponse
+     */
+    data: TransactionSummariesWrapper;
 }
 /**
  *
@@ -817,56 +1025,6 @@ export interface TransactionSummary {
      * @memberof TransactionSummary
      */
     transfer_account_id: string;
-}
-/**
- *
- * @export
- * @interface AccountResponse
- */
-export interface AccountResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof AccountResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof AccountResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {AccountWrapper}
-     * @memberof AccountResponse
-     */
-    data: AccountWrapper;
-}
-/**
- *
- * @export
- * @interface AccountsResponse
- */
-export interface AccountsResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof AccountsResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof AccountsResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {AccountsWrapper}
-     * @memberof AccountsResponse
-     */
-    data: AccountsWrapper;
 }
 /**
  *
@@ -968,81 +1126,6 @@ export interface BudgetDetail {
 /**
  *
  * @export
- * @interface BudgetDetailResponse
- */
-export interface BudgetDetailResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof BudgetDetailResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof BudgetDetailResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {BudgetDetailWrapper}
-     * @memberof BudgetDetailResponse
-     */
-    data: BudgetDetailWrapper;
-}
-/**
- *
- * @export
- * @interface BudgetSummaryResponse
- */
-export interface BudgetSummaryResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof BudgetSummaryResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof BudgetSummaryResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {BudgetSummaryWrapper}
-     * @memberof BudgetSummaryResponse
-     */
-    data: BudgetSummaryWrapper;
-}
-/**
- *
- * @export
- * @interface CategoriesResponse
- */
-export interface CategoriesResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof CategoriesResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof CategoriesResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {CategoryGroupsWrapper}
-     * @memberof CategoriesResponse
-     */
-    data: CategoryGroupsWrapper;
-}
-/**
- *
- * @export
  * @interface CategoryGroupWithCategories
  */
 export interface CategoryGroupWithCategories {
@@ -1070,31 +1153,6 @@ export interface CategoryGroupWithCategories {
      * @memberof CategoryGroupWithCategories
      */
     categories: Array<Category>;
-}
-/**
- *
- * @export
- * @interface CategoryResponse
- */
-export interface CategoryResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof CategoryResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof CategoryResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {CategoryWrapper}
-     * @memberof CategoryResponse
-     */
-    data: CategoryWrapper;
 }
 /**
  *
@@ -1132,156 +1190,6 @@ export interface MonthDetail {
      * @memberof MonthDetail
      */
     categories: Array<Category>;
-}
-/**
- *
- * @export
- * @interface MonthDetailResponse
- */
-export interface MonthDetailResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof MonthDetailResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof MonthDetailResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {MonthDetailWrapper}
-     * @memberof MonthDetailResponse
-     */
-    data: MonthDetailWrapper;
-}
-/**
- *
- * @export
- * @interface MonthSummariesResponse
- */
-export interface MonthSummariesResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof MonthSummariesResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof MonthSummariesResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {MonthSummariesWrapper}
-     * @memberof MonthSummariesResponse
-     */
-    data: MonthSummariesWrapper;
-}
-/**
- *
- * @export
- * @interface PayeeLocationResponse
- */
-export interface PayeeLocationResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof PayeeLocationResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof PayeeLocationResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {PayeeLocationWrapper}
-     * @memberof PayeeLocationResponse
-     */
-    data: PayeeLocationWrapper;
-}
-/**
- *
- * @export
- * @interface PayeeLocationsResponse
- */
-export interface PayeeLocationsResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof PayeeLocationsResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof PayeeLocationsResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {PayeeLocationsWrapper}
-     * @memberof PayeeLocationsResponse
-     */
-    data: PayeeLocationsWrapper;
-}
-/**
- *
- * @export
- * @interface PayeeResponse
- */
-export interface PayeeResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof PayeeResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof PayeeResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {PayeeWrapper}
-     * @memberof PayeeResponse
-     */
-    data: PayeeWrapper;
-}
-/**
- *
- * @export
- * @interface PayeesResponse
- */
-export interface PayeesResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof PayeesResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof PayeesResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {PayeesWrapper}
-     * @memberof PayeesResponse
-     */
-    data: PayeesWrapper;
 }
 /**
  *
@@ -1355,56 +1263,6 @@ export interface ScheduledTransactionDetail {
      * @memberof ScheduledTransactionDetail
      */
     subtransactions: Array<ScheduledSubTransaction>;
-}
-/**
- *
- * @export
- * @interface ScheduledTransactionDetailResponse
- */
-export interface ScheduledTransactionDetailResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof ScheduledTransactionDetailResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof ScheduledTransactionDetailResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {ScheduledTransactionDetailWrapper}
-     * @memberof ScheduledTransactionDetailResponse
-     */
-    data: ScheduledTransactionDetailWrapper;
-}
-/**
- *
- * @export
- * @interface ScheduledTransactionSummariesResponse
- */
-export interface ScheduledTransactionSummariesResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof ScheduledTransactionSummariesResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof ScheduledTransactionSummariesResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {ScheduledTransactionSummariesWrapper}
-     * @memberof ScheduledTransactionSummariesResponse
-     */
-    data: ScheduledTransactionSummariesWrapper;
 }
 /**
  *
@@ -1484,56 +1342,6 @@ export interface TransactionDetail {
      * @memberof TransactionDetail
      */
     subtransactions: Array<SubTransaction>;
-}
-/**
- *
- * @export
- * @interface TransactionDetailResponse
- */
-export interface TransactionDetailResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof TransactionDetailResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof TransactionDetailResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {TransactionDetailWrapper}
-     * @memberof TransactionDetailResponse
-     */
-    data: TransactionDetailWrapper;
-}
-/**
- *
- * @export
- * @interface TransactionSummariesResponse
- */
-export interface TransactionSummariesResponse {
-    /**
-     *
-     * @type {ResponseError}
-     * @memberof TransactionSummariesResponse
-     */
-    error?: ResponseError;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof TransactionSummariesResponse
-     */
-    server_knowledge?: number;
-    /**
-     *
-     * @type {TransactionSummariesWrapper}
-     * @memberof TransactionSummariesResponse
-     */
-    data: TransactionSummariesWrapper;
 }
 /**
  * AccountsApi - fetch parameter creator
