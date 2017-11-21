@@ -3,15 +3,8 @@
   "version": "1.0.0",
   "description": "YNAB Client SDK",
   "author": "You Need a Budget, LLC",
-  "keywords": [
-    "typescript",
-    "swagger-client",
-    "ynab",
-    "api"
-  ],
-  "files": [
-    "dist/"
-  ],
+  "keywords": ["typescript", "swagger-client", "ynab", "api"],
+  "files": ["dist/"],
   "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -21,9 +14,9 @@
   },
   "scripts": {
     "generate": "cd build && ./generate_sdk_typescript.js",
-    "build": "npx tsc",
-    "build_examples": "cd examples && yarn install && npx tsc",
-    "test": "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'"
+    "build": "npx tsc && npx tsc -p examples/ && npx tsc -p test/",
+    "test":
+      "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'"
   },
   "dependencies": {
     "portable-fetch": "^3.0.0"
