@@ -5,7 +5,8 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmitOnError": true
   },
   "files": ["src/index.ts"]
 }

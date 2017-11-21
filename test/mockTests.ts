@@ -1,5 +1,5 @@
-import * as ynabApi from "../src/index";
-import { ResponseWrapper, BudgetDetail } from "../src/api";
+import ynabApi = require("../src/index");
+import { ErrorResponse, BudgetDetail } from "../src/api";
 import * as _ from "lodash";
 import chai = require("chai");
 
@@ -9,7 +9,6 @@ const validator = new Validator(swaggerApiDef);
 const assert = chai.assert;
 const expect = chai.expect;
 chai.config.includeStack = true;
-import {DateWithoutTime} from "../src/examples/DateWithoutTime";
 
 import * as Factory from "factory.ts";
 import * as api from "../src/api";
@@ -21,48 +20,35 @@ const BASE_URL = "http://localhost:3000/papi/v1";
 const budgetFactory = Factory.makeFactory<api.BudgetSummary>({
   id: Factory.each(i => `${i}`),
   name: Factory.each(i => `Budget ${i}`),
-  last_accessed_on: DateWithoutTime.createForToday().toISOString(),
-  date_format: "MM/DD/YY",
-  currency_format: "$0.00"
+  last_accessed_on: new Date(),
+  date_format: { locale: "en-us" },
+  currency_format: { locale: "en-us" }
 });
 
-const budgetSummaryFactory = Factory.makeFactory<api.BudgetSummaryResponse>(
-  {
-    data: {
-      budgets: budgetFactory.buildList(3)
-    }
+const budgetSummaryFactory = Factory.makeFactory<api.BudgetSummaryResponse>({
+  data: {
+    budgets: budgetFactory.buildList(3)
   }
-);
-
+});
 
 // You can get your API key from the My Account section of YNAB
 const API_KEY = "API_KEY";
 
-before(async () => {
-});
+before(async () => {});
 
 describe("Mock tests", () => {
-  it.only("Should getBudgets and validate the response", async () => {
-    
+  it("Should getBudgets and validate the response", async () => {
     let budgetSummary = budgetSummaryFactory.build();
     fetchMock.mock("*", budgetSummary);
-    let ynab: ynabApi.Api = new ynabApi.Api(API_KEY, BASE_URL);
+    let ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const getBudgetsResponse = await ynab.budgets.getBudgets(0);
 
     expect(fetchMock.calls().matched.length, "fetchMock calls").to.equal(1);
     expect(fetchMock.lastUrl()).to.equal(`${BASE_URL}/budgets`);
-    expect(fetchMock.lastOptions().method).to.equal('GET');
+    expect(fetchMock.lastOptions().method).to.equal("GET");
     expect(fetchMock.lastOptions().headers).to.deep.equal({
       Authorization: "Bearer API_KEY"
     });
   });
 });
-
-
-function checkForError(response: ResponseWrapper): void {
-  const error = response.error;
-  if (error) {
-    throw new Error(`${error.id} - ${error.name}: ${error.description}`);
-  }
-}
