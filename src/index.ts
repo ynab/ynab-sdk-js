@@ -13,7 +13,11 @@ import { Configuration } from "./configuration";
 // This acts as a wrapper around the underlying objects exposed by api.ts
 export class Api {
   protected configuration: Configuration;
-  public constructor(bearerToken: string, basePath: string = null) {
+  public constructor(
+    bearerToken: string,
+    basePath: string = null,
+    protected fetchFunction: typeof fetch = undefined
+  ) {
     this.configuration = new Configuration({
       apiKey: `Bearer ${bearerToken}`,
       basePath: basePath || "https://api.youneedabudget.com/v1"
@@ -23,7 +27,11 @@ export class Api {
   protected _accounts: AccountsApi;
   public get accounts(): AccountsApi {
     if (!this._accounts) {
-      this._accounts = new AccountsApi(this.configuration);
+      this._accounts = new AccountsApi(
+        this.configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._accounts;
   }
@@ -31,7 +39,11 @@ export class Api {
   protected _budgets: BudgetsApi;
   public get budgets(): BudgetsApi {
     if (!this._budgets) {
-      this._budgets = new BudgetsApi(this.configuration);
+      this._budgets = new BudgetsApi(
+        this.configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._budgets;
   }
@@ -39,7 +51,11 @@ export class Api {
   protected _categories: CategoriesApi;
   public get categories(): CategoriesApi {
     if (!this._categories) {
-      this._categories = new CategoriesApi(this.configuration);
+      this._categories = new CategoriesApi(
+        this.configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._categories;
   }
@@ -47,7 +63,11 @@ export class Api {
   protected _months: MonthsApi;
   public get months(): MonthsApi {
     if (!this._months) {
-      this._months = new MonthsApi(this.configuration);
+      this._months = new MonthsApi(
+        this.configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._months;
   }
@@ -55,7 +75,11 @@ export class Api {
   protected _payees: PayeesApi;
   public get payees(): PayeesApi {
     if (!this._payees) {
-      this._payees = new PayeesApi(this.configuration);
+      this._payees = new PayeesApi(
+        this.configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._payees;
   }
@@ -63,7 +87,11 @@ export class Api {
   protected _payeeLocations: PayeeLocationsApi;
   public get payeeLocations(): PayeeLocationsApi {
     if (!this._payeeLocations) {
-      this._payeeLocations = new PayeeLocationsApi(this.configuration);
+      this._payeeLocations = new PayeeLocationsApi(
+        this.configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._payeeLocations;
   }
@@ -71,7 +99,11 @@ export class Api {
   protected _transactions: TransactionsApi;
   public get transactions(): TransactionsApi {
     if (!this._transactions) {
-      this._transactions = new TransactionsApi(this.configuration);
+      this._transactions = new TransactionsApi(
+        this.configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._transactions;
   }
@@ -80,7 +112,9 @@ export class Api {
   public get scheduledTransactions(): ScheduledTransactionsApi {
     if (!this._scheduledTransactions) {
       this._scheduledTransactions = new ScheduledTransactionsApi(
-        this.configuration
+        this.configuration,
+        undefined,
+        this.fetchFunction
       );
     }
     return this._scheduledTransactions;

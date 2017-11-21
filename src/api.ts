@@ -14,7 +14,10 @@
 
 
 import * as url from "url";
-import * as portableFetch from "portable-fetch";
+// Requiring portable-fetch like this ensures that we have a global fetch function
+// That makes it easier to override with modules like fetch-mock
+require("portable-fetch");
+
 import { Configuration } from "./configuration";
 
 const BASE_PATH = "https://api.youneedabudget.com/v1".replace(/\/+$/, "");
@@ -57,7 +60,7 @@ export interface FetchArgs {
 export class BaseAPI {
     protected configuration: Configuration;
 
-    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected fetch: FetchAPI = portableFetch) {
+    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected fetchFunction: FetchAPI = fetch) {
         if (configuration) {
             this.configuration = configuration;
             this.basePath = configuration.basePath || this.basePath;
@@ -1672,10 +1675,10 @@ export const AccountsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAccountById(budgetId: string, accountId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AccountResponse> {
+        getAccountById(budgetId: string, accountId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<AccountResponse> {
             const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccountById(budgetId, accountId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -1691,10 +1694,10 @@ export const AccountsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAccounts(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AccountsResponse> {
+        getAccounts(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<AccountsResponse> {
             const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -1710,7 +1713,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
  * AccountsApi - factory interface
  * @export
  */
-export const AccountsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const AccountsApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * Find a single account by ID 
@@ -1721,7 +1724,7 @@ export const AccountsApiFactory = function (configuration?: Configuration, fetch
          * @throws {RequiredError}
          */
         getAccountById(budgetId: string, accountId: string, options?: any) {
-            return AccountsApiFp(configuration).getAccountById(budgetId, accountId, options)(fetch, basePath);
+            return AccountsApiFp(configuration).getAccountById(budgetId, accountId, options)(fetchFunction, basePath);
         },
         /**
          * List all accounts 
@@ -1731,7 +1734,7 @@ export const AccountsApiFactory = function (configuration?: Configuration, fetch
          * @throws {RequiredError}
          */
         getAccounts(budgetId: string, options?: any) {
-            return AccountsApiFp(configuration).getAccounts(budgetId, options)(fetch, basePath);
+            return AccountsApiFp(configuration).getAccounts(budgetId, options)(fetchFunction, basePath);
         },
     };
 };
@@ -1753,7 +1756,7 @@ export class AccountsApi extends BaseAPI {
      * @memberof AccountsApi
      */
     public getAccountById(budgetId: string, accountId: string, options?: any) {
-        return AccountsApiFp(this.configuration).getAccountById(budgetId, accountId, options)(this.fetch, this.basePath);
+        return AccountsApiFp(this.configuration).getAccountById(budgetId, accountId, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -1765,7 +1768,7 @@ export class AccountsApi extends BaseAPI {
      * @memberof AccountsApi
      */
     public getAccounts(budgetId: string, options?: any) {
-        return AccountsApiFp(this.configuration).getAccounts(budgetId, options)(this.fetch, this.basePath);
+        return AccountsApiFp(this.configuration).getAccounts(budgetId, options)(this.fetchFunction, this.basePath);
     }
 
 }
@@ -1866,10 +1869,10 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse> {
+        getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse> {
             const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -1884,10 +1887,10 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBudgets(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BudgetSummaryResponse> {
+        getBudgets(options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetSummaryResponse> {
             const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgets(options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -1903,7 +1906,7 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
  * BudgetsApi - factory interface
  * @export
  */
-export const BudgetsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const BudgetsApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * Single budget detail 
@@ -1914,7 +1917,7 @@ export const BudgetsApiFactory = function (configuration?: Configuration, fetch?
          * @throws {RequiredError}
          */
         getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any) {
-            return BudgetsApiFp(configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options)(fetch, basePath);
+            return BudgetsApiFp(configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options)(fetchFunction, basePath);
         },
         /**
          * List all budgets 
@@ -1923,7 +1926,7 @@ export const BudgetsApiFactory = function (configuration?: Configuration, fetch?
          * @throws {RequiredError}
          */
         getBudgets(options?: any) {
-            return BudgetsApiFp(configuration).getBudgets(options)(fetch, basePath);
+            return BudgetsApiFp(configuration).getBudgets(options)(fetchFunction, basePath);
         },
     };
 };
@@ -1945,7 +1948,7 @@ export class BudgetsApi extends BaseAPI {
      * @memberof BudgetsApi
      */
     public getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any) {
-        return BudgetsApiFp(this.configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options)(this.fetch, this.basePath);
+        return BudgetsApiFp(this.configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -1956,7 +1959,7 @@ export class BudgetsApi extends BaseAPI {
      * @memberof BudgetsApi
      */
     public getBudgets(options?: any) {
-        return BudgetsApiFp(this.configuration).getBudgets(options)(this.fetch, this.basePath);
+        return BudgetsApiFp(this.configuration).getBudgets(options)(this.fetchFunction, this.basePath);
     }
 
 }
@@ -2063,10 +2066,10 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategories(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoriesResponse> {
+        getCategories(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<CategoriesResponse> {
             const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2083,10 +2086,10 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategoryById(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryResponse> {
+        getCategoryById(budgetId: string, categoryId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<CategoryResponse> {
             const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategoryById(budgetId, categoryId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2102,7 +2105,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
  * CategoriesApi - factory interface
  * @export
  */
-export const CategoriesApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const CategoriesApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * List all category groups 
@@ -2112,7 +2115,7 @@ export const CategoriesApiFactory = function (configuration?: Configuration, fet
          * @throws {RequiredError}
          */
         getCategories(budgetId: string, options?: any) {
-            return CategoriesApiFp(configuration).getCategories(budgetId, options)(fetch, basePath);
+            return CategoriesApiFp(configuration).getCategories(budgetId, options)(fetchFunction, basePath);
         },
         /**
          * Find a category by ID 
@@ -2123,7 +2126,7 @@ export const CategoriesApiFactory = function (configuration?: Configuration, fet
          * @throws {RequiredError}
          */
         getCategoryById(budgetId: string, categoryId: string, options?: any) {
-            return CategoriesApiFp(configuration).getCategoryById(budgetId, categoryId, options)(fetch, basePath);
+            return CategoriesApiFp(configuration).getCategoryById(budgetId, categoryId, options)(fetchFunction, basePath);
         },
     };
 };
@@ -2144,7 +2147,7 @@ export class CategoriesApi extends BaseAPI {
      * @memberof CategoriesApi
      */
     public getCategories(budgetId: string, options?: any) {
-        return CategoriesApiFp(this.configuration).getCategories(budgetId, options)(this.fetch, this.basePath);
+        return CategoriesApiFp(this.configuration).getCategories(budgetId, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -2157,7 +2160,7 @@ export class CategoriesApi extends BaseAPI {
      * @memberof CategoriesApi
      */
     public getCategoryById(budgetId: string, categoryId: string, options?: any) {
-        return CategoriesApiFp(this.configuration).getCategoryById(budgetId, categoryId, options)(this.fetch, this.basePath);
+        return CategoriesApiFp(this.configuration).getCategoryById(budgetId, categoryId, options)(this.fetchFunction, this.basePath);
     }
 
 }
@@ -2265,10 +2268,10 @@ export const MonthsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBudgetMonthById(budgetId: string, month: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse> {
+        getBudgetMonthById(budgetId: string, month: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse> {
             const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonthById(budgetId, month, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2284,10 +2287,10 @@ export const MonthsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MonthSummariesResponse> {
+        getBudgetMonths(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthSummariesResponse> {
             const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2303,7 +2306,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
  * MonthsApi - factory interface
  * @export
  */
-export const MonthsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const MonthsApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * Find a single budget month 
@@ -2314,7 +2317,7 @@ export const MonthsApiFactory = function (configuration?: Configuration, fetch?:
          * @throws {RequiredError}
          */
         getBudgetMonthById(budgetId: string, month: string, options?: any) {
-            return MonthsApiFp(configuration).getBudgetMonthById(budgetId, month, options)(fetch, basePath);
+            return MonthsApiFp(configuration).getBudgetMonthById(budgetId, month, options)(fetchFunction, basePath);
         },
         /**
          * List all budget months 
@@ -2324,7 +2327,7 @@ export const MonthsApiFactory = function (configuration?: Configuration, fetch?:
          * @throws {RequiredError}
          */
         getBudgetMonths(budgetId: string, options?: any) {
-            return MonthsApiFp(configuration).getBudgetMonths(budgetId, options)(fetch, basePath);
+            return MonthsApiFp(configuration).getBudgetMonths(budgetId, options)(fetchFunction, basePath);
         },
     };
 };
@@ -2346,7 +2349,7 @@ export class MonthsApi extends BaseAPI {
      * @memberof MonthsApi
      */
     public getBudgetMonthById(budgetId: string, month: string, options?: any) {
-        return MonthsApiFp(this.configuration).getBudgetMonthById(budgetId, month, options)(this.fetch, this.basePath);
+        return MonthsApiFp(this.configuration).getBudgetMonthById(budgetId, month, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -2358,7 +2361,7 @@ export class MonthsApi extends BaseAPI {
      * @memberof MonthsApi
      */
     public getBudgetMonths(budgetId: string, options?: any) {
-        return MonthsApiFp(this.configuration).getBudgetMonths(budgetId, options)(this.fetch, this.basePath);
+        return MonthsApiFp(this.configuration).getBudgetMonths(budgetId, options)(this.fetchFunction, this.basePath);
     }
 
 }
@@ -2509,10 +2512,10 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationResponse> {
+        getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationResponse> {
             const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budgetId, payeeLocationId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2528,10 +2531,10 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse> {
+        getPayeeLocations(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse> {
             const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2548,10 +2551,10 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse> {
+        getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse> {
             const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budgetId, payeeId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2567,7 +2570,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
  * PayeeLocationsApi - factory interface
  * @export
  */
-export const PayeeLocationsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const PayeeLocationsApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * Find a single payee location by ID 
@@ -2578,7 +2581,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any) {
-            return PayeeLocationsApiFp(configuration).getPayeeLocationById(budgetId, payeeLocationId, options)(fetch, basePath);
+            return PayeeLocationsApiFp(configuration).getPayeeLocationById(budgetId, payeeLocationId, options)(fetchFunction, basePath);
         },
         /**
          * List all payee locations 
@@ -2588,7 +2591,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         getPayeeLocations(budgetId: string, options?: any) {
-            return PayeeLocationsApiFp(configuration).getPayeeLocations(budgetId, options)(fetch, basePath);
+            return PayeeLocationsApiFp(configuration).getPayeeLocations(budgetId, options)(fetchFunction, basePath);
         },
         /**
          * List payee locations for a specified payee 
@@ -2599,7 +2602,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any) {
-            return PayeeLocationsApiFp(configuration).getPayeeLocationsByPayee(budgetId, payeeId, options)(fetch, basePath);
+            return PayeeLocationsApiFp(configuration).getPayeeLocationsByPayee(budgetId, payeeId, options)(fetchFunction, basePath);
         },
     };
 };
@@ -2621,7 +2624,7 @@ export class PayeeLocationsApi extends BaseAPI {
      * @memberof PayeeLocationsApi
      */
     public getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any) {
-        return PayeeLocationsApiFp(this.configuration).getPayeeLocationById(budgetId, payeeLocationId, options)(this.fetch, this.basePath);
+        return PayeeLocationsApiFp(this.configuration).getPayeeLocationById(budgetId, payeeLocationId, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -2633,7 +2636,7 @@ export class PayeeLocationsApi extends BaseAPI {
      * @memberof PayeeLocationsApi
      */
     public getPayeeLocations(budgetId: string, options?: any) {
-        return PayeeLocationsApiFp(this.configuration).getPayeeLocations(budgetId, options)(this.fetch, this.basePath);
+        return PayeeLocationsApiFp(this.configuration).getPayeeLocations(budgetId, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -2646,7 +2649,7 @@ export class PayeeLocationsApi extends BaseAPI {
      * @memberof PayeeLocationsApi
      */
     public getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any) {
-        return PayeeLocationsApiFp(this.configuration).getPayeeLocationsByPayee(budgetId, payeeId, options)(this.fetch, this.basePath);
+        return PayeeLocationsApiFp(this.configuration).getPayeeLocationsByPayee(budgetId, payeeId, options)(this.fetchFunction, this.basePath);
     }
 
 }
@@ -2754,10 +2757,10 @@ export const PayeesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayeeById(budgetId: string, payeeId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeResponse> {
+        getPayeeById(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeResponse> {
             const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayeeById(budgetId, payeeId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2773,10 +2776,10 @@ export const PayeesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayees(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeesResponse> {
+        getPayees(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeesResponse> {
             const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2792,7 +2795,7 @@ export const PayeesApiFp = function(configuration?: Configuration) {
  * PayeesApi - factory interface
  * @export
  */
-export const PayeesApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const PayeesApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * Find a single payee by ID 
@@ -2803,7 +2806,7 @@ export const PayeesApiFactory = function (configuration?: Configuration, fetch?:
          * @throws {RequiredError}
          */
         getPayeeById(budgetId: string, payeeId: string, options?: any) {
-            return PayeesApiFp(configuration).getPayeeById(budgetId, payeeId, options)(fetch, basePath);
+            return PayeesApiFp(configuration).getPayeeById(budgetId, payeeId, options)(fetchFunction, basePath);
         },
         /**
          * List all payees 
@@ -2813,7 +2816,7 @@ export const PayeesApiFactory = function (configuration?: Configuration, fetch?:
          * @throws {RequiredError}
          */
         getPayees(budgetId: string, options?: any) {
-            return PayeesApiFp(configuration).getPayees(budgetId, options)(fetch, basePath);
+            return PayeesApiFp(configuration).getPayees(budgetId, options)(fetchFunction, basePath);
         },
     };
 };
@@ -2835,7 +2838,7 @@ export class PayeesApi extends BaseAPI {
      * @memberof PayeesApi
      */
     public getPayeeById(budgetId: string, payeeId: string, options?: any) {
-        return PayeesApiFp(this.configuration).getPayeeById(budgetId, payeeId, options)(this.fetch, this.basePath);
+        return PayeesApiFp(this.configuration).getPayeeById(budgetId, payeeId, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -2847,7 +2850,7 @@ export class PayeesApi extends BaseAPI {
      * @memberof PayeesApi
      */
     public getPayees(budgetId: string, options?: any) {
-        return PayeesApiFp(this.configuration).getPayees(budgetId, options)(this.fetch, this.basePath);
+        return PayeesApiFp(this.configuration).getPayees(budgetId, options)(this.fetchFunction, this.basePath);
     }
 
 }
@@ -2955,10 +2958,10 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionDetailResponse> {
+        getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionDetailResponse> {
             const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2974,10 +2977,10 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionSummariesResponse> {
+        getScheduledTransactions(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionSummariesResponse> {
             const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -2993,7 +2996,7 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
  * ScheduledTransactionsApi - factory interface
  * @export
  */
-export const ScheduledTransactionsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const ScheduledTransactionsApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * Find a single scheduled transaction by ID 
@@ -3004,7 +3007,7 @@ export const ScheduledTransactionsApiFactory = function (configuration?: Configu
          * @throws {RequiredError}
          */
         getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any) {
-            return ScheduledTransactionsApiFp(configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)(fetch, basePath);
+            return ScheduledTransactionsApiFp(configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)(fetchFunction, basePath);
         },
         /**
          * List all scheduled transactions 
@@ -3014,7 +3017,7 @@ export const ScheduledTransactionsApiFactory = function (configuration?: Configu
          * @throws {RequiredError}
          */
         getScheduledTransactions(budgetId: string, options?: any) {
-            return ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budgetId, options)(fetch, basePath);
+            return ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budgetId, options)(fetchFunction, basePath);
         },
     };
 };
@@ -3036,7 +3039,7 @@ export class ScheduledTransactionsApi extends BaseAPI {
      * @memberof ScheduledTransactionsApi
      */
     public getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any) {
-        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)(this.fetch, this.basePath);
+        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -3048,7 +3051,7 @@ export class ScheduledTransactionsApi extends BaseAPI {
      * @memberof ScheduledTransactionsApi
      */
     public getScheduledTransactions(budgetId: string, options?: any) {
-        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budgetId, options)(this.fetch, this.basePath);
+        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budgetId, options)(this.fetchFunction, this.basePath);
     }
 
 }
@@ -3257,10 +3260,10 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
+        getTransactions(budgetId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budgetId, sinceDate, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -3278,10 +3281,10 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
+        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -3299,10 +3302,10 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
+        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -3319,10 +3322,10 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionDetailResponse> {
+        getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionDetailResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsById(budgetId, transactionId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+            return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
+                return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
@@ -3338,7 +3341,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
  * TransactionsApi - factory interface
  * @export
  */
-export const TransactionsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const TransactionsApiFactory = function (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) {
     return {
         /**
          * List all transactions 
@@ -3349,7 +3352,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, f
          * @throws {RequiredError}
          */
         getTransactions(budgetId: string, sinceDate?: string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, options)(fetch, basePath);
+            return TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, options)(fetchFunction, basePath);
         },
         /**
          * List transactions for an account 
@@ -3361,7 +3364,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, f
          * @throws {RequiredError}
          */
         getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)(fetch, basePath);
+            return TransactionsApiFp(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)(fetchFunction, basePath);
         },
         /**
          * List transactions for a category 
@@ -3373,7 +3376,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, f
          * @throws {RequiredError}
          */
         getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)(fetch, basePath);
+            return TransactionsApiFp(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)(fetchFunction, basePath);
         },
         /**
          * Find a single transaction by ID 
@@ -3384,7 +3387,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, f
          * @throws {RequiredError}
          */
         getTransactionsById(budgetId: string, transactionId: string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsById(budgetId, transactionId, options)(fetch, basePath);
+            return TransactionsApiFp(configuration).getTransactionsById(budgetId, transactionId, options)(fetchFunction, basePath);
         },
     };
 };
@@ -3406,7 +3409,7 @@ export class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     public getTransactions(budgetId: string, sinceDate?: string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, options)(this.fetch, this.basePath);
+        return TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -3420,7 +3423,7 @@ export class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     public getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)(this.fetch, this.basePath);
+        return TransactionsApiFp(this.configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -3434,7 +3437,7 @@ export class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     public getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)(this.fetch, this.basePath);
+        return TransactionsApiFp(this.configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)(this.fetchFunction, this.basePath);
     }
 
     /**
@@ -3447,7 +3450,7 @@ export class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     public getTransactionsById(budgetId: string, transactionId: string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsById(budgetId, transactionId, options)(this.fetch, this.basePath);
+        return TransactionsApiFp(this.configuration).getTransactionsById(budgetId, transactionId, options)(this.fetchFunction, this.basePath);
     }
 
 }

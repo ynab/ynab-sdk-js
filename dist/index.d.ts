@@ -1,8 +1,9 @@
 import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLocationsApi, TransactionsApi, ScheduledTransactionsApi } from "./api";
 import { Configuration } from "./configuration";
 export declare class Api {
+    protected fetchFunction: typeof fetch;
     protected configuration: Configuration;
-    constructor(bearerToken: string);
+    constructor(bearerToken: string, basePath?: string, fetchFunction?: typeof fetch);
     protected _accounts: AccountsApi;
     readonly accounts: AccountsApi;
     protected _budgets: BudgetsApi;
