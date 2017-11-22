@@ -157,6 +157,29 @@ export const payeeResponseFactory = Factory.makeFactory<api.PayeeResponse>({
   })
 });
 
+export const payeeLocationFactory = Factory.makeFactory<api.PayeeLocation>({
+  id: Factory.each(i => `id #${i}`),
+  payee_id: Factory.each(i => `name #${i}`),
+  latitude: Factory.each(i => `lat #${i}`),
+  longitude: Factory.each(i => `lon #${i}`)
+});
+
+export const payeeLocationsResponseFactory = Factory.makeFactory<
+  api.PayeeLocationsResponse
+>({
+  data: Factory.makeFactory({
+    payee_locations: payeeLocationFactory.buildList(5)
+  })
+});
+
+export const payeeLocationResponseFactory = Factory.makeFactory<
+  api.PayeeLocationResponse
+>({
+  data: Factory.makeFactory({
+    payee_location: payeeLocationFactory.build()
+  })
+});
+
 export const subTransactionFactory = Factory.makeFactory<api.SubTransaction>({
   id: Factory.each(i => `id #${i}`),
   amount: Factory.each(i => i * 1000),

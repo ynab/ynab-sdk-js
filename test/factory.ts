@@ -1,6 +1,3 @@
-// This was derived from https://github.com/willryan/factory.ts
-// I added some functionality, like the ability to nest factories
-
 // MIT License
 
 // Copyright (c) 2017 William Pleasant-Ryan
@@ -22,6 +19,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
+
+// This was derived from https://github.com/willryan/factory.ts
+// I added some functionality, like the ability to nest factories. I need to submit a PR. -- Taylor
 
 export type FactoryFunc<T> = (item: Partial<T>) => T;
 
