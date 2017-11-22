@@ -23,7 +23,8 @@ class ynabApi {
    */
   public constructor(
     accessToken: string,
-    endpointUrl: string = "https://api.youneedabudget.com/v1"
+    endpointUrl: string = "https://api.youneedabudget.com/v1",
+    protected fetchFunction: typeof fetch = undefined
   ) {
     this._configuration = new Configuration({
       apiKey: `Bearer ${accessToken}`,
@@ -34,7 +35,11 @@ class ynabApi {
   protected _accounts: AccountsApi;
   public get accounts(): AccountsApi {
     if (!this._accounts) {
-      this._accounts = new AccountsApi(this._configuration);
+      this._accounts = new AccountsApi(
+        this._configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._accounts;
   }
@@ -42,7 +47,11 @@ class ynabApi {
   protected _budgets: BudgetsApi;
   public get budgets(): BudgetsApi {
     if (!this._budgets) {
-      this._budgets = new BudgetsApi(this._configuration);
+      this._budgets = new BudgetsApi(
+        this._configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._budgets;
   }
@@ -50,7 +59,11 @@ class ynabApi {
   protected _categories: CategoriesApi;
   public get categories(): CategoriesApi {
     if (!this._categories) {
-      this._categories = new CategoriesApi(this._configuration);
+      this._categories = new CategoriesApi(
+        this._configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._categories;
   }
@@ -58,7 +71,11 @@ class ynabApi {
   protected _months: MonthsApi;
   public get months(): MonthsApi {
     if (!this._months) {
-      this._months = new MonthsApi(this._configuration);
+      this._months = new MonthsApi(
+        this._configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._months;
   }
@@ -66,7 +83,11 @@ class ynabApi {
   protected _payees: PayeesApi;
   public get payees(): PayeesApi {
     if (!this._payees) {
-      this._payees = new PayeesApi(this._configuration);
+      this._payees = new PayeesApi(
+        this._configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._payees;
   }
@@ -74,7 +95,11 @@ class ynabApi {
   protected _payeeLocations: PayeeLocationsApi;
   public get payeeLocations(): PayeeLocationsApi {
     if (!this._payeeLocations) {
-      this._payeeLocations = new PayeeLocationsApi(this._configuration);
+      this._payeeLocations = new PayeeLocationsApi(
+        this._configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._payeeLocations;
   }
@@ -82,7 +107,11 @@ class ynabApi {
   protected _transactions: TransactionsApi;
   public get transactions(): TransactionsApi {
     if (!this._transactions) {
-      this._transactions = new TransactionsApi(this._configuration);
+      this._transactions = new TransactionsApi(
+        this._configuration,
+        undefined,
+        this.fetchFunction
+      );
     }
     return this._transactions;
   }
@@ -91,7 +120,9 @@ class ynabApi {
   public get scheduledTransactions(): ScheduledTransactionsApi {
     if (!this._scheduledTransactions) {
       this._scheduledTransactions = new ScheduledTransactionsApi(
-        this._configuration
+        this._configuration,
+        undefined,
+        this.fetchFunction
       );
     }
     return this._scheduledTransactions;

@@ -34,9 +34,9 @@ export interface FetchArgs {
  */
 export declare class BaseAPI {
     protected basePath: string;
-    protected fetch: FetchAPI;
+    protected fetchFunction: FetchAPI;
     protected configuration: Configuration;
-    constructor(configuration?: Configuration, basePath?: string, fetch?: FetchAPI);
+    constructor(configuration?: Configuration, basePath?: string, fetchFunction?: FetchAPI);
 }
 /**
  *
@@ -1356,14 +1356,14 @@ export declare const AccountsApiFetchParamCreator: (configuration?: Configuratio
  * @export
  */
 export declare const AccountsApiFp: (configuration?: Configuration) => {
-    getAccountById(budgetId: string, accountId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AccountResponse>;
-    getAccounts(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AccountsResponse>;
+    getAccountById(budgetId: string, accountId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<AccountResponse>;
+    getAccounts(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<AccountsResponse>;
 };
 /**
  * AccountsApi - factory interface
  * @export
  */
-export declare const AccountsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const AccountsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getAccountById(budgetId: string, accountId: string, options?: any): Promise<AccountResponse>;
     getAccounts(budgetId: string, options?: any): Promise<AccountsResponse>;
 };
@@ -1407,14 +1407,14 @@ export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration
  * @export
  */
 export declare const BudgetsApiFp: (configuration?: Configuration) => {
-    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse>;
-    getBudgets(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BudgetSummaryResponse>;
+    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse>;
+    getBudgets(options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetSummaryResponse>;
 };
 /**
  * BudgetsApi - factory interface
  * @export
  */
-export declare const BudgetsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const BudgetsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
     getBudgets(options?: any): Promise<BudgetSummaryResponse>;
 };
@@ -1457,14 +1457,14 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
  * @export
  */
 export declare const CategoriesApiFp: (configuration?: Configuration) => {
-    getCategories(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoriesResponse>;
-    getCategoryById(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryResponse>;
+    getCategories(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<CategoriesResponse>;
+    getCategoryById(budgetId: string, categoryId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<CategoryResponse>;
 };
 /**
  * CategoriesApi - factory interface
  * @export
  */
-export declare const CategoriesApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const CategoriesApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getCategories(budgetId: string, options?: any): Promise<CategoriesResponse>;
     getCategoryById(budgetId: string, categoryId: string, options?: any): Promise<CategoryResponse>;
 };
@@ -1508,14 +1508,14 @@ export declare const MonthsApiFetchParamCreator: (configuration?: Configuration)
  * @export
  */
 export declare const MonthsApiFp: (configuration?: Configuration) => {
-    getBudgetMonthById(budgetId: string, month: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse>;
-    getBudgetMonths(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MonthSummariesResponse>;
+    getBudgetMonthById(budgetId: string, month: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse>;
+    getBudgetMonths(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthSummariesResponse>;
 };
 /**
  * MonthsApi - factory interface
  * @export
  */
-export declare const MonthsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const MonthsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getBudgetMonthById(budgetId: string, month: string, options?: any): Promise<MonthDetailResponse>;
     getBudgetMonths(budgetId: string, options?: any): Promise<MonthSummariesResponse>;
 };
@@ -1560,15 +1560,15 @@ export declare const PayeeLocationsApiFetchParamCreator: (configuration?: Config
  * @export
  */
 export declare const PayeeLocationsApiFp: (configuration?: Configuration) => {
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationResponse>;
-    getPayeeLocations(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
+    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationResponse>;
+    getPayeeLocations(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeLocationsResponse>;
 };
 /**
  * PayeeLocationsApi - factory interface
  * @export
  */
-export declare const PayeeLocationsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const PayeeLocationsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): Promise<PayeeLocationResponse>;
     getPayeeLocations(budgetId: string, options?: any): Promise<PayeeLocationsResponse>;
     getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): Promise<PayeeLocationsResponse>;
@@ -1623,14 +1623,14 @@ export declare const PayeesApiFetchParamCreator: (configuration?: Configuration)
  * @export
  */
 export declare const PayeesApiFp: (configuration?: Configuration) => {
-    getPayeeById(budgetId: string, payeeId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeeResponse>;
-    getPayees(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PayeesResponse>;
+    getPayeeById(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeeResponse>;
+    getPayees(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<PayeesResponse>;
 };
 /**
  * PayeesApi - factory interface
  * @export
  */
-export declare const PayeesApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const PayeesApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getPayeeById(budgetId: string, payeeId: string, options?: any): Promise<PayeeResponse>;
     getPayees(budgetId: string, options?: any): Promise<PayeesResponse>;
 };
@@ -1674,14 +1674,14 @@ export declare const ScheduledTransactionsApiFetchParamCreator: (configuration?:
  * @export
  */
 export declare const ScheduledTransactionsApiFp: (configuration?: Configuration) => {
-    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionDetailResponse>;
-    getScheduledTransactions(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionSummariesResponse>;
+    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionDetailResponse>;
+    getScheduledTransactions(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<ScheduledTransactionSummariesResponse>;
 };
 /**
  * ScheduledTransactionsApi - factory interface
  * @export
  */
-export declare const ScheduledTransactionsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const ScheduledTransactionsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): Promise<ScheduledTransactionDetailResponse>;
     getScheduledTransactions(budgetId: string, options?: any): Promise<ScheduledTransactionSummariesResponse>;
 };
@@ -1727,16 +1727,16 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
  * @export
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionDetailResponse>;
+    getTransactions(budgetId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionDetailResponse>;
 };
 /**
  * TransactionsApi - factory interface
  * @export
  */
-export declare const TransactionsApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+export declare const TransactionsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
     getTransactions(budgetId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
