@@ -145,3 +145,21 @@ export const monthDetailResponseFactory = Factory.makeFactory<
     month: monthDetailFactory.build()
   })
 });
+
+export const payeeFactory = Factory.makeFactory<api.Payee>({
+  id: Factory.each(i => `id #${i}`),
+  name: Factory.each(i => `name #${i}`),
+  transfer_account_id: Factory.each(i => `Transfer_account_id #${i}`)
+});
+
+export const payeesResponseFactory = Factory.makeFactory<api.PayeesResponse>({
+  data: Factory.makeFactory({
+    payees: payeeFactory.buildList(5)
+  })
+});
+
+export const payeeResponseFactory = Factory.makeFactory<api.PayeeResponse>({
+  data: Factory.makeFactory({
+    payee: payeeFactory.build()
+  })
+});

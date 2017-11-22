@@ -153,6 +153,29 @@ describe("Mock tests", () => {
       `${BASE_URL}/budgets/${budgetId}/months/${budgetMonthId}`
     );
   });
+
+  it("Should getPayees and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.payees.getPayees(budgetId),
+      factories.payeesResponseFactory.build()
+    );
+    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees`);
+  });
+
+  it("Should getPayeeById and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const payeeId = "payeeId";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.payees.getPayeeById(budgetId, payeeId),
+      factories.payeeResponseFactory.build()
+    );
+    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees/${payeeId}`);
+  });
 });
 
 async function callApiAndVerifyResponse<ResponseType>(
