@@ -8,8 +8,10 @@ set("-e");
 cd(`${__dirname}`);
 
 const thisFolder = $("pwd");
+const package = require("../package.json");
 const specFilename = `spec-v1-swagger.json`;
 const swaggerGeneratedOutputFolder = `out/tmp/swagger-generated-typescript-fetch`;
+const apiTemplateFilename = `swagger-templates/typescript-fetch/api.mustache`;
 const existingSdkFolder = `../`;
 
 // First, we generate the client from the default Swagger generator:
@@ -33,6 +35,13 @@ eval(
   `sed -E -i '' 's/\\[\\"(string|number|array|boolean)\\"\\, \\"null\\"\\]/"\\1"/g' ${
     specFilename
   }`
+);
+
+// Set the X_YNAB_CLIENT request header var/value in api.mustache template with a client identifier based on package metadata
+const clientIdentifier = `${package.name}-${package.version}`; //i.e. "ynab-sdk-js-1.0.0"
+
+eval(
+  `sed -E -i '' 's/X_YNAB_CLIENT\\"\\] \\=(.+)/X_YNAB_CLIENT\\"\\] \\= \\"${clientIdentifier}\\";/g' ${apiTemplateFilename}`
 );
 
 // Share the current folder with docker, and then run the generator, pointing to the given template

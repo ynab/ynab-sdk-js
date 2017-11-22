@@ -88,6 +88,7 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -122,6 +123,7 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -279,6 +281,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -310,6 +313,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -463,6 +467,7 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -503,6 +508,7 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -665,6 +671,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -699,6 +706,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -861,6 +869,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -895,6 +904,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -935,6 +945,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1143,6 +1154,7 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1177,6 +1189,7 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1339,6 +1352,7 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1373,6 +1387,7 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1530,6 +1545,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1574,6 +1590,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1618,6 +1635,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'
@@ -1661,6 +1679,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = typeof configuration.apiKey === 'function'

@@ -108,6 +108,8 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
             const localVarRequestOptions = Object.assign({ method: '{{httpMethod}}' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
     {{#hasFormParams}}
             const localVarFormParams = new url.URLSearchParams();
     {{/hasFormParams}}

@@ -5,7 +5,6 @@
     "version": "1.0.0",
     "title": "YNAB API Explorer"
   },
-  "host": ".",
   "basePath": "/papi/v1",
   "tags": [
     {
