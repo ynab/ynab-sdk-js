@@ -1,8 +1,8 @@
-# YNAB API Javascript SDK
+# YNAB API Javascript (Node) Library
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-The YNAB API JavaScript SDK library provides access to the YNAB API from applications written in Node.js / JavaScript.
+The YNAB API JavaScript library provides access to the YNAB API from applications written in Node.js / JavaScript.
 
 Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of the available resources.
 
