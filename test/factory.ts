@@ -185,48 +185,9 @@ export type Builder<T> = {
     | Generator<T[P]>
     // Or a derived property
     | Derived<T, T[P]>
-    // Or a builder of that type
-    //| Builder<T[P]>
     // Or a factory of that type
     | Factory<T[P]>
 };
-
-// export type LooksLike<T> = {
-//     [P in keyof T]: T[P] | (()=>T[P]) | LooksLike<T[P]>
-//   };
-
-//   let builderTest : Builder<TestInterface> = {
-//     num: 5,
-//     nested: {
-//         str : each(i=>`${i}`) as Generator<string>
-//     }
-// }
-
-//   type Func<T> = (...args: any[]) => T;
-//   type Spec<T> = {
-//       [P in keyof T]: T[P] | Func<T[P]> | Spec<T[P]> ;
-//   };
-
-//   /**
-//    * Given a spec object recursively mapping properties to functions, creates a function
-//    * producing an object of the same structure, by mapping each property to the result
-//    * of calling its associated function with the supplied arguments.
-//    */
-//   declare function applySpec<T>(obj: Spec<T>): (...args: any[]) => T;
-
-//   var g1 = applySpec({
-//       sum: (a:any) => 3,
-//       nested: {
-//           mul: (b:any) => "n"
-//       }
-//   });
-
-//   let testSpec : Spec<TestInterface> ={
-//       num: 5,
-//       nested: {
-//           str: ()=>"f"
-//       }
-//   }
 
 export function val<T>(val: T): Generator<T> {
   return new Generator(() => val);
