@@ -176,6 +176,77 @@ describe("Mock tests", () => {
     );
     verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees/${payeeId}`);
   });
+
+  it("Should getTransactions and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.transactions.getTransactions(budgetId),
+      factories.transactionSummariesResponseFactory.build()
+    );
+    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions`);
+  });
+
+  it("Should getTransactionById and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const transactionId = "TransactionId";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.transactions.getTransactionsById(budgetId, transactionId),
+      factories.transactionDetailResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`
+    );
+  });
+
+  it("Should getTransactionsByAccount and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const accountId = "accountId";
+    const sinceDate = new Date();
+    const returnedResponse = await callApiAndVerifyResponse(
+      () =>
+        ynab.transactions.getTransactionsByAccount(
+          budgetId,
+          accountId,
+          <any>sinceDate
+        ),
+      factories.transactionSummariesResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/accounts/${
+        accountId
+      }/transactions?since_date=${encodeURIComponent(sinceDate.toISOString())}`
+    );
+  });
+
+  it("Should getTransactionsByCategory and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const categoryId = "categoryId";
+    const sinceDate = new Date();
+    const returnedResponse = await callApiAndVerifyResponse(
+      () =>
+        ynab.transactions.getTransactionsByCategory(
+          budgetId,
+          categoryId,
+          <any>sinceDate // TODO: This is supposed to be typed as a date by the code generator, but it's not currently
+          //That's because the Swagger code-generator doesn't do a great job with converting to and from Date, so we typed "date-time" as a string
+          //I'll need to come back and fix the generator so that this API is correct
+        ),
+      factories.transactionSummariesResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/categories/${
+        categoryId
+      }/transactions?since_date=${encodeURIComponent(sinceDate.toISOString())}`
+    );
+  });
 });
 
 async function callApiAndVerifyResponse<ResponseType>(

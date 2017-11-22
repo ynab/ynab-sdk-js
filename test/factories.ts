@@ -123,13 +123,6 @@ export const monthSummariesResponseFactory = Factory.makeFactory<
   })
 });
 
-class x implements api.MonthDetail {
-  month: string;
-  note: string;
-  to_be_budgeted: number;
-  age_of_money: number;
-  categories: api.Category[];
-}
 export const monthDetailFactory = Factory.makeFactory<api.MonthDetail>({
   month: "2017-01-01",
   note: Factory.each(i => `Note #${i}`),
@@ -161,5 +154,65 @@ export const payeesResponseFactory = Factory.makeFactory<api.PayeesResponse>({
 export const payeeResponseFactory = Factory.makeFactory<api.PayeeResponse>({
   data: Factory.makeFactory({
     payee: payeeFactory.build()
+  })
+});
+
+export const subTransactionFactory = Factory.makeFactory<api.SubTransaction>({
+  id: Factory.each(i => `id #${i}`),
+  amount: Factory.each(i => i * 1000),
+  memo: Factory.each(i => `memo #${i}`),
+  transaction_id: Factory.each(i => `transaction_id #${i}`),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  category_id: Factory.each(i => `category_id #${i}`),
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+});
+
+export const transactionDetailFactory = Factory.makeFactory<
+  api.TransactionDetail
+>({
+  id: Factory.each(i => `id #${i}`),
+  date: "2017-01-02",
+  amount: Factory.each(i => i * 1000),
+  memo: Factory.each(i => `memo #${i}`),
+  cleared: "Cleared",
+  approved: true,
+  flag: "red",
+  account_id: Factory.each(i => `account_id #${i}`),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  category_id: Factory.each(i => `category_id #${i}`),
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  subtransactions: subTransactionFactory.buildList(3)
+});
+
+export const transactionDetailResponseFactory = Factory.makeFactory<
+  api.TransactionDetailResponse
+>({
+  data: Factory.makeFactory({
+    transaction: transactionDetailFactory.build()
+  })
+});
+
+// TODO: This is just like the transactionSummary, except for the subTransactions listed
+export const transactionSummaryFactory = Factory.makeFactory<
+  api.TransactionSummary
+>({
+  id: Factory.each(i => `id #${i}`),
+  date: "2017-01-02",
+  amount: Factory.each(i => i * 1000),
+  memo: Factory.each(i => `memo #${i}`),
+  cleared: "Cleared",
+  approved: true,
+  flag: "red",
+  account_id: Factory.each(i => `account_id #${i}`),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  category_id: Factory.each(i => `category_id #${i}`),
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+});
+
+export const transactionSummariesResponseFactory = Factory.makeFactory<
+  api.TransactionSummariesResponse
+>({
+  data: Factory.makeFactory({
+    transactions: transactionSummaryFactory.buildList(5)
   })
 });
