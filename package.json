@@ -1,7 +1,7 @@
 {
-  "name": "ynab",
+  "name": "ynab-sdk-js",
   "version": "1.0.0",
-  "description": "YNAB Client SDK",
+  "description": "YNAB API Javascript (Node) Library",
   "author": "You Need a Budget, LLC",
   "keywords": [
     "typescript",
