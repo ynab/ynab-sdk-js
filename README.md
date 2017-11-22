@@ -23,7 +23,6 @@ const accessToken = "bf0cbb14b4330e9d5f4312a646eb0115b80a169ad1425d3de12e66a389e
 const ynab = new ynabApi(accessToken);
 
 async function listBudgets(){
-try {
   const budgetsResponse = await ynab.budgets.getBudgets();
   const budgets = budgetsResponse.data.budgets;
   for(let budget of budgets) {
