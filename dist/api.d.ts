@@ -202,10 +202,10 @@ export interface BudgetSummary {
     name: string;
     /**
      *
-     * @type {Date}
+     * @type {string}
      * @memberof BudgetSummary
      */
-    last_accessed_on?: Date;
+    last_accessed_on?: string;
     /**
      *
      * @type {DateFormat}
@@ -333,10 +333,10 @@ export interface CategoryGroup {
     name: string;
     /**
      * Whether or not the category group is hidden
-     * @type {string}
+     * @type {boolean}
      * @memberof CategoryGroup
      */
-    hidden: string;
+    hidden: boolean;
 }
 /**
  *
@@ -1046,10 +1046,10 @@ export interface BudgetDetail {
     name: string;
     /**
      *
-     * @type {Date}
+     * @type {string}
      * @memberof BudgetDetail
      */
-    last_accessed_on?: Date;
+    last_accessed_on?: string;
     /**
      *
      * @type {DateFormat}
@@ -1143,10 +1143,10 @@ export interface CategoryGroupWithCategories {
     name: string;
     /**
      * Whether or not the category group is hidden
-     * @type {string}
+     * @type {boolean}
      * @memberof CategoryGroupWithCategories
      */
-    hidden: string;
+    hidden: boolean;
     /**
      * Category group categories
      * @type {Array&lt;Category&gt;}
@@ -1399,7 +1399,7 @@ export declare class AccountsApi extends BaseAPI {
  * @export
  */
 export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration) => {
-    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): FetchArgs;
+    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): FetchArgs;
     getBudgets(options?: any): FetchArgs;
 };
 /**
@@ -1407,7 +1407,7 @@ export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration
  * @export
  */
 export declare const BudgetsApiFp: (configuration?: Configuration) => {
-    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse>;
+    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse>;
     getBudgets(options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetSummaryResponse>;
 };
 /**
@@ -1415,7 +1415,7 @@ export declare const BudgetsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const BudgetsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
-    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
+    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
     getBudgets(options?: any): Promise<BudgetSummaryResponse>;
 };
 /**
@@ -1429,12 +1429,12 @@ export declare class BudgetsApi extends BaseAPI {
      * Single budget detail
      * @summary Single budget
      * @param {} budgetId ID of budget
-     * @param {} [lastKnowlegeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowlege_of_server will be included.
+     * @param {} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
+    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
     /**
      * List all budgets
      * @summary List budgets
