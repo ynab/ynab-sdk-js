@@ -61,7 +61,13 @@
           "404": {
             "description": "No budgets found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -102,7 +108,13 @@
           "404": {
             "description": "Budget not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -135,7 +147,13 @@
           "404": {
             "description": "No accounts found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -176,7 +194,13 @@
           "404": {
             "description": "Account not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -209,7 +233,13 @@
           "404": {
             "description": "No category groups found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -250,7 +280,13 @@
           "404": {
             "description": "Category not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -283,7 +319,13 @@
           "404": {
             "description": "No payees found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -324,7 +366,13 @@
           "404": {
             "description": "Payee not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -357,7 +405,13 @@
           "404": {
             "description": "No payees locations found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -398,7 +452,13 @@
           "404": {
             "description": "Payee location not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -439,7 +499,13 @@
           "404": {
             "description": "No payees locations found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -480,7 +546,13 @@
           "404": {
             "description": "No transactions found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -529,7 +601,13 @@
           "404": {
             "description": "No transactions found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -578,7 +656,13 @@
           "404": {
             "description": "No transactions found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -619,7 +703,13 @@
           "404": {
             "description": "Transaction not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -652,7 +742,13 @@
           "404": {
             "description": "No scheduled transactions found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -693,7 +789,13 @@
           "404": {
             "description": "Scheduled transaction not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -726,7 +828,13 @@
           "404": {
             "description": "No budget months found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -768,7 +876,13 @@
           "404": {
             "description": "Budget month not found",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapper"
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -783,7 +897,16 @@
     }
   },
   "definitions": {
-    "ResponseError": {
+    "ErrorResponse": {
+      "type": "object",
+      "required": ["error"],
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorDetail"
+        }
+      }
+    },
+    "ErrorDetail": {
       "type": "object",
       "required": ["id", "name", "description"],
       "properties": {
@@ -798,32 +921,14 @@
         }
       }
     },
-    "ResponseWrapper": {
+    "BudgetSummaryResponse": {
       "type": "object",
+      "required": ["data"],
       "properties": {
-        "error": {
-          "$ref": "#/definitions/ResponseError"
-        },
-        "server_knowledge": {
-          "type": "number",
-          "description": "The knowledge of the server"
+        "data": {
+          "$ref": "#/definitions/BudgetSummaryWrapper"
         }
       }
-    },
-    "BudgetSummaryResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/BudgetSummaryWrapper"
-            }
-          }
-        }
-      ]
     },
     "BudgetSummaryWrapper": {
       "type": "object",
@@ -838,26 +943,24 @@
       }
     },
     "BudgetDetailResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/BudgetDetailWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/BudgetDetailWrapper"
         }
-      ]
+      }
     },
     "BudgetDetailWrapper": {
       "type": "object",
-      "required": ["budget"],
+      "required": ["budget", "server_knowledge"],
       "properties": {
         "budget": {
           "$ref": "#/definitions/BudgetDetail"
+        },
+        "server_knowledge": {
+          "type": "number",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -974,19 +1077,13 @@
       ]
     },
     "AccountsResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/AccountsWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/AccountsWrapper"
         }
-      ]
+      }
     },
     "AccountsWrapper": {
       "type": "object",
@@ -1001,19 +1098,13 @@
       }
     },
     "AccountResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/AccountWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/AccountWrapper"
         }
-      ]
+      }
     },
     "AccountWrapper": {
       "type": "object",
@@ -1067,19 +1158,13 @@
       }
     },
     "CategoriesResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/CategoryGroupsWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/CategoryGroupsWrapper"
         }
-      ]
+      }
     },
     "CategoryGroupsWrapper": {
       "type": "object",
@@ -1094,19 +1179,13 @@
       }
     },
     "CategoryResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/CategoryWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/CategoryWrapper"
         }
-      ]
+      }
     },
     "CategoryWrapper": {
       "type": "object",
@@ -1130,7 +1209,7 @@
         },
         "hidden": {
           "description": "Whether or not the category group is hidden",
-          "type": "string"
+          "type": "boolean"
         }
       }
     },
@@ -1199,19 +1278,13 @@
       }
     },
     "PayeesResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/PayeesWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/PayeesWrapper"
         }
-      ]
+      }
     },
     "PayeesWrapper": {
       "type": "object",
@@ -1226,19 +1299,13 @@
       }
     },
     "PayeeResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/PayeeWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/PayeeWrapper"
         }
-      ]
+      }
     },
     "PayeeWrapper": {
       "type": "object",
@@ -1268,19 +1335,13 @@
       }
     },
     "PayeeLocationsResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/PayeeLocationsWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/PayeeLocationsWrapper"
         }
-      ]
+      }
     },
     "PayeeLocationsWrapper": {
       "type": "object",
@@ -1295,19 +1356,13 @@
       }
     },
     "PayeeLocationResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/PayeeLocationWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/PayeeLocationWrapper"
         }
-      ]
+      }
     },
     "PayeeLocationWrapper": {
       "type": "object",
@@ -1339,19 +1394,13 @@
       }
     },
     "TransactionSummariesResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/TransactionSummariesWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TransactionSummariesWrapper"
         }
-      ]
+      }
     },
     "TransactionSummariesWrapper": {
       "type": "object",
@@ -1366,19 +1415,13 @@
       }
     },
     "TransactionDetailResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/TransactionDetailWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TransactionDetailWrapper"
         }
-      ]
+      }
     },
     "TransactionDetailWrapper": {
       "type": "object",
@@ -1518,19 +1561,13 @@
       }
     },
     "ScheduledTransactionSummariesResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/ScheduledTransactionSummariesWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/ScheduledTransactionSummariesWrapper"
         }
-      ]
+      }
     },
     "ScheduledTransactionSummariesWrapper": {
       "type": "object",
@@ -1545,19 +1582,13 @@
       }
     },
     "ScheduledTransactionDetailResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/ScheduledTransactionDetailWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/ScheduledTransactionDetailWrapper"
         }
-      ]
+      }
     },
     "ScheduledTransactionDetailWrapper": {
       "type": "object",
@@ -1694,19 +1725,13 @@
       }
     },
     "MonthSummariesResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/MonthSummariesWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MonthSummariesWrapper"
         }
-      ]
+      }
     },
     "MonthSummariesWrapper": {
       "type": "object",
@@ -1721,19 +1746,13 @@
       }
     },
     "MonthDetailResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ResponseWrapper"
-        },
-        {
-          "required": ["data"],
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/MonthDetailWrapper"
-            }
-          }
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MonthDetailWrapper"
         }
-      ]
+      }
     },
     "MonthDetailWrapper": {
       "type": "object",
