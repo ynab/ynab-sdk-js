@@ -216,3 +216,62 @@ export const transactionSummariesResponseFactory = Factory.makeFactory<
     transactions: transactionSummaryFactory.buildList(5)
   })
 });
+
+export const scheduledSubTransactionFactory = Factory.makeFactory<
+  api.ScheduledSubTransaction
+>({
+  id: Factory.each(i => `id #${i}`),
+  amount: Factory.each(i => i * 1000),
+  memo: Factory.each(i => `memo #${i}`),
+  scheduled_transaction_id: Factory.each(i => `transaction_id #${i}`),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  category_id: Factory.each(i => `category_id #${i}`),
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+});
+
+export const scheduledTransactionDetailFactory = Factory.makeFactory<
+  api.ScheduledTransactionDetail
+>({
+  id: Factory.each(i => `id #${i}`),
+  date: "2017-01-02",
+  amount: Factory.each(i => i * 1000),
+  memo: Factory.each(i => `memo #${i}`),
+  flag: "red",
+  frequency: "daily",
+  account_id: Factory.each(i => `account_id #${i}`),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  category_id: Factory.each(i => `category_id #${i}`),
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  subtransactions: scheduledSubTransactionFactory.buildList(3)
+});
+
+export const scheduledTransactionDetailResponseFactory = Factory.makeFactory<
+  api.ScheduledTransactionDetailResponse
+>({
+  data: Factory.makeFactory({
+    scheduled_transaction: scheduledTransactionDetailFactory.build()
+  })
+});
+
+export const scheduledTransactionSummaryFactory = Factory.makeFactory<
+  api.ScheduledTransactionSummary
+>({
+  id: Factory.each(i => `id #${i}`),
+  date: "2017-01-02",
+  amount: Factory.each(i => i * 1000),
+  memo: Factory.each(i => `memo #${i}`),
+  flag: "red",
+  frequency: "daily",
+  account_id: Factory.each(i => `account_id #${i}`),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  category_id: Factory.each(i => `category_id #${i}`),
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+});
+
+export const scheduledTransactionSummariesResponseFactory = Factory.makeFactory<
+  api.ScheduledTransactionSummariesResponse
+>({
+  data: Factory.makeFactory({
+    scheduled_transactions: scheduledTransactionSummaryFactory.buildList(5)
+  })
+});

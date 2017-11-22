@@ -247,6 +247,39 @@ describe("Mock tests", () => {
       }/transactions?since_date=${encodeURIComponent(sinceDate.toISOString())}`
     );
   });
+
+  it("Should getScheduledTransactions and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.scheduledTransactions.getScheduledTransactions(budgetId),
+      factories.scheduledTransactionSummariesResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`
+    );
+  });
+
+  it("Should getScheduledTransactionById and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const scheduledTransactionId = "scheduledTransactionId";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () =>
+        ynab.scheduledTransactions.getScheduledTransactionById(
+          budgetId,
+          scheduledTransactionId
+        ),
+      factories.scheduledTransactionDetailResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${
+        scheduledTransactionId
+      }`
+    );
+  });
 });
 
 async function callApiAndVerifyResponse<ResponseType>(
