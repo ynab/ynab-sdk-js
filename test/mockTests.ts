@@ -36,25 +36,23 @@ after(() => {
 
 describe("Mock tests", () => {
   it("Should getBudgets and validate the request is sent correctly", async () => {
-    const mockResponse = factories.budgetSummaryResponseFactory.build();
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const getBudgetsResponse = await callApiAndVerifyResponse(
       () => ynab.budgets.getBudgets(0),
-      mockResponse
+      factories.budgetSummaryResponseFactory.build()
     );
     verifyRequestDetails(`${BASE_URL}/budgets`);
   });
 
   it("Should getBudgetContents and validate the request is sent correctly", async () => {
-    const mockResponse = factories.budgetDetailResponseFactory.build();
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const budgetId = "1234";
     const lastKnowledgeOfServer = 5;
     const getBudgetsResponse = await callApiAndVerifyResponse(
       () => ynab.budgets.getBudgetContents(budgetId, lastKnowledgeOfServer),
-      mockResponse
+      factories.budgetDetailResponseFactory.build()
     );
     verifyRequestDetails(
       `${BASE_URL}/budgets/${budgetId}?last_knowledge_of_server=${
@@ -64,26 +62,24 @@ describe("Mock tests", () => {
   });
 
   it("Should getAccounts and validate the request is sent correctly", async () => {
-    const mockResponse = factories.accountsResponseFactory.build();
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const budgetId = "1234";
     const returnedResponse = await callApiAndVerifyResponse(
       () => ynab.accounts.getAccounts(budgetId),
-      mockResponse
+      factories.accountsResponseFactory.build()
     );
     verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/accounts`);
   });
 
   it("Should getAccountById and validate the request is sent correctly", async () => {
-    const mockResponse = factories.accountResponseFactory.build();
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const budgetId = "1234";
     const accountId = "DummyAccountId";
     const returnedResponse = await callApiAndVerifyResponse(
       () => ynab.accounts.getAccountById(budgetId, accountId),
-      mockResponse
+      factories.accountResponseFactory.build()
     );
     verifyRequestDetails(
       `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}`
@@ -91,14 +87,13 @@ describe("Mock tests", () => {
   });
 
   it("Should escape Ids in the URL", async () => {
-    const mockResponse = factories.accountResponseFactory.build();
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const budgetId = "/://{}?";
     const accountId = "/://{}?";
     const returnedResponse = await callApiAndVerifyResponse(
       () => ynab.accounts.getAccountById(budgetId, accountId),
-      mockResponse
+      factories.accountResponseFactory.build()
     );
     verifyRequestDetails(
       `${BASE_URL}/budgets/${encodeURIComponent(
@@ -121,17 +116,41 @@ describe("Mock tests", () => {
   });
 
   it("Should getCategoryById and validate the request is sent correctly", async () => {
-    const mockResponse = factories.categoryResponseFactory.build();
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const budgetId = "1234";
     const categoryId = "DummyCategoryId";
     const returnedResponse = await callApiAndVerifyResponse(
       () => ynab.categories.getCategoryById(budgetId, categoryId),
-      mockResponse
+      factories.categoryResponseFactory.build()
     );
     verifyRequestDetails(
       `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}`
+    );
+  });
+
+  it("Should getBudgetMonths and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.months.getBudgetMonths(budgetId),
+      factories.monthSummariesResponseFactory.build()
+    );
+    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months`);
+  });
+
+  it("Should getBudgetMonthById and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const budgetId = "1234";
+    const budgetMonthId = "budgetMonthId";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.months.getBudgetMonthById(budgetId, budgetMonthId),
+      factories.monthDetailResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/months/${budgetMonthId}`
     );
   });
 });

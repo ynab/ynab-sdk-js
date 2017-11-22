@@ -107,3 +107,41 @@ export const categoryResponseFactory = Factory.makeFactory<
     category: categoryFactory.build()
   })
 });
+
+export const monthSummaryFactory = Factory.makeFactory<api.MonthSummary>({
+  month: "2017-01-01",
+  note: Factory.each(i => `Note #${i}`),
+  to_be_budgeted: Factory.each(i => i * 2000),
+  age_of_money: Factory.each(i => i)
+});
+
+export const monthSummariesResponseFactory = Factory.makeFactory<
+  api.MonthSummariesResponse
+>({
+  data: Factory.makeFactory({
+    months: monthSummaryFactory.buildList(5)
+  })
+});
+
+class x implements api.MonthDetail {
+  month: string;
+  note: string;
+  to_be_budgeted: number;
+  age_of_money: number;
+  categories: api.Category[];
+}
+export const monthDetailFactory = Factory.makeFactory<api.MonthDetail>({
+  month: "2017-01-01",
+  note: Factory.each(i => `Note #${i}`),
+  to_be_budgeted: Factory.each(i => i * 2000),
+  age_of_money: Factory.each(i => i),
+  categories: categoryFactory.buildList(3)
+});
+
+export const monthDetailResponseFactory = Factory.makeFactory<
+  api.MonthDetailResponse
+>({
+  data: Factory.makeFactory({
+    month: monthDetailFactory.build()
+  })
+});
