@@ -40,6 +40,7 @@ eval(`docker run --rm -v ${
   thisFolder
 }:/local swaggerapi/swagger-codegen-cli generate \
     -DmodelPropertyNaming=original \
+    --type-mappings DateTime=string \
     -i "/local/${specFilename}" \
     -l "typescript-fetch" \
     -c "/local/swagger-config-typescript.json" \
@@ -59,3 +60,6 @@ for (let tempFile of filesToCopy) {
 `cp "${swaggerGeneratedOutputFolder}/custom.d.ts "${
   sdkSrcOutputFolder
 }/portable-fetch.d.ts"`;
+
+// Move this up to the root level
+eval(`mv -f ${specFilename} ../`);

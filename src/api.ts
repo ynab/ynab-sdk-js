@@ -241,10 +241,10 @@ export interface BudgetSummary {
     name: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof BudgetSummary
      */
-    last_accessed_on?: Date;
+    last_accessed_on?: string;
     /**
      * 
      * @type {DateFormat}
@@ -377,10 +377,10 @@ export interface CategoryGroup {
     name: string;
     /**
      * Whether or not the category group is hidden
-     * @type {string}
+     * @type {boolean}
      * @memberof CategoryGroup
      */
-    hidden: string;
+    hidden: boolean;
 }
 
 /**
@@ -1125,10 +1125,10 @@ export interface BudgetDetail {
     name: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof BudgetDetail
      */
-    last_accessed_on?: Date;
+    last_accessed_on?: string;
     /**
      * 
      * @type {DateFormat}
@@ -1223,10 +1223,10 @@ export interface CategoryGroupWithCategories {
     name: string;
     /**
      * Whether or not the category group is hidden
-     * @type {string}
+     * @type {boolean}
      * @memberof CategoryGroupWithCategories
      */
-    hidden: string;
+    hidden: boolean;
     /**
      * Category group categories
      * @type {Array&lt;Category&gt;}
@@ -1643,11 +1643,11 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
          * Single budget detail 
          * @summary Single budget
          * @param {string} budgetId ID of budget
-         * @param {number} [lastKnowlegeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowlege_of_server will be included.
+         * @param {number} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options: any = {}): FetchArgs {
+        getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
                 throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getBudgetContents.');
@@ -1667,8 +1667,8 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (lastKnowlegeOfServer !== undefined) {
-                localVarQueryParameter['last_knowlege_of_server'] = lastKnowlegeOfServer;
+            if (lastKnowledgeOfServer !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = lastKnowledgeOfServer;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1725,12 +1725,12 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
          * Single budget detail 
          * @summary Single budget
          * @param {string} budgetId ID of budget
-         * @param {number} [lastKnowlegeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowlege_of_server will be included.
+         * @param {number} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse> {
-            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options);
+        getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<BudgetDetailResponse> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options);
             return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
                 return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1776,12 +1776,12 @@ export const BudgetsApiFactory = function (configuration?: Configuration, fetchF
          * Single budget detail 
          * @summary Single budget
          * @param {string} budgetId ID of budget
-         * @param {number} [lastKnowlegeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowlege_of_server will be included.
+         * @param {number} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any) {
-            return BudgetsApiFp(configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options)(fetchFunction, basePath);
+        getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
+            return BudgetsApiFp(configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)(fetchFunction, basePath);
         },
         /**
          * List all budgets 
@@ -1806,13 +1806,13 @@ export class BudgetsApi extends BaseAPI {
      * Single budget detail 
      * @summary Single budget
      * @param {} budgetId ID of budget
-     * @param {} [lastKnowlegeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowlege_of_server will be included.
+     * @param {} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    public getBudgetContents(budgetId: string, lastKnowlegeOfServer?: number, options?: any) {
-        return BudgetsApiFp(this.configuration).getBudgetContents(budgetId, lastKnowlegeOfServer, options)(this.fetchFunction, this.basePath);
+    public getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
+        return BudgetsApiFp(this.configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)(this.fetchFunction, this.basePath);
     }
 
     /**

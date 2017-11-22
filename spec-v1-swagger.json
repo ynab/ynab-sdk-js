@@ -90,10 +90,10 @@
             "format": "uuid"
           },
           {
-            "name": "last_knowlege_of_server",
+            "name": "last_knowledge_of_server",
             "in": "query",
             "description":
-              "Starting server knowledge.  If provided, only entities that have changed since last_knowlege_of_server will be included.",
+              "Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
             "type": "number"
           }
@@ -1209,7 +1209,7 @@
         },
         "hidden": {
           "description": "Whether or not the category group is hidden",
-          "type": "string"
+          "type": "boolean"
         }
       }
     },

@@ -36,7 +36,6 @@
     "@types/node": "^8.0.9",
     "@types/yargs": "^8.0.2",
     "chai": "^4.1.2",
-    "factory.ts": "^0.2.2",
     "fetch-mock": "^5.13.1",
     "jbash": "^1.35.0",
     "lodash": "^4.17.4",
