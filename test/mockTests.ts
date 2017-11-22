@@ -37,7 +37,7 @@ const API_KEY = "API_KEY";
 before(async () => {});
 
 describe("Mock tests", () => {
-  it("Should getBudgets and validate the response", async () => {
+  it("Should getBudgets and validate the request is sent correctly", async () => {
     let budgetSummary = budgetSummaryFactory.build();
     fetchMock.mock("*", budgetSummary);
     let ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
