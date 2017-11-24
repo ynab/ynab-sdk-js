@@ -3,15 +3,8 @@
   "version": "1.0.0",
   "description": "YNAB Client SDK",
   "author": "You Need a Budget, LLC",
-  "keywords": [
-    "typescript",
-    "swagger-client",
-    "ynab",
-    "api"
-  ],
-  "files": [
-    "dist/"
-  ],
+  "keywords": ["typescript", "swagger-client", "ynab", "api"],
+  "files": ["dist/"],
   "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -22,27 +15,28 @@
   "scripts": {
     "generate": "cd build && ./generate_sdk_typescript.js",
     "build": "npx tsc",
-    "test": "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'"
+    "test":
+      "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'"
   },
   "dependencies": {
+    "portable-fetch": "^3.0.0"
+  },
+  "devDependencies": {
     "@types/chai": "^4.0.5",
     "@types/lodash": "^4.14.85",
     "@types/mocha": "^2.2.44",
+    "@types/isomorphic-fetch": "0.0.34",
+    "@types/node": "^8.0.9",
+    "prettier": "1.8.2",
+    "typescript": "^2.6",
     "chai": "^4.1.2",
     "jbash": "^1.35.0",
     "lodash": "^4.17.4",
     "mocha": "^4.0.1",
     "moment": "^2.19.2",
-    "portable-fetch": "^3.0.0",
     "swagger-model-validator": "^2.2.1",
     "ts-node": "^3.3.0",
     "yamljs": "^0.3.0"
-  },
-  "devDependencies": {
-    "@types/isomorphic-fetch": "0.0.34",
-    "@types/node": "^8.0.9",
-    "prettier": "1.8.2",
-    "typescript": "^2.6"
   },
   "publishConfig": {
     "registry": "https://skimdb.npmjs.com/registry"
