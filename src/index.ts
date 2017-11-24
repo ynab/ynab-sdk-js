@@ -13,7 +13,10 @@ import { Configuration } from "./configuration";
 // This acts as a wrapper around the underlying objects exposed by api.ts
 export class Api {
   protected configuration: Configuration;
-  public constructor(accessToken: string, endpointUrl: string = "https://api.youneedabudget.com/v1") {
+  public constructor(
+    accessToken: string,
+    endpointUrl: string = "https://api.youneedabudget.com/v1"
+  ) {
     this.configuration = new Configuration({
       apiKey: `Bearer ${accessToken}`,
       basePath: endpointUrl
