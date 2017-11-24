@@ -4,10 +4,10 @@ const api_1 = require("./api");
 const configuration_1 = require("./configuration");
 // This acts as a wrapper around the underlying objects exposed by api.ts
 class Api {
-    constructor(bearerToken) {
+    constructor(accessToken, endpointUrl = "https://api.youneedabudget.com/v1") {
         this.configuration = new configuration_1.Configuration({
-            apiKey: `Bearer ${bearerToken}`,
-            basePath: "http://localhost:3000/papi/v1"
+            apiKey: `Bearer ${accessToken}`,
+            basePath: endpointUrl
         });
     }
     get accounts() {

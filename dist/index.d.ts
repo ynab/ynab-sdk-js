@@ -2,7 +2,7 @@ import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLoca
 import { Configuration } from "./configuration";
 export declare class Api {
     protected configuration: Configuration;
-    constructor(bearerToken: string);
+    constructor(accessToken: string, endpointUrl?: string);
     protected _accounts: AccountsApi;
     readonly accounts: AccountsApi;
     protected _budgets: BudgetsApi;
