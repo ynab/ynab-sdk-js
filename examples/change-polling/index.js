@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../index");
+const index_js_1 = require("../../dist/index.js");
 const _ = require("lodash");
 const DateWithoutTime_1 = require("./DateWithoutTime");
 const Validator = require("swagger-model-validator");
@@ -28,7 +28,7 @@ function main() {
                 console.warn("You will need to define the YNAB_API_KEY environment variable.");
                 process.exit(1);
             }
-            const ynab = new ynabApi.Api(API_KEY);
+            const ynab = new index_js_1.Api(API_KEY, "http://localhost:3000/papi/v1");
             console.log(`Fetching budgets...`);
             const getBudgetsResponse = yield ynab.budgets.getBudgets(0);
             checkForError(getBudgetsResponse);
@@ -103,4 +103,3 @@ function main() {
     });
 }
 main();
-//# sourceMappingURL=change-polling.js.map

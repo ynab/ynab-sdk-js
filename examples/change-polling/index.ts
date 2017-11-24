@@ -1,5 +1,5 @@
-import * as ynabApi from "../index";
-import { ResponseWrapper, BudgetSummary, MonthDetail } from "../api";
+import { Api } from "../../dist/index.js";
+import { ResponseWrapper, BudgetSummary, MonthDetail } from "../../dist/api";
 import * as _ from "lodash";
 import { DateWithoutTime } from "./DateWithoutTime";
 const Validator = require("swagger-model-validator");
@@ -15,14 +15,14 @@ function checkForError(response: ResponseWrapper): void {
 async function main() {
   try {
     // You can get your API key from the My Account section of YNAB
-    const API_KEY = process.env.YNAB_API_KEY;
+    const API_KEY = process.env.YNAB_API_ACCESS_TOKEN;
     if (API_KEY == null || API_KEY == "") {
       console.warn(
-        "You will need to define the YNAB_API_KEY environment variable."
+        "You will need to define the YNAB_API_ACCESS_TOKEN environment variable."
       );
       process.exit(1);
     }
-    const ynab = new ynabApi.Api(API_KEY);
+    const ynab = new Api(API_KEY);
 
     console.log(`Fetching budgets...`);
     const getBudgetsResponse = await ynab.budgets.getBudgets(0);
