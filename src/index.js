@@ -66,4 +66,3 @@ class ynabApi {
     }
 }
 module.exports = ynabApi;
-//# sourceMappingURL=index.js.map

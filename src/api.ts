@@ -1727,7 +1727,9 @@ export const AccountsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -1746,7 +1748,9 @@ export const AccountsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -1921,7 +1925,9 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -1939,7 +1945,9 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2118,7 +2126,9 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2138,7 +2148,9 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2320,7 +2332,9 @@ export const MonthsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2339,7 +2353,9 @@ export const MonthsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2564,7 +2580,9 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2583,7 +2601,9 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2603,7 +2623,9 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2809,7 +2831,9 @@ export const PayeesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -2828,7 +2852,9 @@ export const PayeesApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3010,7 +3036,9 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3029,7 +3057,9 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3312,7 +3342,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3333,7 +3365,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3354,7 +3388,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3374,7 +3410,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     } else {
-                        throw response;
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };
@@ -3499,4 +3537,3 @@ export class TransactionsApi extends BaseAPI {
     }
 
 }
-

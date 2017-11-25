@@ -261,7 +261,9 @@ export const {{classname}}Fp = function(configuration?: Configuration) {
                     if (response.status >= 200 && response.status < 300) {
                         return response{{#returnType}}.json(){{/returnType}};
                     } else {
-                        throw response;
+                        return response{{#returnType}}.json(){{/returnType}}.then((e) => {
+                            return Promise.reject(e);
+                        });
                     }
                 });
             };

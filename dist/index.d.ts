@@ -5,6 +5,11 @@ import { Configuration } from "./configuration";
  */
 declare class ynabApi {
     protected _configuration: Configuration;
+    /**
+     *
+     * @param accessToken The access token used for authentication
+     * @param endpointUrl The API endpoint URL (Optional)
+     */
     constructor(accessToken: string, endpointUrl?: string);
     protected _accounts: AccountsApi;
     readonly accounts: AccountsApi;
