@@ -1,7 +1,10 @@
 import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLocationsApi, TransactionsApi, ScheduledTransactionsApi } from "./api";
 import { Configuration } from "./configuration";
-export declare class Api {
-    protected configuration: Configuration;
+/**
+ * ynabApi is the entrypoint to the YNAB API client.
+ */
+declare class ynabApi {
+    protected _configuration: Configuration;
     constructor(accessToken: string, endpointUrl?: string);
     protected _accounts: AccountsApi;
     readonly accounts: AccountsApi;
@@ -20,3 +23,4 @@ export declare class Api {
     protected _scheduledTransactions: ScheduledTransactionsApi;
     readonly scheduledTransactions: ScheduledTransactionsApi;
 }
+export = ynabApi;

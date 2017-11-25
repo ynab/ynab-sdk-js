@@ -15,7 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const url = require("url");
 const portableFetch = require("portable-fetch");
-const BASE_PATH = "https://api.youneedabudget.com/v1".replace(/\/+$/, "");
+const BASE_PATH = "https://api.youneedabudget.com/v1/";
 /**
  *
  * @export
