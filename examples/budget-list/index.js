@@ -24,7 +24,7 @@ if (!argv.accessToken) {
 }
 function printBudgetList() {
     return __awaiter(this, void 0, void 0, function* () {
-        const ynab = new index_js_1.Api(argv.accessToken, "http://localhost:3000/papi/v1");
+        const ynab = new index_js_1.Api(argv.accessToken);
         console.log(`Fetching budgets...`);
         try {
             const budgetsResponse = yield ynab.budgets.getBudgets();

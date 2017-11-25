@@ -4,5 +4,5 @@
     "module": "commonjs",
     "noImplicitAny": true
   },
-  "files": ["index.ts"]
+  "include": ["*/**/*.ts"]
 }
