@@ -1,53 +1,51 @@
-## YNAB Javascript SDK
+# YNAB Javascript SDK
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-TODO: This README was generated from Swagger-codegen, and needs to be edited to be YNAB specific.
+The YNAB API JavaScript SDK library provides access to the YNAB API from applications written in Node.js / JavaScript.
 
-Notes about:
-Date format (DateWithoutTime)
-Millicents format
 
-This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
+## Installation
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+```
+npm install ynab-sdk-js
+```
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
+## Usage
 
-Module system
-* CommonJS
-* ES6 module system
+To use this client, you must [obtain an access token](https://api.youneedabudget.com/#authentication) from the [My Account](https://app.youneedabudget.com/settings) area of the YNAB web application.
 
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
+```
+const ynabApi = require("ynab-sdk-js");
+const accessToken = "bf0cbb14b4330e9d5f4312a646eb0115b80a169ad1425d3de12e66a389eaafe2";
+const ynab = new ynabApi(accessToken);
 
-### Building
+async function listBudgets(){
+try {
+  const budgetsResponse = await ynab.budgets.getBudgets();
+  const budgets = budgetsResponse.data.budgets;
+  for(let budget of budgets) {
+    console.log(`Budget Name: ${budget.name}`);
+  }
+}
 
-To build an compile the typescript sources to javascript use:
+listBudgets();
+```
+
+## Examples
+
+See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples) folder for example usage scenarios.
+
+## Development
+
+To build and compile:
+
 ```
 npm install
 npm run build
 ```
 
-### Publishing
-
-First build the package than run ```npm publish```
-
-### Consuming
-
-navigate to the folder of your consuming project and run one of next commands.
-
-_published:_
-
+To run tests:
 ```
-npm install ynab@1.0.0 --save
+npm test
 ```
-
-_unPublished (not recommended):_
-
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
