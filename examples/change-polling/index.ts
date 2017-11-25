@@ -111,10 +111,6 @@ async function main() {
   } catch (e) {
     if (e instanceof Error) {
       console.error(`Error: ${e}`);
-    } else if (e.status && e.statusText) {
-      // This is what an error might look like:
-      //{"url":"http://localhost:3000/papi/v1/budgets","status":401,"statusText":"Unauthorized","headers":{"_headers":{"cache-control":["no-store"],"pragma":["no-cache"],"www-authenticate":["Bearer realm=\"Doorkeeper\", error=\"invalid_token\", error_description=\"The access token is invalid\""]}
-      console.error(`Error: ${e.status} - ${e.statusText}`);
     } else {
       console.error(`Error: ${JSON.stringify(e)}`);
     }
