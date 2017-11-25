@@ -1,0 +1,1789 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "A read-only JSON / REST API to access YNAB budget data.",
+    "version": "1.0.0",
+    "title": "YNAB API Explorer"
+  },
+  "host": ".",
+  "basePath": "/papi/v1",
+  "tags": [
+    {
+      "name": "Budgets"
+    },
+    {
+      "name": "Accounts"
+    },
+    {
+      "name": "Category Groups"
+    },
+    {
+      "name": "Categories"
+    },
+    {
+      "name": "Payees"
+    },
+    {
+      "name": "Payee Locations"
+    },
+    {
+      "name": "Transactions"
+    },
+    {
+      "name": "Scheduled Transactions"
+    },
+    {
+      "name": "Months"
+    }
+  ],
+  "schemes": ["https"],
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "paths": {
+    "/budgets": {
+      "get": {
+        "tags": ["Budgets"],
+        "summary": "List budgets",
+        "description": "List all budgets\n",
+        "operationId": "getBudgets",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Budgets",
+            "schema": {
+              "$ref": "#/definitions/BudgetSummaryResponse"
+            }
+          },
+          "404": {
+            "description": "No budgets found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}": {
+      "get": {
+        "tags": ["Budgets"],
+        "summary": "Single budget",
+        "description": "Single budget detail\n",
+        "operationId": "getBudgetContents",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "last_knowlege_of_server",
+            "in": "query",
+            "description":
+              "Starting server knowledge.  If provided, only entities that have changed since last_knowlege_of_server will be included.",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Budget",
+            "schema": {
+              "$ref": "#/definitions/BudgetDetailResponse"
+            }
+          },
+          "404": {
+            "description": "Budget not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/accounts": {
+      "get": {
+        "tags": ["Accounts"],
+        "summary": "List accounts",
+        "description": "List all accounts\n",
+        "operationId": "getAccounts",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Accounts",
+            "schema": {
+              "$ref": "#/definitions/AccountsResponse"
+            }
+          },
+          "404": {
+            "description": "No accounts found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/accounts/{account_id}": {
+      "get": {
+        "tags": ["Accounts"],
+        "summary": "Single account",
+        "description": "Find a single account by ID\n",
+        "operationId": "getAccountById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account",
+            "schema": {
+              "$ref": "#/definitions/AccountResponse"
+            }
+          },
+          "404": {
+            "description": "Account not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/categories": {
+      "get": {
+        "tags": ["Categories"],
+        "summary": "List category groups",
+        "description": "List all category groups\n",
+        "operationId": "getCategories",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category groups",
+            "schema": {
+              "$ref": "#/definitions/CategoriesResponse"
+            }
+          },
+          "404": {
+            "description": "No category groups found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/categories/{category_id}": {
+      "get": {
+        "tags": ["Categories"],
+        "summary": "Single category",
+        "description": "Find a category by ID\n",
+        "operationId": "getCategoryById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "category_id",
+            "in": "path",
+            "description": "ID of category",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category",
+            "schema": {
+              "$ref": "#/definitions/CategoryResponse"
+            }
+          },
+          "404": {
+            "description": "Category not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/payees": {
+      "get": {
+        "tags": ["Payees"],
+        "summary": "List payees",
+        "description": "List all payees\n",
+        "operationId": "getPayees",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payees",
+            "schema": {
+              "$ref": "#/definitions/PayeesResponse"
+            }
+          },
+          "404": {
+            "description": "No payees found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/payees/{payee_id}": {
+      "get": {
+        "tags": ["Payees"],
+        "summary": "Single payee",
+        "description": "Find a single payee by ID\n",
+        "operationId": "getPayeeById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "payee_id",
+            "in": "path",
+            "description": "ID of payee",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payee",
+            "schema": {
+              "$ref": "#/definitions/PayeeResponse"
+            }
+          },
+          "404": {
+            "description": "Payee not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/payee_locations": {
+      "get": {
+        "tags": ["Payee Locations"],
+        "summary": "List payee locations",
+        "description": "List all payee locations\n",
+        "operationId": "getPayeeLocations",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payee Locations",
+            "schema": {
+              "$ref": "#/definitions/PayeeLocationsResponse"
+            }
+          },
+          "404": {
+            "description": "No payees locations found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/payee_locations/{payee_location_id}": {
+      "get": {
+        "tags": ["Payee Locations"],
+        "summary": "Single payee location",
+        "description": "Find a single payee location by ID\n",
+        "operationId": "getPayeeLocationById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "payee_location_id",
+            "in": "path",
+            "description": "ID of payee location",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payee Location",
+            "schema": {
+              "$ref": "#/definitions/PayeeLocationResponse"
+            }
+          },
+          "404": {
+            "description": "Payee location not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/payees/{payee_id}/payee_locations": {
+      "get": {
+        "tags": ["Payee Locations"],
+        "summary": "List locations for a payee",
+        "description": "List payee locations for a specified payee\n",
+        "operationId": "getPayeeLocationsByPayee",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "payee_id",
+            "in": "path",
+            "description": "ID of payee",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payee Locations",
+            "schema": {
+              "$ref": "#/definitions/PayeeLocationsResponse"
+            }
+          },
+          "404": {
+            "description": "No payees locations found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/transactions": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "List transactions",
+        "description": "List all transactions\n",
+        "operationId": "getTransactions",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "since_date",
+            "in": "query",
+            "description": "Only return transactions on or after this date",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transactions",
+            "schema": {
+              "$ref": "#/definitions/TransactionSummariesResponse"
+            }
+          },
+          "404": {
+            "description": "No transactions found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/accounts/{account_id}/transactions": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "List account transactions",
+        "description": "List transactions for an account\n",
+        "operationId": "getTransactionsByAccount",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "ID of account",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "since_date",
+            "in": "query",
+            "description": "Only return transactions on or after this date",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transactions",
+            "schema": {
+              "$ref": "#/definitions/TransactionSummariesResponse"
+            }
+          },
+          "404": {
+            "description": "No transactions found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/categories/{category_id}/transactions": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "List category transactions",
+        "description": "List transactions for a category\n",
+        "operationId": "getTransactionsByCategory",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "category_id",
+            "in": "path",
+            "description": "ID of category",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "since_date",
+            "in": "query",
+            "description": "Only return transactions on or after this date",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transactions",
+            "schema": {
+              "$ref": "#/definitions/TransactionSummariesResponse"
+            }
+          },
+          "404": {
+            "description": "No transactions found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/transactions/{transaction_id}": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "Single transaction",
+        "description": "Find a single transaction by ID\n",
+        "operationId": "getTransactionsById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "ID of transaction",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction",
+            "schema": {
+              "$ref": "#/definitions/TransactionDetailResponse"
+            }
+          },
+          "404": {
+            "description": "Transaction not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/scheduled_transactions": {
+      "get": {
+        "tags": ["Scheduled Transactions"],
+        "summary": "List scheduled transactions",
+        "description": "List all scheduled transactions\n",
+        "operationId": "getScheduledTransactions",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scheduled Transactions",
+            "schema": {
+              "$ref": "#/definitions/ScheduledTransactionSummariesResponse"
+            }
+          },
+          "404": {
+            "description": "No scheduled transactions found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}": {
+      "get": {
+        "tags": ["Scheduled Transactions"],
+        "summary": "Single scheduled transaction",
+        "description": "Find a single scheduled transaction by ID\n",
+        "operationId": "getScheduledTransactionById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "scheduled_transaction_id",
+            "in": "path",
+            "description": "ID of scheduled transaction",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scheduled Transaction",
+            "schema": {
+              "$ref": "#/definitions/ScheduledTransactionDetailResponse"
+            }
+          },
+          "404": {
+            "description": "Scheduled transaction not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/months": {
+      "get": {
+        "tags": ["Months"],
+        "summary": "List budget months",
+        "description": "List all budget months\n",
+        "operationId": "getBudgetMonths",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Budget months",
+            "schema": {
+              "$ref": "#/definitions/MonthSummariesResponse"
+            }
+          },
+          "404": {
+            "description": "No budget months found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/months/{month}": {
+      "get": {
+        "tags": ["Months"],
+        "summary": "Single budget month",
+        "description": "Find a single budget month\n",
+        "operationId": "getBudgetMonthById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description":
+              "The budget month.  \"current\" can also be used to specify the current calendar month (UTC).",
+            "required": true,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Budget month detail",
+            "schema": {
+              "$ref": "#/definitions/MonthDetailResponse"
+            }
+          },
+          "404": {
+            "description": "Budget month not found",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "ResponseError": {
+      "type": "object",
+      "required": ["id", "name", "description"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ResponseWrapper": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ResponseError"
+        },
+        "server_knowledge": {
+          "type": "number",
+          "description": "The knowledge of the server"
+        }
+      }
+    },
+    "BudgetSummaryResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/BudgetSummaryWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "BudgetSummaryWrapper": {
+      "type": "object",
+      "required": ["budgets"],
+      "properties": {
+        "budgets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BudgetSummary"
+          }
+        }
+      }
+    },
+    "BudgetDetailResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/BudgetDetailWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "BudgetDetailWrapper": {
+      "type": "object",
+      "required": ["budget"],
+      "properties": {
+        "budget": {
+          "$ref": "#/definitions/BudgetDetail"
+        }
+      }
+    },
+    "BudgetSummary": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "last_accessed_on": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "date_format": {
+          "$ref": "#/definitions/DateFormat"
+        },
+        "currency_format": {
+          "$ref": "#/definitions/CurrencyFormat"
+        }
+      }
+    },
+    "DateFormat": {
+      "type": "object",
+      "required": ["locale"],
+      "properties": {
+        "locale": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "CurrencyFormat": {
+      "type": "object",
+      "required": ["locale"],
+      "properties": {
+        "locale": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "BudgetDetail": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BudgetSummary"
+        },
+        {
+          "properties": {
+            "accounts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "payees": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Payee"
+              }
+            },
+            "payee_locations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PayeeLocation"
+              }
+            },
+            "category_groups": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CategoryGroup"
+              }
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            },
+            "months": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MonthDetail"
+              }
+            },
+            "transactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TransactionSummary"
+              }
+            },
+            "subtransactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SubTransaction"
+              }
+            },
+            "scheduled_transactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScheduledTransactionSummary"
+              }
+            },
+            "scheduled_subtransactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScheduledSubTransaction"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "AccountsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/AccountsWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "AccountsWrapper": {
+      "type": "object",
+      "required": ["accounts"],
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Account"
+          }
+        }
+      }
+    },
+    "AccountResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/AccountWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "AccountWrapper": {
+      "type": "object",
+      "required": ["account"],
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account"
+        }
+      }
+    },
+    "Account": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "type",
+        "on_budget",
+        "closed",
+        "note",
+        "balance"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "format": "(Checking|Savings|CreditCard)"
+        },
+        "on_budget": {
+          "type": "boolean",
+          "description": "Whether this account is on budget or not"
+        },
+        "closed": {
+          "type": "boolean",
+          "description": "Whether this account is closed or not"
+        },
+        "note": {
+          "type": ["string", "null"]
+        },
+        "balance": {
+          "type": "number",
+          "format": "1234000",
+          "description":
+            "The current balance of the account in millicents format"
+        }
+      }
+    },
+    "CategoriesResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/CategoryGroupsWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "CategoryGroupsWrapper": {
+      "type": "object",
+      "required": ["category_groups"],
+      "properties": {
+        "category_groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CategoryGroupWithCategories"
+          }
+        }
+      }
+    },
+    "CategoryResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/CategoryWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "CategoryWrapper": {
+      "type": "object",
+      "required": ["category"],
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/Category"
+        }
+      }
+    },
+    "CategoryGroup": {
+      "type": "object",
+      "required": ["id", "name", "hidden"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Whether or not the category group is hidden",
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "CategoryGroupWithCategories": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CategoryGroup"
+        },
+        {
+          "required": ["categories"],
+          "properties": {
+            "categories": {
+              "type": ["array", "null"],
+              "description": "Category group categories",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Category": {
+      "type": "object",
+      "required": [
+        "id",
+        "category_group_id",
+        "name",
+        "hidden",
+        "note",
+        "activity",
+        "balance",
+        "budgeted"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "category_group_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Whether or not the category is hidden",
+          "type": ["boolean", "null"]
+        },
+        "note": {
+          "type": ["string", "null"]
+        },
+        "budgeted": {
+          "type": "number",
+          "description": "Budgeted amount in current month in millicents format"
+        },
+        "activity": {
+          "type": "number",
+          "description": "Activity amount in current month in millicents format"
+        },
+        "balance": {
+          "type": "number",
+          "description": "Balance in current month in millicents format"
+        }
+      }
+    },
+    "PayeesResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/PayeesWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "PayeesWrapper": {
+      "type": "object",
+      "required": ["payees"],
+      "properties": {
+        "payees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Payee"
+          }
+        }
+      }
+    },
+    "PayeeResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/PayeeWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "PayeeWrapper": {
+      "type": "object",
+      "required": ["payee"],
+      "properties": {
+        "payee": {
+          "$ref": "#/definitions/Payee"
+        }
+      }
+    },
+    "Payee": {
+      "type": "object",
+      "required": ["id", "name", "transfer_account_id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "transfer_account_id": {
+          "description":
+            "If a transfer payee, the account_id to which this payee transfers to",
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "PayeeLocationsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/PayeeLocationsWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "PayeeLocationsWrapper": {
+      "type": "object",
+      "required": ["payee_locations"],
+      "properties": {
+        "payee_locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PayeeLocation"
+          }
+        }
+      }
+    },
+    "PayeeLocationResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/PayeeLocationWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "PayeeLocationWrapper": {
+      "type": "object",
+      "required": ["payee_location"],
+      "properties": {
+        "payee_location": {
+          "$ref": "#/definitions/PayeeLocation"
+        }
+      }
+    },
+    "PayeeLocation": {
+      "type": "object",
+      "required": ["id", "payee_id", "latitude", "longitude"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "payee_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "latitude": {
+          "type": ["string", "null"]
+        },
+        "longitude": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "TransactionSummariesResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/TransactionSummariesWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "TransactionSummariesWrapper": {
+      "type": "object",
+      "required": ["transactions"],
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransactionSummary"
+          }
+        }
+      }
+    },
+    "TransactionDetailResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/TransactionDetailWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "TransactionDetailWrapper": {
+      "type": "object",
+      "required": ["transaction"],
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/TransactionDetail"
+        }
+      }
+    },
+    "TransactionSummary": {
+      "type": "object",
+      "required": [
+        "id",
+        "date",
+        "amount",
+        "memo",
+        "cleared",
+        "approved",
+        "flag",
+        "account_id",
+        "payee_id",
+        "category_id",
+        "transfer_account_id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "amount": {
+          "type": "number",
+          "format": "1234000",
+          "description":
+            "The current balance of the account in millicents format"
+        },
+        "memo": {
+          "type": ["string", "null"]
+        },
+        "cleared": {
+          "type": "string",
+          "format": "(Cleared|Uncleared|Reconciled)",
+          "description": "The cleared status of the transaction"
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Whether or not the transaction is approved"
+        },
+        "flag": {
+          "type": ["string", "null"],
+          "description": "Whether or not the transaction is approved"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "payee_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "category_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "transfer_account_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        }
+      }
+    },
+    "TransactionDetail": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/TransactionSummary"
+        },
+        {
+          "required": ["subtransactions"],
+          "properties": {
+            "subtransactions": {
+              "type": "array",
+              "description": "If a split transaction, the sub-transactions.",
+              "items": {
+                "$ref": "#/definitions/SubTransaction"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "SubTransaction": {
+      "type": "object",
+      "required": [
+        "id",
+        "transaction_id",
+        "amount",
+        "memo",
+        "payee_id",
+        "category_id",
+        "transfer_account_id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "transaction_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "amount": {
+          "type": "number",
+          "format": "1234000",
+          "description":
+            "The current balance of the account in millicents format"
+        },
+        "memo": {
+          "type": ["string", "null"]
+        },
+        "payee_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "category_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "transfer_account_id": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description":
+            "If a transfer, the account_id which the subtransaction transfers to"
+        }
+      }
+    },
+    "ScheduledTransactionSummariesResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/ScheduledTransactionSummariesWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "ScheduledTransactionSummariesWrapper": {
+      "type": "object",
+      "required": ["scheduled_transactions"],
+      "properties": {
+        "scheduled_transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScheduledTransactionSummary"
+          }
+        }
+      }
+    },
+    "ScheduledTransactionDetailResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/ScheduledTransactionDetailWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "ScheduledTransactionDetailWrapper": {
+      "type": "object",
+      "required": ["scheduled_transaction"],
+      "properties": {
+        "scheduled_transaction": {
+          "$ref": "#/definitions/ScheduledTransactionDetail"
+        }
+      }
+    },
+    "ScheduledTransactionSummary": {
+      "type": "object",
+      "required": [
+        "id",
+        "date",
+        "frequency",
+        "amount",
+        "memo",
+        "flag",
+        "account_id",
+        "payee_id",
+        "category_id",
+        "transfer_account_id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "frequency": {
+          "type": "string",
+          "format":
+            "(Never|Daily|Weekly|EveryOtherWeek|TwiceAMonth|Every4Weeks|Monthly|EveryOtherMonth|Every3Months|Every4Months|TwiceAYear|Yearly|EveryOtherYear)"
+        },
+        "amount": {
+          "type": "number",
+          "format": "1234000",
+          "description":
+            "The current balance of the account in millicents format"
+        },
+        "memo": {
+          "type": ["string", "null"]
+        },
+        "flag": {
+          "type": ["string", "null"]
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "payee_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "category_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "transfer_account_id": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description":
+            "If a transfer, the account_id which the scheduled transaction transfers to"
+        }
+      }
+    },
+    "ScheduledTransactionDetail": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ScheduledTransactionSummary"
+        },
+        {
+          "required": ["subtransactions"],
+          "properties": {
+            "subtransactions": {
+              "type": "array",
+              "description":
+                "If a split scheduled transaction, the sub-transactions.",
+              "items": {
+                "$ref": "#/definitions/ScheduledSubTransaction"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ScheduledSubTransaction": {
+      "type": "object",
+      "required": [
+        "id",
+        "scheduled_transaction_id",
+        "amount",
+        "memo",
+        "payee_id",
+        "category_id",
+        "transfer_account_id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "scheduled_transaction_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "amount": {
+          "type": "number",
+          "format": "1234000",
+          "description":
+            "The current balance of the account in millicents format"
+        },
+        "memo": {
+          "type": ["string", "null"]
+        },
+        "payee_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "category_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "transfer_account_id": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description":
+            "If a transfer, the account_id which the scheduled sub transaction transfers to"
+        }
+      }
+    },
+    "MonthSummariesResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/MonthSummariesWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "MonthSummariesWrapper": {
+      "type": "object",
+      "required": ["months"],
+      "properties": {
+        "months": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MonthSummary"
+          }
+        }
+      }
+    },
+    "MonthDetailResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResponseWrapper"
+        },
+        {
+          "required": ["data"],
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/MonthDetailWrapper"
+            }
+          }
+        }
+      ]
+    },
+    "MonthDetailWrapper": {
+      "type": "object",
+      "required": ["month"],
+      "properties": {
+        "month": {
+          "$ref": "#/definitions/MonthDetail"
+        }
+      }
+    },
+    "MonthSummary": {
+      "type": "object",
+      "required": ["month", "note", "to_be_budgeted", "age_of_money"],
+      "properties": {
+        "month": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "type": ["string", "null"]
+        },
+        "to_be_budgeted": {
+          "type": ["number", "null"],
+          "format": "1234000",
+          "description":
+            "The current balance of the account in millicents format"
+        },
+        "age_of_money": {
+          "type": ["number", "null"]
+        }
+      }
+    },
+    "MonthDetail": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MonthSummary"
+        },
+        {
+          "required": ["categories"],
+          "properties": {
+            "categories": {
+              "type": "array",
+              "description": "The budget month categories",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

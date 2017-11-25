@@ -8,8 +8,8 @@ set("-e");
 cd(`${__dirname}`);
 
 const thisFolder = $("pwd");
-const specFilename = `ynab-api-swagger.yaml`;
-const swaggerSpecFullPath = `../${specFilename}`;
+const specFilename = `spec-v1-swagger.json`;
+const swaggerSpecFullPath = `./${specFilename}`;
 const swaggerGeneratedOutputFolder = `out/tmp/swagger-generated-typescript-fetch`;
 const existingSdkFolder = `../`;
 
@@ -22,8 +22,10 @@ if (!fs.existsSync(existingSdkFolder)) {
   );
 }
 
-// Copy the Swagger spec to our current folder
-eval(`cp "${swaggerSpecFullPath}" .`);
+// Download latest spec from the API
+eval(`rm -f ${swaggerSpecFullPath}`);
+eval(`wget https://api.youneedabudget.com/papi/${specFilename}`);
+
 // Share the current folder with docker, and then run the generator, pointing to the given template
 eval(`docker run --rm -v ${
   thisFolder
@@ -34,9 +36,6 @@ eval(`docker run --rm -v ${
     -c "/local/swagger-config-typescript.json" \
     -t "/local/swagger-templates/typescript-fetch" \
     -o "/local/${swaggerGeneratedOutputFolder}" `);
-
-// Remove the local copy of the spec
-eval(`rm "./${specFilename}"`);
 
 // Now copy over the appropriate generated files to our existing SDK folder
 const sdkSrcOutputFolder = `${existingSdkFolder}/src`;
