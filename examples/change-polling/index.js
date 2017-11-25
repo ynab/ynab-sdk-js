@@ -23,12 +23,12 @@ function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             // You can get your API key from the My Account section of YNAB
-            const API_KEY = process.env.YNAB_API_KEY;
+            const API_KEY = process.env.YNAB_API_ACCESS_TOKEN;
             if (API_KEY == null || API_KEY == "") {
-                console.warn("You will need to define the YNAB_API_KEY environment variable.");
+                console.warn("You will need to define the YNAB_API_ACCESS_TOKEN environment variable.");
                 process.exit(1);
             }
-            const ynab = new index_js_1.Api(API_KEY, "http://localhost:3000/papi/v1");
+            const ynab = new index_js_1.Api(API_KEY);
             console.log(`Fetching budgets...`);
             const getBudgetsResponse = yield ynab.budgets.getBudgets(0);
             checkForError(getBudgetsResponse);
