@@ -1,5 +1,5 @@
-import ynabApi = require("../../src/index");
-import { ResponseWrapper, BudgetSummary, MonthDetail } from "../../dist/api";
+import ynabApi = require("../../dist/index.js");
+import { ResponseWrapper, BudgetSummary, MonthDetail } from "../../dist/api.js";
 import * as _ from "lodash";
 import { DateWithoutTime } from "./DateWithoutTime";
 const Validator = require("swagger-model-validator");

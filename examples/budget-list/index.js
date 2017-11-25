@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../../src/index");
+const ynabApi = require("../../dist/index.js");
 const yargs = require("yargs");
 const process = require("process");
 const argv = yargs
@@ -36,8 +36,7 @@ BUDGET LIST
         }
     }
     catch (e) {
-        //let errorBody = JSON.stringify(await e.json());
-        console.log(`ERROR: Status=${e.status}; Body=${e}`);
+        console.log(`ERROR: ${JSON.stringify(e)}`);
     }
 }
 printBudgetList();

@@ -1,4 +1,4 @@
-import ynabApi = require("../../src/index");
+import ynabApi = require("../../dist/index.js");
 import * as yargs from "yargs";
 import * as process from "process";
 
@@ -38,8 +38,7 @@ BUDGET LIST
 `);
     }
   } catch (e) {
-    //let errorBody = JSON.stringify(await e.json());
-    console.log(`ERROR: Status=${e.status}; Body=${e}`);
+    console.log(`ERROR: ${JSON.stringify(e)}`);
   }
 }
 
