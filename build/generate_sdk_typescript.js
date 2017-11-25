@@ -9,7 +9,6 @@ cd(`${__dirname}`);
 
 const thisFolder = $("pwd");
 const specFilename = `spec-v1-swagger.json`;
-const swaggerSpecFullPath = `./${specFilename}`;
 const swaggerGeneratedOutputFolder = `out/tmp/swagger-generated-typescript-fetch`;
 const existingSdkFolder = `../`;
 
@@ -23,8 +22,11 @@ if (!fs.existsSync(existingSdkFolder)) {
 }
 
 // Download latest spec from the API
-eval(`rm -f ${swaggerSpecFullPath}`);
+eval(`rm -f ${specFilename}`);
 eval(`wget https://api.youneedabudget.com/papi/${specFilename}`);
+
+// Replace nullable types defined as ["string", "null"] in the spec to simply "string" as the generator does not understand the nullable format.
+eval(`sed -E -i '' 's/\\[\\"(string|number|array|boolean)\\"\\, \\"null\\"\\]/"\\1"/g' ${specFilename}`)
 
 // Share the current folder with docker, and then run the generator, pointing to the given template
 eval(`docker run --rm -v ${
