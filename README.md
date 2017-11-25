@@ -4,6 +4,8 @@
 
 The YNAB API JavaScript SDK library provides access to the YNAB API from applications written in Node.js / JavaScript.
 
+Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of the available resources.
+
 
 ## Installation
 
