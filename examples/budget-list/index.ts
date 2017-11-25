@@ -1,4 +1,4 @@
-import { Api } from "../../dist/index.js";
+import ynabApi = require("../../src/index");
 import * as yargs from "yargs";
 import * as process from "process";
 
@@ -16,7 +16,7 @@ if (!argv.accessToken) {
 }
 
 async function printBudgetList() {
-  const ynab = new Api(argv.accessToken);
+  const ynab = new ynabApi(argv.accessToken);
   console.log(`Fetching budgets...`);
   try {
     const budgetsResponse = await ynab.budgets.getBudgets();

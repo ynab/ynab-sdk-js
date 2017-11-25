@@ -1,4 +1,4 @@
-import { Api } from "../../dist/index.js";
+import ynabApi = require("../../src/index");
 import { ResponseWrapper, BudgetSummary, MonthDetail } from "../../dist/api";
 import * as _ from "lodash";
 import { DateWithoutTime } from "./DateWithoutTime";
@@ -22,7 +22,7 @@ async function main() {
       );
       process.exit(1);
     }
-    const ynab = new Api(API_KEY);
+    const ynab = new ynabApi(API_KEY);
 
     console.log(`Fetching budgets...`);
     const getBudgetsResponse = await ynab.budgets.getBudgets(0);
