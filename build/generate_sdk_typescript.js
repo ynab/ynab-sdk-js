@@ -25,7 +25,7 @@ if (!fs.existsSync(existingSdkFolder)) {
 eval(`rm -f ${specFilename}`);
 eval(`wget https://api.youneedabudget.com/papi/${specFilename}`);
 
-// Replace nullable types defined as ["string", "null"] in the spec to simply "string" as the generator does not understand the nullable format.
+// Replace nullable types defined as i.e. ["string", "null"] in the spec to simply "string" as the generator does not understand the nullable format.
 // Examples:
 //   ["string", "null"] => "string"
 //   ["number", "null"] => "number"

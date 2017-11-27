@@ -8,7 +8,8 @@ const argv = yargs
 
 // You can get your API key from the My Account section of YNAB
 if (!argv.accessToken) {
-  console.warn(`'access_token' argument is required!  You can pass it in one of the following ways:
+  console.warn(`
+'access_token' argument is required!  You can pass it in one of the following ways:
   --access_token=123 CLI argument
   YNAB_API_ACCESS_TOKEN environment variable
 `);
