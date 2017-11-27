@@ -13,39 +13,8 @@ export const budgetSummaryResponseFactory = Factory.makeFactory<
   api.BudgetSummaryResponse
 >({
   data: {
-    budgets: Factory.makeFactory<api.BudgetSummary>({
-      id: Factory.each(i => `${i}`),
-      name: Factory.each(i => `Budget ${i}`),
-      last_accessed_on: new Date().toISOString(),
-      date_format: { locale: "en-us" },
-      currency_format: { locale: "en-us" }
-    }).buildList(3)
+    budgets: budgetSummaryFactory.buildList(3)
   }
-});
-
-export const budgetDetailResponseFactory = Factory.makeFactory<
-  api.BudgetDetailResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each(i => i),
-    budget: Factory.makeFactory<api.BudgetDetail>({
-      id: Factory.each(i => `${i}`),
-      name: Factory.each(i => `Budget ${i}`),
-      last_accessed_on: new Date().toISOString(),
-      date_format: { locale: "en-us" },
-      currency_format: { locale: "en-us" },
-      accounts: [], //Array<Account>,
-      payees: [], //Array<Payee>,
-      payee_locations: [], //Array<PayeeLocation>,
-      category_groups: [], //Array<CategoryGroup>,
-      categories: [], //Array<Category>,
-      months: [], //Array<MonthDetail>,
-      transactions: [], //Array<TransactionSummary>,
-      subtransactions: [], //Array<SubTransaction>,
-      scheduled_transactions: [], //Array<ScheduledTransactionSummary>,
-      scheduled_subtransactions: [] //Array<ScheduledSubTransaction>,
-    })
-  })
 });
 
 export const accountFactory = Factory.makeFactory({
@@ -296,5 +265,32 @@ export const scheduledTransactionSummariesResponseFactory = Factory.makeFactory<
 >({
   data: Factory.makeFactory({
     scheduled_transactions: scheduledTransactionSummaryFactory.buildList(5)
+  })
+});
+
+export const budgetDetailFactory = Factory.makeFactory<api.BudgetDetail>({
+  id: Factory.each(i => `${i}`),
+  name: Factory.each(i => `Budget ${i}`),
+  last_accessed_on: new Date().toISOString(),
+  date_format: { locale: "en-us" },
+  currency_format: { locale: "en-us" },
+  accounts: accountFactory.buildList(5),
+  payees: payeeFactory.buildList(10),
+  payee_locations: payeeLocationFactory.buildList(3),
+  category_groups: categoryFactory.buildList(5),
+  categories: categoryFactory.buildList(10),
+  months: monthDetailFactory.buildList(12),
+  transactions: transactionDetailFactory.buildList(10),
+  subtransactions: subTransactionFactory.buildList(5),
+  scheduled_transactions: scheduledTransactionDetailFactory.buildList(5),
+  scheduled_subtransactions: scheduledSubTransactionFactory.buildList(5)
+});
+
+export const budgetDetailResponseFactory = Factory.makeFactory<
+  api.BudgetDetailResponse
+>({
+  data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
+    budget: budgetDetailFactory.build()
   })
 });
