@@ -37,8 +37,30 @@ after(() => {
 describe("Mock tests", () => {
   const budgetId = "budgetId-1234";
 
-  it.skip("Should throw if a response is sent back with a status >= 300", async () => {
-    throw new Error("Test not implemented");
+  it("Should throw the response it is sent back with a status of 400", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const errorObject = {
+      error: {
+        id: "401",
+        name: "unauthorized",
+        description: "Unauthorized"
+      }
+    };
+    fetchMock.once("*", {
+      status: 401,
+      body: errorObject
+    });
+    try {
+      const lastKnowledgeOfServer = 5;
+      let actualResponse = await ynab.budgets.getBudgetContents(
+        budgetId,
+        lastKnowledgeOfServer
+      );
+      assert(false, "Expected the above method to throw an error");
+    } catch (errorResponse) {
+      expect(errorResponse).to.deep.equal(errorObject);
+    }
   });
 
   it("Should getBudgets and validate the request is sent correctly", async () => {

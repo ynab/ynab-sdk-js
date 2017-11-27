@@ -33,6 +33,29 @@ async function listBudgets(){
 listBudgets();
 ```
 
+### Error Handling
+If a response is returned with a code >= 300, instead of returning the response, the response will be "thrown" as an error to be caught.
+```
+const ynabApi = require("ynab-sdk-js");
+const accessToken = "invalid_token";
+const ynab = new ynabApi(accessToken);
+
+const budgetsResponse = ynab.budgets.getBudgets()
+  .then(budgetsResponse => {
+    // Won't get here because an error will be thrown
+  })
+  .catch(e => {
+    console.log(e);
+    // {
+    //   error: {
+    //    id: "401",
+    //    name: "Unauthorized",
+    //    description: "unauthorized"
+    //   }
+    // }
+  });
+```
+
 ## Examples
 
 See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples) folder for example usage scenarios.
