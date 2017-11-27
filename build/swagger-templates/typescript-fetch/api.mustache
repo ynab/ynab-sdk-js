@@ -10,6 +10,7 @@ require("portable-fetch");
 import { Configuration } from "./configuration";
 
 const BASE_PATH = "https://api.youneedabudget.com/v1/";
+const YNAB_CLIENT_LIB_VERSION = "{{npmName}}-{{npmVersion}}";
 
 /**
  *
@@ -109,7 +110,7 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            localVarHeaderParameter["X_YNAB_CLIENT"] = "ynab-sdk-js-1.0.0";
+            localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
     {{#hasFormParams}}
             const localVarFormParams = new url.URLSearchParams();
     {{/hasFormParams}}
