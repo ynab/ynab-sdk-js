@@ -43,8 +43,8 @@ describe("Mock tests", () => {
     const errorObject = {
       error: {
         id: "401",
-        name: "Unauthorized",
-        description: "unauthorized"
+        name: "unauthorized",
+        description: "Unauthorized"
       }
     };
     fetchMock.once("*", {
