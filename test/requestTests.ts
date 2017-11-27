@@ -40,13 +40,11 @@ describe("Mock tests", () => {
   it("Should throw the response it is sent back with a status of 400", async () => {
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const lastKnowledgeOfServer = 5;
-
     const errorObject = {
       error: {
-        id: "test_error",
-        name: "test_error",
-        description: "error description"
+        id: "401",
+        name: "Unauthorized",
+        description: "unauthorized"
       }
     };
     fetchMock.once("*", {
@@ -54,6 +52,7 @@ describe("Mock tests", () => {
       body: errorObject
     });
     try {
+      const lastKnowledgeOfServer = 5;
       let actualResponse = await ynab.budgets.getBudgetContents(
         budgetId,
         lastKnowledgeOfServer
