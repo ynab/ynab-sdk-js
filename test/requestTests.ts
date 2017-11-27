@@ -48,7 +48,7 @@ describe("Mock tests", () => {
       }
     };
     fetchMock.once("*", {
-      status: 400,
+      status: 401,
       body: errorObject
     });
     try {
