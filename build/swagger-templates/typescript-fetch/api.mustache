@@ -11,9 +11,13 @@ import { Configuration } from "./configuration";
 
 const YNAB_CLIENT_LIB_VERSION = "{{npmName}}-{{npmVersion}}";
 
-function convertDateToFullDateStringFormat(date: Date): string {
+function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
-  return date.toISOString().substring(0, 10);
+  if (date instanceof Date) {
+    return date.toISOString().substring(0, 10);
+  } else {
+    return date;
+  }
 }
 
 /**

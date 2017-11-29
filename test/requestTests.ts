@@ -179,6 +179,26 @@ describe("API requests", () => {
       );
       verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01-01`);
     });
+
+    it("Should getBudgetMonth with a string param and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.months.getBudgetMonth(budgetId, "2017-01"),
+        factories.monthDetailResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01`);
+    });
+
+    it("Should getBudgetMonth with a string param of 'current' and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.months.getBudgetMonth(budgetId, "current"),
+        factories.monthDetailResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/current`);
+    });
   });
 
   describe("/budgets/payees", () => {
@@ -275,6 +295,27 @@ describe("API requests", () => {
       );
     });
 
+    it("Should getTransactionsByAccount with a string `sinceDate` and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const accountId = "accountId";
+      const sinceDate = "2017-02";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.getTransactionsByAccount(
+            budgetId,
+            accountId,
+            sinceDate
+          ),
+        factories.transactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/accounts/${
+          accountId
+        }/transactions?since_date=${sinceDate}`
+      );
+    });
+
     it("Should getTransactionsByCategory and validate the request is sent correctly", async () => {
       const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
@@ -293,6 +334,28 @@ describe("API requests", () => {
         `${BASE_URL}/budgets/${budgetId}/categories/${
           categoryId
         }/transactions?since_date=2017-01-01`
+      );
+    });
+
+    it("Should getTransactionsByCategory with a string `sinceDate` and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const categoryId = "categoryId";
+      // Make sure we can pass a string as well
+      const sinceDate = "2017-03";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.getTransactionsByCategory(
+            budgetId,
+            categoryId,
+            sinceDate
+          ),
+        factories.transactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/categories/${
+          categoryId
+        }/transactions?since_date=${sinceDate}`
       );
     });
   });

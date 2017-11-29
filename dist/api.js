@@ -20,7 +20,12 @@ require("portable-fetch");
 const YNAB_CLIENT_LIB_VERSION = "ynab-sdk-js-0.1.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
-    return date.toISOString().substring(0, 10);
+    if (date instanceof Date) {
+        return date.toISOString().substring(0, 10);
+    }
+    else {
+        return date;
+    }
 }
 /**
  *

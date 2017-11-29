@@ -1498,7 +1498,7 @@ export declare class CategoriesApi extends BaseAPI {
  * @export
  */
 export declare const MonthsApiFetchParamCreator: (configuration?: Configuration) => {
-    getBudgetMonth(budgetId: string, month: Date, options?: any): FetchArgs;
+    getBudgetMonth(budgetId: string, month: string | Date, options?: any): FetchArgs;
     getBudgetMonths(budgetId: string, options?: any): FetchArgs;
 };
 /**
@@ -1506,7 +1506,7 @@ export declare const MonthsApiFetchParamCreator: (configuration?: Configuration)
  * @export
  */
 export declare const MonthsApiFp: (configuration?: Configuration) => {
-    getBudgetMonth(budgetId: string, month: Date, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse>;
+    getBudgetMonth(budgetId: string, month: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse>;
     getBudgetMonths(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse>;
 };
 /**
@@ -1514,7 +1514,7 @@ export declare const MonthsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const MonthsApiFactory: (configuration?: Configuration) => {
-    getBudgetMonth(budgetId: string, month: Date, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonth(budgetId: string, month: string | Date, options?: any): Promise<MonthDetailResponse>;
     getBudgetMonths(budgetId: string, options?: any): Promise<MonthSummariesResponse>;
 };
 /**
@@ -1533,7 +1533,7 @@ export declare class MonthsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonth(budgetId: string, month: Date, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonth(budgetId: string, month: Date | string, options?: any): Promise<MonthDetailResponse>;
     /**
      * List all budget months
      * @summary List budget months
@@ -1715,9 +1715,9 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
  * @export
  */
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: Date, options?: any): FetchArgs;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): FetchArgs;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): FetchArgs;
+    getTransactions(budgetId: string, sinceDate?: string | Date, options?: any): FetchArgs;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): FetchArgs;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): FetchArgs;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): FetchArgs;
 };
 /**
@@ -1725,9 +1725,9 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
  * @export
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionDetailResponse>;
 };
 /**
@@ -1735,9 +1735,9 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const TransactionsApiFactory: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): Promise<TransactionDetailResponse>;
 };
 /**
@@ -1756,7 +1756,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budgetId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
     /**
      * List transactions for an account
      * @summary List account transactions
@@ -1767,7 +1767,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
     /**
      * List transactions for a category
      * @summary List category transactions
@@ -1778,7 +1778,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
     /**
      * Find a single transaction by ID
      * @summary Single transaction
