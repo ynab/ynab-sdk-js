@@ -1,6 +1,6 @@
 # YNAB API Javascript (Node) Library
 
-[![Build Status](https://travis-ci.org/ynab/ynab-sdk-js.svg?branch=master)](https://travis-ci.org/ynab/ynab-sdk-js) [![NPM Package](https://img.shields.io/npm/v/ynab-sdk-js.svg)](https://www.npmjs.com/package/ynab-sdk-js) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![NPM Package](https://img.shields.io/npm/v/ynab-sdk-js.svg)](https://www.npmjs.com/package/ynab-sdk-js) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 The YNAB API JavaScript library provides access to the YNAB API from applications written in Node.js / JavaScript.
 
