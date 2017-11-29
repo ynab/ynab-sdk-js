@@ -18,7 +18,11 @@ const url = require("url");
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
 const BASE_PATH = "https://api.youneedabudget.com/v1/";
-const YNAB_CLIENT_LIB_VERSION = "ynab-sdk-js-1.0.0";
+const YNAB_CLIENT_LIB_VERSION = "ynab-sdk-js-0.1.0";
+function convertDateToFullDateStringFormat(date) {
+    // Convert to RFC 3339 "full-date" format, like "2017-11-27"
+    return date.toISOString().substring(0, 10);
+}
 /**
  *
  * @export
@@ -68,9 +72,9 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
         /**
          * Find a single account by ID
          * @summary Single account
-         * @param {string} budgetId ID of budget
-         * @param {string} accountId ID of account
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} accountId - ID of account
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getAccountById(budgetId, accountId, options = {}) {
@@ -109,8 +113,8 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
         /**
          * List all accounts
          * @summary List accounts
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getAccounts(budgetId, options = {}) {
@@ -152,9 +156,9 @@ exports.AccountsApiFp = function (configuration) {
         /**
          * Find a single account by ID
          * @summary Single account
-         * @param {string} budgetId ID of budget
-         * @param {string} accountId ID of account
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} accountId - ID of account
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getAccountById(budgetId, accountId, options) {
@@ -175,8 +179,8 @@ exports.AccountsApiFp = function (configuration) {
         /**
          * List all accounts
          * @summary List accounts
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getAccounts(budgetId, options) {
@@ -205,9 +209,9 @@ exports.AccountsApiFactory = function (configuration, fetchFunction, basePath) {
         /**
          * Find a single account by ID
          * @summary Single account
-         * @param {string} budgetId ID of budget
-         * @param {string} accountId ID of account
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} accountId - ID of account
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getAccountById(budgetId, accountId, options) {
@@ -216,8 +220,8 @@ exports.AccountsApiFactory = function (configuration, fetchFunction, basePath) {
         /**
          * List all accounts
          * @summary List accounts
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getAccounts(budgetId, options) {
@@ -235,9 +239,9 @@ class AccountsApi extends BaseAPI {
     /**
      * Find a single account by ID
      * @summary Single account
-     * @param {} budgetId ID of budget
-     * @param {} accountId ID of account
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} accountId - ID of account
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
@@ -247,8 +251,8 @@ class AccountsApi extends BaseAPI {
     /**
      * List all accounts
      * @summary List accounts
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
@@ -266,9 +270,9 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
         /**
          * Single budget detail
          * @summary Single budget
-         * @param {string} budgetId ID of budget
-         * @param {number} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgetContents(budgetId, lastKnowledgeOfServer, options = {}) {
@@ -305,7 +309,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
         /**
          * List all budgets
          * @summary List budgets
-         * @param {*} [options] Override http request option.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgets(options = {}) {
@@ -342,9 +346,9 @@ exports.BudgetsApiFp = function (configuration) {
         /**
          * Single budget detail
          * @summary Single budget
-         * @param {string} budgetId ID of budget
-         * @param {number} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgetContents(budgetId, lastKnowledgeOfServer, options) {
@@ -365,7 +369,7 @@ exports.BudgetsApiFp = function (configuration) {
         /**
          * List all budgets
          * @summary List budgets
-         * @param {*} [options] Override http request option.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgets(options) {
@@ -394,9 +398,9 @@ exports.BudgetsApiFactory = function (configuration, fetchFunction, basePath) {
         /**
          * Single budget detail
          * @summary Single budget
-         * @param {string} budgetId ID of budget
-         * @param {number} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgetContents(budgetId, lastKnowledgeOfServer, options) {
@@ -405,7 +409,7 @@ exports.BudgetsApiFactory = function (configuration, fetchFunction, basePath) {
         /**
          * List all budgets
          * @summary List budgets
-         * @param {*} [options] Override http request option.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgets(options) {
@@ -423,9 +427,9 @@ class BudgetsApi extends BaseAPI {
     /**
      * Single budget detail
      * @summary Single budget
-     * @param {} budgetId ID of budget
-     * @param {} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
@@ -435,7 +439,7 @@ class BudgetsApi extends BaseAPI {
     /**
      * List all budgets
      * @summary List budgets
-     * @param {*} [options] Override http request option.
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
@@ -453,8 +457,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
         /**
          * List all category groups
          * @summary List category groups
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategories(budgetId, options = {}) {
@@ -488,9 +492,9 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
         /**
          * Find a category by ID
          * @summary Single category
-         * @param {string} budgetId ID of budget
-         * @param {string} categoryId ID of category
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} categoryId - ID of category
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategoryById(budgetId, categoryId, options = {}) {
@@ -537,8 +541,8 @@ exports.CategoriesApiFp = function (configuration) {
         /**
          * List all category groups
          * @summary List category groups
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategories(budgetId, options) {
@@ -559,9 +563,9 @@ exports.CategoriesApiFp = function (configuration) {
         /**
          * Find a category by ID
          * @summary Single category
-         * @param {string} budgetId ID of budget
-         * @param {string} categoryId ID of category
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} categoryId - ID of category
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategoryById(budgetId, categoryId, options) {
@@ -590,8 +594,8 @@ exports.CategoriesApiFactory = function (configuration, fetchFunction, basePath)
         /**
          * List all category groups
          * @summary List category groups
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategories(budgetId, options) {
@@ -600,9 +604,9 @@ exports.CategoriesApiFactory = function (configuration, fetchFunction, basePath)
         /**
          * Find a category by ID
          * @summary Single category
-         * @param {string} budgetId ID of budget
-         * @param {string} categoryId ID of category
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} categoryId - ID of category
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategoryById(budgetId, categoryId, options) {
@@ -620,8 +624,8 @@ class CategoriesApi extends BaseAPI {
     /**
      * List all category groups
      * @summary List category groups
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
@@ -631,9 +635,9 @@ class CategoriesApi extends BaseAPI {
     /**
      * Find a category by ID
      * @summary Single category
-     * @param {} budgetId ID of budget
-     * @param {} categoryId ID of category
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} categoryId - ID of category
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
@@ -651,23 +655,23 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
         /**
          * Find a single budget month
          * @summary Single budget month
-         * @param {string} budgetId ID of budget
-         * @param {string} month The budget month.  \&quot;current\&quot; can also be used to specify the current calendar month (UTC).
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonthById(budgetId, month, options = {}) {
+        getBudgetMonth(budgetId, month, options = {}) {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId', 'Required parameter budgetId was null or undefined when calling getBudgetMonthById.');
+                throw new RequiredError('budgetId', 'Required parameter budgetId was null or undefined when calling getBudgetMonth.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError('month', 'Required parameter month was null or undefined when calling getBudgetMonthById.');
+                throw new RequiredError('month', 'Required parameter month was null or undefined when calling getBudgetMonth.');
             }
             const localVarPath = `/budgets/{budget_id}/months/{month}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"month"}}`, encodeURIComponent(String(month)));
+                .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -692,8 +696,8 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
         /**
          * List all budget months
          * @summary List budget months
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgetMonths(budgetId, options = {}) {
@@ -735,13 +739,13 @@ exports.MonthsApiFp = function (configuration) {
         /**
          * Find a single budget month
          * @summary Single budget month
-         * @param {string} budgetId ID of budget
-         * @param {string} month The budget month.  \&quot;current\&quot; can also be used to specify the current calendar month (UTC).
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonthById(budgetId, month, options) {
-            const localVarFetchArgs = exports.MonthsApiFetchParamCreator(configuration).getBudgetMonthById(budgetId, month, options);
+        getBudgetMonth(budgetId, month, options) {
+            const localVarFetchArgs = exports.MonthsApiFetchParamCreator(configuration).getBudgetMonth(budgetId, month, options);
             return (fetchFunction = fetch, basePath = BASE_PATH) => {
                 return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -758,8 +762,8 @@ exports.MonthsApiFp = function (configuration) {
         /**
          * List all budget months
          * @summary List budget months
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgetMonths(budgetId, options) {
@@ -788,19 +792,19 @@ exports.MonthsApiFactory = function (configuration, fetchFunction, basePath) {
         /**
          * Find a single budget month
          * @summary Single budget month
-         * @param {string} budgetId ID of budget
-         * @param {string} month The budget month.  \&quot;current\&quot; can also be used to specify the current calendar month (UTC).
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonthById(budgetId, month, options) {
-            return exports.MonthsApiFp(configuration).getBudgetMonthById(budgetId, month, options)(fetchFunction, basePath);
+        getBudgetMonth(budgetId, month, options) {
+            return exports.MonthsApiFp(configuration).getBudgetMonth(budgetId, month, options)(fetchFunction, basePath);
         },
         /**
          * List all budget months
          * @summary List budget months
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getBudgetMonths(budgetId, options) {
@@ -818,20 +822,20 @@ class MonthsApi extends BaseAPI {
     /**
      * Find a single budget month
      * @summary Single budget month
-     * @param {} budgetId ID of budget
-     * @param {} month The budget month.  \&quot;current\&quot; can also be used to specify the current calendar month (UTC).
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonthById(budgetId, month, options) {
-        return exports.MonthsApiFp(this.configuration).getBudgetMonthById(budgetId, month, options)(this.fetchFunction, this.basePath);
+    getBudgetMonth(budgetId, month, options) {
+        return exports.MonthsApiFp(this.configuration).getBudgetMonth(budgetId, month, options)(this.fetchFunction, this.basePath);
     }
     /**
      * List all budget months
      * @summary List budget months
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
@@ -849,9 +853,9 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         /**
          * Find a single payee location by ID
          * @summary Single payee location
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeLocationId ID of payee location
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeLocationId - ID of payee location
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocationById(budgetId, payeeLocationId, options = {}) {
@@ -890,8 +894,8 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         /**
          * List all payee locations
          * @summary List payee locations
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocations(budgetId, options = {}) {
@@ -925,9 +929,9 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         /**
          * List payee locations for a specified payee
          * @summary List locations for a payee
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeId ID of payee
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeId - ID of payee
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocationsByPayee(budgetId, payeeId, options = {}) {
@@ -974,9 +978,9 @@ exports.PayeeLocationsApiFp = function (configuration) {
         /**
          * Find a single payee location by ID
          * @summary Single payee location
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeLocationId ID of payee location
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeLocationId - ID of payee location
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocationById(budgetId, payeeLocationId, options) {
@@ -997,8 +1001,8 @@ exports.PayeeLocationsApiFp = function (configuration) {
         /**
          * List all payee locations
          * @summary List payee locations
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocations(budgetId, options) {
@@ -1019,9 +1023,9 @@ exports.PayeeLocationsApiFp = function (configuration) {
         /**
          * List payee locations for a specified payee
          * @summary List locations for a payee
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeId ID of payee
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeId - ID of payee
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocationsByPayee(budgetId, payeeId, options) {
@@ -1050,9 +1054,9 @@ exports.PayeeLocationsApiFactory = function (configuration, fetchFunction, baseP
         /**
          * Find a single payee location by ID
          * @summary Single payee location
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeLocationId ID of payee location
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeLocationId - ID of payee location
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocationById(budgetId, payeeLocationId, options) {
@@ -1061,8 +1065,8 @@ exports.PayeeLocationsApiFactory = function (configuration, fetchFunction, baseP
         /**
          * List all payee locations
          * @summary List payee locations
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocations(budgetId, options) {
@@ -1071,9 +1075,9 @@ exports.PayeeLocationsApiFactory = function (configuration, fetchFunction, baseP
         /**
          * List payee locations for a specified payee
          * @summary List locations for a payee
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeId ID of payee
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeId - ID of payee
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeLocationsByPayee(budgetId, payeeId, options) {
@@ -1091,9 +1095,9 @@ class PayeeLocationsApi extends BaseAPI {
     /**
      * Find a single payee location by ID
      * @summary Single payee location
-     * @param {} budgetId ID of budget
-     * @param {} payeeLocationId ID of payee location
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} payeeLocationId - ID of payee location
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
@@ -1103,8 +1107,8 @@ class PayeeLocationsApi extends BaseAPI {
     /**
      * List all payee locations
      * @summary List payee locations
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
@@ -1114,9 +1118,9 @@ class PayeeLocationsApi extends BaseAPI {
     /**
      * List payee locations for a specified payee
      * @summary List locations for a payee
-     * @param {} budgetId ID of budget
-     * @param {} payeeId ID of payee
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} payeeId - ID of payee
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
@@ -1134,9 +1138,9 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
         /**
          * Find a single payee by ID
          * @summary Single payee
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeId ID of payee
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeId - ID of payee
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeById(budgetId, payeeId, options = {}) {
@@ -1175,8 +1179,8 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
         /**
          * List all payees
          * @summary List payees
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayees(budgetId, options = {}) {
@@ -1218,9 +1222,9 @@ exports.PayeesApiFp = function (configuration) {
         /**
          * Find a single payee by ID
          * @summary Single payee
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeId ID of payee
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeId - ID of payee
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeById(budgetId, payeeId, options) {
@@ -1241,8 +1245,8 @@ exports.PayeesApiFp = function (configuration) {
         /**
          * List all payees
          * @summary List payees
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayees(budgetId, options) {
@@ -1271,9 +1275,9 @@ exports.PayeesApiFactory = function (configuration, fetchFunction, basePath) {
         /**
          * Find a single payee by ID
          * @summary Single payee
-         * @param {string} budgetId ID of budget
-         * @param {string} payeeId ID of payee
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} payeeId - ID of payee
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayeeById(budgetId, payeeId, options) {
@@ -1282,8 +1286,8 @@ exports.PayeesApiFactory = function (configuration, fetchFunction, basePath) {
         /**
          * List all payees
          * @summary List payees
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getPayees(budgetId, options) {
@@ -1301,9 +1305,9 @@ class PayeesApi extends BaseAPI {
     /**
      * Find a single payee by ID
      * @summary Single payee
-     * @param {} budgetId ID of budget
-     * @param {} payeeId ID of payee
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} payeeId - ID of payee
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
@@ -1313,8 +1317,8 @@ class PayeesApi extends BaseAPI {
     /**
      * List all payees
      * @summary List payees
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
@@ -1332,9 +1336,9 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Find a single scheduled transaction by ID
          * @summary Single scheduled transaction
-         * @param {string} budgetId ID of budget
-         * @param {string} scheduledTransactionId ID of scheduled transaction
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} scheduledTransactionId - ID of scheduled transaction
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getScheduledTransactionById(budgetId, scheduledTransactionId, options = {}) {
@@ -1373,8 +1377,8 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
         /**
          * List all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getScheduledTransactions(budgetId, options = {}) {
@@ -1416,9 +1420,9 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
         /**
          * Find a single scheduled transaction by ID
          * @summary Single scheduled transaction
-         * @param {string} budgetId ID of budget
-         * @param {string} scheduledTransactionId ID of scheduled transaction
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} scheduledTransactionId - ID of scheduled transaction
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getScheduledTransactionById(budgetId, scheduledTransactionId, options) {
@@ -1439,8 +1443,8 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
         /**
          * List all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getScheduledTransactions(budgetId, options) {
@@ -1469,9 +1473,9 @@ exports.ScheduledTransactionsApiFactory = function (configuration, fetchFunction
         /**
          * Find a single scheduled transaction by ID
          * @summary Single scheduled transaction
-         * @param {string} budgetId ID of budget
-         * @param {string} scheduledTransactionId ID of scheduled transaction
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} scheduledTransactionId - ID of scheduled transaction
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getScheduledTransactionById(budgetId, scheduledTransactionId, options) {
@@ -1480,8 +1484,8 @@ exports.ScheduledTransactionsApiFactory = function (configuration, fetchFunction
         /**
          * List all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budgetId ID of budget
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getScheduledTransactions(budgetId, options) {
@@ -1499,9 +1503,9 @@ class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Find a single scheduled transaction by ID
      * @summary Single scheduled transaction
-     * @param {} budgetId ID of budget
-     * @param {} scheduledTransactionId ID of scheduled transaction
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} scheduledTransactionId - ID of scheduled transaction
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
@@ -1511,8 +1515,8 @@ class ScheduledTransactionsApi extends BaseAPI {
     /**
      * List all scheduled transactions
      * @summary List scheduled transactions
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
@@ -1530,9 +1534,9 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * List all transactions
          * @summary List transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactions(budgetId, sinceDate, options = {}) {
@@ -1555,7 +1559,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (sinceDate !== undefined) {
-                localVarQueryParameter['since_date'] = sinceDate.toISOString();
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1569,10 +1573,10 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * List transactions for an account
          * @summary List account transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} accountId ID of account
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} accountId - ID of account
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsByAccount(budgetId, accountId, sinceDate, options = {}) {
@@ -1600,7 +1604,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (sinceDate !== undefined) {
-                localVarQueryParameter['since_date'] = sinceDate.toISOString();
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1614,10 +1618,10 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * List transactions for a category
          * @summary List category transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} categoryId ID of category
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} categoryId - ID of category
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsByCategory(budgetId, categoryId, sinceDate, options = {}) {
@@ -1645,7 +1649,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (sinceDate !== undefined) {
-                localVarQueryParameter['since_date'] = sinceDate.toISOString();
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1659,9 +1663,9 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Find a single transaction by ID
          * @summary Single transaction
-         * @param {string} budgetId ID of budget
-         * @param {string} transactionId ID of transaction
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} transactionId - ID of transaction
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsById(budgetId, transactionId, options = {}) {
@@ -1708,9 +1712,9 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * List all transactions
          * @summary List transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactions(budgetId, sinceDate, options) {
@@ -1731,10 +1735,10 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * List transactions for an account
          * @summary List account transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} accountId ID of account
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} accountId - ID of account
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsByAccount(budgetId, accountId, sinceDate, options) {
@@ -1755,10 +1759,10 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * List transactions for a category
          * @summary List category transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} categoryId ID of category
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} categoryId - ID of category
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsByCategory(budgetId, categoryId, sinceDate, options) {
@@ -1779,9 +1783,9 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Find a single transaction by ID
          * @summary Single transaction
-         * @param {string} budgetId ID of budget
-         * @param {string} transactionId ID of transaction
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} transactionId - ID of transaction
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsById(budgetId, transactionId, options) {
@@ -1810,9 +1814,9 @@ exports.TransactionsApiFactory = function (configuration, fetchFunction, basePat
         /**
          * List all transactions
          * @summary List transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactions(budgetId, sinceDate, options) {
@@ -1821,10 +1825,10 @@ exports.TransactionsApiFactory = function (configuration, fetchFunction, basePat
         /**
          * List transactions for an account
          * @summary List account transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} accountId ID of account
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} accountId - ID of account
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsByAccount(budgetId, accountId, sinceDate, options) {
@@ -1833,10 +1837,10 @@ exports.TransactionsApiFactory = function (configuration, fetchFunction, basePat
         /**
          * List transactions for a category
          * @summary List category transactions
-         * @param {string} budgetId ID of budget
-         * @param {string} categoryId ID of category
-         * @param {string} [sinceDate] Only return transactions on or after this date
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} categoryId - ID of category
+         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsByCategory(budgetId, categoryId, sinceDate, options) {
@@ -1845,9 +1849,9 @@ exports.TransactionsApiFactory = function (configuration, fetchFunction, basePat
         /**
          * Find a single transaction by ID
          * @summary Single transaction
-         * @param {string} budgetId ID of budget
-         * @param {string} transactionId ID of transaction
-         * @param {*} [options] Override http request option.
+         * @param {string} budgetId - ID of budget
+         * @param {string} transactionId - ID of transaction
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getTransactionsById(budgetId, transactionId, options) {
@@ -1865,9 +1869,9 @@ class TransactionsApi extends BaseAPI {
     /**
      * List all transactions
      * @summary List transactions
-     * @param {} budgetId ID of budget
-     * @param {} [sinceDate] Only return transactions on or after this date
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
@@ -1877,10 +1881,10 @@ class TransactionsApi extends BaseAPI {
     /**
      * List transactions for an account
      * @summary List account transactions
-     * @param {} budgetId ID of budget
-     * @param {} accountId ID of account
-     * @param {} [sinceDate] Only return transactions on or after this date
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} accountId - ID of account
+     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
@@ -1890,10 +1894,10 @@ class TransactionsApi extends BaseAPI {
     /**
      * List transactions for a category
      * @summary List category transactions
-     * @param {} budgetId ID of budget
-     * @param {} categoryId ID of category
-     * @param {} [sinceDate] Only return transactions on or after this date
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} categoryId - ID of category
+     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
@@ -1903,9 +1907,9 @@ class TransactionsApi extends BaseAPI {
     /**
      * Find a single transaction by ID
      * @summary Single transaction
-     * @param {} budgetId ID of budget
-     * @param {} transactionId ID of transaction
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} transactionId - ID of transaction
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */

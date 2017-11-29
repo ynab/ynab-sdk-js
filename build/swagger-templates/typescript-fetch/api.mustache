@@ -12,6 +12,11 @@ import { Configuration } from "./configuration";
 const BASE_PATH = "https://api.youneedabudget.com/v1/";
 const YNAB_CLIENT_LIB_VERSION = "{{npmName}}-{{npmVersion}}";
 
+function convertDateToFullDateStringFormat(date: Date): string {
+  // Convert to RFC 3339 "full-date" format, like "2017-11-27"
+  return date.toISOString().substring(0, 10);
+}
+
 /**
  *
  * @export
@@ -89,12 +94,12 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
          * @summary {{&summary}}
          {{/summary}}
          {{#allParams}}
-         * @param {{=<% %>=}}{<%dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+         {{>jsdoc_param}}
          {{/allParams}}
-         * @param {*} [options] Override http request option.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options: any = {}): FetchArgs {
+        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{>dataTypeRespectingFormattedDateStrings}}, {{/allParams}}options: any = {}): FetchArgs {
     {{#allParams}}
     {{#required}}
             // verify required parameter '{{paramName}}' is not null or undefined
@@ -104,13 +109,14 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
     {{/required}}
     {{/allParams}}
             const localVarPath = `{{{path}}}`{{#pathParams}}
-                .replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}};
+                .replace(`{${"{{baseName}}"}}`, encodeURIComponent({{#isDateTime}}{{paramName}}.toISOString(){{/isDateTime}}{{^isDateTime}}{{#isDate}}convertDateToFullDateStringFormat({{paramName}}){{/isDate}}{{^isDate}}String({{paramName}}){{/isDate}}{{/isDateTime}})){{/pathParams}};
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: '{{httpMethod}}' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
     {{#hasFormParams}}
             const localVarFormParams = new url.URLSearchParams();
     {{/hasFormParams}}
@@ -166,11 +172,11 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
             {{^isListContainer}}
             if ({{paramName}} !== undefined) {
                 {{#isDateTime}}
-                localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any).toISOString();
+                localVarQueryParameter['{{baseName}}'] = {{paramName}}.toISOString();
                 {{/isDateTime}}
                 {{^isDateTime}}
                 {{#isDate}}
-                localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any).toISOString();
+                localVarQueryParameter['{{baseName}}'] = convertDateToFullDateStringFormat({{paramName}});
                 {{/isDate}}
                 {{^isDate}}
                 localVarQueryParameter['{{baseName}}'] = {{paramName}};
@@ -255,12 +261,12 @@ export const {{classname}}Fp = function(configuration?: Configuration) {
          * @summary {{&summary}}
          {{/summary}}
          {{#allParams}}
-         * @param {{=<% %>=}}{<%dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+         {{>jsdoc_param}}
          {{/allParams}}
-         * @param {*} [options] Override http request option.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
+        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{>dataTypeRespectingFormattedDateStrings}}, {{/allParams}}options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
             const localVarFetchArgs = {{classname}}FetchParamCreator(configuration).{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options);
             return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
                 return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -292,12 +298,12 @@ export const {{classname}}Factory = function (configuration?: Configuration, fet
          * @summary {{&summary}}
          {{/summary}}
          {{#allParams}}
-         * @param {{=<% %>=}}{<%dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+         {{>jsdoc_param}}
          {{/allParams}}
-         * @param {*} [options] Override http request option.
+         * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: any) {
+        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{>dataTypeRespectingFormattedDateStrings}}, {{/allParams}}options?: any) {
             return {{classname}}Fp(configuration).{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options)(fetchFunction, basePath);
         },
     {{/operation}}
@@ -319,13 +325,13 @@ export class {{classname}} extends BaseAPI {
      * @summary {{&summary}}
      {{/summary}}
      {{#allParams}}
-     * @param {{=<% %>=}}{<%%dataType%%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+     {{>jsdoc_param}}
      {{/allParams}}
-     * @param {*} [options] Override http request option.
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof {{classname}}
      */
-    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: any) {
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{>dataTypeRespectingFormattedDateStrings}}, {{/allParams}}options?: any) {
         return {{classname}}Fp(this.configuration).{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options)(this.fetchFunction, this.basePath);
     }
 

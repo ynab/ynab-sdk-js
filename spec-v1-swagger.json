@@ -844,7 +844,7 @@
         "tags": ["Months"],
         "summary": "Single budget month",
         "description": "Find a single budget month\n",
-        "operationId": "getBudgetMonthById",
+        "operationId": "getBudgetMonth",
         "produces": ["application/json"],
         "parameters": [
           {
