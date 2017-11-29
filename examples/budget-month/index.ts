@@ -7,21 +7,23 @@ const categoryId = "ab4a28a5-ee06-463e-8e91-77f6d5481031";
 
 const ynab = new ynabApi(accessToken);
 
-ynab.months.getBudgetMonth(budgetId, new Date()).then(response => {
-  let budgetMonth = response.data.month;
-  console.log(`
+ynab.months
+  .getBudgetMonth(budgetId, ynab.utils.getCurrentMonthInISOFormat())
+  .then(response => {
+    let budgetMonth = response.data.month;
+    console.log(`
         Month: ${budgetMonth.month}
          Note: ${budgetMonth.note}
  Age Of Money: ${budgetMonth.age_of_money}
    Categories:
 `);
-  for (let category of budgetMonth.categories) {
-    let balance = ynab.utils.convertMilliDollarsToCurrencyAmount(
-      category.balance,
-      2
-    );
-    console.log(`
+    for (let category of budgetMonth.categories) {
+      let balance = ynab.utils.convertMilliDollarsToCurrencyAmount(
+        category.balance,
+        2
+      );
+      console.log(`
         ${category.name} - ${balance}
     `);
-  }
-});
+    }
+  });

@@ -73,9 +73,9 @@ easier.
 
 ```
 /**
-  * Returns today's date (system timezone) in ISO 8601 format (i.e. '2015-12-30')
+  * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
   */
-getTodaysDateInISOFormat(): string;
+getCurrentMonthInISOFormat(): string;
 
 /**
   * Converts an ISO 8601 formatted string to a JS date object

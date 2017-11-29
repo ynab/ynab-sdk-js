@@ -10,11 +10,10 @@ describe("utiilities", () => {
   describe("getTodaysDateInISOFormat", () => {
     it("Returns today's date in ISO format", () => {
       let now = new Date();
-      let day = ("0" + now.getDate()).slice(-2);
       let month = ("0" + (now.getMonth() + 1)).slice(-2);
-      let today = now.getFullYear() + "-" + month + "-" + day;
+      let today = now.getFullYear() + "-" + month + "-01";
 
-      expect(utils.getTodaysDateInISOFormat()).to.equal(today);
+      expect(utils.getCurrentMonthInISOFormat()).to.equal(today);
     });
   });
 

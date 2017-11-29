@@ -1,9 +1,11 @@
 export class Utils {
   /**
-   * Returns today's date (system timezone) in ISO 8601 format (i.e. '2015-12-30')
+   * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
    */
-  public getTodaysDateInISOFormat() {
-    return new Date(Date.now()).toLocaleString().substr(0, 10);
+  public getCurrentMonthInISOFormat() {
+    let yearMonthISO = new Date(Date.now()).toLocaleString().substr(0, 7);
+    let firstDayOfMonthISO = new Date(yearMonthISO).toISOString().substr(0, 10);
+    return firstDayOfMonthISO;
   }
 
   /**

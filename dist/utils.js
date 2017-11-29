@@ -2,10 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Utils {
     /**
-     * Returns today's date (system timezone) in ISO 8601 format (i.e. '2015-12-30')
+     * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
      */
-    getTodaysDateInISOFormat() {
-        return new Date(Date.now()).toLocaleString().substr(0, 10);
+    getCurrentMonthInISOFormat() {
+        let yearMonthISO = new Date(Date.now()).toLocaleString().substr(0, 7);
+        let firstDayOfMonthISO = new Date(yearMonthISO).toISOString().substr(0, 10);
+        return firstDayOfMonthISO;
     }
     /**
      * Converts an ISO 8601 formatted string to a JS date object
