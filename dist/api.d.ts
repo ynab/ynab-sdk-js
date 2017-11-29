@@ -1377,9 +1377,9 @@ export declare class AccountsApi extends BaseAPI {
     /**
      * Find a single account by ID
      * @summary Single account
-     * @param {} budgetId ID of budget
-     * @param {} accountId ID of account
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} accountId - ID of account
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
@@ -1387,8 +1387,8 @@ export declare class AccountsApi extends BaseAPI {
     /**
      * List all accounts
      * @summary List accounts
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
@@ -1428,9 +1428,9 @@ export declare class BudgetsApi extends BaseAPI {
     /**
      * Single budget detail
      * @summary Single budget
-     * @param {} budgetId ID of budget
-     * @param {} [lastKnowledgeOfServer] Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
@@ -1438,7 +1438,7 @@ export declare class BudgetsApi extends BaseAPI {
     /**
      * List all budgets
      * @summary List budgets
-     * @param {*} [options] Override http request option.
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
@@ -1478,8 +1478,8 @@ export declare class CategoriesApi extends BaseAPI {
     /**
      * List all category groups
      * @summary List category groups
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
@@ -1487,9 +1487,9 @@ export declare class CategoriesApi extends BaseAPI {
     /**
      * Find a category by ID
      * @summary Single category
-     * @param {} budgetId ID of budget
-     * @param {} categoryId ID of category
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} categoryId - ID of category
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
@@ -1500,7 +1500,7 @@ export declare class CategoriesApi extends BaseAPI {
  * @export
  */
 export declare const MonthsApiFetchParamCreator: (configuration?: Configuration) => {
-    getBudgetMonthById(budgetId: string, month: string, options?: any): FetchArgs;
+    getBudgetMonth(budgetId: string, month: Date, options?: any): FetchArgs;
     getBudgetMonths(budgetId: string, options?: any): FetchArgs;
 };
 /**
@@ -1508,7 +1508,7 @@ export declare const MonthsApiFetchParamCreator: (configuration?: Configuration)
  * @export
  */
 export declare const MonthsApiFp: (configuration?: Configuration) => {
-    getBudgetMonthById(budgetId: string, month: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse>;
+    getBudgetMonth(budgetId: string, month: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse>;
     getBudgetMonths(budgetId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthSummariesResponse>;
 };
 /**
@@ -1516,7 +1516,7 @@ export declare const MonthsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const MonthsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
-    getBudgetMonthById(budgetId: string, month: string, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonth(budgetId: string, month: Date, options?: any): Promise<MonthDetailResponse>;
     getBudgetMonths(budgetId: string, options?: any): Promise<MonthSummariesResponse>;
 };
 /**
@@ -1529,18 +1529,18 @@ export declare class MonthsApi extends BaseAPI {
     /**
      * Find a single budget month
      * @summary Single budget month
-     * @param {} budgetId ID of budget
-     * @param {} month The budget month.  \&quot;current\&quot; can also be used to specify the current calendar month (UTC).
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonthById(budgetId: string, month: string, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonth(budgetId: string, month: Date, options?: any): Promise<MonthDetailResponse>;
     /**
      * List all budget months
      * @summary List budget months
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
@@ -1583,9 +1583,9 @@ export declare class PayeeLocationsApi extends BaseAPI {
     /**
      * Find a single payee location by ID
      * @summary Single payee location
-     * @param {} budgetId ID of budget
-     * @param {} payeeLocationId ID of payee location
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} payeeLocationId - ID of payee location
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
@@ -1593,8 +1593,8 @@ export declare class PayeeLocationsApi extends BaseAPI {
     /**
      * List all payee locations
      * @summary List payee locations
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
@@ -1602,9 +1602,9 @@ export declare class PayeeLocationsApi extends BaseAPI {
     /**
      * List payee locations for a specified payee
      * @summary List locations for a payee
-     * @param {} budgetId ID of budget
-     * @param {} payeeId ID of payee
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} payeeId - ID of payee
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
@@ -1644,9 +1644,9 @@ export declare class PayeesApi extends BaseAPI {
     /**
      * Find a single payee by ID
      * @summary Single payee
-     * @param {} budgetId ID of budget
-     * @param {} payeeId ID of payee
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} payeeId - ID of payee
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
@@ -1654,8 +1654,8 @@ export declare class PayeesApi extends BaseAPI {
     /**
      * List all payees
      * @summary List payees
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
@@ -1695,9 +1695,9 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Find a single scheduled transaction by ID
      * @summary Single scheduled transaction
-     * @param {} budgetId ID of budget
-     * @param {} scheduledTransactionId ID of scheduled transaction
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} scheduledTransactionId - ID of scheduled transaction
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
@@ -1705,8 +1705,8 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
     /**
      * List all scheduled transactions
      * @summary List scheduled transactions
-     * @param {} budgetId ID of budget
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
@@ -1717,9 +1717,9 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
  * @export
  */
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string, options?: any): FetchArgs;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): FetchArgs;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): FetchArgs;
+    getTransactions(budgetId: string, sinceDate?: Date, options?: any): FetchArgs;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): FetchArgs;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): FetchArgs;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): FetchArgs;
 };
 /**
@@ -1727,9 +1727,9 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
  * @export
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse>;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionDetailResponse>;
 };
 /**
@@ -1737,9 +1737,9 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const TransactionsApiFactory: (configuration?: Configuration, fetchFunction?: FetchAPI, basePath?: string) => {
-    getTransactions(budgetId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): Promise<TransactionDetailResponse>;
 };
 /**
@@ -1752,41 +1752,41 @@ export declare class TransactionsApi extends BaseAPI {
     /**
      * List all transactions
      * @summary List transactions
-     * @param {} budgetId ID of budget
-     * @param {} [sinceDate] Only return transactions on or after this date
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budgetId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
     /**
      * List transactions for an account
      * @summary List account transactions
-     * @param {} budgetId ID of budget
-     * @param {} accountId ID of account
-     * @param {} [sinceDate] Only return transactions on or after this date
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} accountId - ID of account
+     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
     /**
      * List transactions for a category
      * @summary List category transactions
-     * @param {} budgetId ID of budget
-     * @param {} categoryId ID of category
-     * @param {} [sinceDate] Only return transactions on or after this date
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} categoryId - ID of category
+     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): Promise<TransactionSummariesResponse>;
     /**
      * Find a single transaction by ID
      * @summary Single transaction
-     * @param {} budgetId ID of budget
-     * @param {} transactionId ID of transaction
-     * @param {*} [options] Override http request option.
+     * @param {string} budgetId - ID of budget
+     * @param {string} transactionId - ID of transaction
+     * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */

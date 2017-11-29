@@ -43,8 +43,8 @@ export class Configuration {
     password?: string;
     /**
      * parameter for oauth2 security
-     * @param name security name
-     * @param scopes oauth2 scope
+     * @param {string} name - security name
+     * @param {string[]} [scopes] - oauth2 scope
      * @memberof Configuration
      */
     accessToken?: string | ((name: string, scopes?: string[]) => string);

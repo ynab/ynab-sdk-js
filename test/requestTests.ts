@@ -162,17 +162,15 @@ describe("Mock tests", () => {
     verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months`);
   });
 
-  it("Should getBudgetMonthById and validate the request is sent correctly", async () => {
+  it("Should getBudgetMonth and validate the request is sent correctly", async () => {
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const budgetMonthId = "budgetMonthId";
+    const budgetMonth = getUTCDate(2017, 1, 1);
     const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.months.getBudgetMonthById(budgetId, budgetMonthId),
+      () => ynab.months.getBudgetMonth(budgetId, budgetMonth),
       factories.monthDetailResponseFactory.build()
     );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/months/${budgetMonthId}`
-    );
+    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01-01`);
   });
 
   it("Should getPayees and validate the request is sent correctly", async () => {
@@ -246,20 +244,20 @@ describe("Mock tests", () => {
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const accountId = "accountId";
-    const sinceDate = new Date();
+    const sinceDate = getUTCDate(2017, 1, 1);
     const returnedResponse = await callApiAndVerifyResponse(
       () =>
         ynab.transactions.getTransactionsByAccount(
           budgetId,
           accountId,
-          <any>sinceDate
+          sinceDate
         ),
       factories.transactionSummariesResponseFactory.build()
     );
     verifyRequestDetails(
       `${BASE_URL}/budgets/${budgetId}/accounts/${
         accountId
-      }/transactions?since_date=${encodeURIComponent(sinceDate.toISOString())}`
+      }/transactions?since_date=2017-01-01`
     );
   });
 
@@ -267,22 +265,20 @@ describe("Mock tests", () => {
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const categoryId = "categoryId";
-    const sinceDate = new Date();
+    const sinceDate = getUTCDate(2017, 1, 1);
     const returnedResponse = await callApiAndVerifyResponse(
       () =>
         ynab.transactions.getTransactionsByCategory(
           budgetId,
           categoryId,
-          <any>sinceDate // TODO: This is supposed to be typed as a date by the code generator, but it's not currently
-          //That's because the Swagger code-generator doesn't do a great job with converting to and from Date, so we typed "date-time" as a string
-          //I'll need to come back and fix the generator so that this API is correct
+          sinceDate
         ),
       factories.transactionSummariesResponseFactory.build()
     );
     verifyRequestDetails(
       `${BASE_URL}/budgets/${budgetId}/categories/${
         categoryId
-      }/transactions?since_date=${encodeURIComponent(sinceDate.toISOString())}`
+      }/transactions?since_date=2017-01-01`
     );
   });
 
@@ -347,5 +343,19 @@ function verifyRequestDetails(
     );
   } else {
     expect((<any>headers)["Authorization"]).to.be.undefined;
+  }
+}
+
+// Creates a UTC Date object for midnight UTC time
+function getUTCDate(year: number, month: number, date: number): Date {
+  return new Date(`${year}-${month}-${date}`);
+}
+
+function convertDateToFullDateStringFormat(date: Date): string {
+  if (date == null) {
+    return null;
+  } else {
+    // -> 2017-11-27
+    return date.toISOString().substr(0, 10);
   }
 }
