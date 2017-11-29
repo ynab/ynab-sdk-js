@@ -1,17 +1,16 @@
-import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLocationsApi, TransactionsApi, ScheduledTransactionsApi } from "./api";
 import { Configuration } from "./configuration";
+import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLocationsApi, TransactionsApi, ScheduledTransactionsApi } from "./api";
 /**
  * ynabApi is the entrypoint to the YNAB API client.
  */
 declare class ynabApi {
-    protected fetchFunction: typeof fetch;
     protected _configuration: Configuration;
     /**
      *
      * @param accessToken The access token used for authentication
      * @param endpointUrl The API endpoint URL (Optional)
      */
-    constructor(accessToken: string, endpointUrl?: string, fetchFunction?: typeof fetch);
+    constructor(accessToken: string, endpointUrl?: string);
     protected _accounts: AccountsApi;
     readonly accounts: AccountsApi;
     protected _budgets: BudgetsApi;

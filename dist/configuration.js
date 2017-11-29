@@ -13,12 +13,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 class Configuration {
-    constructor(param = {}) {
-        this.apiKey = param.apiKey;
-        this.username = param.username;
-        this.password = param.password;
-        this.accessToken = param.accessToken;
-        this.basePath = param.basePath;
+    constructor(accessToken, basePath) {
+        this.apiKey = `Bearer ${accessToken}`;
+        this.basePath = basePath;
     }
 }
 exports.Configuration = Configuration;
