@@ -53,7 +53,7 @@ describe("Mock tests", () => {
     });
     try {
       const lastKnowledgeOfServer = 5;
-      let actualResponse = await ynab.budgets.getBudgetContents(
+      const actualResponse = await ynab.budgets.getBudgetContents(
         budgetId,
         lastKnowledgeOfServer
       );
@@ -162,7 +162,7 @@ describe("Mock tests", () => {
     verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months`);
   });
 
-  it("Should getBudgetMonth and validate the request is sent correctly", async () => {
+  it("Should getBudgetMonth with a date param and validate the request is sent correctly", async () => {
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
     const budgetMonth = getUTCDate(2017, 1, 1);
@@ -171,6 +171,26 @@ describe("Mock tests", () => {
       factories.monthDetailResponseFactory.build()
     );
     verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01-01`);
+  });
+
+  it("Should getBudgetMonth with a string param and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.months.getBudgetMonth(budgetId, "2017-01"),
+      factories.monthDetailResponseFactory.build()
+    );
+    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01`);
+  });
+
+  it("Should getBudgetMonth with a string param of 'current' and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const returnedResponse = await callApiAndVerifyResponse(
+      () => ynab.months.getBudgetMonth(budgetId, "current"),
+      factories.monthDetailResponseFactory.build()
+    );
+    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/current`);
   });
 
   it("Should getPayees and validate the request is sent correctly", async () => {
@@ -261,6 +281,27 @@ describe("Mock tests", () => {
     );
   });
 
+  it("Should getTransactionsByAccount with a string `sinceDate` and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const accountId = "accountId";
+    const sinceDate = "2017-02";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () =>
+        ynab.transactions.getTransactionsByAccount(
+          budgetId,
+          accountId,
+          sinceDate
+        ),
+      factories.transactionSummariesResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/accounts/${
+        accountId
+      }/transactions?since_date=${sinceDate}`
+    );
+  });
+
   it("Should getTransactionsByCategory and validate the request is sent correctly", async () => {
     const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
@@ -279,6 +320,28 @@ describe("Mock tests", () => {
       `${BASE_URL}/budgets/${budgetId}/categories/${
         categoryId
       }/transactions?since_date=2017-01-01`
+    );
+  });
+
+  it("Should getTransactionsByCategory with a string `sinceDate` and validate the request is sent correctly", async () => {
+    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+    const categoryId = "categoryId";
+    // Make sure we can pass a string as well
+    const sinceDate = "2017-03";
+    const returnedResponse = await callApiAndVerifyResponse(
+      () =>
+        ynab.transactions.getTransactionsByCategory(
+          budgetId,
+          categoryId,
+          sinceDate
+        ),
+      factories.transactionSummariesResponseFactory.build()
+    );
+    verifyRequestDetails(
+      `${BASE_URL}/budgets/${budgetId}/categories/${
+        categoryId
+      }/transactions?since_date=${sinceDate}`
     );
   });
 
@@ -356,7 +419,7 @@ function convertDateToFullDateStringFormat(date: Date): string {
   if (date == null) {
     return null;
   } else {
-    // -> 2017-11-27
+    // Converts it to something like 2017-11-27
     return date.toISOString().substr(0, 10);
   }
 }

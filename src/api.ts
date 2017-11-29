@@ -23,9 +23,13 @@ import { Configuration } from "./configuration";
 const BASE_PATH = "https://api.youneedabudget.com/v1/";
 const YNAB_CLIENT_LIB_VERSION = "ynab-sdk-js-0.1.0";
 
-function convertDateToFullDateStringFormat(date: Date): string {
+function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
-  return date.toISOString().substring(0, 10);
+  if (date instanceof Date) {
+    return date.toISOString().substring(0, 10);
+  } else {
+    return date;
+  }
 }
 
 /**
@@ -2071,7 +2075,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budgetId: string, month: Date, options: any = {}): FetchArgs {
+        getBudgetMonth(budgetId: string, month: Date | string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
                 throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getBudgetMonth.');
@@ -2166,7 +2170,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budgetId: string, month: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse> {
+        getBudgetMonth(budgetId: string, month: Date | string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<MonthDetailResponse> {
             const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonth(budgetId, month, options);
             return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
                 return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -2218,7 +2222,7 @@ export const MonthsApiFactory = function (configuration?: Configuration, fetchFu
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budgetId: string, month: Date, options?: any) {
+        getBudgetMonth(budgetId: string, month: Date | string, options?: any) {
             return MonthsApiFp(configuration).getBudgetMonth(budgetId, month, options)(fetchFunction, basePath);
         },
         /**
@@ -2250,7 +2254,7 @@ export class MonthsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    public getBudgetMonth(budgetId: string, month: Date, options?: any) {
+    public getBudgetMonth(budgetId: string, month: Date | string, options?: any) {
         return MonthsApiFp(this.configuration).getBudgetMonth(budgetId, month, options)(this.fetchFunction, this.basePath);
     }
 
@@ -3007,7 +3011,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date, options: any = {}): FetchArgs {
+        getTransactions(budgetId: string, sinceDate?: Date | string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
                 throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactions.');
@@ -3053,7 +3057,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options: any = {}): FetchArgs {
+        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
                 throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactionsByAccount.');
@@ -3104,7 +3108,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options: any = {}): FetchArgs {
+        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
                 throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactionsByCategory.');
@@ -3209,7 +3213,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
+        getTransactions(budgetId: string, sinceDate?: Date | string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budgetId, sinceDate, options);
             return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
                 return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -3232,7 +3236,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
+        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options);
             return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
                 return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -3255,7 +3259,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
+        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any): (fetchFunction?: FetchAPI, basePath?: string) => Promise<TransactionSummariesResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options);
             return (fetchFunction: FetchAPI = fetch, basePath: string = BASE_PATH) => {
                 return fetchFunction(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -3308,7 +3312,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, f
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date, options?: any) {
+        getTransactions(budgetId: string, sinceDate?: Date | string, options?: any) {
             return TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, options)(fetchFunction, basePath);
         },
         /**
@@ -3320,7 +3324,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, f
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any) {
+        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any) {
             return TransactionsApiFp(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)(fetchFunction, basePath);
         },
         /**
@@ -3332,7 +3336,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, f
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any) {
+        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any) {
             return TransactionsApiFp(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)(fetchFunction, basePath);
         },
         /**
@@ -3365,7 +3369,7 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactions(budgetId: string, sinceDate?: Date, options?: any) {
+    public getTransactions(budgetId: string, sinceDate?: Date | string, options?: any) {
         return TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, options)(this.fetchFunction, this.basePath);
     }
 
@@ -3379,7 +3383,7 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date, options?: any) {
+    public getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any) {
         return TransactionsApiFp(this.configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)(this.fetchFunction, this.basePath);
     }
 
@@ -3393,7 +3397,7 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date, options?: any) {
+    public getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any) {
         return TransactionsApiFp(this.configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)(this.fetchFunction, this.basePath);
     }
 
