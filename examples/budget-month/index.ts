@@ -1,9 +1,8 @@
 import ynabApi = require("../../dist/index.js");
 
 const accessToken =
-  "0f14e2f274d8baeb0b18795588e3818eb3e837654a00eab0b2eb81649670693a";
+  "eca4740bef0a9510808b67c2cce4ac5cc8645a8bec389f5347f76dd0d819f11c";
 const budgetId = "38b2e846-411f-4b32-9764-a9bf8cad33b2";
-const categoryId = "ab4a28a5-ee06-463e-8e91-77f6d5481031";
 
 const ynab = new ynabApi(accessToken);
 
@@ -12,18 +11,26 @@ ynab.months
   .then(response => {
     let budgetMonth = response.data.month;
     console.log(`
-        Month: ${budgetMonth.month}
-         Note: ${budgetMonth.note}
- Age Of Money: ${budgetMonth.age_of_money}
-   Categories:
-`);
+             Month: ${budgetMonth.month}
+              Note: ${budgetMonth.note}
+      Age Of Money: ${budgetMonth.age_of_money}
+ Category Balances:`);
+
     for (let category of budgetMonth.categories) {
-      let balance = ynab.utils.convertMilliDollarsToCurrencyAmount(
-        category.balance,
-        2
-      );
-      console.log(`
-        ${category.name} - ${balance}
-    `);
+      let balance = ynab.utils
+        .convertMilliDollarsToCurrencyAmount(category.balance, 2)
+        .toFixed(2);
+      console.log(`                    ${category.name} - $${balance}`);
+      /*
+               Month: 2017-11-01
+                Note: Month Note here
+        Age Of Money: 103
+   Category Balances:
+                      Medical - $50.00
+                      Deferred Income SubCategory - $0.00
+                      Immediate Income SubCategory - $0.00
+                      Renter's/Home Insurance - $0.00
+                      ...
+      */
     }
   });
