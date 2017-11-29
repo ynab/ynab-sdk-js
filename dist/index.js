@@ -1,5 +1,6 @@
 "use strict";
 const configuration_1 = require("./configuration");
+const utils_1 = require("./utils");
 const api_1 = require("./api");
 /**
  * ynabApi is the entrypoint to the YNAB API client.
@@ -60,6 +61,11 @@ class ynabApi {
             this._scheduledTransactions = new api_1.ScheduledTransactionsApi(this._configuration);
         }
         return this._scheduledTransactions;
+    }
+    get utils() {
+        if (!this._utils) {
+            return new utils_1.Utils();
+        }
     }
 }
 module.exports = ynabApi;

@@ -1,4 +1,5 @@
 import { Configuration } from "./configuration";
+import { Utils } from "./utils";
 import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLocationsApi, TransactionsApi, ScheduledTransactionsApi } from "./api";
 /**
  * ynabApi is the entrypoint to the YNAB API client.
@@ -27,5 +28,7 @@ declare class ynabApi {
     readonly transactions: TransactionsApi;
     protected _scheduledTransactions: ScheduledTransactionsApi;
     readonly scheduledTransactions: ScheduledTransactionsApi;
+    protected _utils: Utils;
+    readonly utils: Utils;
 }
 export = ynabApi;

@@ -1,4 +1,5 @@
 import { Configuration } from "./configuration";
+import { Utils } from "./utils";
 import {
   AccountsApi,
   BudgetsApi,
@@ -93,6 +94,13 @@ class ynabApi {
       );
     }
     return this._scheduledTransactions;
+  }
+
+  protected _utils: Utils;
+  public get utils(): Utils {
+    if (!this._utils) {
+      return new Utils();
+    }
   }
 }
 
