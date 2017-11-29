@@ -116,6 +116,7 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
     {{#hasFormParams}}
             const localVarFormParams = new url.URLSearchParams();
     {{/hasFormParams}}

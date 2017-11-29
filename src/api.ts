@@ -1466,6 +1466,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -1505,6 +1506,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -1670,6 +1672,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -1707,6 +1710,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -1868,6 +1872,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -1913,6 +1918,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2083,6 +2089,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2122,6 +2129,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2292,6 +2300,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2331,6 +2340,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2376,6 +2386,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2592,6 +2603,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2631,6 +2643,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2801,6 +2814,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -2840,6 +2854,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -3005,6 +3020,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -3055,6 +3071,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -3105,6 +3122,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
@@ -3154,6 +3172,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             localVarHeaderParameter["X_YNAB_CLIENT"] = YNAB_CLIENT_LIB_VERSION;
+            localVarHeaderParameter["Accept"] = "application/json";
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
