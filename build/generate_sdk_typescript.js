@@ -8,8 +8,10 @@ set("-e");
 cd(`${__dirname}`);
 
 const thisFolder = $("pwd");
+const package = require("../package.json");
 const specFilename = `spec-v1-swagger.json`;
 const swaggerGeneratedOutputFolder = `out/tmp/swagger-generated-typescript-fetch`;
+const apiTemplateFilename = `swagger-templates/typescript-fetch/api.mustache`;
 const existingSdkFolder = `../`;
 
 // First, we generate the client from the default Swagger generator:
@@ -35,6 +37,16 @@ eval(
   }`
 );
 
+// We write out the swagger config file so we can pass these parameters down to the generator:
+swaggerConfig = {
+  npmName: package.name,
+  npmVersion: package.version,
+  supportsES6: true
+};
+
+const swaggerConfigFilename = "swagger-config-typescript.json";
+fs.writeFileSync(swaggerConfigFilename, JSON.stringify(swaggerConfig, null, 2));
+
 // Share the current folder with docker, and then run the generator, pointing to the given template
 eval(`docker run --rm -v ${
   thisFolder
@@ -43,9 +55,12 @@ eval(`docker run --rm -v ${
     --type-mappings DateTime=string \
     -i "/local/${specFilename}" \
     -l "typescript-fetch" \
-    -c "/local/swagger-config-typescript.json" \
+    -c "/local/${swaggerConfigFilename}" \
     -t "/local/swagger-templates/typescript-fetch" \
     -o "/local/${swaggerGeneratedOutputFolder}" `);
+
+// No need for this file anymore
+fs.unlinkSync(swaggerConfigFilename);
 
 // Now copy over the appropriate generated files to our existing SDK folder
 const sdkSrcOutputFolder = `${existingSdkFolder}/src`;
