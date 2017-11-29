@@ -94,7 +94,7 @@ convertMilliDollarsToCurrencyAmount(millidollars: number, currencyDecimalDigits:
 #### Examples
 
 ```
-ynab.utils.getTodaysDateInISOFormat(); // > "2015-12-30"
+ynab.utils.getCurrentMonthInISOFormat(); // > "2015-12-01"
 ynab.utils.convertISODateToDate("2015-12-30"); // > "Wed Nov 29 2017 12:35:54 GMT-0500 (EST)"
 ynab.utils.convertMilliDollarsToCurrencyAmount(239320, 2); // > 239.32
 ```
