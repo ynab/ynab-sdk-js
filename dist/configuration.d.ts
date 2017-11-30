@@ -9,47 +9,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-export interface ConfigurationParameters {
-    apiKey?: string | ((name: string) => string);
-    username?: string;
-    password?: string;
-    accessToken?: string | ((name: string, scopes?: string[]) => string);
-    basePath?: string;
-}
 export declare class Configuration {
     /**
-     * parameter for apiKey security
-     * @param name security name
+     * API Key
      * @memberof Configuration
      */
-    apiKey?: string | ((name: string) => string);
+    apiKey: string;
     /**
-     * parameter for basic security
+     * The API base path
      *
      * @type {string}
      * @memberof Configuration
      */
-    username?: string;
-    /**
-     * parameter for basic security
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
-    password?: string;
-    /**
-     * parameter for oauth2 security
-     * @param {string} name - security name
-     * @param {string[]} [scopes] - oauth2 scope
-     * @memberof Configuration
-     */
-    accessToken?: string | ((name: string, scopes?: string[]) => string);
-    /**
-     * override base path
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
-    basePath?: string;
-    constructor(param?: ConfigurationParameters);
+    basePath: string;
+    constructor(accessToken: string, basePath: string);
 }

@@ -18,7 +18,7 @@ async function main() {
     const ynab = new ynabApi(API_KEY);
 
     console.log(`Fetching budgets...`);
-    const getBudgetsResponse = await ynab.budgets.getBudgets(0);
+    const getBudgetsResponse = await ynab.budgets.getBudgets();
     const allBudgets = getBudgetsResponse.data.budgets;
 
     const pollWaitTimeInMs = 5000;

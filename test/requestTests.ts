@@ -34,346 +34,363 @@ after(() => {
   fetchMock.restore();
 });
 
-describe("Mock tests", () => {
+describe("API requests", () => {
   const budgetId = "budgetId-1234";
 
-  it("Should throw the response it is sent back with a status of 400", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets", () => {
+    it("Should throw the response it is sent back with a status of 400", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const errorObject = {
-      error: {
-        id: "401",
-        name: "unauthorized",
-        description: "Unauthorized"
+      const errorObject = {
+        error: {
+          id: "401",
+          name: "unauthorized",
+          description: "Unauthorized"
+        }
+      };
+      fetchMock.once("*", {
+        status: 401,
+        body: errorObject
+      });
+      try {
+        const lastKnowledgeOfServer = 5;
+        let actualResponse = await ynab.budgets.getBudgetContents(
+          budgetId,
+          lastKnowledgeOfServer
+        );
+        assert(false, "Expected the above method to throw an error");
+      } catch (errorResponse) {
+        expect(errorResponse).to.deep.equal(errorObject);
       }
-    };
-    fetchMock.once("*", {
-      status: 401,
-      body: errorObject
     });
-    try {
-      const lastKnowledgeOfServer = 5;
-      const actualResponse = await ynab.budgets.getBudgetContents(
-        budgetId,
-        lastKnowledgeOfServer
+
+    it("Should getBudgets and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const getBudgetsResponse = await callApiAndVerifyResponse(
+        () => ynab.budgets.getBudgets(0),
+        factories.budgetSummaryResponseFactory.build()
       );
-      assert(false, "Expected the above method to throw an error");
-    } catch (errorResponse) {
-      expect(errorResponse).to.deep.equal(errorObject);
-    }
+      verifyRequestDetails(`${BASE_URL}/budgets`);
+    });
+
+    it("Should getBudgetContents and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const lastKnowledgeOfServer = 5;
+      const getBudgetsResponse = await callApiAndVerifyResponse(
+        () => ynab.budgets.getBudgetContents(budgetId, lastKnowledgeOfServer),
+        factories.budgetDetailResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}?last_knowledge_of_server=${
+          lastKnowledgeOfServer
+        }`
+      );
+    });
   });
 
-  it("Should getBudgets and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets/accounts", () => {
+    it("Should getAccounts and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const getBudgetsResponse = await callApiAndVerifyResponse(
-      () => ynab.budgets.getBudgets(0),
-      factories.budgetSummaryResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets`);
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.accounts.getAccounts(budgetId),
+        factories.accountsResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/accounts`);
+    });
+
+    it("Should getAccountById and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const accountId = "DummyAccountId";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.accounts.getAccountById(budgetId, accountId),
+        factories.accountResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}`
+      );
+    });
+
+    it("Should escape Ids in the URL", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const budgetId = "/://{}?";
+      const accountId = "/://{}?";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.accounts.getAccountById(budgetId, accountId),
+        factories.accountResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${encodeURIComponent(
+          budgetId
+        )}/accounts/${encodeURIComponent(accountId)}`
+      );
+    });
   });
 
-  it("Should getBudgetContents and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets/categories", () => {
+    it("Should getCategories and validate the request is sent correctly", async () => {
+      const mockResponse = factories.categoriesResponseFactory.build();
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const lastKnowledgeOfServer = 5;
-    const getBudgetsResponse = await callApiAndVerifyResponse(
-      () => ynab.budgets.getBudgetContents(budgetId, lastKnowledgeOfServer),
-      factories.budgetDetailResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}?last_knowledge_of_server=${
-        lastKnowledgeOfServer
-      }`
-    );
+      const accountId = "DummyAccountId";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.categories.getCategories(budgetId),
+        mockResponse
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/categories`);
+    });
+
+    it("Should getCategoryById and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const categoryId = "DummyCategoryId";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.categories.getCategoryById(budgetId, categoryId),
+        factories.categoryResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}`
+      );
+    });
   });
 
-  it("Should getAccounts and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets/months", () => {
+    it("Should getBudgetMonths and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.accounts.getAccounts(budgetId),
-      factories.accountsResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/accounts`);
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.months.getBudgetMonths(budgetId),
+        factories.monthSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months`);
+    });
+
+    it("Should getBudgetMonth and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const budgetMonth = getUTCDate(2017, 1, 1);
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.months.getBudgetMonth(budgetId, budgetMonth),
+        factories.monthDetailResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01-01`);
+    });
+
+    it("Should getBudgetMonth with a string param and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.months.getBudgetMonth(budgetId, "2017-01"),
+        factories.monthDetailResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01`);
+    });
+
+    it("Should getBudgetMonth with a string param of 'current' and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.months.getBudgetMonth(budgetId, "current"),
+        factories.monthDetailResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/current`);
+    });
   });
 
-  it("Should getAccountById and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets/payees", () => {
+    it("Should getPayees and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const accountId = "DummyAccountId";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.accounts.getAccountById(budgetId, accountId),
-      factories.accountResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}`
-    );
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.payees.getPayees(budgetId),
+        factories.payeesResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees`);
+    });
+
+    it("Should getPayeeById and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const payeeId = "payeeId";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.payees.getPayeeById(budgetId, payeeId),
+        factories.payeeResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees/${payeeId}`);
+    });
   });
 
-  it("Should escape Ids in the URL", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets/payee_locations", () => {
+    it("Should getPayeeLocations and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const budgetId = "/://{}?";
-    const accountId = "/://{}?";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.accounts.getAccountById(budgetId, accountId),
-      factories.accountResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${encodeURIComponent(
-        budgetId
-      )}/accounts/${encodeURIComponent(accountId)}`
-    );
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.payeeLocations.getPayeeLocations(budgetId),
+        factories.payeeLocationsResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payee_locations`);
+    });
+
+    it("Should getPayeeLocationById and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const payeeLocationId = "payeeLocationId";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.payeeLocations.getPayeeLocationById(budgetId, payeeLocationId),
+        factories.payeeLocationResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/payee_locations/${payeeLocationId}`
+      );
+    });
   });
 
-  it("Should getCategories and validate the request is sent correctly", async () => {
-    const mockResponse = factories.categoriesResponseFactory.build();
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets/transactions", () => {
+    it("Should getTransactions and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const accountId = "DummyAccountId";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.categories.getCategories(budgetId),
-      mockResponse
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/categories`);
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.transactions.getTransactions(budgetId),
+        factories.transactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions`);
+    });
+
+    it("Should getTransactionById and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const transactionId = "TransactionId";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.transactions.getTransactionsById(budgetId, transactionId),
+        factories.transactionDetailResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`
+      );
+    });
+
+    it("Should getTransactionsByAccount and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const accountId = "accountId";
+      const sinceDate = getUTCDate(2017, 1, 1);
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.getTransactionsByAccount(
+            budgetId,
+            accountId,
+            sinceDate
+          ),
+        factories.transactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/accounts/${
+          accountId
+        }/transactions?since_date=2017-01-01`
+      );
+    });
+
+    it("Should getTransactionsByAccount with a string `sinceDate` and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const accountId = "accountId";
+      const sinceDate = "2017-02";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.getTransactionsByAccount(
+            budgetId,
+            accountId,
+            sinceDate
+          ),
+        factories.transactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/accounts/${
+          accountId
+        }/transactions?since_date=${sinceDate}`
+      );
+    });
+
+    it("Should getTransactionsByCategory and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const categoryId = "categoryId";
+      const sinceDate = getUTCDate(2017, 1, 1);
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.getTransactionsByCategory(
+            budgetId,
+            categoryId,
+            sinceDate
+          ),
+        factories.transactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/categories/${
+          categoryId
+        }/transactions?since_date=2017-01-01`
+      );
+    });
+
+    it("Should getTransactionsByCategory with a string `sinceDate` and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const categoryId = "categoryId";
+      // Make sure we can pass a string as well
+      const sinceDate = "2017-03";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.getTransactionsByCategory(
+            budgetId,
+            categoryId,
+            sinceDate
+          ),
+        factories.transactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/categories/${
+          categoryId
+        }/transactions?since_date=${sinceDate}`
+      );
+    });
   });
 
-  it("Should getCategoryById and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+  describe("/budgets/scheduled_transactions", () => {
+    it("Should getScheduledTransactions and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const categoryId = "DummyCategoryId";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.categories.getCategoryById(budgetId, categoryId),
-      factories.categoryResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}`
-    );
-  });
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynab.scheduledTransactions.getScheduledTransactions(budgetId),
+        factories.scheduledTransactionSummariesResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`
+      );
+    });
 
-  it("Should getBudgetMonths and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+    it("Should getScheduledTransactionById and validate the request is sent correctly", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.months.getBudgetMonths(budgetId),
-      factories.monthSummariesResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months`);
-  });
-
-  it("Should getBudgetMonth with a date param and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const budgetMonth = getUTCDate(2017, 1, 1);
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.months.getBudgetMonth(budgetId, budgetMonth),
-      factories.monthDetailResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01-01`);
-  });
-
-  it("Should getBudgetMonth with a string param and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.months.getBudgetMonth(budgetId, "2017-01"),
-      factories.monthDetailResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01`);
-  });
-
-  it("Should getBudgetMonth with a string param of 'current' and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.months.getBudgetMonth(budgetId, "current"),
-      factories.monthDetailResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/current`);
-  });
-
-  it("Should getPayees and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.payees.getPayees(budgetId),
-      factories.payeesResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees`);
-  });
-
-  it("Should getPayeeById and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const payeeId = "payeeId";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.payees.getPayeeById(budgetId, payeeId),
-      factories.payeeResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees/${payeeId}`);
-  });
-
-  it("Should getPayeeLocations and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.payeeLocations.getPayeeLocations(budgetId),
-      factories.payeeLocationsResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payee_locations`);
-  });
-
-  it("Should getPayeeLocationById and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const payeeLocationId = "payeeLocationId";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.payeeLocations.getPayeeLocationById(budgetId, payeeLocationId),
-      factories.payeeLocationResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/payee_locations/${payeeLocationId}`
-    );
-  });
-
-  it("Should getTransactions and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.transactions.getTransactions(budgetId),
-      factories.transactionSummariesResponseFactory.build()
-    );
-    verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions`);
-  });
-
-  it("Should getTransactionById and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const transactionId = "TransactionId";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.transactions.getTransactionsById(budgetId, transactionId),
-      factories.transactionDetailResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`
-    );
-  });
-
-  it("Should getTransactionsByAccount and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const accountId = "accountId";
-    const sinceDate = getUTCDate(2017, 1, 1);
-    const returnedResponse = await callApiAndVerifyResponse(
-      () =>
-        ynab.transactions.getTransactionsByAccount(
-          budgetId,
-          accountId,
-          sinceDate
-        ),
-      factories.transactionSummariesResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/accounts/${
-        accountId
-      }/transactions?since_date=2017-01-01`
-    );
-  });
-
-  it("Should getTransactionsByAccount with a string `sinceDate` and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const accountId = "accountId";
-    const sinceDate = "2017-02";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () =>
-        ynab.transactions.getTransactionsByAccount(
-          budgetId,
-          accountId,
-          sinceDate
-        ),
-      factories.transactionSummariesResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/accounts/${
-        accountId
-      }/transactions?since_date=${sinceDate}`
-    );
-  });
-
-  it("Should getTransactionsByCategory and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const categoryId = "categoryId";
-    const sinceDate = getUTCDate(2017, 1, 1);
-    const returnedResponse = await callApiAndVerifyResponse(
-      () =>
-        ynab.transactions.getTransactionsByCategory(
-          budgetId,
-          categoryId,
-          sinceDate
-        ),
-      factories.transactionSummariesResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/categories/${
-        categoryId
-      }/transactions?since_date=2017-01-01`
-    );
-  });
-
-  it("Should getTransactionsByCategory with a string `sinceDate` and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const categoryId = "categoryId";
-    // Make sure we can pass a string as well
-    const sinceDate = "2017-03";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () =>
-        ynab.transactions.getTransactionsByCategory(
-          budgetId,
-          categoryId,
-          sinceDate
-        ),
-      factories.transactionSummariesResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/categories/${
-        categoryId
-      }/transactions?since_date=${sinceDate}`
-    );
-  });
-
-  it("Should getScheduledTransactions and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const returnedResponse = await callApiAndVerifyResponse(
-      () => ynab.scheduledTransactions.getScheduledTransactions(budgetId),
-      factories.scheduledTransactionSummariesResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`
-    );
-  });
-
-  it("Should getScheduledTransactionById and validate the request is sent correctly", async () => {
-    const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
-
-    const scheduledTransactionId = "scheduledTransactionId";
-    const returnedResponse = await callApiAndVerifyResponse(
-      () =>
-        ynab.scheduledTransactions.getScheduledTransactionById(
-          budgetId,
+      const scheduledTransactionId = "scheduledTransactionId";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.scheduledTransactions.getScheduledTransactionById(
+            budgetId,
+            scheduledTransactionId
+          ),
+        factories.scheduledTransactionDetailResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${
           scheduledTransactionId
-        ),
-      factories.scheduledTransactionDetailResponseFactory.build()
-    );
-    verifyRequestDetails(
-      `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${
-        scheduledTransactionId
-      }`
-    );
+        }`
+      );
+    });
   });
 });
 
@@ -419,7 +436,7 @@ function convertDateToFullDateStringFormat(date: Date): string {
   if (date == null) {
     return null;
   } else {
-    // Converts it to something like 2017-11-27
+    // -> 2017-11-27
     return date.toISOString().substr(0, 10);
   }
 }
