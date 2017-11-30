@@ -3,9 +3,12 @@ export class Utils {
    * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
    */
   public getCurrentMonthInISOFormat() {
-    let yearMonthISO = new Date(Date.now()).toLocaleString().substr(0, 7);
-    let firstDayOfMonthISO = new Date(yearMonthISO).toISOString().substr(0, 10);
-    return firstDayOfMonthISO;
+    let currentDate = new Date();
+    let isoLocalDateString = new Date(
+      currentDate.getTime() - currentDate.getTimezoneOffset() * 60000
+    ).toISOString();
+    let isoFirstDayOfCurrentMonth = `${isoLocalDateString.substr(0, 7)}-01`;
+    return isoFirstDayOfCurrentMonth;
   }
 
   /**
