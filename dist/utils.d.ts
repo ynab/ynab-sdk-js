@@ -13,5 +13,5 @@ export declare class Utils {
      * @param millidollars - The millidollars amount (i.e. 293294)
      * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
      */
-    convertMilliDollarsToCurrencyAmount(millidollars: number, currencyDecimalDigits: number): number;
+    convertMilliCentsToCurrencyAmount(millidollars: number, currencyDecimalDigits: number): number;
 }

@@ -26,27 +26,27 @@ describe("utiilities", () => {
     });
   });
 
-  describe("convertMilliDollarsToCurrencyAmount", () => {
+  describe("convertMilliCentsToCurrencyAmount", () => {
     it("Converts millidolars to 2 decimimal currency", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239323, 2)).to.equal(
+      expect(utils.convertMilliCentsToCurrencyAmount(239323, 2)).to.equal(
         239.32
       );
     });
 
     it("Rounds up", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239325, 2)).to.equal(
+      expect(utils.convertMilliCentsToCurrencyAmount(239325, 2)).to.equal(
         239.33
       );
     });
 
     it("Converts millidolars to 3 decimal currency", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239323, 3)).to.equal(
+      expect(utils.convertMilliCentsToCurrencyAmount(239323, 3)).to.equal(
         239.323
       );
     });
 
     it("Converts millidolars to 0 decimal currency", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239323, 0)).to.equal(
+      expect(utils.convertMilliCentsToCurrencyAmount(239323, 0)).to.equal(
         239
       );
     });

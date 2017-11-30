@@ -24,7 +24,7 @@ export class Utils {
    * @param millidollars - The millidollars amount (i.e. 293294)
    * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
    */
-  public convertMilliDollarsToCurrencyAmount(
+  public convertMilliCentsToCurrencyAmount(
     millidollars: number,
     currencyDecimalDigits: number
   ): number {
