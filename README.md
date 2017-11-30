@@ -66,7 +66,7 @@ const budgetsResponse = ynab.budgets.getBudgets()
 ### Utilities
 
 There are several utilities available on the `utilties` object to make working
-with [ISO dates and millidollars](https://api.youneedabudget.com/#formats) a bit
+with [ISO dates and millicents](https://api.youneedabudget.com/#formats) a bit
 easier.
 
 ```
@@ -82,11 +82,11 @@ getCurrentMonthInISOFormat(): string;
 convertISODateToDate(isoDate: string): Date;
 
 /**
-  * Converts an millidollars amount to a currency amount
-  * @param millidollars - The millidollars amount (i.e. 293294)
+  * Converts an millicents amount to a currency amount
+  * @param millicents - The millicents amount (i.e. 293294)
   * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
   */
-convertMilliDollarsToCurrencyAmount(millidollars: number, currencyDecimalDigits: number): number;
+convertMilliCentsToCurrencyAmount(millicents: number, currencyDecimalDigits: number): number;
 ```
 
 #### Examples
@@ -94,7 +94,7 @@ convertMilliDollarsToCurrencyAmount(millidollars: number, currencyDecimalDigits:
 ```
 ynab.utils.getCurrentMonthInISOFormat(); // > "2015-12-01"
 ynab.utils.convertISODateToDate("2015-12-30"); // > "Wed Nov 29 2017 12:35:54 GMT-0500 (EST)"
-ynab.utils.convertMilliDollarsToCurrencyAmount(239320, 2); // > 239.32
+ynab.utils.convertMilliCentsToCurrencyAmount(239320, 2); // > 239.32
 ```
 
 ## Examples
