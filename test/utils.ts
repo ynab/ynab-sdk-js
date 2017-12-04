@@ -20,33 +20,33 @@ describe("utiilities", () => {
   describe("convertISODateToDate", () => {
     it("Converts an ISO formatted date string to a JS date object", () => {
       let date = "2015-12-30";
-      expect(utils.convertISODateToDate(date).getTime()).to.equal(
+      expect(utils.convertFromISODateString(date).getTime()).to.equal(
         Date.parse(date)
       );
     });
   });
 
-  describe("convertMilliDollarsToCurrencyAmount", () => {
+  describe("convertMilliUnitsToCurrencyAmount", () => {
     it("Converts millidolars to 2 decimimal currency", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239323, 2)).to.equal(
+      expect(utils.convertMilliUnitsToCurrencyAmount(239323, 2)).to.equal(
         239.32
       );
     });
 
     it("Rounds up", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239325, 2)).to.equal(
+      expect(utils.convertMilliUnitsToCurrencyAmount(239325, 2)).to.equal(
         239.33
       );
     });
 
     it("Converts millidolars to 3 decimal currency", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239323, 3)).to.equal(
+      expect(utils.convertMilliUnitsToCurrencyAmount(239323, 3)).to.equal(
         239.323
       );
     });
 
     it("Converts millidolars to 0 decimal currency", () => {
-      expect(utils.convertMilliDollarsToCurrencyAmount(239323, 0)).to.equal(
+      expect(utils.convertMilliUnitsToCurrencyAmount(239323, 0)).to.equal(
         239
       );
     });

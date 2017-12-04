@@ -20,17 +20,17 @@ export class Utils {
   }
 
   /**
-   * Converts an millidollars amount to a currency amount
-   * @param millidollars - The millidollars amount (i.e. 293294)
+   * Converts a milliunits amount to a currency amount
+   * @param milliunits - The milliunits amount (i.e. 293294)
    * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
    */
-  public convertMilliDollarsToCurrencyAmount(
-    millidollars: number,
+  public convertMilliUnitsToCurrencyAmount(
+    milliunits: number,
     currencyDecimalDigits: number
   ): number {
     let numberToRoundTo = Math.pow(10, 3 - Math.min(3, currencyDecimalDigits));
     numberToRoundTo = 1 / numberToRoundTo;
-    let rounded = Math.round(millidollars * numberToRoundTo) / numberToRoundTo;
+    let rounded = Math.round(milliunits * numberToRoundTo) / numberToRoundTo;
     let currencyAmount = rounded * (0.1 / Math.pow(10, 2));
     return currencyAmount;
   }

@@ -1160,7 +1160,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millidollars format"
+            "The current balance of the account in milliunits format"
         }
       }
     },
@@ -1272,17 +1272,15 @@
         },
         "budgeted": {
           "type": "number",
-          "description":
-            "Budgeted amount in current month in millidollars format"
+          "description": "Budgeted amount in current month in milliunits format"
         },
         "activity": {
           "type": "number",
-          "description":
-            "Activity amount in current month in millidollars format"
+          "description": "Activity amount in current month in milliunits format"
         },
         "balance": {
           "type": "number",
-          "description": "Balance in current month in millidollars format"
+          "description": "Balance in current month in milliunits format"
         }
       }
     },
@@ -1469,7 +1467,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millidollars format"
+            "The current balance of the account in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -1548,7 +1546,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millidollars format"
+            "The current balance of the account in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -1640,7 +1638,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millidollars format"
+            "The current balance of the account in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -1712,7 +1710,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millidollars format"
+            "The current balance of the account in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -1787,7 +1785,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millidollars format"
+            "The current balance of the account in milliunits format"
         },
         "age_of_money": {
           "type": "number"

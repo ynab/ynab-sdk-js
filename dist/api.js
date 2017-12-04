@@ -2,8 +2,8 @@
 /// <reference path="./portable-fetch.d.ts" />
 // tslint:disable
 /**
- * YNAB API Explorer
- * A read-only JSON / REST API to access YNAB budget data.
+ * YNAB API Endpoints
+ * Our API uses a REST based design, leverages the JSON data format, and relies upon HTTPS for transport. We respond with meaningful HTTP response codes and if an error occurs, we include error details in the response body.  API Documentation is at https://api.youneedabudget.com
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -71,7 +71,7 @@ exports.RequiredError = RequiredError;
 exports.AccountsApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Find a single account by ID
+         * Returns a single account
          * @summary Single account
          * @param {string} budgetId - ID of budget
          * @param {string} accountId - ID of account
@@ -113,8 +113,8 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List all accounts
-         * @summary List accounts
+         * Returns all accounts
+         * @summary Account list
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -157,7 +157,7 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
 exports.AccountsApiFp = function (configuration) {
     return {
         /**
-         * Find a single account by ID
+         * Returns a single account
          * @summary Single account
          * @param {string} budgetId - ID of budget
          * @param {string} accountId - ID of account
@@ -180,8 +180,8 @@ exports.AccountsApiFp = function (configuration) {
             };
         },
         /**
-         * List all accounts
-         * @summary List accounts
+         * Returns all accounts
+         * @summary Account list
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -210,7 +210,7 @@ exports.AccountsApiFp = function (configuration) {
 exports.AccountsApiFactory = function (configuration) {
     return {
         /**
-         * Find a single account by ID
+         * Returns a single account
          * @summary Single account
          * @param {string} budgetId - ID of budget
          * @param {string} accountId - ID of account
@@ -221,8 +221,8 @@ exports.AccountsApiFactory = function (configuration) {
             return exports.AccountsApiFp(configuration).getAccountById(budgetId, accountId, options)();
         },
         /**
-         * List all accounts
-         * @summary List accounts
+         * Returns all accounts
+         * @summary Account list
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -240,7 +240,7 @@ exports.AccountsApiFactory = function (configuration) {
  */
 class AccountsApi extends BaseAPI {
     /**
-     * Find a single account by ID
+     * Returns a single account
      * @summary Single account
      * @param {string} budgetId - ID of budget
      * @param {string} accountId - ID of account
@@ -252,8 +252,8 @@ class AccountsApi extends BaseAPI {
         return exports.AccountsApiFp(this.configuration).getAccountById(budgetId, accountId, options)();
     }
     /**
-     * List all accounts
-     * @summary List accounts
+     * Returns all accounts
+     * @summary Account list
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -271,7 +271,7 @@ exports.AccountsApi = AccountsApi;
 exports.BudgetsApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Single budget detail
+         * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
          * @param {string} budgetId - ID of budget
          * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -311,7 +311,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List all budgets
+         * Returns budgets list with summary information
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -349,7 +349,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
 exports.BudgetsApiFp = function (configuration) {
     return {
         /**
-         * Single budget detail
+         * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
          * @param {string} budgetId - ID of budget
          * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -372,7 +372,7 @@ exports.BudgetsApiFp = function (configuration) {
             };
         },
         /**
-         * List all budgets
+         * Returns budgets list with summary information
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -401,7 +401,7 @@ exports.BudgetsApiFp = function (configuration) {
 exports.BudgetsApiFactory = function (configuration) {
     return {
         /**
-         * Single budget detail
+         * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
          * @param {string} budgetId - ID of budget
          * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -412,7 +412,7 @@ exports.BudgetsApiFactory = function (configuration) {
             return exports.BudgetsApiFp(configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)();
         },
         /**
-         * List all budgets
+         * Returns budgets list with summary information
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -430,7 +430,7 @@ exports.BudgetsApiFactory = function (configuration) {
  */
 class BudgetsApi extends BaseAPI {
     /**
-     * Single budget detail
+     * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * @summary Single budget
      * @param {string} budgetId - ID of budget
      * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -442,7 +442,7 @@ class BudgetsApi extends BaseAPI {
         return exports.BudgetsApiFp(this.configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)();
     }
     /**
-     * List all budgets
+     * Returns budgets list with summary information
      * @summary List budgets
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -460,8 +460,8 @@ exports.BudgetsApi = BudgetsApi;
 exports.CategoriesApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * List all category groups
-         * @summary List category groups
+         * Returns all categories grouped by category group
+         * @summary List categories
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -496,7 +496,7 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Find a category by ID
+         * Returns a single category
          * @summary Single category
          * @param {string} budgetId - ID of budget
          * @param {string} categoryId - ID of category
@@ -546,8 +546,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
 exports.CategoriesApiFp = function (configuration) {
     return {
         /**
-         * List all category groups
-         * @summary List category groups
+         * Returns all categories grouped by category group
+         * @summary List categories
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -568,7 +568,7 @@ exports.CategoriesApiFp = function (configuration) {
             };
         },
         /**
-         * Find a category by ID
+         * Returns a single category
          * @summary Single category
          * @param {string} budgetId - ID of budget
          * @param {string} categoryId - ID of category
@@ -599,8 +599,8 @@ exports.CategoriesApiFp = function (configuration) {
 exports.CategoriesApiFactory = function (configuration) {
     return {
         /**
-         * List all category groups
-         * @summary List category groups
+         * Returns all categories grouped by category group
+         * @summary List categories
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -609,7 +609,7 @@ exports.CategoriesApiFactory = function (configuration) {
             return exports.CategoriesApiFp(configuration).getCategories(budgetId, options)();
         },
         /**
-         * Find a category by ID
+         * Returns a single category
          * @summary Single category
          * @param {string} budgetId - ID of budget
          * @param {string} categoryId - ID of category
@@ -629,8 +629,8 @@ exports.CategoriesApiFactory = function (configuration) {
  */
 class CategoriesApi extends BaseAPI {
     /**
-     * List all category groups
-     * @summary List category groups
+     * Returns all categories grouped by category group
+     * @summary List categories
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -640,7 +640,7 @@ class CategoriesApi extends BaseAPI {
         return exports.CategoriesApiFp(this.configuration).getCategories(budgetId, options)();
     }
     /**
-     * Find a category by ID
+     * Returns a single category
      * @summary Single category
      * @param {string} budgetId - ID of budget
      * @param {string} categoryId - ID of category
@@ -660,7 +660,7 @@ exports.CategoriesApi = CategoriesApi;
 exports.MonthsApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Find a single budget month
+         * Retuens a single budget month
          * @summary Single budget month
          * @param {string} budgetId - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -702,7 +702,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List all budget months
+         * Returns all budget months
          * @summary List budget months
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -746,7 +746,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
 exports.MonthsApiFp = function (configuration) {
     return {
         /**
-         * Find a single budget month
+         * Retuens a single budget month
          * @summary Single budget month
          * @param {string} budgetId - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -769,7 +769,7 @@ exports.MonthsApiFp = function (configuration) {
             };
         },
         /**
-         * List all budget months
+         * Returns all budget months
          * @summary List budget months
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -799,7 +799,7 @@ exports.MonthsApiFp = function (configuration) {
 exports.MonthsApiFactory = function (configuration) {
     return {
         /**
-         * Find a single budget month
+         * Retuens a single budget month
          * @summary Single budget month
          * @param {string} budgetId - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -810,7 +810,7 @@ exports.MonthsApiFactory = function (configuration) {
             return exports.MonthsApiFp(configuration).getBudgetMonth(budgetId, month, options)();
         },
         /**
-         * List all budget months
+         * Returns all budget months
          * @summary List budget months
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -829,7 +829,7 @@ exports.MonthsApiFactory = function (configuration) {
  */
 class MonthsApi extends BaseAPI {
     /**
-     * Find a single budget month
+     * Retuens a single budget month
      * @summary Single budget month
      * @param {string} budgetId - ID of budget
      * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -841,7 +841,7 @@ class MonthsApi extends BaseAPI {
         return exports.MonthsApiFp(this.configuration).getBudgetMonth(budgetId, month, options)();
     }
     /**
-     * List all budget months
+     * Returns all budget months
      * @summary List budget months
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -860,7 +860,7 @@ exports.MonthsApi = MonthsApi;
 exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Find a single payee location by ID
+         * Returns a single payee location
          * @summary Single payee location
          * @param {string} budgetId - ID of budget
          * @param {string} payeeLocationId - ID of payee location
@@ -902,7 +902,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List all payee locations
+         * Returns all payee locations
          * @summary List payee locations
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -938,7 +938,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List payee locations for a specified payee
+         * Returns all payee locations for the specified payee
          * @summary List locations for a payee
          * @param {string} budgetId - ID of budget
          * @param {string} payeeId - ID of payee
@@ -988,7 +988,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
 exports.PayeeLocationsApiFp = function (configuration) {
     return {
         /**
-         * Find a single payee location by ID
+         * Returns a single payee location
          * @summary Single payee location
          * @param {string} budgetId - ID of budget
          * @param {string} payeeLocationId - ID of payee location
@@ -1011,7 +1011,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
             };
         },
         /**
-         * List all payee locations
+         * Returns all payee locations
          * @summary List payee locations
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1033,7 +1033,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
             };
         },
         /**
-         * List payee locations for a specified payee
+         * Returns all payee locations for the specified payee
          * @summary List locations for a payee
          * @param {string} budgetId - ID of budget
          * @param {string} payeeId - ID of payee
@@ -1064,7 +1064,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
 exports.PayeeLocationsApiFactory = function (configuration) {
     return {
         /**
-         * Find a single payee location by ID
+         * Returns a single payee location
          * @summary Single payee location
          * @param {string} budgetId - ID of budget
          * @param {string} payeeLocationId - ID of payee location
@@ -1075,7 +1075,7 @@ exports.PayeeLocationsApiFactory = function (configuration) {
             return exports.PayeeLocationsApiFp(configuration).getPayeeLocationById(budgetId, payeeLocationId, options)();
         },
         /**
-         * List all payee locations
+         * Returns all payee locations
          * @summary List payee locations
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1085,7 +1085,7 @@ exports.PayeeLocationsApiFactory = function (configuration) {
             return exports.PayeeLocationsApiFp(configuration).getPayeeLocations(budgetId, options)();
         },
         /**
-         * List payee locations for a specified payee
+         * Returns all payee locations for the specified payee
          * @summary List locations for a payee
          * @param {string} budgetId - ID of budget
          * @param {string} payeeId - ID of payee
@@ -1105,7 +1105,7 @@ exports.PayeeLocationsApiFactory = function (configuration) {
  */
 class PayeeLocationsApi extends BaseAPI {
     /**
-     * Find a single payee location by ID
+     * Returns a single payee location
      * @summary Single payee location
      * @param {string} budgetId - ID of budget
      * @param {string} payeeLocationId - ID of payee location
@@ -1117,7 +1117,7 @@ class PayeeLocationsApi extends BaseAPI {
         return exports.PayeeLocationsApiFp(this.configuration).getPayeeLocationById(budgetId, payeeLocationId, options)();
     }
     /**
-     * List all payee locations
+     * Returns all payee locations
      * @summary List payee locations
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -1128,7 +1128,7 @@ class PayeeLocationsApi extends BaseAPI {
         return exports.PayeeLocationsApiFp(this.configuration).getPayeeLocations(budgetId, options)();
     }
     /**
-     * List payee locations for a specified payee
+     * Returns all payee locations for the specified payee
      * @summary List locations for a payee
      * @param {string} budgetId - ID of budget
      * @param {string} payeeId - ID of payee
@@ -1148,7 +1148,7 @@ exports.PayeeLocationsApi = PayeeLocationsApi;
 exports.PayeesApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Find a single payee by ID
+         * Returns single payee
          * @summary Single payee
          * @param {string} budgetId - ID of budget
          * @param {string} payeeId - ID of payee
@@ -1190,7 +1190,7 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List all payees
+         * Returns all payees
          * @summary List payees
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1234,7 +1234,7 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
 exports.PayeesApiFp = function (configuration) {
     return {
         /**
-         * Find a single payee by ID
+         * Returns single payee
          * @summary Single payee
          * @param {string} budgetId - ID of budget
          * @param {string} payeeId - ID of payee
@@ -1257,7 +1257,7 @@ exports.PayeesApiFp = function (configuration) {
             };
         },
         /**
-         * List all payees
+         * Returns all payees
          * @summary List payees
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1287,7 +1287,7 @@ exports.PayeesApiFp = function (configuration) {
 exports.PayeesApiFactory = function (configuration) {
     return {
         /**
-         * Find a single payee by ID
+         * Returns single payee
          * @summary Single payee
          * @param {string} budgetId - ID of budget
          * @param {string} payeeId - ID of payee
@@ -1298,7 +1298,7 @@ exports.PayeesApiFactory = function (configuration) {
             return exports.PayeesApiFp(configuration).getPayeeById(budgetId, payeeId, options)();
         },
         /**
-         * List all payees
+         * Returns all payees
          * @summary List payees
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1317,7 +1317,7 @@ exports.PayeesApiFactory = function (configuration) {
  */
 class PayeesApi extends BaseAPI {
     /**
-     * Find a single payee by ID
+     * Returns single payee
      * @summary Single payee
      * @param {string} budgetId - ID of budget
      * @param {string} payeeId - ID of payee
@@ -1329,7 +1329,7 @@ class PayeesApi extends BaseAPI {
         return exports.PayeesApiFp(this.configuration).getPayeeById(budgetId, payeeId, options)();
     }
     /**
-     * List all payees
+     * Returns all payees
      * @summary List payees
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -1348,7 +1348,7 @@ exports.PayeesApi = PayeesApi;
 exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Find a single scheduled transaction by ID
+         * Returns a single scheduled transaction
          * @summary Single scheduled transaction
          * @param {string} budgetId - ID of budget
          * @param {string} scheduledTransactionId - ID of scheduled transaction
@@ -1390,7 +1390,7 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List all scheduled transactions
+         * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1434,7 +1434,7 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
 exports.ScheduledTransactionsApiFp = function (configuration) {
     return {
         /**
-         * Find a single scheduled transaction by ID
+         * Returns a single scheduled transaction
          * @summary Single scheduled transaction
          * @param {string} budgetId - ID of budget
          * @param {string} scheduledTransactionId - ID of scheduled transaction
@@ -1457,7 +1457,7 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
             };
         },
         /**
-         * List all scheduled transactions
+         * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1487,7 +1487,7 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
 exports.ScheduledTransactionsApiFactory = function (configuration) {
     return {
         /**
-         * Find a single scheduled transaction by ID
+         * Returns a single scheduled transaction
          * @summary Single scheduled transaction
          * @param {string} budgetId - ID of budget
          * @param {string} scheduledTransactionId - ID of scheduled transaction
@@ -1498,7 +1498,7 @@ exports.ScheduledTransactionsApiFactory = function (configuration) {
             return exports.ScheduledTransactionsApiFp(configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)();
         },
         /**
-         * List all scheduled transactions
+         * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budgetId - ID of budget
          * @param {*} [options] - Override http request options.
@@ -1517,7 +1517,7 @@ exports.ScheduledTransactionsApiFactory = function (configuration) {
  */
 class ScheduledTransactionsApi extends BaseAPI {
     /**
-     * Find a single scheduled transaction by ID
+     * Returns a single scheduled transaction
      * @summary Single scheduled transaction
      * @param {string} budgetId - ID of budget
      * @param {string} scheduledTransactionId - ID of scheduled transaction
@@ -1529,7 +1529,7 @@ class ScheduledTransactionsApi extends BaseAPI {
         return exports.ScheduledTransactionsApiFp(this.configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)();
     }
     /**
-     * List all scheduled transactions
+     * Returns all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -1548,7 +1548,7 @@ exports.ScheduledTransactionsApi = ScheduledTransactionsApi;
 exports.TransactionsApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * List all transactions
+         * Returns all budget transactions
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
@@ -1588,7 +1588,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List transactions for an account
+         * Returns all transactions for a specified account
          * @summary List account transactions
          * @param {string} budgetId - ID of budget
          * @param {string} accountId - ID of account
@@ -1634,7 +1634,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * List transactions for a category
+         * Returns all transactions for a specified category
          * @summary List category transactions
          * @param {string} budgetId - ID of budget
          * @param {string} categoryId - ID of category
@@ -1680,7 +1680,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Find a single transaction by ID
+         * Returns a single transaction
          * @summary Single transaction
          * @param {string} budgetId - ID of budget
          * @param {string} transactionId - ID of transaction
@@ -1730,7 +1730,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
 exports.TransactionsApiFp = function (configuration) {
     return {
         /**
-         * List all transactions
+         * Returns all budget transactions
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
@@ -1753,7 +1753,7 @@ exports.TransactionsApiFp = function (configuration) {
             };
         },
         /**
-         * List transactions for an account
+         * Returns all transactions for a specified account
          * @summary List account transactions
          * @param {string} budgetId - ID of budget
          * @param {string} accountId - ID of account
@@ -1777,7 +1777,7 @@ exports.TransactionsApiFp = function (configuration) {
             };
         },
         /**
-         * List transactions for a category
+         * Returns all transactions for a specified category
          * @summary List category transactions
          * @param {string} budgetId - ID of budget
          * @param {string} categoryId - ID of category
@@ -1801,7 +1801,7 @@ exports.TransactionsApiFp = function (configuration) {
             };
         },
         /**
-         * Find a single transaction by ID
+         * Returns a single transaction
          * @summary Single transaction
          * @param {string} budgetId - ID of budget
          * @param {string} transactionId - ID of transaction
@@ -1832,7 +1832,7 @@ exports.TransactionsApiFp = function (configuration) {
 exports.TransactionsApiFactory = function (configuration) {
     return {
         /**
-         * List all transactions
+         * Returns all budget transactions
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
@@ -1843,7 +1843,7 @@ exports.TransactionsApiFactory = function (configuration) {
             return exports.TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, options)();
         },
         /**
-         * List transactions for an account
+         * Returns all transactions for a specified account
          * @summary List account transactions
          * @param {string} budgetId - ID of budget
          * @param {string} accountId - ID of account
@@ -1855,7 +1855,7 @@ exports.TransactionsApiFactory = function (configuration) {
             return exports.TransactionsApiFp(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)();
         },
         /**
-         * List transactions for a category
+         * Returns all transactions for a specified category
          * @summary List category transactions
          * @param {string} budgetId - ID of budget
          * @param {string} categoryId - ID of category
@@ -1867,7 +1867,7 @@ exports.TransactionsApiFactory = function (configuration) {
             return exports.TransactionsApiFp(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)();
         },
         /**
-         * Find a single transaction by ID
+         * Returns a single transaction
          * @summary Single transaction
          * @param {string} budgetId - ID of budget
          * @param {string} transactionId - ID of transaction
@@ -1887,7 +1887,7 @@ exports.TransactionsApiFactory = function (configuration) {
  */
 class TransactionsApi extends BaseAPI {
     /**
-     * List all transactions
+     * Returns all budget transactions
      * @summary List transactions
      * @param {string} budgetId - ID of budget
      * @param {Date} [sinceDate] - Only return transactions on or after this date
@@ -1899,7 +1899,7 @@ class TransactionsApi extends BaseAPI {
         return exports.TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, options)();
     }
     /**
-     * List transactions for an account
+     * Returns all transactions for a specified account
      * @summary List account transactions
      * @param {string} budgetId - ID of budget
      * @param {string} accountId - ID of account
@@ -1912,7 +1912,7 @@ class TransactionsApi extends BaseAPI {
         return exports.TransactionsApiFp(this.configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)();
     }
     /**
-     * List transactions for a category
+     * Returns all transactions for a specified category
      * @summary List category transactions
      * @param {string} budgetId - ID of budget
      * @param {string} categoryId - ID of category
@@ -1925,7 +1925,7 @@ class TransactionsApi extends BaseAPI {
         return exports.TransactionsApiFp(this.configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)();
     }
     /**
-     * Find a single transaction by ID
+     * Returns a single transaction
      * @summary Single transaction
      * @param {string} budgetId - ID of budget
      * @param {string} transactionId - ID of transaction
