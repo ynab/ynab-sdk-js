@@ -17,10 +17,10 @@ describe("utiilities", () => {
     });
   });
 
-  describe("convertISODateToDate", () => {
+  describe("convertFromISODateString", () => {
     it("Converts an ISO formatted date string to a JS date object", () => {
       let date = "2015-12-30";
-      expect(utils.convertISODateToDate(date).getTime()).to.equal(
+      expect(utils.convertFromISODateString(date).getTime()).to.equal(
         Date.parse(date)
       );
     });
