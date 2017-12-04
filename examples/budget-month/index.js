@@ -15,19 +15,8 @@ ynab.months
  Category Balances:`);
     for (let category of budgetMonth.categories) {
         let balance = ynab.utils
-            .convertMilliUnitsToCurrencyAmount(category.balance, 2)
+            .convertMilliDollarsToCurrencyAmount(category.balance, 2)
             .toFixed(2);
         console.log(`                    ${category.name} - $${balance}`);
-        /*
-                 Month: 2017-11-01
-                  Note: Month Note here
-          Age Of Money: 103
-     Category Balances:
-                        Medical - $50.00
-                        Deferred Income SubCategory - $0.00
-                        Immediate Income SubCategory - $0.00
-                        Renter's/Home Insurance - $0.00
-                        ...
-        */
     }
 });

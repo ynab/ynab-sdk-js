@@ -18,7 +18,7 @@ ynab.months
 
     for (let category of budgetMonth.categories) {
       let balance = ynab.utils
-        .convertMilliUnitsToCurrencyAmount(category.balance, 2)
+        .convertMilliDollarsToCurrencyAmount(category.balance, 2)
         .toFixed(2);
       console.log(`                    ${category.name} - $${balance}`);
       /*

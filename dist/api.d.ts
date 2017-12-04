@@ -90,7 +90,7 @@ export interface Account {
      */
     note: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof Account
      */
@@ -293,19 +293,19 @@ export interface Category {
      */
     note: string;
     /**
-     * Budgeted amount in current month in millidollars format
+     * Budgeted amount in current month in millicents format
      * @type {number}
      * @memberof Category
      */
     budgeted: number;
     /**
-     * Activity amount in current month in millidollars format
+     * Activity amount in current month in millicents format
      * @type {number}
      * @memberof Category
      */
     activity: number;
     /**
-     * Balance in current month in millidollars format
+     * Balance in current month in millicents format
      * @type {number}
      * @memberof Category
      */
@@ -510,7 +510,7 @@ export interface MonthSummary {
      */
     note: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof MonthSummary
      */
@@ -701,7 +701,7 @@ export interface ScheduledSubTransaction {
      */
     scheduled_transaction_id: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof ScheduledSubTransaction
      */
@@ -808,7 +808,7 @@ export interface ScheduledTransactionSummary {
      */
     frequency: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof ScheduledTransactionSummary
      */
@@ -869,7 +869,7 @@ export interface SubTransaction {
      */
     transaction_id: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof SubTransaction
      */
@@ -970,7 +970,7 @@ export interface TransactionSummary {
      */
     date: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof TransactionSummary
      */
@@ -1171,7 +1171,7 @@ export interface MonthDetail {
      */
     note: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof MonthDetail
      */
@@ -1214,7 +1214,7 @@ export interface ScheduledTransactionDetail {
      */
     frequency: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof ScheduledTransactionDetail
      */
@@ -1281,7 +1281,7 @@ export interface TransactionDetail {
      */
     date: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in millicents format
      * @type {number}
      * @memberof TransactionDetail
      */
@@ -1373,7 +1373,7 @@ export declare const AccountsApiFactory: (configuration?: Configuration) => {
  */
 export declare class AccountsApi extends BaseAPI {
     /**
-     * Returns a single account
+     * Find a single account by ID
      * @summary Single account
      * @param {string} budgetId - ID of budget
      * @param {string} accountId - ID of account
@@ -1383,8 +1383,8 @@ export declare class AccountsApi extends BaseAPI {
      */
     getAccountById(budgetId: string, accountId: string, options?: any): Promise<AccountResponse>;
     /**
-     * Returns all accounts
-     * @summary Account list
+     * List all accounts
+     * @summary List accounts
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -1424,7 +1424,7 @@ export declare const BudgetsApiFactory: (configuration?: Configuration) => {
  */
 export declare class BudgetsApi extends BaseAPI {
     /**
-     * Returns a single budget with all related entities.  This resource is effectively a full budget export.
+     * Single budget detail
      * @summary Single budget
      * @param {string} budgetId - ID of budget
      * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -1434,7 +1434,7 @@ export declare class BudgetsApi extends BaseAPI {
      */
     getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
     /**
-     * Returns budgets list with summary information
+     * List all budgets
      * @summary List budgets
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -1474,8 +1474,8 @@ export declare const CategoriesApiFactory: (configuration?: Configuration) => {
  */
 export declare class CategoriesApi extends BaseAPI {
     /**
-     * Returns all categories grouped by category group
-     * @summary List categories
+     * List all category groups
+     * @summary List category groups
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -1483,7 +1483,7 @@ export declare class CategoriesApi extends BaseAPI {
      */
     getCategories(budgetId: string, options?: any): Promise<CategoriesResponse>;
     /**
-     * Returns a single category
+     * Find a category by ID
      * @summary Single category
      * @param {string} budgetId - ID of budget
      * @param {string} categoryId - ID of category
@@ -1525,7 +1525,7 @@ export declare const MonthsApiFactory: (configuration?: Configuration) => {
  */
 export declare class MonthsApi extends BaseAPI {
     /**
-     * Retuens a single budget month
+     * Find a single budget month
      * @summary Single budget month
      * @param {string} budgetId - ID of budget
      * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -1535,7 +1535,7 @@ export declare class MonthsApi extends BaseAPI {
      */
     getBudgetMonth(budgetId: string, month: Date | string, options?: any): Promise<MonthDetailResponse>;
     /**
-     * Returns all budget months
+     * List all budget months
      * @summary List budget months
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -1579,7 +1579,7 @@ export declare const PayeeLocationsApiFactory: (configuration?: Configuration) =
  */
 export declare class PayeeLocationsApi extends BaseAPI {
     /**
-     * Returns a single payee location
+     * Find a single payee location by ID
      * @summary Single payee location
      * @param {string} budgetId - ID of budget
      * @param {string} payeeLocationId - ID of payee location
@@ -1589,7 +1589,7 @@ export declare class PayeeLocationsApi extends BaseAPI {
      */
     getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): Promise<PayeeLocationResponse>;
     /**
-     * Returns all payee locations
+     * List all payee locations
      * @summary List payee locations
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -1598,7 +1598,7 @@ export declare class PayeeLocationsApi extends BaseAPI {
      */
     getPayeeLocations(budgetId: string, options?: any): Promise<PayeeLocationsResponse>;
     /**
-     * Returns all payee locations for the specified payee
+     * List payee locations for a specified payee
      * @summary List locations for a payee
      * @param {string} budgetId - ID of budget
      * @param {string} payeeId - ID of payee
@@ -1640,7 +1640,7 @@ export declare const PayeesApiFactory: (configuration?: Configuration) => {
  */
 export declare class PayeesApi extends BaseAPI {
     /**
-     * Returns single payee
+     * Find a single payee by ID
      * @summary Single payee
      * @param {string} budgetId - ID of budget
      * @param {string} payeeId - ID of payee
@@ -1650,7 +1650,7 @@ export declare class PayeesApi extends BaseAPI {
      */
     getPayeeById(budgetId: string, payeeId: string, options?: any): Promise<PayeeResponse>;
     /**
-     * Returns all payees
+     * List all payees
      * @summary List payees
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -1691,7 +1691,7 @@ export declare const ScheduledTransactionsApiFactory: (configuration?: Configura
  */
 export declare class ScheduledTransactionsApi extends BaseAPI {
     /**
-     * Returns a single scheduled transaction
+     * Find a single scheduled transaction by ID
      * @summary Single scheduled transaction
      * @param {string} budgetId - ID of budget
      * @param {string} scheduledTransactionId - ID of scheduled transaction
@@ -1701,7 +1701,7 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
      */
     getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): Promise<ScheduledTransactionDetailResponse>;
     /**
-     * Returns all scheduled transactions
+     * List all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budgetId - ID of budget
      * @param {*} [options] - Override http request options.
@@ -1748,7 +1748,7 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
  */
 export declare class TransactionsApi extends BaseAPI {
     /**
-     * Returns all budget transactions
+     * List all transactions
      * @summary List transactions
      * @param {string} budgetId - ID of budget
      * @param {Date} [sinceDate] - Only return transactions on or after this date
@@ -1758,7 +1758,7 @@ export declare class TransactionsApi extends BaseAPI {
      */
     getTransactions(budgetId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
     /**
-     * Returns all transactions for a specified account
+     * List transactions for an account
      * @summary List account transactions
      * @param {string} budgetId - ID of budget
      * @param {string} accountId - ID of account
@@ -1769,7 +1769,7 @@ export declare class TransactionsApi extends BaseAPI {
      */
     getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
     /**
-     * Returns all transactions for a specified category
+     * List transactions for a category
      * @summary List category transactions
      * @param {string} budgetId - ID of budget
      * @param {string} categoryId - ID of category
@@ -1780,7 +1780,7 @@ export declare class TransactionsApi extends BaseAPI {
      */
     getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
     /**
-     * Returns a single transaction
+     * Find a single transaction by ID
      * @summary Single transaction
      * @param {string} budgetId - ID of budget
      * @param {string} transactionId - ID of transaction

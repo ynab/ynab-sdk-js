@@ -66,7 +66,7 @@ const budgetsResponse = ynab.budgets.getBudgets()
 ### Utilities
 
 There are several utilities available on the `utilties` object to make working
-with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
+with [ISO dates and millidollars](https://api.youneedabudget.com/#formats) a bit
 easier.
 
 ```
@@ -79,22 +79,22 @@ getCurrentMonthInISOFormat(): string;
   * Converts an ISO 8601 formatted string to a JS date object
   * @param {string} isoDate - An ISO 8601 formatted date (i.e. '2015-12-30').  This date is assumed to be in UTC timezone
   */
-convertFromISODateString(isoDateString: string): Date;
+convertISODateToDate(isoDate: string): Date;
 
 /**
-   * Converts a milliunits amount to a currency amount
-   * @param milliunits - The milliunits amount (i.e. 293294)
-   * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
-   */
-  public convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
+  * Converts an millidollars amount to a currency amount
+  * @param millidollars - The millidollars amount (i.e. 293294)
+  * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
+  */
+convertMilliDollarsToCurrencyAmount(millidollars: number, currencyDecimalDigits: number): number;
 ```
 
 #### Examples
 
 ```
 ynab.utils.getCurrentMonthInISOFormat(); // > "2015-12-01"
-ynab.utils.convertFromISODateString("2015-12-30"); // > "Wed Nov 29 2017 12:35:54 GMT-0500 (EST)"
-ynab.utils.convertMilliUnitsToCurrencyAmount(239320, 2); // > 239.32
+ynab.utils.convertISODateToDate("2015-12-30"); // > "Wed Nov 29 2017 12:35:54 GMT-0500 (EST)"
+ynab.utils.convertMilliDollarsToCurrencyAmount(239320, 2); // > 239.32
 ```
 
 ## Examples
