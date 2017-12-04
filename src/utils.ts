@@ -13,10 +13,10 @@ export class Utils {
 
   /**
    * Converts an ISO 8601 formatted string to a JS date object
-   * @param {string} isoDate - An ISO 8601 formatted date (i.e. '2015-12-30').  This date is assumed to be in UTC timezone
+   * @param {string} isoDateString - An ISO 8601 formatted date (i.e. '2015-12-30').  This date is assumed to be in UTC timezone
    */
-  public convertISODateToDate(isoDate: string) {
-    return new Date(new Date(isoDate));
+  public convertFromISODateString(isoDateString: string) {
+    return new Date(new Date(isoDateString));
   }
 
   /**
