@@ -1,9 +1,10 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "A read-only JSON / REST API to access YNAB budget data.",
+    "description":
+      "Our API uses a REST based design, leverages the JSON data format, and relies upon HTTPS for transport. We respond with meaningful HTTP response codes and if an error occurs, we include error details in the response body.  API Documentation is at https://api.youneedabudget.com",
     "version": "1.0.0",
-    "title": "YNAB API Explorer"
+    "title": "YNAB API Endpoints"
   },
   "basePath": "/papi/v1",
   "tags": [
@@ -11,28 +12,34 @@
       "name": "Budgets"
     },
     {
-      "name": "Accounts"
+      "name": "Accounts",
+      "description": "Accounts for a budget"
     },
     {
-      "name": "Category Groups"
+      "name": "Categories",
+      "description": "Categories for a budget"
     },
     {
-      "name": "Categories"
+      "name": "Payees",
+      "description": "Payees for a budget"
     },
     {
-      "name": "Payees"
+      "name": "Payee Locations",
+      "description":
+        "  When you enter a transaction and specify a payee on the YNAB mobile apps, the GPS coordinates for that location are stored, with your permission, so that the next time you are in the same place (like the Grocery store) we can pre-populate nearby payees for you!  It’s handy and saves you time.  This resource makes these locations available.  Locations will not be available for all payees."
     },
     {
-      "name": "Payee Locations"
+      "name": "Months",
+      "description":
+        "Each budget contains one or more months, which is where To be Budgeted, Age of Money and Category (budgeted / activity / balances) amounts are available."
     },
     {
-      "name": "Transactions"
+      "name": "Transactions",
+      "description": "Transactions for a budget"
     },
     {
-      "name": "Scheduled Transactions"
-    },
-    {
-      "name": "Months"
+      "name": "Scheduled Transactions",
+      "description": "Scheduled transactions for a budget"
     }
   ],
   "schemes": ["https"],
@@ -46,7 +53,7 @@
       "get": {
         "tags": ["Budgets"],
         "summary": "List budgets",
-        "description": "List all budgets\n",
+        "description": "Returns budgets list with summary information",
         "operationId": "getBudgets",
         "produces": ["application/json"],
         "parameters": [],
@@ -76,7 +83,8 @@
       "get": {
         "tags": ["Budgets"],
         "summary": "Single budget",
-        "description": "Single budget detail\n",
+        "description":
+          "Returns a single budget with all related entities.  This resource is effectively a full budget export.",
         "operationId": "getBudgetContents",
         "produces": ["application/json"],
         "parameters": [
@@ -122,8 +130,8 @@
     "/budgets/{budget_id}/accounts": {
       "get": {
         "tags": ["Accounts"],
-        "summary": "List accounts",
-        "description": "List all accounts\n",
+        "summary": "Account list",
+        "description": "Returns all accounts",
         "operationId": "getAccounts",
         "produces": ["application/json"],
         "parameters": [
@@ -162,7 +170,7 @@
       "get": {
         "tags": ["Accounts"],
         "summary": "Single account",
-        "description": "Find a single account by ID\n",
+        "description": "Returns a single account",
         "operationId": "getAccountById",
         "produces": ["application/json"],
         "parameters": [
@@ -208,8 +216,8 @@
     "/budgets/{budget_id}/categories": {
       "get": {
         "tags": ["Categories"],
-        "summary": "List category groups",
-        "description": "List all category groups\n",
+        "summary": "List categories",
+        "description": "Returns all categories grouped by category group",
         "operationId": "getCategories",
         "produces": ["application/json"],
         "parameters": [
@@ -224,13 +232,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Category groups",
+            "description": "Categories grouped by category group",
             "schema": {
               "$ref": "#/definitions/CategoriesResponse"
             }
           },
           "404": {
-            "description": "No category groups found",
+            "description": "No categories found",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -248,7 +256,7 @@
       "get": {
         "tags": ["Categories"],
         "summary": "Single category",
-        "description": "Find a category by ID\n",
+        "description": "Returns a single category",
         "operationId": "getCategoryById",
         "produces": ["application/json"],
         "parameters": [
@@ -295,7 +303,7 @@
       "get": {
         "tags": ["Payees"],
         "summary": "List payees",
-        "description": "List all payees\n",
+        "description": "Returns all payees",
         "operationId": "getPayees",
         "produces": ["application/json"],
         "parameters": [
@@ -334,7 +342,7 @@
       "get": {
         "tags": ["Payees"],
         "summary": "Single payee",
-        "description": "Find a single payee by ID\n",
+        "description": "Returns single payee",
         "operationId": "getPayeeById",
         "produces": ["application/json"],
         "parameters": [
@@ -381,7 +389,7 @@
       "get": {
         "tags": ["Payee Locations"],
         "summary": "List payee locations",
-        "description": "List all payee locations\n",
+        "description": "Returns all payee locations",
         "operationId": "getPayeeLocations",
         "produces": ["application/json"],
         "parameters": [
@@ -420,7 +428,7 @@
       "get": {
         "tags": ["Payee Locations"],
         "summary": "Single payee location",
-        "description": "Find a single payee location by ID\n",
+        "description": "Returns a single payee location",
         "operationId": "getPayeeLocationById",
         "produces": ["application/json"],
         "parameters": [
@@ -467,7 +475,7 @@
       "get": {
         "tags": ["Payee Locations"],
         "summary": "List locations for a payee",
-        "description": "List payee locations for a specified payee\n",
+        "description": "Returns all payee locations for the specified payee",
         "operationId": "getPayeeLocationsByPayee",
         "produces": ["application/json"],
         "parameters": [
@@ -510,11 +518,98 @@
         }
       }
     },
+    "/budgets/{budget_id}/months": {
+      "get": {
+        "tags": ["Months"],
+        "summary": "List budget months",
+        "description": "Returns all budget months",
+        "operationId": "getBudgetMonths",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Budget months",
+            "schema": {
+              "$ref": "#/definitions/MonthSummariesResponse"
+            }
+          },
+          "404": {
+            "description": "No budget months found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/months/{month}": {
+      "get": {
+        "tags": ["Months"],
+        "summary": "Single budget month",
+        "description": "Retuens a single budget month",
+        "operationId": "getBudgetMonth",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description":
+              "The budget month.  \"current\" can also be used to specify the current calendar month (UTC).",
+            "required": true,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Budget month detail",
+            "schema": {
+              "$ref": "#/definitions/MonthDetailResponse"
+            }
+          },
+          "404": {
+            "description": "Budget month not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/budgets/{budget_id}/transactions": {
       "get": {
         "tags": ["Transactions"],
         "summary": "List transactions",
-        "description": "List all transactions\n",
+        "description": "Returns all budget transactions",
         "operationId": "getTransactions",
         "produces": ["application/json"],
         "parameters": [
@@ -561,7 +656,7 @@
       "get": {
         "tags": ["Transactions"],
         "summary": "List account transactions",
-        "description": "List transactions for an account\n",
+        "description": "Returns all transactions for a specified account",
         "operationId": "getTransactionsByAccount",
         "produces": ["application/json"],
         "parameters": [
@@ -616,7 +711,7 @@
       "get": {
         "tags": ["Transactions"],
         "summary": "List category transactions",
-        "description": "List transactions for a category\n",
+        "description": "Returns all transactions for a specified category",
         "operationId": "getTransactionsByCategory",
         "produces": ["application/json"],
         "parameters": [
@@ -671,7 +766,7 @@
       "get": {
         "tags": ["Transactions"],
         "summary": "Single transaction",
-        "description": "Find a single transaction by ID\n",
+        "description": "Returns a single transaction",
         "operationId": "getTransactionsById",
         "produces": ["application/json"],
         "parameters": [
@@ -718,7 +813,7 @@
       "get": {
         "tags": ["Scheduled Transactions"],
         "summary": "List scheduled transactions",
-        "description": "List all scheduled transactions\n",
+        "description": "Returns all scheduled transactions",
         "operationId": "getScheduledTransactions",
         "produces": ["application/json"],
         "parameters": [
@@ -757,7 +852,7 @@
       "get": {
         "tags": ["Scheduled Transactions"],
         "summary": "Single scheduled transaction",
-        "description": "Find a single scheduled transaction by ID\n",
+        "description": "Returns a single scheduled transaction",
         "operationId": "getScheduledTransactionById",
         "produces": ["application/json"],
         "parameters": [
@@ -787,93 +882,6 @@
           },
           "404": {
             "description": "Scheduled transaction not found",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "default": {
-            "description": "Error",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/budgets/{budget_id}/months": {
-      "get": {
-        "tags": ["Months"],
-        "summary": "List budget months",
-        "description": "List all budget months\n",
-        "operationId": "getBudgetMonths",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "budget_id",
-            "in": "path",
-            "description": "ID of budget",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Budget months",
-            "schema": {
-              "$ref": "#/definitions/MonthSummariesResponse"
-            }
-          },
-          "404": {
-            "description": "No budget months found",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "default": {
-            "description": "Error",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/budgets/{budget_id}/months/{month}": {
-      "get": {
-        "tags": ["Months"],
-        "summary": "Single budget month",
-        "description": "Find a single budget month\n",
-        "operationId": "getBudgetMonth",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "budget_id",
-            "in": "path",
-            "description": "ID of budget",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "month",
-            "in": "path",
-            "description":
-              "The budget month.  \"current\" can also be used to specify the current calendar month (UTC).",
-            "required": true,
-            "type": "string",
-            "format": "date"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Budget month detail",
-            "schema": {
-              "$ref": "#/definitions/MonthDetailResponse"
-            }
-          },
-          "404": {
-            "description": "Budget month not found",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1152,7 +1160,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millicents format"
+            "The current balance of the account in millidollars format"
         }
       }
     },
@@ -1264,15 +1272,17 @@
         },
         "budgeted": {
           "type": "number",
-          "description": "Budgeted amount in current month in millicents format"
+          "description":
+            "Budgeted amount in current month in millidollars format"
         },
         "activity": {
           "type": "number",
-          "description": "Activity amount in current month in millicents format"
+          "description":
+            "Activity amount in current month in millidollars format"
         },
         "balance": {
           "type": "number",
-          "description": "Balance in current month in millicents format"
+          "description": "Balance in current month in millidollars format"
         }
       }
     },
@@ -1459,7 +1469,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millicents format"
+            "The current balance of the account in millidollars format"
         },
         "memo": {
           "type": "string"
@@ -1538,7 +1548,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millicents format"
+            "The current balance of the account in millidollars format"
         },
         "memo": {
           "type": "string"
@@ -1630,7 +1640,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millicents format"
+            "The current balance of the account in millidollars format"
         },
         "memo": {
           "type": "string"
@@ -1702,7 +1712,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millicents format"
+            "The current balance of the account in millidollars format"
         },
         "memo": {
           "type": "string"
@@ -1777,7 +1787,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in millicents format"
+            "The current balance of the account in millidollars format"
         },
         "age_of_money": {
           "type": "number"
