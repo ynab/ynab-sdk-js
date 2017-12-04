@@ -25,7 +25,7 @@ if (!fs.existsSync(existingSdkFolder)) {
 
 // Download latest spec from the API
 eval(`rm -f ${specFilename}`);
-eval(`wget https://api.youneedabudget.com/papi/${specFilename}`);
+eval(`wget https://y-fix-millunits.herokuapp.com/papi/${specFilename}`);
 
 // Replace nullable types defined as i.e. ["string", "null"] in the spec to simply "string" as the generator does not understand the nullable format.
 // Examples:
