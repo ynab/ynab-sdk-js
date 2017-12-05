@@ -1,5 +1,5 @@
 {
-  "name": "ynab-sdk-js",
+  "name": "ynab-api",
   "version": "0.1.0",
   "description": "YNAB API Javascript (Node) Library",
   "author": "You Need a Budget, LLC",
