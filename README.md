@@ -116,3 +116,9 @@ To run tests:
 ```
 npm test
 ```
+
+## License
+
+Copyright (c) 2018 You Need A Budget, LLC
+
+Licensed under the Apache-2.0 license
