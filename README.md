@@ -119,6 +119,6 @@ npm test
 
 ## License
 
-Copyright (c) 2017 You Need A Budget, LLC
+Copyright (c) 2018 You Need A Budget, LLC
 
 Licensed under the Apache-2.0 license
