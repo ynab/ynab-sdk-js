@@ -1525,7 +1525,7 @@ export declare const MonthsApiFactory: (configuration?: Configuration) => {
  */
 export declare class MonthsApi extends BaseAPI {
     /**
-     * Retuens a single budget month
+     * Returns a single budget month
      * @summary Single budget month
      * @param {string} budgetId - ID of budget
      * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).

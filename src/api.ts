@@ -2066,7 +2066,7 @@ export class CategoriesApi extends BaseAPI {
 export const MonthsApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Retuens a single budget month
+         * Returns a single budget month
          * @summary Single budget month
          * @param {string} budgetId - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -2161,7 +2161,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
 export const MonthsApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Retuens a single budget month
+         * Returns a single budget month
          * @summary Single budget month
          * @param {string} budgetId - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -2213,7 +2213,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
 export const MonthsApiFactory = function (configuration?: Configuration) {
     return {
         /**
-         * Retuens a single budget month
+         * Returns a single budget month
          * @summary Single budget month
          * @param {string} budgetId - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
@@ -2244,7 +2244,7 @@ export const MonthsApiFactory = function (configuration?: Configuration) {
  */
 export class MonthsApi extends BaseAPI {
     /**
-     * Retuens a single budget month
+     * Returns a single budget month
      * @summary Single budget month
      * @param {string} budgetId - ID of budget
      * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
