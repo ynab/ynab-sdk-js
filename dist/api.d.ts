@@ -90,7 +90,7 @@ export interface Account {
      */
     note: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof Account
      */
@@ -293,19 +293,19 @@ export interface Category {
      */
     note: string;
     /**
-     * Budgeted amount in current month in millidollars format
+     * Budgeted amount in current month in milliunits format
      * @type {number}
      * @memberof Category
      */
     budgeted: number;
     /**
-     * Activity amount in current month in millidollars format
+     * Activity amount in current month in milliunits format
      * @type {number}
      * @memberof Category
      */
     activity: number;
     /**
-     * Balance in current month in millidollars format
+     * Balance in current month in milliunits format
      * @type {number}
      * @memberof Category
      */
@@ -510,7 +510,7 @@ export interface MonthSummary {
      */
     note: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof MonthSummary
      */
@@ -701,7 +701,7 @@ export interface ScheduledSubTransaction {
      */
     scheduled_transaction_id: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof ScheduledSubTransaction
      */
@@ -808,7 +808,7 @@ export interface ScheduledTransactionSummary {
      */
     frequency: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof ScheduledTransactionSummary
      */
@@ -869,7 +869,7 @@ export interface SubTransaction {
      */
     transaction_id: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof SubTransaction
      */
@@ -970,7 +970,7 @@ export interface TransactionSummary {
      */
     date: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof TransactionSummary
      */
@@ -1171,7 +1171,7 @@ export interface MonthDetail {
      */
     note: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof MonthDetail
      */
@@ -1214,7 +1214,7 @@ export interface ScheduledTransactionDetail {
      */
     frequency: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof ScheduledTransactionDetail
      */
@@ -1281,7 +1281,7 @@ export interface TransactionDetail {
      */
     date: string;
     /**
-     * The current balance of the account in millidollars format
+     * The current balance of the account in milliunits format
      * @type {number}
      * @memberof TransactionDetail
      */
