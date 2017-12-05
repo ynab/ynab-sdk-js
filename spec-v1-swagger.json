@@ -561,7 +561,7 @@
       "get": {
         "tags": ["Months"],
         "summary": "Single budget month",
-        "description": "Retuens a single budget month",
+        "description": "Returns a single budget month",
         "operationId": "getBudgetMonth",
         "produces": ["application/json"],
         "parameters": [
