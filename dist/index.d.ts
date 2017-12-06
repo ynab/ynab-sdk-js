@@ -2,9 +2,9 @@ import { Configuration } from "./configuration";
 import { Utils } from "./utils";
 import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLocationsApi, TransactionsApi, ScheduledTransactionsApi } from "./api";
 /**
- * ynabApi is the entrypoint to the YNAB API client.
+ * The YNAB API client
  */
-declare class ynabApi {
+declare class YnabApi {
     protected _configuration: Configuration;
     /**
      *
@@ -12,23 +12,50 @@ declare class ynabApi {
      * @param endpointUrl The API endpoint URL (Optional)
      */
     constructor(accessToken: string, endpointUrl?: string);
-    protected _accounts: AccountsApi;
-    readonly accounts: AccountsApi;
     protected _budgets: BudgetsApi;
+    /**
+     * /budgets endpoints interface
+     */
     readonly budgets: BudgetsApi;
+    protected _accounts: AccountsApi;
+    /**
+     * /budgets/{budget_id}/accounts endpoints interface
+     */
+    readonly accounts: AccountsApi;
     protected _categories: CategoriesApi;
+    /**
+     * /budgets/{budget_id}/categories endpoints interface
+     */
     readonly categories: CategoriesApi;
     protected _months: MonthsApi;
+    /**
+     * /budgets/{budget_id}/months endpoints interface
+     */
     readonly months: MonthsApi;
     protected _payees: PayeesApi;
+    /**
+     * /budgets/{budget_id}/payees endpoints interface
+     */
     readonly payees: PayeesApi;
     protected _payeeLocations: PayeeLocationsApi;
+    /**
+     * /budgets/{budget_id}/payee_locations endpoints interface
+     */
     readonly payeeLocations: PayeeLocationsApi;
     protected _transactions: TransactionsApi;
+    /**
+     * /budgets/{budget_id}/transactions endpoints interface
+     */
     readonly transactions: TransactionsApi;
     protected _scheduledTransactions: ScheduledTransactionsApi;
+    /**
+     * /budgets/{budget_id}/scheduled_transactions endpoints interface
+     */
     readonly scheduledTransactions: ScheduledTransactionsApi;
     protected _utils: Utils;
+    /**
+     * Utilities
+     */
     readonly utils: Utils;
 }
-export = ynabApi;
+export = YnabApi;

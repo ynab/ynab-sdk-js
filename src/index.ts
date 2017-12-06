@@ -12,9 +12,9 @@ import {
 } from "./api";
 
 /**
- * ynabApi is the entrypoint to the YNAB API client.
+ * The YNAB API client
  */
-class ynabApi {
+class YnabApi {
   protected _configuration: Configuration;
 
   /**
@@ -29,15 +29,10 @@ class ynabApi {
     this._configuration = new Configuration(accessToken, endpointUrl);
   }
 
-  protected _accounts: AccountsApi;
-  public get accounts(): AccountsApi {
-    if (!this._accounts) {
-      this._accounts = new AccountsApi(this._configuration);
-    }
-    return this._accounts;
-  }
-
   protected _budgets: BudgetsApi;
+  /**
+   * /budgets endpoints interface
+   */
   public get budgets(): BudgetsApi {
     if (!this._budgets) {
       this._budgets = new BudgetsApi(this._configuration);
@@ -45,7 +40,21 @@ class ynabApi {
     return this._budgets;
   }
 
+  protected _accounts: AccountsApi;
+  /**
+   * /budgets/{budget_id}/accounts endpoints interface
+   */
+  public get accounts(): AccountsApi {
+    if (!this._accounts) {
+      this._accounts = new AccountsApi(this._configuration);
+    }
+    return this._accounts;
+  }
+
   protected _categories: CategoriesApi;
+  /**
+   * /budgets/{budget_id}/categories endpoints interface
+   */
   public get categories(): CategoriesApi {
     if (!this._categories) {
       this._categories = new CategoriesApi(this._configuration);
@@ -54,6 +63,9 @@ class ynabApi {
   }
 
   protected _months: MonthsApi;
+  /**
+   * /budgets/{budget_id}/months endpoints interface
+   */
   public get months(): MonthsApi {
     if (!this._months) {
       this._months = new MonthsApi(this._configuration);
@@ -62,6 +74,9 @@ class ynabApi {
   }
 
   protected _payees: PayeesApi;
+  /**
+   * /budgets/{budget_id}/payees endpoints interface
+   */
   public get payees(): PayeesApi {
     if (!this._payees) {
       this._payees = new PayeesApi(this._configuration);
@@ -71,6 +86,9 @@ class ynabApi {
   }
 
   protected _payeeLocations: PayeeLocationsApi;
+  /**
+   * /budgets/{budget_id}/payee_locations endpoints interface
+   */
   public get payeeLocations(): PayeeLocationsApi {
     if (!this._payeeLocations) {
       this._payeeLocations = new PayeeLocationsApi(this._configuration);
@@ -79,6 +97,9 @@ class ynabApi {
   }
 
   protected _transactions: TransactionsApi;
+  /**
+   * /budgets/{budget_id}/transactions endpoints interface
+   */
   public get transactions(): TransactionsApi {
     if (!this._transactions) {
       this._transactions = new TransactionsApi(this._configuration);
@@ -87,6 +108,9 @@ class ynabApi {
   }
 
   protected _scheduledTransactions: ScheduledTransactionsApi;
+  /**
+   * /budgets/{budget_id}/scheduled_transactions endpoints interface
+   */
   public get scheduledTransactions(): ScheduledTransactionsApi {
     if (!this._scheduledTransactions) {
       this._scheduledTransactions = new ScheduledTransactionsApi(
@@ -97,6 +121,9 @@ class ynabApi {
   }
 
   protected _utils: Utils;
+  /**
+   * Utilities
+   */
   public get utils(): Utils {
     if (!this._utils) {
       return new Utils();
@@ -104,4 +131,4 @@ class ynabApi {
   }
 }
 
-export = ynabApi;
+export = YnabApi;
