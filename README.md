@@ -11,7 +11,7 @@ overview of using the API and a complete list of the available resources.
 ## Installation
 
 ```
-npm install ynab-sdk-js
+npm install ynab
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ the [My Account](https://app.youneedabudget.com/settings) area of the YNAB web
 application.
 
 ```
-const ynabApi = require("ynab-sdk-js");
+const ynabApi = require("ynab");
 const accessToken = "bf0cbb14b4330e9d5f4312a646eb0115b80a169ad1425d3de12e66a389eaafe2";
 const ynab = new ynabApi(accessToken);
 

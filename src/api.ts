@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const YNAB_CLIENT_LIB_VERSION = "ynab-sdk-js-0.1.0";
+const YNAB_CLIENT_LIB_VERSION = "js/0.1.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"

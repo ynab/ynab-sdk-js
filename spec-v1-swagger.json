@@ -6,6 +6,8 @@
     "version": "1.0.0",
     "title": "YNAB API Endpoints"
   },
+  "schemes": ["https"],
+  "host": "api.youneedabudget.com",
   "basePath": "/papi/v1",
   "tags": [
     {
@@ -42,7 +44,6 @@
       "description": "Scheduled transactions for a budget"
     }
   ],
-  "schemes": ["https"],
   "security": [
     {
       "bearer": []
