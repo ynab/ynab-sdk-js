@@ -1,4 +1,4 @@
-import ynabApi = require("../../dist/index.js");
+import ynabApi = require("../../src/index.js");
 import * as yargs from "yargs";
 import * as process from "process";
 
@@ -30,13 +30,7 @@ BUDGET LIST
 ===========`);
 
     for (let budget of budgets) {
-      console.log(`
-------------------
-               ID: ${budget.id}
-             Name: ${budget.name}
- Last Accessed On: ${budget.last_accessed_on}
-
-`);
+      console.log(`[id: ${budget.id}, name: ${budget.name}, last_accessed_on: ${budget.last_accessed_on}]`)
     }
   } catch (e) {
     console.log(`ERROR: ${JSON.stringify(e)}`);

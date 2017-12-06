@@ -1,6 +1,5 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../../dist/index.js");
+const ynabApi = require("../../src/index.js");
 const yargs = require("yargs");
 const process = require("process");
 const argv = yargs
@@ -27,13 +26,7 @@ async function printBudgetList() {
 BUDGET LIST
 ===========`);
         for (let budget of budgets) {
-            console.log(`
-------------------
-               ID: ${budget.id}
-             Name: ${budget.name}
- Last Accessed On: ${budget.last_accessed_on}
-
-`);
+            console.log(`[id: ${budget.id}, name: ${budget.name}, last_accessed_on: ${budget.last_accessed_on}]`);
         }
     }
     catch (e) {

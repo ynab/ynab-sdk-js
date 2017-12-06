@@ -1,10 +1,6 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ynabApi = require("../../dist/index.js");
 const _ = require("lodash");
-const DateWithoutTime_1 = require("./DateWithoutTime");
-const Validator = require("swagger-model-validator");
-let validator = new Validator();
 async function main() {
     try {
         // You can get your API key from the My Account section of YNAB
@@ -28,24 +24,21 @@ async function main() {
                 }
             }
             if (!budgetToFetch) {
-                throw new Error(`Could not find budget named ${budgetNameToFetch}`);
+                throw new Error(`Could not find budget named '${budgetNameToFetch}'`);
             }
             console.log(`Fetching contents of budget: ${budgetToFetch.name} - ${budgetToFetch.id}`);
             const budgetContents = await ynab.budgets.getBudgetContents(budgetToFetch.id);
             const categories = budgetContents.data.budget.categories;
             console.log(`Here is the budget data for the current month: `);
-            const currentMonth = DateWithoutTime_1.DateWithoutTime.createForCurrentMonth();
-            const monthDetailForCurrentMonth = _.find(budgetContents.data.budget.months, (month) => {
-                const monthDate = DateWithoutTime_1.DateWithoutTime.createFromISOString(month.month);
-                if (monthDate.equalsByMonth(currentMonth)) {
-                    return true;
-                }
+            const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
+            const monthDetailForCurrentMonth = _.find(budgetContents.data.budget.months, m => {
+                return m.month == currentMonthISO;
             });
             if (monthDetailForCurrentMonth) {
                 console.log(`${JSON.stringify(monthDetailForCurrentMonth, null, 2)}`);
             }
             else {
-                console.error(`Could not find monthDetail for the current month: ${currentMonth}`);
+                console.error(`Could not find monthDetail for the current month: ${currentMonthISO}`);
             }
             let lastServerKnowledge = budgetContents.data.server_knowledge;
             function queueUpPoll() {

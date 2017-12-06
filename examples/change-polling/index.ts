@@ -1,9 +1,6 @@
 import ynabApi = require("../../dist/index.js");
-import { ErrorResponse, BudgetSummary, MonthDetail } from "../../dist/api.js";
+import { BudgetSummary, MonthDetail } from "../../dist/api.js";
 import * as _ from "lodash";
-import { DateWithoutTime } from "./DateWithoutTime";
-const Validator = require("swagger-model-validator");
-let validator = new Validator();
 
 async function main() {
   try {
@@ -33,7 +30,7 @@ async function main() {
         }
       }
       if (!budgetToFetch) {
-        throw new Error(`Could not find budget named ${budgetNameToFetch}`);
+        throw new Error(`Could not find budget named '${budgetNameToFetch}'`);
       }
       console.log(
         `Fetching contents of budget: ${budgetToFetch.name} - ${
@@ -47,21 +44,19 @@ async function main() {
       const categories = budgetContents.data.budget.categories;
 
       console.log(`Here is the budget data for the current month: `);
-      const currentMonth = DateWithoutTime.createForCurrentMonth();
+      const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
       const monthDetailForCurrentMonth = _.find(
         budgetContents.data.budget.months,
-        (month: MonthDetail) => {
-          const monthDate = DateWithoutTime.createFromISOString(month.month);
-          if (monthDate.equalsByMonth(currentMonth)) {
-            return true;
-          }
+        m => {
+          return m.month == currentMonthISO;
         }
       );
+
       if (monthDetailForCurrentMonth) {
         console.log(`${JSON.stringify(monthDetailForCurrentMonth, null, 2)}`);
       } else {
         console.error(
-          `Could not find monthDetail for the current month: ${currentMonth}`
+          `Could not find monthDetail for the current month: ${currentMonthISO}`
         );
       }
 

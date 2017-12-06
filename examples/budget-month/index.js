@@ -1,16 +1,29 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ynabApi = require("../../dist/index.js");
-const accessToken = "eca4740bef0a9510808b67c2cce4ac5cc8645a8bec389f5347f76dd0d819f11c";
-const budgetId = "38b2e846-411f-4b32-9764-a9bf8cad33b2";
-const ynab = new ynabApi(accessToken);
+const yargs = require("yargs");
+const argv = yargs
+    .env("YNAB_API")
+    .option("accessToken", { alias: "access_token" }).argv;
+// You can get your API key from the My Account section of YNAB
+if (!argv.accessToken) {
+    console.warn(`
+'access_token' argument is required!  You can pass it in one of the following ways:
+  --access_token=123 CLI argument
+  YNAB_API_ACCESS_TOKEN environment variable
+`);
+    process.exit(1);
+}
+const ynab = new ynabApi(argv.accessToken);
 ynab.months
-    .getBudgetMonth(budgetId, ynab.utils.getCurrentMonthInISOFormat())
+    .getBudgetMonth("f968197b-2863-473a-8974-c2406dbe7f0d", ynab.utils.getCurrentMonthInISOFormat())
     .then(response => {
     let budgetMonth = response.data.month;
     console.log(`
+============
+BUDGET MONTH
+============
              Month: ${budgetMonth.month}
-              Note: ${budgetMonth.note}
+              Note: ${budgetMonth.note || ""}
       Age Of Money: ${budgetMonth.age_of_money}
  Category Balances:`);
     for (let category of budgetMonth.categories) {
