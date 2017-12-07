@@ -10,7 +10,7 @@ overview of using the API and a complete list of the available resources.
 
 ## Installation
 
-```
+```shell
 npm install ynab
 ```
 
@@ -21,7 +21,7 @@ To use this client, you must
 the [My Account](https://app.youneedabudget.com/settings) area of the YNAB web
 application.
 
-```
+```typescript
 const ynabApi = require("ynab");
 const accessToken = "bf0cbb14b4330e9d5f4312a646eb0115b80a169ad1425d3de12e66a389eaafe2";
 const ynab = new ynabApi(accessToken);
@@ -42,7 +42,7 @@ listBudgets();
 If a response is returned with a code >= 300, instead of returning the response,
 the response will be "thrown" as an error to be caught.
 
-```
+```typescript
 const ynabApi = require("ynab-sdk-js");
 const accessToken = "invalid_token";
 const ynab = new ynabApi(accessToken);
@@ -69,7 +69,7 @@ There are several utilities available on the `utilties` object to make working
 with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
 easier.
 
-```
+```typescript
 /**
   * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
   */
@@ -91,7 +91,7 @@ convertFromISODateString(isoDateString: string): Date;
 
 #### Examples
 
-```
+```typescript
 ynab.utils.getCurrentMonthInISOFormat(); // > "2015-12-01"
 ynab.utils.convertFromISODateString("2015-12-30"); // > "Wed Nov 29 2017 12:35:54 GMT-0500 (EST)"
 ynab.utils.convertMilliUnitsToCurrencyAmount(239320, 2); // > 239.32
@@ -106,14 +106,14 @@ folder for example usage scenarios.
 
 To build and compile:
 
-```
+```shell
 npm install
 npm run build
 ```
 
 To run tests:
 
-```
+```shell
 npm test
 ```
 
