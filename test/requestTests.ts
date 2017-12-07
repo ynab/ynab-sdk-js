@@ -432,11 +432,3 @@ function getUTCDate(year: number, month: number, date: number): Date {
   return new Date(`${year}-${month}-${date}`);
 }
 
-function convertDateToFullDateStringFormat(date: Date): string {
-  if (date == null) {
-    return null;
-  } else {
-    // -> 2017-11-27
-    return date.toISOString().substr(0, 10);
-  }
-}
