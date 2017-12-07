@@ -10,7 +10,8 @@ cd(`${__dirname}`);
 const thisFolder = $("pwd");
 const package = require("../package.json");
 const specFilename = `spec-v1-swagger.json`;
-const swaggerGeneratedOutputFolder = `out/tmp/swagger-generated-typescript-fetch`;
+const tempFolder = `out`;
+const swaggerGeneratedOutputFolder = `${tempFolder}/out/swagger-generated-typescript-fetch`;
 const apiTemplateFilename = `swagger-templates/typescript-fetch/api.mustache`;
 const existingSdkFolder = `../`;
 
@@ -37,14 +38,12 @@ eval(
   }`
 );
 
-// We write out the swagger config file so we can pass these parameters down to the generator:
-swaggerConfig = {
-  npmName: package.name,
-  npmVersion: package.version,
-  supportsES6: true
-};
+// Update config file with latest package info
+const swaggerConfigFilename = "./swagger-config-typescript.json";
+swaggerConfig = require(swaggerConfigFilename);
+swaggerConfig.npmName = package.name;
+swaggerConfig.npmVersion = package.version;
 
-const swaggerConfigFilename = "swagger-config-typescript.json";
 fs.writeFileSync(swaggerConfigFilename, JSON.stringify(swaggerConfig, null, 2));
 
 // Share the current folder with docker, and then run the generator, pointing to the given template
@@ -59,9 +58,6 @@ eval(`docker run --rm -v ${
     -t "/local/swagger-templates/typescript-fetch" \
     -o "/local/${swaggerGeneratedOutputFolder}" `);
 
-// No need for this file anymore
-fs.unlinkSync(swaggerConfigFilename);
-
 // Now copy over the appropriate generated files to our existing SDK folder
 const sdkSrcOutputFolder = `${existingSdkFolder}/src`;
 const filesToCopy = ["api.ts", "configuration.ts"];
@@ -71,10 +67,8 @@ for (let tempFile of filesToCopy) {
   );
 }
 
-// The default code-generator called this file custom.d.ts, but I prefer to call it portable-fetch.d.ts, as it's more descriptive
-`cp "${swaggerGeneratedOutputFolder}/custom.d.ts "${
-  sdkSrcOutputFolder
-}/portable-fetch.d.ts"`;
+// Delete the tmp folder
+eval(`rm -r ${tempFolder}`);
 
-// Move this up to the root level
+// Move the spec up to the root level
 eval(`mv -f ${specFilename} ../`);
