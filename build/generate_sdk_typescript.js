@@ -55,7 +55,7 @@ eval(`docker run --rm -v ${
     -i "/local/${specFilename}" \
     -l "typescript-fetch" \
     -c "/local/${swaggerConfigFilename}" \
-    -t "/local/swagger-templates/typescript-fetch" \
+    -t "/local/swagger-templates" \
     -o "/local/${swaggerGeneratedOutputFolder}" `);
 
 // Now copy over the appropriate generated files to our existing SDK folder
