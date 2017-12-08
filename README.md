@@ -56,8 +56,8 @@ const budgetsResponse = ynab.budgets.getBudgets()
     // {
     //   error: {
     //    id: "401",
-    //    name: "Unauthorized",
-    //    description: "unauthorized"
+    //    name: "unauthorized",
+    //    detail: "Unauthorized"
     //   }
     // }
   });
@@ -87,14 +87,6 @@ convertFromISODateString(isoDateString: string): Date;
    * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
    */
   public convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
-```
-
-#### Examples
-
-```typescript
-ynab.utils.getCurrentMonthInISOFormat(); // > "2015-12-01"
-ynab.utils.convertFromISODateString("2015-12-30"); // > "Wed Nov 29 2017 12:35:54 GMT-0500 (EST)"
-ynab.utils.convertMilliUnitsToCurrencyAmount(239320, 2); // > 239.32
 ```
 
 ## Examples
