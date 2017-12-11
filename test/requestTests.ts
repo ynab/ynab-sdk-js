@@ -54,7 +54,7 @@ describe("API requests", () => {
       });
       try {
         const lastKnowledgeOfServer = 5;
-        let actualResponse = await ynab.budgets.getBudgetContents(
+        let actualResponse = await ynab.budgets.getBudgetById(
           budgetId,
           lastKnowledgeOfServer
         );
@@ -79,7 +79,7 @@ describe("API requests", () => {
 
       const lastKnowledgeOfServer = 5;
       const getBudgetsResponse = await callApiAndVerifyResponse(
-        () => ynab.budgets.getBudgetContents(budgetId, lastKnowledgeOfServer),
+        () => ynab.budgets.getBudgetById(budgetId, lastKnowledgeOfServer),
         factories.budgetDetailResponseFactory.build()
       );
       verifyRequestDetails(

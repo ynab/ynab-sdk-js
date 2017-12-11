@@ -27,7 +27,7 @@ async function main() {
                 throw new Error(`Could not find budget named '${budgetNameToFetch}'`);
             }
             console.log(`Fetching contents of budget: ${budgetToFetch.name} - ${budgetToFetch.id}`);
-            const budgetContents = await ynab.budgets.getBudgetContents(budgetToFetch.id);
+            const budgetContents = await ynab.budgets.getBudgetById(budgetToFetch.id);
             const categories = budgetContents.data.budget.categories;
             console.log(`Here is the budget data for the current month: `);
             const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
@@ -46,7 +46,7 @@ async function main() {
                 console.log(`Will poll for changes in ${pollWaitTimeInMs}ms...`);
                 setTimeout(async () => {
                     console.log("Polling for changes now...");
-                    const budgetChangesResponse = await ynab.budgets.getBudgetContents(budgetToFetch.id, lastServerKnowledge);
+                    const budgetChangesResponse = await ynab.budgets.getBudgetById(budgetToFetch.id, lastServerKnowledge);
                     console.log(`Current server knowledge is now : ${budgetChangesResponse.data.server_knowledge}`);
                     if (budgetChangesResponse.data.server_knowledge > lastServerKnowledge) {
                         lastServerKnowledge = budgetChangesResponse.data.server_knowledge;

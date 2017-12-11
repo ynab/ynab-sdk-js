@@ -112,7 +112,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    type: string;
+    type: Account.TypeEnum;
     /**
      * Whether this account is on budget or not
      * @type {boolean}
@@ -137,6 +137,22 @@ export interface Account {
      * @memberof Account
      */
     balance: number;
+}
+
+/**
+ * @export
+ * @namespace Account
+ */
+export namespace Account {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        Checking = <any> 'Checking',
+        Savings = <any> 'Savings',
+        CreditCard = <any> 'CreditCard'
+    }
 }
 
 /**
@@ -484,7 +500,7 @@ export interface ErrorDetail {
      * @type {string}
      * @memberof ErrorDetail
      */
-    description: string;
+    detail: string;
 }
 
 /**
@@ -778,7 +794,7 @@ export interface ScheduledSubTransaction {
      */
     scheduled_transaction_id: string;
     /**
-     * The current balance of the account in milliunits format
+     * The scheduled sub-transaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledSubTransaction
      */
@@ -888,9 +904,9 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    frequency: string;
+    frequency: ScheduledTransactionSummary.FrequencyEnum;
     /**
-     * The current balance of the account in milliunits format
+     * The scheduled transaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledTransactionSummary
      */
@@ -934,6 +950,32 @@ export interface ScheduledTransactionSummary {
 }
 
 /**
+ * @export
+ * @namespace ScheduledTransactionSummary
+ */
+export namespace ScheduledTransactionSummary {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FrequencyEnum {
+        Never = <any> 'Never',
+        Daily = <any> 'Daily',
+        Weekly = <any> 'Weekly',
+        EveryOtherWeek = <any> 'EveryOtherWeek',
+        TwiceAMonth = <any> 'TwiceAMonth',
+        Every4Weeks = <any> 'Every4Weeks',
+        Monthly = <any> 'Monthly',
+        EveryOtherMonth = <any> 'EveryOtherMonth',
+        Every3Months = <any> 'Every3Months',
+        Every4Months = <any> 'Every4Months',
+        TwiceAYear = <any> 'TwiceAYear',
+        Yearly = <any> 'Yearly',
+        EveryOtherYear = <any> 'EveryOtherYear'
+    }
+}
+
+/**
  * 
  * @export
  * @interface SubTransaction
@@ -952,7 +994,7 @@ export interface SubTransaction {
      */
     transaction_id: string;
     /**
-     * The current balance of the account in milliunits format
+     * The sub-transaction amount in milliunits format
      * @type {number}
      * @memberof SubTransaction
      */
@@ -1058,7 +1100,7 @@ export interface TransactionSummary {
      */
     date: string;
     /**
-     * The current balance of the account in milliunits format
+     * The transaction amount in milliunits format
      * @type {number}
      * @memberof TransactionSummary
      */
@@ -1074,7 +1116,7 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    cleared: string;
+    cleared: TransactionSummary.ClearedEnum;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -1082,7 +1124,7 @@ export interface TransactionSummary {
      */
     approved: boolean;
     /**
-     * Whether or not the transaction is approved
+     * 
      * @type {string}
      * @memberof TransactionSummary
      */
@@ -1111,6 +1153,22 @@ export interface TransactionSummary {
      * @memberof TransactionSummary
      */
     transfer_account_id: string;
+}
+
+/**
+ * @export
+ * @namespace TransactionSummary
+ */
+export namespace TransactionSummary {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ClearedEnum {
+        Cleared = <any> 'Cleared',
+        Uncleared = <any> 'Uncleared',
+        Reconciled = <any> 'Reconciled'
+    }
 }
 
 /**
@@ -1304,9 +1362,9 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    frequency: string;
+    frequency: ScheduledTransactionDetail.FrequencyEnum;
     /**
-     * The current balance of the account in milliunits format
+     * The scheduled transaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledTransactionDetail
      */
@@ -1356,6 +1414,32 @@ export interface ScheduledTransactionDetail {
 }
 
 /**
+ * @export
+ * @namespace ScheduledTransactionDetail
+ */
+export namespace ScheduledTransactionDetail {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FrequencyEnum {
+        Never = <any> 'Never',
+        Daily = <any> 'Daily',
+        Weekly = <any> 'Weekly',
+        EveryOtherWeek = <any> 'EveryOtherWeek',
+        TwiceAMonth = <any> 'TwiceAMonth',
+        Every4Weeks = <any> 'Every4Weeks',
+        Monthly = <any> 'Monthly',
+        EveryOtherMonth = <any> 'EveryOtherMonth',
+        Every3Months = <any> 'Every3Months',
+        Every4Months = <any> 'Every4Months',
+        TwiceAYear = <any> 'TwiceAYear',
+        Yearly = <any> 'Yearly',
+        EveryOtherYear = <any> 'EveryOtherYear'
+    }
+}
+
+/**
  * 
  * @export
  * @interface TransactionDetail
@@ -1374,7 +1458,7 @@ export interface TransactionDetail {
      */
     date: string;
     /**
-     * The current balance of the account in milliunits format
+     * The transaction amount in milliunits format
      * @type {number}
      * @memberof TransactionDetail
      */
@@ -1390,7 +1474,7 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    cleared: string;
+    cleared: TransactionDetail.ClearedEnum;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -1398,7 +1482,7 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     * Whether or not the transaction is approved
+     * 
      * @type {string}
      * @memberof TransactionDetail
      */
@@ -1433,6 +1517,22 @@ export interface TransactionDetail {
      * @memberof TransactionDetail
      */
     subtransactions: Array<SubTransaction>;
+}
+
+/**
+ * @export
+ * @namespace TransactionDetail
+ */
+export namespace TransactionDetail {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ClearedEnum {
+        Cleared = <any> 'Cleared',
+        Uncleared = <any> 'Uncleared',
+        Reconciled = <any> 'Reconciled'
+    }
 }
 
 
@@ -1661,10 +1761,10 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options: any = {}): FetchArgs {
+        getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getBudgetContents.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getBudgetById.');
             }
             const localVarPath = `/budgets/{budget_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
@@ -1749,8 +1849,8 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse> {
-            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options);
+        getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1800,8 +1900,8 @@ export const BudgetsApiFactory = function (configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
-            return BudgetsApiFp(configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)();
+        getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
+            return BudgetsApiFp(configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options)();
         },
         /**
          * Returns budgets list with summary information
@@ -1831,8 +1931,8 @@ export class BudgetsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    public getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
-        return BudgetsApiFp(this.configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)();
+    public getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
+        return BudgetsApiFp(this.configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options)();
     }
 
     /**
@@ -3006,10 +3106,11 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date | string, options: any = {}): FetchArgs {
+        getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
                 throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactions.');
@@ -3034,6 +3135,10 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             if (sinceDate !== undefined) {
                 localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -3208,11 +3313,12 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budgetId, sinceDate, options);
+        getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budgetId, sinceDate, type, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3307,11 +3413,12 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date | string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, options)();
+        getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any) {
+            return TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, type, options)();
         },
         /**
          * Returns all transactions for a specified account
@@ -3363,12 +3470,13 @@ export class TransactionsApi extends BaseAPI {
      * @summary List transactions
      * @param {string} budgetId - ID of budget
      * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactions(budgetId: string, sinceDate?: Date | string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, options)();
+    public getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, type, options)();
     }
 
     /**

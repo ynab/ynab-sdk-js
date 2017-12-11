@@ -37,7 +37,7 @@ async function main() {
           budgetToFetch.id
         }`
       );
-      const budgetContents = await ynab.budgets.getBudgetContents(
+      const budgetContents = await ynab.budgets.getBudgetById(
         budgetToFetch.id
       );
 
@@ -67,7 +67,7 @@ async function main() {
         console.log(`Will poll for changes in ${pollWaitTimeInMs}ms...`);
         setTimeout(async () => {
           console.log("Polling for changes now...");
-          const budgetChangesResponse = await ynab.budgets.getBudgetContents(
+          const budgetChangesResponse = await ynab.budgets.getBudgetById(
             budgetToFetch.id,
             lastServerKnowledge
           );

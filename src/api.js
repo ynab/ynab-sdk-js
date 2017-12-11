@@ -64,6 +64,111 @@ class RequiredError extends Error {
 }
 exports.RequiredError = RequiredError;
 /**
+ * @export
+ * @namespace Account
+ */
+var Account;
+(function (Account) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let TypeEnum;
+    (function (TypeEnum) {
+        TypeEnum[TypeEnum["Checking"] = 'Checking'] = "Checking";
+        TypeEnum[TypeEnum["Savings"] = 'Savings'] = "Savings";
+        TypeEnum[TypeEnum["CreditCard"] = 'CreditCard'] = "CreditCard";
+    })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
+})(Account = exports.Account || (exports.Account = {}));
+/**
+ * @export
+ * @namespace ScheduledTransactionSummary
+ */
+var ScheduledTransactionSummary;
+(function (ScheduledTransactionSummary) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FrequencyEnum;
+    (function (FrequencyEnum) {
+        FrequencyEnum[FrequencyEnum["Never"] = 'Never'] = "Never";
+        FrequencyEnum[FrequencyEnum["Daily"] = 'Daily'] = "Daily";
+        FrequencyEnum[FrequencyEnum["Weekly"] = 'Weekly'] = "Weekly";
+        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = 'EveryOtherWeek'] = "EveryOtherWeek";
+        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = 'TwiceAMonth'] = "TwiceAMonth";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'Every4Weeks'] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Monthly"] = 'Monthly'] = "Monthly";
+        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = 'EveryOtherMonth'] = "EveryOtherMonth";
+        FrequencyEnum[FrequencyEnum["Every3Months"] = 'Every3Months'] = "Every3Months";
+        FrequencyEnum[FrequencyEnum["Every4Months"] = 'Every4Months'] = "Every4Months";
+        FrequencyEnum[FrequencyEnum["TwiceAYear"] = 'TwiceAYear'] = "TwiceAYear";
+        FrequencyEnum[FrequencyEnum["Yearly"] = 'Yearly'] = "Yearly";
+        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'EveryOtherYear'] = "EveryOtherYear";
+    })(FrequencyEnum = ScheduledTransactionSummary.FrequencyEnum || (ScheduledTransactionSummary.FrequencyEnum = {}));
+})(ScheduledTransactionSummary = exports.ScheduledTransactionSummary || (exports.ScheduledTransactionSummary = {}));
+/**
+ * @export
+ * @namespace TransactionSummary
+ */
+var TransactionSummary;
+(function (TransactionSummary) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let ClearedEnum;
+    (function (ClearedEnum) {
+        ClearedEnum[ClearedEnum["Cleared"] = 'Cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'Uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'Reconciled'] = "Reconciled";
+    })(ClearedEnum = TransactionSummary.ClearedEnum || (TransactionSummary.ClearedEnum = {}));
+})(TransactionSummary = exports.TransactionSummary || (exports.TransactionSummary = {}));
+/**
+ * @export
+ * @namespace ScheduledTransactionDetail
+ */
+var ScheduledTransactionDetail;
+(function (ScheduledTransactionDetail) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FrequencyEnum;
+    (function (FrequencyEnum) {
+        FrequencyEnum[FrequencyEnum["Never"] = 'Never'] = "Never";
+        FrequencyEnum[FrequencyEnum["Daily"] = 'Daily'] = "Daily";
+        FrequencyEnum[FrequencyEnum["Weekly"] = 'Weekly'] = "Weekly";
+        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = 'EveryOtherWeek'] = "EveryOtherWeek";
+        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = 'TwiceAMonth'] = "TwiceAMonth";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'Every4Weeks'] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Monthly"] = 'Monthly'] = "Monthly";
+        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = 'EveryOtherMonth'] = "EveryOtherMonth";
+        FrequencyEnum[FrequencyEnum["Every3Months"] = 'Every3Months'] = "Every3Months";
+        FrequencyEnum[FrequencyEnum["Every4Months"] = 'Every4Months'] = "Every4Months";
+        FrequencyEnum[FrequencyEnum["TwiceAYear"] = 'TwiceAYear'] = "TwiceAYear";
+        FrequencyEnum[FrequencyEnum["Yearly"] = 'Yearly'] = "Yearly";
+        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'EveryOtherYear'] = "EveryOtherYear";
+    })(FrequencyEnum = ScheduledTransactionDetail.FrequencyEnum || (ScheduledTransactionDetail.FrequencyEnum = {}));
+})(ScheduledTransactionDetail = exports.ScheduledTransactionDetail || (exports.ScheduledTransactionDetail = {}));
+/**
+ * @export
+ * @namespace TransactionDetail
+ */
+var TransactionDetail;
+(function (TransactionDetail) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let ClearedEnum;
+    (function (ClearedEnum) {
+        ClearedEnum[ClearedEnum["Cleared"] = 'Cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'Uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'Reconciled'] = "Reconciled";
+    })(ClearedEnum = TransactionDetail.ClearedEnum || (TransactionDetail.ClearedEnum = {}));
+})(TransactionDetail = exports.TransactionDetail || (exports.TransactionDetail = {}));
+/**
  * AccountsApi - fetch parameter creator
  * @export
  */
@@ -277,10 +382,10 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId, lastKnowledgeOfServer, options = {}) {
+        getBudgetById(budgetId, lastKnowledgeOfServer, options = {}) {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId', 'Required parameter budgetId was null or undefined when calling getBudgetContents.');
+                throw new RequiredError('budgetId', 'Required parameter budgetId was null or undefined when calling getBudgetById.');
             }
             const localVarPath = `/budgets/{budget_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
@@ -355,8 +460,8 @@ exports.BudgetsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId, lastKnowledgeOfServer, options) {
-            const localVarFetchArgs = exports.BudgetsApiFetchParamCreator(configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options);
+        getBudgetById(budgetId, lastKnowledgeOfServer, options) {
+            const localVarFetchArgs = exports.BudgetsApiFetchParamCreator(configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -407,8 +512,8 @@ exports.BudgetsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetContents(budgetId, lastKnowledgeOfServer, options) {
-            return exports.BudgetsApiFp(configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)();
+        getBudgetById(budgetId, lastKnowledgeOfServer, options) {
+            return exports.BudgetsApiFp(configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options)();
         },
         /**
          * Returns budgets list with summary information
@@ -437,8 +542,8 @@ class BudgetsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    getBudgetContents(budgetId, lastKnowledgeOfServer, options) {
-        return exports.BudgetsApiFp(this.configuration).getBudgetContents(budgetId, lastKnowledgeOfServer, options)();
+    getBudgetById(budgetId, lastKnowledgeOfServer, options) {
+        return exports.BudgetsApiFp(this.configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options)();
     }
     /**
      * Returns budgets list with summary information
@@ -1551,10 +1656,11 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId, sinceDate, options = {}) {
+        getTransactions(budgetId, sinceDate, type, options = {}) {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
                 throw new RequiredError('budgetId', 'Required parameter budgetId was null or undefined when calling getTransactions.');
@@ -1576,6 +1682,9 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             }
             if (sinceDate !== undefined) {
                 localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
+            }
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1733,11 +1842,12 @@ exports.TransactionsApiFp = function (configuration) {
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId, sinceDate, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactions(budgetId, sinceDate, options);
+        getTransactions(budgetId, sinceDate, type, options) {
+            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactions(budgetId, sinceDate, type, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1835,11 +1945,12 @@ exports.TransactionsApiFactory = function (configuration) {
          * @summary List transactions
          * @param {string} budgetId - ID of budget
          * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId, sinceDate, options) {
-            return exports.TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, options)();
+        getTransactions(budgetId, sinceDate, type, options) {
+            return exports.TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, type, options)();
         },
         /**
          * Returns all transactions for a specified account
@@ -1890,12 +2001,13 @@ class TransactionsApi extends BaseAPI {
      * @summary List transactions
      * @param {string} budgetId - ID of budget
      * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budgetId, sinceDate, options) {
-        return exports.TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, options)();
+    getTransactions(budgetId, sinceDate, type, options) {
+        return exports.TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, type, options)();
     }
     /**
      * Returns all transactions for a specified account
