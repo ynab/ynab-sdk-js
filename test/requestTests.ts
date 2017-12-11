@@ -74,7 +74,7 @@ describe("API requests", () => {
       verifyRequestDetails(`${BASE_URL}/budgets`);
     });
 
-    it("Should getBudgetContents and validate the request is sent correctly", async () => {
+    it("Should getBudgetById and validate the request is sent correctly", async () => {
       const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
       const lastKnowledgeOfServer = 5;
