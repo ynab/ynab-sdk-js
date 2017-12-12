@@ -54,7 +54,7 @@ describe("API requests", () => {
       });
       try {
         const lastKnowledgeOfServer = 5;
-        let actualResponse = await ynab.budgets.getBudgetContents(
+        let actualResponse = await ynab.budgets.getBudgetById(
           budgetId,
           lastKnowledgeOfServer
         );
@@ -74,12 +74,12 @@ describe("API requests", () => {
       verifyRequestDetails(`${BASE_URL}/budgets`);
     });
 
-    it("Should getBudgetContents and validate the request is sent correctly", async () => {
+    it("Should getBudgetById and validate the request is sent correctly", async () => {
       const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
 
       const lastKnowledgeOfServer = 5;
       const getBudgetsResponse = await callApiAndVerifyResponse(
-        () => ynab.budgets.getBudgetContents(budgetId, lastKnowledgeOfServer),
+        () => ynab.budgets.getBudgetById(budgetId, lastKnowledgeOfServer),
         factories.budgetDetailResponseFactory.build()
       );
       verifyRequestDetails(

@@ -1,4 +1,4 @@
-import ynabApi = require("../../src/index.js");
+import ynabApi = require("../../dist/index.js");
 import * as yargs from "yargs";
 import * as process from "process";
 

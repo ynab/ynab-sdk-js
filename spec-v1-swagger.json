@@ -86,7 +86,7 @@
         "summary": "Single budget",
         "description":
           "Returns a single budget with all related entities.  This resource is effectively a full budget export.",
-        "operationId": "getBudgetContents",
+        "operationId": "getBudgetById",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -629,6 +629,15 @@
             "required": false,
             "type": "string",
             "format": "date"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description":
+              "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+            "required": false,
+            "type": "string",
+            "enum": ["uncategorized", "unapproved"]
           }
         ],
         "responses": {
@@ -644,7 +653,7 @@
               "$ref": "#/definitions/ErrorResponse"
             }
           },
-          "default": {
+          "400": {
             "description": "Error",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
@@ -916,7 +925,7 @@
     },
     "ErrorDetail": {
       "type": "object",
-      "required": ["id", "name", "description"],
+      "required": ["id", "name", "detail"],
       "properties": {
         "id": {
           "type": "string"
@@ -924,7 +933,7 @@
         "name": {
           "type": "string"
         },
-        "description": {
+        "detail": {
           "type": "string"
         }
       }
@@ -1144,7 +1153,7 @@
         },
         "type": {
           "type": "string",
-          "format": "(Checking|Savings|CreditCard)"
+          "enum": ["Checking", "Savings", "CreditCard"]
         },
         "on_budget": {
           "type": "boolean",
@@ -1468,14 +1477,14 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in milliunits format"
+            "The transaction amount in milliunits format"
         },
         "memo": {
           "type": "string"
         },
         "cleared": {
           "type": "string",
-          "format": "(Cleared|Uncleared|Reconciled)",
+          "enum": ["Cleared", "Uncleared", "Reconciled"],
           "description": "The cleared status of the transaction"
         },
         "approved": {
@@ -1483,8 +1492,7 @@
           "description": "Whether or not the transaction is approved"
         },
         "flag": {
-          "type": "string",
-          "description": "Whether or not the transaction is approved"
+          "type": "string"
         },
         "account_id": {
           "type": "string",
@@ -1547,7 +1555,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in milliunits format"
+            "The sub-transaction amount in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -1632,14 +1640,27 @@
         },
         "frequency": {
           "type": "string",
-          "format":
-            "(Never|Daily|Weekly|EveryOtherWeek|TwiceAMonth|Every4Weeks|Monthly|EveryOtherMonth|Every3Months|Every4Months|TwiceAYear|Yearly|EveryOtherYear)"
+          "enum": [
+            "Never",
+            "Daily",
+            "Weekly",
+            "EveryOtherWeek",
+            "TwiceAMonth",
+            "Every4Weeks",
+            "Monthly",
+            "EveryOtherMonth",
+            "Every3Months",
+            "Every4Months",
+            "TwiceAYear",
+            "Yearly",
+            "EveryOtherYear"
+          ]
         },
         "amount": {
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in milliunits format"
+            "The scheduled transaction amount in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -1711,7 +1732,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The current balance of the account in milliunits format"
+            "The scheduled sub-transaction amount in milliunits format"
         },
         "memo": {
           "type": "string"

@@ -70,7 +70,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    type: string;
+    type: Account.TypeEnum;
     /**
      * Whether this account is on budget or not
      * @type {boolean}
@@ -95,6 +95,21 @@ export interface Account {
      * @memberof Account
      */
     balance: number;
+}
+/**
+ * @export
+ * @namespace Account
+ */
+export declare namespace Account {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TypeEnum {
+        Checking,
+        Savings,
+        CreditCard,
+    }
 }
 /**
  *
@@ -424,7 +439,7 @@ export interface ErrorDetail {
      * @type {string}
      * @memberof ErrorDetail
      */
-    description: string;
+    detail: string;
 }
 /**
  *
@@ -701,7 +716,7 @@ export interface ScheduledSubTransaction {
      */
     scheduled_transaction_id: string;
     /**
-     * The current balance of the account in milliunits format
+     * The scheduled sub-transaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledSubTransaction
      */
@@ -806,9 +821,9 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    frequency: string;
+    frequency: ScheduledTransactionSummary.FrequencyEnum;
     /**
-     * The current balance of the account in milliunits format
+     * The scheduled transaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledTransactionSummary
      */
@@ -851,6 +866,31 @@ export interface ScheduledTransactionSummary {
     transfer_account_id: string;
 }
 /**
+ * @export
+ * @namespace ScheduledTransactionSummary
+ */
+export declare namespace ScheduledTransactionSummary {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum FrequencyEnum {
+        Never,
+        Daily,
+        Weekly,
+        EveryOtherWeek,
+        TwiceAMonth,
+        Every4Weeks,
+        Monthly,
+        EveryOtherMonth,
+        Every3Months,
+        Every4Months,
+        TwiceAYear,
+        Yearly,
+        EveryOtherYear,
+    }
+}
+/**
  *
  * @export
  * @interface SubTransaction
@@ -869,7 +909,7 @@ export interface SubTransaction {
      */
     transaction_id: string;
     /**
-     * The current balance of the account in milliunits format
+     * The sub-transaction amount in milliunits format
      * @type {number}
      * @memberof SubTransaction
      */
@@ -970,7 +1010,7 @@ export interface TransactionSummary {
      */
     date: string;
     /**
-     * The current balance of the account in milliunits format
+     * The transaction amount in milliunits format
      * @type {number}
      * @memberof TransactionSummary
      */
@@ -986,7 +1026,7 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    cleared: string;
+    cleared: TransactionSummary.ClearedEnum;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -994,7 +1034,7 @@ export interface TransactionSummary {
      */
     approved: boolean;
     /**
-     * Whether or not the transaction is approved
+     *
      * @type {string}
      * @memberof TransactionSummary
      */
@@ -1023,6 +1063,21 @@ export interface TransactionSummary {
      * @memberof TransactionSummary
      */
     transfer_account_id: string;
+}
+/**
+ * @export
+ * @namespace TransactionSummary
+ */
+export declare namespace TransactionSummary {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ClearedEnum {
+        Cleared,
+        Uncleared,
+        Reconciled,
+    }
 }
 /**
  *
@@ -1212,9 +1267,9 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    frequency: string;
+    frequency: ScheduledTransactionDetail.FrequencyEnum;
     /**
-     * The current balance of the account in milliunits format
+     * The scheduled transaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledTransactionDetail
      */
@@ -1263,6 +1318,31 @@ export interface ScheduledTransactionDetail {
     subtransactions: Array<ScheduledSubTransaction>;
 }
 /**
+ * @export
+ * @namespace ScheduledTransactionDetail
+ */
+export declare namespace ScheduledTransactionDetail {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum FrequencyEnum {
+        Never,
+        Daily,
+        Weekly,
+        EveryOtherWeek,
+        TwiceAMonth,
+        Every4Weeks,
+        Monthly,
+        EveryOtherMonth,
+        Every3Months,
+        Every4Months,
+        TwiceAYear,
+        Yearly,
+        EveryOtherYear,
+    }
+}
+/**
  *
  * @export
  * @interface TransactionDetail
@@ -1281,7 +1361,7 @@ export interface TransactionDetail {
      */
     date: string;
     /**
-     * The current balance of the account in milliunits format
+     * The transaction amount in milliunits format
      * @type {number}
      * @memberof TransactionDetail
      */
@@ -1297,7 +1377,7 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    cleared: string;
+    cleared: TransactionDetail.ClearedEnum;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -1305,7 +1385,7 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     * Whether or not the transaction is approved
+     *
      * @type {string}
      * @memberof TransactionDetail
      */
@@ -1340,6 +1420,21 @@ export interface TransactionDetail {
      * @memberof TransactionDetail
      */
     subtransactions: Array<SubTransaction>;
+}
+/**
+ * @export
+ * @namespace TransactionDetail
+ */
+export declare namespace TransactionDetail {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ClearedEnum {
+        Cleared,
+        Uncleared,
+        Reconciled,
+    }
 }
 /**
  * AccountsApi - fetch parameter creator
@@ -1397,7 +1492,7 @@ export declare class AccountsApi extends BaseAPI {
  * @export
  */
 export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration) => {
-    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): FetchArgs;
+    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): FetchArgs;
     getBudgets(options?: any): FetchArgs;
 };
 /**
@@ -1405,7 +1500,7 @@ export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration
  * @export
  */
 export declare const BudgetsApiFp: (configuration?: Configuration) => {
-    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse>;
+    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse>;
     getBudgets(options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSummaryResponse>;
 };
 /**
@@ -1413,7 +1508,7 @@ export declare const BudgetsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const BudgetsApiFactory: (configuration?: Configuration) => {
-    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
+    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
     getBudgets(options?: any): Promise<BudgetSummaryResponse>;
 };
 /**
@@ -1432,7 +1527,7 @@ export declare class BudgetsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    getBudgetContents(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
+    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
     /**
      * Returns budgets list with summary information
      * @summary List budgets
@@ -1715,7 +1810,7 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
  * @export
  */
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string | Date, options?: any): FetchArgs;
+    getTransactions(budgetId: string, sinceDate?: string | Date, type?: string, options?: any): FetchArgs;
     getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): FetchArgs;
     getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): FetchArgs;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): FetchArgs;
@@ -1725,7 +1820,7 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
  * @export
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: string | Date, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
     getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
     getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionDetailResponse>;
@@ -1735,7 +1830,7 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const TransactionsApiFactory: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: string | Date, type?: string, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
     getTransactionsById(budgetId: string, transactionId: string, options?: any): Promise<TransactionDetailResponse>;
@@ -1752,11 +1847,12 @@ export declare class TransactionsApi extends BaseAPI {
      * @summary List transactions
      * @param {string} budgetId - ID of budget
      * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budgetId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any): Promise<TransactionSummariesResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions

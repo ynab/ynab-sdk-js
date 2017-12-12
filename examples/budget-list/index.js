@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../../src/index.js");
+const ynabApi = require("../../dist/index.js");
 const yargs = require("yargs");
 const process = require("process");
 const argv = yargs
