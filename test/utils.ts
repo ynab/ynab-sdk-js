@@ -56,5 +56,17 @@ describe("utiilities", () => {
         239.32
       );
     });
+
+    it("Doesnt have rounding errors with positive numbers", () => {
+      expect(utils.convertMilliUnitsToCurrencyAmount(6744480, 2)).to.equal(
+        6744.48
+      );
+    });
+
+    it("Doesnt have rounding errors with negative numbers", () => {
+      expect(utils.convertMilliUnitsToCurrencyAmount(-6744480, 2)).to.equal(
+        -6744.48
+      );
+    });
   });
 });
