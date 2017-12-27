@@ -32,6 +32,6 @@ export class Utils {
     numberToRoundTo = 1 / numberToRoundTo;
     let rounded = Math.round(milliunits * numberToRoundTo) / numberToRoundTo;
     let currencyAmount = rounded * (0.1 / Math.pow(10, 2));
-    return currencyAmount;
+    return Number(currencyAmount.toFixed(currencyDecimalDigits));
   }
 }
