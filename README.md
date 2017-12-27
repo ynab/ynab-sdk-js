@@ -65,7 +65,7 @@ const budgetsResponse = ynab.budgets.getBudgets()
 
 ### Utilities
 
-There are several utilities available on the `utilties` object to make working
+There are several utilities available on the `ynab.utils` object to make working
 with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
 easier.
 
@@ -82,11 +82,11 @@ getCurrentMonthInISOFormat(): string;
 convertFromISODateString(isoDateString: string): Date;
 
 /**
-   * Converts a milliunits amount to a currency amount
-   * @param milliunits - The milliunits amount (i.e. 293294)
-   * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
-   */
-  public convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
+ * Converts a milliunits amount to a currency amount
+ * @param milliunits - The milliunits amount (i.e. 293294)
+ * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
+ */
+convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
 ```
 
 ## Examples
