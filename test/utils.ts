@@ -50,5 +50,11 @@ describe("utiilities", () => {
         239
       );
     });
+
+    it("Defaults to 2 decimal places when omitted", () => {
+      expect(utils.convertMilliUnitsToCurrencyAmount(239323)).to.equal(
+        239.32
+      );
+    });
   });
 });
