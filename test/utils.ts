@@ -51,6 +51,12 @@ describe("utiilities", () => {
       );
     });
 
+    it("Defaults to 2 decimal places when omitted", () => {
+      expect(utils.convertMilliUnitsToCurrencyAmount(239323)).to.equal(
+        239.32
+      );
+    });
+
     it("Doesnt have rounding errors with positive numbers", () => {
       expect(utils.convertMilliUnitsToCurrencyAmount(6744480, 2)).to.equal(
         6744.48
