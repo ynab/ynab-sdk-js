@@ -24,7 +24,7 @@ application.
 
 ```typescript
 const ynabApi = require("ynab");
-const accessToken = "bf0cbb14b4330e9d5f4312a646eb0115b80a169ad1425d3de12e66a389eaafe2";
+const accessToken = "b43439eaafe2_this_is_fake_b43439eaafe2";
 const ynab = new ynabApi(accessToken);
 
 async function listBudgets(){
