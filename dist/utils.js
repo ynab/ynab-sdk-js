@@ -20,15 +20,14 @@ class Utils {
     /**
      * Converts a milliunits amount to a currency amount
      * @param milliunits - The milliunits amount (i.e. 293294)
-     * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
+     * @param [currencyDecimalDigits] - The number of decimals in the currency (i.e. 2 for USD)
      */
-    convertMilliUnitsToCurrencyAmount(milliunits, currencyDecimalDigits) {
+    convertMilliUnitsToCurrencyAmount(milliunits, currencyDecimalDigits = 2) {
         let numberToRoundTo = Math.pow(10, 3 - Math.min(3, currencyDecimalDigits));
         numberToRoundTo = 1 / numberToRoundTo;
         let rounded = Math.round(milliunits * numberToRoundTo) / numberToRoundTo;
         let currencyAmount = rounded * (0.1 / Math.pow(10, 2));
-        return currencyAmount;
+        return Number(currencyAmount.toFixed(currencyDecimalDigits));
     }
 }
 exports.Utils = Utils;
-//# sourceMappingURL=utils.js.map

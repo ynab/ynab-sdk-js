@@ -96,4 +96,3 @@ class YnabApi {
     }
 }
 module.exports = YnabApi;
-//# sourceMappingURL=index.js.map

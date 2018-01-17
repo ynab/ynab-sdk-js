@@ -11,7 +11,7 @@ export declare class Utils {
     /**
      * Converts a milliunits amount to a currency amount
      * @param milliunits - The milliunits amount (i.e. 293294)
-     * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
+     * @param [currencyDecimalDigits] - The number of decimals in the currency (i.e. 2 for USD)
      */
-    convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
+    convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits?: number): number;
 }
