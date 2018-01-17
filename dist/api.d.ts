@@ -749,54 +749,15 @@ export interface ScheduledSubTransaction {
 /**
  *
  * @export
- * @interface ScheduledTransactionDetailResponse
+ * @interface ScheduledTransactionResponse
  */
-export interface ScheduledTransactionDetailResponse {
+export interface ScheduledTransactionResponse {
     /**
      *
-     * @type {ScheduledTransactionDetailWrapper}
-     * @memberof ScheduledTransactionDetailResponse
+     * @type {ScheduledTransactionWrapper}
+     * @memberof ScheduledTransactionResponse
      */
-    data: ScheduledTransactionDetailWrapper;
-}
-/**
- *
- * @export
- * @interface ScheduledTransactionDetailWrapper
- */
-export interface ScheduledTransactionDetailWrapper {
-    /**
-     *
-     * @type {ScheduledTransactionDetail}
-     * @memberof ScheduledTransactionDetailWrapper
-     */
-    scheduled_transaction: ScheduledTransactionDetail;
-}
-/**
- *
- * @export
- * @interface ScheduledTransactionSummariesResponse
- */
-export interface ScheduledTransactionSummariesResponse {
-    /**
-     *
-     * @type {ScheduledTransactionSummariesWrapper}
-     * @memberof ScheduledTransactionSummariesResponse
-     */
-    data: ScheduledTransactionSummariesWrapper;
-}
-/**
- *
- * @export
- * @interface ScheduledTransactionSummariesWrapper
- */
-export interface ScheduledTransactionSummariesWrapper {
-    /**
-     *
-     * @type {Array&lt;ScheduledTransactionSummary&gt;}
-     * @memberof ScheduledTransactionSummariesWrapper
-     */
-    scheduled_transactions: Array<ScheduledTransactionSummary>;
+    data: ScheduledTransactionWrapper;
 }
 /**
  *
@@ -893,6 +854,45 @@ export declare namespace ScheduledTransactionSummary {
 /**
  *
  * @export
+ * @interface ScheduledTransactionWrapper
+ */
+export interface ScheduledTransactionWrapper {
+    /**
+     *
+     * @type {ScheduledTransactionDetail}
+     * @memberof ScheduledTransactionWrapper
+     */
+    scheduled_transaction: ScheduledTransactionDetail;
+}
+/**
+ *
+ * @export
+ * @interface ScheduledTransactionsResponse
+ */
+export interface ScheduledTransactionsResponse {
+    /**
+     *
+     * @type {ScheduledTransactionsWrapper}
+     * @memberof ScheduledTransactionsResponse
+     */
+    data: ScheduledTransactionsWrapper;
+}
+/**
+ *
+ * @export
+ * @interface ScheduledTransactionsWrapper
+ */
+export interface ScheduledTransactionsWrapper {
+    /**
+     *
+     * @type {Array&lt;ScheduledTransactionDetail&gt;}
+     * @memberof ScheduledTransactionsWrapper
+     */
+    scheduled_transactions: Array<ScheduledTransactionDetail>;
+}
+/**
+ *
+ * @export
  * @interface SubTransaction
  */
 export interface SubTransaction {
@@ -942,54 +942,15 @@ export interface SubTransaction {
 /**
  *
  * @export
- * @interface TransactionDetailResponse
+ * @interface TransactionResponse
  */
-export interface TransactionDetailResponse {
+export interface TransactionResponse {
     /**
      *
-     * @type {TransactionDetailWrapper}
-     * @memberof TransactionDetailResponse
+     * @type {TransactionWrapper}
+     * @memberof TransactionResponse
      */
-    data: TransactionDetailWrapper;
-}
-/**
- *
- * @export
- * @interface TransactionDetailWrapper
- */
-export interface TransactionDetailWrapper {
-    /**
-     *
-     * @type {TransactionDetail}
-     * @memberof TransactionDetailWrapper
-     */
-    transaction: TransactionDetail;
-}
-/**
- *
- * @export
- * @interface TransactionSummariesResponse
- */
-export interface TransactionSummariesResponse {
-    /**
-     *
-     * @type {TransactionSummariesWrapper}
-     * @memberof TransactionSummariesResponse
-     */
-    data: TransactionSummariesWrapper;
-}
-/**
- *
- * @export
- * @interface TransactionSummariesWrapper
- */
-export interface TransactionSummariesWrapper {
-    /**
-     *
-     * @type {Array&lt;TransactionSummary&gt;}
-     * @memberof TransactionSummariesWrapper
-     */
-    transactions: Array<TransactionSummary>;
+    data: TransactionWrapper;
 }
 /**
  *
@@ -1078,6 +1039,45 @@ export declare namespace TransactionSummary {
         Uncleared,
         Reconciled,
     }
+}
+/**
+ *
+ * @export
+ * @interface TransactionWrapper
+ */
+export interface TransactionWrapper {
+    /**
+     *
+     * @type {TransactionDetail}
+     * @memberof TransactionWrapper
+     */
+    transaction: TransactionDetail;
+}
+/**
+ *
+ * @export
+ * @interface TransactionsResponse
+ */
+export interface TransactionsResponse {
+    /**
+     *
+     * @type {TransactionsWrapper}
+     * @memberof TransactionsResponse
+     */
+    data: TransactionsWrapper;
+}
+/**
+ *
+ * @export
+ * @interface TransactionsWrapper
+ */
+export interface TransactionsWrapper {
+    /**
+     *
+     * @type {Array&lt;TransactionDetail&gt;}
+     * @memberof TransactionsWrapper
+     */
+    transactions: Array<TransactionDetail>;
 }
 /**
  *
@@ -1441,24 +1441,24 @@ export declare namespace TransactionDetail {
  * @export
  */
 export declare const AccountsApiFetchParamCreator: (configuration?: Configuration) => {
-    getAccountById(budgetId: string, accountId: string, options?: any): FetchArgs;
-    getAccounts(budgetId: string, options?: any): FetchArgs;
+    getAccountById(budget_id: string, account_id: string, options?: any): FetchArgs;
+    getAccounts(budget_id: string, options?: any): FetchArgs;
 };
 /**
  * AccountsApi - functional programming interface
  * @export
  */
 export declare const AccountsApiFp: (configuration?: Configuration) => {
-    getAccountById(budgetId: string, accountId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse>;
-    getAccounts(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse>;
+    getAccountById(budget_id: string, account_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse>;
+    getAccounts(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse>;
 };
 /**
  * AccountsApi - factory interface
  * @export
  */
 export declare const AccountsApiFactory: (configuration?: Configuration) => {
-    getAccountById(budgetId: string, accountId: string, options?: any): Promise<AccountResponse>;
-    getAccounts(budgetId: string, options?: any): Promise<AccountsResponse>;
+    getAccountById(budget_id: string, account_id: string, options?: any): Promise<AccountResponse>;
+    getAccounts(budget_id: string, options?: any): Promise<AccountsResponse>;
 };
 /**
  * AccountsApi - object-oriented interface
@@ -1470,29 +1470,29 @@ export declare class AccountsApi extends BaseAPI {
     /**
      * Returns a single account
      * @summary Single account
-     * @param {string} budgetId - ID of budget
-     * @param {string} accountId - ID of account
+     * @param {string} budget_id - ID of budget
+     * @param {string} account_id - ID of account
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    getAccountById(budgetId: string, accountId: string, options?: any): Promise<AccountResponse>;
+    getAccountById(budget_id: string, account_id: string, options?: any): Promise<AccountResponse>;
     /**
      * Returns all accounts
      * @summary Account list
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    getAccounts(budgetId: string, options?: any): Promise<AccountsResponse>;
+    getAccounts(budget_id: string, options?: any): Promise<AccountsResponse>;
 }
 /**
  * BudgetsApi - fetch parameter creator
  * @export
  */
 export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration) => {
-    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): FetchArgs;
+    getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): FetchArgs;
     getBudgets(options?: any): FetchArgs;
 };
 /**
@@ -1500,7 +1500,7 @@ export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration
  * @export
  */
 export declare const BudgetsApiFp: (configuration?: Configuration) => {
-    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse>;
+    getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse>;
     getBudgets(options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSummaryResponse>;
 };
 /**
@@ -1508,7 +1508,7 @@ export declare const BudgetsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const BudgetsApiFactory: (configuration?: Configuration) => {
-    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
+    getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<BudgetDetailResponse>;
     getBudgets(options?: any): Promise<BudgetSummaryResponse>;
 };
 /**
@@ -1521,13 +1521,13 @@ export declare class BudgetsApi extends BaseAPI {
     /**
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * @summary Single budget
-     * @param {string} budgetId - ID of budget
-     * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+     * @param {string} budget_id - ID of budget
+     * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): Promise<BudgetDetailResponse>;
+    getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<BudgetDetailResponse>;
     /**
      * Returns budgets list with summary information
      * @summary List budgets
@@ -1542,24 +1542,24 @@ export declare class BudgetsApi extends BaseAPI {
  * @export
  */
 export declare const CategoriesApiFetchParamCreator: (configuration?: Configuration) => {
-    getCategories(budgetId: string, options?: any): FetchArgs;
-    getCategoryById(budgetId: string, categoryId: string, options?: any): FetchArgs;
+    getCategories(budget_id: string, options?: any): FetchArgs;
+    getCategoryById(budget_id: string, category_id: string, options?: any): FetchArgs;
 };
 /**
  * CategoriesApi - functional programming interface
  * @export
  */
 export declare const CategoriesApiFp: (configuration?: Configuration) => {
-    getCategories(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse>;
-    getCategoryById(budgetId: string, categoryId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse>;
+    getCategories(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse>;
+    getCategoryById(budget_id: string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse>;
 };
 /**
  * CategoriesApi - factory interface
  * @export
  */
 export declare const CategoriesApiFactory: (configuration?: Configuration) => {
-    getCategories(budgetId: string, options?: any): Promise<CategoriesResponse>;
-    getCategoryById(budgetId: string, categoryId: string, options?: any): Promise<CategoryResponse>;
+    getCategories(budget_id: string, options?: any): Promise<CategoriesResponse>;
+    getCategoryById(budget_id: string, category_id: string, options?: any): Promise<CategoryResponse>;
 };
 /**
  * CategoriesApi - object-oriented interface
@@ -1571,46 +1571,46 @@ export declare class CategoriesApi extends BaseAPI {
     /**
      * Returns all categories grouped by category group
      * @summary List categories
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    getCategories(budgetId: string, options?: any): Promise<CategoriesResponse>;
+    getCategories(budget_id: string, options?: any): Promise<CategoriesResponse>;
     /**
      * Returns a single category
      * @summary Single category
-     * @param {string} budgetId - ID of budget
-     * @param {string} categoryId - ID of category
+     * @param {string} budget_id - ID of budget
+     * @param {string} category_id - ID of category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    getCategoryById(budgetId: string, categoryId: string, options?: any): Promise<CategoryResponse>;
+    getCategoryById(budget_id: string, category_id: string, options?: any): Promise<CategoryResponse>;
 }
 /**
  * MonthsApi - fetch parameter creator
  * @export
  */
 export declare const MonthsApiFetchParamCreator: (configuration?: Configuration) => {
-    getBudgetMonth(budgetId: string, month: string | Date, options?: any): FetchArgs;
-    getBudgetMonths(budgetId: string, options?: any): FetchArgs;
+    getBudgetMonth(budget_id: string, month: string | Date, options?: any): FetchArgs;
+    getBudgetMonths(budget_id: string, options?: any): FetchArgs;
 };
 /**
  * MonthsApi - functional programming interface
  * @export
  */
 export declare const MonthsApiFp: (configuration?: Configuration) => {
-    getBudgetMonth(budgetId: string, month: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse>;
-    getBudgetMonths(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse>;
+    getBudgetMonth(budget_id: string, month: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse>;
+    getBudgetMonths(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse>;
 };
 /**
  * MonthsApi - factory interface
  * @export
  */
 export declare const MonthsApiFactory: (configuration?: Configuration) => {
-    getBudgetMonth(budgetId: string, month: string | Date, options?: any): Promise<MonthDetailResponse>;
-    getBudgetMonths(budgetId: string, options?: any): Promise<MonthSummariesResponse>;
+    getBudgetMonth(budget_id: string, month: string | Date, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonths(budget_id: string, options?: any): Promise<MonthSummariesResponse>;
 };
 /**
  * MonthsApi - object-oriented interface
@@ -1622,49 +1622,49 @@ export declare class MonthsApi extends BaseAPI {
     /**
      * Returns a single budget month
      * @summary Single budget month
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonth(budgetId: string, month: Date | string, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonth(budget_id: string, month: Date | string, options?: any): Promise<MonthDetailResponse>;
     /**
      * Returns all budget months
      * @summary List budget months
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonths(budgetId: string, options?: any): Promise<MonthSummariesResponse>;
+    getBudgetMonths(budget_id: string, options?: any): Promise<MonthSummariesResponse>;
 }
 /**
  * PayeeLocationsApi - fetch parameter creator
  * @export
  */
 export declare const PayeeLocationsApiFetchParamCreator: (configuration?: Configuration) => {
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): FetchArgs;
-    getPayeeLocations(budgetId: string, options?: any): FetchArgs;
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): FetchArgs;
+    getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): FetchArgs;
+    getPayeeLocations(budget_id: string, options?: any): FetchArgs;
+    getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): FetchArgs;
 };
 /**
  * PayeeLocationsApi - functional programming interface
  * @export
  */
 export declare const PayeeLocationsApiFp: (configuration?: Configuration) => {
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationResponse>;
-    getPayeeLocations(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse>;
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse>;
+    getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationResponse>;
+    getPayeeLocations(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse>;
 };
 /**
  * PayeeLocationsApi - factory interface
  * @export
  */
 export declare const PayeeLocationsApiFactory: (configuration?: Configuration) => {
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): Promise<PayeeLocationResponse>;
-    getPayeeLocations(budgetId: string, options?: any): Promise<PayeeLocationsResponse>;
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): Promise<PayeeLocationsResponse>;
+    getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): Promise<PayeeLocationResponse>;
+    getPayeeLocations(budget_id: string, options?: any): Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): Promise<PayeeLocationsResponse>;
 };
 /**
  * PayeeLocationsApi - object-oriented interface
@@ -1676,56 +1676,56 @@ export declare class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns a single payee location
      * @summary Single payee location
-     * @param {string} budgetId - ID of budget
-     * @param {string} payeeLocationId - ID of payee location
+     * @param {string} budget_id - ID of budget
+     * @param {string} payee_location_id - ID of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): Promise<PayeeLocationResponse>;
+    getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): Promise<PayeeLocationResponse>;
     /**
      * Returns all payee locations
      * @summary List payee locations
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    getPayeeLocations(budgetId: string, options?: any): Promise<PayeeLocationsResponse>;
+    getPayeeLocations(budget_id: string, options?: any): Promise<PayeeLocationsResponse>;
     /**
      * Returns all payee locations for the specified payee
      * @summary List locations for a payee
-     * @param {string} budgetId - ID of budget
-     * @param {string} payeeId - ID of payee
+     * @param {string} budget_id - ID of budget
+     * @param {string} payee_id - ID of payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): Promise<PayeeLocationsResponse>;
 }
 /**
  * PayeesApi - fetch parameter creator
  * @export
  */
 export declare const PayeesApiFetchParamCreator: (configuration?: Configuration) => {
-    getPayeeById(budgetId: string, payeeId: string, options?: any): FetchArgs;
-    getPayees(budgetId: string, options?: any): FetchArgs;
+    getPayeeById(budget_id: string, payee_id: string, options?: any): FetchArgs;
+    getPayees(budget_id: string, options?: any): FetchArgs;
 };
 /**
  * PayeesApi - functional programming interface
  * @export
  */
 export declare const PayeesApiFp: (configuration?: Configuration) => {
-    getPayeeById(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeResponse>;
-    getPayees(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse>;
+    getPayeeById(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeResponse>;
+    getPayees(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse>;
 };
 /**
  * PayeesApi - factory interface
  * @export
  */
 export declare const PayeesApiFactory: (configuration?: Configuration) => {
-    getPayeeById(budgetId: string, payeeId: string, options?: any): Promise<PayeeResponse>;
-    getPayees(budgetId: string, options?: any): Promise<PayeesResponse>;
+    getPayeeById(budget_id: string, payee_id: string, options?: any): Promise<PayeeResponse>;
+    getPayees(budget_id: string, options?: any): Promise<PayeesResponse>;
 };
 /**
  * PayeesApi - object-oriented interface
@@ -1737,46 +1737,46 @@ export declare class PayeesApi extends BaseAPI {
     /**
      * Returns single payee
      * @summary Single payee
-     * @param {string} budgetId - ID of budget
-     * @param {string} payeeId - ID of payee
+     * @param {string} budget_id - ID of budget
+     * @param {string} payee_id - ID of payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
-    getPayeeById(budgetId: string, payeeId: string, options?: any): Promise<PayeeResponse>;
+    getPayeeById(budget_id: string, payee_id: string, options?: any): Promise<PayeeResponse>;
     /**
      * Returns all payees
      * @summary List payees
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
-    getPayees(budgetId: string, options?: any): Promise<PayeesResponse>;
+    getPayees(budget_id: string, options?: any): Promise<PayeesResponse>;
 }
 /**
  * ScheduledTransactionsApi - fetch parameter creator
  * @export
  */
 export declare const ScheduledTransactionsApiFetchParamCreator: (configuration?: Configuration) => {
-    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): FetchArgs;
-    getScheduledTransactions(budgetId: string, options?: any): FetchArgs;
+    getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): FetchArgs;
+    getScheduledTransactions(budget_id: string, options?: any): FetchArgs;
 };
 /**
  * ScheduledTransactionsApi - functional programming interface
  * @export
  */
 export declare const ScheduledTransactionsApiFp: (configuration?: Configuration) => {
-    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionDetailResponse>;
-    getScheduledTransactions(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionSummariesResponse>;
+    getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionResponse>;
+    getScheduledTransactions(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionsResponse>;
 };
 /**
  * ScheduledTransactionsApi - factory interface
  * @export
  */
 export declare const ScheduledTransactionsApiFactory: (configuration?: Configuration) => {
-    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): Promise<ScheduledTransactionDetailResponse>;
-    getScheduledTransactions(budgetId: string, options?: any): Promise<ScheduledTransactionSummariesResponse>;
+    getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): Promise<ScheduledTransactionResponse>;
+    getScheduledTransactions(budget_id: string, options?: any): Promise<ScheduledTransactionsResponse>;
 };
 /**
  * ScheduledTransactionsApi - object-oriented interface
@@ -1788,52 +1788,52 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns a single scheduled transaction
      * @summary Single scheduled transaction
-     * @param {string} budgetId - ID of budget
-     * @param {string} scheduledTransactionId - ID of scheduled transaction
+     * @param {string} budget_id - ID of budget
+     * @param {string} scheduled_transaction_id - ID of scheduled transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): Promise<ScheduledTransactionDetailResponse>;
+    getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): Promise<ScheduledTransactionResponse>;
     /**
      * Returns all scheduled transactions
      * @summary List scheduled transactions
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    getScheduledTransactions(budgetId: string, options?: any): Promise<ScheduledTransactionSummariesResponse>;
+    getScheduledTransactions(budget_id: string, options?: any): Promise<ScheduledTransactionsResponse>;
 }
 /**
  * TransactionsApi - fetch parameter creator
  * @export
  */
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string | Date, type?: string, options?: any): FetchArgs;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): FetchArgs;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): FetchArgs;
-    getTransactionsById(budgetId: string, transactionId: string, options?: any): FetchArgs;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): FetchArgs;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): FetchArgs;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): FetchArgs;
+    getTransactionsById(budget_id: string, transaction_id: string, options?: any): FetchArgs;
 };
 /**
  * TransactionsApi - functional programming interface
  * @export
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string | Date, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse>;
-    getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionDetailResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
 };
 /**
  * TransactionsApi - factory interface
  * @export
  */
 export declare const TransactionsApiFactory: (configuration?: Configuration) => {
-    getTransactions(budgetId: string, sinceDate?: string | Date, type?: string, options?: any): Promise<TransactionSummariesResponse>;
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string | Date, options?: any): Promise<TransactionSummariesResponse>;
-    getTransactionsById(budgetId: string, transactionId: string, options?: any): Promise<TransactionDetailResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
+    getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
 };
 /**
  * TransactionsApi - object-oriented interface
@@ -1843,46 +1843,46 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
  */
 export declare class TransactionsApi extends BaseAPI {
     /**
-     * Returns all budget transactions
+     * Returns budget transactions
      * @summary List transactions
-     * @param {string} budgetId - ID of budget
-     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} budget_id - ID of budget
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactions(budget_id: string, since_date?: Date | string, type?: string, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
-     * @param {string} budgetId - ID of budget
-     * @param {string} accountId - ID of account
-     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} budget_id - ID of budget
+     * @param {string} account_id - ID of account
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
-     * @param {string} budgetId - ID of budget
-     * @param {string} categoryId - ID of category
-     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} budget_id - ID of budget
+     * @param {string} category_id - ID of category
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any): Promise<TransactionSummariesResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns a single transaction
      * @summary Single transaction
-     * @param {string} budgetId - ID of budget
-     * @param {string} transactionId - ID of transaction
+     * @param {string} budget_id - ID of budget
+     * @param {string} transaction_id - ID of transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsById(budgetId: string, transactionId: string, options?: any): Promise<TransactionDetailResponse>;
+    getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
 }

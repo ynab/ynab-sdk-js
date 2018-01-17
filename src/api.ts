@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.1.0";
+const USER_AGENT = "api_client/js/0.1.2";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -828,57 +828,15 @@ export interface ScheduledSubTransaction {
 /**
  * 
  * @export
- * @interface ScheduledTransactionDetailResponse
+ * @interface ScheduledTransactionResponse
  */
-export interface ScheduledTransactionDetailResponse {
+export interface ScheduledTransactionResponse {
     /**
      * 
-     * @type {ScheduledTransactionDetailWrapper}
-     * @memberof ScheduledTransactionDetailResponse
+     * @type {ScheduledTransactionWrapper}
+     * @memberof ScheduledTransactionResponse
      */
-    data: ScheduledTransactionDetailWrapper;
-}
-
-/**
- * 
- * @export
- * @interface ScheduledTransactionDetailWrapper
- */
-export interface ScheduledTransactionDetailWrapper {
-    /**
-     * 
-     * @type {ScheduledTransactionDetail}
-     * @memberof ScheduledTransactionDetailWrapper
-     */
-    scheduled_transaction: ScheduledTransactionDetail;
-}
-
-/**
- * 
- * @export
- * @interface ScheduledTransactionSummariesResponse
- */
-export interface ScheduledTransactionSummariesResponse {
-    /**
-     * 
-     * @type {ScheduledTransactionSummariesWrapper}
-     * @memberof ScheduledTransactionSummariesResponse
-     */
-    data: ScheduledTransactionSummariesWrapper;
-}
-
-/**
- * 
- * @export
- * @interface ScheduledTransactionSummariesWrapper
- */
-export interface ScheduledTransactionSummariesWrapper {
-    /**
-     * 
-     * @type {Array&lt;ScheduledTransactionSummary&gt;}
-     * @memberof ScheduledTransactionSummariesWrapper
-     */
-    scheduled_transactions: Array<ScheduledTransactionSummary>;
+    data: ScheduledTransactionWrapper;
 }
 
 /**
@@ -978,6 +936,48 @@ export namespace ScheduledTransactionSummary {
 /**
  * 
  * @export
+ * @interface ScheduledTransactionWrapper
+ */
+export interface ScheduledTransactionWrapper {
+    /**
+     * 
+     * @type {ScheduledTransactionDetail}
+     * @memberof ScheduledTransactionWrapper
+     */
+    scheduled_transaction: ScheduledTransactionDetail;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScheduledTransactionsResponse
+ */
+export interface ScheduledTransactionsResponse {
+    /**
+     * 
+     * @type {ScheduledTransactionsWrapper}
+     * @memberof ScheduledTransactionsResponse
+     */
+    data: ScheduledTransactionsWrapper;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScheduledTransactionsWrapper
+ */
+export interface ScheduledTransactionsWrapper {
+    /**
+     * 
+     * @type {Array&lt;ScheduledTransactionDetail&gt;}
+     * @memberof ScheduledTransactionsWrapper
+     */
+    scheduled_transactions: Array<ScheduledTransactionDetail>;
+}
+
+/**
+ * 
+ * @export
  * @interface SubTransaction
  */
 export interface SubTransaction {
@@ -1028,57 +1028,15 @@ export interface SubTransaction {
 /**
  * 
  * @export
- * @interface TransactionDetailResponse
+ * @interface TransactionResponse
  */
-export interface TransactionDetailResponse {
+export interface TransactionResponse {
     /**
      * 
-     * @type {TransactionDetailWrapper}
-     * @memberof TransactionDetailResponse
+     * @type {TransactionWrapper}
+     * @memberof TransactionResponse
      */
-    data: TransactionDetailWrapper;
-}
-
-/**
- * 
- * @export
- * @interface TransactionDetailWrapper
- */
-export interface TransactionDetailWrapper {
-    /**
-     * 
-     * @type {TransactionDetail}
-     * @memberof TransactionDetailWrapper
-     */
-    transaction: TransactionDetail;
-}
-
-/**
- * 
- * @export
- * @interface TransactionSummariesResponse
- */
-export interface TransactionSummariesResponse {
-    /**
-     * 
-     * @type {TransactionSummariesWrapper}
-     * @memberof TransactionSummariesResponse
-     */
-    data: TransactionSummariesWrapper;
-}
-
-/**
- * 
- * @export
- * @interface TransactionSummariesWrapper
- */
-export interface TransactionSummariesWrapper {
-    /**
-     * 
-     * @type {Array&lt;TransactionSummary&gt;}
-     * @memberof TransactionSummariesWrapper
-     */
-    transactions: Array<TransactionSummary>;
+    data: TransactionWrapper;
 }
 
 /**
@@ -1169,6 +1127,48 @@ export namespace TransactionSummary {
         Uncleared = <any> 'Uncleared',
         Reconciled = <any> 'Reconciled'
     }
+}
+
+/**
+ * 
+ * @export
+ * @interface TransactionWrapper
+ */
+export interface TransactionWrapper {
+    /**
+     * 
+     * @type {TransactionDetail}
+     * @memberof TransactionWrapper
+     */
+    transaction: TransactionDetail;
+}
+
+/**
+ * 
+ * @export
+ * @interface TransactionsResponse
+ */
+export interface TransactionsResponse {
+    /**
+     * 
+     * @type {TransactionsWrapper}
+     * @memberof TransactionsResponse
+     */
+    data: TransactionsWrapper;
+}
+
+/**
+ * 
+ * @export
+ * @interface TransactionsWrapper
+ */
+export interface TransactionsWrapper {
+    /**
+     * 
+     * @type {Array&lt;TransactionDetail&gt;}
+     * @memberof TransactionsWrapper
+     */
+    transactions: Array<TransactionDetail>;
 }
 
 /**
@@ -1545,23 +1545,23 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budgetId - ID of budget
-         * @param {string} accountId - ID of account
+         * @param {string} budget_id - ID of budget
+         * @param {string} account_id - ID of account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccountById(budgetId: string, accountId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getAccountById.');
+        getAccountById(budget_id: string, account_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getAccountById.');
             }
-            // verify required parameter 'accountId' is not null or undefined
-            if (accountId === null || accountId === undefined) {
-                throw new RequiredError('accountId','Required parameter accountId was null or undefined when calling getAccountById.');
+            // verify required parameter 'account_id' is not null or undefined
+            if (account_id === null || account_id === undefined) {
+                throw new RequiredError('account_id','Required parameter account_id was null or undefined when calling getAccountById.');
             }
             const localVarPath = `/budgets/{budget_id}/accounts/{account_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1591,17 +1591,17 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getAccounts.');
+        getAccounts(budget_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getAccounts.');
             }
             const localVarPath = `/budgets/{budget_id}/accounts`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1640,13 +1640,13 @@ export const AccountsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budgetId - ID of budget
-         * @param {string} accountId - ID of account
+         * @param {string} budget_id - ID of budget
+         * @param {string} account_id - ID of account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccountById(budgetId: string, accountId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse> {
-            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccountById(budgetId, accountId, options);
+        getAccountById(budget_id: string, account_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccountById(budget_id, account_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1662,12 +1662,12 @@ export const AccountsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse> {
-            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budgetId, options);
+        getAccounts(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1692,23 +1692,23 @@ export const AccountsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budgetId - ID of budget
-         * @param {string} accountId - ID of account
+         * @param {string} budget_id - ID of budget
+         * @param {string} account_id - ID of account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccountById(budgetId: string, accountId: string, options?: any) {
-            return AccountsApiFp(configuration).getAccountById(budgetId, accountId, options)();
+        getAccountById(budget_id: string, account_id: string, options?: any) {
+            return AccountsApiFp(configuration).getAccountById(budget_id, account_id, options)();
         },
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budgetId: string, options?: any) {
-            return AccountsApiFp(configuration).getAccounts(budgetId, options)();
+        getAccounts(budget_id: string, options?: any) {
+            return AccountsApiFp(configuration).getAccounts(budget_id, options)();
         },
     };
 };
@@ -1723,26 +1723,26 @@ export class AccountsApi extends BaseAPI {
     /**
      * Returns a single account
      * @summary Single account
-     * @param {string} budgetId - ID of budget
-     * @param {string} accountId - ID of account
+     * @param {string} budget_id - ID of budget
+     * @param {string} account_id - ID of account
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public getAccountById(budgetId: string, accountId: string, options?: any) {
-        return AccountsApiFp(this.configuration).getAccountById(budgetId, accountId, options)();
+    public getAccountById(budget_id: string, account_id: string, options?: any) {
+        return AccountsApiFp(this.configuration).getAccountById(budget_id, account_id, options)();
     }
 
     /**
      * Returns all accounts
      * @summary Account list
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public getAccounts(budgetId: string, options?: any) {
-        return AccountsApiFp(this.configuration).getAccounts(budgetId, options)();
+    public getAccounts(budget_id: string, options?: any) {
+        return AccountsApiFp(this.configuration).getAccounts(budget_id, options)();
     }
 
 }
@@ -1756,18 +1756,18 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budgetId - ID of budget
-         * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {string} budget_id - ID of budget
+         * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getBudgetById.');
+        getBudgetById(budget_id: string, last_knowledge_of_server?: number, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getBudgetById.');
             }
             const localVarPath = `/budgets/{budget_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1784,8 +1784,8 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (lastKnowledgeOfServer !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = lastKnowledgeOfServer;
+            if (last_knowledge_of_server !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1844,13 +1844,13 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budgetId - ID of budget
-         * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {string} budget_id - ID of budget
+         * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse> {
-            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options);
+        getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetById(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1895,13 +1895,13 @@ export const BudgetsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budgetId - ID of budget
-         * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {string} budget_id - ID of budget
+         * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
-            return BudgetsApiFp(configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options)();
+        getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+            return BudgetsApiFp(configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
         },
         /**
          * Returns budgets list with summary information
@@ -1925,14 +1925,14 @@ export class BudgetsApi extends BaseAPI {
     /**
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * @summary Single budget
-     * @param {string} budgetId - ID of budget
-     * @param {number} [lastKnowledgeOfServer] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+     * @param {string} budget_id - ID of budget
+     * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    public getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, options?: any) {
-        return BudgetsApiFp(this.configuration).getBudgetById(budgetId, lastKnowledgeOfServer, options)();
+    public getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+        return BudgetsApiFp(this.configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
     }
 
     /**
@@ -1957,17 +1957,17 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
         /**
          * Returns all categories grouped by category group
          * @summary List categories
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getCategories.');
+        getCategories(budget_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getCategories.');
             }
             const localVarPath = `/budgets/{budget_id}/categories`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1997,23 +1997,23 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budgetId - ID of budget
-         * @param {string} categoryId - ID of category
+         * @param {string} budget_id - ID of budget
+         * @param {string} category_id - ID of category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategoryById(budgetId: string, categoryId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getCategoryById.');
+        getCategoryById(budget_id: string, category_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getCategoryById.');
             }
-            // verify required parameter 'categoryId' is not null or undefined
-            if (categoryId === null || categoryId === undefined) {
-                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling getCategoryById.');
+            // verify required parameter 'category_id' is not null or undefined
+            if (category_id === null || category_id === undefined) {
+                throw new RequiredError('category_id','Required parameter category_id was null or undefined when calling getCategoryById.');
             }
             const localVarPath = `/budgets/{budget_id}/categories/{category_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"category_id"}}`, encodeURIComponent(String(categoryId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2052,12 +2052,12 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
         /**
          * Returns all categories grouped by category group
          * @summary List categories
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse> {
-            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budgetId, options);
+        getCategories(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2073,13 +2073,13 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budgetId - ID of budget
-         * @param {string} categoryId - ID of category
+         * @param {string} budget_id - ID of budget
+         * @param {string} category_id - ID of category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategoryById(budgetId: string, categoryId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse> {
-            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategoryById(budgetId, categoryId, options);
+        getCategoryById(budget_id: string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategoryById(budget_id, category_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2104,23 +2104,23 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all categories grouped by category group
          * @summary List categories
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budgetId: string, options?: any) {
-            return CategoriesApiFp(configuration).getCategories(budgetId, options)();
+        getCategories(budget_id: string, options?: any) {
+            return CategoriesApiFp(configuration).getCategories(budget_id, options)();
         },
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budgetId - ID of budget
-         * @param {string} categoryId - ID of category
+         * @param {string} budget_id - ID of budget
+         * @param {string} category_id - ID of category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategoryById(budgetId: string, categoryId: string, options?: any) {
-            return CategoriesApiFp(configuration).getCategoryById(budgetId, categoryId, options)();
+        getCategoryById(budget_id: string, category_id: string, options?: any) {
+            return CategoriesApiFp(configuration).getCategoryById(budget_id, category_id, options)();
         },
     };
 };
@@ -2135,26 +2135,26 @@ export class CategoriesApi extends BaseAPI {
     /**
      * Returns all categories grouped by category group
      * @summary List categories
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    public getCategories(budgetId: string, options?: any) {
-        return CategoriesApiFp(this.configuration).getCategories(budgetId, options)();
+    public getCategories(budget_id: string, options?: any) {
+        return CategoriesApiFp(this.configuration).getCategories(budget_id, options)();
     }
 
     /**
      * Returns a single category
      * @summary Single category
-     * @param {string} budgetId - ID of budget
-     * @param {string} categoryId - ID of category
+     * @param {string} budget_id - ID of budget
+     * @param {string} category_id - ID of category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    public getCategoryById(budgetId: string, categoryId: string, options?: any) {
-        return CategoriesApiFp(this.configuration).getCategoryById(budgetId, categoryId, options)();
+    public getCategoryById(budget_id: string, category_id: string, options?: any) {
+        return CategoriesApiFp(this.configuration).getCategoryById(budget_id, category_id, options)();
     }
 
 }
@@ -2168,22 +2168,22 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budgetId: string, month: Date | string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getBudgetMonth.');
+        getBudgetMonth(budget_id: string, month: Date | string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getBudgetMonth.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
                 throw new RequiredError('month','Required parameter month was null or undefined when calling getBudgetMonth.');
             }
             const localVarPath = `/budgets/{budget_id}/months/{month}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -2214,17 +2214,17 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getBudgetMonths.');
+        getBudgetMonths(budget_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getBudgetMonths.');
             }
             const localVarPath = `/budgets/{budget_id}/months`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2263,13 +2263,13 @@ export const MonthsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budgetId: string, month: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse> {
-            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonth(budgetId, month, options);
+        getBudgetMonth(budget_id: string, month: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse> {
+            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonth(budget_id, month, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2285,12 +2285,12 @@ export const MonthsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse> {
-            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budgetId, options);
+        getBudgetMonths(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse> {
+            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2315,23 +2315,23 @@ export const MonthsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budgetId: string, month: Date | string, options?: any) {
-            return MonthsApiFp(configuration).getBudgetMonth(budgetId, month, options)();
+        getBudgetMonth(budget_id: string, month: Date | string, options?: any) {
+            return MonthsApiFp(configuration).getBudgetMonth(budget_id, month, options)();
         },
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budgetId: string, options?: any) {
-            return MonthsApiFp(configuration).getBudgetMonths(budgetId, options)();
+        getBudgetMonths(budget_id: string, options?: any) {
+            return MonthsApiFp(configuration).getBudgetMonths(budget_id, options)();
         },
     };
 };
@@ -2346,26 +2346,26 @@ export class MonthsApi extends BaseAPI {
     /**
      * Returns a single budget month
      * @summary Single budget month
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    public getBudgetMonth(budgetId: string, month: Date | string, options?: any) {
-        return MonthsApiFp(this.configuration).getBudgetMonth(budgetId, month, options)();
+    public getBudgetMonth(budget_id: string, month: Date | string, options?: any) {
+        return MonthsApiFp(this.configuration).getBudgetMonth(budget_id, month, options)();
     }
 
     /**
      * Returns all budget months
      * @summary List budget months
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    public getBudgetMonths(budgetId: string, options?: any) {
-        return MonthsApiFp(this.configuration).getBudgetMonths(budgetId, options)();
+    public getBudgetMonths(budget_id: string, options?: any) {
+        return MonthsApiFp(this.configuration).getBudgetMonths(budget_id, options)();
     }
 
 }
@@ -2379,23 +2379,23 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeLocationId - ID of payee location
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budgetId: string, payeeLocationId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getPayeeLocationById.');
+        getPayeeLocationById(budget_id: string, payee_location_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getPayeeLocationById.');
             }
-            // verify required parameter 'payeeLocationId' is not null or undefined
-            if (payeeLocationId === null || payeeLocationId === undefined) {
-                throw new RequiredError('payeeLocationId','Required parameter payeeLocationId was null or undefined when calling getPayeeLocationById.');
+            // verify required parameter 'payee_location_id' is not null or undefined
+            if (payee_location_id === null || payee_location_id === undefined) {
+                throw new RequiredError('payee_location_id','Required parameter payee_location_id was null or undefined when calling getPayeeLocationById.');
             }
             const localVarPath = `/budgets/{budget_id}/payee_locations/{payee_location_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"payee_location_id"}}`, encodeURIComponent(String(payeeLocationId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"payee_location_id"}}`, encodeURIComponent(String(payee_location_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2425,17 +2425,17 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getPayeeLocations.');
+        getPayeeLocations(budget_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getPayeeLocations.');
             }
             const localVarPath = `/budgets/{budget_id}/payee_locations`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2465,23 +2465,23 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeId - ID of payee
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budgetId: string, payeeId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getPayeeLocationsByPayee.');
+        getPayeeLocationsByPayee(budget_id: string, payee_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getPayeeLocationsByPayee.');
             }
-            // verify required parameter 'payeeId' is not null or undefined
-            if (payeeId === null || payeeId === undefined) {
-                throw new RequiredError('payeeId','Required parameter payeeId was null or undefined when calling getPayeeLocationsByPayee.');
+            // verify required parameter 'payee_id' is not null or undefined
+            if (payee_id === null || payee_id === undefined) {
+                throw new RequiredError('payee_id','Required parameter payee_id was null or undefined when calling getPayeeLocationsByPayee.');
             }
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/payee_locations`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payeeId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2520,13 +2520,13 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeLocationId - ID of payee location
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationResponse> {
-            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budgetId, payeeLocationId, options);
+        getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationResponse> {
+            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budget_id, payee_location_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2542,12 +2542,12 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse> {
-            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budgetId, options);
+        getPayeeLocations(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse> {
+            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2563,13 +2563,13 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeId - ID of payee
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse> {
-            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budgetId, payeeId, options);
+        getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse> {
+            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2594,34 +2594,34 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration)
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeLocationId - ID of payee location
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any) {
-            return PayeeLocationsApiFp(configuration).getPayeeLocationById(budgetId, payeeLocationId, options)();
+        getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any) {
+            return PayeeLocationsApiFp(configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
         },
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budgetId: string, options?: any) {
-            return PayeeLocationsApiFp(configuration).getPayeeLocations(budgetId, options)();
+        getPayeeLocations(budget_id: string, options?: any) {
+            return PayeeLocationsApiFp(configuration).getPayeeLocations(budget_id, options)();
         },
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeId - ID of payee
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any) {
-            return PayeeLocationsApiFp(configuration).getPayeeLocationsByPayee(budgetId, payeeId, options)();
+        getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any) {
+            return PayeeLocationsApiFp(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
         },
     };
 };
@@ -2636,39 +2636,39 @@ export class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns a single payee location
      * @summary Single payee location
-     * @param {string} budgetId - ID of budget
-     * @param {string} payeeLocationId - ID of payee location
+     * @param {string} budget_id - ID of budget
+     * @param {string} payee_location_id - ID of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    public getPayeeLocationById(budgetId: string, payeeLocationId: string, options?: any) {
-        return PayeeLocationsApiFp(this.configuration).getPayeeLocationById(budgetId, payeeLocationId, options)();
+    public getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any) {
+        return PayeeLocationsApiFp(this.configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
     }
 
     /**
      * Returns all payee locations
      * @summary List payee locations
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    public getPayeeLocations(budgetId: string, options?: any) {
-        return PayeeLocationsApiFp(this.configuration).getPayeeLocations(budgetId, options)();
+    public getPayeeLocations(budget_id: string, options?: any) {
+        return PayeeLocationsApiFp(this.configuration).getPayeeLocations(budget_id, options)();
     }
 
     /**
      * Returns all payee locations for the specified payee
      * @summary List locations for a payee
-     * @param {string} budgetId - ID of budget
-     * @param {string} payeeId - ID of payee
+     * @param {string} budget_id - ID of budget
+     * @param {string} payee_id - ID of payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    public getPayeeLocationsByPayee(budgetId: string, payeeId: string, options?: any) {
-        return PayeeLocationsApiFp(this.configuration).getPayeeLocationsByPayee(budgetId, payeeId, options)();
+    public getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any) {
+        return PayeeLocationsApiFp(this.configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
     }
 
 }
@@ -2682,23 +2682,23 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeId - ID of payee
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeById(budgetId: string, payeeId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getPayeeById.');
+        getPayeeById(budget_id: string, payee_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getPayeeById.');
             }
-            // verify required parameter 'payeeId' is not null or undefined
-            if (payeeId === null || payeeId === undefined) {
-                throw new RequiredError('payeeId','Required parameter payeeId was null or undefined when calling getPayeeById.');
+            // verify required parameter 'payee_id' is not null or undefined
+            if (payee_id === null || payee_id === undefined) {
+                throw new RequiredError('payee_id','Required parameter payee_id was null or undefined when calling getPayeeById.');
             }
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payeeId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2728,17 +2728,17 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getPayees.');
+        getPayees(budget_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getPayees.');
             }
             const localVarPath = `/budgets/{budget_id}/payees`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2777,13 +2777,13 @@ export const PayeesApiFp = function(configuration?: Configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeId - ID of payee
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeById(budgetId: string, payeeId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeResponse> {
-            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayeeById(budgetId, payeeId, options);
+        getPayeeById(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeResponse> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayeeById(budget_id, payee_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2799,12 +2799,12 @@ export const PayeesApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse> {
-            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budgetId, options);
+        getPayees(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2829,23 +2829,23 @@ export const PayeesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budgetId - ID of budget
-         * @param {string} payeeId - ID of payee
+         * @param {string} budget_id - ID of budget
+         * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeById(budgetId: string, payeeId: string, options?: any) {
-            return PayeesApiFp(configuration).getPayeeById(budgetId, payeeId, options)();
+        getPayeeById(budget_id: string, payee_id: string, options?: any) {
+            return PayeesApiFp(configuration).getPayeeById(budget_id, payee_id, options)();
         },
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budgetId: string, options?: any) {
-            return PayeesApiFp(configuration).getPayees(budgetId, options)();
+        getPayees(budget_id: string, options?: any) {
+            return PayeesApiFp(configuration).getPayees(budget_id, options)();
         },
     };
 };
@@ -2860,26 +2860,26 @@ export class PayeesApi extends BaseAPI {
     /**
      * Returns single payee
      * @summary Single payee
-     * @param {string} budgetId - ID of budget
-     * @param {string} payeeId - ID of payee
+     * @param {string} budget_id - ID of budget
+     * @param {string} payee_id - ID of payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
-    public getPayeeById(budgetId: string, payeeId: string, options?: any) {
-        return PayeesApiFp(this.configuration).getPayeeById(budgetId, payeeId, options)();
+    public getPayeeById(budget_id: string, payee_id: string, options?: any) {
+        return PayeesApiFp(this.configuration).getPayeeById(budget_id, payee_id, options)();
     }
 
     /**
      * Returns all payees
      * @summary List payees
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
-    public getPayees(budgetId: string, options?: any) {
-        return PayeesApiFp(this.configuration).getPayees(budgetId, options)();
+    public getPayees(budget_id: string, options?: any) {
+        return PayeesApiFp(this.configuration).getPayees(budget_id, options)();
     }
 
 }
@@ -2893,23 +2893,23 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budgetId - ID of budget
-         * @param {string} scheduledTransactionId - ID of scheduled transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} scheduled_transaction_id - ID of scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getScheduledTransactionById.');
+        getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getScheduledTransactionById.');
             }
-            // verify required parameter 'scheduledTransactionId' is not null or undefined
-            if (scheduledTransactionId === null || scheduledTransactionId === undefined) {
-                throw new RequiredError('scheduledTransactionId','Required parameter scheduledTransactionId was null or undefined when calling getScheduledTransactionById.');
+            // verify required parameter 'scheduled_transaction_id' is not null or undefined
+            if (scheduled_transaction_id === null || scheduled_transaction_id === undefined) {
+                throw new RequiredError('scheduled_transaction_id','Required parameter scheduled_transaction_id was null or undefined when calling getScheduledTransactionById.');
             }
             const localVarPath = `/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(scheduledTransactionId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(scheduled_transaction_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2939,17 +2939,17 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getScheduledTransactions.');
+        getScheduledTransactions(budget_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getScheduledTransactions.');
             }
             const localVarPath = `/budgets/{budget_id}/scheduled_transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -2988,13 +2988,13 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budgetId - ID of budget
-         * @param {string} scheduledTransactionId - ID of scheduled transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} scheduled_transaction_id - ID of scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionDetailResponse> {
-            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options);
+        getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionResponse> {
+            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3010,12 +3010,12 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budgetId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionSummariesResponse> {
-            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budgetId, options);
+        getScheduledTransactions(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionsResponse> {
+            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3040,23 +3040,23 @@ export const ScheduledTransactionsApiFactory = function (configuration?: Configu
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budgetId - ID of budget
-         * @param {string} scheduledTransactionId - ID of scheduled transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} scheduled_transaction_id - ID of scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any) {
-            return ScheduledTransactionsApiFp(configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)();
+        getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any) {
+            return ScheduledTransactionsApiFp(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
         },
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budgetId - ID of budget
+         * @param {string} budget_id - ID of budget
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budgetId: string, options?: any) {
-            return ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budgetId, options)();
+        getScheduledTransactions(budget_id: string, options?: any) {
+            return ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budget_id, options)();
         },
     };
 };
@@ -3071,26 +3071,26 @@ export class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns a single scheduled transaction
      * @summary Single scheduled transaction
-     * @param {string} budgetId - ID of budget
-     * @param {string} scheduledTransactionId - ID of scheduled transaction
+     * @param {string} budget_id - ID of budget
+     * @param {string} scheduled_transaction_id - ID of scheduled transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    public getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, options?: any) {
-        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactionById(budgetId, scheduledTransactionId, options)();
+    public getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any) {
+        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
     }
 
     /**
      * Returns all scheduled transactions
      * @summary List scheduled transactions
-     * @param {string} budgetId - ID of budget
+     * @param {string} budget_id - ID of budget
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    public getScheduledTransactions(budgetId: string, options?: any) {
-        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budgetId, options)();
+    public getScheduledTransactions(budget_id: string, options?: any) {
+        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budget_id, options)();
     }
 
 }
@@ -3102,21 +3102,21 @@ export class ScheduledTransactionsApi extends BaseAPI {
 export const TransactionsApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Returns all budget transactions
+         * Returns budget transactions
          * @summary List transactions
-         * @param {string} budgetId - ID of budget
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactions.');
+        getTransactions(budget_id: string, since_date?: Date | string, type?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactions.');
             }
             const localVarPath = `/budgets/{budget_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -3133,8 +3133,8 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (sinceDate !== undefined) {
-                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
+            if (since_date !== undefined) {
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
 
             if (type !== undefined) {
@@ -3154,24 +3154,24 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budgetId - ID of budget
-         * @param {string} accountId - ID of account
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {string} account_id - ID of account
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactionsByAccount.');
+        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsByAccount.');
             }
-            // verify required parameter 'accountId' is not null or undefined
-            if (accountId === null || accountId === undefined) {
-                throw new RequiredError('accountId','Required parameter accountId was null or undefined when calling getTransactionsByAccount.');
+            // verify required parameter 'account_id' is not null or undefined
+            if (account_id === null || account_id === undefined) {
+                throw new RequiredError('account_id','Required parameter account_id was null or undefined when calling getTransactionsByAccount.');
             }
             const localVarPath = `/budgets/{budget_id}/accounts/{account_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -3188,8 +3188,8 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (sinceDate !== undefined) {
-                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
+            if (since_date !== undefined) {
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -3205,24 +3205,24 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budgetId - ID of budget
-         * @param {string} categoryId - ID of category
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {string} category_id - ID of category
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactionsByCategory.');
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsByCategory.');
             }
-            // verify required parameter 'categoryId' is not null or undefined
-            if (categoryId === null || categoryId === undefined) {
-                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling getTransactionsByCategory.');
+            // verify required parameter 'category_id' is not null or undefined
+            if (category_id === null || category_id === undefined) {
+                throw new RequiredError('category_id','Required parameter category_id was null or undefined when calling getTransactionsByCategory.');
             }
             const localVarPath = `/budgets/{budget_id}/categories/{category_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"category_id"}}`, encodeURIComponent(String(categoryId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -3239,8 +3239,8 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
-            if (sinceDate !== undefined) {
-                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(sinceDate);
+            if (since_date !== undefined) {
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -3256,23 +3256,23 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budgetId - ID of budget
-         * @param {string} transactionId - ID of transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} transaction_id - ID of transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsById(budgetId: string, transactionId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling getTransactionsById.');
+        getTransactionsById(budget_id: string, transaction_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsById.');
             }
-            // verify required parameter 'transactionId' is not null or undefined
-            if (transactionId === null || transactionId === undefined) {
-                throw new RequiredError('transactionId','Required parameter transactionId was null or undefined when calling getTransactionsById.');
+            // verify required parameter 'transaction_id' is not null or undefined
+            if (transaction_id === null || transaction_id === undefined) {
+                throw new RequiredError('transaction_id','Required parameter transaction_id was null or undefined when calling getTransactionsById.');
             }
             const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transactionId)));
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -3309,16 +3309,16 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 export const TransactionsApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Returns all budget transactions
+         * Returns budget transactions
          * @summary List transactions
-         * @param {string} budgetId - ID of budget
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budgetId, sinceDate, type, options);
+        getTransactions(budget_id: string, since_date?: Date | string, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budget_id, since_date, type, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3334,14 +3334,14 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budgetId - ID of budget
-         * @param {string} accountId - ID of account
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {string} account_id - ID of account
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options);
+        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3357,14 +3357,14 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budgetId - ID of budget
-         * @param {string} categoryId - ID of category
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {string} category_id - ID of category
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionSummariesResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options);
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3380,13 +3380,13 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budgetId - ID of budget
-         * @param {string} transactionId - ID of transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} transaction_id - ID of transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsById(budgetId: string, transactionId: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionDetailResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsById(budgetId, transactionId, options);
+        getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsById(budget_id, transaction_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3409,51 +3409,51 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
 export const TransactionsApiFactory = function (configuration?: Configuration) {
     return {
         /**
-         * Returns all budget transactions
+         * Returns budget transactions
          * @summary List transactions
-         * @param {string} budgetId - ID of budget
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactions(budgetId, sinceDate, type, options)();
+        getTransactions(budget_id: string, since_date?: Date | string, type?: string, options?: any) {
+            return TransactionsApiFp(configuration).getTransactions(budget_id, since_date, type, options)();
         },
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budgetId - ID of budget
-         * @param {string} accountId - ID of account
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {string} account_id - ID of account
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)();
+        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options?: any) {
+            return TransactionsApiFp(configuration).getTransactionsByAccount(budget_id, account_id, since_date, options)();
         },
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budgetId - ID of budget
-         * @param {string} categoryId - ID of category
-         * @param {Date} [sinceDate] - Only return transactions on or after this date
+         * @param {string} budget_id - ID of budget
+         * @param {string} category_id - ID of category
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)();
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any) {
+            return TransactionsApiFp(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options)();
         },
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budgetId - ID of budget
-         * @param {string} transactionId - ID of transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} transaction_id - ID of transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsById(budgetId: string, transactionId: string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsById(budgetId, transactionId, options)();
+        getTransactionsById(budget_id: string, transaction_id: string, options?: any) {
+            return TransactionsApiFp(configuration).getTransactionsById(budget_id, transaction_id, options)();
         },
     };
 };
@@ -3466,58 +3466,58 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
  */
 export class TransactionsApi extends BaseAPI {
     /**
-     * Returns all budget transactions
+     * Returns budget transactions
      * @summary List transactions
-     * @param {string} budgetId - ID of budget
-     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} budget_id - ID of budget
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactions(budgetId: string, sinceDate?: Date | string, type?: string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactions(budgetId, sinceDate, type, options)();
+    public getTransactions(budget_id: string, since_date?: Date | string, type?: string, options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactions(budget_id, since_date, type, options)();
     }
 
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
-     * @param {string} budgetId - ID of budget
-     * @param {string} accountId - ID of account
-     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} budget_id - ID of budget
+     * @param {string} account_id - ID of account
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: Date | string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsByAccount(budgetId, accountId, sinceDate, options)();
+    public getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionsByAccount(budget_id, account_id, since_date, options)();
     }
 
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
-     * @param {string} budgetId - ID of budget
-     * @param {string} categoryId - ID of category
-     * @param {Date} [sinceDate] - Only return transactions on or after this date
+     * @param {string} budget_id - ID of budget
+     * @param {string} category_id - ID of category
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: Date | string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsByCategory(budgetId, categoryId, sinceDate, options)();
+    public getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionsByCategory(budget_id, category_id, since_date, options)();
     }
 
     /**
      * Returns a single transaction
      * @summary Single transaction
-     * @param {string} budgetId - ID of budget
-     * @param {string} transactionId - ID of transaction
+     * @param {string} budget_id - ID of budget
+     * @param {string} transaction_id - ID of transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsById(budgetId: string, transactionId: string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsById(budgetId, transactionId, options)();
+    public getTransactionsById(budget_id: string, transaction_id: string, options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionsById(budget_id, transaction_id, options)();
     }
 
 }

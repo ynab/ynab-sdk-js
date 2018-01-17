@@ -256,7 +256,7 @@ describe("API requests", () => {
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynab.transactions.getTransactions(budgetId),
-        factories.transactionSummariesResponseFactory.build()
+        factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions`);
     });
@@ -267,7 +267,7 @@ describe("API requests", () => {
       const transactionId = "TransactionId";
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynab.transactions.getTransactionsById(budgetId, transactionId),
-        factories.transactionDetailResponseFactory.build()
+        factories.transactionResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`
@@ -286,7 +286,7 @@ describe("API requests", () => {
             accountId,
             sinceDate
           ),
-        factories.transactionSummariesResponseFactory.build()
+        factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/accounts/${
@@ -307,7 +307,7 @@ describe("API requests", () => {
             accountId,
             sinceDate
           ),
-        factories.transactionSummariesResponseFactory.build()
+        factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/accounts/${
@@ -328,7 +328,7 @@ describe("API requests", () => {
             categoryId,
             sinceDate
           ),
-        factories.transactionSummariesResponseFactory.build()
+        factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/categories/${
@@ -350,7 +350,7 @@ describe("API requests", () => {
             categoryId,
             sinceDate
           ),
-        factories.transactionSummariesResponseFactory.build()
+        factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/categories/${
@@ -366,7 +366,7 @@ describe("API requests", () => {
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynab.scheduledTransactions.getScheduledTransactions(budgetId),
-        factories.scheduledTransactionSummariesResponseFactory.build()
+        factories.scheduledTransactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`

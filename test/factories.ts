@@ -159,7 +159,7 @@ export const subTransactionFactory = Factory.makeFactory<api.SubTransaction>({
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
 });
 
-export const transactionDetailFactory = Factory.makeFactory<
+export const transactionFactory = Factory.makeFactory<
   api.TransactionDetail
 >({
   id: Factory.each(i => `id #${i}`),
@@ -176,11 +176,11 @@ export const transactionDetailFactory = Factory.makeFactory<
   subtransactions: subTransactionFactory.buildList(3)
 });
 
-export const transactionDetailResponseFactory = Factory.makeFactory<
-  api.TransactionDetailResponse
+export const transactionResponseFactory = Factory.makeFactory<
+  api.TransactionResponse
 >({
   data: Factory.makeFactory({
-    transaction: transactionDetailFactory.build()
+    transaction: transactionFactory.build()
   })
 });
 
@@ -201,11 +201,11 @@ export const transactionSummaryFactory = Factory.makeFactory<
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
 });
 
-export const transactionSummariesResponseFactory = Factory.makeFactory<
-  api.TransactionSummariesResponse
+export const transactionsResponseFactory = Factory.makeFactory<
+  api.TransactionsResponse
 >({
   data: Factory.makeFactory({
-    transactions: transactionSummaryFactory.buildList(5)
+    transactions: transactionFactory.buildList(5)
   })
 });
 
@@ -221,7 +221,7 @@ export const scheduledSubTransactionFactory = Factory.makeFactory<
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
 });
 
-export const scheduledTransactionDetailFactory = Factory.makeFactory<
+export const scheduledTransactionFactory = Factory.makeFactory<
   api.ScheduledTransactionDetail
 >({
   id: Factory.each(i => `id #${i}`),
@@ -238,10 +238,10 @@ export const scheduledTransactionDetailFactory = Factory.makeFactory<
 });
 
 export const scheduledTransactionDetailResponseFactory = Factory.makeFactory<
-  api.ScheduledTransactionDetailResponse
+  api.ScheduledTransactionResponse
 >({
   data: Factory.makeFactory({
-    scheduled_transaction: scheduledTransactionDetailFactory.build()
+    scheduled_transaction: scheduledTransactionFactory.build()
   })
 });
 
@@ -260,11 +260,11 @@ export const scheduledTransactionSummaryFactory = Factory.makeFactory<
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
 });
 
-export const scheduledTransactionSummariesResponseFactory = Factory.makeFactory<
-  api.ScheduledTransactionSummariesResponse
+export const scheduledTransactionsResponseFactory = Factory.makeFactory<
+  api.ScheduledTransactionsResponse
 >({
   data: Factory.makeFactory({
-    scheduled_transactions: scheduledTransactionSummaryFactory.buildList(5)
+    scheduled_transactions: scheduledTransactionFactory.buildList(5)
   })
 });
 
@@ -280,9 +280,9 @@ export const budgetDetailFactory = Factory.makeFactory<api.BudgetDetail>({
   category_groups: categoryFactory.buildList(5),
   categories: categoryFactory.buildList(10),
   months: monthDetailFactory.buildList(12),
-  transactions: transactionDetailFactory.buildList(10),
+  transactions: transactionFactory.buildList(10),
   subtransactions: subTransactionFactory.buildList(5),
-  scheduled_transactions: scheduledTransactionDetailFactory.buildList(5),
+  scheduled_transactions: scheduledTransactionFactory.buildList(5),
   scheduled_subtransactions: scheduledSubTransactionFactory.buildList(5)
 });
 
