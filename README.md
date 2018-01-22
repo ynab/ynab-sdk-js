@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/ynab/ynab-sdk-js.svg?branch=master)](https://travis-ci.org/ynab/ynab-sdk-js)
 [![NPM Package](https://img.shields.io/npm/v/ynab.svg)](https://www.npmjs.com/package/ynab) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+**NOTE: The YNAB API is currently only available to Early Access users.  If you are interested in requesting access before the API is generally available, please fill out [this form](https://docs.google.com/forms/d/17plY-CE39Xl3pe2GqyVH1Unre8TjYKs-tkI6jVC4ko4/edit).**
+
 The YNAB API JavaScript library provides access to the YNAB API from
 applications written in Node.js / JavaScript.
 
