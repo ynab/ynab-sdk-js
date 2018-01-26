@@ -4,6 +4,10 @@ export declare class Utils {
      */
     getCurrentMonthInISOFormat(): string;
     /**
+     * Returns the current date (system timezone) in ISO 8601 format (i.e. '2015-12-15')
+     */
+    getCurrentDateInISOFormat(): string;
+    /**
      * Converts an ISO 8601 formatted string to a JS date object
      * @param {string} isoDateString - An ISO 8601 formatted date (i.e. '2015-12-30').  This date is assumed to be in UTC timezone
      */

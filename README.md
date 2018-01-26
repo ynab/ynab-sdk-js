@@ -73,22 +73,13 @@ with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
 easier.
 
 ```typescript
-/**
-  * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
-  */
+// Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
 getCurrentMonthInISOFormat(): string;
-
-/**
-  * Converts an ISO 8601 formatted string to a JS date object
-  * @param {string} isoDate - An ISO 8601 formatted date (i.e. '2015-12-30').  This date is assumed to be in UTC timezone
-  */
+// Returns the current date (system timezone) in ISO 8601 format (i.e. '2015-12-15')
+getCurrentDateInISOFormat(): string;
+// Converts an ISO 8601 formatted string to a JS date object
 convertFromISODateString(isoDateString: string): Date;
-
-/**
- * Converts a milliunits amount to a currency amount
- * @param milliunits - The milliunits amount (i.e. 293294)
- * @param currencyDecimalDigits - The number of decimals in the currency (i.e. 2 for USD)
- */
+// Converts a milliunits amount to a currency amount
 convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
 ```
 

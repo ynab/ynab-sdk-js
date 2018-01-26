@@ -660,6 +660,88 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": ["Transactions"],
+        "summary": "Create new transaction",
+        "description": "Creates a transaction",
+        "operationId": "createTransaction",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "Transaction to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SaveTransaction"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponse"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/transactions/bulk": {
+      "post": {
+        "tags": ["Transactions"],
+        "summary": "Bulk create transactions",
+        "description": "Creates multiple transactions",
+        "operationId": "bulkCreateTransactions",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "transactions",
+            "in": "body",
+            "description": "Transactions to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BulkTransactions"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/BulkTransactionCreateResponse"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
       }
     },
     "/budgets/{budget_id}/accounts/{account_id}/transactions": {
@@ -811,6 +893,54 @@
             }
           },
           "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Transactions"],
+        "summary": "Updates an existing transaction",
+        "description": "Updates a transaction",
+        "operationId": "updateTransaction",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "ID of budget",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "ID of transaction",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "Transaction to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SaveTransaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponse"
+            }
+          },
+          "400": {
             "description": "Error",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
@@ -1529,6 +1659,80 @@
           }
         }
       ]
+    },
+    "SaveTransaction": {
+      "type": "object",
+      "required": ["account_id", "date", "amount"],
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "amount": {
+          "type": "number",
+          "format": "1234000",
+          "description": "The transaction amount in milliunits format"
+        },
+        "payee_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The payee for the transaction.  Transfer payees are not permitted and will be ignored if supplied."
+        },
+        "category_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied."
+        },
+        "cleared": {
+          "type": "string",
+          "enum": ["Cleared", "Uncleared", "Reconciled"],
+          "description": "The cleared status of the transaction"
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default."
+        },
+        "memo": {
+          "type": "string"
+        }
+      }
+    },
+    "BulkTransactionIds": {
+      "type": "object",
+      "required": ["transaction_ids"],
+      "properties": {
+        "transaction_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "BulkTransactionCreateResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/BulkTransactionIds"
+        }
+      }
+    },
+    "BulkTransactions": {
+      "type": "object",
+      "required": ["transactions"],
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SaveTransaction"
+          }
+        }
+      }
     },
     "SubTransaction": {
       "type": "object",
