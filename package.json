@@ -41,7 +41,7 @@
     "lodash": "^4.17.4",
     "mocha": "^4.0.1",
     "moment": "^2.19.2",
-    "prettier": "1.8.2",
+    "prettier": "^1.10.2",
     "swagger-model-validator": "^2.2.1",
     "ts-node": "^3.3.0",
     "typescript": "^2.6",
