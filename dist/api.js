@@ -17,7 +17,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/0.1.2";
+const USER_AGENT = "api_client/js/0.2.1";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -81,6 +81,23 @@ var Account;
         TypeEnum[TypeEnum["CreditCard"] = 'CreditCard'] = "CreditCard";
     })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
 })(Account = exports.Account || (exports.Account = {}));
+/**
+ * @export
+ * @namespace SaveTransaction
+ */
+var SaveTransaction;
+(function (SaveTransaction) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let ClearedEnum;
+    (function (ClearedEnum) {
+        ClearedEnum[ClearedEnum["Cleared"] = 'Cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'Uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'Reconciled'] = "Reconciled";
+    })(ClearedEnum = SaveTransaction.ClearedEnum || (SaveTransaction.ClearedEnum = {}));
+})(SaveTransaction = exports.SaveTransaction || (exports.SaveTransaction = {}));
 /**
  * @export
  * @namespace ScheduledTransactionSummary
@@ -1653,6 +1670,92 @@ exports.ScheduledTransactionsApi = ScheduledTransactionsApi;
 exports.TransactionsApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Creates multiple transactions
+         * @summary Bulk create transactions
+         * @param {string} budget_id - ID of budget
+         * @param {BulkTransactions} transactions - Transactions to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        bulkCreateTransactions(budget_id, transactions, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling bulkCreateTransactions.');
+            }
+            // verify required parameter 'transactions' is not null or undefined
+            if (transactions === null || transactions === undefined) {
+                throw new RequiredError('transactions', 'Required parameter transactions was null or undefined when calling bulkCreateTransactions.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transactions/bulk`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("Authorization")
+                    : configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = JSON.stringify(transactions || {});
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a transaction
+         * @summary Create new transaction
+         * @param {string} budget_id - ID of budget
+         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        createTransaction(budget_id, transaction, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling createTransaction.');
+            }
+            // verify required parameter 'transaction' is not null or undefined
+            if (transaction === null || transaction === undefined) {
+                throw new RequiredError('transaction', 'Required parameter transaction was null or undefined when calling createTransaction.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transactions`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("Authorization")
+                    : configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = JSON.stringify(transaction || {});
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns budget transactions
          * @summary List transactions
          * @param {string} budget_id - ID of budget
@@ -1830,6 +1933,55 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Updates a transaction
+         * @summary Updates an existing transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} transaction_id - ID of transaction
+         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        updateTransaction(budget_id, transaction_id, transaction, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateTransaction.');
+            }
+            // verify required parameter 'transaction_id' is not null or undefined
+            if (transaction_id === null || transaction_id === undefined) {
+                throw new RequiredError('transaction_id', 'Required parameter transaction_id was null or undefined when calling updateTransaction.');
+            }
+            // verify required parameter 'transaction' is not null or undefined
+            if (transaction === null || transaction === undefined) {
+                throw new RequiredError('transaction', 'Required parameter transaction was null or undefined when calling updateTransaction.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("Authorization")
+                    : configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = JSON.stringify(transaction || {});
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 /**
@@ -1838,6 +1990,52 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
  */
 exports.TransactionsApiFp = function (configuration) {
     return {
+        /**
+         * Creates multiple transactions
+         * @summary Bulk create transactions
+         * @param {string} budget_id - ID of budget
+         * @param {BulkTransactions} transactions - Transactions to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        bulkCreateTransactions(budget_id, transactions, options) {
+            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).bulkCreateTransactions(budget_id, transactions, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
+         * Creates a transaction
+         * @summary Create new transaction
+         * @param {string} budget_id - ID of budget
+         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        createTransaction(budget_id, transaction, options) {
+            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, transaction, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
         /**
          * Returns budget transactions
          * @summary List transactions
@@ -1933,6 +2131,30 @@ exports.TransactionsApiFp = function (configuration) {
                 });
             };
         },
+        /**
+         * Updates a transaction
+         * @summary Updates an existing transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} transaction_id - ID of transaction
+         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        updateTransaction(budget_id, transaction_id, transaction, options) {
+            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).updateTransaction(budget_id, transaction_id, transaction, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
     };
 };
 /**
@@ -1941,6 +2163,28 @@ exports.TransactionsApiFp = function (configuration) {
  */
 exports.TransactionsApiFactory = function (configuration) {
     return {
+        /**
+         * Creates multiple transactions
+         * @summary Bulk create transactions
+         * @param {string} budget_id - ID of budget
+         * @param {BulkTransactions} transactions - Transactions to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        bulkCreateTransactions(budget_id, transactions, options) {
+            return exports.TransactionsApiFp(configuration).bulkCreateTransactions(budget_id, transactions, options)();
+        },
+        /**
+         * Creates a transaction
+         * @summary Create new transaction
+         * @param {string} budget_id - ID of budget
+         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        createTransaction(budget_id, transaction, options) {
+            return exports.TransactionsApiFp(configuration).createTransaction(budget_id, transaction, options)();
+        },
         /**
          * Returns budget transactions
          * @summary List transactions
@@ -1988,6 +2232,18 @@ exports.TransactionsApiFactory = function (configuration) {
         getTransactionsById(budget_id, transaction_id, options) {
             return exports.TransactionsApiFp(configuration).getTransactionsById(budget_id, transaction_id, options)();
         },
+        /**
+         * Updates a transaction
+         * @summary Updates an existing transaction
+         * @param {string} budget_id - ID of budget
+         * @param {string} transaction_id - ID of transaction
+         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        updateTransaction(budget_id, transaction_id, transaction, options) {
+            return exports.TransactionsApiFp(configuration).updateTransaction(budget_id, transaction_id, transaction, options)();
+        },
     };
 };
 /**
@@ -1997,6 +2253,30 @@ exports.TransactionsApiFactory = function (configuration) {
  * @extends {BaseAPI}
  */
 class TransactionsApi extends BaseAPI {
+    /**
+     * Creates multiple transactions
+     * @summary Bulk create transactions
+     * @param {string} budget_id - ID of budget
+     * @param {BulkTransactions} transactions - Transactions to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    bulkCreateTransactions(budget_id, transactions, options) {
+        return exports.TransactionsApiFp(this.configuration).bulkCreateTransactions(budget_id, transactions, options)();
+    }
+    /**
+     * Creates a transaction
+     * @summary Create new transaction
+     * @param {string} budget_id - ID of budget
+     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    createTransaction(budget_id, transaction, options) {
+        return exports.TransactionsApiFp(this.configuration).createTransaction(budget_id, transaction, options)();
+    }
     /**
      * Returns budget transactions
      * @summary List transactions
@@ -2047,6 +2327,19 @@ class TransactionsApi extends BaseAPI {
      */
     getTransactionsById(budget_id, transaction_id, options) {
         return exports.TransactionsApiFp(this.configuration).getTransactionsById(budget_id, transaction_id, options)();
+    }
+    /**
+     * Updates a transaction
+     * @summary Updates an existing transaction
+     * @param {string} budget_id - ID of budget
+     * @param {string} transaction_id - ID of transaction
+     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    updateTransaction(budget_id, transaction_id, transaction, options) {
+        return exports.TransactionsApiFp(this.configuration).updateTransaction(budget_id, transaction_id, transaction, options)();
     }
 }
 exports.TransactionsApi = TransactionsApi;

@@ -261,6 +261,45 @@ export interface BudgetSummaryWrapper {
 /**
  *
  * @export
+ * @interface BulkTransactionCreateResponse
+ */
+export interface BulkTransactionCreateResponse {
+    /**
+     *
+     * @type {BulkTransactionIds}
+     * @memberof BulkTransactionCreateResponse
+     */
+    data: BulkTransactionIds;
+}
+/**
+ *
+ * @export
+ * @interface BulkTransactionIds
+ */
+export interface BulkTransactionIds {
+    /**
+     *
+     * @type {Array&lt;string&gt;}
+     * @memberof BulkTransactionIds
+     */
+    transaction_ids: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface BulkTransactions
+ */
+export interface BulkTransactions {
+    /**
+     *
+     * @type {Array&lt;SaveTransaction&gt;}
+     * @memberof BulkTransactions
+     */
+    transactions: Array<SaveTransaction>;
+}
+/**
+ *
+ * @export
  * @interface CategoriesResponse
  */
 export interface CategoriesResponse {
@@ -696,6 +735,76 @@ export interface PayeesWrapper {
      * @memberof PayeesWrapper
      */
     payees: Array<Payee>;
+}
+/**
+ *
+ * @export
+ * @interface SaveTransaction
+ */
+export interface SaveTransaction {
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    account_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    date: string;
+    /**
+     * The transaction amount in milliunits format
+     * @type {number}
+     * @memberof SaveTransaction
+     */
+    amount: number;
+    /**
+     * The payee for the transaction.  Transfer payees are not permitted and will be ignored if supplied.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    payee_id?: string;
+    /**
+     * The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    category_id?: string;
+    /**
+     * The cleared status of the transaction
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    cleared?: SaveTransaction.ClearedEnum;
+    /**
+     * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
+     * @type {boolean}
+     * @memberof SaveTransaction
+     */
+    approved?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    memo?: string;
+}
+/**
+ * @export
+ * @namespace SaveTransaction
+ */
+export declare namespace SaveTransaction {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ClearedEnum {
+        Cleared,
+        Uncleared,
+        Reconciled,
+    }
 }
 /**
  *
@@ -1810,30 +1919,39 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
  * @export
  */
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): FetchArgs;
+    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): FetchArgs;
     getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): FetchArgs;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): FetchArgs;
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): FetchArgs;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): FetchArgs;
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): FetchArgs;
 };
 /**
  * TransactionsApi - functional programming interface
  * @export
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkTransactionCreateResponse>;
+    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
     getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
 };
 /**
  * TransactionsApi - factory interface
  * @export
  */
 export declare const TransactionsApiFactory: (configuration?: Configuration) => {
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkTransactionCreateResponse>;
+    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
     getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): Promise<TransactionsResponse>;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
 };
 /**
  * TransactionsApi - object-oriented interface
@@ -1842,6 +1960,26 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
  * @extends {BaseAPI}
  */
 export declare class TransactionsApi extends BaseAPI {
+    /**
+     * Creates multiple transactions
+     * @summary Bulk create transactions
+     * @param {string} budget_id - ID of budget
+     * @param {BulkTransactions} transactions - Transactions to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkTransactionCreateResponse>;
+    /**
+     * Creates a transaction
+     * @summary Create new transaction
+     * @param {string} budget_id - ID of budget
+     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
     /**
      * Returns budget transactions
      * @summary List transactions
@@ -1885,4 +2023,15 @@ export declare class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
+    /**
+     * Updates a transaction
+     * @summary Updates an existing transaction
+     * @param {string} budget_id - ID of budget
+     * @param {string} transaction_id - ID of transaction
+     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
 }
