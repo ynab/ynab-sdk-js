@@ -22,7 +22,8 @@
   "scripts": {
     "generate": "cd build && ./generate_sdk_typescript.js",
     "build": "npx tsc && npx tsc -p examples/",
-    "test": "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'"
+    "test": "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'",
+    "release": "npm-github-release"
   },
   "dependencies": {
     "portable-fetch": "^3.0.0"
@@ -41,6 +42,7 @@
     "lodash": "^4.17.4",
     "mocha": "^4.0.1",
     "moment": "^2.19.2",
+    "npm-github-release": "^0.9.0",
     "swagger-model-validator": "^2.2.1",
     "ts-node": "^3.3.0",
     "typescript": "^2.6",
