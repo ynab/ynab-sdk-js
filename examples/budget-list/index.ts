@@ -30,7 +30,7 @@ BUDGET LIST
 ===========`);
 
     for (let budget of budgets) {
-      console.log(`[id: ${budget.id}, name: ${budget.name}, last_accessed_on: ${budget.last_accessed_on}]`)
+      console.log(`[id: ${budget.id}, name: ${budget.name}, last_modified_on: ${budget.last_modified_on}]`)
     }
   } catch (e) {
     console.log(`ERROR: ${JSON.stringify(e)}`);

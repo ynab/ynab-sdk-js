@@ -1122,7 +1122,7 @@
         "name": {
           "type": "string"
         },
-        "last_accessed_on": {
+        "last_modified_on": {
           "type": "string",
           "format": "date-time"
         },

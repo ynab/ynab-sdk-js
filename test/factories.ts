@@ -4,7 +4,7 @@ import * as api from "../src/api";
 export const budgetSummaryFactory = Factory.makeFactory<api.BudgetSummary>({
   id: Factory.each(i => `${i}`),
   name: Factory.each(i => `Budget ${i}`),
-  last_accessed_on: new Date().toISOString(),
+  last_modified_on: new Date().toISOString(),
   date_format: { locale: "en-us" },
   currency_format: { locale: "en-us" }
 });
@@ -271,7 +271,7 @@ export const scheduledTransactionsResponseFactory = Factory.makeFactory<
 export const budgetDetailFactory = Factory.makeFactory<api.BudgetDetail>({
   id: Factory.each(i => `${i}`),
   name: Factory.each(i => `Budget ${i}`),
-  last_accessed_on: new Date().toISOString(),
+  last_modified_on: new Date().toISOString(),
   date_format: { locale: "en-us" },
   currency_format: { locale: "en-us" },
   accounts: accountFactory.buildList(5),

@@ -218,7 +218,7 @@ export interface BudgetSummary {
      * @type {string}
      * @memberof BudgetSummary
      */
-    last_accessed_on?: string;
+    last_modified_on?: string;
     /**
      *
      * @type {DateFormat}
@@ -1211,7 +1211,7 @@ export interface BudgetDetail {
      * @type {string}
      * @memberof BudgetDetail
      */
-    last_accessed_on?: string;
+    last_modified_on?: string;
     /**
      *
      * @type {DateFormat}
