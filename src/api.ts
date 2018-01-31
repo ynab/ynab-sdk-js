@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.2.1";
+const USER_AGENT = "api_client/js/0.3.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -268,7 +268,7 @@ export interface BudgetSummary {
      * @type {string}
      * @memberof BudgetSummary
      */
-    last_accessed_on?: string;
+    last_modified_on?: string;
     /**
      * 
      * @type {DateFormat}
@@ -1308,7 +1308,7 @@ export interface BudgetDetail {
      * @type {string}
      * @memberof BudgetDetail
      */
-    last_accessed_on?: string;
+    last_modified_on?: string;
     /**
      * 
      * @type {DateFormat}
