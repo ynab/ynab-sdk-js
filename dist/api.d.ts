@@ -809,6 +809,19 @@ export declare namespace SaveTransaction {
 /**
  *
  * @export
+ * @interface SaveTransactionWrapper
+ */
+export interface SaveTransactionWrapper {
+    /**
+     *
+     * @type {SaveTransaction}
+     * @memberof SaveTransactionWrapper
+     */
+    transaction: SaveTransaction;
+}
+/**
+ *
+ * @export
  * @interface ScheduledSubTransaction
  */
 export interface ScheduledSubTransaction {
@@ -1920,12 +1933,12 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
  */
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
     bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): FetchArgs;
-    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): FetchArgs;
+    createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): FetchArgs;
     getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): FetchArgs;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): FetchArgs;
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): FetchArgs;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): FetchArgs;
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): FetchArgs;
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): FetchArgs;
 };
 /**
  * TransactionsApi - functional programming interface
@@ -1933,12 +1946,12 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
     bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkTransactionCreateResponse>;
-    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
     getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
 };
 /**
  * TransactionsApi - factory interface
@@ -1946,12 +1959,12 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
  */
 export declare const TransactionsApiFactory: (configuration?: Configuration) => {
     bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkTransactionCreateResponse>;
-    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
+    createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
     getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): Promise<TransactionsResponse>;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
 };
 /**
  * TransactionsApi - object-oriented interface
@@ -1974,12 +1987,12 @@ export declare class TransactionsApi extends BaseAPI {
      * Creates a transaction
      * @summary Create new transaction
      * @param {string} budget_id - ID of budget
-     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {SaveTransactionWrapper} transaction - Transaction to create
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
+    createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
     /**
      * Returns budget transactions
      * @summary List transactions
@@ -2028,10 +2041,10 @@ export declare class TransactionsApi extends BaseAPI {
      * @summary Updates an existing transaction
      * @param {string} budget_id - ID of budget
      * @param {string} transaction_id - ID of transaction
-     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {SaveTransactionWrapper} transaction - Transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
 }

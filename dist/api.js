@@ -17,7 +17,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/0.3.0";
+const USER_AGENT = "api_client/js/0.4.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -1716,7 +1716,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
          * Creates a transaction
          * @summary Create new transaction
          * @param {string} budget_id - ID of budget
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1938,7 +1938,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
          * @summary Updates an existing transaction
          * @param {string} budget_id - ID of budget
          * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2017,7 +2017,7 @@ exports.TransactionsApiFp = function (configuration) {
          * Creates a transaction
          * @summary Create new transaction
          * @param {string} budget_id - ID of budget
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2136,7 +2136,7 @@ exports.TransactionsApiFp = function (configuration) {
          * @summary Updates an existing transaction
          * @param {string} budget_id - ID of budget
          * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2178,7 +2178,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * Creates a transaction
          * @summary Create new transaction
          * @param {string} budget_id - ID of budget
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2237,7 +2237,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * @summary Updates an existing transaction
          * @param {string} budget_id - ID of budget
          * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2269,7 +2269,7 @@ class TransactionsApi extends BaseAPI {
      * Creates a transaction
      * @summary Create new transaction
      * @param {string} budget_id - ID of budget
-     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {SaveTransactionWrapper} transaction - Transaction to create
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -2333,7 +2333,7 @@ class TransactionsApi extends BaseAPI {
      * @summary Updates an existing transaction
      * @param {string} budget_id - ID of budget
      * @param {string} transaction_id - ID of transaction
-     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {SaveTransactionWrapper} transaction - Transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
