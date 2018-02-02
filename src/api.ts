@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.3.0";
+const USER_AGENT = "api_client/js/0.4.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -887,6 +887,20 @@ export namespace SaveTransaction {
         Uncleared = <any> 'Uncleared',
         Reconciled = <any> 'Reconciled'
     }
+}
+
+/**
+ * 
+ * @export
+ * @interface SaveTransactionWrapper
+ */
+export interface SaveTransactionWrapper {
+    /**
+     * 
+     * @type {SaveTransaction}
+     * @memberof SaveTransactionWrapper
+     */
+    transaction: SaveTransaction;
 }
 
 /**
@@ -3267,11 +3281,11 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * Creates a transaction
          * @summary Create new transaction
          * @param {string} budget_id - ID of budget
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id: string, transaction: SaveTransaction, options: any = {}): FetchArgs {
+        createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling createTransaction.');
@@ -3514,11 +3528,11 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @summary Updates an existing transaction
          * @param {string} budget_id - ID of budget
          * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options: any = {}): FetchArgs {
+        updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling updateTransaction.');
@@ -3598,11 +3612,11 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * Creates a transaction
          * @summary Create new transaction
          * @param {string} budget_id - ID of budget
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id: string, transaction: SaveTransaction, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
+        createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, transaction, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -3712,11 +3726,11 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @summary Updates an existing transaction
          * @param {string} budget_id - ID of budget
          * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
+        updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransaction(budget_id, transaction_id, transaction, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -3754,11 +3768,11 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          * Creates a transaction
          * @summary Create new transaction
          * @param {string} budget_id - ID of budget
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id: string, transaction: SaveTransaction, options?: any) {
+        createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any) {
             return TransactionsApiFp(configuration).createTransaction(budget_id, transaction, options)();
         },
         /**
@@ -3813,11 +3827,11 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          * @summary Updates an existing transaction
          * @param {string} budget_id - ID of budget
          * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransaction} transaction - Transaction to create
+         * @param {SaveTransactionWrapper} transaction - Transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any) {
+        updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any) {
             return TransactionsApiFp(configuration).updateTransaction(budget_id, transaction_id, transaction, options)();
         },
     };
@@ -3847,12 +3861,12 @@ export class TransactionsApi extends BaseAPI {
      * Creates a transaction
      * @summary Create new transaction
      * @param {string} budget_id - ID of budget
-     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {SaveTransactionWrapper} transaction - Transaction to create
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public createTransaction(budget_id: string, transaction: SaveTransaction, options?: any) {
+    public createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any) {
         return TransactionsApiFp(this.configuration).createTransaction(budget_id, transaction, options)();
     }
 
@@ -3916,12 +3930,12 @@ export class TransactionsApi extends BaseAPI {
      * @summary Updates an existing transaction
      * @param {string} budget_id - ID of budget
      * @param {string} transaction_id - ID of transaction
-     * @param {SaveTransaction} transaction - Transaction to create
+     * @param {SaveTransactionWrapper} transaction - Transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransaction, options?: any) {
+    public updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any) {
         return TransactionsApiFp(this.configuration).updateTransaction(budget_id, transaction_id, transaction, options)();
     }
 

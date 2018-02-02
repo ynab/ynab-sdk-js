@@ -682,7 +682,7 @@
             "description": "Transaction to create",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveTransaction"
+              "$ref": "#/definitions/SaveTransactionWrapper"
             }
           }
         ],
@@ -926,10 +926,10 @@
           {
             "name": "transaction",
             "in": "body",
-            "description": "Transaction to create",
+            "description": "Transaction to update",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveTransaction"
+              "$ref": "#/definitions/SaveTransactionWrapper"
             }
           }
         ],
@@ -1659,6 +1659,15 @@
           }
         }
       ]
+    },
+    "SaveTransactionWrapper": {
+      "type": "object",
+      "required": ["transaction"],
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/SaveTransaction"
+        }
+      }
     },
     "SaveTransaction": {
       "type": "object",
