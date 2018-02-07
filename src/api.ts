@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.4.0";
+const USER_AGENT = "api_client/js/0.5.1";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -137,6 +137,18 @@ export interface Account {
      * @memberof Account
      */
     balance: number;
+    /**
+     * The current cleared balance of the account in milliunits format
+     * @type {number}
+     * @memberof Account
+     */
+    cleared_balance: number;
+    /**
+     * The current uncleared balance of the account in milliunits format
+     * @type {number}
+     * @memberof Account
+     */
+    uncleared_balance: number;
 }
 
 /**
@@ -848,11 +860,23 @@ export interface SaveTransaction {
      */
     payee_id?: string;
     /**
+     * The payee name.  If a payee_name value is provided and payee_id is not included or has a null value, payee_name will be used to create or use an existing payee.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    payee_name?: string;
+    /**
      * The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied.
      * @type {string}
      * @memberof SaveTransaction
      */
     category_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    memo?: string;
     /**
      * The cleared status of the transaction
      * @type {string}
@@ -866,11 +890,11 @@ export interface SaveTransaction {
      */
     approved?: boolean;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof SaveTransaction
      */
-    memo?: string;
+    flag_color?: SaveTransaction.FlagColorEnum;
 }
 
 /**
@@ -886,6 +910,18 @@ export namespace SaveTransaction {
         Cleared = <any> 'Cleared',
         Uncleared = <any> 'Uncleared',
         Reconciled = <any> 'Reconciled'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
     }
 }
 
@@ -980,11 +1016,17 @@ export interface ScheduledTransactionSummary {
      */
     id: string;
     /**
-     * 
+     * The first date for which the Scheduled Transaction was scheduled.
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    date: string;
+    date_first: string;
+    /**
+     * The next date for which the Scheduled Transaction is scheduled.
+     * @type {string}
+     * @memberof ScheduledTransactionSummary
+     */
+    date_next: string;
     /**
      * 
      * @type {string}
@@ -1008,7 +1050,7 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    flag: string;
+    flag_color: string;
     /**
      * 
      * @type {string}
@@ -1045,19 +1087,19 @@ export namespace ScheduledTransactionSummary {
      * @enum {string}
      */
     export enum FrequencyEnum {
-        Never = <any> 'Never',
-        Daily = <any> 'Daily',
-        Weekly = <any> 'Weekly',
-        EveryOtherWeek = <any> 'EveryOtherWeek',
-        TwiceAMonth = <any> 'TwiceAMonth',
-        Every4Weeks = <any> 'Every4Weeks',
-        Monthly = <any> 'Monthly',
-        EveryOtherMonth = <any> 'EveryOtherMonth',
-        Every3Months = <any> 'Every3Months',
-        Every4Months = <any> 'Every4Months',
-        TwiceAYear = <any> 'TwiceAYear',
-        Yearly = <any> 'Yearly',
-        EveryOtherYear = <any> 'EveryOtherYear'
+        Never = <any> 'never',
+        Daily = <any> 'daily',
+        Weekly = <any> 'weekly',
+        EveryOtherWeek = <any> 'everyOtherWeek',
+        TwiceAMonth = <any> 'twiceAMonth',
+        Every4Weeks = <any> 'every4Weeks',
+        Monthly = <any> 'monthly',
+        EveryOtherMonth = <any> 'everyOtherMonth',
+        Every3Months = <any> 'every3Months',
+        Every4Months = <any> 'every4Months',
+        TwiceAYear = <any> 'twiceAYear',
+        Yearly = <any> 'yearly',
+        EveryOtherYear = <any> 'everyOtherYear'
     }
 }
 
@@ -1214,7 +1256,7 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    flag: string;
+    flag_color: string;
     /**
      * 
      * @type {string}
@@ -1251,9 +1293,9 @@ export namespace TransactionSummary {
      * @enum {string}
      */
     export enum ClearedEnum {
-        Cleared = <any> 'Cleared',
-        Uncleared = <any> 'Uncleared',
-        Reconciled = <any> 'Reconciled'
+        Cleared = <any> 'cleared',
+        Uncleared = <any> 'uncleared',
+        Reconciled = <any> 'reconciled'
     }
 }
 
@@ -1480,11 +1522,17 @@ export interface ScheduledTransactionDetail {
      */
     id: string;
     /**
-     * 
+     * The first date for which the Scheduled Transaction was scheduled.
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    date: string;
+    date_first: string;
+    /**
+     * The next date for which the Scheduled Transaction is scheduled.
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    date_next: string;
     /**
      * 
      * @type {string}
@@ -1508,7 +1556,7 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    flag: string;
+    flag_color: string;
     /**
      * 
      * @type {string}
@@ -1551,19 +1599,19 @@ export namespace ScheduledTransactionDetail {
      * @enum {string}
      */
     export enum FrequencyEnum {
-        Never = <any> 'Never',
-        Daily = <any> 'Daily',
-        Weekly = <any> 'Weekly',
-        EveryOtherWeek = <any> 'EveryOtherWeek',
-        TwiceAMonth = <any> 'TwiceAMonth',
-        Every4Weeks = <any> 'Every4Weeks',
-        Monthly = <any> 'Monthly',
-        EveryOtherMonth = <any> 'EveryOtherMonth',
-        Every3Months = <any> 'Every3Months',
-        Every4Months = <any> 'Every4Months',
-        TwiceAYear = <any> 'TwiceAYear',
-        Yearly = <any> 'Yearly',
-        EveryOtherYear = <any> 'EveryOtherYear'
+        Never = <any> 'never',
+        Daily = <any> 'daily',
+        Weekly = <any> 'weekly',
+        EveryOtherWeek = <any> 'everyOtherWeek',
+        TwiceAMonth = <any> 'twiceAMonth',
+        Every4Weeks = <any> 'every4Weeks',
+        Monthly = <any> 'monthly',
+        EveryOtherMonth = <any> 'everyOtherMonth',
+        Every3Months = <any> 'every3Months',
+        Every4Months = <any> 'every4Months',
+        TwiceAYear = <any> 'twiceAYear',
+        Yearly = <any> 'yearly',
+        EveryOtherYear = <any> 'everyOtherYear'
     }
 }
 
@@ -1614,7 +1662,7 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    flag: string;
+    flag_color: string;
     /**
      * 
      * @type {string}
@@ -1657,9 +1705,9 @@ export namespace TransactionDetail {
      * @enum {string}
      */
     export enum ClearedEnum {
-        Cleared = <any> 'Cleared',
-        Uncleared = <any> 'Uncleared',
-        Reconciled = <any> 'Reconciled'
+        Cleared = <any> 'cleared',
+        Uncleared = <any> 'uncleared',
+        Reconciled = <any> 'reconciled'
     }
 }
 
@@ -1673,8 +1721,8 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - ID of budget
-         * @param {string} account_id - ID of account
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} account_id - The ID of the Account.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1719,7 +1767,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1768,8 +1816,8 @@ export const AccountsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - ID of budget
-         * @param {string} account_id - ID of account
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} account_id - The ID of the Account.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1790,7 +1838,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1820,8 +1868,8 @@ export const AccountsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - ID of budget
-         * @param {string} account_id - ID of account
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} account_id - The ID of the Account.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1831,7 +1879,7 @@ export const AccountsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1851,8 +1899,8 @@ export class AccountsApi extends BaseAPI {
     /**
      * Returns a single account
      * @summary Single account
-     * @param {string} budget_id - ID of budget
-     * @param {string} account_id - ID of account
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} account_id - The ID of the Account.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
@@ -1864,7 +1912,7 @@ export class AccountsApi extends BaseAPI {
     /**
      * Returns all accounts
      * @summary Account list
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
@@ -1884,8 +1932,8 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - ID of budget
-         * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1927,7 +1975,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns budgets list with summary information
+         * Returns budgets list with summary information.
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -1972,8 +2020,8 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - ID of budget
-         * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1992,7 +2040,7 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Returns budgets list with summary information
+         * Returns budgets list with summary information.
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2023,8 +2071,8 @@ export const BudgetsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - ID of budget
-         * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2032,7 +2080,7 @@ export const BudgetsApiFactory = function (configuration?: Configuration) {
             return BudgetsApiFp(configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
         },
         /**
-         * Returns budgets list with summary information
+         * Returns budgets list with summary information.
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2053,8 +2101,8 @@ export class BudgetsApi extends BaseAPI {
     /**
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * @summary Single budget
-     * @param {string} budget_id - ID of budget
-     * @param {number} [last_knowledge_of_server] - Starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
@@ -2064,7 +2112,7 @@ export class BudgetsApi extends BaseAPI {
     }
 
     /**
-     * Returns budgets list with summary information
+     * Returns budgets list with summary information.
      * @summary List budgets
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2083,9 +2131,9 @@ export class BudgetsApi extends BaseAPI {
 export const CategoriesApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Returns all categories grouped by category group
+         * Returns all categories grouped by category group.
          * @summary List categories
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2125,8 +2173,8 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budget_id - ID of budget
-         * @param {string} category_id - ID of category
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} category_id - The ID of the Category.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2178,9 +2226,9 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
 export const CategoriesApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Returns all categories grouped by category group
+         * Returns all categories grouped by category group.
          * @summary List categories
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2201,8 +2249,8 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budget_id - ID of budget
-         * @param {string} category_id - ID of category
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} category_id - The ID of the Category.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2230,9 +2278,9 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
 export const CategoriesApiFactory = function (configuration?: Configuration) {
     return {
         /**
-         * Returns all categories grouped by category group
+         * Returns all categories grouped by category group.
          * @summary List categories
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2242,8 +2290,8 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budget_id - ID of budget
-         * @param {string} category_id - ID of category
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} category_id - The ID of the Category.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2261,9 +2309,9 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
  */
 export class CategoriesApi extends BaseAPI {
     /**
-     * Returns all categories grouped by category group
+     * Returns all categories grouped by category group.
      * @summary List categories
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
@@ -2275,8 +2323,8 @@ export class CategoriesApi extends BaseAPI {
     /**
      * Returns a single category
      * @summary Single category
-     * @param {string} budget_id - ID of budget
-     * @param {string} category_id - ID of category
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} category_id - The ID of the Category.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
@@ -2296,8 +2344,8 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - ID of budget
-         * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2342,7 +2390,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2391,8 +2439,8 @@ export const MonthsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - ID of budget
-         * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2413,7 +2461,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2443,8 +2491,8 @@ export const MonthsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - ID of budget
-         * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2454,7 +2502,7 @@ export const MonthsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2474,8 +2522,8 @@ export class MonthsApi extends BaseAPI {
     /**
      * Returns a single budget month
      * @summary Single budget month
-     * @param {string} budget_id - ID of budget
-     * @param {Date} month - The budget month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
@@ -2487,7 +2535,7 @@ export class MonthsApi extends BaseAPI {
     /**
      * Returns all budget months
      * @summary List budget months
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
@@ -2507,7 +2555,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2553,7 +2601,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2593,7 +2641,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2648,7 +2696,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2670,7 +2718,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2691,7 +2739,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2722,7 +2770,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration)
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2733,7 +2781,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration)
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2743,7 +2791,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration)
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_id - ID of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2764,7 +2812,7 @@ export class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns a single payee location
      * @summary Single payee location
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {string} payee_location_id - ID of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2777,7 +2825,7 @@ export class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns all payee locations
      * @summary List payee locations
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
@@ -2789,7 +2837,7 @@ export class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns all payee locations for the specified payee
      * @summary List locations for a payee
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {string} payee_id - ID of payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2810,8 +2858,8 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - ID of budget
-         * @param {string} payee_id - ID of payee
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2856,7 +2904,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2905,8 +2953,8 @@ export const PayeesApiFp = function(configuration?: Configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - ID of budget
-         * @param {string} payee_id - ID of payee
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2927,7 +2975,7 @@ export const PayeesApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2957,8 +3005,8 @@ export const PayeesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - ID of budget
-         * @param {string} payee_id - ID of payee
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2968,7 +3016,7 @@ export const PayeesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2988,8 +3036,8 @@ export class PayeesApi extends BaseAPI {
     /**
      * Returns single payee
      * @summary Single payee
-     * @param {string} budget_id - ID of budget
-     * @param {string} payee_id - ID of payee
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} payee_id - The ID of the Payee.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
@@ -3001,7 +3049,7 @@ export class PayeesApi extends BaseAPI {
     /**
      * Returns all payees
      * @summary List payees
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
@@ -3021,8 +3069,8 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} scheduled_transaction_id - ID of scheduled transaction
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3067,7 +3115,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3116,8 +3164,8 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} scheduled_transaction_id - ID of scheduled transaction
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3138,7 +3186,7 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3168,8 +3216,8 @@ export const ScheduledTransactionsApiFactory = function (configuration?: Configu
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} scheduled_transaction_id - ID of scheduled transaction
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3179,7 +3227,7 @@ export const ScheduledTransactionsApiFactory = function (configuration?: Configu
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - ID of budget
+         * @param {string} budget_id - The ID of the Budget.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3199,8 +3247,8 @@ export class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns a single scheduled transaction
      * @summary Single scheduled transaction
-     * @param {string} budget_id - ID of budget
-     * @param {string} scheduled_transaction_id - ID of scheduled transaction
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
@@ -3212,7 +3260,7 @@ export class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns all scheduled transactions
      * @summary List scheduled transactions
-     * @param {string} budget_id - ID of budget
+     * @param {string} budget_id - The ID of the Budget.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
@@ -3232,8 +3280,8 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Creates multiple transactions
          * @summary Bulk create transactions
-         * @param {string} budget_id - ID of budget
-         * @param {BulkTransactions} transactions - Transactions to create
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {BulkTransactions} transactions - The list of Transactions to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3280,8 +3328,8 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Creates a transaction
          * @summary Create new transaction
-         * @param {string} budget_id - ID of budget
-         * @param {SaveTransactionWrapper} transaction - Transaction to create
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {SaveTransactionWrapper} transaction - The Transaction to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3328,8 +3376,8 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - ID of budget
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3378,9 +3426,9 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - ID of budget
-         * @param {string} account_id - ID of account
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} account_id - The ID of the Account.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3429,9 +3477,9 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - ID of budget
-         * @param {string} category_id - ID of category
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} category_id - The ID of the Category.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3480,8 +3528,8 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} transaction_id - ID of transaction
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} transaction_id - The ID of the Transaction.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3526,9 +3574,9 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransactionWrapper} transaction - Transaction to update
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {SaveTransactionWrapper} transaction - The Transaction to update.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3589,8 +3637,8 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Creates multiple transactions
          * @summary Bulk create transactions
-         * @param {string} budget_id - ID of budget
-         * @param {BulkTransactions} transactions - Transactions to create
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {BulkTransactions} transactions - The list of Transactions to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3611,8 +3659,8 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Creates a transaction
          * @summary Create new transaction
-         * @param {string} budget_id - ID of budget
-         * @param {SaveTransactionWrapper} transaction - Transaction to create
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {SaveTransactionWrapper} transaction - The Transaction to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3633,8 +3681,8 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - ID of budget
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3656,9 +3704,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - ID of budget
-         * @param {string} account_id - ID of account
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} account_id - The ID of the Account.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3679,9 +3727,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - ID of budget
-         * @param {string} category_id - ID of category
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} category_id - The ID of the Category.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3702,8 +3750,8 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} transaction_id - ID of transaction
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} transaction_id - The ID of the Transaction.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3724,9 +3772,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransactionWrapper} transaction - Transaction to update
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {SaveTransactionWrapper} transaction - The Transaction to update.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3756,8 +3804,8 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Creates multiple transactions
          * @summary Bulk create transactions
-         * @param {string} budget_id - ID of budget
-         * @param {BulkTransactions} transactions - Transactions to create
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {BulkTransactions} transactions - The list of Transactions to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3767,8 +3815,8 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Creates a transaction
          * @summary Create new transaction
-         * @param {string} budget_id - ID of budget
-         * @param {SaveTransactionWrapper} transaction - Transaction to create
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {SaveTransactionWrapper} transaction - The Transaction to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3778,8 +3826,8 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - ID of budget
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3790,9 +3838,9 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - ID of budget
-         * @param {string} account_id - ID of account
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} account_id - The ID of the Account.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3802,9 +3850,9 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - ID of budget
-         * @param {string} category_id - ID of category
-         * @param {Date} [since_date] - Only return transactions on or after this date
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} category_id - The ID of the Category.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3814,8 +3862,8 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} transaction_id - ID of transaction
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} transaction_id - The ID of the Transaction.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3825,9 +3873,9 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - ID of budget
-         * @param {string} transaction_id - ID of transaction
-         * @param {SaveTransactionWrapper} transaction - Transaction to update
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {SaveTransactionWrapper} transaction - The Transaction to update.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3847,8 +3895,8 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Creates multiple transactions
      * @summary Bulk create transactions
-     * @param {string} budget_id - ID of budget
-     * @param {BulkTransactions} transactions - Transactions to create
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {BulkTransactions} transactions - The list of Transactions to create.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -3860,8 +3908,8 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Creates a transaction
      * @summary Create new transaction
-     * @param {string} budget_id - ID of budget
-     * @param {SaveTransactionWrapper} transaction - Transaction to create
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {SaveTransactionWrapper} transaction - The Transaction to create.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -3873,8 +3921,8 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns budget transactions
      * @summary List transactions
-     * @param {string} budget_id - ID of budget
-     * @param {Date} [since_date] - Only return transactions on or after this date
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {Date} [since_date] - Only return transactions on or after this date.
      * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -3887,9 +3935,9 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
-     * @param {string} budget_id - ID of budget
-     * @param {string} account_id - ID of account
-     * @param {Date} [since_date] - Only return transactions on or after this date
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} account_id - The ID of the Account.
+     * @param {Date} [since_date] - Only return transactions on or after this date.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -3901,9 +3949,9 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
-     * @param {string} budget_id - ID of budget
-     * @param {string} category_id - ID of category
-     * @param {Date} [since_date] - Only return transactions on or after this date
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} category_id - The ID of the Category.
+     * @param {Date} [since_date] - Only return transactions on or after this date.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -3915,8 +3963,8 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns a single transaction
      * @summary Single transaction
-     * @param {string} budget_id - ID of budget
-     * @param {string} transaction_id - ID of transaction
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} transaction_id - The ID of the Transaction.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -3928,9 +3976,9 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
-     * @param {string} budget_id - ID of budget
-     * @param {string} transaction_id - ID of transaction
-     * @param {SaveTransactionWrapper} transaction - Transaction to update
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} transaction_id - The ID of the Transaction.
+     * @param {SaveTransactionWrapper} transaction - The Transaction to update.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi

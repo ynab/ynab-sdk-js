@@ -24,7 +24,9 @@ export const accountFactory = Factory.makeFactory({
   on_budget: true,
   closed: false,
   note: Factory.each(i => `Note #${i}`),
-  balance: 5000
+  balance: 5000,
+  cleared_balance: 2000,
+  uncleared_balance: 3000
 });
 
 export const accountsResponseFactory = Factory.makeFactory<
@@ -168,7 +170,7 @@ export const transactionFactory = Factory.makeFactory<
   memo: Factory.each(i => `memo #${i}`),
   cleared: api.TransactionDetail.ClearedEnum.Cleared,
   approved: true,
-  flag: "red",
+  flag_color: "red",
   account_id: Factory.each(i => `account_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
@@ -194,7 +196,7 @@ export const transactionSummaryFactory = Factory.makeFactory<
   memo: Factory.each(i => `memo #${i}`),
   cleared: api.TransactionDetail.ClearedEnum.Cleared,
   approved: true,
-  flag: "red",
+  flag_color: "red",
   account_id: Factory.each(i => `account_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
@@ -225,10 +227,11 @@ export const scheduledTransactionFactory = Factory.makeFactory<
   api.ScheduledTransactionDetail
 >({
   id: Factory.each(i => `id #${i}`),
-  date: "2017-01-02",
+  date_first: "2017-01-02",
+  date_next: "2017-01-03",
   amount: Factory.each(i => i * 1000),
   memo: Factory.each(i => `memo #${i}`),
-  flag: "red",
+  flag_color: "red",
   frequency: api.ScheduledTransactionDetail.FrequencyEnum.Daily,
   account_id: Factory.each(i => `account_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
@@ -249,10 +252,11 @@ export const scheduledTransactionSummaryFactory = Factory.makeFactory<
   api.ScheduledTransactionSummary
 >({
   id: Factory.each(i => `id #${i}`),
-  date: "2017-01-02",
+  date_first: "2017-01-02",
+  date_next: "2017-01-03",
   amount: Factory.each(i => i * 1000),
   memo: Factory.each(i => `memo #${i}`),
-  flag: "red",
+  flag_color: "red",
   frequency: api.ScheduledTransactionDetail.FrequencyEnum.Daily,
   account_id: Factory.each(i => `account_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
