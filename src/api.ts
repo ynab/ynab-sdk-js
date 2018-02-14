@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.5.1";
+const USER_AGENT = "api_client/js/0.7.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -276,7 +276,7 @@ export interface BudgetSummary {
      */
     name: string;
     /**
-     * 
+     * The last time any changes were made to the budget from either a web or mobile client.
      * @type {string}
      * @memberof BudgetSummary
      */
@@ -326,29 +326,49 @@ export interface BudgetSummaryWrapper {
 /**
  * 
  * @export
- * @interface BulkTransactionCreateResponse
+ * @interface BulkIdWrapper
  */
-export interface BulkTransactionCreateResponse {
+export interface BulkIdWrapper {
     /**
      * 
-     * @type {BulkTransactionIds}
-     * @memberof BulkTransactionCreateResponse
+     * @type {BulkIds}
+     * @memberof BulkIdWrapper
      */
-    data: BulkTransactionIds;
+    bulk: BulkIds;
 }
 
 /**
  * 
  * @export
- * @interface BulkTransactionIds
+ * @interface BulkIds
  */
-export interface BulkTransactionIds {
+export interface BulkIds {
     /**
-     * 
+     * The list of Transaction IDs that were created.
      * @type {Array&lt;string&gt;}
-     * @memberof BulkTransactionIds
+     * @memberof BulkIds
      */
     transaction_ids: Array<string>;
+    /**
+     * If any Transactions were not created because they had an import_id matching a transaction already on the same account, the specified import_id(s) will be included in this list.
+     * @type {Array&lt;string&gt;}
+     * @memberof BulkIds
+     */
+    duplicate_import_ids: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface BulkResponse
+ */
+export interface BulkResponse {
+    /**
+     * 
+     * @type {BulkIdWrapper}
+     * @memberof BulkResponse
+     */
+    data: BulkIdWrapper;
 }
 
 /**
@@ -895,6 +915,12 @@ export interface SaveTransaction {
      * @memberof SaveTransaction
      */
     flag_color?: SaveTransaction.FlagColorEnum;
+    /**
+     * If specified for a new transaction, the transaction will be treated as Imported and assigned this import_id.  If another transaction on the same account with this same import_id is later attempted to be created, it will be skipped to prevent duplication.  Transactions imported through File Based Import or Direct Import and not through the API, are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurance]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.  If import_id is specified as null, the transaction will be treated as a user entered transaction.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    import_id?: string;
 }
 
 /**
@@ -1281,6 +1307,12 @@ export interface TransactionSummary {
      * @memberof TransactionSummary
      */
     transfer_account_id: string;
+    /**
+     * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurance]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
+     * @type {string}
+     * @memberof TransactionSummary
+     */
+    import_id: string;
 }
 
 /**
@@ -1360,7 +1392,7 @@ export interface BudgetDetail {
      */
     name: string;
     /**
-     * 
+     * The last time any changes were made to the budget from either a web or mobile client.
      * @type {string}
      * @memberof BudgetDetail
      */
@@ -1687,6 +1719,12 @@ export interface TransactionDetail {
      * @memberof TransactionDetail
      */
     transfer_account_id: string;
+    /**
+     * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurance]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    import_id: string;
     /**
      * If a split transaction, the sub-transactions.
      * @type {Array&lt;SubTransaction&gt;}
@@ -3642,7 +3680,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkTransactionCreateResponse> {
+        bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).bulkCreateTransactions(budget_id, transactions, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {

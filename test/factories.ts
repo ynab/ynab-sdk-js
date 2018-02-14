@@ -175,6 +175,7 @@ export const transactionFactory = Factory.makeFactory<
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  import_id: null,
   subtransactions: subTransactionFactory.buildList(3)
 });
 
@@ -186,7 +187,6 @@ export const transactionResponseFactory = Factory.makeFactory<
   })
 });
 
-// TODO: This is just like the transactionSummary, except for the subTransactions listed
 export const transactionSummaryFactory = Factory.makeFactory<
   api.TransactionSummary
 >({
@@ -200,7 +200,8 @@ export const transactionSummaryFactory = Factory.makeFactory<
   account_id: Factory.each(i => `account_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
-  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  import_id: null
 });
 
 export const transactionsResponseFactory = Factory.makeFactory<
