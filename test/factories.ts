@@ -161,9 +161,7 @@ export const subTransactionFactory = Factory.makeFactory<api.SubTransaction>({
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
 });
 
-export const transactionFactory = Factory.makeFactory<
-  api.TransactionDetail
->({
+export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   id: Factory.each(i => `id #${i}`),
   date: "2017-01-02",
   amount: Factory.each(i => i * 1000),
@@ -175,6 +173,7 @@ export const transactionFactory = Factory.makeFactory<
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  import_id: null,
   subtransactions: subTransactionFactory.buildList(3)
 });
 
@@ -186,7 +185,6 @@ export const transactionResponseFactory = Factory.makeFactory<
   })
 });
 
-// TODO: This is just like the transactionSummary, except for the subTransactions listed
 export const transactionSummaryFactory = Factory.makeFactory<
   api.TransactionSummary
 >({
@@ -200,7 +198,8 @@ export const transactionSummaryFactory = Factory.makeFactory<
   account_id: Factory.each(i => `account_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
-  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  import_id: null
 });
 
 export const transactionsResponseFactory = Factory.makeFactory<
@@ -208,6 +207,50 @@ export const transactionsResponseFactory = Factory.makeFactory<
 >({
   data: Factory.makeFactory({
     transactions: transactionFactory.buildList(5)
+  })
+});
+
+export const saveTransacionFactory = Factory.makeFactory<api.SaveTransaction>({
+  account_id: Factory.each(i => `account_id #${i}`),
+  date: "2017-01-02",
+  amount: Factory.each(i => i * 1000),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  payee_name: null,
+  category_id: Factory.each(i => `category_id #${i}`),
+  memo: Factory.each(i => `memo #${i}`),
+  cleared: api.SaveTransaction.ClearedEnum.Uncleared,
+  approved: false,
+  flag_color: api.SaveTransaction.FlagColorEnum.Red,
+  import_id: null
+});
+
+export const saveTransactionWrapperFactory = Factory.makeFactory<
+  api.SaveTransactionWrapper
+>({
+  transaction: saveTransacionFactory.build()
+});
+
+export const bulkTransactionsFactory = Factory.makeFactory<
+  api.BulkTransactions
+>({
+  transactions: [
+    saveTransacionFactory.build(),
+    saveTransacionFactory.build(),
+    saveTransacionFactory.build()
+  ]
+});
+
+export const bulkIdsFactory = Factory.makeFactory<api.BulkIds>({
+  transaction_ids: [
+    "2E06D718-1810-437E-8B2C-1969534A6676",
+    "D99C9967-852C-4FE4-AD62-F8E4B41F5A4E"
+  ],
+  duplicate_import_ids: []
+});
+
+export const bulkResponseFactory = Factory.makeFactory<api.BulkResponse>({
+  data: Factory.makeFactory({
+    bulk: bulkIdsFactory.build()
   })
 });
 
