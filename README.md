@@ -29,15 +29,13 @@ const ynabApi = require("ynab");
 const accessToken = "b43439eaafe2_this_is_fake_b43439eaafe2";
 const ynab = new ynabApi(accessToken);
 
-async function listBudgets(){
+(async function() {
   const budgetsResponse = await ynab.budgets.getBudgets();
   const budgets = budgetsResponse.data.budgets;
   for(let budget of budgets) {
     console.log(`Budget Name: ${budget.name}`);
   }
-}
-
-listBudgets();
+})();
 ```
 
 ### Error Handling
