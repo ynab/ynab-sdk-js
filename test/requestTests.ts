@@ -83,9 +83,7 @@ describe("API requests", () => {
         factories.budgetDetailResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}?last_knowledge_of_server=${
-          lastKnowledgeOfServer
-        }`
+        `${BASE_URL}/budgets/${budgetId}?last_knowledge_of_server=${lastKnowledgeOfServer}`
       );
     });
   });
@@ -289,9 +287,7 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/accounts/${
-          accountId
-        }/transactions?since_date=2017-01-01`
+        `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}/transactions?since_date=2017-01-01`
       );
     });
 
@@ -310,9 +306,7 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/accounts/${
-          accountId
-        }/transactions?since_date=${sinceDate}`
+        `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}/transactions?since_date=${sinceDate}`
       );
     });
 
@@ -331,9 +325,7 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/categories/${
-          categoryId
-        }/transactions?since_date=2017-01-01`
+        `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}/transactions?since_date=2017-01-01`
       );
     });
 
@@ -353,10 +345,54 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/categories/${
-          categoryId
-        }/transactions?since_date=${sinceDate}`
+        `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}/transactions?since_date=${sinceDate}`
       );
+    });
+
+    it("Should createTransaction", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.createTransaction(
+            budgetId,
+            factories.saveTransactionWrapperFactory.build()
+          ),
+        factories.transactionResponseFactory.build()
+      );
+
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions`, API_KEY, 1, "POST");
+    });
+
+    it("Should updateTransaction", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+      const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.updateTransaction(
+            budgetId,
+            transactionId,
+            factories.saveTransactionWrapperFactory.build()
+          ),
+        factories.transactionResponseFactory.build()
+      );
+
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`, API_KEY, 1, "PUT");
+    });
+
+    it("Should bulkCreateTransactions", async () => {
+      const ynab: ynabApi = new ynabApi(API_KEY, BASE_URL);
+      const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynab.transactions.bulkCreateTransactions(
+            budgetId,
+            factories.bulkTransactionsFactory.build()
+          ),
+        factories.bulkResponseFactory.build()
+      );
+
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions/bulk`, API_KEY, 1, "POST");
     });
   });
 
@@ -386,9 +422,7 @@ describe("API requests", () => {
         factories.scheduledTransactionDetailResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${
-          scheduledTransactionId
-        }`
+        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${scheduledTransactionId}`
       );
     });
   });
@@ -431,4 +465,3 @@ function verifyRequestDetails(
 function getUTCDate(year: number, month: number, date: number): Date {
   return new Date(`${year}-${month}-${date}`);
 }
-
