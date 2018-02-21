@@ -5,11 +5,11 @@
 
 **NOTE: The YNAB API is currently only available to Early Access users.  If you are interested in requesting access before the API is generally available, please fill out [this form](https://docs.google.com/forms/d/17plY-CE39Xl3pe2GqyVH1Unre8TjYKs-tkI6jVC4ko4/edit).**
 
-The YNAB API JavaScript library provides access to the YNAB API from
-applications written in Node.js / JavaScript.
+This is the JavaScript client for the YNAB API.
 
-Please read the [YNAB API documentation](https://api.youneedabudget.com) for an
-overview of using the API and a complete list of the available resources.
+Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of available resources.
+
+This client is generated using the [Swagger Code Generator](https://github.com/swagger-api/swagger-codegen).
 
 ## Installation
 
