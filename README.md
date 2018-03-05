@@ -86,26 +86,26 @@ convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: num
 |------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | **Budgets**                | `budgets.getBudgets()`                                  | Returns budgets list with summary information                                                          |
 |                        | `budgets.getBudgetById(id)`                             | Returns a single budget with all related entities |
-| **Accounts**               | `accounts.getAccounts()`                                | Returns all accounts                                                                                   |
-|                        | `accounts.getAccountById(id)`                           | Returns a single account                                                                               |
-| **Categories**             | `categories.getCategories()`                            | Returns all categories grouped by category group.                                                      |
-|                        | `categories.getCategoryById(id)`                        | Returns a single category                                                                              |
-| **Payees**                 | `payees.getPayees()`                                    | Returns all payees                                                                                     |
-|                        | `payees.getPayeeById(id)`                               | Returns single payee                                                                                   |
-| **Payee Locations**        | `payeeLocations.getPayeeLocations()`                    | Returns all payee locations                                                                            |
-|                        | `payeeLocations.getPayeeLocationById(id)`               | Returns a single payee location                                                                        |
-|                        | `payeeLocations.getPayeeLocationsByPayee(id)`           | Returns all payee locations for the specified payee                                                    |
-| **Months**                 | `months.getBudgetMonths()`                              | Returns all budget months                                                                              |
-|                        | `months.getBudgetMonth(month)`                             | Returns a single budget month                                                                          |
-| **Transactions**           | `transactions.getTransactions()`                        | Returns budget transactions                                                                            |
-|                        | `transactions.getTransactionsByAccount(id)`               | Returns all transactions for a specified account                                                       |
-|                        | `transactions.getTransactionsByCategory(id)`              | Returns all transactions for a specified category                                                      |
-|                        | `transactions.getTransactionsById(id)`                  | Returns a single transaction                                                                           |
-|                        | `transactions.updateTransaction()`                      | Updates a transaction                                                                                  |
-|                        | `transactions.createTransaction()`                      | Creates a new transaction                                                                              |
-|                        | `transactions.bulkCreateTransactions()`                 | Creates multiple transactions                                                                          |
-| **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions()`      | Returns all scheduled transactions                                                                     |
-|                        | `scheduledTransactions.getScheduledTransactionById(id)` | Returns a single scheduled transaction                                                                 |
+| **Accounts**               | `accounts.getAccounts(budgetId)`                                | Returns all accounts                                                                                   |
+|                        | `accounts.getAccountById(budgetId, id)`                           | Returns a single account                                                                               |
+| **Categories**             | `categories.getCategories(budgetId)`                            | Returns all categories grouped by category group.                                                      |
+|                        | `categories.getCategoryById(budgetId, id)`                        | Returns a single category                                                                              |
+| **Payees**                 | `payees.getPayees(budgetId)`                                    | Returns all payees                                                                                     |
+|                        | `payees.getPayeeById(budgetId, id)`                               | Returns single payee                                                                                   |
+| **Payee Locations**        | `payeeLocations.getPayeeLocations(budgetId)`                    | Returns all payee locations                                                                            |
+|                        | `payeeLocations.getPayeeLocationById(budgetId, id)`               | Returns a single payee location                                                                        |
+|                        | `payeeLocations.getPayeeLocationsByPayee(budgetId, id)`           | Returns all payee locations for the specified payee                                                    |
+| **Months**                 | `months.getBudgetMonths(budgetId)`                              | Returns all budget months                                                                              |
+|                        | `months.getBudgetMonth(budgetId, month)`                             | Returns a single budget month                                                                          |
+| **Transactions**           | `transactions.getTransactions(budgetId)`                        | Returns budget transactions                                                                            |
+|                        | `transactions.getTransactionsByAccount(budgetId, id)`               | Returns all transactions for a specified account                                                       |
+|                        | `transactions.getTransactionsByCategory(budgetId, id)`              | Returns all transactions for a specified category                                                      |
+|                        | `transactions.getTransactionsById(budgetId, id)`                  | Returns a single transaction                                                                           |
+|                        | `transactions.updateTransaction(budgetId, id, transaction)`                      | Updates a transaction.  The                                                                                   |
+|                        | `transactions.createTransaction(budgetId, transaction)`                      | Creates a new transaction                                                                              |
+|                        | `transactions.bulkCreateTransactions(budgetId, transactions)`                 | Creates multiple transactions                                                                          |
+| **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions(budgetId)`      | Returns all scheduled transactions                                                                     |
+|                        | `scheduledTransactions.getScheduledTransactionById(budgetId, id)` | Returns a single scheduled transaction                                                                 |
 
 
 
