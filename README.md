@@ -87,6 +87,9 @@ See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples)
 folder for example usage scenarios.
 
 ## Methods
+
+The following methods are available in this library.  For more details on parameters and usage, the [TypeScript declaration files](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts) can be referenced.
+
 |                       | Method                                                | Description                                                                                            |
 |------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | **Budgets**                | `budgets.getBudgets()`                                  | Returns budgets list with summary information                                                          |
