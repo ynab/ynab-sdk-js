@@ -81,6 +81,35 @@ convertFromISODateString(isoDateString: string): Date;
 convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
 ```
 
+## Methods
+|                       | Method                                                | Description                                                                                            | 
+|------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------| 
+| Budgets                | `budgets.getBudgets()`                                  | Returns budgets list with summary information                                                          | 
+|                        | `budgets.getBudgetById(id)`                             | Returns a single budget with all related entities | 
+| Accounts               | `accounts.getAccounts()`                                | Returns all accounts                                                                                   | 
+|                        | `accounts.getAccountById(id)`                           | Returns a single account                                                                               | 
+| Categories             | `categories.getCategories()`                            | Returns all categories grouped by category group.                                                      | 
+|                        | `categories.getCategoryById(id)`                        | Returns a single category                                                                              | 
+| Payees                 | `payees.getPayees()`                                    | Returns all payees                                                                                     | 
+|                        | `payees.getPayeeById(id)`                               | Returns single payee                                                                                   | 
+| Payee Locations        | `payeeLocations.getPayeeLocations()`                    | Returns all payee locations                                                                            | 
+|                        | `payeeLocations.getPayeeLocationById(id)`               | Returns a single payee location                                                                        | 
+|                        | `payeeLocations.getPayeeLocationsByPayee(id)`           | Returns all payee locations for the specified payee                                                    | 
+| Months                 | `months.getBudgetMonths()`                              | Returns all budget months                                                                              | 
+|                        | `months.getBudgetMonth(month)`                             | Returns a single budget month                                                                          | 
+| Transactions           | `transactions.getTransactions()`                        | Returns budget transactions                                                                            | 
+|                        | `transactions.getTransactionsByAccount(id)`               | Returns all transactions for a specified account                                                       | 
+|                        | `transactions.getTransactionsByCategory(id)`              | Returns all transactions for a specified category                                                      | 
+|                        | `transactions.getTransactionsById(id)`                  | Returns a single transaction                                                                           | 
+|                        | `transactions.updateTransaction()`                      | Updates a transaction                                                                                  | 
+|                        | `transactions.createTransaction()`                      | Creates a new transaction                                                                              | 
+|                        | `transactions.bulkCreateTransactions()`                 | Creates multiple transactions                                                                          | 
+| Scheduled Transactions | `scheduledTransactions.getScheduledTransactions()`      | Returns all scheduled transactions                                                                     | 
+|                        | `scheduledTransactions.getScheduledTransactionById(id)` | Returns a single scheduled transaction                                                                 | 
+
+
+
+
 ## Examples
 
 See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples)
