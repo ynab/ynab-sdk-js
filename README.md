@@ -81,6 +81,11 @@ convertFromISODateString(isoDateString: string): Date;
 convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
 ```
 
+## Examples
+
+See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples)
+folder for example usage scenarios.
+
 ## Methods
 |                       | Method                                                | Description                                                                                            |
 |------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
@@ -106,14 +111,6 @@ convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: num
 |                        | `transactions.bulkCreateTransactions(budgetId, transactions)`                 | Creates multiple transactions                                                                          |
 | **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions(budgetId)`      | Returns all scheduled transactions                                                                     |
 |                        | `scheduledTransactions.getScheduledTransactionById(budgetId, id)` | Returns a single scheduled transaction                                                                 |
-
-
-
-
-## Examples
-
-See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples)
-folder for example usage scenarios.
 
 ## Development
 
