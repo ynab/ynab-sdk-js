@@ -128,9 +128,7 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
             {{#isApiKey}}
             {{#isKeyInHeader}}
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("{{keyParamName}}")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["{{keyParamName}}"] = localVarApiKeyValue;
             }
             {{/isKeyInHeader}}
