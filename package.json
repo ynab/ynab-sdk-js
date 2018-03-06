@@ -45,7 +45,7 @@
     "npm-github-release": "^0.9.0",
     "swagger-model-validator": "^2.2.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6",
+    "typescript": "^2.7.2",
     "yamljs": "^0.3.0",
     "yargs": "^10.0.3"
   },
