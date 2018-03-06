@@ -5,7 +5,7 @@
 
 **NOTE: The YNAB API is currently only available to Early Access users.  If you are interested in requesting access before the API is generally available, please fill out [this form](https://docs.google.com/forms/d/17plY-CE39Xl3pe2GqyVH1Unre8TjYKs-tkI6jVC4ko4/edit).**
 
-This is the JavaScript (Node) client for the YNAB API.  The YNAB API does not have [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) configured so using this client in a browser context is not yet supported.
+This is the JavaScript (Node) client for the YNAB API.  The YNAB API does not have [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) configured so using this client in a browser context is not supported.
 
 Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of available resources.
 
