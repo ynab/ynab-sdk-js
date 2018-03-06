@@ -1,9 +1,13 @@
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 const configuration_1 = require("./configuration");
+const CodeGen = require("./api");
 const utils_1 = require("./utils");
-const api_1 = require("./api");
-exports.utils = new utils_1.Utils();
+exports.utils = utils_1.default;
+__export(require("./api"));
 /**
  * The YNAB API client
  */
@@ -21,7 +25,7 @@ class api {
      */
     get budgets() {
         if (!this._budgets) {
-            this._budgets = new api_1.BudgetsApi(this._configuration);
+            this._budgets = new CodeGen.BudgetsApi(this._configuration);
         }
         return this._budgets;
     }
@@ -30,7 +34,7 @@ class api {
      */
     get accounts() {
         if (!this._accounts) {
-            this._accounts = new api_1.AccountsApi(this._configuration);
+            this._accounts = new CodeGen.AccountsApi(this._configuration);
         }
         return this._accounts;
     }
@@ -39,7 +43,7 @@ class api {
      */
     get categories() {
         if (!this._categories) {
-            this._categories = new api_1.CategoriesApi(this._configuration);
+            this._categories = new CodeGen.CategoriesApi(this._configuration);
         }
         return this._categories;
     }
@@ -48,7 +52,7 @@ class api {
      */
     get months() {
         if (!this._months) {
-            this._months = new api_1.MonthsApi(this._configuration);
+            this._months = new CodeGen.MonthsApi(this._configuration);
         }
         return this._months;
     }
@@ -57,7 +61,7 @@ class api {
      */
     get payees() {
         if (!this._payees) {
-            this._payees = new api_1.PayeesApi(this._configuration);
+            this._payees = new CodeGen.PayeesApi(this._configuration);
         }
         return this._payees;
     }
@@ -66,7 +70,7 @@ class api {
      */
     get payeeLocations() {
         if (!this._payeeLocations) {
-            this._payeeLocations = new api_1.PayeeLocationsApi(this._configuration);
+            this._payeeLocations = new CodeGen.PayeeLocationsApi(this._configuration);
         }
         return this._payeeLocations;
     }
@@ -75,7 +79,7 @@ class api {
      */
     get transactions() {
         if (!this._transactions) {
-            this._transactions = new api_1.TransactionsApi(this._configuration);
+            this._transactions = new CodeGen.TransactionsApi(this._configuration);
         }
         return this._transactions;
     }
@@ -84,7 +88,7 @@ class api {
      */
     get scheduledTransactions() {
         if (!this._scheduledTransactions) {
-            this._scheduledTransactions = new api_1.ScheduledTransactionsApi(this._configuration);
+            this._scheduledTransactions = new CodeGen.ScheduledTransactionsApi(this._configuration);
         }
         return this._scheduledTransactions;
     }
