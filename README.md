@@ -109,7 +109,7 @@ The following methods are available in this library.  For more details on parame
 |                        | `transactions.getTransactionsByAccount(budgetId, id)`               | Returns all transactions for a specified account                                                       |
 |                        | `transactions.getTransactionsByCategory(budgetId, id)`              | Returns all transactions for a specified category                                                      |
 |                        | `transactions.getTransactionsById(budgetId, id)`                  | Returns a single transaction                                                                           |
-|                        | `transactions.updateTransaction(budgetId, id, transaction)`                      | Updates a transaction.  The                                                                                   |
+|                        | `transactions.updateTransaction(budgetId, id, transaction)`                      | Updates a transaction                                                                                   |
 |                        | `transactions.createTransaction(budgetId, transaction)`                      | Creates a new transaction                                                                              |
 |                        | `transactions.bulkCreateTransactions(budgetId, transactions)`                 | Creates multiple transactions                                                                          |
 | **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions(budgetId)`      | Returns all scheduled transactions                                                                     |
