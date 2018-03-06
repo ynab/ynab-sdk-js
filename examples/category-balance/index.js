@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../../dist/index.js");
+const ynab = require("../../dist/index.js");
 const yargs = require("yargs");
 const argv = yargs
     .env("YNAB_API")
@@ -13,8 +13,8 @@ if (!argv.accessToken) {
 `);
     process.exit(1);
 }
-const ynab = new ynabApi(argv.accessToken);
-ynab.categories
+const ynabAPI = new ynab.api(argv.accessToken);
+ynabAPI.categories
     .getCategoryById("f968197b-2863-473a-8974-c2406dbe7f0d", "697b1c31-3740-4816-82fc-3299cf26889d")
     .then(response => {
     let category = response.data.category;

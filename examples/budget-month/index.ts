@@ -1,4 +1,4 @@
-import ynabApi = require("../../dist/index.js");
+import * as ynab from "../../dist/index.js";
 import * as yargs from "yargs";
 
 const argv = yargs
@@ -14,9 +14,9 @@ if (!argv.accessToken) {
   process.exit(1);
 }
 
-const ynab = new ynabApi(argv.accessToken);
+const ynabAPI = new ynab.api(argv.accessToken);
 
-ynab.months
+ynabAPI.months
   .getBudgetMonth("f968197b-2863-473a-8974-c2406dbe7f0d", ynab.utils.getCurrentMonthInISOFormat())
   .then(response => {
     let budgetMonth = response.data.month;

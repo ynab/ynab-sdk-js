@@ -25,12 +25,12 @@ the [My Account](https://app.youneedabudget.com/settings) area of the YNAB web
 application.
 
 ```typescript
-const ynabApi = require("ynab");
+const ynab = require("ynab");
 const accessToken = "b43439eaafe2_this_is_fake_b43439eaafe2";
-const ynab = new ynabApi(accessToken);
+const ynabAPI = new ynab.api(accessToken);
 
 (async function() {
-  const budgetsResponse = await ynab.budgets.getBudgets();
+  const budgetsResponse = await ynabAPI.budgets.getBudgets();
   const budgets = budgetsResponse.data.budgets;
   for(let budget of budgets) {
     console.log(`Budget Name: ${budget.name}`);
@@ -44,11 +44,11 @@ If a response is returned with a code >= 300, instead of returning the response,
 the response will be "thrown" as an error to be caught.
 
 ```typescript
-const ynabApi = require("ynab-sdk-js");
+const ynab = require("ynab");
 const accessToken = "invalid_token";
-const ynab = new ynabApi(accessToken);
+const ynabAPI = new ynab.api(accessToken);
 
-const budgetsResponse = ynab.budgets.getBudgets()
+const budgetsResponse = ynabAPI.budgets.getBudgets()
   .then(budgetsResponse => {
     // Won't get here because an error will be thrown
   })
@@ -66,7 +66,7 @@ const budgetsResponse = ynab.budgets.getBudgets()
 
 ### Utilities
 
-There are several utilities available on the `ynab.utils` object to make working
+There are several utilities available on the `utils` export to make working
 with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
 easier.
 

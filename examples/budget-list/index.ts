@@ -1,4 +1,4 @@
-import ynabApi = require("../../dist/index.js");
+import * as ynab from "../../dist/index.js";
 import * as yargs from "yargs";
 import * as process from "process";
 
@@ -17,10 +17,10 @@ if (!argv.accessToken) {
 }
 
 async function printBudgetList() {
-  const ynab = new ynabApi(argv.accessToken);
+  const ynabAPI = new ynab.api(argv.accessToken);
   console.log(`Fetching budgets...`);
   try {
-    const budgetsResponse = await ynab.budgets.getBudgets();
+    const budgetsResponse = await ynabAPI.budgets.getBudgets();
     const budgets = budgetsResponse.data.budgets;
     console.log(`This user has ${budgets.length} budgets.`);
 

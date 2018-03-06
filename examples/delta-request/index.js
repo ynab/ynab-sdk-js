@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../../dist/index.js");
+const ynab = require("../../dist/index.js");
 const _ = require("lodash");
 async function main() {
     try {
@@ -9,9 +9,9 @@ async function main() {
             console.warn("You will need to define the YNAB_API_ACCESS_TOKEN environment variable.");
             process.exit(1);
         }
-        const ynab = new ynabApi(API_KEY);
+        const ynabAPI = new ynab.api(API_KEY);
         console.log(`Fetching budgets...`);
-        const getBudgetsResponse = await ynab.budgets.getBudgets();
+        const getBudgetsResponse = await ynabAPI.budgets.getBudgets();
         const allBudgets = getBudgetsResponse.data.budgets;
         const pollWaitTimeInMs = 5000;
         if (allBudgets.length > 0) {
@@ -27,7 +27,7 @@ async function main() {
                 throw new Error(`Could not find budget named '${budgetNameToFetch}'`);
             }
             console.log(`Fetching contents of budget: ${budgetToFetch.name} - ${budgetToFetch.id}`);
-            const budgetContents = await ynab.budgets.getBudgetById(budgetToFetch.id);
+            const budgetContents = await ynabAPI.budgets.getBudgetById(budgetToFetch.id);
             const categories = budgetContents.data.budget.categories;
             console.log(`Here is the budget data for the current month: `);
             const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
@@ -46,7 +46,7 @@ async function main() {
                 console.log(`Will poll for changes in ${pollWaitTimeInMs}ms...`);
                 setTimeout(async () => {
                     console.log("Polling for changes now...");
-                    const budgetChangesResponse = await ynab.budgets.getBudgetById(budgetToFetch.id, lastServerKnowledge);
+                    const budgetChangesResponse = await ynabAPI.budgets.getBudgetById(budgetToFetch.id, lastServerKnowledge);
                     console.log(`Current server knowledge is now : ${budgetChangesResponse.data.server_knowledge}`);
                     if (budgetChangesResponse.data.server_knowledge > lastServerKnowledge) {
                         lastServerKnowledge = budgetChangesResponse.data.server_knowledge;

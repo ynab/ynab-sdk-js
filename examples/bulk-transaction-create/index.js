@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../../dist/index.js");
+const ynab = require("../../dist/index.js");
 const yargs = require("yargs");
 const api_1 = require("../../dist/api");
 const argv = yargs
@@ -14,7 +14,7 @@ if (!argv.accessToken) {
 `);
     process.exit(1);
 }
-const ynab = new ynabApi(argv.accessToken);
+const ynabAPI = new ynab.api(argv.accessToken);
 const bulkTransactions = {
     transactions: [
         {
@@ -42,7 +42,7 @@ const bulkTransactions = {
         }
     ]
 };
-ynab.transactions
+ynabAPI.transactions
     .bulkCreateTransactions("26e3d088-8004-4785-9059-fd609b2f4642", bulkTransactions)
     .catch(e => {
     console.log(`ERROR: ${JSON.stringify(e)}`);

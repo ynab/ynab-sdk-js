@@ -1,4 +1,4 @@
-import ynabApi = require("../../dist/index.js");
+import * as ynab from "../../dist/index.js";
 import { BudgetSummary, MonthDetail } from "../../dist/api.js";
 import * as _ from "lodash";
 
@@ -12,10 +12,10 @@ async function main() {
       );
       process.exit(1);
     }
-    const ynab = new ynabApi(API_KEY);
+    const ynabAPI = new ynab.api(API_KEY);
 
     console.log(`Fetching budgets...`);
-    const getBudgetsResponse = await ynab.budgets.getBudgets();
+    const getBudgetsResponse = await ynabAPI.budgets.getBudgets();
     const allBudgets = getBudgetsResponse.data.budgets;
 
     const pollWaitTimeInMs = 5000;
@@ -37,7 +37,7 @@ async function main() {
           budgetToFetch.id
         }`
       );
-      const budgetContents = await ynab.budgets.getBudgetById(
+      const budgetContents = await ynabAPI.budgets.getBudgetById(
         budgetToFetch.id
       );
 
@@ -67,7 +67,7 @@ async function main() {
         console.log(`Will poll for changes in ${pollWaitTimeInMs}ms...`);
         setTimeout(async () => {
           console.log("Polling for changes now...");
-          const budgetChangesResponse = await ynab.budgets.getBudgetById(
+          const budgetChangesResponse = await ynabAPI.budgets.getBudgetById(
             budgetToFetch.id,
             lastServerKnowledge
           );

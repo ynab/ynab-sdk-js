@@ -1,11 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const configuration_1 = require("./configuration");
 const utils_1 = require("./utils");
 const api_1 = require("./api");
+exports.utils = new utils_1.Utils();
 /**
  * The YNAB API client
  */
-class YnabApi {
+class api {
     /**
      *
      * @param accessToken The access token used for authentication
@@ -86,13 +88,5 @@ class YnabApi {
         }
         return this._scheduledTransactions;
     }
-    /**
-     * Utilities
-     */
-    get utils() {
-        if (!this._utils) {
-            return new utils_1.Utils();
-        }
-    }
 }
-module.exports = YnabApi;
+exports.api = api;

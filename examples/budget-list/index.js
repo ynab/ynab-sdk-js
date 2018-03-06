@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ynabApi = require("../../dist/index.js");
+const ynab = require("../../dist/index.js");
 const yargs = require("yargs");
 const process = require("process");
 const argv = yargs
@@ -15,10 +15,10 @@ if (!argv.accessToken) {
     process.exit(1);
 }
 async function printBudgetList() {
-    const ynab = new ynabApi(argv.accessToken);
+    const ynabAPI = new ynab.api(argv.accessToken);
     console.log(`Fetching budgets...`);
     try {
-        const budgetsResponse = await ynab.budgets.getBudgets();
+        const budgetsResponse = await ynabAPI.budgets.getBudgets();
         const budgets = budgetsResponse.data.budgets;
         console.log(`This user has ${budgets.length} budgets.`);
         console.log(`

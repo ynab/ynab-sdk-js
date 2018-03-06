@@ -1,10 +1,11 @@
 import { Configuration } from "./configuration";
 import { Utils } from "./utils";
 import { AccountsApi, BudgetsApi, CategoriesApi, MonthsApi, PayeesApi, PayeeLocationsApi, TransactionsApi, ScheduledTransactionsApi } from "./api";
+export declare let utils: Utils;
 /**
  * The YNAB API client
  */
-declare class YnabApi {
+export declare class api {
     protected _configuration: Configuration;
     /**
      *
@@ -52,10 +53,4 @@ declare class YnabApi {
      * /budgets/{budget_id}/scheduled_transactions endpoints interface
      */
     readonly scheduledTransactions: ScheduledTransactionsApi;
-    protected _utils: Utils;
-    /**
-     * Utilities
-     */
-    readonly utils: Utils;
 }
-export = YnabApi;

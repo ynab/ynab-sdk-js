@@ -1,4 +1,4 @@
-import ynabApi = require("../../dist/index.js");
+import * as ynab from "../../dist/index.js";
 import * as yargs from "yargs";
 import { BulkTransactions, SaveTransaction } from "../../dist/api";
 
@@ -15,7 +15,7 @@ if (!argv.accessToken) {
   process.exit(1);
 }
 
-const ynab = new ynabApi(argv.accessToken);
+const ynabAPI = new ynab.api(argv.accessToken);
 
 const bulkTransactions: BulkTransactions = {
   transactions: [
@@ -45,7 +45,7 @@ const bulkTransactions: BulkTransactions = {
   ]
 };
 
-ynab.transactions
+ynabAPI.transactions
   .bulkCreateTransactions(
     "26e3d088-8004-4785-9059-fd609b2f4642",
     bulkTransactions

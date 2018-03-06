@@ -11,10 +11,12 @@ import {
   ScheduledTransactionsApi
 } from "./api";
 
+export let utils = new Utils();
+
 /**
  * The YNAB API client
  */
-class YnabApi {
+export class api {
   protected _configuration: Configuration;
 
   /**
@@ -119,16 +121,4 @@ class YnabApi {
     }
     return this._scheduledTransactions;
   }
-
-  protected _utils: Utils;
-  /**
-   * Utilities
-   */
-  public get utils(): Utils {
-    if (!this._utils) {
-      return new Utils();
-    }
-  }
 }
-
-export = YnabApi;
