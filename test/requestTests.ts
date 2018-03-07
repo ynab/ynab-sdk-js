@@ -1,5 +1,4 @@
 import * as ynab from "../src/index";
-import * as _ from "lodash";
 import chai = require("chai");
 
 const Validator = require("swagger-model-validator");
