@@ -20,7 +20,7 @@ npm install ynab
 ## Usage
 
 To use this client, you must
-[obtain an access token](https://api.youneedabudget.com/#authentication) from
+[obtain an access token](https://api.youneedabudget.com/#authentication-overview) from
 the [My Account](https://app.youneedabudget.com/settings) area of the YNAB web
 application.
 
