@@ -1,19 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ynab = require("../../dist/index.js");
-const yargs = require("yargs");
-const argv = yargs
-    .env("YNAB_API")
-    .option("accessToken", { alias: "access_token" }).argv;
-// You can get your API key from the My Account section of YNAB
-if (!argv.accessToken) {
-    console.warn(`
-'access_token' argument is required!  You can pass it in one of the following ways:
-  --access_token=123 CLI argument
-  YNAB_API_ACCESS_TOKEN environment variable
-`);
-    process.exit(1);
-}
-const ynabAPI = new ynab.api(argv.accessToken);
+const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
+const ynabAPI = new ynab.api(accessToken);
 ynabAPI.months
     .getBudgetMonth("f968197b-2863-473a-8974-c2406dbe7f0d", ynab.utils.getCurrentMonthInISOFormat())
     .then(response => {

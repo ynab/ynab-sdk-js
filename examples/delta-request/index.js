@@ -1,7 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ynab = require("../../dist/index.js");
-const _ = require("lodash");
-async function main() {
+const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
+const ynabAPI = new ynab.api(accessToken);
+(async function () {
     try {
         // You can get your API key from the My Account section of YNAB
         const API_KEY = process.env.YNAB_API_ACCESS_TOKEN;
@@ -31,9 +32,7 @@ async function main() {
             const categories = budgetContents.data.budget.categories;
             console.log(`Here is the budget data for the current month: `);
             const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
-            const monthDetailForCurrentMonth = _.find(budgetContents.data.budget.months, m => {
-                return m.month == currentMonthISO;
-            });
+            const monthDetailForCurrentMonth = budgetContents.data.budget.months.find((m) => { return m.month == currentMonthISO; });
             if (monthDetailForCurrentMonth) {
                 console.log(`${JSON.stringify(monthDetailForCurrentMonth, null, 2)}`);
             }
@@ -70,5 +69,4 @@ async function main() {
             console.error(`Error: ${JSON.stringify(e)}`);
         }
     }
-}
-main();
+})();

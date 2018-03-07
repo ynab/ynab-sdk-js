@@ -1,20 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ynab = require("../../dist/index.js");
-const yargs = require("yargs");
-const api_1 = require("../../dist/api");
-const argv = yargs
-    .env("YNAB_API")
-    .option("accessToken", { alias: "access_token" }).argv;
-// You can get your API key from the My Account section of YNAB
-if (!argv.accessToken) {
-    console.warn(`
-'access_token' argument is required!  You can pass it in one of the following ways:
-  --access_token=123 CLI argument
-  YNAB_API_ACCESS_TOKEN environment variable
-`);
-    process.exit(1);
-}
-const ynabAPI = new ynab.api(argv.accessToken);
+const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
+const ynabAPI = new ynab.api(accessToken);
 const bulkTransactions = {
     transactions: [
         {
@@ -27,7 +14,7 @@ const bulkTransactions = {
             account_id: "fc863acf-9e34-4908-9e86-c94b93b2296a",
             category_id: "75655c30-ab05-4533-ae4b-8d958e02e73c",
             payee_id: "c8aaf97d-eca5-4d5e-a583-e4043758f953",
-            cleared: api_1.SaveTransaction.ClearedEnum.Cleared,
+            cleared: ynab.SaveTransaction.ClearedEnum.Cleared,
             approved: true,
             date: ynab.utils.getCurrentDateInISOFormat(),
             amount: -23430,

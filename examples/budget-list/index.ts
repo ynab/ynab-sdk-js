@@ -1,23 +1,9 @@
 import * as ynab from "../../dist/index.js";
-import * as yargs from "yargs";
-import * as process from "process";
 
-const argv = yargs
-  .env("YNAB_API")
-  .option("accessToken", { alias: "access_token" }).argv;
-
-// You can get your API key from the My Account section of YNAB
-if (!argv.accessToken) {
-  console.warn(`
-'access_token' argument is required!  You can pass it in one of the following ways:
-  --access_token=123 CLI argument
-  YNAB_API_ACCESS_TOKEN environment variable
-`);
-  process.exit(1);
-}
+const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
+const ynabAPI = new ynab.api(accessToken);
 
 (async function() {
-  const ynabAPI = new ynab.api(argv.accessToken);
   console.log(`Fetching budgets...`);
   try {
     const budgetsResponse = await ynabAPI.budgets.getBudgets();
