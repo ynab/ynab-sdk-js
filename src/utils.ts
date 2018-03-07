@@ -1,36 +1,38 @@
-export class Utils {
+import * as CodeGen from "./api";
+
+export default {
   /**
    * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
    */
-  public getCurrentMonthInISOFormat() {
+  getCurrentMonthInISOFormat() {
     return `${this.getCurrentDateInISOFormat().substr(0, 7)}-01`;
-  }
+  },
 
   /**
    * Returns the current date (system timezone) in ISO 8601 format (i.e. '2015-12-15')
    */
-  public getCurrentDateInISOFormat() {
+  getCurrentDateInISOFormat() {
     let currentDate = new Date();
     let isoLocalDateString = new Date(
       currentDate.getTime() - currentDate.getTimezoneOffset() * 60000
     ).toISOString();
     return isoLocalDateString;
-  }
+  },
 
   /**
    * Converts an ISO 8601 formatted string to a JS date object
    * @param {string} isoDateString - An ISO 8601 formatted date (i.e. '2015-12-30').  This date is assumed to be in UTC timezone
    */
-  public convertFromISODateString(isoDateString: string) {
+  convertFromISODateString(isoDateString: string) {
     return new Date(new Date(isoDateString));
-  }
+  },
 
   /**
    * Converts a milliunits amount to a currency amount
    * @param milliunits - The milliunits amount (i.e. 293294)
    * @param [currencyDecimalDigits] - The number of decimals in the currency (i.e. 2 for USD)
    */
-  public convertMilliUnitsToCurrencyAmount(
+  convertMilliUnitsToCurrencyAmount(
     milliunits: number,
     currencyDecimalDigits: number = 2
   ): number {
@@ -40,4 +42,4 @@ export class Utils {
     let currencyAmount = rounded * (0.1 / Math.pow(10, 2));
     return Number(currencyAmount.toFixed(currencyDecimalDigits));
   }
-}
+};

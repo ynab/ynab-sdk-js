@@ -20,7 +20,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.8.0";
+const USER_AGENT = "api_client/js/0.9.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -163,7 +163,14 @@ export namespace Account {
     export enum TypeEnum {
         Checking = <any> 'checking',
         Savings = <any> 'savings',
-        CreditCard = <any> 'creditCard'
+        CreditCard = <any> 'creditCard',
+        Cash = <any> 'cash',
+        LineOfCredit = <any> 'lineOfCredit',
+        MerchantAccount = <any> 'merchantAccount',
+        InvestmentAccount = <any> 'investmentAccount',
+        Mortgage = <any> 'mortgage',
+        OtherAsset = <any> 'otherAsset',
+        OtherLiability = <any> 'otherLiability'
     }
 }
 
@@ -1072,11 +1079,11 @@ export interface ScheduledTransactionSummary {
      */
     memo: string;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    flag_color: string;
+    flag_color: ScheduledTransactionSummary.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1126,6 +1133,18 @@ export namespace ScheduledTransactionSummary {
         TwiceAYear = <any> 'twiceAYear',
         Yearly = <any> 'yearly',
         EveryOtherYear = <any> 'everyOtherYear'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
     }
 }
 
@@ -1278,11 +1297,11 @@ export interface TransactionSummary {
      */
     approved: boolean;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof TransactionSummary
      */
-    flag_color: string;
+    flag_color: TransactionSummary.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1328,6 +1347,18 @@ export namespace TransactionSummary {
         Cleared = <any> 'cleared',
         Uncleared = <any> 'uncleared',
         Reconciled = <any> 'reconciled'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
     }
 }
 
@@ -1584,11 +1615,11 @@ export interface ScheduledTransactionDetail {
      */
     memo: string;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    flag_color: string;
+    flag_color: ScheduledTransactionDetail.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1645,6 +1676,18 @@ export namespace ScheduledTransactionDetail {
         Yearly = <any> 'yearly',
         EveryOtherYear = <any> 'everyOtherYear'
     }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
+    }
 }
 
 /**
@@ -1690,11 +1733,11 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof TransactionDetail
      */
-    flag_color: string;
+    flag_color: TransactionDetail.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1747,6 +1790,18 @@ export namespace TransactionDetail {
         Uncleared = <any> 'uncleared',
         Reconciled = <any> 'reconciled'
     }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
+    }
 }
 
 
@@ -1786,9 +1841,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -1826,9 +1879,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -1992,9 +2043,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2030,9 +2079,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2192,9 +2239,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2238,9 +2283,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2409,9 +2452,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2449,9 +2490,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2620,9 +2659,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2660,9 +2697,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2706,9 +2741,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2923,9 +2956,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -2963,9 +2994,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3134,9 +3163,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3174,9 +3201,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3344,9 +3369,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3392,9 +3415,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3437,9 +3458,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3492,9 +3511,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3543,9 +3560,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3593,9 +3608,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -3644,9 +3657,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("Authorization")
-					: configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 

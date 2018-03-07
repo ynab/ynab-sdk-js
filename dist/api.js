@@ -17,7 +17,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/0.7.0";
+const USER_AGENT = "api_client/js/0.9.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -76,9 +76,16 @@ var Account;
      */
     let TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = 'Checking'] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = 'Savings'] = "Savings";
-        TypeEnum[TypeEnum["CreditCard"] = 'CreditCard'] = "CreditCard";
+        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
+        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
+        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
+        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
+        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
+        TypeEnum[TypeEnum["MerchantAccount"] = 'merchantAccount'] = "MerchantAccount";
+        TypeEnum[TypeEnum["InvestmentAccount"] = 'investmentAccount'] = "InvestmentAccount";
+        TypeEnum[TypeEnum["Mortgage"] = 'mortgage'] = "Mortgage";
+        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
+        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
     })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
 })(Account = exports.Account || (exports.Account = {}));
 /**
@@ -93,9 +100,9 @@ var SaveTransaction;
      */
     let ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'Cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'Uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'Reconciled'] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = SaveTransaction.ClearedEnum || (SaveTransaction.ClearedEnum = {}));
     /**
      * @export
@@ -137,6 +144,19 @@ var ScheduledTransactionSummary;
         FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
         FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionSummary.FrequencyEnum || (ScheduledTransactionSummary.FrequencyEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = ScheduledTransactionSummary.FlagColorEnum || (ScheduledTransactionSummary.FlagColorEnum = {}));
 })(ScheduledTransactionSummary = exports.ScheduledTransactionSummary || (exports.ScheduledTransactionSummary = {}));
 /**
  * @export
@@ -154,6 +174,19 @@ var TransactionSummary;
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
         ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = TransactionSummary.ClearedEnum || (TransactionSummary.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = TransactionSummary.FlagColorEnum || (TransactionSummary.FlagColorEnum = {}));
 })(TransactionSummary = exports.TransactionSummary || (exports.TransactionSummary = {}));
 /**
  * @export
@@ -181,6 +214,19 @@ var ScheduledTransactionDetail;
         FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
         FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionDetail.FrequencyEnum || (ScheduledTransactionDetail.FrequencyEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = ScheduledTransactionDetail.FlagColorEnum || (ScheduledTransactionDetail.FlagColorEnum = {}));
 })(ScheduledTransactionDetail = exports.ScheduledTransactionDetail || (exports.ScheduledTransactionDetail = {}));
 /**
  * @export
@@ -198,6 +244,19 @@ var TransactionDetail;
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
         ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = TransactionDetail.ClearedEnum || (TransactionDetail.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = TransactionDetail.FlagColorEnum || (TransactionDetail.FlagColorEnum = {}));
 })(TransactionDetail = exports.TransactionDetail || (exports.TransactionDetail = {}));
 /**
  * AccountsApi - fetch parameter creator
@@ -233,9 +292,7 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -269,9 +326,7 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -428,9 +483,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
@@ -461,9 +514,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -616,9 +667,7 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -658,9 +707,7 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -822,9 +869,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -858,9 +903,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1022,9 +1065,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1058,9 +1099,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1100,9 +1139,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1310,9 +1347,7 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1346,9 +1381,7 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1510,9 +1543,7 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1546,9 +1577,7 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1709,9 +1738,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1752,9 +1779,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1792,9 +1817,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
@@ -1841,9 +1864,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
@@ -1887,9 +1908,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
@@ -1932,9 +1951,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1979,9 +1996,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("Authorization")
-                    : configuration.apiKey;
+                const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';

@@ -1,12 +1,10 @@
-import { Utils } from "../src/utils";
+import utils from "../src/utils";
 import chai = require("chai");
 
 const assert = chai.assert;
 const expect = chai.expect;
 
 describe("utiilities", () => {
-  const utils = new Utils();
-
   describe("getTodaysDateInISOFormat", () => {
     it("Returns today's date in ISO format", () => {
       let now = new Date();

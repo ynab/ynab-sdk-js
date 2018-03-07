@@ -22,7 +22,7 @@
   "scripts": {
     "generate": "cd build && ./generate_sdk_typescript.js",
     "build": "npx tsc && npx tsc -p examples/",
-    "test": "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'",
+    "test": "TS_NODE_PROJECT=test/ npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'",
     "release": "npm-github-release"
   },
   "dependencies": {
@@ -32,22 +32,16 @@
     "@types/chai": "^4.0.5",
     "@types/fetch-mock": "^5.12.2",
     "@types/isomorphic-fetch": "0.0.34",
-    "@types/lodash": "^4.14.86",
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.0.9",
-    "@types/yargs": "^8.0.2",
     "chai": "^4.1.2",
     "fetch-mock": "^5.13.1",
     "jbash": "^1.35.0",
-    "lodash": "^4.17.4",
     "mocha": "^4.0.1",
-    "moment": "^2.21.0",
     "npm-github-release": "^0.9.0",
     "swagger-model-validator": "^2.2.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6",
-    "yamljs": "^0.3.0",
-    "yargs": "^10.0.3"
+    "typescript": "^2.7.2"
   },
   "engines": {
     "npm": "^5.2.0"

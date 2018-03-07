@@ -1,40 +1,29 @@
-import ynabApi = require("../../dist/index.js");
-import * as yargs from "yargs";
-import * as process from "process";
+import * as ynab from "../../dist/index.js";
 
-const argv = yargs
-  .env("YNAB_API")
-  .option("accessToken", { alias: "access_token" }).argv;
+const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
+const ynabAPI = new ynab.api(accessToken);
 
-// You can get your API key from the My Account section of YNAB
-if (!argv.accessToken) {
-  console.warn(`
-'access_token' argument is required!  You can pass it in one of the following ways:
-  --access_token=123 CLI argument
-  YNAB_API_ACCESS_TOKEN environment variable
-`);
-  process.exit(1);
-}
-
-async function printBudgetList() {
-  const ynab = new ynabApi(argv.accessToken);
+(async function() {
   console.log(`Fetching budgets...`);
   try {
-    const budgetsResponse = await ynab.budgets.getBudgets();
+    const budgetsResponse = await ynabAPI.budgets.getBudgets();
     const budgets = budgetsResponse.data.budgets;
     console.log(`This user has ${budgets.length} budgets.`);
 
-    console.log(`
+    console.log(`\
 ===========
 BUDGET LIST
-===========`);
+===========
+`);
 
     for (let budget of budgets) {
-      console.log(`[id: ${budget.id}, name: ${budget.name}, last_modified_on: ${budget.last_modified_on}]`)
+      console.log(
+        `[id: ${budget.id}, name: ${budget.name}, last_modified_on: ${
+          budget.last_modified_on
+        }]`
+      );
     }
   } catch (e) {
     console.log(`ERROR: ${JSON.stringify(e)}`);
   }
-}
-
-printBudgetList();
+})();
