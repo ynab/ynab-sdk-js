@@ -41,12 +41,10 @@
     "jbash": "^1.35.0",
     "lodash": "^4.17.4",
     "mocha": "^4.0.1",
-    "moment": "^2.21.0",
     "npm-github-release": "^0.9.0",
     "swagger-model-validator": "^2.2.1",
     "ts-node": "^3.3.0",
     "typescript": "^2.7.2",
-    "yamljs": "^0.3.0",
     "yargs": "^10.0.3"
   },
   "engines": {
