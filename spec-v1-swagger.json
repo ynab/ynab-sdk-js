@@ -737,8 +737,7 @@
         ],
         "responses": {
           "201": {
-            "description":
-              "The bulk request was processed sucessfully.",
+            "description": "The bulk request was processed sucessfully.",
             "schema": {
               "$ref": "#/definitions/BulkResponse"
             }
@@ -1133,7 +1132,8 @@
         "last_modified_on": {
           "type": "string",
           "format": "date-time",
-          "description": "The last time any changes were made to the budget from either a web or mobile client."
+          "description":
+            "The last time any changes were made to the budget from either a web or mobile client."
         },
         "date_format": {
           "$ref": "#/definitions/DateFormat"
@@ -1294,7 +1294,18 @@
         },
         "type": {
           "type": "string",
-          "enum": ["checking", "savings", "creditCard"]
+          "enum": [
+            "checking",
+            "savings",
+            "creditCard",
+            "cash",
+            "lineOfCredit",
+            "merchantAccount",
+            "investmentAccount",
+            "mortgage",
+            "otherAsset",
+            "otherLiability"
+          ]
         },
         "on_budget": {
           "type": "boolean",
@@ -1645,7 +1656,9 @@
           "description": "Whether or not the transaction is approved"
         },
         "flag_color": {
-          "type": "string"
+          "type": "string",
+          "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
+          "description": "The transaction flag"
         },
         "account_id": {
           "type": "string",
@@ -1747,7 +1760,7 @@
         },
         "flag_color": {
           "type": "string",
-          "enum": ["red", "orange", "yellow", "green", "blue", "purple"],
+          "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
           "description": "The transaction flag"
         },
         "import_id": {
@@ -1950,7 +1963,9 @@
           "type": "string"
         },
         "flag_color": {
-          "type": "string"
+          "type": "string",
+          "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
+          "description": "The transaction flag"
         },
         "account_id": {
           "type": "string",

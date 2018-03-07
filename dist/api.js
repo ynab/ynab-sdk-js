@@ -79,6 +79,13 @@ var Account;
         TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
         TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
         TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
+        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
+        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
+        TypeEnum[TypeEnum["MerchantAccount"] = 'merchantAccount'] = "MerchantAccount";
+        TypeEnum[TypeEnum["InvestmentAccount"] = 'investmentAccount'] = "InvestmentAccount";
+        TypeEnum[TypeEnum["Mortgage"] = 'mortgage'] = "Mortgage";
+        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
+        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
     })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
 })(Account = exports.Account || (exports.Account = {}));
 /**
@@ -137,6 +144,19 @@ var ScheduledTransactionSummary;
         FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
         FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionSummary.FrequencyEnum || (ScheduledTransactionSummary.FrequencyEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = ScheduledTransactionSummary.FlagColorEnum || (ScheduledTransactionSummary.FlagColorEnum = {}));
 })(ScheduledTransactionSummary = exports.ScheduledTransactionSummary || (exports.ScheduledTransactionSummary = {}));
 /**
  * @export
@@ -154,6 +174,19 @@ var TransactionSummary;
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
         ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = TransactionSummary.ClearedEnum || (TransactionSummary.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = TransactionSummary.FlagColorEnum || (TransactionSummary.FlagColorEnum = {}));
 })(TransactionSummary = exports.TransactionSummary || (exports.TransactionSummary = {}));
 /**
  * @export
@@ -181,6 +214,19 @@ var ScheduledTransactionDetail;
         FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
         FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionDetail.FrequencyEnum || (ScheduledTransactionDetail.FrequencyEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = ScheduledTransactionDetail.FlagColorEnum || (ScheduledTransactionDetail.FlagColorEnum = {}));
 })(ScheduledTransactionDetail = exports.ScheduledTransactionDetail || (exports.ScheduledTransactionDetail = {}));
 /**
  * @export
@@ -198,6 +244,19 @@ var TransactionDetail;
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
         ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = TransactionDetail.ClearedEnum || (TransactionDetail.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = TransactionDetail.FlagColorEnum || (TransactionDetail.FlagColorEnum = {}));
 })(TransactionDetail = exports.TransactionDetail || (exports.TransactionDetail = {}));
 /**
  * AccountsApi - fetch parameter creator

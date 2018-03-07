@@ -163,7 +163,14 @@ export namespace Account {
     export enum TypeEnum {
         Checking = <any> 'checking',
         Savings = <any> 'savings',
-        CreditCard = <any> 'creditCard'
+        CreditCard = <any> 'creditCard',
+        Cash = <any> 'cash',
+        LineOfCredit = <any> 'lineOfCredit',
+        MerchantAccount = <any> 'merchantAccount',
+        InvestmentAccount = <any> 'investmentAccount',
+        Mortgage = <any> 'mortgage',
+        OtherAsset = <any> 'otherAsset',
+        OtherLiability = <any> 'otherLiability'
     }
 }
 
@@ -1072,11 +1079,11 @@ export interface ScheduledTransactionSummary {
      */
     memo: string;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    flag_color: string;
+    flag_color: ScheduledTransactionSummary.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1126,6 +1133,18 @@ export namespace ScheduledTransactionSummary {
         TwiceAYear = <any> 'twiceAYear',
         Yearly = <any> 'yearly',
         EveryOtherYear = <any> 'everyOtherYear'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
     }
 }
 
@@ -1278,11 +1297,11 @@ export interface TransactionSummary {
      */
     approved: boolean;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof TransactionSummary
      */
-    flag_color: string;
+    flag_color: TransactionSummary.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1328,6 +1347,18 @@ export namespace TransactionSummary {
         Cleared = <any> 'cleared',
         Uncleared = <any> 'uncleared',
         Reconciled = <any> 'reconciled'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
     }
 }
 
@@ -1584,11 +1615,11 @@ export interface ScheduledTransactionDetail {
      */
     memo: string;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    flag_color: string;
+    flag_color: ScheduledTransactionDetail.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1645,6 +1676,18 @@ export namespace ScheduledTransactionDetail {
         Yearly = <any> 'yearly',
         EveryOtherYear = <any> 'everyOtherYear'
     }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
+    }
 }
 
 /**
@@ -1690,11 +1733,11 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     * 
+     * The transaction flag
      * @type {string}
      * @memberof TransactionDetail
      */
-    flag_color: string;
+    flag_color: TransactionDetail.FlagColorEnum;
     /**
      * 
      * @type {string}
@@ -1746,6 +1789,18 @@ export namespace TransactionDetail {
         Cleared = <any> 'cleared',
         Uncleared = <any> 'uncleared',
         Reconciled = <any> 'reconciled'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
     }
 }
 

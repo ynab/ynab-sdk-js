@@ -12,12 +12,9 @@ const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
     transactionId
   )).data.transaction;
 
-  let updateTransaction = ynab.utils.convertTransactionToSaveTransaction(
-    transaction
-  );
-  updateTransaction.memo = "Updated memo";
+  transaction.memo = "Updated memo";
 
   ynabAPI.transactions.updateTransaction(budgetId, transactionId, {
-    transaction: updateTransaction
+    transaction
   });
 })();
