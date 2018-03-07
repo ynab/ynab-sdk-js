@@ -14,7 +14,7 @@ const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
 
   transaction.memo = "Updated memo";
 
-  ynabAPI.transactions.updateTransaction(budgetId, transactionId, {
+  await ynabAPI.transactions.updateTransaction(budgetId, transactionId, {
     transaction
   });
 })();
