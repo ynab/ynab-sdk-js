@@ -23,7 +23,7 @@
     "generate": "cd build && ./generate_sdk_typescript.js",
     "build": "npx tsc && npx tsc -p examples/",
     "test": "TS_NODE_PROJECT=test/ npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'",
-    "release": "npm run build && npm run test && git add dist/* && git commig -m 'Build dist/' && npm-github-release"
+    "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/' && npm-github-release"
   },
   "dependencies": {
     "portable-fetch": "^3.0.0"
