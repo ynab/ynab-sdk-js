@@ -41,20 +41,5 @@ export default {
     let rounded = Math.round(milliunits * numberToRoundTo) / numberToRoundTo;
     let currencyAmount = rounded * (0.1 / Math.pow(10, 2));
     return Number(currencyAmount.toFixed(currencyDecimalDigits));
-  },
-
-  convertTransactionToSaveTransaction(
-    transaction: CodeGen.TransactionDetail
-  ): CodeGen.SaveTransaction {
-    return {
-      account_id: transaction.account_id,
-      date: transaction.date,
-      amount: transaction.amount,
-      approved: transaction.approved,
-      cleared: transaction.cleared,
-      payee_id: transaction.payee_id,
-      category_id: transaction.category_id,
-      memo: transaction.memo
-    };
   }
 };
