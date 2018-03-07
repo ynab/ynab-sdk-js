@@ -16,7 +16,7 @@ if (!argv.accessToken) {
   process.exit(1);
 }
 
-async function printBudgetList() {
+(async function() {
   const ynabAPI = new ynab.api(argv.accessToken);
   console.log(`Fetching budgets...`);
   try {
@@ -24,17 +24,20 @@ async function printBudgetList() {
     const budgets = budgetsResponse.data.budgets;
     console.log(`This user has ${budgets.length} budgets.`);
 
-    console.log(`
+    console.log(`\
 ===========
 BUDGET LIST
-===========`);
+===========
+`);
 
     for (let budget of budgets) {
-      console.log(`[id: ${budget.id}, name: ${budget.name}, last_modified_on: ${budget.last_modified_on}]`)
+      console.log(
+        `[id: ${budget.id}, name: ${budget.name}, last_modified_on: ${
+          budget.last_modified_on
+        }]`
+      );
     }
   } catch (e) {
     console.log(`ERROR: ${JSON.stringify(e)}`);
   }
-}
-
-printBudgetList();
+})();

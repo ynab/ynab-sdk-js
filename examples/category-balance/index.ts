@@ -23,7 +23,7 @@ ynabAPI.categories
   )
   .then(response => {
     let category = response.data.category;
-    console.log(`
+    console.log(`\
 ============
 CATEGORY
 ============
