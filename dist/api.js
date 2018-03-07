@@ -17,7 +17,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/0.7.0";
+const USER_AGENT = "api_client/js/0.8.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -76,9 +76,9 @@ var Account;
      */
     let TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = 'Checking'] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = 'Savings'] = "Savings";
-        TypeEnum[TypeEnum["CreditCard"] = 'CreditCard'] = "CreditCard";
+        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
+        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
+        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
     })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
 })(Account = exports.Account || (exports.Account = {}));
 /**
@@ -93,9 +93,9 @@ var SaveTransaction;
      */
     let ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'Cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'Uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'Reconciled'] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = SaveTransaction.ClearedEnum || (SaveTransaction.ClearedEnum = {}));
     /**
      * @export

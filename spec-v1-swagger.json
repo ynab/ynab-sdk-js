@@ -737,8 +737,7 @@
         ],
         "responses": {
           "201": {
-            "description":
-              "The bulk request was processed sucessfully.",
+            "description": "The bulk request was processed sucessfully.",
             "schema": {
               "$ref": "#/definitions/BulkResponse"
             }
@@ -1131,9 +1130,10 @@
           "type": "string"
         },
         "last_modified_on": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "date-time",
-          "description": "The last time any changes were made to the budget from either a web or mobile client."
+          "description":
+            "The last time any changes were made to the budget from either a web or mobile client."
         },
         "date_format": {
           "$ref": "#/definitions/DateFormat"
@@ -1148,7 +1148,7 @@
       "required": ["locale"],
       "properties": {
         "locale": {
-          "type": "string"
+          "type": ["string", "null"]
         }
       }
     },
@@ -1157,7 +1157,7 @@
       "required": ["locale"],
       "properties": {
         "locale": {
-          "type": "string"
+          "type": ["string", "null"]
         }
       }
     },
@@ -1294,7 +1294,18 @@
         },
         "type": {
           "type": "string",
-          "enum": ["checking", "savings", "creditCard"]
+          "enum": [
+            "checking",
+            "savings",
+            "creditCard",
+            "cash",
+            "lineOfCredit",
+            "merchantAccount",
+            "investmentAccount",
+            "mortgage",
+            "otherAsset",
+            "otherLiability"
+          ]
         },
         "on_budget": {
           "type": "boolean",
@@ -1305,7 +1316,7 @@
           "description": "Whether this account is closed or not"
         },
         "note": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "balance": {
           "type": "number",
@@ -1431,7 +1442,7 @@
           "type": "boolean"
         },
         "note": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "budgeted": {
           "type": "number",
@@ -1500,7 +1511,7 @@
         "transfer_account_id": {
           "description":
             "If a transfer payee, the account_id to which this payee transfers to",
-          "type": "string"
+          "type": ["string", "null"]
         }
       }
     },
@@ -1556,10 +1567,10 @@
           "format": "uuid"
         },
         "latitude": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "longitude": {
-          "type": "string"
+          "type": ["string", "null"]
         }
       }
     },
@@ -1633,7 +1644,7 @@
           "description": "The transaction amount in milliunits format"
         },
         "memo": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "cleared": {
           "type": "string",
@@ -1645,26 +1656,28 @@
           "description": "Whether or not the transaction is approved"
         },
         "flag_color": {
-          "type": "string"
+          "type": ["string", "null"],
+          "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
+          "description": "The transaction flag"
         },
         "account_id": {
           "type": "string",
           "format": "uuid"
         },
         "payee_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "category_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "import_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "description":
             "If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'."
         }
@@ -1716,24 +1729,24 @@
           "description": "The transaction amount in milliunits format"
         },
         "payee_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid",
           "description":
             "The payee for the transaction.  Transfer payees are not permitted and will be ignored if supplied."
         },
         "payee_name": {
-          "type": "string",
+          "type": ["string", "null"],
           "description":
             "The payee name.  If a payee_name value is provided and payee_id is not included or has a null value, payee_name will be used to create or use an existing payee."
         },
         "category_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid",
           "description":
             "The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied."
         },
         "memo": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "cleared": {
           "type": "string",
@@ -1746,12 +1759,12 @@
             "Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default."
         },
         "flag_color": {
-          "type": "string",
-          "enum": ["red", "orange", "yellow", "green", "blue", "purple"],
+          "type": ["string", "null"],
+          "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
           "description": "The transaction flag"
         },
         "import_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "description":
             "If specified for a new transaction, the transaction will be treated as Imported and assigned this import_id.  If another transaction on the same account with this same import_id is later attempted to be created, it will be skipped to prevent duplication.  Transactions imported through File Based Import or Direct Import and not through the API, are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.  If import_id is specified as null, the transaction will be treated as a user entered transaction."
         }
@@ -1834,18 +1847,18 @@
           "description": "The sub-transaction amount in milliunits format"
         },
         "memo": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "payee_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "category_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the subtransaction transfers to"
@@ -1947,25 +1960,27 @@
           "description": "The scheduled transaction amount in milliunits format"
         },
         "memo": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "flag_color": {
-          "type": "string"
+          "type": ["string", "null"],
+          "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
+          "description": "The transaction flag"
         },
         "account_id": {
           "type": "string",
           "format": "uuid"
         },
         "payee_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "category_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the scheduled transaction transfers to"
@@ -2019,18 +2034,18 @@
             "The scheduled sub-transaction amount in milliunits format"
         },
         "memo": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "payee_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "category_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "transfer_account_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the scheduled sub transaction transfers to"
@@ -2085,16 +2100,16 @@
           "format": "date"
         },
         "note": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "to_be_budgeted": {
-          "type": "number",
+          "type": ["number", "null"],
           "format": "1234000",
           "description":
             "The current balance of the account in milliunits format"
         },
         "age_of_money": {
-          "type": "number"
+          "type": ["number", "null"]
         }
       }
     },
