@@ -1301,6 +1301,7 @@
             "cash",
             "lineOfCredit",
             "merchantAccount",
+            "payPal",
             "investmentAccount",
             "mortgage",
             "otherAsset",
@@ -1965,7 +1966,7 @@
         "flag_color": {
           "type": "string",
           "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
-          "description": "The transaction flag"
+          "description": "The scheduled transaction flag"
         },
         "account_id": {
           "type": "string",
