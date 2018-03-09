@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.9.0";
+const USER_AGENT = "api_client/js/0.11.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -166,6 +166,7 @@ export namespace Account {
         Cash = <any> 'cash',
         LineOfCredit = <any> 'lineOfCredit',
         MerchantAccount = <any> 'merchantAccount',
+        PayPal = <any> 'payPal',
         InvestmentAccount = <any> 'investmentAccount',
         Mortgage = <any> 'mortgage',
         OtherAsset = <any> 'otherAsset',
@@ -1078,7 +1079,7 @@ export interface ScheduledTransactionSummary {
      */
     memo: string;
     /**
-     * The transaction flag
+     * The scheduled transaction flag
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
@@ -1614,7 +1615,7 @@ export interface ScheduledTransactionDetail {
      */
     memo: string;
     /**
-     * The transaction flag
+     * The scheduled transaction flag
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */

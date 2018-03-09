@@ -123,6 +123,7 @@ export declare namespace Account {
         Cash,
         LineOfCredit,
         MerchantAccount,
+        PayPal,
         InvestmentAccount,
         Mortgage,
         OtherAsset,
@@ -991,7 +992,7 @@ export interface ScheduledTransactionSummary {
      */
     memo: string;
     /**
-     * The transaction flag
+     * The scheduled transaction flag
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
@@ -1512,7 +1513,7 @@ export interface ScheduledTransactionDetail {
      */
     memo: string;
     /**
-     * The transaction flag
+     * The scheduled transaction flag
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
