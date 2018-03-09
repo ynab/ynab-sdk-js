@@ -1,4 +1,3 @@
-/// <reference path="../src/portable-fetch.d.ts" />
 import { Configuration } from "./configuration";
 /**
  *

@@ -1,5 +1,4 @@
 "use strict";
-/// <reference path="./portable-fetch.d.ts" />
 // tslint:disable
 /**
  * YNAB API Endpoints
