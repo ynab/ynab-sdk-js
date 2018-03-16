@@ -11,6 +11,9 @@
   "basePath": "/v1",
   "tags": [
     {
+      "name": "User"
+    },
+    {
       "name": "Budgets"
     },
     {
@@ -50,6 +53,29 @@
     }
   ],
   "paths": {
+    "/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "User info",
+        "description": "Returns authenticated user information.",
+        "operationId": "getUser",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "The user info.",
+            "schema": {
+              "$ref": "#/definitions/UserResponse"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/budgets": {
       "get": {
         "tags": ["Budgets"],
@@ -1072,6 +1098,34 @@
         },
         "detail": {
           "type": "string"
+        }
+      }
+    },
+    "UserResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/UserWrapper"
+        }
+      }
+    },
+    "UserWrapper": {
+      "type": "object",
+      "required": ["user"],
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
         }
       }
     },

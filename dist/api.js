@@ -16,7 +16,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/0.11.0";
+const USER_AGENT = "api_client/js/0.12.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -2371,3 +2371,104 @@ class TransactionsApi extends BaseAPI {
     }
 }
 exports.TransactionsApi = TransactionsApi;
+/**
+ * UserApi - fetch parameter creator
+ * @export
+ */
+exports.UserApiFetchParamCreator = function (configuration) {
+    return {
+        /**
+         * Returns authenticated user information.
+         * @summary User info
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getUser(options = {}) {
+            const localVarPath = `/user`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    };
+};
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+exports.UserApiFp = function (configuration) {
+    return {
+        /**
+         * Returns authenticated user information.
+         * @summary User info
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getUser(options) {
+            const localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).getUser(options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+    };
+};
+/**
+ * UserApi - factory interface
+ * @export
+ */
+exports.UserApiFactory = function (configuration) {
+    return {
+        /**
+         * Returns authenticated user information.
+         * @summary User info
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getUser(options) {
+            return exports.UserApiFp(configuration).getUser(options)();
+        },
+    };
+};
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+class UserApi extends BaseAPI {
+    /**
+     * Returns authenticated user information.
+     * @summary User info
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    getUser(options) {
+        return exports.UserApiFp(this.configuration).getUser(options)();
+    }
+}
+exports.UserApi = UserApi;
