@@ -33,7 +33,7 @@ import * as ynab from "ynab";
 
 ### Browser
 
-The `dist/browser/index.js` file (located in node_modules/ynab after installation) is specifically built to run in a browser / window context and exports `ynab` variable to global namespace.  No other dependencies are needed.
+The `dist/browser/ynab.js` file (located in node_modules/ynab after installation) is specifically built to run in a browser / window context and exports `ynab` variable to global namespace.  No other dependencies are needed.
 
 ```
 <script src="ynab.js" async></script>
