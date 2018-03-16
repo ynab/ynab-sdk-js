@@ -1,7 +1,7 @@
 module.exports = {
   entry: "./src/index.ts",
   output: {
-    filename: "browser/index.js",
+    filename: "browser/ynab.js",
     library: "ynab",
     libraryTarget: "var"
   },
