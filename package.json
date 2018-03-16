@@ -10,7 +10,9 @@
     "api"
   ],
   "files": [
-    "dist/"
+    "dist/",
+    "dist/esm",
+    "dist/browser"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",
