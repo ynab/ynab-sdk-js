@@ -1308,6 +1308,45 @@ export interface TransactionsWrapper {
 /**
  *
  * @export
+ * @interface User
+ */
+export interface User {
+    /**
+     *
+     * @type {string}
+     * @memberof User
+     */
+    id: string;
+}
+/**
+ *
+ * @export
+ * @interface UserResponse
+ */
+export interface UserResponse {
+    /**
+     *
+     * @type {UserWrapper}
+     * @memberof UserResponse
+     */
+    data: UserWrapper;
+}
+/**
+ *
+ * @export
+ * @interface UserWrapper
+ */
+export interface UserWrapper {
+    /**
+     *
+     * @type {User}
+     * @memberof UserWrapper
+     */
+    user: User;
+}
+/**
+ *
+ * @export
  * @interface BudgetDetail
  */
 export interface BudgetDetail {
@@ -2187,4 +2226,41 @@ export declare class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
+}
+/**
+ * UserApi - fetch parameter creator
+ * @export
+ */
+export declare const UserApiFetchParamCreator: (configuration?: Configuration) => {
+    getUser(options?: any): FetchArgs;
+};
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export declare const UserApiFp: (configuration?: Configuration) => {
+    getUser(options?: any): (fetchFunction?: FetchAPI) => Promise<UserResponse>;
+};
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export declare const UserApiFactory: (configuration?: Configuration) => {
+    getUser(options?: any): Promise<UserResponse>;
+};
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export declare class UserApi extends BaseAPI {
+    /**
+     * Returns authenticated user information.
+     * @summary User info
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    getUser(options?: any): Promise<UserResponse>;
 }
