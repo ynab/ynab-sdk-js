@@ -14,18 +14,20 @@
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
   "typings": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/ynab/ynab-sdk-js.git"
   },
   "scripts": {
-    "generate": "cd build && ./generate_sdk_typescript.js",
-    "build": "npx tsc && npx tsc -p examples/",
+    "generate": "cd generate && ./generate_sdk_typescript.js",
+    "build": "npx tsc && npx tsc --module ES2015 --outDir dist/esm && npx webpack --mode production && npx tsc -p examples/",
     "test": "TS_NODE_PROJECT=test/ npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'",
     "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'; npm-github-release"
   },
   "dependencies": {
+    "cronstrue": "^1.1.0",
     "portable-fetch": "^3.0.0"
   },
   "devDependencies": {
@@ -40,8 +42,11 @@
     "mocha": "^4.0.1",
     "npm-github-release": "^0.9.0",
     "swagger-model-validator": "^2.2.1",
+    "ts-loader": "^4.0.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   },
   "engines": {
     "npm": "^5.2.0"

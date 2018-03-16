@@ -5,17 +5,44 @@
 
 **NOTE: The YNAB API is currently only available to Early Access users.  If you are interested in requesting access before the API is generally available, please fill out [this form](https://docs.google.com/forms/d/17plY-CE39Xl3pe2GqyVH1Unre8TjYKs-tkI6jVC4ko4/edit).**
 
-This is the JavaScript (Node) client for the YNAB API.  The YNAB API does not have [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) configured so using this client in a browser context is not supported.
-
 Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of available resources.
 
 This client is generated using the [Swagger Code Generator](https://github.com/swagger-api/swagger-codegen).
 
 ## Installation
 
+First, install the module with npm (or yarn):
+
 ```shell
 npm install ynab
 ```
+
+Then, depending upon your usage context, add a reference to it:
+
+### CommonJS / Node
+
+```
+const ynab = require("ynab");
+```
+
+### ESM / TypeScript
+
+```
+import * as ynab from "ynab";
+```
+
+### Browser
+
+The `dist/browser/ynab.js` file (located in node_modules/ynab after installation) is specifically built to run in a browser / window context and exports `ynab` variable to global namespace.  No other dependencies are needed.
+
+```
+<script src="ynab.js" async></script>
+...
+<script>
+  var ynab = window.ynab;
+</script>
+```
+
 
 ## Usage
 
@@ -25,7 +52,6 @@ the [My Account](https://app.youneedabudget.com/settings) area of the YNAB web
 application.
 
 ```typescript
-const ynab = require("ynab");
 const accessToken = "b43439eaafe2_this_is_fake_b43439eaafe2";
 const ynabAPI = new ynab.api(accessToken);
 
