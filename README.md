@@ -1,4 +1,4 @@
-# YNAB API Javascript (Node) Library
+# YNAB API Javascript Library
 
 [![Build Status](https://travis-ci.org/ynab/ynab-sdk-js.svg?branch=master)](https://travis-ci.org/ynab/ynab-sdk-js)
 [![NPM Package](https://img.shields.io/npm/v/ynab.svg)](https://www.npmjs.com/package/ynab) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -32,6 +32,8 @@ import * as ynab from "ynab";
 ```
 
 ### Browser
+
+The API supports [Cross Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) for asynchronous browser requests from any origin.
 
 The `dist/browser/ynab.js` file (located in node_modules/ynab after installation) is specifically built to run in a browser / window context and exports `ynab` variable to global namespace.  No other dependencies are needed.
 
