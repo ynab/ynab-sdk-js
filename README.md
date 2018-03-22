@@ -92,23 +92,6 @@ const budgetsResponse = ynabAPI.budgets.getBudgets()
   });
 ```
 
-### Utilities
-
-There are several utilities available on the `utils` export to make working
-with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
-easier.
-
-```typescript
-// Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
-getCurrentMonthInISOFormat(): string;
-// Returns the current date (system timezone) in ISO 8601 format (i.e. '2015-12-15')
-getCurrentDateInISOFormat(): string;
-// Converts an ISO 8601 formatted string to a JS date object
-convertFromISODateString(isoDateString: string): Date;
-// Converts a milliunits amount to a currency amount
-convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
-```
-
 ## Examples
 
 See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples)
@@ -142,6 +125,23 @@ The following methods are available in this library.  For more details on parame
 |                        | `transactions.bulkCreateTransactions(budgetId, transactions)`                 | Creates multiple transactions                                                                          |
 | **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions(budgetId)`      | Returns all scheduled transactions                                                                     |
 |                        | `scheduledTransactions.getScheduledTransactionById(budgetId, id)` | Returns a single scheduled transaction                                                                 |
+
+### Utilities
+
+There are several utilities available on the `utils` export to make working
+with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
+easier.
+
+```typescript
+// Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
+getCurrentMonthInISOFormat(): string;
+// Returns the current date (system timezone) in ISO 8601 format (i.e. '2015-12-15')
+getCurrentDateInISOFormat(): string;
+// Converts an ISO 8601 formatted string to a JS date object
+convertFromISODateString(isoDateString: string): Date;
+// Converts a milliunits amount to a currency amount
+convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
+```
 
 ## Development
 
