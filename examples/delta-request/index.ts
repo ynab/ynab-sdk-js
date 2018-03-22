@@ -46,7 +46,11 @@ const ynabAPI = new ynab.api(accessToken);
 
       console.log(`Here is the budget data for the current month: `);
       const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
-      const monthDetailForCurrentMonth = budgetContents.data.budget.months.find((m)=>{ return m.month == currentMonthISO});
+      const monthDetailForCurrentMonth = budgetContents.data.budget.months.find(
+        m => {
+          return m.month == currentMonthISO;
+        }
+      );
 
       if (monthDetailForCurrentMonth) {
         console.log(`${JSON.stringify(monthDetailForCurrentMonth, null, 2)}`);
