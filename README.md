@@ -103,6 +103,7 @@ The following methods are available in this library.  For more details on parame
 
 |                       | Method                                                | Description                                                                                            |
 |------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| **User**                | `budgets.getUser()`                                  | Returns authenticated user information
 | **Budgets**                | `budgets.getBudgets()`                                  | Returns budgets list with summary information                                                          |
 |                        | `budgets.getBudgetById(id)`                             | Returns a single budget with all related entities |
 | **Accounts**               | `accounts.getAccounts(budgetId)`                                | Returns all accounts                                                                                   |
