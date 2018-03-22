@@ -29,7 +29,6 @@
     "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'; npm-github-release"
   },
   "dependencies": {
-    "cronstrue": "^1.1.0",
     "portable-fetch": "^3.0.0"
   },
   "devDependencies": {
