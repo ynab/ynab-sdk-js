@@ -170,11 +170,32 @@ export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   approved: true,
   flag_color: api.TransactionDetail.FlagColorEnum.Red,
   account_id: Factory.each(i => `account_id #${i}`),
+  account_name: "Test Account",
   payee_id: Factory.each(i => `payee_id #${i}`),
+  payee_name: "Test Payee",
   category_id: Factory.each(i => `category_id #${i}`),
+  category_name: "Test Category",
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
   import_id: null,
   subtransactions: subTransactionFactory.buildList(3)
+});
+
+export const hybridTransactionFactory = Factory.makeFactory<api.HybridTransaction>({
+  type: api.HybridTransaction.TypeEnum.Transaction,
+  parent_transaction_id: null,
+  id: Factory.each(i => `id #${i}`),
+  date: "2017-01-02",
+  amount: Factory.each(i => i * 1000),
+  memo: Factory.each(i => `memo #${i}`),
+  cleared: api.TransactionDetail.ClearedEnum.Cleared,
+  approved: true,
+  flag_color: api.TransactionDetail.FlagColorEnum.Red,
+  account_id: Factory.each(i => `account_id #${i}`),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  category_id: Factory.each(i => `category_id #${i}`),
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  import_id: null
+
 });
 
 export const transactionResponseFactory = Factory.makeFactory<
@@ -207,6 +228,14 @@ export const transactionsResponseFactory = Factory.makeFactory<
 >({
   data: Factory.makeFactory({
     transactions: transactionFactory.buildList(5)
+  })
+});
+
+export const hybridtransactionsResponseFactory = Factory.makeFactory<
+  api.HybridTransactionsResponse
+>({
+  data: Factory.makeFactory({
+    transactions: hybridTransactionFactory.buildList(5)
   })
 });
 
@@ -277,8 +306,11 @@ export const scheduledTransactionFactory = Factory.makeFactory<
   flag_color: api.ScheduledTransactionDetail.FlagColorEnum.Red,
   frequency: api.ScheduledTransactionDetail.FrequencyEnum.Daily,
   account_id: Factory.each(i => `account_id #${i}`),
+  account_name: "Test Account",
   payee_id: Factory.each(i => `payee_id #${i}`),
+  payee_name: "Test Payee",
   category_id: Factory.each(i => `category_id #${i}`),
+  category_name: "Test Category",
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
   subtransactions: scheduledSubTransactionFactory.buildList(3)
 });

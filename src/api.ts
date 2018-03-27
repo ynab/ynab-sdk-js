@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.12.0";
+const USER_AGENT = "api_client/js/0.14.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -601,6 +601,34 @@ export interface ErrorResponse {
 /**
  * 
  * @export
+ * @interface HybridTransactionsResponse
+ */
+export interface HybridTransactionsResponse {
+    /**
+     * 
+     * @type {HybridTransactionsWrapper}
+     * @memberof HybridTransactionsResponse
+     */
+    data: HybridTransactionsWrapper;
+}
+
+/**
+ * 
+ * @export
+ * @interface HybridTransactionsWrapper
+ */
+export interface HybridTransactionsWrapper {
+    /**
+     * 
+     * @type {Array&lt;HybridTransaction&gt;}
+     * @memberof HybridTransactionsWrapper
+     */
+    transactions: Array<HybridTransaction>;
+}
+
+/**
+ * 
+ * @export
  * @interface MonthDetailResponse
  */
 export interface MonthDetailResponse {
@@ -991,7 +1019,7 @@ export interface ScheduledSubTransaction {
      */
     scheduled_transaction_id: string;
     /**
-     * The scheduled sub-transaction amount in milliunits format
+     * The scheduled subtransaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledSubTransaction
      */
@@ -1209,7 +1237,7 @@ export interface SubTransaction {
      */
     transaction_id: string;
     /**
-     * The sub-transaction amount in milliunits format
+     * The subtransaction amount in milliunits format
      * @type {number}
      * @memberof SubTransaction
      */
@@ -1579,6 +1607,134 @@ export interface CategoryGroupWithCategories {
 /**
  * 
  * @export
+ * @interface HybridTransaction
+ */
+export interface HybridTransaction {
+    /**
+     * 
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    date: string;
+    /**
+     * The transaction amount in milliunits format
+     * @type {number}
+     * @memberof HybridTransaction
+     */
+    amount: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    memo: string;
+    /**
+     * The cleared status of the transaction
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    cleared: HybridTransaction.ClearedEnum;
+    /**
+     * Whether or not the transaction is approved
+     * @type {boolean}
+     * @memberof HybridTransaction
+     */
+    approved: boolean;
+    /**
+     * The transaction flag
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    flag_color: HybridTransaction.FlagColorEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    account_id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    payee_id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    category_id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    transfer_account_id: string;
+    /**
+     * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    import_id: string;
+    /**
+     * Whether the hybrid transaction represents a regular transaction or a subtransaction
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    type: HybridTransaction.TypeEnum;
+    /**
+     * For subtransaction types, this is the id of the pararent transaction.  For transaction types, this id will be always be null.
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    parent_transaction_id: string;
+}
+
+/**
+ * @export
+ * @namespace HybridTransaction
+ */
+export namespace HybridTransaction {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ClearedEnum {
+        Cleared = <any> 'cleared',
+        Uncleared = <any> 'uncleared',
+        Reconciled = <any> 'reconciled'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        Transaction = <any> 'transaction',
+        Subtransaction = <any> 'subtransaction'
+    }
+}
+
+/**
+ * 
+ * @export
  * @interface MonthDetail
  */
 export interface MonthDetail {
@@ -1687,7 +1843,25 @@ export interface ScheduledTransactionDetail {
      */
     transfer_account_id: string;
     /**
-     * If a split scheduled transaction, the sub-transactions.
+     * 
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    account_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    payee_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    category_name: string;
+    /**
+     * If a split scheduled transaction, the subtransactions.
      * @type {Array&lt;ScheduledSubTransaction&gt;}
      * @memberof ScheduledTransactionDetail
      */
@@ -1811,7 +1985,25 @@ export interface TransactionDetail {
      */
     import_id: string;
     /**
-     * If a split transaction, the sub-transactions.
+     * 
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    account_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    payee_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    category_name: string;
+    /**
+     * If a split transaction, the subtransactions.
      * @type {Array&lt;SubTransaction&gt;}
      * @memberof TransactionDetail
      */
@@ -3665,6 +3857,55 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Returns all transactions for a specified payee
+         * @summary List payee transactions
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsByPayee.');
+            }
+            // verify required parameter 'payee_id' is not null or undefined
+            if (payee_id === null || payee_id === undefined) {
+                throw new RequiredError('payee_id','Required parameter payee_id was null or undefined when calling getTransactionsByPayee.');
+            }
+            const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/transactions`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (since_date !== undefined) {
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The ID of the Budget.
@@ -3824,7 +4065,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -3848,6 +4089,29 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          */
         getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsById(budget_id, transaction_id, options);
+            return (fetchFunction: FetchAPI = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
+         * Returns all transactions for a specified payee
+         * @summary List payee transactions
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3962,6 +4226,18 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
             return TransactionsApiFp(configuration).getTransactionsById(budget_id, transaction_id, options)();
         },
         /**
+         * Returns all transactions for a specified payee
+         * @summary List payee transactions
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options?: any) {
+            return TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The ID of the Budget.
@@ -4062,6 +4338,20 @@ export class TransactionsApi extends BaseAPI {
      */
     public getTransactionsById(budget_id: string, transaction_id: string, options?: any) {
         return TransactionsApiFp(this.configuration).getTransactionsById(budget_id, transaction_id, options)();
+    }
+
+    /**
+     * Returns all transactions for a specified payee
+     * @summary List payee transactions
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} payee_id - The ID of the Payee.
+     * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    public getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
     }
 
     /**

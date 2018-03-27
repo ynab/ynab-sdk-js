@@ -324,7 +324,7 @@ describe("API requests", () => {
             categoryId,
             sinceDate
           ),
-        factories.transactionsResponseFactory.build()
+        factories.hybridtransactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}/transactions?since_date=2017-01-01`
@@ -344,7 +344,7 @@ describe("API requests", () => {
             categoryId,
             sinceDate
           ),
-        factories.transactionsResponseFactory.build()
+        factories.hybridtransactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}/transactions?since_date=${sinceDate}`

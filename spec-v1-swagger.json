@@ -869,7 +869,62 @@
           "200": {
             "description": "The list of requested Transactions.",
             "schema": {
-              "$ref": "#/definitions/TransactionsResponse"
+              "$ref": "#/definitions/HybridTransactionsResponse"
+            }
+          },
+          "404": {
+            "description": "No Transactions were found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/payees/{payee_id}/transactions": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "List payee transactions",
+        "description": "Returns all transactions for a specified payee",
+        "operationId": "getTransactionsByPayee",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "The ID of the Budget.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "payee_id",
+            "in": "path",
+            "description": "The ID of the Payee.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "since_date",
+            "in": "query",
+            "description": "Only return transactions on or after this date.",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of requested Transactions.",
+            "schema": {
+              "$ref": "#/definitions/HybridTransactionsResponse"
             }
           },
           "404": {
@@ -1221,6 +1276,7 @@
           "$ref": "#/definitions/BudgetSummary"
         },
         {
+          "type": "object",
           "properties": {
             "accounts": {
               "type": "array",
@@ -1455,6 +1511,7 @@
           "$ref": "#/definitions/CategoryGroup"
         },
         {
+          "type": "object",
           "required": ["categories"],
           "properties": {
             "categories": {
@@ -1650,6 +1707,27 @@
         }
       }
     },
+    "HybridTransactionsResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/HybridTransactionsWrapper"
+        }
+      }
+    },
+    "HybridTransactionsWrapper": {
+      "type": "object",
+      "required": ["transactions"],
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HybridTransaction"
+          }
+        }
+      }
+    },
     "TransactionResponse": {
       "type": "object",
       "required": ["data"],
@@ -1744,14 +1822,54 @@
           "$ref": "#/definitions/TransactionSummary"
         },
         {
-          "required": ["subtransactions"],
+          "type": "object",
+          "required": [
+            "account_name",
+            "payee_name",
+            "category_name",
+            "subtransactions"
+          ],
           "properties": {
+            "account_name": {
+              "type": "string"
+            },
+            "payee_name": {
+              "type": "string"
+            },
+            "category_name": {
+              "type": "string"
+            },
             "subtransactions": {
               "type": "array",
-              "description": "If a split transaction, the sub-transactions.",
+              "description": "If a split transaction, the subtransactions.",
               "items": {
                 "$ref": "#/definitions/SubTransaction"
               }
+            }
+          }
+        }
+      ]
+    },
+    "HybridTransaction": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/TransactionSummary"
+        },
+        {
+          "type": "object",
+          "required": ["type", "parent_transaction_id"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["transaction", "subtransaction"],
+              "description":
+                "Whether the hybrid transaction represents a regular transaction or a subtransaction"
+            },
+            "parent_transaction_id": {
+              "type": "string",
+              "format": "uuid",
+              "description":
+                "For subtransaction types, this is the id of the pararent transaction.  For transaction types, this id will be always be null."
             }
           }
         }
@@ -1899,7 +2017,7 @@
         "amount": {
           "type": "number",
           "format": "1234000",
-          "description": "The sub-transaction amount in milliunits format"
+          "description": "The subtransaction amount in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -2048,12 +2166,27 @@
           "$ref": "#/definitions/ScheduledTransactionSummary"
         },
         {
-          "required": ["subtransactions"],
+          "type": "object",
+          "required": [
+            "account_name",
+            "payee_name",
+            "category_name",
+            "subtransactions"
+          ],
           "properties": {
+            "account_name": {
+              "type": "string"
+            },
+            "payee_name": {
+              "type": "string"
+            },
+            "category_name": {
+              "type": "string"
+            },
             "subtransactions": {
               "type": "array",
               "description":
-                "If a split scheduled transaction, the sub-transactions.",
+                "If a split scheduled transaction, the subtransactions.",
               "items": {
                 "$ref": "#/definitions/ScheduledSubTransaction"
               }
@@ -2086,7 +2219,7 @@
           "type": "number",
           "format": "1234000",
           "description":
-            "The scheduled sub-transaction amount in milliunits format"
+            "The scheduled subtransaction amount in milliunits format"
         },
         "memo": {
           "type": "string"
@@ -2174,6 +2307,7 @@
           "$ref": "#/definitions/MonthSummary"
         },
         {
+          "type": "object",
           "required": ["categories"],
           "properties": {
             "categories": {
