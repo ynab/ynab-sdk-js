@@ -38,7 +38,7 @@ describe("API requests", () => {
 
   describe("/budgets", () => {
     it("Should throw the response it is sent back with a status of 400", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const errorObject = {
         error: {
@@ -64,7 +64,7 @@ describe("API requests", () => {
     });
 
     it("Should getBudgets and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const getBudgetsResponse = await callApiAndVerifyResponse(
         () => ynabAPI.budgets.getBudgets(0),
@@ -74,7 +74,7 @@ describe("API requests", () => {
     });
 
     it("Should getBudgetById and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const lastKnowledgeOfServer = 5;
       const getBudgetsResponse = await callApiAndVerifyResponse(
@@ -89,7 +89,7 @@ describe("API requests", () => {
 
   describe("/budgets/accounts", () => {
     it("Should getAccounts and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.accounts.getAccounts(budgetId),
@@ -99,7 +99,7 @@ describe("API requests", () => {
     });
 
     it("Should getAccountById and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const accountId = "DummyAccountId";
       const returnedResponse = await callApiAndVerifyResponse(
@@ -112,7 +112,7 @@ describe("API requests", () => {
     });
 
     it("Should escape Ids in the URL", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const budgetId = "/://{}?";
       const accountId = "/://{}?";
@@ -131,7 +131,7 @@ describe("API requests", () => {
   describe("/budgets/categories", () => {
     it("Should getCategories and validate the request is sent correctly", async () => {
       const mockResponse = factories.categoriesResponseFactory.build();
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const accountId = "DummyAccountId";
       const returnedResponse = await callApiAndVerifyResponse(
@@ -142,7 +142,7 @@ describe("API requests", () => {
     });
 
     it("Should getCategoryById and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const categoryId = "DummyCategoryId";
       const returnedResponse = await callApiAndVerifyResponse(
@@ -157,7 +157,7 @@ describe("API requests", () => {
 
   describe("/budgets/months", () => {
     it("Should getBudgetMonths and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonths(budgetId),
@@ -167,7 +167,7 @@ describe("API requests", () => {
     });
 
     it("Should getBudgetMonth and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const budgetMonth = getUTCDate(2017, 1, 1);
       const returnedResponse = await callApiAndVerifyResponse(
@@ -178,7 +178,7 @@ describe("API requests", () => {
     });
 
     it("Should getBudgetMonth with a string param and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonth(budgetId, "2017-01"),
@@ -188,7 +188,7 @@ describe("API requests", () => {
     });
 
     it("Should getBudgetMonth with a string param of 'current' and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonth(budgetId, "current"),
@@ -200,7 +200,7 @@ describe("API requests", () => {
 
   describe("/budgets/payees", () => {
     it("Should getPayees and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.payees.getPayees(budgetId),
@@ -210,7 +210,7 @@ describe("API requests", () => {
     });
 
     it("Should getPayeeById and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const payeeId = "payeeId";
       const returnedResponse = await callApiAndVerifyResponse(
@@ -223,7 +223,7 @@ describe("API requests", () => {
 
   describe("/budgets/payee_locations", () => {
     it("Should getPayeeLocations and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.payeeLocations.getPayeeLocations(budgetId),
@@ -233,7 +233,7 @@ describe("API requests", () => {
     });
 
     it("Should getPayeeLocationById and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const payeeLocationId = "payeeLocationId";
       const returnedResponse = await callApiAndVerifyResponse(
@@ -252,7 +252,7 @@ describe("API requests", () => {
 
   describe("/budgets/transactions", () => {
     it("Should getTransactions and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.transactions.getTransactions(budgetId),
@@ -262,7 +262,7 @@ describe("API requests", () => {
     });
 
     it("Should getTransactionById and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const transactionId = "TransactionId";
       const returnedResponse = await callApiAndVerifyResponse(
@@ -275,7 +275,7 @@ describe("API requests", () => {
     });
 
     it("Should getTransactionsByAccount and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const accountId = "accountId";
       const sinceDate = getUTCDate(2017, 1, 1);
@@ -294,7 +294,7 @@ describe("API requests", () => {
     });
 
     it("Should getTransactionsByAccount with a string `sinceDate` and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const accountId = "accountId";
       const sinceDate = "2017-02";
@@ -313,7 +313,7 @@ describe("API requests", () => {
     });
 
     it("Should getTransactionsByCategory and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const categoryId = "categoryId";
       const sinceDate = getUTCDate(2017, 1, 1);
@@ -332,7 +332,7 @@ describe("API requests", () => {
     });
 
     it("Should getTransactionsByCategory with a string `sinceDate` and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const categoryId = "categoryId";
       // Make sure we can pass a string as well
@@ -352,7 +352,7 @@ describe("API requests", () => {
     });
 
     it("Should createTransaction", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () =>
@@ -372,7 +372,7 @@ describe("API requests", () => {
     });
 
     it("Should updateTransaction", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
       const returnedResponse = await callApiAndVerifyResponse(
         () =>
@@ -393,7 +393,7 @@ describe("API requests", () => {
     });
 
     it("Should bulkCreateTransactions", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
       const returnedResponse = await callApiAndVerifyResponse(
         () =>
@@ -415,7 +415,7 @@ describe("API requests", () => {
 
   describe("/budgets/scheduled_transactions", () => {
     it("Should getScheduledTransactions and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
         () => ynabAPI.scheduledTransactions.getScheduledTransactions(budgetId),
@@ -427,7 +427,7 @@ describe("API requests", () => {
     });
 
     it("Should getScheduledTransactionById and validate the request is sent correctly", async () => {
-      const ynabAPI = new ynab.api(API_KEY, BASE_URL);
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const scheduledTransactionId = "scheduledTransactionId";
       const returnedResponse = await callApiAndVerifyResponse(

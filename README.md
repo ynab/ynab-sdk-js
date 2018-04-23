@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/ynab.svg)](https://badge.fury.io/js/ynab)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-**NOTE: The YNAB API is currently only available to Early Access users.  If you are interested in requesting access before the API is generally available, please fill out [this form](https://docs.google.com/forms/d/17plY-CE39Xl3pe2GqyVH1Unre8TjYKs-tkI6jVC4ko4/edit).**
+**NOTE: The YNAB API is currently only available to Early Access users. If you are interested in requesting access before the API is generally available, please fill out [this form](https://docs.google.com/forms/d/17plY-CE39Xl3pe2GqyVH1Unre8TjYKs-tkI6jVC4ko4/edit).**
 
 Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of available resources.
 
@@ -36,7 +36,7 @@ import * as ynab from "ynab";
 
 The API supports [Cross Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) for asynchronous browser requests from any origin.
 
-The `dist/browser/ynab.js` file (located in node_modules/ynab after installation) is specifically built to run in a browser / window context and exports `ynab` variable to global namespace.  No other dependencies are needed.
+The `dist/browser/ynab.js` file (located in node_modules/ynab after installation) is specifically built to run in a browser / window context and exports `ynab` variable to global namespace. No other dependencies are needed.
 
 ```
 <script src="ynab.js" async></script>
@@ -45,7 +45,6 @@ The `dist/browser/ynab.js` file (located in node_modules/ynab after installation
   var ynab = window.ynab;
 </script>
 ```
-
 
 ## Usage
 
@@ -56,12 +55,12 @@ application.
 
 ```typescript
 const accessToken = "b43439eaafe2_this_is_fake_b43439eaafe2";
-const ynabAPI = new ynab.api(accessToken);
+const ynabAPI = new ynab.API(accessToken);
 
 (async function() {
   const budgetsResponse = await ynabAPI.budgets.getBudgets();
   const budgets = budgetsResponse.data.budgets;
-  for(let budget of budgets) {
+  for (let budget of budgets) {
     console.log(`Budget Name: ${budget.name}`);
   }
 })();
@@ -75,9 +74,10 @@ the response will be "thrown" as an error to be caught.
 ```typescript
 const ynab = require("ynab");
 const accessToken = "invalid_token";
-const ynabAPI = new ynab.api(accessToken);
+const ynabAPI = new ynab.API(accessToken);
 
-const budgetsResponse = ynabAPI.budgets.getBudgets()
+const budgetsResponse = ynabAPI.budgets
+  .getBudgets()
   .then(budgetsResponse => {
     // Won't get here because an error will be thrown
   })
@@ -100,33 +100,33 @@ folder for example usage scenarios.
 
 ## Methods
 
-The following methods are available in this library.  For more details on parameters and usage, the [TypeScript declaration file](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts) can be referenced.
+The following methods are available in this library. For more details on parameters and usage, the [TypeScript declaration file](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts) can be referenced.
 
-|                       | Method                                                | Description                                                                                            |
-|------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| **User**                | `budgets.getUser()`                                  | Returns authenticated user information
-| **Budgets**                | `budgets.getBudgets()`                                  | Returns budgets list with summary information                                                          |
-|                        | `budgets.getBudgetById(id)`                             | Returns a single budget with all related entities |
-| **Accounts**               | `accounts.getAccounts(budgetId)`                                | Returns all accounts                                                                                   |
-|                        | `accounts.getAccountById(budgetId, id)`                           | Returns a single account                                                                               |
-| **Categories**             | `categories.getCategories(budgetId)`                            | Returns all categories grouped by category group.                                                      |
-|                        | `categories.getCategoryById(budgetId, id)`                        | Returns a single category                                                                              |
-| **Payees**                 | `payees.getPayees(budgetId)`                                    | Returns all payees                                                                                     |
-|                        | `payees.getPayeeById(budgetId, id)`                               | Returns single payee                                                                                   |
-| **Payee Locations**        | `payeeLocations.getPayeeLocations(budgetId)`                    | Returns all payee locations                                                                            |
-|                        | `payeeLocations.getPayeeLocationById(budgetId, id)`               | Returns a single payee location                                                                        |
-|                        | `payeeLocations.getPayeeLocationsByPayee(budgetId, id)`           | Returns all payee locations for the specified payee                                                    |
-| **Months**                 | `months.getBudgetMonths(budgetId)`                              | Returns all budget months                                                                              |
-|                        | `months.getBudgetMonth(budgetId, month)`                             | Returns a single budget month                                                                          |
-| **Transactions**           | `transactions.getTransactions(budgetId)`                        | Returns budget transactions                                                                            |
-|                        | `transactions.getTransactionsByAccount(budgetId, id)`               | Returns all transactions for a specified account                                                       |
-|                        | `transactions.getTransactionsByCategory(budgetId, id)`              | Returns all transactions for a specified category                                                      |
-|                        | `transactions.getTransactionsById(budgetId, id)`                  | Returns a single transaction                                                                           |
-|                        | `transactions.updateTransaction(budgetId, id, transaction)`                      | Updates a transaction                                                                                   |
-|                        | `transactions.createTransaction(budgetId, transaction)`                      | Creates a new transaction                                                                              |
-|                        | `transactions.bulkCreateTransactions(budgetId, transactions)`                 | Creates multiple transactions                                                                          |
-| **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions(budgetId)`      | Returns all scheduled transactions                                                                     |
-|                        | `scheduledTransactions.getScheduledTransactionById(budgetId, id)` | Returns a single scheduled transaction                                                                 |
+|                            | Method                                                            | Description                                         |
+| -------------------------- | ----------------------------------------------------------------- | --------------------------------------------------- |
+| **User**                   | `budgets.getUser()`                                               | Returns authenticated user information              |
+| **Budgets**                | `budgets.getBudgets()`                                            | Returns budgets list with summary information       |
+|                            | `budgets.getBudgetById(id)`                                       | Returns a single budget with all related entities   |
+| **Accounts**               | `accounts.getAccounts(budgetId)`                                  | Returns all accounts                                |
+|                            | `accounts.getAccountById(budgetId, id)`                           | Returns a single account                            |
+| **Categories**             | `categories.getCategories(budgetId)`                              | Returns all categories grouped by category group.   |
+|                            | `categories.getCategoryById(budgetId, id)`                        | Returns a single category                           |
+| **Payees**                 | `payees.getPayees(budgetId)`                                      | Returns all payees                                  |
+|                            | `payees.getPayeeById(budgetId, id)`                               | Returns single payee                                |
+| **Payee Locations**        | `payeeLocations.getPayeeLocations(budgetId)`                      | Returns all payee locations                         |
+|                            | `payeeLocations.getPayeeLocationById(budgetId, id)`               | Returns a single payee location                     |
+|                            | `payeeLocations.getPayeeLocationsByPayee(budgetId, id)`           | Returns all payee locations for the specified payee |
+| **Months**                 | `months.getBudgetMonths(budgetId)`                                | Returns all budget months                           |
+|                            | `months.getBudgetMonth(budgetId, month)`                          | Returns a single budget month                       |
+| **Transactions**           | `transactions.getTransactions(budgetId)`                          | Returns budget transactions                         |
+|                            | `transactions.getTransactionsByAccount(budgetId, id)`             | Returns all transactions for a specified account    |
+|                            | `transactions.getTransactionsByCategory(budgetId, id)`            | Returns all transactions for a specified category   |
+|                            | `transactions.getTransactionsById(budgetId, id)`                  | Returns a single transaction                        |
+|                            | `transactions.updateTransaction(budgetId, id, transaction)`       | Updates a transaction                               |
+|                            | `transactions.createTransaction(budgetId, transaction)`           | Creates a new transaction                           |
+|                            | `transactions.bulkCreateTransactions(budgetId, transactions)`     | Creates multiple transactions                       |
+| **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions(budgetId)`        | Returns all scheduled transactions                  |
+|                            | `scheduledTransactions.getScheduledTransactionById(budgetId, id)` | Returns a single scheduled transaction              |
 
 ### Utilities
 

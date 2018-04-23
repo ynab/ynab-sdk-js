@@ -1,7 +1,7 @@
 import * as ynab from "../../dist/index.js";
 
 const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
-const ynabAPI = new ynab.api(accessToken);
+const ynabAPI = new ynab.API(accessToken);
 
 (async function() {
   console.log(`Fetching budgets...`);
