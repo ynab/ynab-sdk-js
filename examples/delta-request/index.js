@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ynab = require("../../dist/index.js");
 const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
-const ynabAPI = new ynab.api(accessToken);
+const ynabAPI = new ynab.API(accessToken);
 (async function () {
     try {
         // You can get your API key from the My Account section of YNAB
@@ -10,7 +10,7 @@ const ynabAPI = new ynab.api(accessToken);
             console.warn("You will need to define the YNAB_API_ACCESS_TOKEN environment variable.");
             process.exit(1);
         }
-        const ynabAPI = new ynab.api(API_KEY);
+        const ynabAPI = new ynab.API(API_KEY);
         console.log(`Fetching budgets...`);
         const getBudgetsResponse = await ynabAPI.budgets.getBudgets();
         const allBudgets = getBudgetsResponse.data.budgets;

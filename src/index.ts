@@ -2,8 +2,9 @@ import { Configuration } from "./configuration";
 import * as CodeGen from "./api";
 import utils from "./utils";
 
-export * from "./api";
+export { api as API };
 export { utils };
+export * from "./api";
 
 /**
  * The YNAB API client
