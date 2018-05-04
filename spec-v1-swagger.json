@@ -727,7 +727,7 @@
           },
           "422": {
             "description":
-              "A transation with the same import_id already exists on the account so this transaction was not created.",
+              "A transaction with the same import_id already exists on the account so this transaction was not created.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1254,19 +1254,49 @@
     },
     "DateFormat": {
       "type": "object",
-      "required": ["locale"],
+      "required": ["format"],
       "properties": {
-        "locale": {
+        "format": {
           "type": "string"
         }
       }
     },
     "CurrencyFormat": {
       "type": "object",
-      "required": ["locale"],
+      "required": [
+        "iso_code",
+        "example_format",
+        "decimal_digits",
+        "decimal_separator",
+        "symbol_first",
+        "group_separator",
+        "currency_symbol",
+        "display_symbol"
+      ],
       "properties": {
-        "locale": {
+        "iso_code": {
           "type": "string"
+        },
+        "example_format": {
+          "type": "string"
+        },
+        "decimal_digits": {
+          "type": "number"
+        },
+        "decimal_separator": {
+          "type": "string"
+        },
+        "symbol_first": {
+          "type": "boolean"
+        },
+        "group_separator": {
+          "type": "string"
+        },
+        "currency_symbol": {
+          "type": "string"
+        },
+        "display_symbol": {
+          "type": "boolean"
         }
       }
     },
@@ -1857,7 +1887,13 @@
         },
         {
           "type": "object",
-          "required": ["type", "parent_transaction_id"],
+          "required": [
+            "type",
+            "parent_transaction_id",
+            "account_name",
+            "payee_name",
+            "category_name"
+          ],
           "properties": {
             "type": {
               "type": "string",
@@ -1870,6 +1906,15 @@
               "format": "uuid",
               "description":
                 "For subtransaction types, this is the id of the pararent transaction.  For transaction types, this id will be always be null."
+            },
+            "account_name": {
+              "type": "string"
+            },
+            "payee_name": {
+              "type": "string"
+            },
+            "category_name": {
+              "type": "string"
             }
           }
         }
