@@ -1826,7 +1826,7 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.
          * @param {Date} [since_date] - Only return transactions on or after this date.
-         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2141,7 +2141,7 @@ export const TransactionsApiFp = function (configuration) {
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.
          * @param {Date} [since_date] - Only return transactions on or after this date.
-         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2314,7 +2314,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.
          * @param {Date} [since_date] - Only return transactions on or after this date.
-         * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2418,7 +2418,7 @@ export class TransactionsApi extends BaseAPI {
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.
      * @param {Date} [since_date] - Only return transactions on or after this date.
-     * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
