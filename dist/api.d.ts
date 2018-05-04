@@ -177,7 +177,7 @@ export interface AccountsResponse {
 export interface AccountsWrapper {
     /**
      *
-     * @type {Array&lt;Account&gt;}
+     * @type {Array<Account>}
      * @memberof AccountsWrapper
      */
     accounts: Array<Account>;
@@ -272,7 +272,7 @@ export interface BudgetSummaryResponse {
 export interface BudgetSummaryWrapper {
     /**
      *
-     * @type {Array&lt;BudgetSummary&gt;}
+     * @type {Array<BudgetSummary>}
      * @memberof BudgetSummaryWrapper
      */
     budgets: Array<BudgetSummary>;
@@ -298,13 +298,13 @@ export interface BulkIdWrapper {
 export interface BulkIds {
     /**
      * The list of Transaction IDs that were created.
-     * @type {Array&lt;string&gt;}
+     * @type {Array<string>}
      * @memberof BulkIds
      */
     transaction_ids: Array<string>;
     /**
      * If any Transactions were not created because they had an import_id matching a transaction already on the same account, the specified import_id(s) will be included in this list.
-     * @type {Array&lt;string&gt;}
+     * @type {Array<string>}
      * @memberof BulkIds
      */
     duplicate_import_ids: Array<string>;
@@ -330,7 +330,7 @@ export interface BulkResponse {
 export interface BulkTransactions {
     /**
      *
-     * @type {Array&lt;SaveTransaction&gt;}
+     * @type {Array<SaveTransaction>}
      * @memberof BulkTransactions
      */
     transactions: Array<SaveTransaction>;
@@ -436,7 +436,7 @@ export interface CategoryGroup {
 export interface CategoryGroupsWrapper {
     /**
      *
-     * @type {Array&lt;CategoryGroupWithCategories&gt;}
+     * @type {Array<CategoryGroupWithCategories>}
      * @memberof CategoryGroupsWrapper
      */
     category_groups: Array<CategoryGroupWithCategories>;
@@ -478,7 +478,49 @@ export interface CurrencyFormat {
      * @type {string}
      * @memberof CurrencyFormat
      */
-    locale: string;
+    iso_code: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CurrencyFormat
+     */
+    example_format: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CurrencyFormat
+     */
+    decimal_digits: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CurrencyFormat
+     */
+    decimal_separator: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CurrencyFormat
+     */
+    symbol_first: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof CurrencyFormat
+     */
+    group_separator: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CurrencyFormat
+     */
+    currency_symbol: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CurrencyFormat
+     */
+    display_symbol: boolean;
 }
 /**
  *
@@ -491,7 +533,7 @@ export interface DateFormat {
      * @type {string}
      * @memberof DateFormat
      */
-    locale: string;
+    format: string;
 }
 /**
  *
@@ -530,6 +572,32 @@ export interface ErrorResponse {
      * @memberof ErrorResponse
      */
     error: ErrorDetail;
+}
+/**
+ *
+ * @export
+ * @interface HybridTransactionsResponse
+ */
+export interface HybridTransactionsResponse {
+    /**
+     *
+     * @type {HybridTransactionsWrapper}
+     * @memberof HybridTransactionsResponse
+     */
+    data: HybridTransactionsWrapper;
+}
+/**
+ *
+ * @export
+ * @interface HybridTransactionsWrapper
+ */
+export interface HybridTransactionsWrapper {
+    /**
+     *
+     * @type {Array<HybridTransaction>}
+     * @memberof HybridTransactionsWrapper
+     */
+    transactions: Array<HybridTransaction>;
 }
 /**
  *
@@ -578,7 +646,7 @@ export interface MonthSummariesResponse {
 export interface MonthSummariesWrapper {
     /**
      *
-     * @type {Array&lt;MonthSummary&gt;}
+     * @type {Array<MonthSummary>}
      * @memberof MonthSummariesWrapper
      */
     months: Array<MonthSummary>;
@@ -717,7 +785,7 @@ export interface PayeeLocationsResponse {
 export interface PayeeLocationsWrapper {
     /**
      *
-     * @type {Array&lt;PayeeLocation&gt;}
+     * @type {Array<PayeeLocation>}
      * @memberof PayeeLocationsWrapper
      */
     payee_locations: Array<PayeeLocation>;
@@ -769,7 +837,7 @@ export interface PayeesResponse {
 export interface PayeesWrapper {
     /**
      *
-     * @type {Array&lt;Payee&gt;}
+     * @type {Array<Payee>}
      * @memberof PayeesWrapper
      */
     payees: Array<Payee>;
@@ -906,7 +974,7 @@ export interface ScheduledSubTransaction {
      */
     scheduled_transaction_id: string;
     /**
-     * The scheduled sub-transaction amount in milliunits format
+     * The scheduled subtransaction amount in milliunits format
      * @type {number}
      * @memberof ScheduledSubTransaction
      */
@@ -1093,7 +1161,7 @@ export interface ScheduledTransactionsResponse {
 export interface ScheduledTransactionsWrapper {
     /**
      *
-     * @type {Array&lt;ScheduledTransactionDetail&gt;}
+     * @type {Array<ScheduledTransactionDetail>}
      * @memberof ScheduledTransactionsWrapper
      */
     scheduled_transactions: Array<ScheduledTransactionDetail>;
@@ -1117,7 +1185,7 @@ export interface SubTransaction {
      */
     transaction_id: string;
     /**
-     * The sub-transaction amount in milliunits format
+     * The subtransaction amount in milliunits format
      * @type {number}
      * @memberof SubTransaction
      */
@@ -1300,7 +1368,7 @@ export interface TransactionsResponse {
 export interface TransactionsWrapper {
     /**
      *
-     * @type {Array&lt;TransactionDetail&gt;}
+     * @type {Array<TransactionDetail>}
      * @memberof TransactionsWrapper
      */
     transactions: Array<TransactionDetail>;
@@ -1382,61 +1450,61 @@ export interface BudgetDetail {
     currency_format?: CurrencyFormat;
     /**
      *
-     * @type {Array&lt;Account&gt;}
+     * @type {Array<Account>}
      * @memberof BudgetDetail
      */
     accounts?: Array<Account>;
     /**
      *
-     * @type {Array&lt;Payee&gt;}
+     * @type {Array<Payee>}
      * @memberof BudgetDetail
      */
     payees?: Array<Payee>;
     /**
      *
-     * @type {Array&lt;PayeeLocation&gt;}
+     * @type {Array<PayeeLocation>}
      * @memberof BudgetDetail
      */
     payee_locations?: Array<PayeeLocation>;
     /**
      *
-     * @type {Array&lt;CategoryGroup&gt;}
+     * @type {Array<CategoryGroup>}
      * @memberof BudgetDetail
      */
     category_groups?: Array<CategoryGroup>;
     /**
      *
-     * @type {Array&lt;Category&gt;}
+     * @type {Array<Category>}
      * @memberof BudgetDetail
      */
     categories?: Array<Category>;
     /**
      *
-     * @type {Array&lt;MonthDetail&gt;}
+     * @type {Array<MonthDetail>}
      * @memberof BudgetDetail
      */
     months?: Array<MonthDetail>;
     /**
      *
-     * @type {Array&lt;TransactionSummary&gt;}
+     * @type {Array<TransactionSummary>}
      * @memberof BudgetDetail
      */
     transactions?: Array<TransactionSummary>;
     /**
      *
-     * @type {Array&lt;SubTransaction&gt;}
+     * @type {Array<SubTransaction>}
      * @memberof BudgetDetail
      */
     subtransactions?: Array<SubTransaction>;
     /**
      *
-     * @type {Array&lt;ScheduledTransactionSummary&gt;}
+     * @type {Array<ScheduledTransactionSummary>}
      * @memberof BudgetDetail
      */
     scheduled_transactions?: Array<ScheduledTransactionSummary>;
     /**
      *
-     * @type {Array&lt;ScheduledSubTransaction&gt;}
+     * @type {Array<ScheduledSubTransaction>}
      * @memberof BudgetDetail
      */
     scheduled_subtransactions?: Array<ScheduledSubTransaction>;
@@ -1467,10 +1535,154 @@ export interface CategoryGroupWithCategories {
     hidden: boolean;
     /**
      * Category group categories
-     * @type {Array&lt;Category&gt;}
+     * @type {Array<Category>}
      * @memberof CategoryGroupWithCategories
      */
     categories: Array<Category>;
+}
+/**
+ *
+ * @export
+ * @interface HybridTransaction
+ */
+export interface HybridTransaction {
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    date: string;
+    /**
+     * The transaction amount in milliunits format
+     * @type {number}
+     * @memberof HybridTransaction
+     */
+    amount: number;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    memo: string;
+    /**
+     * The cleared status of the transaction
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    cleared: HybridTransaction.ClearedEnum;
+    /**
+     * Whether or not the transaction is approved
+     * @type {boolean}
+     * @memberof HybridTransaction
+     */
+    approved: boolean;
+    /**
+     * The transaction flag
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    flag_color: HybridTransaction.FlagColorEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    account_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    payee_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    category_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    transfer_account_id: string;
+    /**
+     * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    import_id: string;
+    /**
+     * Whether the hybrid transaction represents a regular transaction or a subtransaction
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    type: HybridTransaction.TypeEnum;
+    /**
+     * For subtransaction types, this is the id of the pararent transaction.  For transaction types, this id will be always be null.
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    parent_transaction_id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    account_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    payee_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    category_name: string;
+}
+/**
+ * @export
+ * @namespace HybridTransaction
+ */
+export declare namespace HybridTransaction {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ClearedEnum {
+        Cleared,
+        Uncleared,
+        Reconciled,
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum FlagColorEnum {
+        Red,
+        Orange,
+        Yellow,
+        Green,
+        Blue,
+        Purple,
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TypeEnum {
+        Transaction,
+        Subtransaction,
+    }
 }
 /**
  *
@@ -1504,7 +1716,7 @@ export interface MonthDetail {
     age_of_money: number;
     /**
      * The budget month categories
-     * @type {Array&lt;Category&gt;}
+     * @type {Array<Category>}
      * @memberof MonthDetail
      */
     categories: Array<Category>;
@@ -1582,8 +1794,26 @@ export interface ScheduledTransactionDetail {
      */
     transfer_account_id: string;
     /**
-     * If a split scheduled transaction, the sub-transactions.
-     * @type {Array&lt;ScheduledSubTransaction&gt;}
+     *
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    account_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    payee_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    category_name: string;
+    /**
+     * If a split scheduled transaction, the subtransactions.
+     * @type {Array<ScheduledSubTransaction>}
      * @memberof ScheduledTransactionDetail
      */
     subtransactions: Array<ScheduledSubTransaction>;
@@ -1704,8 +1934,26 @@ export interface TransactionDetail {
      */
     import_id: string;
     /**
-     * If a split transaction, the sub-transactions.
-     * @type {Array&lt;SubTransaction&gt;}
+     *
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    account_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    payee_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    category_name: string;
+    /**
+     * If a split transaction, the subtransactions.
+     * @type {Array<SubTransaction>}
      * @memberof TransactionDetail
      */
     subtransactions: Array<SubTransaction>;
@@ -2113,10 +2361,11 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
     bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): FetchArgs;
     createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): FetchArgs;
-    getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): FetchArgs;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): FetchArgs;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): FetchArgs;
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): FetchArgs;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): FetchArgs;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, options?: any): FetchArgs;
     updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): FetchArgs;
 };
 /**
@@ -2126,10 +2375,11 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
     bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkResponse>;
     createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
-    getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
     updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
 };
 /**
@@ -2139,10 +2389,11 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
 export declare const TransactionsApiFactory: (configuration?: Configuration) => {
     bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkResponse>;
     createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
-    getTransactions(budget_id: string, since_date?: string | Date, type?: string, options?: any): Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): Promise<TransactionsResponse>;
     getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): Promise<TransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, options?: any): Promise<HybridTransactionsResponse>;
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, options?: any): Promise<HybridTransactionsResponse>;
     updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
 };
 /**
@@ -2177,12 +2428,12 @@ export declare class TransactionsApi extends BaseAPI {
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.
      * @param {Date} [since_date] - Only return transactions on or after this date.
-     * @param {string} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budget_id: string, since_date?: Date | string, type?: string, options?: any): Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
@@ -2204,7 +2455,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any): Promise<TransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -2215,6 +2466,17 @@ export declare class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
+    /**
+     * Returns all transactions for a specified payee
+     * @summary List payee transactions
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} payee_id - The ID of the Payee.
+     * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
