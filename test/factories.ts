@@ -5,8 +5,19 @@ export const budgetSummaryFactory = Factory.makeFactory<api.BudgetSummary>({
   id: Factory.each(i => `${i}`),
   name: Factory.each(i => `Budget ${i}`),
   last_modified_on: new Date().toISOString(),
-  date_format: { locale: "en-us" },
-  currency_format: { locale: "en-us" }
+  date_format: {
+    format: "MM/DD/YYYY"
+  },
+  currency_format: {
+    iso_code: "USD",
+    example_format: "123,456.78",
+    decimal_digits: 2,
+    decimal_separator: ".",
+    symbol_first: true,
+    group_separator: ",",
+    currency_symbol: "$",
+    display_symbol: true
+  }
 });
 
 export const budgetSummaryResponseFactory = Factory.makeFactory<
@@ -180,7 +191,9 @@ export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   subtransactions: subTransactionFactory.buildList(3)
 });
 
-export const hybridTransactionFactory = Factory.makeFactory<api.HybridTransaction>({
+export const hybridTransactionFactory = Factory.makeFactory<
+  api.HybridTransaction
+>({
   type: api.HybridTransaction.TypeEnum.Transaction,
   parent_transaction_id: null,
   id: Factory.each(i => `id #${i}`),
@@ -194,8 +207,10 @@ export const hybridTransactionFactory = Factory.makeFactory<api.HybridTransactio
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
-  import_id: null
-
+  import_id: null,
+  account_name: "Test Account",
+  payee_name: "Test Payee",
+  category_name: "Test Category"
 });
 
 export const transactionResponseFactory = Factory.makeFactory<
@@ -351,8 +366,19 @@ export const budgetDetailFactory = Factory.makeFactory<api.BudgetDetail>({
   id: Factory.each(i => `${i}`),
   name: Factory.each(i => `Budget ${i}`),
   last_modified_on: new Date().toISOString(),
-  date_format: { locale: "en-us" },
-  currency_format: { locale: "en-us" },
+  date_format: {
+    format: "MM/DD/YYYY"
+  },
+  currency_format: {
+    iso_code: "USD",
+    example_format: "123,456.78",
+    decimal_digits: 2,
+    decimal_separator: ".",
+    symbol_first: true,
+    group_separator: ",",
+    currency_symbol: "$",
+    display_symbol: true
+  },
   accounts: accountFactory.buildList(5),
   payees: payeeFactory.buildList(10),
   payee_locations: payeeLocationFactory.buildList(3),
