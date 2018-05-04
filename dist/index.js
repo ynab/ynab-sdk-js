@@ -94,3 +94,4 @@ class api {
     }
 }
 exports.api = api;
+exports.API = api;

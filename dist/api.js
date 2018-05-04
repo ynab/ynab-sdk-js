@@ -16,7 +16,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/0.12.0";
+const USER_AGENT = "api_client/js/0.14.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -188,6 +188,45 @@ var TransactionSummary;
         FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = TransactionSummary.FlagColorEnum || (TransactionSummary.FlagColorEnum = {}));
 })(TransactionSummary = exports.TransactionSummary || (exports.TransactionSummary = {}));
+/**
+ * @export
+ * @namespace HybridTransaction
+ */
+var HybridTransaction;
+(function (HybridTransaction) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let ClearedEnum;
+    (function (ClearedEnum) {
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+    })(ClearedEnum = HybridTransaction.ClearedEnum || (HybridTransaction.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = HybridTransaction.FlagColorEnum || (HybridTransaction.FlagColorEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let TypeEnum;
+    (function (TypeEnum) {
+        TypeEnum[TypeEnum["Transaction"] = 'transaction'] = "Transaction";
+        TypeEnum[TypeEnum["Subtransaction"] = 'subtransaction'] = "Subtransaction";
+    })(TypeEnum = HybridTransaction.TypeEnum || (HybridTransaction.TypeEnum = {}));
+})(HybridTransaction = exports.HybridTransaction || (exports.HybridTransaction = {}));
 /**
  * @export
  * @namespace ScheduledTransactionDetail
@@ -1964,6 +2003,50 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Returns all transactions for a specified payee
+         * @summary List payee transactions
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionsByPayee(budget_id, payee_id, since_date, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByPayee.');
+            }
+            // verify required parameter 'payee_id' is not null or undefined
+            if (payee_id === null || payee_id === undefined) {
+                throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getTransactionsByPayee.');
+            }
+            const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/transactions`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            if (since_date !== undefined) {
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The ID of the Budget.
@@ -2160,6 +2243,30 @@ exports.TransactionsApiFp = function (configuration) {
             };
         },
         /**
+         * Returns all transactions for a specified payee
+         * @summary List payee transactions
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionsByPayee(budget_id, payee_id, since_date, options) {
+            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The ID of the Budget.
@@ -2261,6 +2368,18 @@ exports.TransactionsApiFactory = function (configuration) {
             return exports.TransactionsApiFp(configuration).getTransactionsById(budget_id, transaction_id, options)();
         },
         /**
+         * Returns all transactions for a specified payee
+         * @summary List payee transactions
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {string} payee_id - The ID of the Payee.
+         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionsByPayee(budget_id, payee_id, since_date, options) {
+            return exports.TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The ID of the Budget.
@@ -2355,6 +2474,19 @@ class TransactionsApi extends BaseAPI {
      */
     getTransactionsById(budget_id, transaction_id, options) {
         return exports.TransactionsApiFp(this.configuration).getTransactionsById(budget_id, transaction_id, options)();
+    }
+    /**
+     * Returns all transactions for a specified payee
+     * @summary List payee transactions
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {string} payee_id - The ID of the Payee.
+     * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    getTransactionsByPayee(budget_id, payee_id, since_date, options) {
+        return exports.TransactionsApiFp(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
     }
     /**
      * Updates a transaction
