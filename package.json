@@ -45,7 +45,7 @@
     "swagger-model-validator": "^2.2.1",
     "ts-loader": "^4.0.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.7.2",
+    "typescript": "^2.8.3",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12"
   },
