@@ -10,11 +10,21 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 import * as url from "url";
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/0.14.0";
+var USER_AGENT = "api_client/js/0.14.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -28,7 +38,7 @@ function convertDateToFullDateStringFormat(date) {
  *
  * @export
  */
-export const COLLECTION_FORMATS = {
+export var COLLECTION_FORMATS = {
     csv: ",",
     ssv: " ",
     tsv: "\t",
@@ -39,13 +49,15 @@ export const COLLECTION_FORMATS = {
  * @export
  * @class BaseAPI
  */
-export class BaseAPI {
-    constructor(configuration) {
+var BaseAPI = /** @class */ (function () {
+    function BaseAPI(configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
     }
-}
+    return BaseAPI;
+}());
+export { BaseAPI };
 ;
 /**
  *
@@ -53,12 +65,16 @@ export class BaseAPI {
  * @class RequiredError
  * @extends {Error}
  */
-export class RequiredError extends Error {
-    constructor(field, msg) {
-        super(msg);
-        this.field = field;
+var RequiredError = /** @class */ (function (_super) {
+    __extends(RequiredError, _super);
+    function RequiredError(field, msg) {
+        var _this = _super.call(this, msg) || this;
+        _this.field = field;
+        return _this;
     }
-}
+    return RequiredError;
+}(Error));
+export { RequiredError };
 /**
  * @export
  * @namespace Account
@@ -69,7 +85,7 @@ export var Account;
      * @export
      * @enum {string}
      */
-    let TypeEnum;
+    var TypeEnum;
     (function (TypeEnum) {
         TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
         TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
@@ -94,7 +110,7 @@ export var SaveTransaction;
      * @export
      * @enum {string}
      */
-    let ClearedEnum;
+    var ClearedEnum;
     (function (ClearedEnum) {
         ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
@@ -104,7 +120,7 @@ export var SaveTransaction;
      * @export
      * @enum {string}
      */
-    let FlagColorEnum;
+    var FlagColorEnum;
     (function (FlagColorEnum) {
         FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
         FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
@@ -124,7 +140,7 @@ export var ScheduledTransactionSummary;
      * @export
      * @enum {string}
      */
-    let FrequencyEnum;
+    var FrequencyEnum;
     (function (FrequencyEnum) {
         FrequencyEnum[FrequencyEnum["Never"] = 'never'] = "Never";
         FrequencyEnum[FrequencyEnum["Daily"] = 'daily'] = "Daily";
@@ -144,7 +160,7 @@ export var ScheduledTransactionSummary;
      * @export
      * @enum {string}
      */
-    let FlagColorEnum;
+    var FlagColorEnum;
     (function (FlagColorEnum) {
         FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
         FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
@@ -164,7 +180,7 @@ export var TransactionSummary;
      * @export
      * @enum {string}
      */
-    let ClearedEnum;
+    var ClearedEnum;
     (function (ClearedEnum) {
         ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
@@ -174,7 +190,7 @@ export var TransactionSummary;
      * @export
      * @enum {string}
      */
-    let FlagColorEnum;
+    var FlagColorEnum;
     (function (FlagColorEnum) {
         FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
         FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
@@ -194,7 +210,7 @@ export var HybridTransaction;
      * @export
      * @enum {string}
      */
-    let ClearedEnum;
+    var ClearedEnum;
     (function (ClearedEnum) {
         ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
@@ -204,7 +220,7 @@ export var HybridTransaction;
      * @export
      * @enum {string}
      */
-    let FlagColorEnum;
+    var FlagColorEnum;
     (function (FlagColorEnum) {
         FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
         FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
@@ -217,7 +233,7 @@ export var HybridTransaction;
      * @export
      * @enum {string}
      */
-    let TypeEnum;
+    var TypeEnum;
     (function (TypeEnum) {
         TypeEnum[TypeEnum["Transaction"] = 'transaction'] = "Transaction";
         TypeEnum[TypeEnum["Subtransaction"] = 'subtransaction'] = "Subtransaction";
@@ -233,7 +249,7 @@ export var ScheduledTransactionDetail;
      * @export
      * @enum {string}
      */
-    let FrequencyEnum;
+    var FrequencyEnum;
     (function (FrequencyEnum) {
         FrequencyEnum[FrequencyEnum["Never"] = 'never'] = "Never";
         FrequencyEnum[FrequencyEnum["Daily"] = 'daily'] = "Daily";
@@ -253,7 +269,7 @@ export var ScheduledTransactionDetail;
      * @export
      * @enum {string}
      */
-    let FlagColorEnum;
+    var FlagColorEnum;
     (function (FlagColorEnum) {
         FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
         FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
@@ -273,7 +289,7 @@ export var TransactionDetail;
      * @export
      * @enum {string}
      */
-    let ClearedEnum;
+    var ClearedEnum;
     (function (ClearedEnum) {
         ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
@@ -283,7 +299,7 @@ export var TransactionDetail;
      * @export
      * @enum {string}
      */
-    let FlagColorEnum;
+    var FlagColorEnum;
     (function (FlagColorEnum) {
         FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
         FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
@@ -297,7 +313,7 @@ export var TransactionDetail;
  * AccountsApi - fetch parameter creator
  * @export
  */
-export const AccountsApiFetchParamCreator = function (configuration) {
+export var AccountsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single account
@@ -307,7 +323,8 @@ export const AccountsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccountById(budget_id, account_id, options = {}) {
+        getAccountById: function (budget_id, account_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getAccountById.');
@@ -316,18 +333,18 @@ export const AccountsApiFetchParamCreator = function (configuration) {
             if (account_id === null || account_id === undefined) {
                 throw new RequiredError('account_id', 'Required parameter account_id was null or undefined when calling getAccountById.');
             }
-            const localVarPath = `/budgets/{budget_id}/accounts/{account_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/accounts/{account_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "account_id" + "}", encodeURIComponent(String(account_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -346,22 +363,23 @@ export const AccountsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budget_id, options = {}) {
+        getAccounts: function (budget_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getAccounts.');
             }
-            const localVarPath = `/budgets/{budget_id}/accounts`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/accounts"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -379,7 +397,7 @@ export const AccountsApiFetchParamCreator = function (configuration) {
  * AccountsApi - functional programming interface
  * @export
  */
-export const AccountsApiFp = function (configuration) {
+export var AccountsApiFp = function (configuration) {
     return {
         /**
          * Returns a single account
@@ -389,15 +407,16 @@ export const AccountsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccountById(budget_id, account_id, options) {
-            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccountById(budget_id, account_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getAccountById: function (budget_id, account_id, options) {
+            var localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccountById(budget_id, account_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -411,15 +430,16 @@ export const AccountsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budget_id, options) {
-            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getAccounts: function (budget_id, options) {
+            var localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -432,7 +452,7 @@ export const AccountsApiFp = function (configuration) {
  * AccountsApi - factory interface
  * @export
  */
-export const AccountsApiFactory = function (configuration) {
+export var AccountsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single account
@@ -442,7 +462,7 @@ export const AccountsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccountById(budget_id, account_id, options) {
+        getAccountById: function (budget_id, account_id, options) {
             return AccountsApiFp(configuration).getAccountById(budget_id, account_id, options)();
         },
         /**
@@ -452,7 +472,7 @@ export const AccountsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budget_id, options) {
+        getAccounts: function (budget_id, options) {
             return AccountsApiFp(configuration).getAccounts(budget_id, options)();
         },
     };
@@ -463,7 +483,11 @@ export const AccountsApiFactory = function (configuration) {
  * @class AccountsApi
  * @extends {BaseAPI}
  */
-export class AccountsApi extends BaseAPI {
+var AccountsApi = /** @class */ (function (_super) {
+    __extends(AccountsApi, _super);
+    function AccountsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns a single account
      * @summary Single account
@@ -473,9 +497,9 @@ export class AccountsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    getAccountById(budget_id, account_id, options) {
+    AccountsApi.prototype.getAccountById = function (budget_id, account_id, options) {
         return AccountsApiFp(this.configuration).getAccountById(budget_id, account_id, options)();
-    }
+    };
     /**
      * Returns all accounts
      * @summary Account list
@@ -484,15 +508,17 @@ export class AccountsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    getAccounts(budget_id, options) {
+    AccountsApi.prototype.getAccounts = function (budget_id, options) {
         return AccountsApiFp(this.configuration).getAccounts(budget_id, options)();
-    }
-}
+    };
+    return AccountsApi;
+}(BaseAPI));
+export { AccountsApi };
 /**
  * BudgetsApi - fetch parameter creator
  * @export
  */
-export const BudgetsApiFetchParamCreator = function (configuration) {
+export var BudgetsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -502,22 +528,23 @@ export const BudgetsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetById(budget_id, last_knowledge_of_server, options = {}) {
+        getBudgetById: function (budget_id, last_knowledge_of_server, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetById.');
             }
-            const localVarPath = `/budgets/{budget_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
@@ -538,17 +565,18 @@ export const BudgetsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgets(options = {}) {
-            const localVarPath = `/budgets`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+        getBudgets: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/budgets";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -566,7 +594,7 @@ export const BudgetsApiFetchParamCreator = function (configuration) {
  * BudgetsApi - functional programming interface
  * @export
  */
-export const BudgetsApiFp = function (configuration) {
+export var BudgetsApiFp = function (configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -576,15 +604,16 @@ export const BudgetsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetById(budget_id, last_knowledge_of_server, options) {
-            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetById(budget_id, last_knowledge_of_server, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getBudgetById: function (budget_id, last_knowledge_of_server, options) {
+            var localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetById(budget_id, last_knowledge_of_server, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -597,15 +626,16 @@ export const BudgetsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgets(options) {
-            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgets(options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getBudgets: function (options) {
+            var localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgets(options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -618,7 +648,7 @@ export const BudgetsApiFp = function (configuration) {
  * BudgetsApi - factory interface
  * @export
  */
-export const BudgetsApiFactory = function (configuration) {
+export var BudgetsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -628,7 +658,7 @@ export const BudgetsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetById(budget_id, last_knowledge_of_server, options) {
+        getBudgetById: function (budget_id, last_knowledge_of_server, options) {
             return BudgetsApiFp(configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
         },
         /**
@@ -637,7 +667,7 @@ export const BudgetsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgets(options) {
+        getBudgets: function (options) {
             return BudgetsApiFp(configuration).getBudgets(options)();
         },
     };
@@ -648,7 +678,11 @@ export const BudgetsApiFactory = function (configuration) {
  * @class BudgetsApi
  * @extends {BaseAPI}
  */
-export class BudgetsApi extends BaseAPI {
+var BudgetsApi = /** @class */ (function (_super) {
+    __extends(BudgetsApi, _super);
+    function BudgetsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * @summary Single budget
@@ -658,9 +692,9 @@ export class BudgetsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    getBudgetById(budget_id, last_knowledge_of_server, options) {
+    BudgetsApi.prototype.getBudgetById = function (budget_id, last_knowledge_of_server, options) {
         return BudgetsApiFp(this.configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
-    }
+    };
     /**
      * Returns budgets list with summary information.
      * @summary List budgets
@@ -668,15 +702,17 @@ export class BudgetsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BudgetsApi
      */
-    getBudgets(options) {
+    BudgetsApi.prototype.getBudgets = function (options) {
         return BudgetsApiFp(this.configuration).getBudgets(options)();
-    }
-}
+    };
+    return BudgetsApi;
+}(BaseAPI));
+export { BudgetsApi };
 /**
  * CategoriesApi - fetch parameter creator
  * @export
  */
-export const CategoriesApiFetchParamCreator = function (configuration) {
+export var CategoriesApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns all categories grouped by category group.
@@ -685,22 +721,23 @@ export const CategoriesApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budget_id, options = {}) {
+        getCategories: function (budget_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getCategories.');
             }
-            const localVarPath = `/budgets/{budget_id}/categories`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/categories"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -720,7 +757,8 @@ export const CategoriesApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategoryById(budget_id, category_id, options = {}) {
+        getCategoryById: function (budget_id, category_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getCategoryById.');
@@ -729,18 +767,18 @@ export const CategoriesApiFetchParamCreator = function (configuration) {
             if (category_id === null || category_id === undefined) {
                 throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getCategoryById.');
             }
-            const localVarPath = `/budgets/{budget_id}/categories/{category_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/categories/{category_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "category_id" + "}", encodeURIComponent(String(category_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -758,7 +796,7 @@ export const CategoriesApiFetchParamCreator = function (configuration) {
  * CategoriesApi - functional programming interface
  * @export
  */
-export const CategoriesApiFp = function (configuration) {
+export var CategoriesApiFp = function (configuration) {
     return {
         /**
          * Returns all categories grouped by category group.
@@ -767,15 +805,16 @@ export const CategoriesApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budget_id, options) {
-            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getCategories: function (budget_id, options) {
+            var localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -790,15 +829,16 @@ export const CategoriesApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategoryById(budget_id, category_id, options) {
-            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategoryById(budget_id, category_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getCategoryById: function (budget_id, category_id, options) {
+            var localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategoryById(budget_id, category_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -811,7 +851,7 @@ export const CategoriesApiFp = function (configuration) {
  * CategoriesApi - factory interface
  * @export
  */
-export const CategoriesApiFactory = function (configuration) {
+export var CategoriesApiFactory = function (configuration) {
     return {
         /**
          * Returns all categories grouped by category group.
@@ -820,7 +860,7 @@ export const CategoriesApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budget_id, options) {
+        getCategories: function (budget_id, options) {
             return CategoriesApiFp(configuration).getCategories(budget_id, options)();
         },
         /**
@@ -831,7 +871,7 @@ export const CategoriesApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategoryById(budget_id, category_id, options) {
+        getCategoryById: function (budget_id, category_id, options) {
             return CategoriesApiFp(configuration).getCategoryById(budget_id, category_id, options)();
         },
     };
@@ -842,7 +882,11 @@ export const CategoriesApiFactory = function (configuration) {
  * @class CategoriesApi
  * @extends {BaseAPI}
  */
-export class CategoriesApi extends BaseAPI {
+var CategoriesApi = /** @class */ (function (_super) {
+    __extends(CategoriesApi, _super);
+    function CategoriesApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns all categories grouped by category group.
      * @summary List categories
@@ -851,9 +895,9 @@ export class CategoriesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    getCategories(budget_id, options) {
+    CategoriesApi.prototype.getCategories = function (budget_id, options) {
         return CategoriesApiFp(this.configuration).getCategories(budget_id, options)();
-    }
+    };
     /**
      * Returns a single category
      * @summary Single category
@@ -863,15 +907,17 @@ export class CategoriesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    getCategoryById(budget_id, category_id, options) {
+    CategoriesApi.prototype.getCategoryById = function (budget_id, category_id, options) {
         return CategoriesApiFp(this.configuration).getCategoryById(budget_id, category_id, options)();
-    }
-}
+    };
+    return CategoriesApi;
+}(BaseAPI));
+export { CategoriesApi };
 /**
  * MonthsApi - fetch parameter creator
  * @export
  */
-export const MonthsApiFetchParamCreator = function (configuration) {
+export var MonthsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single budget month
@@ -881,7 +927,8 @@ export const MonthsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budget_id, month, options = {}) {
+        getBudgetMonth: function (budget_id, month, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetMonth.');
@@ -890,18 +937,18 @@ export const MonthsApiFetchParamCreator = function (configuration) {
             if (month === null || month === undefined) {
                 throw new RequiredError('month', 'Required parameter month was null or undefined when calling getBudgetMonth.');
             }
-            const localVarPath = `/budgets/{budget_id}/months/{month}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/months/{month}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "month" + "}", encodeURIComponent(convertDateToFullDateStringFormat(month)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -920,22 +967,23 @@ export const MonthsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budget_id, options = {}) {
+        getBudgetMonths: function (budget_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetMonths.');
             }
-            const localVarPath = `/budgets/{budget_id}/months`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/months"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -953,7 +1001,7 @@ export const MonthsApiFetchParamCreator = function (configuration) {
  * MonthsApi - functional programming interface
  * @export
  */
-export const MonthsApiFp = function (configuration) {
+export var MonthsApiFp = function (configuration) {
     return {
         /**
          * Returns a single budget month
@@ -963,15 +1011,16 @@ export const MonthsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budget_id, month, options) {
-            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonth(budget_id, month, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getBudgetMonth: function (budget_id, month, options) {
+            var localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonth(budget_id, month, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -985,15 +1034,16 @@ export const MonthsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budget_id, options) {
-            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getBudgetMonths: function (budget_id, options) {
+            var localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1006,7 +1056,7 @@ export const MonthsApiFp = function (configuration) {
  * MonthsApi - factory interface
  * @export
  */
-export const MonthsApiFactory = function (configuration) {
+export var MonthsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single budget month
@@ -1016,7 +1066,7 @@ export const MonthsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budget_id, month, options) {
+        getBudgetMonth: function (budget_id, month, options) {
             return MonthsApiFp(configuration).getBudgetMonth(budget_id, month, options)();
         },
         /**
@@ -1026,7 +1076,7 @@ export const MonthsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budget_id, options) {
+        getBudgetMonths: function (budget_id, options) {
             return MonthsApiFp(configuration).getBudgetMonths(budget_id, options)();
         },
     };
@@ -1037,7 +1087,11 @@ export const MonthsApiFactory = function (configuration) {
  * @class MonthsApi
  * @extends {BaseAPI}
  */
-export class MonthsApi extends BaseAPI {
+var MonthsApi = /** @class */ (function (_super) {
+    __extends(MonthsApi, _super);
+    function MonthsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns a single budget month
      * @summary Single budget month
@@ -1047,9 +1101,9 @@ export class MonthsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonth(budget_id, month, options) {
+    MonthsApi.prototype.getBudgetMonth = function (budget_id, month, options) {
         return MonthsApiFp(this.configuration).getBudgetMonth(budget_id, month, options)();
-    }
+    };
     /**
      * Returns all budget months
      * @summary List budget months
@@ -1058,15 +1112,17 @@ export class MonthsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonths(budget_id, options) {
+    MonthsApi.prototype.getBudgetMonths = function (budget_id, options) {
         return MonthsApiFp(this.configuration).getBudgetMonths(budget_id, options)();
-    }
-}
+    };
+    return MonthsApi;
+}(BaseAPI));
+export { MonthsApi };
 /**
  * PayeeLocationsApi - fetch parameter creator
  * @export
  */
-export const PayeeLocationsApiFetchParamCreator = function (configuration) {
+export var PayeeLocationsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single payee location
@@ -1076,7 +1132,8 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budget_id, payee_location_id, options = {}) {
+        getPayeeLocationById: function (budget_id, payee_location_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocationById.');
@@ -1085,18 +1142,18 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration) {
             if (payee_location_id === null || payee_location_id === undefined) {
                 throw new RequiredError('payee_location_id', 'Required parameter payee_location_id was null or undefined when calling getPayeeLocationById.');
             }
-            const localVarPath = `/budgets/{budget_id}/payee_locations/{payee_location_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"payee_location_id"}}`, encodeURIComponent(String(payee_location_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/payee_locations/{payee_location_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "payee_location_id" + "}", encodeURIComponent(String(payee_location_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1115,22 +1172,23 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budget_id, options = {}) {
+        getPayeeLocations: function (budget_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocations.');
             }
-            const localVarPath = `/budgets/{budget_id}/payee_locations`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/payee_locations"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1150,7 +1208,8 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budget_id, payee_id, options = {}) {
+        getPayeeLocationsByPayee: function (budget_id, payee_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocationsByPayee.');
@@ -1159,18 +1218,18 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration) {
             if (payee_id === null || payee_id === undefined) {
                 throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getPayeeLocationsByPayee.');
             }
-            const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/payee_locations`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/payees/{payee_id}/payee_locations"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "payee_id" + "}", encodeURIComponent(String(payee_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1188,7 +1247,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration) {
  * PayeeLocationsApi - functional programming interface
  * @export
  */
-export const PayeeLocationsApiFp = function (configuration) {
+export var PayeeLocationsApiFp = function (configuration) {
     return {
         /**
          * Returns a single payee location
@@ -1198,15 +1257,16 @@ export const PayeeLocationsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budget_id, payee_location_id, options) {
-            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budget_id, payee_location_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getPayeeLocationById: function (budget_id, payee_location_id, options) {
+            var localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budget_id, payee_location_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1220,15 +1280,16 @@ export const PayeeLocationsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budget_id, options) {
-            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budget_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getPayeeLocations: function (budget_id, options) {
+            var localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budget_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1243,15 +1304,16 @@ export const PayeeLocationsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budget_id, payee_id, options) {
-            const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getPayeeLocationsByPayee: function (budget_id, payee_id, options) {
+            var localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1264,7 +1326,7 @@ export const PayeeLocationsApiFp = function (configuration) {
  * PayeeLocationsApi - factory interface
  * @export
  */
-export const PayeeLocationsApiFactory = function (configuration) {
+export var PayeeLocationsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single payee location
@@ -1274,7 +1336,7 @@ export const PayeeLocationsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budget_id, payee_location_id, options) {
+        getPayeeLocationById: function (budget_id, payee_location_id, options) {
             return PayeeLocationsApiFp(configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
         },
         /**
@@ -1284,7 +1346,7 @@ export const PayeeLocationsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budget_id, options) {
+        getPayeeLocations: function (budget_id, options) {
             return PayeeLocationsApiFp(configuration).getPayeeLocations(budget_id, options)();
         },
         /**
@@ -1295,7 +1357,7 @@ export const PayeeLocationsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budget_id, payee_id, options) {
+        getPayeeLocationsByPayee: function (budget_id, payee_id, options) {
             return PayeeLocationsApiFp(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
         },
     };
@@ -1306,7 +1368,11 @@ export const PayeeLocationsApiFactory = function (configuration) {
  * @class PayeeLocationsApi
  * @extends {BaseAPI}
  */
-export class PayeeLocationsApi extends BaseAPI {
+var PayeeLocationsApi = /** @class */ (function (_super) {
+    __extends(PayeeLocationsApi, _super);
+    function PayeeLocationsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns a single payee location
      * @summary Single payee location
@@ -1316,9 +1382,9 @@ export class PayeeLocationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    getPayeeLocationById(budget_id, payee_location_id, options) {
+    PayeeLocationsApi.prototype.getPayeeLocationById = function (budget_id, payee_location_id, options) {
         return PayeeLocationsApiFp(this.configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
-    }
+    };
     /**
      * Returns all payee locations
      * @summary List payee locations
@@ -1327,9 +1393,9 @@ export class PayeeLocationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    getPayeeLocations(budget_id, options) {
+    PayeeLocationsApi.prototype.getPayeeLocations = function (budget_id, options) {
         return PayeeLocationsApiFp(this.configuration).getPayeeLocations(budget_id, options)();
-    }
+    };
     /**
      * Returns all payee locations for the specified payee
      * @summary List locations for a payee
@@ -1339,15 +1405,17 @@ export class PayeeLocationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
      */
-    getPayeeLocationsByPayee(budget_id, payee_id, options) {
+    PayeeLocationsApi.prototype.getPayeeLocationsByPayee = function (budget_id, payee_id, options) {
         return PayeeLocationsApiFp(this.configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
-    }
-}
+    };
+    return PayeeLocationsApi;
+}(BaseAPI));
+export { PayeeLocationsApi };
 /**
  * PayeesApi - fetch parameter creator
  * @export
  */
-export const PayeesApiFetchParamCreator = function (configuration) {
+export var PayeesApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns single payee
@@ -1357,7 +1425,8 @@ export const PayeesApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeById(budget_id, payee_id, options = {}) {
+        getPayeeById: function (budget_id, payee_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeById.');
@@ -1366,18 +1435,18 @@ export const PayeesApiFetchParamCreator = function (configuration) {
             if (payee_id === null || payee_id === undefined) {
                 throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getPayeeById.');
             }
-            const localVarPath = `/budgets/{budget_id}/payees/{payee_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/payees/{payee_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "payee_id" + "}", encodeURIComponent(String(payee_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1396,22 +1465,23 @@ export const PayeesApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budget_id, options = {}) {
+        getPayees: function (budget_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayees.');
             }
-            const localVarPath = `/budgets/{budget_id}/payees`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/payees"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1429,7 +1499,7 @@ export const PayeesApiFetchParamCreator = function (configuration) {
  * PayeesApi - functional programming interface
  * @export
  */
-export const PayeesApiFp = function (configuration) {
+export var PayeesApiFp = function (configuration) {
     return {
         /**
          * Returns single payee
@@ -1439,15 +1509,16 @@ export const PayeesApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeById(budget_id, payee_id, options) {
-            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayeeById(budget_id, payee_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getPayeeById: function (budget_id, payee_id, options) {
+            var localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayeeById(budget_id, payee_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1461,15 +1532,16 @@ export const PayeesApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budget_id, options) {
-            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budget_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getPayees: function (budget_id, options) {
+            var localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budget_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1482,7 +1554,7 @@ export const PayeesApiFp = function (configuration) {
  * PayeesApi - factory interface
  * @export
  */
-export const PayeesApiFactory = function (configuration) {
+export var PayeesApiFactory = function (configuration) {
     return {
         /**
          * Returns single payee
@@ -1492,7 +1564,7 @@ export const PayeesApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeById(budget_id, payee_id, options) {
+        getPayeeById: function (budget_id, payee_id, options) {
             return PayeesApiFp(configuration).getPayeeById(budget_id, payee_id, options)();
         },
         /**
@@ -1502,7 +1574,7 @@ export const PayeesApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budget_id, options) {
+        getPayees: function (budget_id, options) {
             return PayeesApiFp(configuration).getPayees(budget_id, options)();
         },
     };
@@ -1513,7 +1585,11 @@ export const PayeesApiFactory = function (configuration) {
  * @class PayeesApi
  * @extends {BaseAPI}
  */
-export class PayeesApi extends BaseAPI {
+var PayeesApi = /** @class */ (function (_super) {
+    __extends(PayeesApi, _super);
+    function PayeesApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns single payee
      * @summary Single payee
@@ -1523,9 +1599,9 @@ export class PayeesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
-    getPayeeById(budget_id, payee_id, options) {
+    PayeesApi.prototype.getPayeeById = function (budget_id, payee_id, options) {
         return PayeesApiFp(this.configuration).getPayeeById(budget_id, payee_id, options)();
-    }
+    };
     /**
      * Returns all payees
      * @summary List payees
@@ -1534,15 +1610,17 @@ export class PayeesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
-    getPayees(budget_id, options) {
+    PayeesApi.prototype.getPayees = function (budget_id, options) {
         return PayeesApiFp(this.configuration).getPayees(budget_id, options)();
-    }
-}
+    };
+    return PayeesApi;
+}(BaseAPI));
+export { PayeesApi };
 /**
  * ScheduledTransactionsApi - fetch parameter creator
  * @export
  */
-export const ScheduledTransactionsApiFetchParamCreator = function (configuration) {
+export var ScheduledTransactionsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -1552,7 +1630,8 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budget_id, scheduled_transaction_id, options = {}) {
+        getScheduledTransactionById: function (budget_id, scheduled_transaction_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getScheduledTransactionById.');
@@ -1561,18 +1640,18 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
             if (scheduled_transaction_id === null || scheduled_transaction_id === undefined) {
                 throw new RequiredError('scheduled_transaction_id', 'Required parameter scheduled_transaction_id was null or undefined when calling getScheduledTransactionById.');
             }
-            const localVarPath = `/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(scheduled_transaction_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "scheduled_transaction_id" + "}", encodeURIComponent(String(scheduled_transaction_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1591,22 +1670,23 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id, options = {}) {
+        getScheduledTransactions: function (budget_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getScheduledTransactions.');
             }
-            const localVarPath = `/budgets/{budget_id}/scheduled_transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/scheduled_transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1624,7 +1704,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
  * ScheduledTransactionsApi - functional programming interface
  * @export
  */
-export const ScheduledTransactionsApiFp = function (configuration) {
+export var ScheduledTransactionsApiFp = function (configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -1634,15 +1714,16 @@ export const ScheduledTransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budget_id, scheduled_transaction_id, options) {
-            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getScheduledTransactionById: function (budget_id, scheduled_transaction_id, options) {
+            var localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1656,15 +1737,16 @@ export const ScheduledTransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id, options) {
-            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getScheduledTransactions: function (budget_id, options) {
+            var localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -1677,7 +1759,7 @@ export const ScheduledTransactionsApiFp = function (configuration) {
  * ScheduledTransactionsApi - factory interface
  * @export
  */
-export const ScheduledTransactionsApiFactory = function (configuration) {
+export var ScheduledTransactionsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -1687,7 +1769,7 @@ export const ScheduledTransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budget_id, scheduled_transaction_id, options) {
+        getScheduledTransactionById: function (budget_id, scheduled_transaction_id, options) {
             return ScheduledTransactionsApiFp(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
         },
         /**
@@ -1697,7 +1779,7 @@ export const ScheduledTransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id, options) {
+        getScheduledTransactions: function (budget_id, options) {
             return ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budget_id, options)();
         },
     };
@@ -1708,7 +1790,11 @@ export const ScheduledTransactionsApiFactory = function (configuration) {
  * @class ScheduledTransactionsApi
  * @extends {BaseAPI}
  */
-export class ScheduledTransactionsApi extends BaseAPI {
+var ScheduledTransactionsApi = /** @class */ (function (_super) {
+    __extends(ScheduledTransactionsApi, _super);
+    function ScheduledTransactionsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns a single scheduled transaction
      * @summary Single scheduled transaction
@@ -1718,9 +1804,9 @@ export class ScheduledTransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    getScheduledTransactionById(budget_id, scheduled_transaction_id, options) {
+    ScheduledTransactionsApi.prototype.getScheduledTransactionById = function (budget_id, scheduled_transaction_id, options) {
         return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
-    }
+    };
     /**
      * Returns all scheduled transactions
      * @summary List scheduled transactions
@@ -1729,15 +1815,17 @@ export class ScheduledTransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    getScheduledTransactions(budget_id, options) {
+    ScheduledTransactionsApi.prototype.getScheduledTransactions = function (budget_id, options) {
         return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budget_id, options)();
-    }
-}
+    };
+    return ScheduledTransactionsApi;
+}(BaseAPI));
+export { ScheduledTransactionsApi };
 /**
  * TransactionsApi - fetch parameter creator
  * @export
  */
-export const TransactionsApiFetchParamCreator = function (configuration) {
+export var TransactionsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Creates multiple transactions
@@ -1747,7 +1835,8 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        bulkCreateTransactions(budget_id, transactions, options = {}) {
+        bulkCreateTransactions: function (budget_id, transactions, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling bulkCreateTransactions.');
@@ -1756,17 +1845,17 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
             if (transactions === null || transactions === undefined) {
                 throw new RequiredError('transactions', 'Required parameter transactions was null or undefined when calling bulkCreateTransactions.');
             }
-            const localVarPath = `/budgets/{budget_id}/transactions/bulk`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/transactions/bulk"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1788,7 +1877,8 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id, transaction, options = {}) {
+        createTransaction: function (budget_id, transaction, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling createTransaction.');
@@ -1797,17 +1887,17 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
             if (transaction === null || transaction === undefined) {
                 throw new RequiredError('transaction', 'Required parameter transaction was null or undefined when calling createTransaction.');
             }
-            const localVarPath = `/budgets/{budget_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1830,22 +1920,23 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budget_id, since_date, type, options = {}) {
+        getTransactions: function (budget_id, since_date, type, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactions.');
             }
-            const localVarPath = `/budgets/{budget_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
@@ -1872,7 +1963,8 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budget_id, account_id, since_date, options = {}) {
+        getTransactionsByAccount: function (budget_id, account_id, since_date, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByAccount.');
@@ -1881,18 +1973,18 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
             if (account_id === null || account_id === undefined) {
                 throw new RequiredError('account_id', 'Required parameter account_id was null or undefined when calling getTransactionsByAccount.');
             }
-            const localVarPath = `/budgets/{budget_id}/accounts/{account_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/accounts/{account_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "account_id" + "}", encodeURIComponent(String(account_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
@@ -1916,7 +2008,8 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id, category_id, since_date, options = {}) {
+        getTransactionsByCategory: function (budget_id, category_id, since_date, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByCategory.');
@@ -1925,18 +2018,18 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
             if (category_id === null || category_id === undefined) {
                 throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getTransactionsByCategory.');
             }
-            const localVarPath = `/budgets/{budget_id}/categories/{category_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/categories/{category_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "category_id" + "}", encodeURIComponent(String(category_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
@@ -1959,7 +2052,8 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsById(budget_id, transaction_id, options = {}) {
+        getTransactionsById: function (budget_id, transaction_id, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsById.');
@@ -1968,18 +2062,18 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
             if (transaction_id === null || transaction_id === undefined) {
                 throw new RequiredError('transaction_id', 'Required parameter transaction_id was null or undefined when calling getTransactionsById.');
             }
-            const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/transactions/{transaction_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "transaction_id" + "}", encodeURIComponent(String(transaction_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -2000,7 +2094,8 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByPayee(budget_id, payee_id, since_date, options = {}) {
+        getTransactionsByPayee: function (budget_id, payee_id, since_date, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByPayee.');
@@ -2009,18 +2104,18 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
             if (payee_id === null || payee_id === undefined) {
                 throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getTransactionsByPayee.');
             }
-            const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/payees/{payee_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "payee_id" + "}", encodeURIComponent(String(payee_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
@@ -2044,7 +2139,8 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransaction(budget_id, transaction_id, transaction, options = {}) {
+        updateTransaction: function (budget_id, transaction_id, transaction, options) {
+            if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateTransaction.');
@@ -2057,18 +2153,18 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
             if (transaction === null || transaction === undefined) {
                 throw new RequiredError('transaction', 'Required parameter transaction was null or undefined when calling updateTransaction.');
             }
-            const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+            var localVarPath = "/budgets/{budget_id}/transactions/{transaction_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
+                .replace("{" + "transaction_id" + "}", encodeURIComponent(String(transaction_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -2088,7 +2184,7 @@ export const TransactionsApiFetchParamCreator = function (configuration) {
  * TransactionsApi - functional programming interface
  * @export
  */
-export const TransactionsApiFp = function (configuration) {
+export var TransactionsApiFp = function (configuration) {
     return {
         /**
          * Creates multiple transactions
@@ -2098,15 +2194,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        bulkCreateTransactions(budget_id, transactions, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).bulkCreateTransactions(budget_id, transactions, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        bulkCreateTransactions: function (budget_id, transactions, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).bulkCreateTransactions(budget_id, transactions, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2121,15 +2218,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id, transaction, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, transaction, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        createTransaction: function (budget_id, transaction, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, transaction, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2145,15 +2243,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budget_id, since_date, type, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budget_id, since_date, type, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getTransactions: function (budget_id, since_date, type, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budget_id, since_date, type, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2169,15 +2268,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budget_id, account_id, since_date, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getTransactionsByAccount: function (budget_id, account_id, since_date, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2193,15 +2293,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id, category_id, since_date, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getTransactionsByCategory: function (budget_id, category_id, since_date, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2216,15 +2317,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsById(budget_id, transaction_id, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsById(budget_id, transaction_id, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getTransactionsById: function (budget_id, transaction_id, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsById(budget_id, transaction_id, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2240,15 +2342,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByPayee(budget_id, payee_id, since_date, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getTransactionsByPayee: function (budget_id, payee_id, since_date, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2264,15 +2367,16 @@ export const TransactionsApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransaction(budget_id, transaction_id, transaction, options) {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransaction(budget_id, transaction_id, transaction, options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        updateTransaction: function (budget_id, transaction_id, transaction, options) {
+            var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransaction(budget_id, transaction_id, transaction, options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2285,7 +2389,7 @@ export const TransactionsApiFp = function (configuration) {
  * TransactionsApi - factory interface
  * @export
  */
-export const TransactionsApiFactory = function (configuration) {
+export var TransactionsApiFactory = function (configuration) {
     return {
         /**
          * Creates multiple transactions
@@ -2295,7 +2399,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        bulkCreateTransactions(budget_id, transactions, options) {
+        bulkCreateTransactions: function (budget_id, transactions, options) {
             return TransactionsApiFp(configuration).bulkCreateTransactions(budget_id, transactions, options)();
         },
         /**
@@ -2306,7 +2410,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id, transaction, options) {
+        createTransaction: function (budget_id, transaction, options) {
             return TransactionsApiFp(configuration).createTransaction(budget_id, transaction, options)();
         },
         /**
@@ -2318,7 +2422,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budget_id, since_date, type, options) {
+        getTransactions: function (budget_id, since_date, type, options) {
             return TransactionsApiFp(configuration).getTransactions(budget_id, since_date, type, options)();
         },
         /**
@@ -2330,7 +2434,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budget_id, account_id, since_date, options) {
+        getTransactionsByAccount: function (budget_id, account_id, since_date, options) {
             return TransactionsApiFp(configuration).getTransactionsByAccount(budget_id, account_id, since_date, options)();
         },
         /**
@@ -2342,7 +2446,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id, category_id, since_date, options) {
+        getTransactionsByCategory: function (budget_id, category_id, since_date, options) {
             return TransactionsApiFp(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options)();
         },
         /**
@@ -2353,7 +2457,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsById(budget_id, transaction_id, options) {
+        getTransactionsById: function (budget_id, transaction_id, options) {
             return TransactionsApiFp(configuration).getTransactionsById(budget_id, transaction_id, options)();
         },
         /**
@@ -2365,7 +2469,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByPayee(budget_id, payee_id, since_date, options) {
+        getTransactionsByPayee: function (budget_id, payee_id, since_date, options) {
             return TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
         },
         /**
@@ -2377,7 +2481,7 @@ export const TransactionsApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransaction(budget_id, transaction_id, transaction, options) {
+        updateTransaction: function (budget_id, transaction_id, transaction, options) {
             return TransactionsApiFp(configuration).updateTransaction(budget_id, transaction_id, transaction, options)();
         },
     };
@@ -2388,7 +2492,11 @@ export const TransactionsApiFactory = function (configuration) {
  * @class TransactionsApi
  * @extends {BaseAPI}
  */
-export class TransactionsApi extends BaseAPI {
+var TransactionsApi = /** @class */ (function (_super) {
+    __extends(TransactionsApi, _super);
+    function TransactionsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Creates multiple transactions
      * @summary Bulk create transactions
@@ -2398,9 +2506,9 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    bulkCreateTransactions(budget_id, transactions, options) {
+    TransactionsApi.prototype.bulkCreateTransactions = function (budget_id, transactions, options) {
         return TransactionsApiFp(this.configuration).bulkCreateTransactions(budget_id, transactions, options)();
-    }
+    };
     /**
      * Creates a transaction
      * @summary Create new transaction
@@ -2410,9 +2518,9 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransaction(budget_id, transaction, options) {
+    TransactionsApi.prototype.createTransaction = function (budget_id, transaction, options) {
         return TransactionsApiFp(this.configuration).createTransaction(budget_id, transaction, options)();
-    }
+    };
     /**
      * Returns budget transactions
      * @summary List transactions
@@ -2423,9 +2531,9 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budget_id, since_date, type, options) {
+    TransactionsApi.prototype.getTransactions = function (budget_id, since_date, type, options) {
         return TransactionsApiFp(this.configuration).getTransactions(budget_id, since_date, type, options)();
-    }
+    };
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
@@ -2436,9 +2544,9 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByAccount(budget_id, account_id, since_date, options) {
+    TransactionsApi.prototype.getTransactionsByAccount = function (budget_id, account_id, since_date, options) {
         return TransactionsApiFp(this.configuration).getTransactionsByAccount(budget_id, account_id, since_date, options)();
-    }
+    };
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
@@ -2449,9 +2557,9 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByCategory(budget_id, category_id, since_date, options) {
+    TransactionsApi.prototype.getTransactionsByCategory = function (budget_id, category_id, since_date, options) {
         return TransactionsApiFp(this.configuration).getTransactionsByCategory(budget_id, category_id, since_date, options)();
-    }
+    };
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -2461,9 +2569,9 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsById(budget_id, transaction_id, options) {
+    TransactionsApi.prototype.getTransactionsById = function (budget_id, transaction_id, options) {
         return TransactionsApiFp(this.configuration).getTransactionsById(budget_id, transaction_id, options)();
-    }
+    };
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -2474,9 +2582,9 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByPayee(budget_id, payee_id, since_date, options) {
+    TransactionsApi.prototype.getTransactionsByPayee = function (budget_id, payee_id, since_date, options) {
         return TransactionsApiFp(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
-    }
+    };
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
@@ -2487,15 +2595,17 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    updateTransaction(budget_id, transaction_id, transaction, options) {
+    TransactionsApi.prototype.updateTransaction = function (budget_id, transaction_id, transaction, options) {
         return TransactionsApiFp(this.configuration).updateTransaction(budget_id, transaction_id, transaction, options)();
-    }
-}
+    };
+    return TransactionsApi;
+}(BaseAPI));
+export { TransactionsApi };
 /**
  * UserApi - fetch parameter creator
  * @export
  */
-export const UserApiFetchParamCreator = function (configuration) {
+export var UserApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns authenticated user information.
@@ -2503,17 +2613,18 @@ export const UserApiFetchParamCreator = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getUser(options = {}) {
-            const localVarPath = `/user`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
+        getUser: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/user";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
             localVarHeaderParameter["Accept"] = "application/json";
             // authentication bearer required
             if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
+                var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -2531,7 +2642,7 @@ export const UserApiFetchParamCreator = function (configuration) {
  * UserApi - functional programming interface
  * @export
  */
-export const UserApiFp = function (configuration) {
+export var UserApiFp = function (configuration) {
     return {
         /**
          * Returns authenticated user information.
@@ -2539,15 +2650,16 @@ export const UserApiFp = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getUser(options) {
-            const localVarFetchArgs = UserApiFetchParamCreator(configuration).getUser(options);
-            return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+        getUser: function (options) {
+            var localVarFetchArgs = UserApiFetchParamCreator(configuration).getUser(options);
+            return function (fetchFunction) {
+                if (fetchFunction === void 0) { fetchFunction = fetch; }
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
                     }
                     else {
-                        return response.json().then((e) => {
+                        return response.json().then(function (e) {
                             return Promise.reject(e);
                         });
                     }
@@ -2560,7 +2672,7 @@ export const UserApiFp = function (configuration) {
  * UserApi - factory interface
  * @export
  */
-export const UserApiFactory = function (configuration) {
+export var UserApiFactory = function (configuration) {
     return {
         /**
          * Returns authenticated user information.
@@ -2568,7 +2680,7 @@ export const UserApiFactory = function (configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getUser(options) {
+        getUser: function (options) {
             return UserApiFp(configuration).getUser(options)();
         },
     };
@@ -2579,7 +2691,11 @@ export const UserApiFactory = function (configuration) {
  * @class UserApi
  * @extends {BaseAPI}
  */
-export class UserApi extends BaseAPI {
+var UserApi = /** @class */ (function (_super) {
+    __extends(UserApi, _super);
+    function UserApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /**
      * Returns authenticated user information.
      * @summary User info
@@ -2587,7 +2703,9 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    getUser(options) {
+    UserApi.prototype.getUser = function (options) {
         return UserApiFp(this.configuration).getUser(options)();
-    }
-}
+    };
+    return UserApi;
+}(BaseAPI));
+export { UserApi };

@@ -10,9 +10,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-export class Configuration {
-    constructor(accessToken, basePath) {
-        this.apiKey = `Bearer ${accessToken}`;
+var Configuration = /** @class */ (function () {
+    function Configuration(accessToken, basePath) {
+        this.apiKey = "Bearer " + accessToken;
         this.basePath = basePath;
     }
-}
+    return Configuration;
+}());
+export { Configuration };
