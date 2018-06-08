@@ -65,7 +65,7 @@ export interface Account {
      */
     name: string;
     /**
-     *
+     * The type of account. Note: payPal, merchantAccount, investmentAccount, and mortgage types have been deprecated and will be removed in the future.
      * @type {string}
      * @memberof Account
      */
@@ -106,6 +106,12 @@ export interface Account {
      * @memberof Account
      */
     uncleared_balance: number;
+    /**
+     * Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests.
+     * @type {boolean}
+     * @memberof Account
+     */
+    deleted: boolean;
 }
 /**
  * @export
@@ -119,15 +125,15 @@ export declare namespace Account {
     enum TypeEnum {
         Checking,
         Savings,
-        CreditCard,
         Cash,
+        CreditCard,
         LineOfCredit,
-        MerchantAccount,
-        PayPal,
-        InvestmentAccount,
-        Mortgage,
         OtherAsset,
         OtherLiability,
+        PayPal,
+        MerchantAccount,
+        InvestmentAccount,
+        Mortgage,
     }
 }
 /**
@@ -402,6 +408,12 @@ export interface Category {
      * @memberof Category
      */
     balance: number;
+    /**
+     * Whether or not the category has been deleted.  Deleted categories will only be included in delta requests.
+     * @type {boolean}
+     * @memberof Category
+     */
+    deleted: boolean;
 }
 /**
  *
@@ -427,6 +439,12 @@ export interface CategoryGroup {
      * @memberof CategoryGroup
      */
     hidden: boolean;
+    /**
+     * Whether or not the category group has been deleted.  Deleted category groups will only be included in delta requests.
+     * @type {boolean}
+     * @memberof CategoryGroup
+     */
+    deleted: boolean;
 }
 /**
  *
@@ -706,6 +724,12 @@ export interface Payee {
      * @memberof Payee
      */
     transfer_account_id: string;
+    /**
+     * Whether or not the payee has been deleted.  Deleted payees will only be included in delta requests.
+     * @type {boolean}
+     * @memberof Payee
+     */
+    deleted: boolean;
 }
 /**
  *
@@ -737,6 +761,12 @@ export interface PayeeLocation {
      * @memberof PayeeLocation
      */
     longitude: string;
+    /**
+     * Whether or not the payee location has been deleted.  Deleted payee locations will only be included in delta requests.
+     * @type {boolean}
+     * @memberof PayeeLocation
+     */
+    deleted: boolean;
 }
 /**
  *
@@ -998,11 +1028,17 @@ export interface ScheduledSubTransaction {
      */
     category_id: string;
     /**
-     * If a transfer, the account_id which the scheduled sub transaction transfers to
+     * If a transfer, the account_id which the scheduled subtransaction transfers to
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
     transfer_account_id: string;
+    /**
+     * Whether or not the scheduled subtransaction has been deleted.  Deleted scheduled subtransactions will only be included in delta requests.
+     * @type {boolean}
+     * @memberof ScheduledSubTransaction
+     */
+    deleted: boolean;
 }
 /**
  *
@@ -1089,6 +1125,12 @@ export interface ScheduledTransactionSummary {
      * @memberof ScheduledTransactionSummary
      */
     transfer_account_id: string;
+    /**
+     * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
+     * @type {boolean}
+     * @memberof ScheduledTransactionSummary
+     */
+    deleted: boolean;
 }
 /**
  * @export
@@ -1214,6 +1256,12 @@ export interface SubTransaction {
      * @memberof SubTransaction
      */
     transfer_account_id: string;
+    /**
+     * Whether or not the subtransaction has been deleted.  Deleted subtransactions will only be included in delta requests.
+     * @type {boolean}
+     * @memberof SubTransaction
+     */
+    deleted: boolean;
 }
 /**
  *
@@ -1306,6 +1354,12 @@ export interface TransactionSummary {
      * @memberof TransactionSummary
      */
     import_id: string;
+    /**
+     * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
+     * @type {boolean}
+     * @memberof TransactionSummary
+     */
+    deleted: boolean;
 }
 /**
  * @export
@@ -1534,6 +1588,12 @@ export interface CategoryGroupWithCategories {
      */
     hidden: boolean;
     /**
+     * Whether or not the category group has been deleted.  Deleted category groups will only be included in delta requests.
+     * @type {boolean}
+     * @memberof CategoryGroupWithCategories
+     */
+    deleted: boolean;
+    /**
      * Category group categories
      * @type {Array<Category>}
      * @memberof CategoryGroupWithCategories
@@ -1618,6 +1678,12 @@ export interface HybridTransaction {
      * @memberof HybridTransaction
      */
     import_id: string;
+    /**
+     * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
+     * @type {boolean}
+     * @memberof HybridTransaction
+     */
+    deleted: boolean;
     /**
      * Whether the hybrid transaction represents a regular transaction or a subtransaction
      * @type {string}
@@ -1794,6 +1860,12 @@ export interface ScheduledTransactionDetail {
      */
     transfer_account_id: string;
     /**
+     * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
+     * @type {boolean}
+     * @memberof ScheduledTransactionDetail
+     */
+    deleted: boolean;
+    /**
      *
      * @type {string}
      * @memberof ScheduledTransactionDetail
@@ -1933,6 +2005,12 @@ export interface TransactionDetail {
      * @memberof TransactionDetail
      */
     import_id: string;
+    /**
+     * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
+     * @type {boolean}
+     * @memberof TransactionDetail
+     */
+    deleted: boolean;
     /**
      *
      * @type {string}
