@@ -24,7 +24,7 @@ import * as url from "url";
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-var USER_AGENT = "api_client/js/0.14.0";
+var USER_AGENT = "api_client/js/0.17.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -89,15 +89,15 @@ export var Account;
     (function (TypeEnum) {
         TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
         TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
-        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
         TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
+        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
         TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
-        TypeEnum[TypeEnum["MerchantAccount"] = 'merchantAccount'] = "MerchantAccount";
-        TypeEnum[TypeEnum["PayPal"] = 'payPal'] = "PayPal";
-        TypeEnum[TypeEnum["InvestmentAccount"] = 'investmentAccount'] = "InvestmentAccount";
-        TypeEnum[TypeEnum["Mortgage"] = 'mortgage'] = "Mortgage";
         TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
         TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
+        TypeEnum[TypeEnum["PayPal"] = 'payPal'] = "PayPal";
+        TypeEnum[TypeEnum["MerchantAccount"] = 'merchantAccount'] = "MerchantAccount";
+        TypeEnum[TypeEnum["InvestmentAccount"] = 'investmentAccount'] = "InvestmentAccount";
+        TypeEnum[TypeEnum["Mortgage"] = 'mortgage'] = "Mortgage";
     })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
 })(Account || (Account = {}));
 /**

@@ -37,7 +37,8 @@ export const accountFactory = Factory.makeFactory({
   note: Factory.each(i => `Note #${i}`),
   balance: 5000,
   cleared_balance: 2000,
-  uncleared_balance: 3000
+  uncleared_balance: 3000,
+  deleted: false
 });
 
 export const accountsResponseFactory = Factory.makeFactory<
@@ -62,7 +63,8 @@ export const categoryFactory = Factory.makeFactory<api.Category>({
   note: Factory.each(i => `Note#${i}`),
   budgeted: Factory.each(i => i * 1000),
   activity: Factory.each(i => i * 1000),
-  balance: Factory.each(i => i * 1000)
+  balance: Factory.each(i => i * 1000),
+  deleted: false
 });
 
 export const categoryGroupWithCategoriesFactory = Factory.makeFactory<
@@ -71,7 +73,8 @@ export const categoryGroupWithCategoriesFactory = Factory.makeFactory<
   id: Factory.each(i => `ID#${i}`),
   name: Factory.each(i => `Name ${i}`),
   hidden: false,
-  categories: categoryFactory.buildList(3)
+  categories: categoryFactory.buildList(3),
+  deleted: false
 });
 
 export const categoriesResponseFactory = Factory.makeFactory<
@@ -124,7 +127,8 @@ export const monthDetailResponseFactory = Factory.makeFactory<
 export const payeeFactory = Factory.makeFactory<api.Payee>({
   id: Factory.each(i => `id #${i}`),
   name: Factory.each(i => `name #${i}`),
-  transfer_account_id: Factory.each(i => `Transfer_account_id #${i}`)
+  transfer_account_id: Factory.each(i => `Transfer_account_id #${i}`),
+  deleted: false
 });
 
 export const payeesResponseFactory = Factory.makeFactory<api.PayeesResponse>({
@@ -143,7 +147,8 @@ export const payeeLocationFactory = Factory.makeFactory<api.PayeeLocation>({
   id: Factory.each(i => `id #${i}`),
   payee_id: Factory.each(i => `name #${i}`),
   latitude: Factory.each(i => `lat #${i}`),
-  longitude: Factory.each(i => `lon #${i}`)
+  longitude: Factory.each(i => `lon #${i}`),
+  deleted: false
 });
 
 export const payeeLocationsResponseFactory = Factory.makeFactory<
@@ -169,7 +174,8 @@ export const subTransactionFactory = Factory.makeFactory<api.SubTransaction>({
   transaction_id: Factory.each(i => `transaction_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
-  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  deleted: false
 });
 
 export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
@@ -188,7 +194,8 @@ export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   category_name: "Test Category",
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
   import_id: null,
-  subtransactions: subTransactionFactory.buildList(3)
+  subtransactions: subTransactionFactory.buildList(3),
+  deleted: false
 });
 
 export const hybridTransactionFactory = Factory.makeFactory<
@@ -210,7 +217,8 @@ export const hybridTransactionFactory = Factory.makeFactory<
   import_id: null,
   account_name: "Test Account",
   payee_name: "Test Payee",
-  category_name: "Test Category"
+  category_name: "Test Category",
+  deleted: false
 });
 
 export const transactionResponseFactory = Factory.makeFactory<
@@ -235,7 +243,8 @@ export const transactionSummaryFactory = Factory.makeFactory<
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
-  import_id: null
+  import_id: null,
+  deleted: false
 });
 
 export const transactionsResponseFactory = Factory.makeFactory<
@@ -307,7 +316,8 @@ export const scheduledSubTransactionFactory = Factory.makeFactory<
   scheduled_transaction_id: Factory.each(i => `transaction_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
-  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  deleted: false
 });
 
 export const scheduledTransactionFactory = Factory.makeFactory<
@@ -327,7 +337,8 @@ export const scheduledTransactionFactory = Factory.makeFactory<
   category_id: Factory.each(i => `category_id #${i}`),
   category_name: "Test Category",
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
-  subtransactions: scheduledSubTransactionFactory.buildList(3)
+  subtransactions: scheduledSubTransactionFactory.buildList(3),
+  deleted: false
 });
 
 export const scheduledTransactionDetailResponseFactory = Factory.makeFactory<
@@ -351,7 +362,8 @@ export const scheduledTransactionSummaryFactory = Factory.makeFactory<
   account_id: Factory.each(i => `account_id #${i}`),
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
-  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`)
+  transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  deleted: false
 });
 
 export const scheduledTransactionsResponseFactory = Factory.makeFactory<

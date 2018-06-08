@@ -720,14 +720,7 @@
             }
           },
           "400": {
-            "description": "An error occurred.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "422": {
-            "description":
-              "A transaction with the same import_id already exists on the account so this transaction was not created.",
+            "description": "The request could not be understood due to malformed syntax or validation error(s).",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -769,7 +762,7 @@
             }
           },
           "400": {
-            "description": "An error occurred.",
+            "description": "The request could not be understood due to malformed syntax or validation error(s).",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1029,7 +1022,7 @@
             }
           },
           "400": {
-            "description": "An error occurred.",
+            "description": "The request could not be understood due to malformed syntax or validation error(s).",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1184,6 +1177,54 @@
         }
       }
     },
+    "DateFormat": {
+      "type": "object",
+      "required": ["format"],
+      "properties": {
+        "format": {
+          "type": "string"
+        }
+      }
+    },
+    "CurrencyFormat": {
+      "type": "object",
+      "required": [
+        "iso_code",
+        "example_format",
+        "decimal_digits",
+        "decimal_separator",
+        "symbol_first",
+        "group_separator",
+        "currency_symbol",
+        "display_symbol"
+      ],
+      "properties": {
+        "iso_code": {
+          "type": "string"
+        },
+        "example_format": {
+          "type": "string"
+        },
+        "decimal_digits": {
+          "type": "number"
+        },
+        "decimal_separator": {
+          "type": "string"
+        },
+        "symbol_first": {
+          "type": "boolean"
+        },
+        "group_separator": {
+          "type": "string"
+        },
+        "currency_symbol": {
+          "type": "string"
+        },
+        "display_symbol": {
+          "type": "boolean"
+        }
+      }
+    },
     "BudgetSummaryResponse": {
       "type": "object",
       "required": ["data"],
@@ -1249,54 +1290,6 @@
         },
         "currency_format": {
           "$ref": "#/definitions/CurrencyFormat"
-        }
-      }
-    },
-    "DateFormat": {
-      "type": "object",
-      "required": ["format"],
-      "properties": {
-        "format": {
-          "type": "string"
-        }
-      }
-    },
-    "CurrencyFormat": {
-      "type": "object",
-      "required": [
-        "iso_code",
-        "example_format",
-        "decimal_digits",
-        "decimal_separator",
-        "symbol_first",
-        "group_separator",
-        "currency_symbol",
-        "display_symbol"
-      ],
-      "properties": {
-        "iso_code": {
-          "type": "string"
-        },
-        "example_format": {
-          "type": "string"
-        },
-        "decimal_digits": {
-          "type": "number"
-        },
-        "decimal_separator": {
-          "type": "string"
-        },
-        "symbol_first": {
-          "type": "boolean"
-        },
-        "group_separator": {
-          "type": "string"
-        },
-        "currency_symbol": {
-          "type": "string"
-        },
-        "display_symbol": {
-          "type": "boolean"
         }
       }
     },
@@ -1422,7 +1415,8 @@
         "note",
         "balance",
         "cleared_balance",
-        "uncleared_balance"
+        "uncleared_balance",
+        "deleted"
       ],
       "properties": {
         "id": {
@@ -1434,18 +1428,19 @@
         },
         "type": {
           "type": "string",
+          "description": "The type of account. Note: payPal, merchantAccount, investmentAccount, and mortgage types have been deprecated and will be removed in the future.",
           "enum": [
             "checking",
             "savings",
-            "creditCard",
             "cash",
+            "creditCard",
             "lineOfCredit",
-            "merchantAccount",
-            "payPal",
-            "investmentAccount",
-            "mortgage",
             "otherAsset",
-            "otherLiability"
+            "otherLiability",
+            "payPal",
+            "merchantAccount",
+            "investmentAccount",
+            "mortgage"
           ]
         },
         "on_budget": {
@@ -1476,6 +1471,10 @@
           "format": "1234000",
           "description":
             "The current uncleared balance of the account in milliunits format"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests."
         }
       }
     },
@@ -1520,7 +1519,7 @@
     },
     "CategoryGroup": {
       "type": "object",
-      "required": ["id", "name", "hidden"],
+      "required": ["id", "name", "hidden", "deleted"],
       "properties": {
         "id": {
           "type": "string",
@@ -1532,6 +1531,10 @@
         "hidden": {
           "description": "Whether or not the category group is hidden",
           "type": "boolean"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the category group has been deleted.  Deleted category groups will only be included in delta requests."
         }
       }
     },
@@ -1563,9 +1566,10 @@
         "name",
         "hidden",
         "note",
+        "budgeted",
         "activity",
         "balance",
-        "budgeted"
+        "deleted"
       ],
       "properties": {
         "id": {
@@ -1597,6 +1601,10 @@
         "balance": {
           "type": "number",
           "description": "Balance in current month in milliunits format"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the category has been deleted.  Deleted categories will only be included in delta requests."
         }
       }
     },
@@ -1641,7 +1649,7 @@
     },
     "Payee": {
       "type": "object",
-      "required": ["id", "name", "transfer_account_id"],
+      "required": ["id", "name", "transfer_account_id", "deleted"],
       "properties": {
         "id": {
           "type": "string",
@@ -1654,6 +1662,10 @@
           "description":
             "If a transfer payee, the account_id to which this payee transfers to",
           "type": "string"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the payee has been deleted.  Deleted payees will only be included in delta requests."
         }
       }
     },
@@ -1698,7 +1710,7 @@
     },
     "PayeeLocation": {
       "type": "object",
-      "required": ["id", "payee_id", "latitude", "longitude"],
+      "required": ["id", "payee_id", "latitude", "longitude", "deleted"],
       "properties": {
         "id": {
           "type": "string",
@@ -1713,6 +1725,10 @@
         },
         "longitude": {
           "type": "string"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the payee location has been deleted.  Deleted payee locations will only be included in delta requests."
         }
       }
     },
@@ -1790,7 +1806,8 @@
         "payee_id",
         "category_id",
         "transfer_account_id",
-        "import_id"
+        "import_id",
+        "deleted"
       ],
       "properties": {
         "id": {
@@ -1843,6 +1860,10 @@
           "type": "string",
           "description":
             "If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'."
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests."
         }
       }
     },
@@ -2048,7 +2069,8 @@
         "memo",
         "payee_id",
         "category_id",
-        "transfer_account_id"
+        "transfer_account_id",
+        "deleted"
       ],
       "properties": {
         "id": {
@@ -2080,6 +2102,10 @@
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the subtransaction transfers to"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the subtransaction has been deleted.  Deleted subtransactions will only be included in delta requests."
         }
       }
     },
@@ -2135,7 +2161,8 @@
         "account_id",
         "payee_id",
         "category_id",
-        "transfer_account_id"
+        "transfer_account_id",
+        "deleted"
       ],
       "properties": {
         "id": {
@@ -2202,6 +2229,10 @@
           "format": "uuid",
           "description":
             "If a transfer, the account_id which the scheduled transaction transfers to"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests."
         }
       }
     },
@@ -2249,7 +2280,8 @@
         "memo",
         "payee_id",
         "category_id",
-        "transfer_account_id"
+        "transfer_account_id",
+        "deleted"
       ],
       "properties": {
         "id": {
@@ -2281,7 +2313,11 @@
           "type": "string",
           "format": "uuid",
           "description":
-            "If a transfer, the account_id which the scheduled sub transaction transfers to"
+            "If a transfer, the account_id which the scheduled subtransaction transfers to"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the scheduled subtransaction has been deleted.  Deleted scheduled subtransactions will only be included in delta requests."
         }
       }
     },
