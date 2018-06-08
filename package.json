@@ -33,21 +33,21 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.3",
-    "@types/fetch-mock": "^6.0.1",
+    "@types/fetch-mock": "^6.0.3",
     "@types/isomorphic-fetch": "0.0.34",
-    "@types/mocha": "^5.2.0",
-    "@types/node": "^10.0.3",
+    "@types/mocha": "^5.2.1",
+    "@types/node": "^10.3.2",
     "chai": "^4.1.2",
-    "fetch-mock": "^5.13.1",
+    "fetch-mock": "^6.4.3",
     "jbash": "^1.38.0",
-    "mocha": "^5.1.1",
+    "mocha": "^5.2.0",
     "npm-github-release": "^0.9.0",
-    "swagger-model-validator": "^2.2.8",
-    "ts-loader": "^4.2.0",
-    "ts-node": "^3.3.0",
-    "typescript": "^2.8.3",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.1.2"
+    "swagger-model-validator": "^3.0.3",
+    "ts-loader": "^4.4.1",
+    "ts-node": "^6.1.0",
+    "typescript": "^2.9.1",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3"
   },
   "engines": {
     "npm": "^5.2.0"
