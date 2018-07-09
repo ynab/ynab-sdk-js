@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/0.17.0";
+const USER_AGENT = "api_client/js/1.0.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -273,6 +273,54 @@ export interface BudgetDetailWrapper {
 /**
  * 
  * @export
+ * @interface BudgetSettings
+ */
+export interface BudgetSettings {
+    /**
+     * 
+     * @type {DateFormat}
+     * @memberof BudgetSettings
+     */
+    date_format: DateFormat;
+    /**
+     * 
+     * @type {CurrencyFormat}
+     * @memberof BudgetSettings
+     */
+    currency_format: CurrencyFormat;
+}
+
+/**
+ * 
+ * @export
+ * @interface BudgetSettingsResponse
+ */
+export interface BudgetSettingsResponse {
+    /**
+     * 
+     * @type {BudgetSettingsWrapper}
+     * @memberof BudgetSettingsResponse
+     */
+    data: BudgetSettingsWrapper;
+}
+
+/**
+ * 
+ * @export
+ * @interface BudgetSettingsWrapper
+ */
+export interface BudgetSettingsWrapper {
+    /**
+     * 
+     * @type {BudgetSettings}
+     * @memberof BudgetSettingsWrapper
+     */
+    settings: BudgetSettings;
+}
+
+/**
+ * 
+ * @export
  * @interface BudgetSummary
  */
 export interface BudgetSummary {
@@ -442,6 +490,12 @@ export interface Category {
      * @memberof Category
      */
     hidden: boolean;
+    /**
+     * If category is hidden this is the id of the category group it originally belonged to before it was hidden.
+     * @type {string}
+     * @memberof Category
+     */
+    original_category_group_id?: string;
     /**
      * 
      * @type {string}
@@ -987,7 +1041,7 @@ export interface SaveTransaction {
      */
     payee_id?: string;
     /**
-     * The payee name.  If a payee_name value is provided and payee_id is not included or has a null value, payee_name will be used to create or use an existing payee.
+     * The payee name.  If a payee_name value is provided and payee_id has a null value, the payee_name value will be used to resolve the payee by either (1) a matching payee rename rule (only if import_id is also specified) or (2) a payee with the same name or (3) creation of a new payee.
      * @type {string}
      * @memberof SaveTransaction
      */
@@ -2434,6 +2488,44 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Returns settings for a budget.
+         * @summary Budget Settings
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getBudgetSettingsById(budget_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getBudgetSettingsById.');
+            }
+            const localVarPath = `/budgets/{budget_id}/settings`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns budgets list with summary information.
          * @summary List budgets
          * @param {*} [options] - Override http request options.
@@ -2497,6 +2589,27 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Returns settings for a budget.
+         * @summary Budget Settings
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getBudgetSettingsById(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSettingsResponse> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetSettingsById(budget_id, options);
+            return (fetchFunction: FetchAPI = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
          * Returns budgets list with summary information.
          * @summary List budgets
          * @param {*} [options] - Override http request options.
@@ -2537,6 +2650,16 @@ export const BudgetsApiFactory = function (configuration?: Configuration) {
             return BudgetsApiFp(configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
         },
         /**
+         * Returns settings for a budget.
+         * @summary Budget Settings
+         * @param {string} budget_id - The ID of the Budget.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getBudgetSettingsById(budget_id: string, options?: any) {
+            return BudgetsApiFp(configuration).getBudgetSettingsById(budget_id, options)();
+        },
+        /**
          * Returns budgets list with summary information.
          * @summary List budgets
          * @param {*} [options] - Override http request options.
@@ -2566,6 +2689,18 @@ export class BudgetsApi extends BaseAPI {
      */
     public getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any) {
         return BudgetsApiFp(this.configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
+    }
+
+    /**
+     * Returns settings for a budget.
+     * @summary Budget Settings
+     * @param {string} budget_id - The ID of the Budget.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    public getBudgetSettingsById(budget_id: string, options?: any) {
+        return BudgetsApiFp(this.configuration).getBudgetSettingsById(budget_id, options)();
     }
 
     /**
@@ -3809,7 +3944,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.
          * @param {Date} [since_date] - Only return transactions on or after this date.
-         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3858,10 +3993,11 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} account_id - The ID of the Account.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options: any = {}): FetchArgs {
+        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsByAccount.');
@@ -3891,6 +4027,10 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
                 localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
 
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -3907,10 +4047,11 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} category_id - The ID of the Category.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options: any = {}): FetchArgs {
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsByCategory.');
@@ -3938,6 +4079,10 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             if (since_date !== undefined) {
                 localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -4000,10 +4145,11 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_id - The ID of the Payee.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options: any = {}): FetchArgs {
+        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsByPayee.');
@@ -4031,6 +4177,10 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             if (since_date !== undefined) {
                 localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -4153,7 +4303,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.
          * @param {Date} [since_date] - Only return transactions on or after this date.
-         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -4177,11 +4327,12 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} account_id - The ID of the Account.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, options);
+        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -4200,11 +4351,12 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} category_id - The ID of the Category.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options);
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -4245,11 +4397,12 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_id - The ID of the Payee.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options);
+        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -4321,7 +4474,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.
          * @param {Date} [since_date] - Only return transactions on or after this date.
-         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -4334,11 +4487,12 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} account_id - The ID of the Account.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsByAccount(budget_id, account_id, since_date, options)();
+        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
+            return TransactionsApiFp(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, options)();
         },
         /**
          * Returns all transactions for a specified category
@@ -4346,11 +4500,12 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} category_id - The ID of the Category.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsByCategory(budget_id, category_id, since_date, options)();
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
+            return TransactionsApiFp(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, options)();
         },
         /**
          * Returns a single transaction
@@ -4369,11 +4524,12 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          * @param {string} budget_id - The ID of the Budget.
          * @param {string} payee_id - The ID of the Payee.
          * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
+        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
+            return TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, options)();
         },
         /**
          * Updates a transaction
@@ -4428,7 +4584,7 @@ export class TransactionsApi extends BaseAPI {
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.
      * @param {Date} [since_date] - Only return transactions on or after this date.
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -4443,12 +4599,13 @@ export class TransactionsApi extends BaseAPI {
      * @param {string} budget_id - The ID of the Budget.
      * @param {string} account_id - The ID of the Account.
      * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsByAccount(budget_id, account_id, since_date, options)();
+    public getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, options)();
     }
 
     /**
@@ -4457,12 +4614,13 @@ export class TransactionsApi extends BaseAPI {
      * @param {string} budget_id - The ID of the Budget.
      * @param {string} category_id - The ID of the Category.
      * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsByCategory(budget_id, category_id, since_date, options)();
+    public getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, options)();
     }
 
     /**
@@ -4484,12 +4642,13 @@ export class TransactionsApi extends BaseAPI {
      * @param {string} budget_id - The ID of the Budget.
      * @param {string} payee_id - The ID of the Payee.
      * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, options)();
+    public getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, options)();
     }
 
     /**

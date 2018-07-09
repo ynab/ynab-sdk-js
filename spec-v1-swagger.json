@@ -154,6 +154,46 @@
         }
       }
     },
+    "/budgets/{budget_id}/settings": {
+      "get": {
+        "tags": ["Budgets"],
+        "summary": "Budget Settings",
+        "description":
+          "Returns settings for a budget.",
+        "operationId": "getBudgetSettingsById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "The ID of the Budget.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested Budget Settings.",
+            "schema": {
+              "$ref": "#/definitions/BudgetSettingsResponse"
+            }
+          },
+          "404": {
+            "description": "The specified Budget was not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/budgets/{budget_id}/accounts": {
       "get": {
         "tags": ["Accounts"],
@@ -660,7 +700,7 @@
             "name": "type",
             "in": "query",
             "description":
-              "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+              "Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)",
             "required": false,
             "type": "string",
             "enum": ["uncategorized", "unapproved"]
@@ -801,6 +841,15 @@
             "required": false,
             "type": "string",
             "format": "date"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description":
+              "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+            "required": false,
+            "type": "string",
+            "enum": ["uncategorized", "unapproved"]
           }
         ],
         "responses": {
@@ -856,6 +905,15 @@
             "required": false,
             "type": "string",
             "format": "date"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description":
+              "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+            "required": false,
+            "type": "string",
+            "enum": ["uncategorized", "unapproved"]
           }
         ],
         "responses": {
@@ -911,6 +969,15 @@
             "required": false,
             "type": "string",
             "format": "date"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description":
+              "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+            "required": false,
+            "type": "string",
+            "enum": ["uncategorized", "unapproved"]
           }
         ],
         "responses": {
@@ -1016,7 +1083,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The Transaction was successfull updated.",
+            "description": "The Transaction was successfully updated.",
             "schema": {
               "$ref": "#/definitions/TransactionResponse"
             }
@@ -1268,6 +1335,24 @@
         }
       }
     },
+    "BudgetSettingsResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/BudgetSettingsWrapper"
+        }
+      }
+    },
+    "BudgetSettingsWrapper": {
+      "type": "object",
+      "required": ["settings"],
+      "properties": {
+        "settings": {
+          "$ref": "#/definitions/BudgetSettings"
+        }
+      }
+    },
     "BudgetSummary": {
       "type": "object",
       "required": ["id", "name"],
@@ -1285,6 +1370,18 @@
           "description":
             "The last time any changes were made to the budget from either a web or mobile client."
         },
+        "date_format": {
+          "$ref": "#/definitions/DateFormat"
+        },
+        "currency_format": {
+          "$ref": "#/definitions/CurrencyFormat"
+        }
+      }
+    },
+    "BudgetSettings": {
+      "type": "object",
+      "required": ["date_format", "currency_format"],
+      "properties": {
         "date_format": {
           "$ref": "#/definitions/DateFormat"
         },
@@ -1586,6 +1683,11 @@
         "hidden": {
           "description": "Whether or not the category is hidden",
           "type": "boolean"
+        },
+        "original_category_group_id": {
+          "description": "If category is hidden this is the id of the category group it originally belonged to before it was hidden.",
+          "type": "string",
+          "format": "uuid"
         },
         "note": {
           "type": "string"
@@ -1976,7 +2078,7 @@
         "payee_name": {
           "type": "string",
           "description":
-            "The payee name.  If a payee_name value is provided and payee_id is not included or has a null value, payee_name will be used to create or use an existing payee."
+            "The payee name.  If a payee_name value is provided and payee_id has a null value, the payee_name value will be used to resolve the payee by either (1) a matching payee rename rule (only if import_id is also specified) or (2) a payee with the same name or (3) creation of a new payee."
         },
         "category_id": {
           "type": "string",
