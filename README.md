@@ -104,6 +104,7 @@ The following methods are available in this library. For more details on paramet
 | **User**                   | `budgets.getUser()`                                               | Returns authenticated user information              |
 | **Budgets**                | `budgets.getBudgets()`                                            | Returns budgets list with summary information       |
 |                            | `budgets.getBudgetById(id)`                                       | Returns a single budget with all related entities   |
+|                            | `budgets.getBudgetSettingsById(id)`                               | Returns settings for a budget                       |
 | **Accounts**               | `accounts.getAccounts(budgetId)`                                  | Returns all accounts                                |
 |                            | `accounts.getAccountById(budgetId, id)`                           | Returns a single account                            |
 | **Categories**             | `categories.getCategories(budgetId)`                              | Returns all categories grouped by category group.   |
