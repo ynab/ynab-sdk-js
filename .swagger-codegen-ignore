@@ -1,6 +1,0 @@
-.gitignore
-git_push.sh
-package.json
-custom.d.ts
-tsconfig.json
-README.md
