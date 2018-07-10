@@ -5,7 +5,6 @@ set("-e");
 
 cd(`${__dirname}`);
 
-const fs = require("fs");
 const package = require("./package.json");
 const thisFolder = $("pwd");
 const specFilename = `spec-v1-swagger.json`;
@@ -30,7 +29,7 @@ eval(
 swaggerConfig = require(swaggerConfigFilename);
 swaggerConfig.npmName = package.name;
 swaggerConfig.npmVersion = package.version;
-fs.writeFileSync(swaggerConfigFilename, JSON.stringify(swaggerConfig, null, 2));
+writeFile(swaggerConfigFilename, JSON.stringify(swaggerConfig, null, 2));
 
 /// Share the current folder with docker, and then run the generator, pointing to the given template
 eval(`docker run --rm -v ${
