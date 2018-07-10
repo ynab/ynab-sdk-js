@@ -23,7 +23,7 @@
     "url": "https://github.com/ynab/ynab-sdk-js.git"
   },
   "scripts": {
-    "generate": "cd generate && ./generate_sdk_typescript.js",
+    "generate": "./generate.js",
     "build": "npx tsc && npx tsc --target ES5 --module ES2015 --outDir dist/esm && npx webpack --mode production && npx tsc -p examples/",
     "test": "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'",
     "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'; npm-github-release"
@@ -39,7 +39,6 @@
     "@types/node": "^10.3.2",
     "chai": "^4.1.2",
     "fetch-mock": "^5.13.1",
-    "jbash": "^1.38.0",
     "mocha": "^5.2.0",
     "npm-github-release": "^0.9.0",
     "swagger-model-validator": "^3.0.3",
