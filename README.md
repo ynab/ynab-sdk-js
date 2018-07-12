@@ -99,32 +99,33 @@ folder for example usage scenarios.
 
 The following methods are available in this library. For more details on parameters and usage, the [TypeScript declaration file](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts) can be referenced.
 
-|                            | Method                                                            | Description                                         |
-| -------------------------- | ----------------------------------------------------------------- | --------------------------------------------------- |
-| **User**                   | `budgets.getUser()`                                               | Returns authenticated user information              |
-| **Budgets**                | `budgets.getBudgets()`                                            | Returns budgets list with summary information       |
-|                            | `budgets.getBudgetById(id)`                                       | Returns a single budget with all related entities   |
-|                            | `budgets.getBudgetSettingsById(id)`                               | Returns settings for a budget                       |
-| **Accounts**               | `accounts.getAccounts(budgetId)`                                  | Returns all accounts                                |
-|                            | `accounts.getAccountById(budgetId, id)`                           | Returns a single account                            |
-| **Categories**             | `categories.getCategories(budgetId)`                              | Returns all categories grouped by category group.   |
-|                            | `categories.getCategoryById(budgetId, id)`                        | Returns a single category                           |
-| **Payees**                 | `payees.getPayees(budgetId)`                                      | Returns all payees                                  |
-|                            | `payees.getPayeeById(budgetId, id)`                               | Returns single payee                                |
-| **Payee Locations**        | `payeeLocations.getPayeeLocations(budgetId)`                      | Returns all payee locations                         |
-|                            | `payeeLocations.getPayeeLocationById(budgetId, id)`               | Returns a single payee location                     |
-|                            | `payeeLocations.getPayeeLocationsByPayee(budgetId, id)`           | Returns all payee locations for the specified payee |
-| **Months**                 | `months.getBudgetMonths(budgetId)`                                | Returns all budget months                           |
-|                            | `months.getBudgetMonth(budgetId, month)`                          | Returns a single budget month                       |
-| **Transactions**           | `transactions.getTransactions(budgetId)`                          | Returns budget transactions                         |
-|                            | `transactions.getTransactionsByAccount(budgetId, id)`             | Returns all transactions for a specified account    |
-|                            | `transactions.getTransactionsByCategory(budgetId, id)`            | Returns all transactions for a specified category   |
-|                            | `transactions.getTransactionsById(budgetId, id)`                  | Returns a single transaction                        |
-|                            | `transactions.updateTransaction(budgetId, id, transaction)`       | Updates a transaction                               |
-|                            | `transactions.createTransaction(budgetId, transaction)`           | Creates a new transaction                           |
-|                            | `transactions.bulkCreateTransactions(budgetId, transactions)`     | Creates multiple transactions                       |
-| **Scheduled Transactions** | `scheduledTransactions.getScheduledTransactions(budgetId)`        | Returns all scheduled transactions                  |
-|                            | `scheduledTransactions.getScheduledTransactionById(budgetId, id)` | Returns a single scheduled transaction              |
+|                            | Method                                                                                                                                    | Description                                         |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| **User**                   | [budgets.get_user()](docs/UserApi.md#get_user)                                                                                            | Returns authenticated user information              |
+| **Budgets**                | [budgets.get_budgets()](docs/BudgetsApi.md#get_budgets)                                                                                   | Returns budgets list with summary information       |
+|                            | [budgets.get_budget_by_id(id)](docs/BudgetsApi.md#get_budget_by_id)                                                                       | Returns a single budget with all related entities   |
+|                            | [budgets.get_budget_settings_by_id(id)](docs/BudgetsApi.md#get_budget_settings_by_id)                                                     | Returns settings for a budget                       |
+| **Accounts**               | [accounts.get_accounts(budget_id)](docs/AccountsApi.md#get_accounts)                                                                      | Returns all accounts                                |
+|                            | [accounts.get_account_by_id(budget_id, id)](docs/AccountsApi.md#get_account_by_id)                                                        | Returns a single account                            |
+| **Categories**             | [categories.get_categories(budget_id)](docs/CategoriesApi.md#get_categories)                                                              | Returns all categories grouped by category group.   |
+|                            | [categories.get_category_by_id(budget_id, id)](docs/CategoriesApi.md#get_category_by_id)                                                  | Returns a single category                           |
+| **Payees**                 | [payees.get_payees(budget_id)](docs/PayeesApi.md#get_payees)                                                                              | Returns all payees                                  |
+|                            | [payees.get_payee_by_id(budget_id, id)](docs/PayeesApi.md#get_payee_by_id)                                                                | Returns single payee                                |
+| **Payee Locations**        | [payee_locations.get_payee_locations(budget_id)](docs/PayeeLocationsApi.md#get_payee_locations)                                           | Returns all payee locations                         |
+|                            | [payee_locations.get_payee_location_by_id(budget_id, id)](docs/PayeeLocationsApi.md#get_payee_location_by_id)                             | Returns a single payee location                     |
+|                            | [payee_locations.get_payee_locations_by_payee(budget_id, id)](docs/PayeeLocationsApi.md#get_payee_locations_by_payee)                     | Returns all payee locations for the specified payee |
+| **Months**                 | [months.get_budget_months(budget_id)](docs/MonthsApi.md#get_budget_months)                                                                | Returns all budget months                           |
+|                            | [months.get_budget_month(budget_id, month)](docs/MonthsApi.md#get_budget_month)                                                           | Returns a single budget month                       |
+| **Transactions**           | [transactions.get_transactions(budget_id)](docs/TransactionsApi.md#get_transactions)                                                      | Returns budget transactions                         |
+|                            | [transactions.get_transactions_by_account(budget_id, id)](docs/TransactionsApi.md#get_transactions_by_account)                            | Returns all transactions for a specified account    |
+|                            | [transactions.get_transactions_by_category(budget_id, id)](docs/TransactionsApi.md#get_transactions_by_category)                          | Returns all transactions for a specified category   |
+|                            | [transactions.get_transactions_by_id(budget_id, id)](docs/TransactionsApi.md#get_transactions_by_id)                                      | Returns a single transaction                        |
+|                            | [transactions.update_transaction(budget_id, id, transaction)](docs/TransactionsApi.md#update_transaction)                                 | Updates a transaction                               |
+|                            | [transactions.create_transaction(budget_id, transaction)](docs/TransactionsApi.md#create_transaction)                                     | Creates a new transaction                           |
+|                            | [transactions.bulk_create_transactions(budget_id, transactions)](docs/TransactionsApi.md#bulk_create_transactions)                        | Creates multiple transactions                       |
+| **Scheduled Transactions** | [scheduled_transactions.get_scheduled_transactions(budget_id)](docs/ScheduledTransactionsApi.md#get_scheduled_transactions)               | Returns all scheduled transactions                  |
+|                            | [scheduled_transactions.get_scheduled_transaction_by_id(budget_id, id)](docs/ScheduledTransactionsApi.md#get_scheduled_transaction_by_id) | Returns a single scheduled transaction              |
+                                                                |
 
 ### Utilities
 
