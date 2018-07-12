@@ -20,7 +20,7 @@ eval(`wget https://api.youneedabudget.com/papi/${specFilename}`);
 //   ["string", "null"] => "string"
 //   ["number", "null"] => "number"
 eval(
-  `sed -E -i '' 's/\\[\\"(string|number|array|boolean)\\"\\, \\"null\\"\\]/"\\1"/g' ${
+  `sed -E -i '' 's/\\[\\"(string|number|integer|array|boolean)\\"\\, \\"null\\"\\]/"\\1"/g' ${
     specFilename
   }`
 );
