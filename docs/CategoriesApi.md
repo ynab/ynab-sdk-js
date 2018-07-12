@@ -16,32 +16,6 @@ List categories
 
 Returns all categories grouped by category group.
 
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.CategoriesApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getCategories(budgetId, callback);
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -68,34 +42,6 @@ Name | Type | Description  | Notes
 Single category
 
 Returns a single category
-
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.CategoriesApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var categoryId = "categoryId_example"; // String | The ID of the Category.
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getCategoryById(budgetId, categoryId, callback);
-```
 
 ### Parameters
 

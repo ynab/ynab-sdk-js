@@ -44,6 +44,7 @@ exec(`docker run --rm -v ${rootFolder}:/local swaggerapi/swagger-codegen-cli gen
       -i "/local/${specFilename}" \
       -l "javascript" \
       -c "/local/${swaggerConfigFilename}" \
+      -t "/local/swagger-templates" \
       -o "/local/tmp" `);
 
 exec(`rm -rf ./docs && mv ./tmp/docs ./docs && rm -rf ./tmp`);

@@ -22,34 +22,6 @@ Bulk create transactions
 
 Creates multiple transactions
 
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var transactions = new YnabApiEndpoints.BulkTransactions(); // BulkTransactions | The list of Transactions to create.
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.bulkCreateTransactions(budgetId, transactions, callback);
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -77,34 +49,6 @@ Name | Type | Description  | Notes
 Create new transaction
 
 Creates a transaction
-
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var transaction = new YnabApiEndpoints.SaveTransactionWrapper(); // SaveTransactionWrapper | The Transaction to create.
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createTransaction(budgetId, transaction, callback);
-```
 
 ### Parameters
 
@@ -134,36 +78,6 @@ List transactions
 
 Returns budget transactions
 
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var opts = { 
-  'sinceDate': new Date("2013-10-20"), // Date | Only return transactions on or after this date.
-  'type': "type_example" // String | Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransactions(budgetId, opts, callback);
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -192,38 +106,6 @@ Name | Type | Description  | Notes
 List account transactions
 
 Returns all transactions for a specified account
-
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var accountId = "accountId_example"; // String | The ID of the Account.
-
-var opts = { 
-  'sinceDate': new Date("2013-10-20"), // Date | Only return transactions on or after this date.
-  'type': "type_example" // String | Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransactionsByAccount(budgetId, accountId, opts, callback);
-```
 
 ### Parameters
 
@@ -255,38 +137,6 @@ List category transactions
 
 Returns all transactions for a specified category
 
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var categoryId = "categoryId_example"; // String | The ID of the Category.
-
-var opts = { 
-  'sinceDate': new Date("2013-10-20"), // Date | Only return transactions on or after this date.
-  'type': "type_example" // String | Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransactionsByCategory(budgetId, categoryId, opts, callback);
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -317,34 +167,6 @@ Single transaction
 
 Returns a single transaction
 
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var transactionId = "transactionId_example"; // String | The ID of the Transaction.
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransactionsById(budgetId, transactionId, callback);
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -372,38 +194,6 @@ Name | Type | Description  | Notes
 List payee transactions
 
 Returns all transactions for a specified payee
-
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var payeeId = "payeeId_example"; // String | The ID of the Payee.
-
-var opts = { 
-  'sinceDate': new Date("2013-10-20"), // Date | Only return transactions on or after this date.
-  'type': "type_example" // String | Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransactionsByPayee(budgetId, payeeId, opts, callback);
-```
 
 ### Parameters
 
@@ -434,36 +224,6 @@ Name | Type | Description  | Notes
 Updates an existing transaction
 
 Updates a transaction
-
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.TransactionsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var transactionId = "transactionId_example"; // String | The ID of the Transaction.
-
-var transaction = new YnabApiEndpoints.SaveTransactionWrapper(); // SaveTransactionWrapper | The Transaction to update.
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.updateTransaction(budgetId, transactionId, transaction, callback);
-```
 
 ### Parameters
 

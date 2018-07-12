@@ -17,35 +17,6 @@ Single budget
 
 Returns a single budget with all related entities.  This resource is effectively a full budget export.
 
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.BudgetsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-var opts = { 
-  'lastKnowledgeOfServer': 8.14 // Number | The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getBudgetById(budgetId, opts, callback);
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -74,32 +45,6 @@ Budget Settings
 
 Returns settings for a budget.
 
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.BudgetsApi();
-
-var budgetId = "budgetId_example"; // String | The ID of the Budget.
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getBudgetSettingsById(budgetId, callback);
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -126,29 +71,6 @@ Name | Type | Description  | Notes
 List budgets
 
 Returns budgets list with summary information.
-
-### Example
-```javascript
-var YnabApiEndpoints = require('ynab_api_endpoints');
-var defaultClient = YnabApiEndpoints.ApiClient.instance;
-
-// Configure API key authorization: bearer
-var bearer = defaultClient.authentications['bearer'];
-bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//bearer.apiKeyPrefix = 'Token';
-
-var apiInstance = new YnabApiEndpoints.BudgetsApi();
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getBudgets(callback);
-```
 
 ### Parameters
 This endpoint does not need any parameter.
