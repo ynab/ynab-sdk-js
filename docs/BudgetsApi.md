@@ -28,15 +28,6 @@ Name | Type | Description  | Notes
 
 [**BudgetDetailResponse**](BudgetDetailResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getBudgetSettingsById"></a>
 # **getBudgetSettingsById**
 > BudgetSettingsResponse getBudgetSettingsById(budgetId)
@@ -55,15 +46,6 @@ Name | Type | Description  | Notes
 
 [**BudgetSettingsResponse**](BudgetSettingsResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getBudgets"></a>
 # **getBudgets**
 > BudgetSummaryResponse getBudgets()
@@ -78,13 +60,4 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**BudgetSummaryResponse**](BudgetSummaryResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 

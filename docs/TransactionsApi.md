@@ -33,15 +33,6 @@ Name | Type | Description  | Notes
 
 [**BulkResponse**](BulkResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="createTransaction"></a>
 # **createTransaction**
 > TransactionResponse createTransaction(budgetId, transaction)
@@ -60,15 +51,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TransactionResponse**](TransactionResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 <a name="getTransactions"></a>
 # **getTransactions**
@@ -89,15 +71,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TransactionsResponse**](TransactionsResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 <a name="getTransactionsByAccount"></a>
 # **getTransactionsByAccount**
@@ -120,15 +93,6 @@ Name | Type | Description  | Notes
 
 [**TransactionsResponse**](TransactionsResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getTransactionsByCategory"></a>
 # **getTransactionsByCategory**
 > HybridTransactionsResponse getTransactionsByCategory(budgetId, categoryId, opts)
@@ -150,15 +114,6 @@ Name | Type | Description  | Notes
 
 [**HybridTransactionsResponse**](HybridTransactionsResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getTransactionsById"></a>
 # **getTransactionsById**
 > TransactionResponse getTransactionsById(budgetId, transactionId)
@@ -177,15 +132,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TransactionResponse**](TransactionResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 <a name="getTransactionsByPayee"></a>
 # **getTransactionsByPayee**
@@ -208,15 +154,6 @@ Name | Type | Description  | Notes
 
 [**HybridTransactionsResponse**](HybridTransactionsResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="updateTransaction"></a>
 # **updateTransaction**
 > TransactionResponse updateTransaction(budgetId, transactionId, transaction)
@@ -236,13 +173,4 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TransactionResponse**](TransactionResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 

@@ -28,15 +28,6 @@ Name | Type | Description  | Notes
 
 [**PayeeLocationResponse**](PayeeLocationResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getPayeeLocations"></a>
 # **getPayeeLocations**
 > PayeeLocationsResponse getPayeeLocations(budgetId)
@@ -54,15 +45,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PayeeLocationsResponse**](PayeeLocationsResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 <a name="getPayeeLocationsByPayee"></a>
 # **getPayeeLocationsByPayee**
@@ -82,13 +64,4 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PayeeLocationsResponse**](PayeeLocationsResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 

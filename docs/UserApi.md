@@ -22,12 +22,3 @@ This endpoint does not need any parameter.
 
 [**UserResponse**](UserResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-

@@ -26,15 +26,6 @@ Name | Type | Description  | Notes
 
 [**CategoriesResponse**](CategoriesResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getCategoryById"></a>
 # **getCategoryById**
 > CategoryResponse getCategoryById(budgetId, categoryId)
@@ -53,13 +44,4 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CategoryResponse**](CategoryResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 

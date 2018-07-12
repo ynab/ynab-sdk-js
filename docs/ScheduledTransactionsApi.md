@@ -27,15 +27,6 @@ Name | Type | Description  | Notes
 
 [**ScheduledTransactionResponse**](ScheduledTransactionResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getScheduledTransactions"></a>
 # **getScheduledTransactions**
 > ScheduledTransactionsResponse getScheduledTransactions(budgetId)
@@ -53,13 +44,4 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ScheduledTransactionsResponse**](ScheduledTransactionsResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 

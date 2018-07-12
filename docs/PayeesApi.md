@@ -27,15 +27,6 @@ Name | Type | Description  | Notes
 
 [**PayeeResponse**](PayeeResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getPayees"></a>
 # **getPayees**
 > PayeesResponse getPayees(budgetId)
@@ -53,13 +44,4 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PayeesResponse**](PayeesResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 

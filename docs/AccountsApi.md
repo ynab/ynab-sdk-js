@@ -27,15 +27,6 @@ Name | Type | Description  | Notes
 
 [**AccountResponse**](AccountResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getAccounts"></a>
 # **getAccounts**
 > AccountsResponse getAccounts(budgetId)
@@ -53,13 +44,4 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountsResponse**](AccountsResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 

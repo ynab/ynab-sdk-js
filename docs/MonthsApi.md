@@ -27,15 +27,6 @@ Name | Type | Description  | Notes
 
 [**MonthDetailResponse**](MonthDetailResponse.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="getBudgetMonths"></a>
 # **getBudgetMonths**
 > MonthSummariesResponse getBudgetMonths(budgetId)
@@ -53,13 +44,4 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MonthSummariesResponse**](MonthSummariesResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
