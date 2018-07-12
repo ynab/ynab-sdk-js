@@ -1,4 +1,4 @@
-# YnabApiEndpoints.User
+# User
 
 ## Properties
 Name | Type | Description | Notes

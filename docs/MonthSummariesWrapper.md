@@ -1,4 +1,4 @@
-# YnabApiEndpoints.MonthSummariesWrapper
+# MonthSummariesWrapper
 
 ## Properties
 Name | Type | Description | Notes

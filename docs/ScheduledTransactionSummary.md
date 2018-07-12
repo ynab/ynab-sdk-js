@@ -1,4 +1,4 @@
-# YnabApiEndpoints.ScheduledTransactionSummary
+# ScheduledTransactionSummary
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# YnabApiEndpoints.CategoriesResponse
+# CategoriesResponse
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# YnabApiEndpoints.ScheduledTransactionsWrapper
+# ScheduledTransactionsWrapper
 
 ## Properties
 Name | Type | Description | Notes

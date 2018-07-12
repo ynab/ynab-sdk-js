@@ -1,4 +1,4 @@
-# YnabApiEndpoints.AccountWrapper
+# AccountWrapper
 
 ## Properties
 Name | Type | Description | Notes

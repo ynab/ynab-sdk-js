@@ -1,4 +1,4 @@
-# YnabApiEndpoints.DateFormat
+# DateFormat
 
 ## Properties
 Name | Type | Description | Notes

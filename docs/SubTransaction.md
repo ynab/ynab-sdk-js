@@ -1,4 +1,4 @@
-# YnabApiEndpoints.SubTransaction
+# SubTransaction
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# YnabApiEndpoints.CategoryGroupWithCategories
+# CategoryGroupWithCategories
 
 ## Properties
 Name | Type | Description | Notes

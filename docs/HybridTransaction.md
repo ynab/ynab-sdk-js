@@ -1,4 +1,4 @@
-# YnabApiEndpoints.HybridTransaction
+# HybridTransaction
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# YnabApiEndpoints.BulkIds
+# BulkIds
 
 ## Properties
 Name | Type | Description | Notes

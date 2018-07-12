@@ -1,4 +1,4 @@
-# YnabApiEndpoints.ScheduledTransactionsResponse
+# ScheduledTransactionsResponse
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# YnabApiEndpoints.TransactionsResponse
+# TransactionsResponse
 
 ## Properties
 Name | Type | Description | Notes

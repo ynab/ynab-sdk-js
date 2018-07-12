@@ -1,4 +1,4 @@
-# YnabApiEndpoints.UserApi
+# UserApi
 
 All URIs are relative to *https://api.youneedabudget.com/v1*
 

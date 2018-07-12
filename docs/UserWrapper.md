@@ -1,4 +1,4 @@
-# YnabApiEndpoints.UserWrapper
+# UserWrapper
 
 ## Properties
 Name | Type | Description | Notes

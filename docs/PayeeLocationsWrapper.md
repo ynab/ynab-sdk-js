@@ -1,4 +1,4 @@
-# YnabApiEndpoints.PayeeLocationsWrapper
+# PayeeLocationsWrapper
 
 ## Properties
 Name | Type | Description | Notes

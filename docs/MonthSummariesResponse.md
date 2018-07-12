@@ -1,4 +1,4 @@
-# YnabApiEndpoints.MonthSummariesResponse
+# MonthSummariesResponse
 
 ## Properties
 Name | Type | Description | Notes

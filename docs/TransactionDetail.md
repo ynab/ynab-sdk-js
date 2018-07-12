@@ -1,4 +1,4 @@
-# YnabApiEndpoints.TransactionDetail
+# TransactionDetail
 
 ## Properties
 Name | Type | Description | Notes

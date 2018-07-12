@@ -1,4 +1,4 @@
-# YnabApiEndpoints.BudgetSettingsWrapper
+# BudgetSettingsWrapper
 
 ## Properties
 Name | Type | Description | Notes

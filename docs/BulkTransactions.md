@@ -1,4 +1,4 @@
-# YnabApiEndpoints.BulkTransactions
+# BulkTransactions
 
 ## Properties
 Name | Type | Description | Notes

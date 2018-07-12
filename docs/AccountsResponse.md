@@ -1,4 +1,4 @@
-# YnabApiEndpoints.AccountsResponse
+# AccountsResponse
 
 ## Properties
 Name | Type | Description | Notes

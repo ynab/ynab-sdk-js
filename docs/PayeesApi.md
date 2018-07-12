@@ -1,4 +1,4 @@
-# YnabApiEndpoints.PayeesApi
+# PayeesApi
 
 All URIs are relative to *https://api.youneedabudget.com/v1*
 

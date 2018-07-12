@@ -1,4 +1,4 @@
-# YnabApiEndpoints.BudgetSummary
+# BudgetSummary
 
 ## Properties
 Name | Type | Description | Notes

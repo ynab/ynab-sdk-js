@@ -1,4 +1,4 @@
-# YnabApiEndpoints.CurrencyFormat
+# CurrencyFormat
 
 ## Properties
 Name | Type | Description | Notes

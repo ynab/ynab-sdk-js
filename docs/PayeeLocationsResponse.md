@@ -1,4 +1,4 @@
-# YnabApiEndpoints.PayeeLocationsResponse
+# PayeeLocationsResponse
 
 ## Properties
 Name | Type | Description | Notes

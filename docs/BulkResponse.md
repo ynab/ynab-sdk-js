@@ -1,4 +1,4 @@
-# YnabApiEndpoints.BulkResponse
+# BulkResponse
 
 ## Properties
 Name | Type | Description | Notes

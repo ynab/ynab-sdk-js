@@ -1,4 +1,4 @@
-# YnabApiEndpoints.SaveTransaction
+# SaveTransaction
 
 ## Properties
 Name | Type | Description | Notes

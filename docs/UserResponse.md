@@ -1,4 +1,4 @@
-# YnabApiEndpoints.UserResponse
+# UserResponse
 
 ## Properties
 Name | Type | Description | Notes

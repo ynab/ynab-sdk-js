@@ -1,4 +1,4 @@
-# YnabApiEndpoints.BulkIdWrapper
+# BulkIdWrapper
 
 ## Properties
 Name | Type | Description | Notes

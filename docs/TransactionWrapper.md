@@ -1,4 +1,4 @@
-# YnabApiEndpoints.TransactionWrapper
+# TransactionWrapper
 
 ## Properties
 Name | Type | Description | Notes
