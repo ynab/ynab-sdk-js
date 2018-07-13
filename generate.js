@@ -38,7 +38,7 @@ exec(`docker run --rm -v ${rootFolder}:/local swaggerapi/swagger-codegen-cli gen
     -t "/local/swagger-templates" \
     -o "/local/src" `);
 
-// Since the typescript-fetch generate does not support docs, we will also generate using the javascript generator
+// Since the typescript-fetch generater does not support docs, we will also generate using the javascript generator
 // just so we can get the docs and move them over to doc/
 exec(`docker run --rm -v ${rootFolder}:/local swaggerapi/swagger-codegen-cli generate \
       -i "/local/${specFilename}" \
