@@ -129,7 +129,7 @@
             "description":
               "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "number"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -1273,7 +1273,7 @@
           "type": "string"
         },
         "decimal_digits": {
-          "type": "number"
+          "type": "integer"
         },
         "decimal_separator": {
           "type": "string"
@@ -1330,7 +1330,7 @@
           "$ref": "#/definitions/BudgetDetail"
         },
         "server_knowledge": {
-          "type": "number",
+          "type": "integer",
           "description": "The knowledge of the server"
         }
       }
@@ -1552,19 +1552,19 @@
           "type": "string"
         },
         "balance": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description":
             "The current balance of the account in milliunits format"
         },
         "cleared_balance": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description":
             "The current cleared balance of the account in milliunits format"
         },
         "uncleared_balance": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description":
             "The current uncleared balance of the account in milliunits format"
@@ -1666,6 +1666,11 @@
         "budgeted",
         "activity",
         "balance",
+        "goal_type",
+        "goal_creation_month",
+        "goal_target",
+        "goal_target_month",
+        "goal_percentage_complete",
         "deleted"
       ],
       "properties": {
@@ -1693,16 +1698,39 @@
           "type": "string"
         },
         "budgeted": {
-          "type": "number",
+          "type": "integer",
           "description": "Budgeted amount in current month in milliunits format"
         },
         "activity": {
-          "type": "number",
+          "type": "integer",
           "description": "Activity amount in current month in milliunits format"
         },
         "balance": {
-          "type": "number",
+          "type": "integer",
           "description": "Balance in current month in milliunits format"
+        },
+        "goal_type": {
+          "type": "string",
+          "enum": ["TB", "TBD", "MF", null],
+          "description": "The type of goal, if the cagegory has a goal (TB=Target Category Balance, TBD=Target Category Balance by Date, MF=Monthly Funding)"
+        },
+        "goal_creation_month": {
+          "type": "string",
+          "format": "date",
+          "description": "The month a goal was created"
+        },
+        "goal_target": {
+          "type": "integer",
+          "description": "The goal target amount in milliunits"
+        },
+        "goal_target_month": {
+          "type": "string",
+          "format": "date",
+          "description": "If the goal type is 'TBD' (Target Category Balance by Date), this is the target month for the goal to be completed"
+        },
+        "goal_percentage_complete": {
+          "type": "integer",
+          "description": "The percentage completion of the goal"
         },
         "deleted": {
           "type": "boolean",
@@ -1921,7 +1949,7 @@
           "format": "date"
         },
         "amount": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description": "The transaction amount in milliunits format"
         },
@@ -2065,7 +2093,7 @@
           "format": "date"
         },
         "amount": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description": "The transaction amount in milliunits format"
         },
@@ -2184,7 +2212,7 @@
           "format": "uuid"
         },
         "amount": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description": "The subtransaction amount in milliunits format"
         },
@@ -2302,7 +2330,7 @@
           ]
         },
         "amount": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description": "The scheduled transaction amount in milliunits format"
         },
@@ -2395,7 +2423,7 @@
           "format": "uuid"
         },
         "amount": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description":
             "The scheduled subtransaction amount in milliunits format"
@@ -2474,13 +2502,13 @@
           "type": "string"
         },
         "to_be_budgeted": {
-          "type": "number",
+          "type": "integer",
           "format": "1234000",
           "description":
             "The current balance of the account in milliunits format"
         },
         "age_of_money": {
-          "type": "number"
+          "type": "integer"
         }
       }
     },
