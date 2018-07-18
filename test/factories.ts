@@ -64,7 +64,12 @@ export const categoryFactory = Factory.makeFactory<api.Category>({
   budgeted: Factory.each(i => i * 1000),
   activity: Factory.each(i => i * 1000),
   balance: Factory.each(i => i * 1000),
-  deleted: false
+  deleted: false,
+  goal_type: api.Category.GoalTypeEnum.TBD,
+  goal_creation_month: "2018-01-01",
+  goal_target: 100000,
+  goal_target_month: "2020-01-01",
+  goal_percentage_complete: 40
 });
 
 export const categoryGroupWithCategoriesFactory = Factory.makeFactory<
