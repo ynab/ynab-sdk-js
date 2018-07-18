@@ -90,6 +90,23 @@ var Account;
 })(Account = exports.Account || (exports.Account = {}));
 /**
  * @export
+ * @namespace Category
+ */
+var Category;
+(function (Category) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let GoalTypeEnum;
+    (function (GoalTypeEnum) {
+        GoalTypeEnum[GoalTypeEnum["TB"] = 'TB'] = "TB";
+        GoalTypeEnum[GoalTypeEnum["TBD"] = 'TBD'] = "TBD";
+        GoalTypeEnum[GoalTypeEnum["MF"] = 'MF'] = "MF";
+    })(GoalTypeEnum = Category.GoalTypeEnum || (Category.GoalTypeEnum = {}));
+})(Category = exports.Category || (exports.Category = {}));
+/**
+ * @export
  * @namespace SaveTransaction
  */
 var SaveTransaction;

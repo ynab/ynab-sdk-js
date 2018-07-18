@@ -471,11 +471,56 @@ export interface Category {
      */
     balance: number;
     /**
+     * The type of goal, if the cagegory has a goal (TB=Target Category Balance, TBD=Target Category Balance by Date, MF=Monthly Funding)
+     * @type {string}
+     * @memberof Category
+     */
+    goal_type: Category.GoalTypeEnum;
+    /**
+     * The month a goal was created
+     * @type {string}
+     * @memberof Category
+     */
+    goal_creation_month: string;
+    /**
+     * The goal target amount in milliunits
+     * @type {number}
+     * @memberof Category
+     */
+    goal_target: number;
+    /**
+     * If the goal type is 'TBD' (Target Category Balance by Date), this is the target month for the goal to be completed
+     * @type {string}
+     * @memberof Category
+     */
+    goal_target_month: string;
+    /**
+     * The percentage completion of the goal
+     * @type {number}
+     * @memberof Category
+     */
+    goal_percentage_complete: number;
+    /**
      * Whether or not the category has been deleted.  Deleted categories will only be included in delta requests.
      * @type {boolean}
      * @memberof Category
      */
     deleted: boolean;
+}
+/**
+ * @export
+ * @namespace Category
+ */
+export declare namespace Category {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum GoalTypeEnum {
+        TB,
+        TBD,
+        MF
+    }
 }
 /**
  *
