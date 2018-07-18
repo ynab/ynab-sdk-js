@@ -146,18 +146,10 @@ convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: num
 
 ## Development
 
-To build and compile:
-
-```shell
-npm install
-npm run build
-```
-
-To run tests:
-
-```shell
-npm test
-```
+- Install dependencies: `npm install`
+- Generate latest client based on swagger spec: `npm run generate`
+- Run tests: `npm test`
+- Publish to npm: `npm run release`
 
 ## License
 
