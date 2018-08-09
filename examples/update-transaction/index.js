@@ -14,6 +14,7 @@ const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
         });
     }
     catch (err) {
-        console.log(err);
+        const error = err.error;
+        console.log(`ERROR: id=${error.id}; name=${error.name}; detail: ${error.detail}`);
     }
 })();
