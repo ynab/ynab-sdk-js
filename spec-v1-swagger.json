@@ -644,7 +644,7 @@
             "name": "month",
             "in": "path",
             "description":
-              "The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).",
+              "The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).",
             "required": true,
             "type": "string",
             "format": "date"
@@ -761,6 +761,12 @@
           },
           "400": {
             "description": "The request could not be understood due to malformed syntax or validation error(s).",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "A transaction on the same account with the same import_id already exists.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -2492,7 +2498,7 @@
     },
     "MonthSummary": {
       "type": "object",
-      "required": ["month", "note", "to_be_budgeted", "age_of_money"],
+      "required": ["month", "note", "income", "budgeted", "activity", "to_be_budgeted", "age_of_money"],
       "properties": {
         "month": {
           "type": "string",
@@ -2501,14 +2507,33 @@
         "note": {
           "type": "string"
         },
+        "income": {
+          "type": "integer",
+          "format": "1234000",
+          "description":
+            "The total amount in transactions categorized to 'Inflow: To be Budgeted' in the month"
+        },
+        "budgeted": {
+          "type": "integer",
+          "format": "1234000",
+          "description":
+            "The total amount budgeted in the month"
+        },
+        "activity": {
+          "type": "integer",
+          "format": "1234000",
+          "description":
+            "The total amount in transactions in the month, excluding those categorized to 'Inflow: To be Budgeted'"
+        },
         "to_be_budgeted": {
           "type": "integer",
           "format": "1234000",
           "description":
-            "The current balance of the account in milliunits format"
+            "The available amount for 'To be Budgeted'"
         },
         "age_of_money": {
-          "type": "integer"
+          "type": "integer",
+          "description": "The Age of Money as of the month"
         }
       }
     },

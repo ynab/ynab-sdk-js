@@ -21,7 +21,7 @@ Returns a single budget month
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **budgetId** | [**String**](.md)| The ID of the Budget. | 
- **month** | **Date**| The Budget Month.  \&quot;current\&quot; can also be used to specify the current calendar month (UTC). | 
+ **month** | **Date**| The Budget Month in ISO format (e.g. 2016-12-01).    \&quot;current\&quot; can also be used to specify the current calendar month (UTC). | 
 
 ### Return type
 
