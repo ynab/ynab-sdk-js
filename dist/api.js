@@ -16,7 +16,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/1.1.0";
+const USER_AGENT = "api_client/js/1.2.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -978,7 +978,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
          * Returns a single budget month
          * @summary Single budget month
          * @param {string} budget_id - The ID of the Budget.
-         * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1060,7 +1060,7 @@ exports.MonthsApiFp = function (configuration) {
          * Returns a single budget month
          * @summary Single budget month
          * @param {string} budget_id - The ID of the Budget.
-         * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1113,7 +1113,7 @@ exports.MonthsApiFactory = function (configuration) {
          * Returns a single budget month
          * @summary Single budget month
          * @param {string} budget_id - The ID of the Budget.
-         * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1143,7 +1143,7 @@ class MonthsApi extends BaseAPI {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The ID of the Budget.
-     * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi

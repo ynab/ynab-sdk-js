@@ -795,13 +795,31 @@ export interface MonthSummary {
      */
     note: string;
     /**
-     * The current balance of the account in milliunits format
+     * The total amount in transactions categorized to 'Inflow: To be Budgeted' in the month
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    income: number;
+    /**
+     * The total amount budgeted in the month
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    budgeted: number;
+    /**
+     * The total amount in transactions in the month, excluding those categorized to 'Inflow: To be Budgeted'
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    activity: number;
+    /**
+     * The available amount for 'To be Budgeted'
      * @type {number}
      * @memberof MonthSummary
      */
     to_be_budgeted: number;
     /**
-     *
+     * The Age of Money as of the month
      * @type {number}
      * @memberof MonthSummary
      */
@@ -1876,13 +1894,31 @@ export interface MonthDetail {
      */
     note: string;
     /**
-     * The current balance of the account in milliunits format
+     * The total amount in transactions categorized to 'Inflow: To be Budgeted' in the month
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    income: number;
+    /**
+     * The total amount budgeted in the month
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    budgeted: number;
+    /**
+     * The total amount in transactions in the month, excluding those categorized to 'Inflow: To be Budgeted'
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    activity: number;
+    /**
+     * The available amount for 'To be Budgeted'
      * @type {number}
      * @memberof MonthDetail
      */
     to_be_budgeted: number;
     /**
-     *
+     * The Age of Money as of the month
      * @type {number}
      * @memberof MonthDetail
      */
@@ -2496,7 +2532,7 @@ export declare const MonthsApiFetchParamCreator: (configuration?: Configuration)
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The ID of the Budget.
-     * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2519,7 +2555,7 @@ export declare const MonthsApiFp: (configuration?: Configuration) => {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The ID of the Budget.
-     * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2542,7 +2578,7 @@ export declare const MonthsApiFactory: (configuration?: Configuration) => {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The ID of the Budget.
-     * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2567,7 +2603,7 @@ export declare class MonthsApi extends BaseAPI {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The ID of the Budget.
-     * @param {Date} month - The Budget Month.  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
