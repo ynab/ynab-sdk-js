@@ -6,18 +6,18 @@ const ynabAPI = new ynab.API(accessToken);
 const budgetId = "378f111e-4b27-4ee5-a9fd-0ba03c1de0f0";
 
 (async function() {
-  try {
-    const transaction: ynab.SaveTransaction = {
-      account_id: "d99072b8-f598-484c-a0f8-ae607350f70a",
-      category_id: "8d505bc0-efbe-4803-b8ef-0898213a1092",
-      payee_id: null,
-      cleared: ynab.SaveTransaction.ClearedEnum.Cleared,
-      approved: true,
-      date: ynab.utils.getCurrentDateInISOFormat(),
-      amount: -23430,
-      memo: "Dry Cleaning"
-    };
+  const transaction: ynab.SaveTransaction = {
+    account_id: "d99072b8-f598-484c-a0f8-ae607350f70a",
+    category_id: "8d505bc0-efbe-4803-b8ef-0898213a1092",
+    payee_id: null,
+    cleared: ynab.SaveTransaction.ClearedEnum.Cleared,
+    approved: true,
+    date: ynab.utils.getCurrentDateInISOFormat(),
+    amount: -23430,
+    memo: "Dry Cleaning"
+  };
 
+  try {
     await ynabAPI.transactions.createTransaction(budgetId, { transaction });
   } catch (err) {
     const error = err.error;
