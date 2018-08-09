@@ -37,5 +37,8 @@ ynabAPI.transactions
     bulkTransactions
   )
   .catch(e => {
-    console.log(`ERROR: ${JSON.stringify(e)}`);
+    const error = e.error;
+    console.log(
+      `ERROR: id=${error.id}; name=${error.name}; detail: ${error.detail}`
+    );
   });
