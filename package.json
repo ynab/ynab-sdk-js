@@ -24,7 +24,8 @@
   },
   "scripts": {
     "generate": "./generate.js",
-    "build": "npx tsc && npx tsc --target ES5 --module ES2015 --outDir dist/esm && npx webpack --mode production && npx tsc -p examples/",
+    "build": "npx tsc && npx tsc --target ES5 --module ES2015 --outDir dist/esm && npx webpack --mode production && npm run build_examples",
+    "build_examples": "npx tsc -p examples/",
     "test": "npx mocha --reporter spec --require ts-node/register 'test/**/*.ts'",
     "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'; npm-github-release"
   },

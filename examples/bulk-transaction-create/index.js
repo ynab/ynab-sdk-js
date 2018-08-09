@@ -32,5 +32,6 @@ const bulkTransactions = {
 ynabAPI.transactions
     .bulkCreateTransactions("26e3d088-8004-4785-9059-fd609b2f4642", bulkTransactions)
     .catch(e => {
-    console.log(`ERROR: ${JSON.stringify(e)}`);
+    const error = e.error;
+    console.log(`ERROR: id=${error.id}; name=${error.name}; detail: ${error.detail}`);
 });

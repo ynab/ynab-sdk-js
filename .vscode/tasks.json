@@ -15,6 +15,13 @@
             ]
         },
         {
+          "type": "npm",
+          "script": "build_examples",
+          "problemMatcher": [
+              "$tsc"
+          ]
+      },
+        {
             "type": "npm",
             "script": "test",
             "group": {
