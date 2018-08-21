@@ -20,7 +20,7 @@ Returns all categories grouped by category group.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
 
 ### Return type
 
@@ -38,7 +38,7 @@ Returns a single category
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **categoryId** | [**String**](.md)| The ID of the Category. | 
 
 ### Return type
