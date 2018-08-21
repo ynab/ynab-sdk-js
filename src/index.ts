@@ -42,7 +42,7 @@ export class api {
    * /budgets endpoints interface
    */
   public get user(): CodeGen.UserApi {
-    if (!this._budgets) {
+    if (!this._user) {
       this._user = new CodeGen.UserApi(this._configuration);
     }
     return this._user;
