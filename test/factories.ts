@@ -1,6 +1,16 @@
 import * as Factory from "./factory";
 import * as api from "../src/api";
 
+export const userFactory = Factory.makeFactory<api.User>({
+  id: Factory.each(i => `${i}`)
+});
+
+export const userResponseFactory = Factory.makeFactory<api.UserResponse>({
+  data: {
+    user: userFactory.build()
+  }
+});
+
 export const budgetSummaryFactory = Factory.makeFactory<api.BudgetSummary>({
   id: Factory.each(i => `${i}`),
   name: Factory.each(i => `Budget ${i}`),

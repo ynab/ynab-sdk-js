@@ -35,6 +35,15 @@ class api {
     /**
      * /budgets endpoints interface
      */
+    get user() {
+        if (!this._budgets) {
+            this._user = new CodeGen.UserApi(this._configuration);
+        }
+        return this._user;
+    }
+    /**
+     * /budgets endpoints interface
+     */
     get budgets() {
         if (!this._budgets) {
             this._budgets = new CodeGen.BudgetsApi(this._configuration);

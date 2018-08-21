@@ -26,6 +26,11 @@ export declare class api {
      * @param endpointUrl The API endpoint URL (Optional)
      */
     constructor(accessToken: string, endpointUrl?: string);
+    protected _user: CodeGen.UserApi;
+    /**
+     * /budgets endpoints interface
+     */
+    readonly user: CodeGen.UserApi;
     protected _budgets: CodeGen.BudgetsApi;
     /**
      * /budgets endpoints interface

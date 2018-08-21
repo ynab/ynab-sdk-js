@@ -36,6 +36,18 @@ after(() => {
 describe("API requests", () => {
   const budgetId = "budgetId-1234";
 
+  describe("/user", ()=>{
+    it("Foo", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () => ynabAPI.user.getUser(),
+        factories.userResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/user`);
+    });
+  });
+
   describe("/budgets", () => {
     it("Should throw the response it is sent back with a status of 400", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
