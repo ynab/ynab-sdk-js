@@ -28,11 +28,11 @@ export class api {
 
   protected _user: CodeGen.UserApi;
   /**
-   * /budgets endpoints interface
+   * /user endpoints interface
    */
   public get user(): CodeGen.UserApi {
-    if (!this._budgets) {
-      this._budgets = new CodeGen.BudgetsApi(this._configuration);
+    if (!this._user) {
+      this._user = new CodeGen.UserApi(this._configuration);
     }
     return this._user;
   }
