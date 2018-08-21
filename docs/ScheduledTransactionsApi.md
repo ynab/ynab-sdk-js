@@ -20,7 +20,7 @@ Returns a single scheduled transaction
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **scheduledTransactionId** | [**String**](.md)| The ID of the Scheduled Transaction. | 
 
 ### Return type
@@ -39,7 +39,7 @@ Returns all scheduled transactions
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
 
 ### Return type
 

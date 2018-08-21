@@ -21,7 +21,7 @@ Returns a single payee location
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **payeeLocationId** | [**String**](.md)| ID of payee location | 
 
 ### Return type
@@ -40,7 +40,7 @@ Returns all payee locations
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
 
 ### Return type
 
@@ -58,7 +58,7 @@ Returns all payee locations for the specified payee
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **payeeId** | [**String**](.md)| ID of payee | 
 
 ### Return type

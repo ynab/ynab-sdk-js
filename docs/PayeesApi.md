@@ -20,7 +20,7 @@ Returns single payee
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **payeeId** | [**String**](.md)| The ID of the Payee. | 
 
 ### Return type
@@ -39,7 +39,7 @@ Returns all payees
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
 
 ### Return type
 

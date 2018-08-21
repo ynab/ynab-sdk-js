@@ -26,7 +26,7 @@ Creates multiple transactions
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **transactions** | [**BulkTransactions**](BulkTransactions.md)| The list of Transactions to create. | 
 
 ### Return type
@@ -45,7 +45,7 @@ Creates a transaction
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **transaction** | [**SaveTransactionWrapper**](SaveTransactionWrapper.md)| The Transaction to create. | 
 
 ### Return type
@@ -64,7 +64,7 @@ Returns budget transactions
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **sinceDate** | **Date**| Only return transactions on or after this date. | [optional] 
  **type** | **String**| Only return transactions of a certain type (&#39;uncategorized&#39; and &#39;unapproved&#39; are currently supported) | [optional] 
 
@@ -84,7 +84,7 @@ Returns all transactions for a specified account
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **accountId** | [**String**](.md)| The ID of the Account. | 
  **sinceDate** | **Date**| Only return transactions on or after this date. | [optional] 
  **type** | **String**| Only return transactions of a certain type (i.e. &#39;uncategorized&#39;, &#39;unapproved&#39;) | [optional] 
@@ -105,7 +105,7 @@ Returns all transactions for a specified category
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **categoryId** | [**String**](.md)| The ID of the Category. | 
  **sinceDate** | **Date**| Only return transactions on or after this date. | [optional] 
  **type** | **String**| Only return transactions of a certain type (i.e. &#39;uncategorized&#39;, &#39;unapproved&#39;) | [optional] 
@@ -126,7 +126,7 @@ Returns a single transaction
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **transactionId** | [**String**](.md)| The ID of the Transaction. | 
 
 ### Return type
@@ -145,7 +145,7 @@ Returns all transactions for a specified payee
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **payeeId** | [**String**](.md)| The ID of the Payee. | 
  **sinceDate** | **Date**| Only return transactions on or after this date. | [optional] 
  **type** | **String**| Only return transactions of a certain type (i.e. &#39;uncategorized&#39;, &#39;unapproved&#39;) | [optional] 
@@ -166,7 +166,7 @@ Updates a transaction
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget. | 
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **transactionId** | [**String**](.md)| The ID of the Transaction. | 
  **transaction** | [**SaveTransactionWrapper**](SaveTransactionWrapper.md)| The Transaction to update. | 
 
