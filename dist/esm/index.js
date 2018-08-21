@@ -31,10 +31,10 @@ var api = /** @class */ (function () {
     }
     Object.defineProperty(api.prototype, "user", {
         /**
-         * /budgets endpoints interface
+         * /user endpoints interface
          */
         get: function () {
-            if (!this._budgets) {
+            if (!this._user) {
                 this._user = new CodeGen.UserApi(this._configuration);
             }
             return this._user;

@@ -33,10 +33,10 @@ class api {
         this._configuration = new configuration_1.Configuration(accessToken, endpointUrl);
     }
     /**
-     * /budgets endpoints interface
+     * /user endpoints interface
      */
     get user() {
-        if (!this._budgets) {
+        if (!this._user) {
             this._user = new CodeGen.UserApi(this._configuration);
         }
         return this._user;
