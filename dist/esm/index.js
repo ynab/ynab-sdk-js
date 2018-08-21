@@ -29,6 +29,19 @@ var api = /** @class */ (function () {
         if (endpointUrl === void 0) { endpointUrl = "https://api.youneedabudget.com/v1"; }
         this._configuration = new Configuration(accessToken, endpointUrl);
     }
+    Object.defineProperty(api.prototype, "user", {
+        /**
+         * /user endpoints interface
+         */
+        get: function () {
+            if (!this._user) {
+                this._user = new CodeGen.UserApi(this._configuration);
+            }
+            return this._user;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(api.prototype, "budgets", {
         /**
          * /budgets endpoints interface

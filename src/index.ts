@@ -37,6 +37,17 @@ export class api {
     this._configuration = new Configuration(accessToken, endpointUrl);
   }
 
+  protected _user: CodeGen.UserApi;
+  /**
+   * /user endpoints interface
+   */
+  public get user(): CodeGen.UserApi {
+    if (!this._user) {
+      this._user = new CodeGen.UserApi(this._configuration);
+    }
+    return this._user;
+  }
+
   protected _budgets: CodeGen.BudgetsApi;
   /**
    * /budgets endpoints interface
