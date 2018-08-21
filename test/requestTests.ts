@@ -36,7 +36,7 @@ after(() => {
 describe("API requests", () => {
   const budgetId = "budgetId-1234";
 
-  describe("/user", ()=>{
+  describe("/user", () => {
     it("Should get user", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -473,9 +473,10 @@ function verifyRequestDetails(
   numCalls: number = 1,
   method: "GET" | "POST" | "PUT" | "PATCH" = "GET"
 ) {
-  expect(fetchMock.calls().matched.length, "fetchMock calls").to.equal(
-    numCalls
-  );
+  // TODO: Lastest version of @types/fetch-mock has incorrect type for calls(); once updated, remove this forced cast
+  const calls = <Array<string>>(<any>fetchMock.calls());
+
+  expect(calls.length, "fetchMock calls").to.equal(numCalls);
   expect(fetchMock.lastUrl()).to.equal(url);
   expect(fetchMock.lastOptions().method).to.equal(method);
   const headers = fetchMock.lastOptions().headers;
