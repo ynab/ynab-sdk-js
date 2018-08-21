@@ -102,7 +102,10 @@ export const monthSummaryFactory = Factory.makeFactory<api.MonthSummary>({
   month: "2017-01-01",
   note: Factory.each(i => `Note #${i}`),
   to_be_budgeted: Factory.each(i => i * 2000),
-  age_of_money: Factory.each(i => i)
+  age_of_money: Factory.each(i => i),
+  income: Factory.each(i => i * 100),
+  budgeted: Factory.each(i => i * 110),
+  activity: Factory.each(i => i * 120)
 });
 
 export const monthSummariesResponseFactory = Factory.makeFactory<
@@ -118,7 +121,10 @@ export const monthDetailFactory = Factory.makeFactory<api.MonthDetail>({
   note: Factory.each(i => `Note #${i}`),
   to_be_budgeted: Factory.each(i => i * 2000),
   age_of_money: Factory.each(i => i),
-  categories: categoryFactory.buildList(3)
+  categories: categoryFactory.buildList(3),
+  income: Factory.each(i => i * 100),
+  budgeted: Factory.each(i => i * 110),
+  activity: Factory.each(i => i * 120)
 });
 
 export const monthDetailResponseFactory = Factory.makeFactory<
