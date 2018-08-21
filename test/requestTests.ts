@@ -37,7 +37,7 @@ describe("API requests", () => {
   const budgetId = "budgetId-1234";
 
   describe("/user", ()=>{
-    it("Foo", async () => {
+    it("Should get user", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const returnedResponse = await callApiAndVerifyResponse(
