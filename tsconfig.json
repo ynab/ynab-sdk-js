@@ -5,9 +5,11 @@
     "lib": ["es2015", "dom"],
     "module": "commonjs",
     "noImplicitAny": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "sourceMap": false,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "composite": true,
+    "rootDir": "src"
   },
-  "files": ["src/index.ts"]
+  "include": ["src/**/*.ts"]
 }

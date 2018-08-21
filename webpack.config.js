@@ -19,7 +19,7 @@ module.exports = {
               compilerOptions: {
                 outDir: "../dist",
                 declaration: false,
-                sourceMap: false
+                composite: false
               }
             }
           }
