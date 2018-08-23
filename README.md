@@ -66,7 +66,7 @@ const ynabAPI = new ynab.API(accessToken);
 ### Error Handling
 
 If a response is returned with a code >= 300, instead of returning the response,
-the response will be "thrown" as an error to be caught.
+the response will be thrown as an error to be caught.
 
 ```typescript
 const ynab = require("ynab");
