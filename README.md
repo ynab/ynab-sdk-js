@@ -39,9 +39,22 @@ The `dist/browser/ynab.js` file (located in node_modules/ynab after installation
 <script src="ynab.js" async></script>
 ...
 <script>
+  // This assignment is not necessary but demonstrates that
+  // once the library is loaded, the global 'ynab' object will be available.
   var ynab = window.ynab;
 </script>
 ```
+
+#### CDN
+
+A simple way to load the library in a browser is by using the [unpkg](https://unpkg.com/) CDN, which is a 
+"fast, global content delivery network for everything on npm".  To use it, include a script tag like this in your file:  
+
+```
+<script src="https://unpkg.com/ynab@latest/dist/browser/ynab.js" async></script>
+```
+
+Using the "latest" tag will result in a 302 redirect to the latest version tag so it is highly recommended to use a specific version tag such as https://unpkg.com/ynab@1.5.0/dist/browser/ynab.js to avoid this redirect.
 
 ## Usage
 
