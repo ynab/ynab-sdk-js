@@ -2968,6 +2968,15 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
      */
     createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): FetchArgs;
     /**
+     * Returns a single transaction
+     * @summary Single transaction
+     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} transaction_id - The ID of the Transaction.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    getTransactionById(budget_id: string, transaction_id: string, options?: any): FetchArgs;
+    /**
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -2999,15 +3008,6 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): FetchArgs;
-    /**
-     * Returns a single transaction
-     * @summary Single transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} transaction_id - The ID of the Transaction.
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     */
-    getTransactionsById(budget_id: string, transaction_id: string, options?: any): FetchArgs;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -3054,6 +3054,15 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
      */
     createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
     /**
+     * Returns a single transaction
+     * @summary Single transaction
+     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} transaction_id - The ID of the Transaction.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    getTransactionById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    /**
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -3085,15 +3094,6 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
-    /**
-     * Returns a single transaction
-     * @summary Single transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} transaction_id - The ID of the Transaction.
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     */
-    getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -3140,6 +3140,15 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
      */
     createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
     /**
+     * Returns a single transaction
+     * @summary Single transaction
+     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} transaction_id - The ID of the Transaction.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    getTransactionById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
+    /**
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -3171,15 +3180,6 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
      * @throws {RequiredError}
      */
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): Promise<HybridTransactionsResponse>;
-    /**
-     * Returns a single transaction
-     * @summary Single transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} transaction_id - The ID of the Transaction.
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     */
-    getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -3230,6 +3230,16 @@ export declare class TransactionsApi extends BaseAPI {
      */
     createTransaction(budget_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
     /**
+     * Returns a single transaction
+     * @summary Single transaction
+     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} transaction_id - The ID of the Transaction.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    getTransactionById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
+    /**
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -3264,16 +3274,6 @@ export declare class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): Promise<HybridTransactionsResponse>;
-    /**
-     * Returns a single transaction
-     * @summary Single transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} transaction_id - The ID of the Transaction.
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     * @memberof TransactionsApi
-     */
-    getTransactionsById(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
