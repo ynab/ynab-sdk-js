@@ -47,8 +47,8 @@ The `dist/browser/ynab.js` file (located in node_modules/ynab after installation
 
 #### CDN
 
-A simple way to load the library in a browser is by using the [unpkg](https://unpkg.com/) CDN, which is a 
-"fast, global content delivery network for everything on npm".  To use it, include a script tag like this in your file:  
+A simple way to load the library in a browser is by using the [unpkg](https://unpkg.com/) CDN, which is a
+"fast, global content delivery network for everything on npm".  To use it, include a script tag like this in your file:
 
 ```
 <script src="https://unpkg.com/ynab@latest/dist/browser/ynab.js" async></script>
@@ -132,7 +132,7 @@ The following methods are available in this library. For more details on paramet
 | **Transactions**           | [transactions.getTransactions(budgetId)](docs/TransactionsApi.md#get_transactions)                                                      | Returns budget transactions                         |
 |                            | [transactions.getTransactionsByAccount(budgetId, accountId)](docs/TransactionsApi.md#get_transactions_by_account)                            | Returns all transactions for a specified account    |
 |                            | [transactions.getTransactionsByCategory(budgetId, categoryId)](docs/TransactionsApi.md#get_transactions_by_category)                          | Returns all transactions for a specified category   |
-|                            | [transactions.getTransactionsById(budgetId, transactionId)](docs/TransactionsApi.md#get_transactions_by_id)                                      | Returns a single transaction                        |
+|                            | [transactions.getTransactionById(budgetId, transactionId)](docs/TransactionsApi.md#get_transaction_by_id)                                      | Returns a single transaction                        |
 |                            | [transactions.updateTransaction(budgetId, transactionId, transaction)](docs/TransactionsApi.md#update_transaction)                                 | Updates a transaction                               |
 |                            | [transactions.createTransaction(budgetId, transaction)](docs/TransactionsApi.md#create_transaction)                                     | Creates a new transaction                           |
 |                            | [transactions.bulkCreateTransactions(budgetId, transactions)](docs/TransactionsApi.md#bulk_create_transactions)                        | Creates multiple transactions                       |

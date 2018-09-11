@@ -278,7 +278,7 @@ describe("API requests", () => {
 
       const transactionId = "TransactionId";
       const returnedResponse = await callApiAndVerifyResponse(
-        () => ynabAPI.transactions.getTransactionsById(budgetId, transactionId),
+        () => ynabAPI.transactions.getTransactionById(budgetId, transactionId),
         factories.transactionResponseFactory.build()
       );
       verifyRequestDetails(

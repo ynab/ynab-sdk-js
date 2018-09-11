@@ -6,10 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**bulkCreateTransactions**](TransactionsApi.md#bulkCreateTransactions) | **POST** /budgets/{budget_id}/transactions/bulk | Bulk create transactions
 [**createTransaction**](TransactionsApi.md#createTransaction) | **POST** /budgets/{budget_id}/transactions | Create new transaction
+[**getTransactionById**](TransactionsApi.md#getTransactionById) | **GET** /budgets/{budget_id}/transactions/{transaction_id} | Single transaction
 [**getTransactions**](TransactionsApi.md#getTransactions) | **GET** /budgets/{budget_id}/transactions | List transactions
 [**getTransactionsByAccount**](TransactionsApi.md#getTransactionsByAccount) | **GET** /budgets/{budget_id}/accounts/{account_id}/transactions | List account transactions
 [**getTransactionsByCategory**](TransactionsApi.md#getTransactionsByCategory) | **GET** /budgets/{budget_id}/categories/{category_id}/transactions | List category transactions
-[**getTransactionsById**](TransactionsApi.md#getTransactionsById) | **GET** /budgets/{budget_id}/transactions/{transaction_id} | Single transaction
 [**getTransactionsByPayee**](TransactionsApi.md#getTransactionsByPayee) | **GET** /budgets/{budget_id}/payees/{payee_id}/transactions | List payee transactions
 [**updateTransaction**](TransactionsApi.md#updateTransaction) | **PUT** /budgets/{budget_id}/transactions/{transaction_id} | Updates an existing transaction
 
@@ -47,6 +47,25 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
  **transaction** | [**SaveTransactionWrapper**](SaveTransactionWrapper.md)| The Transaction to create. | 
+
+### Return type
+
+[**TransactionResponse**](TransactionResponse.md)
+
+<a name="getTransactionById"></a>
+# **getTransactionById**
+> TransactionResponse getTransactionById(budgetId, transactionId)
+
+Single transaction
+
+Returns a single transaction
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
+ **transactionId** | [**String**](.md)| The ID of the Transaction. | 
 
 ### Return type
 
@@ -113,25 +132,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**HybridTransactionsResponse**](HybridTransactionsResponse.md)
-
-<a name="getTransactionsById"></a>
-# **getTransactionsById**
-> TransactionResponse getTransactionsById(budgetId, transactionId)
-
-Single transaction
-
-Returns a single transaction
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **budgetId** | [**String**](.md)| The ID of the Budget.  \&quot;last-used\&quot; can also be used to specify the last used budget. | 
- **transactionId** | [**String**](.md)| The ID of the Transaction. | 
-
-### Return type
-
-[**TransactionResponse**](TransactionResponse.md)
 
 <a name="getTransactionsByPayee"></a>
 # **getTransactionsByPayee**

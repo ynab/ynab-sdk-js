@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.3.0";
+const USER_AGENT = "api_client/js/1.5.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -4022,6 +4022,50 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Returns a single transaction
+         * @summary Single transaction
+         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionById(budget_id: string, transaction_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionById.');
+            }
+            // verify required parameter 'transaction_id' is not null or undefined
+            if (transaction_id === null || transaction_id === undefined) {
+                throw new RequiredError('transaction_id','Required parameter transaction_id was null or undefined when calling getTransactionById.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns budget transactions
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -4165,50 +4209,6 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns a single transaction
-         * @summary Single transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
-         * @param {*} [options] - Override http request options.
-         * @throws {RequiredError}
-         */
-        getTransactionsById(budget_id: string, transaction_id: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budget_id' is not null or undefined
-            if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getTransactionsById.');
-            }
-            // verify required parameter 'transaction_id' is not null or undefined
-            if (transaction_id === null || transaction_id === undefined) {
-                throw new RequiredError('transaction_id','Required parameter transaction_id was null or undefined when calling getTransactionsById.');
-            }
-            const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
-                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter["User-Agent"] = USER_AGENT;
-            localVarHeaderParameter["Accept"] = "application/json";
-
-            // authentication bearer required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = configuration.apiKey;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -4381,6 +4381,28 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Returns a single transaction
+         * @summary Single transaction
+         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionById(budget_id, transaction_id, options);
+            return (fetchFunction: FetchAPI = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
          * Returns budget transactions
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -4439,28 +4461,6 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          */
         getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, options);
-            return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        return response.json().then((e) => {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
-            };
-        },
-        /**
-         * Returns a single transaction
-         * @summary Single transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
-         * @param {*} [options] - Override http request options.
-         * @throws {RequiredError}
-         */
-        getTransactionsById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
-            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsById(budget_id, transaction_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -4552,6 +4552,17 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
             return TransactionsApiFp(configuration).createTransaction(budget_id, transaction, options)();
         },
         /**
+         * Returns a single transaction
+         * @summary Single transaction
+         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getTransactionById(budget_id: string, transaction_id: string, options?: any) {
+            return TransactionsApiFp(configuration).getTransactionById(budget_id, transaction_id, options)();
+        },
+        /**
          * Returns budget transactions
          * @summary List transactions
          * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -4588,17 +4599,6 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
          */
         getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
             return TransactionsApiFp(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, options)();
-        },
-        /**
-         * Returns a single transaction
-         * @summary Single transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
-         * @param {*} [options] - Override http request options.
-         * @throws {RequiredError}
-         */
-        getTransactionsById(budget_id: string, transaction_id: string, options?: any) {
-            return TransactionsApiFp(configuration).getTransactionsById(budget_id, transaction_id, options)();
         },
         /**
          * Returns all transactions for a specified payee
@@ -4662,6 +4662,19 @@ export class TransactionsApi extends BaseAPI {
     }
 
     /**
+     * Returns a single transaction
+     * @summary Single transaction
+     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} transaction_id - The ID of the Transaction.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    public getTransactionById(budget_id: string, transaction_id: string, options?: any) {
+        return TransactionsApiFp(this.configuration).getTransactionById(budget_id, transaction_id, options)();
+    }
+
+    /**
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
@@ -4703,19 +4716,6 @@ export class TransactionsApi extends BaseAPI {
      */
     public getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any) {
         return TransactionsApiFp(this.configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, options)();
-    }
-
-    /**
-     * Returns a single transaction
-     * @summary Single transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} transaction_id - The ID of the Transaction.
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     * @memberof TransactionsApi
-     */
-    public getTransactionsById(budget_id: string, transaction_id: string, options?: any) {
-        return TransactionsApiFp(this.configuration).getTransactionsById(budget_id, transaction_id, options)();
     }
 
     /**

@@ -13,14 +13,6 @@ cd(rootFolder);
 exec(`rm -f ${specFilename}`);
 exec(`wget https://api.youneedabudget.com/papi/${specFilename}`);
 
-// Replace nullable types defined as i.e. ["string", "null"] in the spec to simply "string" as the generator does not understand the nullable format.
-// Examples:
-//   ["string", "null"] => "string"
-//   ["number", "null"] => "number"
-exec(
-  `sed -E -i '' 's/\\[\\"(string|number|integer|array|boolean)\\"\\, \\"null\\"\\]/"\\1"/g' ${specFilename}`
-);
-
 // Update config file with latest package info
 const package = require("./package.json");
 swaggerConfig = require(swaggerConfigFilename);
