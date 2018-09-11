@@ -1013,7 +1013,7 @@
         "tags": ["Transactions"],
         "summary": "Single transaction",
         "description": "Returns a single transaction",
-        "operationId": "getTransactionsById",
+        "operationId": "getTransactionById",
         "produces": ["application/json"],
         "parameters": [
           {
