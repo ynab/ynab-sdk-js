@@ -24,7 +24,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CategoriesResponse**](CategoriesResponse.md)
+[**CategoriesResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+CategoriesResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getCategoryById"></a>
 # **getCategoryById**
@@ -43,5 +43,5 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CategoryResponse**](CategoryResponse.md)
+[**CategoryResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+CategoryResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

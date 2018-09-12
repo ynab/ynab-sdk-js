@@ -25,7 +25,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MonthDetailResponse**](MonthDetailResponse.md)
+[**MonthDetailResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+MonthDetailResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getBudgetMonths"></a>
 # **getBudgetMonths**
@@ -43,5 +43,5 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MonthSummariesResponse**](MonthSummariesResponse.md)
+[**MonthSummariesResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+MonthSummariesResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

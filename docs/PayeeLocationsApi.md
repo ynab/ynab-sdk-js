@@ -26,7 +26,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PayeeLocationResponse**](PayeeLocationResponse.md)
+[**PayeeLocationResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+PayeeLocationResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getPayeeLocations"></a>
 # **getPayeeLocations**
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PayeeLocationsResponse**](PayeeLocationsResponse.md)
+[**PayeeLocationsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+PayeeLocationsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getPayeeLocationsByPayee"></a>
 # **getPayeeLocationsByPayee**
@@ -63,5 +63,5 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PayeeLocationsResponse**](PayeeLocationsResponse.md)
+[**PayeeLocationsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+PayeeLocationsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

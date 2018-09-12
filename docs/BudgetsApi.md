@@ -26,7 +26,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BudgetDetailResponse**](BudgetDetailResponse.md)
+[**BudgetDetailResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+BudgetDetailResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getBudgetSettingsById"></a>
 # **getBudgetSettingsById**
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BudgetSettingsResponse**](BudgetSettingsResponse.md)
+[**BudgetSettingsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+BudgetSettingsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getBudgets"></a>
 # **getBudgets**
@@ -59,5 +59,5 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BudgetSummaryResponse**](BudgetSummaryResponse.md)
+[**BudgetSummaryResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+BudgetSummaryResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

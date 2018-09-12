@@ -31,7 +31,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BulkResponse**](BulkResponse.md)
+[**BulkResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+BulkResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="createTransaction"></a>
 # **createTransaction**
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionResponse**](TransactionResponse.md)
+[**TransactionResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+TransactionResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getTransactionById"></a>
 # **getTransactionById**
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionResponse**](TransactionResponse.md)
+[**TransactionResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+TransactionResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getTransactions"></a>
 # **getTransactions**
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionsResponse**](TransactionsResponse.md)
+[**TransactionsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+TransactionsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getTransactionsByAccount"></a>
 # **getTransactionsByAccount**
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionsResponse**](TransactionsResponse.md)
+[**TransactionsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+TransactionsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getTransactionsByCategory"></a>
 # **getTransactionsByCategory**
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HybridTransactionsResponse**](HybridTransactionsResponse.md)
+[**HybridTransactionsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+HybridTransactionsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getTransactionsByPayee"></a>
 # **getTransactionsByPayee**
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HybridTransactionsResponse**](HybridTransactionsResponse.md)
+[**HybridTransactionsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+HybridTransactionsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="updateTransaction"></a>
 # **updateTransaction**
@@ -172,5 +172,5 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionResponse**](TransactionResponse.md)
+[**TransactionResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+TransactionResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

@@ -25,7 +25,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PayeeResponse**](PayeeResponse.md)
+[**PayeeResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+PayeeResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getPayees"></a>
 # **getPayees**
@@ -43,5 +43,5 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PayeesResponse**](PayeesResponse.md)
+[**PayeesResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+PayeesResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

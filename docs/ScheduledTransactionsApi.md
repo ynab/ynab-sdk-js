@@ -25,7 +25,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScheduledTransactionResponse**](ScheduledTransactionResponse.md)
+[**ScheduledTransactionResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+ScheduledTransactionResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getScheduledTransactions"></a>
 # **getScheduledTransactions**
@@ -43,5 +43,5 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScheduledTransactionsResponse**](ScheduledTransactionsResponse.md)
+[**ScheduledTransactionsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+ScheduledTransactionsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

@@ -40,4 +40,4 @@ exec(`docker run --rm -v ${rootFolder}:/local swaggerapi/swagger-codegen-cli:lat
       -t "/local/swagger-templates" \
       -o "/local/tmp" `);
 
-exec(`rm -rf ./docs && mv ./tmp/docs ./docs && rm -rf ./tmp`);
+exec(`rm -rf ./docs/* && mv ./tmp/docs/*Api.md ./docs && rm -rf ./tmp`);

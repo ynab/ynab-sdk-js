@@ -25,7 +25,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountResponse**](AccountResponse.md)
+[**AccountResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+AccountResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
 <a name="getAccounts"></a>
 # **getAccounts**
@@ -43,5 +43,5 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountsResponse**](AccountsResponse.md)
+[**AccountsResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+AccountsResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 

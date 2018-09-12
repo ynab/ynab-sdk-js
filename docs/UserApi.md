@@ -20,5 +20,5 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserResponse**](UserResponse.md)
+[**UserResponse**](https://github.com/ynab/ynab-sdk-js/search?q=%22export+interface+User%22Response%22+filename%3Aapi.d.ts+path%3Adist%2Fesm&unscoped_q=%22export+interface+UserResponse%22+filename%3Aapi.d.ts+path%3Adist%2Fesm)
 
