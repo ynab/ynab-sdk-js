@@ -48,6 +48,7 @@ export const accountFactory = Factory.makeFactory({
   balance: 5000,
   cleared_balance: 2000,
   uncleared_balance: 3000,
+  transfer_payee_id: null,
   deleted: false
 });
 
@@ -214,6 +215,7 @@ export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   category_id: Factory.each(i => `category_id #${i}`),
   category_name: "Test Category",
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  transfer_transaction_id: null,
   import_id: null,
   subtransactions: subTransactionFactory.buildList(3),
   deleted: false
@@ -235,6 +237,7 @@ export const hybridTransactionFactory = Factory.makeFactory<
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  transfer_transaction_id: null,
   import_id: null,
   account_name: "Test Account",
   payee_name: "Test Payee",
@@ -264,6 +267,7 @@ export const transactionSummaryFactory = Factory.makeFactory<
   payee_id: Factory.each(i => `payee_id #${i}`),
   category_id: Factory.each(i => `category_id #${i}`),
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
+  transfer_transaction_id: null,
   import_id: null,
   deleted: false
 });
@@ -298,10 +302,16 @@ export const saveTransacionFactory = Factory.makeFactory<api.SaveTransaction>({
   import_id: null
 });
 
-export const saveTransactionWrapperFactory = Factory.makeFactory<
+export const saveSingleTransactionWrapperFactory = Factory.makeFactory<
   api.SaveTransactionWrapper
 >({
   transaction: saveTransacionFactory.build()
+});
+
+export const saveMultipleTransactionsWrapperFactory = Factory.makeFactory<
+  api.SaveTransactionsWrapper
+>({
+  transactions: saveTransacionFactory.buildList(3)
 });
 
 export const bulkTransactionsFactory = Factory.makeFactory<
@@ -320,6 +330,14 @@ export const bulkIdsFactory = Factory.makeFactory<api.BulkIds>({
     "D99C9967-852C-4FE4-AD62-F8E4B41F5A4E"
   ],
   duplicate_import_ids: []
+});
+
+export const saveTransactionsResponseFactory = Factory.makeFactory<api.SaveTransactionsResponse>({
+  data: Factory.makeFactory({
+    transaction_ids: ["1"],
+    transaction: transactionFactory.build(),
+    transactions: transactionFactory.buildList(3)
+  })
 });
 
 export const bulkResponseFactory = Factory.makeFactory<api.BulkResponse>({
