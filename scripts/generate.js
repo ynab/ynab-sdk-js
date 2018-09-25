@@ -3,7 +3,7 @@
 set("-x");
 set("-e");
 
-const rootFolder = __dirname;
+const rootFolder = require("path").join(__dirname, "../");
 const specFilename = `spec-v1-swagger.json`;
 const swaggerConfigFilename = `./config.json`;
 
