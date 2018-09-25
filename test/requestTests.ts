@@ -1,5 +1,5 @@
 import * as ynab from "../src/index";
-import chai = require("chai");
+import * as chai from "chai";
 
 const Validator = require("swagger-model-validator");
 const swaggerApiDef = require("../spec-v1-swagger.json");
