@@ -1088,10 +1088,10 @@ export interface PayeesWrapper {
 export interface SaveMonthCategory {
     /**
      * Budgeted amount in milliunits format
-     * @type {string}
+     * @type {number}
      * @memberof SaveMonthCategory
      */
-    budgeted: string;
+    budgeted: number;
 }
 
 /**
