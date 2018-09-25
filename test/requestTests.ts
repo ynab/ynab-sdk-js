@@ -9,8 +9,6 @@ const expect = chai.expect;
 chai.config.includeStack = true;
 
 // We've made some modifications to factory.ts
-import * as Factory from "./factory";
-import * as api from "../src/api";
 import * as factories from "./factories";
 
 import * as fetchMock from "fetch-mock";
