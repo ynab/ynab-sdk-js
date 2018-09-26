@@ -8,7 +8,7 @@ const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
 
 (async function() {
   try {
-    const transaction = (await ynabAPI.transactions.getTransactionsById(
+    const transaction = (await ynabAPI.transactions.getTransactionById(
       budgetId,
       transactionId
     )).data.transaction;

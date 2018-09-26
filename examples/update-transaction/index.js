@@ -6,7 +6,7 @@ const budgetId = "f968197b-2863-473a-8974-c2406dbe7f0d";
 const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
 (async function () {
     try {
-        const transaction = (await ynabAPI.transactions.getTransactionsById(budgetId, transactionId)).data.transaction;
+        const transaction = (await ynabAPI.transactions.getTransactionById(budgetId, transactionId)).data.transaction;
         transaction.memo = "Updated memo";
         transaction.flag_color = ynab.SaveTransaction.FlagColorEnum.Blue;
         await ynabAPI.transactions.updateTransaction(budgetId, transactionId, {
