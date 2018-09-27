@@ -1,5 +1,5 @@
 import * as ynab from "../src/index";
-import chai = require("chai");
+import * as chai from "chai";
 
 const Validator = require("swagger-model-validator");
 const swaggerApiDef = require("../spec-v1-swagger.json");
@@ -9,8 +9,6 @@ const expect = chai.expect;
 chai.config.includeStack = true;
 
 // We've made some modifications to factory.ts
-import * as Factory from "./factory";
-import * as api from "../src/api";
 import * as factories from "./factories";
 
 import * as fetchMock from "fetch-mock";
@@ -370,9 +368,29 @@ describe("API requests", () => {
         () =>
           ynabAPI.transactions.createTransaction(
             budgetId,
-            factories.saveTransactionWrapperFactory.build()
+            factories.saveMultipleTransactionsWrapperFactory.build()
           ),
-        factories.transactionResponseFactory.build()
+        factories.saveTransactionsResponseFactory.build()
+      );
+
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/transactions`,
+        API_KEY,
+        1,
+        "POST"
+      );
+    });
+
+    it("Should create multple transactions", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.transactions.createTransaction(
+            budgetId,
+            factories.saveMultipleTransactionsWrapperFactory.build()
+          ),
+        factories.saveTransactionsResponseFactory.build()
       );
 
       verifyRequestDetails(
@@ -391,7 +409,7 @@ describe("API requests", () => {
           ynabAPI.transactions.updateTransaction(
             budgetId,
             transactionId,
-            factories.saveTransactionWrapperFactory.build()
+            factories.saveSingleTransactionWrapperFactory.build()
           ),
         factories.transactionResponseFactory.build()
       );

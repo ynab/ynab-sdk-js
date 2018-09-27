@@ -3,9 +3,9 @@
 set("-x");
 set("-e");
 
-const rootFolder = __dirname;
+const rootFolder = require("path").join(__dirname, "../");
 const specFilename = `spec-v1-swagger.json`;
-const swaggerConfigFilename = `./config.json`;
+const swaggerConfigFilename = `config.json`;
 
 cd(rootFolder);
 
@@ -14,8 +14,8 @@ exec(`rm -f ${specFilename}`);
 exec(`wget https://api.youneedabudget.com/papi/${specFilename}`);
 
 // Update config file with latest package info
-const package = require("./package.json");
-swaggerConfig = require(swaggerConfigFilename);
+const package = require("../package.json");
+swaggerConfig = require(`../${swaggerConfigFilename}`);
 swaggerConfig.npmName = package.name;
 swaggerConfig.npmVersion = package.version;
 writeFile(swaggerConfigFilename, JSON.stringify(swaggerConfig, null, 2));

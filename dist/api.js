@@ -16,7 +16,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/1.5.0";
+const USER_AGENT = "api_client/js/1.6.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -323,8 +323,8 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} account_id - The ID of the Account.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} account_id - The id of the account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -363,7 +363,7 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -405,8 +405,8 @@ exports.AccountsApiFp = function (configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} account_id - The ID of the Account.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} account_id - The id of the account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -428,7 +428,7 @@ exports.AccountsApiFp = function (configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -458,8 +458,8 @@ exports.AccountsApiFactory = function (configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} account_id - The ID of the Account.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} account_id - The id of the account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -469,7 +469,7 @@ exports.AccountsApiFactory = function (configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -488,8 +488,8 @@ class AccountsApi extends BaseAPI {
     /**
      * Returns a single account
      * @summary Single account
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} account_id - The ID of the Account.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} account_id - The id of the account
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
@@ -500,7 +500,7 @@ class AccountsApi extends BaseAPI {
     /**
      * Returns all accounts
      * @summary Account list
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
@@ -519,7 +519,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -555,9 +555,9 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Returns settings for a budget.
+         * Returns settings for a budget
          * @summary Budget Settings
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -589,7 +589,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Returns budgets list with summary information.
+         * Returns budgets list with summary information
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -627,7 +627,7 @@ exports.BudgetsApiFp = function (configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -648,9 +648,9 @@ exports.BudgetsApiFp = function (configuration) {
             };
         },
         /**
-         * Returns settings for a budget.
+         * Returns settings for a budget
          * @summary Budget Settings
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -670,7 +670,7 @@ exports.BudgetsApiFp = function (configuration) {
             };
         },
         /**
-         * Returns budgets list with summary information.
+         * Returns budgets list with summary information
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -701,7 +701,7 @@ exports.BudgetsApiFactory = function (configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -710,9 +710,9 @@ exports.BudgetsApiFactory = function (configuration) {
             return exports.BudgetsApiFp(configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
         },
         /**
-         * Returns settings for a budget.
+         * Returns settings for a budget
          * @summary Budget Settings
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -720,7 +720,7 @@ exports.BudgetsApiFactory = function (configuration) {
             return exports.BudgetsApiFp(configuration).getBudgetSettingsById(budget_id, options)();
         },
         /**
-         * Returns budgets list with summary information.
+         * Returns budgets list with summary information
          * @summary List budgets
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -740,7 +740,7 @@ class BudgetsApi extends BaseAPI {
     /**
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * @summary Single budget
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -750,9 +750,9 @@ class BudgetsApi extends BaseAPI {
         return exports.BudgetsApiFp(this.configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
     }
     /**
-     * Returns settings for a budget.
+     * Returns settings for a budget
      * @summary Budget Settings
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
@@ -761,7 +761,7 @@ class BudgetsApi extends BaseAPI {
         return exports.BudgetsApiFp(this.configuration).getBudgetSettingsById(budget_id, options)();
     }
     /**
-     * Returns budgets list with summary information.
+     * Returns budgets list with summary information
      * @summary List budgets
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -779,9 +779,9 @@ exports.BudgetsApi = BudgetsApi;
 exports.CategoriesApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Returns all categories grouped by category group.
+         * Returns all categories grouped by category group
          * @summary List categories
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -815,8 +815,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} category_id - The ID of the Category.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -852,6 +852,105 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Returns a single category for a specific budget month
+         * @summary Single category for a specific budget month
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+         * @param {string} category_id - The id of the category
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getMonthCategoryById(budget_id, month, category_id, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getMonthCategoryById.');
+            }
+            // verify required parameter 'month' is not null or undefined
+            if (month === null || month === undefined) {
+                throw new RequiredError('month', 'Required parameter month was null or undefined when calling getMonthCategoryById.');
+            }
+            // verify required parameter 'category_id' is not null or undefined
+            if (category_id === null || category_id === undefined) {
+                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getMonthCategoryById.');
+            }
+            const localVarPath = `/budgets/{budget_id}/months/{month}/categories/{category_id}`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)))
+                .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update an existing month category
+         * @summary Update an existing month category
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} category_id - The id of the category
+         * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        updateMonthCategory(budget_id, month, category_id, month_category, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateMonthCategory.');
+            }
+            // verify required parameter 'month' is not null or undefined
+            if (month === null || month === undefined) {
+                throw new RequiredError('month', 'Required parameter month was null or undefined when calling updateMonthCategory.');
+            }
+            // verify required parameter 'category_id' is not null or undefined
+            if (category_id === null || category_id === undefined) {
+                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling updateMonthCategory.');
+            }
+            // verify required parameter 'month_category' is not null or undefined
+            if (month_category === null || month_category === undefined) {
+                throw new RequiredError('month_category', 'Required parameter month_category was null or undefined when calling updateMonthCategory.');
+            }
+            const localVarPath = `/budgets/{budget_id}/months/{month}/categories/{category_id}`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)))
+                .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = JSON.stringify(month_category || {});
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 /**
@@ -861,9 +960,9 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
 exports.CategoriesApiFp = function (configuration) {
     return {
         /**
-         * Returns all categories grouped by category group.
+         * Returns all categories grouped by category group
          * @summary List categories
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -885,13 +984,62 @@ exports.CategoriesApiFp = function (configuration) {
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} category_id - The ID of the Category.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategoryById(budget_id, category_id, options) {
             const localVarFetchArgs = exports.CategoriesApiFetchParamCreator(configuration).getCategoryById(budget_id, category_id, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
+         * Returns a single category for a specific budget month
+         * @summary Single category for a specific budget month
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+         * @param {string} category_id - The id of the category
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getMonthCategoryById(budget_id, month, category_id, options) {
+            const localVarFetchArgs = exports.CategoriesApiFetchParamCreator(configuration).getMonthCategoryById(budget_id, month, category_id, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
+         * Update an existing month category
+         * @summary Update an existing month category
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} category_id - The id of the category
+         * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        updateMonthCategory(budget_id, month, category_id, month_category, options) {
+            const localVarFetchArgs = exports.CategoriesApiFetchParamCreator(configuration).updateMonthCategory(budget_id, month, category_id, month_category, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -914,9 +1062,9 @@ exports.CategoriesApiFp = function (configuration) {
 exports.CategoriesApiFactory = function (configuration) {
     return {
         /**
-         * Returns all categories grouped by category group.
+         * Returns all categories grouped by category group
          * @summary List categories
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -926,13 +1074,38 @@ exports.CategoriesApiFactory = function (configuration) {
         /**
          * Returns a single category
          * @summary Single category
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} category_id - The ID of the Category.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         getCategoryById(budget_id, category_id, options) {
             return exports.CategoriesApiFp(configuration).getCategoryById(budget_id, category_id, options)();
+        },
+        /**
+         * Returns a single category for a specific budget month
+         * @summary Single category for a specific budget month
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+         * @param {string} category_id - The id of the category
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        getMonthCategoryById(budget_id, month, category_id, options) {
+            return exports.CategoriesApiFp(configuration).getMonthCategoryById(budget_id, month, category_id, options)();
+        },
+        /**
+         * Update an existing month category
+         * @summary Update an existing month category
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} category_id - The id of the category
+         * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        updateMonthCategory(budget_id, month, category_id, month_category, options) {
+            return exports.CategoriesApiFp(configuration).updateMonthCategory(budget_id, month, category_id, month_category, options)();
         },
     };
 };
@@ -944,9 +1117,9 @@ exports.CategoriesApiFactory = function (configuration) {
  */
 class CategoriesApi extends BaseAPI {
     /**
-     * Returns all categories grouped by category group.
+     * Returns all categories grouped by category group
      * @summary List categories
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
@@ -957,14 +1130,41 @@ class CategoriesApi extends BaseAPI {
     /**
      * Returns a single category
      * @summary Single category
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} category_id - The ID of the Category.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
     getCategoryById(budget_id, category_id, options) {
         return exports.CategoriesApiFp(this.configuration).getCategoryById(budget_id, category_id, options)();
+    }
+    /**
+     * Returns a single category for a specific budget month
+     * @summary Single category for a specific budget month
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {string} category_id - The id of the category
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    getMonthCategoryById(budget_id, month, category_id, options) {
+        return exports.CategoriesApiFp(this.configuration).getMonthCategoryById(budget_id, month, category_id, options)();
+    }
+    /**
+     * Update an existing month category
+     * @summary Update an existing month category
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {string} category_id - The id of the category
+     * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    updateMonthCategory(budget_id, month, category_id, month_category, options) {
+        return exports.CategoriesApiFp(this.configuration).updateMonthCategory(budget_id, month, category_id, month_category, options)();
     }
 }
 exports.CategoriesApi = CategoriesApi;
@@ -977,8 +1177,8 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1017,7 +1217,7 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1059,8 +1259,8 @@ exports.MonthsApiFp = function (configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1082,7 +1282,7 @@ exports.MonthsApiFp = function (configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1112,8 +1312,8 @@ exports.MonthsApiFactory = function (configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1123,7 +1323,7 @@ exports.MonthsApiFactory = function (configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1142,8 +1342,8 @@ class MonthsApi extends BaseAPI {
     /**
      * Returns a single budget month
      * @summary Single budget month
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {Date} month - The Budget Month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
@@ -1154,7 +1354,7 @@ class MonthsApi extends BaseAPI {
     /**
      * Returns all budget months
      * @summary List budget months
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
@@ -1173,7 +1373,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -1213,7 +1413,7 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1247,8 +1447,8 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - ID of payee
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - id of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1295,7 +1495,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -1318,7 +1518,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1340,8 +1540,8 @@ exports.PayeeLocationsApiFp = function (configuration) {
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - ID of payee
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - id of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1371,7 +1571,7 @@ exports.PayeeLocationsApiFactory = function (configuration) {
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {string} payee_location_id - ID of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -1382,7 +1582,7 @@ exports.PayeeLocationsApiFactory = function (configuration) {
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1392,8 +1592,8 @@ exports.PayeeLocationsApiFactory = function (configuration) {
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - ID of payee
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - id of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1412,7 +1612,7 @@ class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns a single payee location
      * @summary Single payee location
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} payee_location_id - ID of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -1424,7 +1624,7 @@ class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns all payee locations
      * @summary List payee locations
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
@@ -1435,8 +1635,8 @@ class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns all payee locations for the specified payee
      * @summary List locations for a payee
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} payee_id - ID of payee
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} payee_id - id of payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
@@ -1455,8 +1655,8 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - The ID of the Payee.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - The id of the payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1495,7 +1695,7 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1537,8 +1737,8 @@ exports.PayeesApiFp = function (configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - The ID of the Payee.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - The id of the payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1560,7 +1760,7 @@ exports.PayeesApiFp = function (configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1590,8 +1790,8 @@ exports.PayeesApiFactory = function (configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - The ID of the Payee.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - The id of the payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1601,7 +1801,7 @@ exports.PayeesApiFactory = function (configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1620,8 +1820,8 @@ class PayeesApi extends BaseAPI {
     /**
      * Returns single payee
      * @summary Single payee
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} payee_id - The ID of the Payee.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} payee_id - The id of the payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
@@ -1632,7 +1832,7 @@ class PayeesApi extends BaseAPI {
     /**
      * Returns all payees
      * @summary List payees
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
@@ -1651,8 +1851,8 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} scheduled_transaction_id - The id of the scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1691,7 +1891,7 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1733,8 +1933,8 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} scheduled_transaction_id - The id of the scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1756,7 +1956,7 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1786,8 +1986,8 @@ exports.ScheduledTransactionsApiFactory = function (configuration) {
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} scheduled_transaction_id - The id of the scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1797,7 +1997,7 @@ exports.ScheduledTransactionsApiFactory = function (configuration) {
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1816,8 +2016,8 @@ class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns a single scheduled transaction
      * @summary Single scheduled transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} scheduled_transaction_id - The ID of the Scheduled Transaction.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} scheduled_transaction_id - The id of the scheduled transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
@@ -1828,7 +2028,7 @@ class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns all scheduled transactions
      * @summary List scheduled transactions
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
@@ -1847,8 +2047,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Creates multiple transactions
          * @summary Bulk create transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {BulkTransactions} transactions - The list of Transactions to create.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {BulkTransactions} transactions - The list of transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1886,21 +2086,21 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Creates a transaction
-         * @summary Create new transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {SaveTransactionWrapper} transaction - The Transaction to create.
+         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+         * @summary Create a single transaction or multiple transactions
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id, transaction, options = {}) {
+        createTransaction(budget_id, save_transactions, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling createTransaction.');
             }
-            // verify required parameter 'transaction' is not null or undefined
-            if (transaction === null || transaction === undefined) {
-                throw new RequiredError('transaction', 'Required parameter transaction was null or undefined when calling createTransaction.');
+            // verify required parameter 'save_transactions' is not null or undefined
+            if (save_transactions === null || save_transactions === undefined) {
+                throw new RequiredError('save_transactions', 'Required parameter save_transactions was null or undefined when calling createTransaction.');
             }
             const localVarPath = `/budgets/{budget_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
@@ -1920,7 +2120,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            localVarRequestOptions.body = JSON.stringify(transaction || {});
+            localVarRequestOptions.body = JSON.stringify(save_transactions || {});
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -1929,8 +2129,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} transaction_id - The id of the transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1969,8 +2169,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2011,9 +2211,9 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} account_id - The ID of the Account.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} account_id - The id of the account
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2059,9 +2259,9 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} category_id - The ID of the Category.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} category_id - The id of the category
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2107,9 +2307,9 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Returns all transactions for a specified payee
          * @summary List payee transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - The ID of the Payee.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - The id of the payee
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2155,9 +2355,9 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
-         * @param {SaveTransactionWrapper} transaction - The Transaction to update.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} transaction_id - The id of the transaction
+         * @param {SaveTransactionWrapper} transaction - The transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2210,8 +2410,8 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Creates multiple transactions
          * @summary Bulk create transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {BulkTransactions} transactions - The list of Transactions to create.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {BulkTransactions} transactions - The list of transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2231,15 +2431,15 @@ exports.TransactionsApiFp = function (configuration) {
             };
         },
         /**
-         * Creates a transaction
-         * @summary Create new transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {SaveTransactionWrapper} transaction - The Transaction to create.
+         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+         * @summary Create a single transaction or multiple transactions
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id, transaction, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, transaction, options);
+        createTransaction(budget_id, save_transactions, options) {
+            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, save_transactions, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2256,8 +2456,8 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} transaction_id - The id of the transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2279,8 +2479,8 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2303,9 +2503,9 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} account_id - The ID of the Account.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} account_id - The id of the account
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2328,9 +2528,9 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} category_id - The ID of the Category.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} category_id - The id of the category
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2353,9 +2553,9 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Returns all transactions for a specified payee
          * @summary List payee transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - The ID of the Payee.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - The id of the payee
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2378,9 +2578,9 @@ exports.TransactionsApiFp = function (configuration) {
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
-         * @param {SaveTransactionWrapper} transaction - The Transaction to update.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} transaction_id - The id of the transaction
+         * @param {SaveTransactionWrapper} transaction - The transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2410,8 +2610,8 @@ exports.TransactionsApiFactory = function (configuration) {
         /**
          * Creates multiple transactions
          * @summary Bulk create transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {BulkTransactions} transactions - The list of Transactions to create.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {BulkTransactions} transactions - The list of transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2419,21 +2619,21 @@ exports.TransactionsApiFactory = function (configuration) {
             return exports.TransactionsApiFp(configuration).bulkCreateTransactions(budget_id, transactions, options)();
         },
         /**
-         * Creates a transaction
-         * @summary Create new transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {SaveTransactionWrapper} transaction - The Transaction to create.
+         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+         * @summary Create a single transaction or multiple transactions
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id, transaction, options) {
-            return exports.TransactionsApiFp(configuration).createTransaction(budget_id, transaction, options)();
+        createTransaction(budget_id, save_transactions, options) {
+            return exports.TransactionsApiFp(configuration).createTransaction(budget_id, save_transactions, options)();
         },
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} transaction_id - The id of the transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2443,8 +2643,8 @@ exports.TransactionsApiFactory = function (configuration) {
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2455,9 +2655,9 @@ exports.TransactionsApiFactory = function (configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} account_id - The ID of the Account.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} account_id - The id of the account
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2468,9 +2668,9 @@ exports.TransactionsApiFactory = function (configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} category_id - The ID of the Category.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} category_id - The id of the category
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2481,9 +2681,9 @@ exports.TransactionsApiFactory = function (configuration) {
         /**
          * Returns all transactions for a specified payee
          * @summary List payee transactions
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} payee_id - The ID of the Payee.
-         * @param {Date} [since_date] - Only return transactions on or after this date.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} payee_id - The id of the payee
+         * @param {Date} [since_date] - Only return transactions on or after this date
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2494,9 +2694,9 @@ exports.TransactionsApiFactory = function (configuration) {
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-         * @param {string} transaction_id - The ID of the Transaction.
-         * @param {SaveTransactionWrapper} transaction - The Transaction to update.
+         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} transaction_id - The id of the transaction
+         * @param {SaveTransactionWrapper} transaction - The transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2515,8 +2715,8 @@ class TransactionsApi extends BaseAPI {
     /**
      * Creates multiple transactions
      * @summary Bulk create transactions
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {BulkTransactions} transactions - The list of Transactions to create.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {BulkTransactions} transactions - The list of transactions to create
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -2525,22 +2725,22 @@ class TransactionsApi extends BaseAPI {
         return exports.TransactionsApiFp(this.configuration).bulkCreateTransactions(budget_id, transactions, options)();
     }
     /**
-     * Creates a transaction
-     * @summary Create new transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {SaveTransactionWrapper} transaction - The Transaction to create.
+     * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+     * @summary Create a single transaction or multiple transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransaction(budget_id, transaction, options) {
-        return exports.TransactionsApiFp(this.configuration).createTransaction(budget_id, transaction, options)();
+    createTransaction(budget_id, save_transactions, options) {
+        return exports.TransactionsApiFp(this.configuration).createTransaction(budget_id, save_transactions, options)();
     }
     /**
      * Returns a single transaction
      * @summary Single transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} transaction_id - The ID of the Transaction.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} transaction_id - The id of the transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -2551,8 +2751,8 @@ class TransactionsApi extends BaseAPI {
     /**
      * Returns budget transactions
      * @summary List transactions
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2564,9 +2764,9 @@ class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} account_id - The ID of the Account.
-     * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} account_id - The id of the account
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2578,9 +2778,9 @@ class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} category_id - The ID of the Category.
-     * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} category_id - The id of the category
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2592,9 +2792,9 @@ class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} payee_id - The ID of the Payee.
-     * @param {Date} [since_date] - Only return transactions on or after this date.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} payee_id - The id of the payee
+     * @param {Date} [since_date] - Only return transactions on or after this date
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2606,9 +2806,9 @@ class TransactionsApi extends BaseAPI {
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
-     * @param {string} budget_id - The ID of the Budget.  \"last-used\" can also be used to specify the last used budget.
-     * @param {string} transaction_id - The ID of the Transaction.
-     * @param {SaveTransactionWrapper} transaction - The Transaction to update.
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} transaction_id - The id of the transaction
+     * @param {SaveTransactionWrapper} transaction - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
@@ -2625,7 +2825,7 @@ exports.TransactionsApi = TransactionsApi;
 exports.UserApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Returns authenticated user information.
+         * Returns authenticated user information
          * @summary User info
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2661,7 +2861,7 @@ exports.UserApiFetchParamCreator = function (configuration) {
 exports.UserApiFp = function (configuration) {
     return {
         /**
-         * Returns authenticated user information.
+         * Returns authenticated user information
          * @summary User info
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2690,7 +2890,7 @@ exports.UserApiFp = function (configuration) {
 exports.UserApiFactory = function (configuration) {
     return {
         /**
-         * Returns authenticated user information.
+         * Returns authenticated user information
          * @summary User info
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2708,7 +2908,7 @@ exports.UserApiFactory = function (configuration) {
  */
 class UserApi extends BaseAPI {
     /**
-     * Returns authenticated user information.
+     * Returns authenticated user information
      * @summary User info
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
