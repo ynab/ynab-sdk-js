@@ -365,7 +365,7 @@ export interface BulkIdWrapper {
  */
 export interface BulkIds {
     /**
-     * The list of Transaction IDs that were created.
+     * The list of Transaction ids that were created.
      * @type {Array<string>}
      * @memberof BulkIds
      */
@@ -459,19 +459,19 @@ export interface Category {
      */
     note: string;
     /**
-     * Budgeted amount in current month in milliunits format
+     * Budgeted amount in milliunits format
      * @type {number}
      * @memberof Category
      */
     budgeted: number;
     /**
-     * Activity amount in current month in milliunits format
+     * Activity amount in milliunits format
      * @type {number}
      * @memberof Category
      */
     activity: number;
     /**
-     * Balance in current month in milliunits format
+     * Balance in milliunits format
      * @type {number}
      * @memberof Category
      */
@@ -1820,7 +1820,7 @@ export interface CategoryGroupWithCategories {
      */
     deleted: boolean;
     /**
-     * Category group categories
+     * Category group categories.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @type {Array<Category>}
      * @memberof CategoryGroupWithCategories
      */
@@ -2031,7 +2031,7 @@ export interface MonthDetail {
      */
     age_of_money: number;
     /**
-     * the budget month categories
+     * The budget month categories.  Amounts (budgeted, activity, balance, etc.) are specific to the {month} parameter specified.
      * @type {Array<Category>}
      * @memberof MonthDetail
      */
@@ -2546,7 +2546,7 @@ export declare class BudgetsApi extends BaseAPI {
  */
 export declare const CategoriesApiFetchParamCreator: (configuration?: Configuration) => {
     /**
-     * Returns all categories grouped by category group
+     * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary List categories
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
@@ -2554,7 +2554,7 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
      */
     getCategories(budget_id: string, options?: any): FetchArgs;
     /**
-     * Returns a single category
+     * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
@@ -2563,10 +2563,10 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
      */
     getCategoryById(budget_id: string, category_id: string, options?: any): FetchArgs;
     /**
-     * Returns a single category for a specific budget month
+     * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2576,7 +2576,7 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2590,7 +2590,7 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
  */
 export declare const CategoriesApiFp: (configuration?: Configuration) => {
     /**
-     * Returns all categories grouped by category group
+     * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary List categories
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
@@ -2598,7 +2598,7 @@ export declare const CategoriesApiFp: (configuration?: Configuration) => {
      */
     getCategories(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse>;
     /**
-     * Returns a single category
+     * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
@@ -2607,10 +2607,10 @@ export declare const CategoriesApiFp: (configuration?: Configuration) => {
      */
     getCategoryById(budget_id: string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse>;
     /**
-     * Returns a single category for a specific budget month
+     * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2620,7 +2620,7 @@ export declare const CategoriesApiFp: (configuration?: Configuration) => {
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2634,7 +2634,7 @@ export declare const CategoriesApiFp: (configuration?: Configuration) => {
  */
 export declare const CategoriesApiFactory: (configuration?: Configuration) => {
     /**
-     * Returns all categories grouped by category group
+     * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary List categories
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
@@ -2642,7 +2642,7 @@ export declare const CategoriesApiFactory: (configuration?: Configuration) => {
      */
     getCategories(budget_id: string, options?: any): Promise<CategoriesResponse>;
     /**
-     * Returns a single category
+     * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
@@ -2651,10 +2651,10 @@ export declare const CategoriesApiFactory: (configuration?: Configuration) => {
      */
     getCategoryById(budget_id: string, category_id: string, options?: any): Promise<CategoryResponse>;
     /**
-     * Returns a single category for a specific budget month
+     * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2664,7 +2664,7 @@ export declare const CategoriesApiFactory: (configuration?: Configuration) => {
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2680,7 +2680,7 @@ export declare const CategoriesApiFactory: (configuration?: Configuration) => {
  */
 export declare class CategoriesApi extends BaseAPI {
     /**
-     * Returns all categories grouped by category group
+     * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary List categories
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {*} [options] - Override http request options.
@@ -2689,7 +2689,7 @@ export declare class CategoriesApi extends BaseAPI {
      */
     getCategories(budget_id: string, options?: any): Promise<CategoriesResponse>;
     /**
-     * Returns a single category
+     * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
@@ -2699,10 +2699,10 @@ export declare class CategoriesApi extends BaseAPI {
      */
     getCategoryById(budget_id: string, category_id: string, options?: any): Promise<CategoryResponse>;
     /**
-     * Returns a single category for a specific budget month
+     * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2713,7 +2713,7 @@ export declare class CategoriesApi extends BaseAPI {
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2721,6 +2721,69 @@ export declare class CategoriesApi extends BaseAPI {
      * @memberof CategoriesApi
      */
     updateMonthCategory(budget_id: string, month: Date | string, category_id: string, month_category: SaveMonthCategoryWrapper, options?: any): Promise<CategoryResponse>;
+}
+/**
+ * DeprecatedApi - fetch parameter creator
+ * @export
+ */
+export declare const DeprecatedApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
+     * @summary Bulk create transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {BulkTransactions} transactions - The list of transactions to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): FetchArgs;
+};
+/**
+ * DeprecatedApi - functional programming interface
+ * @export
+ */
+export declare const DeprecatedApiFp: (configuration?: Configuration) => {
+    /**
+     * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
+     * @summary Bulk create transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {BulkTransactions} transactions - The list of transactions to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkResponse>;
+};
+/**
+ * DeprecatedApi - factory interface
+ * @export
+ */
+export declare const DeprecatedApiFactory: (configuration?: Configuration) => {
+    /**
+     * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
+     * @summary Bulk create transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {BulkTransactions} transactions - The list of transactions to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkResponse>;
+};
+/**
+ * DeprecatedApi - object-oriented interface
+ * @export
+ * @class DeprecatedApi
+ * @extends {BaseAPI}
+ */
+export declare class DeprecatedApi extends BaseAPI {
+    /**
+     * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
+     * @summary Bulk create transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {BulkTransactions} transactions - The list of transactions to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof DeprecatedApi
+     */
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkResponse>;
 }
 /**
  * MonthsApi - fetch parameter creator
@@ -2731,7 +2794,7 @@ export declare const MonthsApiFetchParamCreator: (configuration?: Configuration)
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2754,7 +2817,7 @@ export declare const MonthsApiFp: (configuration?: Configuration) => {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2777,7 +2840,7 @@ export declare const MonthsApiFactory: (configuration?: Configuration) => {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2802,7 +2865,7 @@ export declare class MonthsApi extends BaseAPI {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
@@ -2827,7 +2890,7 @@ export declare const PayeeLocationsApiFetchParamCreator: (configuration?: Config
      * Returns a single payee location
      * @summary Single payee location
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {string} payee_location_id - ID of payee location
+     * @param {string} payee_location_id - id of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2859,7 +2922,7 @@ export declare const PayeeLocationsApiFp: (configuration?: Configuration) => {
      * Returns a single payee location
      * @summary Single payee location
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {string} payee_location_id - ID of payee location
+     * @param {string} payee_location_id - id of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2891,7 +2954,7 @@ export declare const PayeeLocationsApiFactory: (configuration?: Configuration) =
      * Returns a single payee location
      * @summary Single payee location
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {string} payee_location_id - ID of payee location
+     * @param {string} payee_location_id - id of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2925,7 +2988,7 @@ export declare class PayeeLocationsApi extends BaseAPI {
      * Returns a single payee location
      * @summary Single payee location
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {string} payee_location_id - ID of payee location
+     * @param {string} payee_location_id - id of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
@@ -3149,15 +3212,6 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
  */
 export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration) => {
     /**
-     * Creates multiple transactions
-     * @summary Bulk create transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {BulkTransactions} transactions - The list of transactions to create
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     */
-    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): FetchArgs;
-    /**
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
@@ -3235,15 +3289,6 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
  */
 export declare const TransactionsApiFp: (configuration?: Configuration) => {
     /**
-     * Creates multiple transactions
-     * @summary Bulk create transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {BulkTransactions} transactions - The list of transactions to create
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     */
-    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkResponse>;
-    /**
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
@@ -3320,15 +3365,6 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const TransactionsApiFactory: (configuration?: Configuration) => {
-    /**
-     * Creates multiple transactions
-     * @summary Bulk create transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {BulkTransactions} transactions - The list of transactions to create
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     */
-    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkResponse>;
     /**
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
@@ -3409,16 +3445,6 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
  */
 export declare class TransactionsApi extends BaseAPI {
     /**
-     * Creates multiple transactions
-     * @summary Bulk create transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {BulkTransactions} transactions - The list of transactions to create
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     * @memberof TransactionsApi
-     */
-    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): Promise<BulkResponse>;
-    /**
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
@@ -3428,16 +3454,6 @@ export declare class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     createTransaction(budget_id: string, save_transactions: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
-    /**
-     * Creates multiple transactions. Provide a body containing a 'transactions' array, multiple transactions will be created.
-     * @summary Create multiple transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {SaveTransactionsWrapper} save_transactions - An array of transactions to create
-     * @param {*} [options] - Override http request options.
-     * @throws {RequiredError}
-     * @memberof TransactionsApi
-     */
-    createTransactions(budget_id: string, save_transactions: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
     /**
      * Returns a single transaction
      * @summary Single transaction

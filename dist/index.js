@@ -17,6 +17,7 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const configuration_1 = require("./configuration");
 const CodeGen = require("./api");
+const transactionsApi_1 = require("./transactionsApi");
 const utils_1 = require("./utils");
 exports.utils = utils_1.default;
 __export(require("./api"));
@@ -100,7 +101,7 @@ class api {
      */
     get transactions() {
         if (!this._transactions) {
-            this._transactions = new CodeGen.TransactionsApi(this._configuration);
+            this._transactions = new transactionsApi_1.TransactionsApi(this._configuration);
         }
         return this._transactions;
     }
@@ -112,6 +113,12 @@ class api {
             this._scheduledTransactions = new CodeGen.ScheduledTransactionsApi(this._configuration);
         }
         return this._scheduledTransactions;
+    }
+    get deprecated() {
+        if (!this._deprecated) {
+            this._deprecated = new CodeGen.DeprecatedApi(this._configuration);
+        }
+        return this._deprecated;
     }
 }
 exports.api = api;
