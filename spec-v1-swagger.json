@@ -278,7 +278,7 @@
       "get": {
         "tags": ["Categories"],
         "summary": "List categories",
-        "description": "Returns all categories grouped by category group",
+        "description": "Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).",
         "operationId": "getCategories",
         "produces": ["application/json"],
         "parameters": [
@@ -317,7 +317,7 @@
       "get": {
         "tags": ["Categories"],
         "summary": "Single category",
-        "description": "Returns a single category",
+        "description": "Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).",
         "operationId": "getCategoryById",
         "produces": ["application/json"],
         "parameters": [
@@ -364,7 +364,7 @@
       "get": {
         "tags": ["Categories"],
         "summary": "Single category for a specific budget month",
-        "description": "Returns a single category for a specific budget month",
+        "description": "Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).",
         "operationId": "getMonthCategoryById",
         "produces": ["application/json"],
         "parameters": [
@@ -379,7 +379,7 @@
           {
             "name": "month",
             "in": "path",
-            "description": "the budget month in ISO format (e.g. 2016-12-30). (\"current\" can also be used to specify the current calendar month (UTC))",
+            "description": "The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))",
             "required": true,
             "type": "string",
             "format": "date"
@@ -432,7 +432,7 @@
           {
             "name": "month",
             "in": "path",
-            "description": "the budget month in ISO format (e.g. 2016-12-01).  \"current\" can also be used to specify the current calendar month (UTC).",
+            "description": "The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))",
             "required": true,
             "type": "string",
             "format": "date"
@@ -615,7 +615,7 @@
           {
             "name": "payee_location_id",
             "in": "path",
-            "description": "ID of payee location",
+            "description": "id of payee location",
             "required": true,
             "type": "string",
             "format": "uuid"
@@ -748,7 +748,7 @@
           {
             "name": "month",
             "in": "path",
-            "description": "the budget month in ISO format (e.g. 2016-12-01).    \"current\" can also be used to specify the current calendar month (UTC).",
+            "description": "The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))",
             "required": true,
             "type": "string",
             "format": "date"
@@ -879,9 +879,9 @@
     },
     "/budgets/{budget_id}/transactions/bulk": {
       "post": {
-        "tags": ["Transactions"],
+        "tags": ["Deprecated"],
         "summary": "Bulk create transactions",
-        "description": "Creates multiple transactions",
+        "description": "Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.",
         "operationId": "bulkCreateTransactions",
         "produces": ["application/json"],
         "parameters": [
@@ -1756,7 +1756,7 @@
           "properties": {
             "categories": {
               "type": "array",
-              "description": "Category group categories",
+              "description": "Category group categories.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).",
               "items": {
                 "$ref": "#/definitions/Category"
               }
@@ -1809,15 +1809,15 @@
         },
         "budgeted": {
           "type": "integer",
-          "description": "Budgeted amount in current month in milliunits format"
+          "description": "Budgeted amount in milliunits format"
         },
         "activity": {
           "type": "integer",
-          "description": "Activity amount in current month in milliunits format"
+          "description": "Activity amount in milliunits format"
         },
         "balance": {
           "type": "integer",
-          "description": "Balance in current month in milliunits format"
+          "description": "Balance in milliunits format"
         },
         "goal_type": {
           "type": "string",
@@ -2332,7 +2332,7 @@
       "properties": {
         "transaction_ids": {
           "type": "array",
-          "description": "The list of Transaction IDs that were created.",
+          "description": "The list of Transaction ids that were created.",
           "items": {
             "type": "string"
           }
@@ -2716,7 +2716,7 @@
           "properties": {
             "categories": {
               "type": "array",
-              "description": "the budget month categories",
+              "description": "The budget month categories.  Amounts (budgeted, activity, balance, etc.) are specific to the {month} parameter specified.",
               "items": {
                 "$ref": "#/definitions/Category"
               }

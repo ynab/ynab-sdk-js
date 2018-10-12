@@ -12,6 +12,7 @@
  */
 import { Configuration } from "./configuration";
 import * as CodeGen from "./api";
+import { TransactionsApi } from "./transactionsApi";
 import utils from "./utils";
 export { api as API };
 export { utils };
@@ -126,7 +127,7 @@ var api = /** @class */ (function () {
          */
         get: function () {
             if (!this._transactions) {
-                this._transactions = new CodeGen.TransactionsApi(this._configuration);
+                this._transactions = new TransactionsApi(this._configuration);
             }
             return this._transactions;
         },
@@ -142,6 +143,16 @@ var api = /** @class */ (function () {
                 this._scheduledTransactions = new CodeGen.ScheduledTransactionsApi(this._configuration);
             }
             return this._scheduledTransactions;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(api.prototype, "deprecated", {
+        get: function () {
+            if (!this._deprecated) {
+                this._deprecated = new CodeGen.DeprecatedApi(this._configuration);
+            }
+            return this._deprecated;
         },
         enumerable: true,
         configurable: true

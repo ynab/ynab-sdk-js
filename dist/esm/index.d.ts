@@ -11,6 +11,7 @@
  */
 import { Configuration } from "./configuration";
 import * as CodeGen from "./api";
+import { TransactionsApi } from "./transactionsApi";
 import utils from "./utils";
 export { api as API };
 export { utils };
@@ -61,14 +62,16 @@ export declare class api {
      * /budgets/{budget_id}/payee_locations endpoints interface
      */
     readonly payeeLocations: CodeGen.PayeeLocationsApi;
-    protected _transactions: CodeGen.TransactionsApi;
+    protected _transactions: TransactionsApi;
     /**
      * /budgets/{budget_id}/transactions endpoints interface
      */
-    readonly transactions: CodeGen.TransactionsApi;
+    readonly transactions: TransactionsApi;
     protected _scheduledTransactions: CodeGen.ScheduledTransactionsApi;
     /**
      * /budgets/{budget_id}/scheduled_transactions endpoints interface
      */
     readonly scheduledTransactions: CodeGen.ScheduledTransactionsApi;
+    protected _deprecated: CodeGen.DeprecatedApi;
+    private readonly deprecated;
 }
