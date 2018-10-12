@@ -2,6 +2,7 @@
 {{>licenseInfo}}
 import { Configuration } from "./configuration";
 import * as CodeGen from "./api";
+import { TransactionsApi } from "./transactionsApi";
 import utils from "./utils";
 
 export { api as API };
@@ -104,13 +105,13 @@ export class api {
     return this._payeeLocations;
   }
 
-  protected _transactions: CodeGen.TransactionsApi;
+  protected _transactions: TransactionsApi;
   /**
    * /budgets/{budget_id}/transactions endpoints interface
    */
-  public get transactions(): CodeGen.TransactionsApi {
+  public get transactions(): TransactionsApi {
     if (!this._transactions) {
-      this._transactions = new CodeGen.TransactionsApi(this._configuration);
+      this._transactions = new TransactionsApi(this._configuration);
     }
     return this._transactions;
   }
