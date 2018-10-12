@@ -72,6 +72,4 @@ export declare class api {
      * /budgets/{budget_id}/scheduled_transactions endpoints interface
      */
     readonly scheduledTransactions: CodeGen.ScheduledTransactionsApi;
-    protected _deprecated: CodeGen.DeprecatedApi;
-    private readonly deprecated;
 }
