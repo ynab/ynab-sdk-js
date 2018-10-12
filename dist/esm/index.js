@@ -147,16 +147,6 @@ var api = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(api.prototype, "deprecated", {
-        get: function () {
-            if (!this._deprecated) {
-                this._deprecated = new CodeGen.DeprecatedApi(this._configuration);
-            }
-            return this._deprecated;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return api;
 }());
 export { api };

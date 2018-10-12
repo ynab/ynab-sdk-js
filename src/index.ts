@@ -139,12 +139,4 @@ export class api {
     }
     return this._scheduledTransactions;
   }
-
-  protected _deprecated: CodeGen.DeprecatedApi;
-  private get deprecated(): CodeGen.DeprecatedApi {
-    if (!this._deprecated) {
-      this._deprecated = new CodeGen.DeprecatedApi(this._configuration);
-    }
-    return this._deprecated;
-  }
 }
