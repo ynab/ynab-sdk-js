@@ -2737,6 +2737,18 @@ class TransactionsApi extends BaseAPI {
         return exports.TransactionsApiFp(this.configuration).createTransaction(budget_id, save_transactions, options)();
     }
     /**
+     * Creates multiple transactions. Provide a body containing a 'transactions' array, multiple transactions will be created.
+     * @summary Create multiple transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {SaveTransactionsWrapper} save_transactions - An array of transactions to create
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    createTransactions(budget_id, save_transactions, options) {
+        return exports.TransactionsApiFp(this.configuration).createTransaction(budget_id, save_transactions, options)();
+    }
+    /**
      * Returns a single transaction
      * @summary Single transaction
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
