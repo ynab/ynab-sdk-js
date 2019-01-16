@@ -599,7 +599,7 @@ export interface CategoryWrapper {
     category: Category;
 }
 /**
- *
+ * The currency format setting for the budget.  In some cases the format will not be available and will be specified as null.
  * @export
  * @interface CurrencyFormat
  */
@@ -654,7 +654,7 @@ export interface CurrencyFormat {
     display_symbol: boolean;
 }
 /**
- *
+ * The date format setting for the budget.  In some cases the format will not be available and will be specified as null.
  * @export
  * @interface DateFormat
  */
@@ -1575,6 +1575,12 @@ export interface TransactionSummary {
      */
     transfer_transaction_id: string;
     /**
+     * If transaction is matched, the id of the matched transaction
+     * @type {string}
+     * @memberof TransactionSummary
+     */
+    matched_transaction_id: string;
+    /**
      * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionSummary
@@ -1652,6 +1658,12 @@ export interface TransactionsWrapper {
      * @memberof TransactionsWrapper
      */
     transactions: Array<TransactionDetail>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof TransactionsWrapper
+     */
+    server_knowledge: number;
 }
 /**
  *
@@ -1904,6 +1916,12 @@ export interface HybridTransaction {
      * @memberof HybridTransaction
      */
     transfer_transaction_id: string;
+    /**
+     * If transaction is matched, the id of the matched transaction
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    matched_transaction_id: string;
     /**
      * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
@@ -2256,6 +2274,12 @@ export interface TransactionDetail {
      */
     transfer_transaction_id: string;
     /**
+     * If transaction is matched, the id of the matched transaction
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    matched_transaction_id: string;
+    /**
      * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionDetail
@@ -2566,7 +2590,7 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2576,7 +2600,7 @@ export declare const CategoriesApiFetchParamCreator: (configuration?: Configurat
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2610,7 +2634,7 @@ export declare const CategoriesApiFp: (configuration?: Configuration) => {
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2620,7 +2644,7 @@ export declare const CategoriesApiFp: (configuration?: Configuration) => {
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2654,7 +2678,7 @@ export declare const CategoriesApiFactory: (configuration?: Configuration) => {
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2664,7 +2688,7 @@ export declare const CategoriesApiFactory: (configuration?: Configuration) => {
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2702,7 +2726,7 @@ export declare class CategoriesApi extends BaseAPI {
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2713,7 +2737,7 @@ export declare class CategoriesApi extends BaseAPI {
      * Update an existing month category
      * @summary Update an existing month category
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} month_category - The month category to update
      * @param {*} [options] - Override http request options.
@@ -2794,7 +2818,7 @@ export declare const MonthsApiFetchParamCreator: (configuration?: Configuration)
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2817,7 +2841,7 @@ export declare const MonthsApiFp: (configuration?: Configuration) => {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2840,7 +2864,7 @@ export declare const MonthsApiFactory: (configuration?: Configuration) => {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
@@ -2865,7 +2889,7 @@ export declare class MonthsApi extends BaseAPI {
      * Returns a single budget month
      * @summary Single budget month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))
+     * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
@@ -3215,11 +3239,11 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
+     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createTransaction(budget_id: string, save_transactions: SaveTransactionsWrapper, options?: any): FetchArgs;
+    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): FetchArgs;
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -3233,55 +3257,68 @@ export declare const TransactionsApiFetchParamCreator: (configuration?: Configur
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): FetchArgs;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} account_id - The id of the account
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): FetchArgs;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): FetchArgs;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} payee_id - The id of the payee
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): FetchArgs;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} transaction - The transaction to update
+     * @param {SaveTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): FetchArgs;
+    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): FetchArgs;
+    /**
+     * Updates multiple transactions, by 'id' or 'import_id'.
+     * @summary Update multiple transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any): FetchArgs;
 };
 /**
  * TransactionsApi - functional programming interface
@@ -3292,11 +3329,11 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
+     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createTransaction(budget_id: string, save_transactions: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse>;
+    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse>;
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -3310,55 +3347,68 @@ export declare const TransactionsApiFp: (configuration?: Configuration) => {
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} account_id - The id of the account
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} payee_id - The id of the payee
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} transaction - The transaction to update
+     * @param {SaveTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    /**
+     * Updates multiple transactions, by 'id' or 'import_id'.
+     * @summary Update multiple transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse>;
 };
 /**
  * TransactionsApi - factory interface
@@ -3369,11 +3419,11 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
+     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createTransaction(budget_id: string, save_transactions: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
+    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -3387,55 +3437,68 @@ export declare const TransactionsApiFactory: (configuration?: Configuration) => 
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} account_id - The id of the account
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} payee_id - The id of the payee
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} transaction - The transaction to update
+     * @param {SaveTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
+    /**
+     * Updates multiple transactions, by 'id' or 'import_id'.
+     * @summary Update multiple transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
 };
 /**
  * TransactionsApi - object-oriented interface
@@ -3448,12 +3511,12 @@ export declare class TransactionsApi extends BaseAPI {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {SaveTransactionsWrapper} save_transactions - The transaction or transactions to create
+     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransaction(budget_id: string, save_transactions: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
+    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -3468,60 +3531,74 @@ export declare class TransactionsApi extends BaseAPI {
      * Returns budget transactions
      * @summary List transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budget_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} account_id - The id of the account
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} category_id - The id of the category
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} payee_id - The id of the payee
-     * @param {Date} [since_date] - Only return transactions on or after this date
-     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')
+     * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
+     * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} transaction - The transaction to update
+     * @param {SaveTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    updateTransaction(budget_id: string, transaction_id: string, transaction: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): Promise<TransactionResponse>;
+    /**
+     * Updates multiple transactions, by 'id' or 'import_id'.
+     * @summary Update multiple transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse>;
 }
 /**
  * UserApi - fetch parameter creator

@@ -1,5 +1,5 @@
 import utils from "../src/utils";
-import chai = require("chai");
+import * as chai from "chai";
 
 const assert = chai.assert;
 const expect = chai.expect;

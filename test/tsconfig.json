@@ -3,6 +3,6 @@
     "target": "es2015",
     "sourceMap": true
   },
-  "references": [{ "path": "../src" }],
+  "references": [{ "path": "../" }],
   "include": ["./**/*.ts"]
 }

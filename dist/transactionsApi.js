@@ -11,8 +11,8 @@ class TransactionsApi extends CodeGen.TransactionsApi {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransactions(budget_id, save_transactions, options) {
-        return CodeGen.TransactionsApiFp(this.configuration).createTransaction(budget_id, save_transactions, options)();
+    createTransactions(budget_id, data, options) {
+        return CodeGen.TransactionsApiFp(this.configuration).createTransaction(budget_id, data, options)();
     }
     /**
      * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.

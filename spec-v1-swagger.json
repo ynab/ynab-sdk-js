@@ -379,7 +379,7 @@
           {
             "name": "month",
             "in": "path",
-            "description": "The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))",
+            "description": "The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))",
             "required": true,
             "type": "string",
             "format": "date"
@@ -432,7 +432,7 @@
           {
             "name": "month",
             "in": "path",
-            "description": "The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))",
+            "description": "The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))",
             "required": true,
             "type": "string",
             "format": "date"
@@ -748,7 +748,7 @@
           {
             "name": "month",
             "in": "path",
-            "description": "The budget month in ISO format (e.g. 2016-12-30) (\"current\" can also be used to specify the current calendar month (UTC))",
+            "description": "The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))",
             "required": true,
             "type": "string",
             "format": "date"
@@ -795,7 +795,7 @@
           {
             "name": "since_date",
             "in": "query",
-            "description": "Only return transactions on or after this date",
+            "description": "If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).",
             "required": false,
             "type": "string",
             "format": "date"
@@ -803,10 +803,17 @@
           {
             "name": "type",
             "in": "query",
-            "description": "Only return transactions of a certain type ('uncategorized' and 'unapproved' are currently supported)",
+            "description": "If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.",
             "required": false,
             "type": "string",
             "enum": ["uncategorized", "unapproved"]
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -846,9 +853,9 @@
             "format": "uuid"
           },
           {
-            "name": "save_transactions",
+            "name": "data",
             "in": "body",
-            "description": "The transaction or transactions to create",
+            "description": "The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.",
             "required": true,
             "schema": {
               "$ref": "#/definitions/SaveTransactionsWrapper"
@@ -870,6 +877,139 @@
           },
           "409": {
             "description": "A transaction on the same account with the same import_id already exists.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Transactions"],
+        "summary": "Update multiple transactions",
+        "description": "Updates multiple transactions, by 'id' or 'import_id'.",
+        "operationId": "updateTransactions",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SaveTransactionsWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "209": {
+            "description": "The transactions were successfully updated",
+            "schema": {
+              "$ref": "#/definitions/SaveTransactionsResponse"
+            }
+          },
+          "400": {
+            "description": "The request could not be understood due to malformed syntax or validation error(s).",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/budgets/{budget_id}/transactions/{transaction_id}": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "Single transaction",
+        "description": "Returns a single transaction",
+        "operationId": "getTransactionById",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "The id of the transaction",
+            "required": true,
+            "type": "string"            
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested transaction",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponse"
+            }
+          },
+          "404": {
+            "description": "The transaction was not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "An error occurred",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Transactions"],
+        "summary": "Updates an existing transaction",
+        "description": "Updates a transaction",
+        "operationId": "updateTransaction",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "The id of the transaction",
+            "required": true,
+            "type": "string"            
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "The transaction to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SaveTransactionWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The transaction was successfully updated",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponse"
+            }
+          },
+          "400": {
+            "description": "The request could not be understood due to malformed syntax or validation error(s)",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -946,7 +1086,7 @@
           {
             "name": "since_date",
             "in": "query",
-            "description": "Only return transactions on or after this date",
+            "description": "If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).",
             "required": false,
             "type": "string",
             "format": "date"
@@ -954,10 +1094,17 @@
           {
             "name": "type",
             "in": "query",
-            "description": "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+            "description": "If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.",
             "required": false,
             "type": "string",
             "enum": ["uncategorized", "unapproved"]
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -1009,7 +1156,7 @@
           {
             "name": "since_date",
             "in": "query",
-            "description": "Only return transactions on or after this date",
+            "description": "If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).",
             "required": false,
             "type": "string",
             "format": "date"
@@ -1017,10 +1164,17 @@
           {
             "name": "type",
             "in": "query",
-            "description": "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+            "description": "If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.",
             "required": false,
             "type": "string",
             "enum": ["uncategorized", "unapproved"]
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -1072,7 +1226,7 @@
           {
             "name": "since_date",
             "in": "query",
-            "description": "Only return transactions on or after this date",
+            "description": "If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).",
             "required": false,
             "type": "string",
             "format": "date"
@@ -1080,10 +1234,17 @@
           {
             "name": "type",
             "in": "query",
-            "description": "Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved')",
+            "description": "If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.",
             "required": false,
             "type": "string",
             "enum": ["uncategorized", "unapproved"]
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -1101,102 +1262,6 @@
           },
           "default": {
             "description": "An error occurred",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/budgets/{budget_id}/transactions/{transaction_id}": {
-      "get": {
-        "tags": ["Transactions"],
-        "summary": "Single transaction",
-        "description": "Returns a single transaction",
-        "operationId": "getTransactionById",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "budget_id",
-            "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "transaction_id",
-            "in": "path",
-            "description": "The id of the transaction",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The requested transaction",
-            "schema": {
-              "$ref": "#/definitions/TransactionResponse"
-            }
-          },
-          "404": {
-            "description": "The transaction was not found",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "default": {
-            "description": "An error occurred",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-      ,
-      "put": {
-        "tags": ["Transactions"],
-        "summary": "Updates an existing transaction",
-        "description": "Updates a transaction",
-        "operationId": "updateTransaction",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "budget_id",
-            "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "transaction_id",
-            "in": "path",
-            "description": "The id of the transaction",
-            "required": true,
-            "type": "string",
-            "format": "uuid"
-          },
-          {
-            "name": "transaction",
-            "in": "body",
-            "description": "The transaction to update",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/SaveTransactionWrapper"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The transaction was successfully updated",
-            "schema": {
-              "$ref": "#/definitions/TransactionResponse"
-            }
-          },
-          "400": {
-            "description": "The request could not be understood due to malformed syntax or validation error(s)",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1353,6 +1418,7 @@
     },
     "DateFormat": {
       "type": "object",
+      "description": "The date format setting for the budget.  In some cases the format will not be available and will be specified as null.",
       "required": ["format"],
       "properties": {
         "format": {
@@ -1362,6 +1428,7 @@
     },
     "CurrencyFormat": {
       "type": "object",
+      "description": "The currency format setting for the budget.  In some cases the format will not be available and will be specified as null.",
       "required": [
         "iso_code",
         "example_format",
@@ -1982,13 +2049,17 @@
     },
     "TransactionsWrapper": {
       "type": "object",
-      "required": ["transactions"],
+      "required": ["transactions", "server_knowledge"],
       "properties": {
         "transactions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TransactionDetail"
           }
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -2160,13 +2231,13 @@
         "category_id",
         "transfer_account_id",
         "transfer_transaction_id",
+        "matched_transaction_id",
         "import_id",
         "deleted"
       ],
       "properties": {
         "id": {
-          "type": "string",
-          "format": "uuid"
+          "type": "string"         
         },
         "date": {
           "type": "string",
@@ -2215,6 +2286,11 @@
           "type": "string",
           "format": "uuid",
           "description": "If a transfer transaction, the id of transaction on the other side of the transfer"
+        },
+        "matched_transaction_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "If transaction is matched, the id of the matched transaction"
         },
         "import_id": {
           "type": "string",
@@ -2281,8 +2357,7 @@
               "description": "Whether the hybrid transaction represents a regular transaction or a subtransaction"
             },
             "parent_transaction_id": {
-              "type": "string",
-              "format": "uuid",
+              "type": "string",             
               "description": "For subtransaction types, this is the id of the pararent transaction.  For transaction types, this id will be always be null."
             },
             "account_name": {
@@ -2381,12 +2456,10 @@
       ],
       "properties": {
         "id": {
-          "type": "string",
-          "format": "uuid"
+          "type": "string"
         },
         "transaction_id": {
-          "type": "string",
-          "format": "uuid"
+          "type": "string"
         },
         "amount": {
           "type": "integer",
