@@ -218,7 +218,8 @@ export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   transfer_transaction_id: null,
   import_id: null,
   subtransactions: subTransactionFactory.buildList(3),
-  deleted: false
+  deleted: false,
+  matched_transaction_id: null,
 });
 
 export const hybridTransactionFactory = Factory.makeFactory<
@@ -242,7 +243,8 @@ export const hybridTransactionFactory = Factory.makeFactory<
   account_name: "Test Account",
   payee_name: "Test Payee",
   category_name: "Test Category",
-  deleted: false
+  deleted: false,
+  matched_transaction_id: null
 });
 
 export const transactionResponseFactory = Factory.makeFactory<
@@ -269,13 +271,15 @@ export const transactionSummaryFactory = Factory.makeFactory<
   transfer_account_id: Factory.each(i => `transfer_account_id #${i}`),
   transfer_transaction_id: null,
   import_id: null,
-  deleted: false
+  deleted: false,
+  matched_transaction_id: null
 });
 
 export const transactionsResponseFactory = Factory.makeFactory<
   api.TransactionsResponse
 >({
   data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
     transactions: transactionFactory.buildList(5)
   })
 });
