@@ -164,7 +164,6 @@ convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: num
 - Install dependencies: `npm install`
 - Generate latest client based on swagger spec: `npm run generate`
 - Run tests: `npm test`
-- 
 
 ## Releasing
 
