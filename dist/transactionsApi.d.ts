@@ -9,7 +9,7 @@ export declare class TransactionsApi extends CodeGen.TransactionsApi {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransactions(budget_id: string, save_transactions: CodeGen.SaveTransactionsWrapper, options?: any): Promise<CodeGen.SaveTransactionsResponse>;
+    createTransactions(budget_id: string, data: CodeGen.SaveTransactionsWrapper, options?: any): Promise<CodeGen.SaveTransactionsResponse>;
     /**
      * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
      * @summary Bulk create transactions
