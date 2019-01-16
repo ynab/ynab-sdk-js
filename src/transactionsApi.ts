@@ -12,12 +12,12 @@ export class TransactionsApi extends CodeGen.TransactionsApi {
    */
   public createTransactions(
     budget_id: string,
-    save_transactions: CodeGen.SaveTransactionsWrapper,
+    data: CodeGen.SaveTransactionsWrapper,
     options?: any
   ) {
     return CodeGen.TransactionsApiFp(this.configuration).createTransaction(
       budget_id,
-      save_transactions,
+      data,
       options
     )();
   }
