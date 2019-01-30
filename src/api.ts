@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.9.0";
+const USER_AGENT = "api_client/js/1.10.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -240,6 +240,12 @@ export interface AccountsWrapper {
      * @memberof AccountsWrapper
      */
     accounts: Array<Account>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof AccountsWrapper
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -624,6 +630,12 @@ export interface CategoryGroupsWrapper {
      * @memberof CategoryGroupsWrapper
      */
     category_groups: Array<CategoryGroupWithCategories>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof CategoryGroupsWrapper
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -846,6 +858,12 @@ export interface MonthSummariesWrapper {
      * @memberof MonthSummariesWrapper
      */
     months: Array<MonthSummary>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof MonthSummariesWrapper
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -896,6 +914,12 @@ export interface MonthSummary {
      * @memberof MonthSummary
      */
     age_of_money: number;
+    /**
+     * Whether or not the month has been deleted.  Deleted months will only be included in delta requests.
+     * @type {boolean}
+     * @memberof MonthSummary
+     */
+    deleted: boolean;
 }
 
 /**
@@ -1078,6 +1102,12 @@ export interface PayeesWrapper {
      * @memberof PayeesWrapper
      */
     payees: Array<Payee>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof PayeesWrapper
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -1105,7 +1135,7 @@ export interface SaveMonthCategoryWrapper {
      * @type {SaveMonthCategory}
      * @memberof SaveMonthCategoryWrapper
      */
-    month_category: SaveMonthCategory;
+    category: SaveMonthCategory;
 }
 
 /**
@@ -2155,6 +2185,12 @@ export interface MonthDetail {
      */
     age_of_money: number;
     /**
+     * Whether or not the month has been deleted.  Deleted months will only be included in delta requests.
+     * @type {boolean}
+     * @memberof MonthDetail
+     */
+    deleted: boolean;
+    /**
      * The budget month categories.  Amounts (budgeted, activity, balance, etc.) are specific to the {month} parameter specified.
      * @type {Array<Category>}
      * @memberof MonthDetail
@@ -2509,10 +2545,11 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
          * Returns all accounts
          * @summary Account list
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budget_id: string, options: any = {}): FetchArgs {
+        getAccounts(budget_id: string, last_knowledge_of_server?: number, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getAccounts.');
@@ -2531,6 +2568,10 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (last_knowledge_of_server !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -2578,11 +2619,12 @@ export const AccountsApiFp = function(configuration?: Configuration) {
          * Returns all accounts
          * @summary Account list
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse> {
-            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, options);
+        getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2619,11 +2661,12 @@ export const AccountsApiFactory = function (configuration?: Configuration) {
          * Returns all accounts
          * @summary Account list
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budget_id: string, options?: any) {
-            return AccountsApiFp(configuration).getAccounts(budget_id, options)();
+        getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+            return AccountsApiFp(configuration).getAccounts(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
@@ -2652,12 +2695,13 @@ export class AccountsApi extends BaseAPI {
      * Returns all accounts
      * @summary Account list
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    public getAccounts(budget_id: string, options?: any) {
-        return AccountsApiFp(this.configuration).getAccounts(budget_id, options)();
+    public getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+        return AccountsApiFp(this.configuration).getAccounts(budget_id, last_knowledge_of_server, options)();
     }
 
 }
@@ -2950,10 +2994,11 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary List categories
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budget_id: string, options: any = {}): FetchArgs {
+        getCategories(budget_id: string, last_knowledge_of_server?: number, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getCategories.');
@@ -2972,6 +3017,10 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (last_knowledge_of_server !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -3079,16 +3128,16 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Update an existing month category
-         * @summary Update an existing month category
+         * Update a category for a specific month
+         * @summary Update a category for a specific month
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
-         * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+         * @param {SaveMonthCategoryWrapper} data - The category to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, month_category: SaveMonthCategoryWrapper, options: any = {}): FetchArgs {
+        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling updateMonthCategory.');
@@ -3101,9 +3150,9 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
             if (category_id === null || category_id === undefined) {
                 throw new RequiredError('category_id','Required parameter category_id was null or undefined when calling updateMonthCategory.');
             }
-            // verify required parameter 'month_category' is not null or undefined
-            if (month_category === null || month_category === undefined) {
-                throw new RequiredError('month_category','Required parameter month_category was null or undefined when calling updateMonthCategory.');
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling updateMonthCategory.');
             }
             const localVarPath = `/budgets/{budget_id}/months/{month}/categories/{category_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
@@ -3129,7 +3178,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            localVarRequestOptions.body = JSON.stringify(month_category || {});
+            localVarRequestOptions.body = JSON.stringify(data || {});
 
             return {
                 url: url.format(localVarUrlObj),
@@ -3149,11 +3198,12 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary List categories
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse> {
-            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, options);
+        getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3212,17 +3262,17 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Update an existing month category
-         * @summary Update an existing month category
+         * Update a category for a specific month
+         * @summary Update a category for a specific month
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
-         * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+         * @param {SaveMonthCategoryWrapper} data - The category to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, month_category: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse> {
-            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).updateMonthCategory(budget_id, month, category_id, month_category, options);
+        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).updateMonthCategory(budget_id, month, category_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3248,11 +3298,12 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary List categories
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budget_id: string, options?: any) {
-            return CategoriesApiFp(configuration).getCategories(budget_id, options)();
+        getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+            return CategoriesApiFp(configuration).getCategories(budget_id, last_knowledge_of_server, options)();
         },
         /**
          * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -3278,17 +3329,17 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
             return CategoriesApiFp(configuration).getMonthCategoryById(budget_id, month, category_id, options)();
         },
         /**
-         * Update an existing month category
-         * @summary Update an existing month category
+         * Update a category for a specific month
+         * @summary Update a category for a specific month
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
-         * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+         * @param {SaveMonthCategoryWrapper} data - The category to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, month_category: SaveMonthCategoryWrapper, options?: any) {
-            return CategoriesApiFp(configuration).updateMonthCategory(budget_id, month, category_id, month_category, options)();
+        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any) {
+            return CategoriesApiFp(configuration).updateMonthCategory(budget_id, month, category_id, data, options)();
         },
     };
 };
@@ -3304,12 +3355,13 @@ export class CategoriesApi extends BaseAPI {
      * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary List categories
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    public getCategories(budget_id: string, options?: any) {
-        return CategoriesApiFp(this.configuration).getCategories(budget_id, options)();
+    public getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+        return CategoriesApiFp(this.configuration).getCategories(budget_id, last_knowledge_of_server, options)();
     }
 
     /**
@@ -3340,18 +3392,18 @@ export class CategoriesApi extends BaseAPI {
     }
 
     /**
-     * Update an existing month category
-     * @summary Update an existing month category
+     * Update a category for a specific month
+     * @summary Update a category for a specific month
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
-     * @param {SaveMonthCategoryWrapper} month_category - The month category to update
+     * @param {SaveMonthCategoryWrapper} data - The category to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    public updateMonthCategory(budget_id: string, month: Date | string, category_id: string, month_category: SaveMonthCategoryWrapper, options?: any) {
-        return CategoriesApiFp(this.configuration).updateMonthCategory(budget_id, month, category_id, month_category, options)();
+    public updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any) {
+        return CategoriesApiFp(this.configuration).updateMonthCategory(budget_id, month, category_id, data, options)();
     }
 
 }
@@ -3538,10 +3590,11 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
          * Returns all budget months
          * @summary List budget months
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budget_id: string, options: any = {}): FetchArgs {
+        getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getBudgetMonths.');
@@ -3560,6 +3613,10 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (last_knowledge_of_server !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -3607,11 +3664,12 @@ export const MonthsApiFp = function(configuration?: Configuration) {
          * Returns all budget months
          * @summary List budget months
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse> {
-            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, options);
+        getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse> {
+            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -3648,11 +3706,12 @@ export const MonthsApiFactory = function (configuration?: Configuration) {
          * Returns all budget months
          * @summary List budget months
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budget_id: string, options?: any) {
-            return MonthsApiFp(configuration).getBudgetMonths(budget_id, options)();
+        getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+            return MonthsApiFp(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
@@ -3681,12 +3740,13 @@ export class MonthsApi extends BaseAPI {
      * Returns all budget months
      * @summary List budget months
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    public getBudgetMonths(budget_id: string, options?: any) {
-        return MonthsApiFp(this.configuration).getBudgetMonths(budget_id, options)();
+    public getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+        return MonthsApiFp(this.configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options)();
     }
 
 }
@@ -4042,10 +4102,11 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
          * Returns all payees
          * @summary List payees
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budget_id: string, options: any = {}): FetchArgs {
+        getPayees(budget_id: string, last_knowledge_of_server?: number, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getPayees.');
@@ -4064,6 +4125,10 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (last_knowledge_of_server !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -4111,11 +4176,12 @@ export const PayeesApiFp = function(configuration?: Configuration) {
          * Returns all payees
          * @summary List payees
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse> {
-            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budget_id, options);
+        getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -4152,11 +4218,12 @@ export const PayeesApiFactory = function (configuration?: Configuration) {
          * Returns all payees
          * @summary List payees
          * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budget_id: string, options?: any) {
-            return PayeesApiFp(configuration).getPayees(budget_id, options)();
+        getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+            return PayeesApiFp(configuration).getPayees(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
@@ -4185,12 +4252,13 @@ export class PayeesApi extends BaseAPI {
      * Returns all payees
      * @summary List payees
      * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeesApi
      */
-    public getPayees(budget_id: string, options?: any) {
-        return PayeesApiFp(this.configuration).getPayees(budget_id, options)();
+    public getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+        return PayeesApiFp(this.configuration).getPayees(budget_id, last_knowledge_of_server, options)();
     }
 
 }
