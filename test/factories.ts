@@ -56,6 +56,7 @@ export const accountsResponseFactory = Factory.makeFactory<
   api.AccountsResponse
 >({
   data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
     accounts: accountFactory.buildList(5)
   })
 });
@@ -97,6 +98,7 @@ export const categoriesResponseFactory = Factory.makeFactory<
   api.CategoriesResponse
 >({
   data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
     category_groups: categoryGroupWithCategoriesFactory.buildList(3)
   })
 });
@@ -116,13 +118,15 @@ export const monthSummaryFactory = Factory.makeFactory<api.MonthSummary>({
   age_of_money: Factory.each(i => i),
   income: Factory.each(i => i * 100),
   budgeted: Factory.each(i => i * 110),
-  activity: Factory.each(i => i * 120)
+  activity: Factory.each(i => i * 120),
+  deleted: false
 });
 
 export const monthSummariesResponseFactory = Factory.makeFactory<
   api.MonthSummariesResponse
 >({
   data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
     months: monthSummaryFactory.buildList(5)
   })
 });
@@ -135,13 +139,15 @@ export const monthDetailFactory = Factory.makeFactory<api.MonthDetail>({
   categories: categoryFactory.buildList(3),
   income: Factory.each(i => i * 100),
   budgeted: Factory.each(i => i * 110),
-  activity: Factory.each(i => i * 120)
+  activity: Factory.each(i => i * 120),
+  deleted: false
 });
 
 export const monthDetailResponseFactory = Factory.makeFactory<
   api.MonthDetailResponse
 >({
   data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
     month: monthDetailFactory.build()
   })
 });
@@ -155,6 +161,7 @@ export const payeeFactory = Factory.makeFactory<api.Payee>({
 
 export const payeesResponseFactory = Factory.makeFactory<api.PayeesResponse>({
   data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
     payees: payeeFactory.buildList(5)
   })
 });

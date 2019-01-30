@@ -203,6 +203,13 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -289,6 +296,13 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -416,8 +430,8 @@
       },
       "patch": {
         "tags": ["Categories"],
-        "summary": "Update an existing month category",
-        "description": "Update an existing month category",
+        "summary": "Update a category for a specific month",
+        "description": "Update a category for a specific month",
         "operationId": "updateMonthCategory",
         "produces": ["application/json"],
         "parameters": [
@@ -446,9 +460,9 @@
             "format": "uuid"
           },
           {
-            "name": "month_category",
+            "name": "data",
             "in": "body",
-            "description": "The month category to update",
+            "description": "The category to update",
             "required": true,
             "schema": {
               "$ref": "#/definitions/SaveMonthCategoryWrapper"
@@ -486,6 +500,13 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -705,6 +726,13 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -945,7 +973,7 @@
             "in": "path",
             "description": "The id of the transaction",
             "required": true,
-            "type": "string"            
+            "type": "string"
           }
         ],
         "responses": {
@@ -989,7 +1017,7 @@
             "in": "path",
             "description": "The id of the transaction",
             "required": true,
-            "type": "string"            
+            "type": "string"
           },
           {
             "name": "data",
@@ -1646,13 +1674,17 @@
     },
     "AccountsWrapper": {
       "type": "object",
-      "required": ["accounts"],
+      "required": ["accounts", "server_knowledge"],
       "properties": {
         "accounts": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Account"
           }
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -1763,13 +1795,17 @@
     },
     "CategoryGroupsWrapper": {
       "type": "object",
-      "required": ["category_groups"],
+      "required": ["category_groups", "server_knowledge"],
       "properties": {
         "category_groups": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/CategoryGroupWithCategories"
           }
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -1926,13 +1962,17 @@
     },
     "PayeesWrapper": {
       "type": "object",
-      "required": ["payees"],
+      "required": ["payees", "server_knowledge"],
       "properties": {
         "payees": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Payee"
           }
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -2237,7 +2277,7 @@
       ],
       "properties": {
         "id": {
-          "type": "string"         
+          "type": "string"
         },
         "date": {
           "type": "string",
@@ -2357,7 +2397,7 @@
               "description": "Whether the hybrid transaction represents a regular transaction or a subtransaction"
             },
             "parent_transaction_id": {
-              "type": "string",             
+              "type": "string",
               "description": "For subtransaction types, this is the id of the pararent transaction.  For transaction types, this id will be always be null."
             },
             "account_name": {
@@ -2375,9 +2415,9 @@
     },
     "SaveMonthCategoryWrapper": {
       "type": "object",
-      "required": ["month_category"],
+      "required": ["category"],
       "properties": {
-        "month_category": {
+        "category": {
           "$ref": "#/definitions/SaveMonthCategory"
         }
       }
@@ -2705,13 +2745,17 @@
     },
     "MonthSummariesWrapper": {
       "type": "object",
-      "required": ["months"],
+      "required": ["months", "server_knowledge"],
       "properties": {
         "months": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/MonthSummary"
           }
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -2742,7 +2786,8 @@
         "budgeted",
         "activity",
         "to_be_budgeted",
-        "age_of_money"
+        "age_of_money",
+        "deleted"
       ],
       "properties": {
         "month": {
@@ -2775,6 +2820,10 @@
         "age_of_money": {
           "type": "integer",
           "description": "The Age of Money as of the month"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the month has been deleted.  Deleted months will only be included in delta requests."
         }
       }
     },
