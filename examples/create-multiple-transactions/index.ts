@@ -30,7 +30,7 @@ const budgetId = "378f111e-4b27-4ee5-a9fd-0ba03c1de0f0";
   ];
 
   try {
-    await ynabAPI.transactions.createTransaction(budgetId, { transactions });
+    await ynabAPI.transactions.createTransactions(budgetId, { transactions });
   } catch (err) {
     const error = err.error;
     console.log(
