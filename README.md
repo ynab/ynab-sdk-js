@@ -150,13 +150,13 @@ easier.
 
 ```typescript
 // Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
-getCurrentMonthInISOFormat(): string;
+utils.getCurrentMonthInISOFormat(): string;
 // Returns the current date (system timezone) in ISO 8601 format (i.e. '2015-12-15')
-getCurrentDateInISOFormat(): string;
+utils.getCurrentDateInISOFormat(): string;
 // Converts an ISO 8601 formatted string to a JS date object
-convertFromISODateString(isoDateString: string): Date;
+utils.convertFromISODateString(isoDateString: string): Date;
 // Converts a milliunits amount to a currency amount
-convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
+utils.convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigits: number): number;
 ```
 
 ## Development
