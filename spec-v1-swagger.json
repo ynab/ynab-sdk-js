@@ -2127,11 +2127,6 @@
       "properties": {
         "transaction": {
           "$ref": "#/definitions/SaveTransaction"
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -2147,11 +2142,6 @@
           "items": {
             "$ref": "#/definitions/SaveTransaction"
           }
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -2245,6 +2235,11 @@
               "items": {
                 "type": "string"
               }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
             }
           }
         }

@@ -317,15 +317,13 @@ export const saveTransacionFactory = Factory.makeFactory<api.SaveTransaction>({
 export const saveSingleTransactionWrapperFactory = Factory.makeFactory<
   api.SaveTransactionWrapper
 >({
-  transaction: saveTransacionFactory.build(),
-  server_knowledge: Factory.each(i => i)
+  transaction: saveTransacionFactory.build()
 });
 
 export const saveMultipleTransactionsWrapperFactory = Factory.makeFactory<
   api.SaveTransactionsWrapper
 >({
-  transactions: saveTransacionFactory.buildList(3),
-  server_knowledge: Factory.each(i => i)
+  transactions: saveTransacionFactory.buildList(3)
 });
 
 export const bulkTransactionsFactory = Factory.makeFactory<
