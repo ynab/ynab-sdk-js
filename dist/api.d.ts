@@ -1250,7 +1250,7 @@ export interface SaveTransactionsResponseData {
      * @type {number}
      * @memberof SaveTransactionsResponseData
      */
-    server_knowledge?: number;
+    server_knowledge: number;
 }
 /**
  *

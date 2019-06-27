@@ -2209,7 +2209,7 @@
       "properties": {
         "data": {
           "type": "object",
-          "required": ["transaction_ids"],
+          "required": ["transaction_ids", "server_knowledge"],
           "properties": {
             "transaction_ids": {
               "type": "array",
