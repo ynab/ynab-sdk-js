@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.12.0";
+const USER_AGENT = "api_client/js/1.13.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -1282,12 +1282,6 @@ export interface SaveTransactionWrapper {
      * @memberof SaveTransactionWrapper
      */
     transaction: SaveTransaction;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof SaveTransactionWrapper
-     */
-    server_knowledge?: number;
 }
 
 /**
@@ -1334,6 +1328,12 @@ export interface SaveTransactionsResponseData {
      * @memberof SaveTransactionsResponseData
      */
     duplicate_import_ids?: Array<string>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof SaveTransactionsResponseData
+     */
+    server_knowledge?: number;
 }
 
 /**
@@ -1354,12 +1354,6 @@ export interface SaveTransactionsWrapper {
      * @memberof SaveTransactionsWrapper
      */
     transactions?: Array<SaveTransaction>;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof SaveTransactionsWrapper
-     */
-    server_knowledge: number;
 }
 
 /**
