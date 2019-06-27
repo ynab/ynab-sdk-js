@@ -10,8 +10,12 @@ const swaggerConfigFilename = `config.json`;
 cd(rootFolder);
 
 // Download latest spec from the API
-exec(`rm -f ${specFilename}`);
-exec(`wget https://api.youneedabudget.com/papi/${specFilename}`);
+if ($1 == "--useLocalSpec") {
+  echo(`WARNING: --useLocalSpec passed in so the local spec file (spec-v1-swagger.json) will be used.`)
+} else {
+  exec(`rm -f ${specFilename}`);
+  exec(`wget https://api.youneedabudget.com/papi/${specFilename}`);
+}
 
 // Update config file with latest package info
 const package = require("../package.json");
