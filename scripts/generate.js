@@ -10,8 +10,8 @@ const swaggerConfigFilename = `config.json`;
 cd(rootFolder);
 
 // Download latest spec from the API
-// exec(`rm -f ${specFilename}`);
-// exec(`wget https://api.youneedabudget.com/papi/${specFilename}`);
+exec(`rm -f ${specFilename}`);
+exec(`wget https://api.youneedabudget.com/papi/${specFilename}`);
 
 // Update config file with latest package info
 const package = require("../package.json");
