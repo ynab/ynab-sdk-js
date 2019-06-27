@@ -108,7 +108,8 @@ export const categoryResponseFactory = Factory.makeFactory<
   api.CategoryResponse
 >({
   data: Factory.makeFactory({
-    category: categoryFactory.build()
+    category: categoryFactory.build(),
+    server_knowledge: Factory.each(i => i)
   })
 });
 
@@ -227,7 +228,7 @@ export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   import_id: null,
   subtransactions: subTransactionFactory.buildList(3),
   deleted: false,
-  matched_transaction_id: null,
+  matched_transaction_id: null
 });
 
 export const hybridTransactionFactory = Factory.makeFactory<
@@ -344,7 +345,9 @@ export const bulkIdsFactory = Factory.makeFactory<api.BulkIds>({
   duplicate_import_ids: []
 });
 
-export const saveTransactionsResponseFactory = Factory.makeFactory<api.SaveTransactionsResponse>({
+export const saveTransactionsResponseFactory = Factory.makeFactory<
+  api.SaveTransactionsResponse
+>({
   data: Factory.makeFactory({
     transaction_ids: ["1"],
     transaction: transactionFactory.build(),
