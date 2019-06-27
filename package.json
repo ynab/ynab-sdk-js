@@ -1,6 +1,6 @@
 {
   "name": "ynab",
-  "version": "1.13.2",
+  "version": "1.13.3",
   "description": "YNAB API Javascript (Node) Library",
   "author": "You Need a Budget, LLC",
   "keywords": [
