@@ -34,7 +34,8 @@ export const budgetSummaryResponseFactory = Factory.makeFactory<
   api.BudgetSummaryResponse
 >({
   data: {
-    budgets: budgetSummaryFactory.buildList(3)
+    budgets: budgetSummaryFactory.buildList(3),
+    default_budget: budgetSummaryFactory.build()
   }
 });
 
@@ -316,13 +317,15 @@ export const saveTransacionFactory = Factory.makeFactory<api.SaveTransaction>({
 export const saveSingleTransactionWrapperFactory = Factory.makeFactory<
   api.SaveTransactionWrapper
 >({
-  transaction: saveTransacionFactory.build()
+  transaction: saveTransacionFactory.build(),
+  server_knowledge: Factory.each(i => i)
 });
 
 export const saveMultipleTransactionsWrapperFactory = Factory.makeFactory<
   api.SaveTransactionsWrapper
 >({
-  transactions: saveTransacionFactory.buildList(3)
+  transactions: saveTransacionFactory.buildList(3),
+  server_knowledge: Factory.each(i => i)
 });
 
 export const bulkTransactionsFactory = Factory.makeFactory<

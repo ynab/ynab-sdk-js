@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.11.0";
+const USER_AGENT = "api_client/js/1.12.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -349,11 +349,23 @@ export interface BudgetSummary {
      */
     name: string;
     /**
-     * The last time any changes were made to the budget from either a web or mobile client.
+     * The last time any changes were made to the budget from either a web or mobile client
      * @type {string}
      * @memberof BudgetSummary
      */
     last_modified_on?: string;
+    /**
+     * The earliest budget month
+     * @type {string}
+     * @memberof BudgetSummary
+     */
+    first_month?: string;
+    /**
+     * The latest budget month
+     * @type {string}
+     * @memberof BudgetSummary
+     */
+    last_month?: string;
     /**
      * 
      * @type {DateFormat}
@@ -394,6 +406,12 @@ export interface BudgetSummaryWrapper {
      * @memberof BudgetSummaryWrapper
      */
     budgets: Array<BudgetSummary>;
+    /**
+     * The default budget, if the associated application is configured to support specifying it
+     * @type {BudgetSummary}
+     * @memberof BudgetSummaryWrapper
+     */
+    default_budget: BudgetSummary;
 }
 
 /**
@@ -830,6 +848,12 @@ export interface MonthDetailWrapper {
      * @memberof MonthDetailWrapper
      */
     month: MonthDetail;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof MonthDetailWrapper
+     */
+    server_knowledge?: number;
 }
 
 /**
@@ -1136,6 +1160,12 @@ export interface SaveMonthCategoryWrapper {
      * @memberof SaveMonthCategoryWrapper
      */
     category: SaveMonthCategory;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof SaveMonthCategoryWrapper
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -1151,13 +1181,13 @@ export interface SaveTransaction {
      */
     account_id: string;
     /**
-     * 
+     * The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored.
      * @type {string}
      * @memberof SaveTransaction
      */
     date: string;
     /**
-     * The transaction amount in milliunits format
+     * The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored.
      * @type {number}
      * @memberof SaveTransaction
      */
@@ -1205,7 +1235,7 @@ export interface SaveTransaction {
      */
     flag_color?: SaveTransaction.FlagColorEnum;
     /**
-     * If specified for a new transaction, the transaction will be treated as Imported and assigned this import_id.  If another transaction on the same account with this same import_id is later attempted to be created, it will be skipped to prevent duplication.  Transactions imported through File Based Import or Direct Import and not through the API, are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.  If import_id is specified as null, the transaction will be treated as a user entered transaction.
+     * If specified, the new transaction will be assigned this import_id and considered \"imported\". *At the time of import* we will attempt to match \"imported\" transactions with non-imported (i.e. \"user-entered\") transactions.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
      * @type {string}
      * @memberof SaveTransaction
      */
@@ -1252,6 +1282,12 @@ export interface SaveTransactionWrapper {
      * @memberof SaveTransactionWrapper
      */
     transaction: SaveTransaction;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof SaveTransactionWrapper
+     */
+    server_knowledge?: number;
 }
 
 /**
@@ -1293,7 +1329,7 @@ export interface SaveTransactionsResponseData {
      */
     transactions?: Array<TransactionDetail>;
     /**
-     * If multiple transactions were specified, a list of import_ids that were not were created because of an existing import_id found on the same account
+     * If multiple transactions were specified, a list of import_ids that were not created because of an existing import_id found on the same account
      * @type {Array<string>}
      * @memberof SaveTransactionsResponseData
      */
@@ -1318,6 +1354,12 @@ export interface SaveTransactionsWrapper {
      * @memberof SaveTransactionsWrapper
      */
     transactions?: Array<SaveTransaction>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof SaveTransactionsWrapper
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -1633,7 +1675,7 @@ export interface TransactionSummary {
      */
     id: string;
     /**
-     * 
+     * The transaction date in ISO format (e.g. 2016-12-01)
      * @type {string}
      * @memberof TransactionSummary
      */
@@ -1855,11 +1897,23 @@ export interface BudgetDetail {
      */
     name: string;
     /**
-     * The last time any changes were made to the budget from either a web or mobile client.
+     * The last time any changes were made to the budget from either a web or mobile client
      * @type {string}
      * @memberof BudgetDetail
      */
     last_modified_on?: string;
+    /**
+     * The earliest budget month
+     * @type {string}
+     * @memberof BudgetDetail
+     */
+    first_month?: string;
+    /**
+     * The latest budget month
+     * @type {string}
+     * @memberof BudgetDetail
+     */
+    last_month?: string;
     /**
      * 
      * @type {DateFormat}
@@ -1985,7 +2039,7 @@ export interface HybridTransaction {
      */
     id: string;
     /**
-     * 
+     * The transaction date in ISO format (e.g. 2016-12-01)
      * @type {string}
      * @memberof HybridTransaction
      */
@@ -2353,7 +2407,7 @@ export interface TransactionDetail {
      */
     id: string;
     /**
-     * 
+     * The transaction date in ISO format (e.g. 2016-12-01)
      * @type {string}
      * @memberof TransactionDetail
      */
@@ -2500,7 +2554,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} account_id - The id of the account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2544,7 +2598,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2596,7 +2650,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} account_id - The id of the account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2618,7 +2672,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2649,7 +2703,7 @@ export const AccountsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single account
          * @summary Single account
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} account_id - The id of the account
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2660,7 +2714,7 @@ export const AccountsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all accounts
          * @summary Account list
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2681,7 +2735,7 @@ export class AccountsApi extends BaseAPI {
     /**
      * Returns a single account
      * @summary Single account
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} account_id - The id of the account
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2694,7 +2748,7 @@ export class AccountsApi extends BaseAPI {
     /**
      * Returns all accounts
      * @summary Account list
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2715,7 +2769,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2758,7 +2812,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Returns settings for a budget
          * @summary Budget Settings
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2837,7 +2891,7 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2859,7 +2913,7 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
         /**
          * Returns settings for a budget
          * @summary Budget Settings
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2909,7 +2963,7 @@ export const BudgetsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
          * @summary Single budget
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -2920,7 +2974,7 @@ export const BudgetsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns settings for a budget
          * @summary Budget Settings
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2949,7 +3003,7 @@ export class BudgetsApi extends BaseAPI {
     /**
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * @summary Single budget
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -2962,7 +3016,7 @@ export class BudgetsApi extends BaseAPI {
     /**
      * Returns settings for a budget
      * @summary Budget Settings
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof BudgetsApi
@@ -2993,7 +3047,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary List categories
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3036,7 +3090,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
         /**
          * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary Single category
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3080,7 +3134,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
         /**
          * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary Single category for a specific budget month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
@@ -3130,7 +3184,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
         /**
          * Update a category for a specific month
          * @summary Update a category for a specific month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
          * @param {SaveMonthCategoryWrapper} data - The category to update
@@ -3197,7 +3251,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary List categories
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3219,7 +3273,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary Single category
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3241,7 +3295,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary Single category for a specific budget month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
@@ -3264,7 +3318,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
         /**
          * Update a category for a specific month
          * @summary Update a category for a specific month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
          * @param {SaveMonthCategoryWrapper} data - The category to update
@@ -3297,7 +3351,7 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary List categories
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3308,7 +3362,7 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary Single category
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3319,7 +3373,7 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
          * @summary Single category for a specific budget month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
          * @param {*} [options] - Override http request options.
@@ -3331,7 +3385,7 @@ export const CategoriesApiFactory = function (configuration?: Configuration) {
         /**
          * Update a category for a specific month
          * @summary Update a category for a specific month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
          * @param {SaveMonthCategoryWrapper} data - The category to update
@@ -3354,7 +3408,7 @@ export class CategoriesApi extends BaseAPI {
     /**
      * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary List categories
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -3367,7 +3421,7 @@ export class CategoriesApi extends BaseAPI {
     /**
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -3380,7 +3434,7 @@ export class CategoriesApi extends BaseAPI {
     /**
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {*} [options] - Override http request options.
@@ -3394,7 +3448,7 @@ export class CategoriesApi extends BaseAPI {
     /**
      * Update a category for a specific month
      * @summary Update a category for a specific month
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
      * @param {SaveMonthCategoryWrapper} data - The category to update
@@ -3417,7 +3471,7 @@ export const DeprecatedApiFetchParamCreator = function (configuration?: Configur
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
          * @summary Bulk create transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {BulkTransactions} transactions - The list of transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3472,7 +3526,7 @@ export const DeprecatedApiFp = function(configuration?: Configuration) {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
          * @summary Bulk create transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {BulkTransactions} transactions - The list of transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3503,7 +3557,7 @@ export const DeprecatedApiFactory = function (configuration?: Configuration) {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
          * @summary Bulk create transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {BulkTransactions} transactions - The list of transactions to create
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3524,7 +3578,7 @@ export class DeprecatedApi extends BaseAPI {
     /**
      * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
      * @summary Bulk create transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {BulkTransactions} transactions - The list of transactions to create
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -3545,7 +3599,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3589,7 +3643,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3641,7 +3695,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3663,7 +3717,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3694,7 +3748,7 @@ export const MonthsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single budget month
          * @summary Single budget month
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3705,7 +3759,7 @@ export const MonthsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all budget months
          * @summary List budget months
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3726,7 +3780,7 @@ export class MonthsApi extends BaseAPI {
     /**
      * Returns a single budget month
      * @summary Single budget month
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -3739,7 +3793,7 @@ export class MonthsApi extends BaseAPI {
     /**
      * Returns all budget months
      * @summary List budget months
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -3760,7 +3814,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_location_id - id of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3804,7 +3858,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3842,7 +3896,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - id of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3895,7 +3949,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_location_id - id of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3917,7 +3971,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3938,7 +3992,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - id of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3969,7 +4023,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration)
         /**
          * Returns a single payee location
          * @summary Single payee location
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_location_id - id of payee location
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -3980,7 +4034,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration)
         /**
          * Returns all payee locations
          * @summary List payee locations
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -3990,7 +4044,7 @@ export const PayeeLocationsApiFactory = function (configuration?: Configuration)
         /**
          * Returns all payee locations for the specified payee
          * @summary List locations for a payee
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - id of payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4011,7 +4065,7 @@ export class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns a single payee location
      * @summary Single payee location
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} payee_location_id - id of payee location
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -4024,7 +4078,7 @@ export class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns all payee locations
      * @summary List payee locations
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof PayeeLocationsApi
@@ -4036,7 +4090,7 @@ export class PayeeLocationsApi extends BaseAPI {
     /**
      * Returns all payee locations for the specified payee
      * @summary List locations for a payee
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} payee_id - id of payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -4057,7 +4111,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - The id of the payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4101,7 +4155,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4153,7 +4207,7 @@ export const PayeesApiFp = function(configuration?: Configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - The id of the payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4175,7 +4229,7 @@ export const PayeesApiFp = function(configuration?: Configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4206,7 +4260,7 @@ export const PayeesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns single payee
          * @summary Single payee
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - The id of the payee
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4217,7 +4271,7 @@ export const PayeesApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all payees
          * @summary List payees
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4238,7 +4292,7 @@ export class PayeesApi extends BaseAPI {
     /**
      * Returns single payee
      * @summary Single payee
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} payee_id - The id of the payee
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -4251,7 +4305,7 @@ export class PayeesApi extends BaseAPI {
     /**
      * Returns all payees
      * @summary List payees
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -4272,7 +4326,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} scheduled_transaction_id - The id of the scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4316,7 +4370,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -4363,7 +4417,7 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} scheduled_transaction_id - The id of the scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4385,7 +4439,7 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -4415,7 +4469,7 @@ export const ScheduledTransactionsApiFactory = function (configuration?: Configu
         /**
          * Returns a single scheduled transaction
          * @summary Single scheduled transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} scheduled_transaction_id - The id of the scheduled transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4426,7 +4480,7 @@ export const ScheduledTransactionsApiFactory = function (configuration?: Configu
         /**
          * Returns all scheduled transactions
          * @summary List scheduled transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -4446,7 +4500,7 @@ export class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns a single scheduled transaction
      * @summary Single scheduled transaction
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} scheduled_transaction_id - The id of the scheduled transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -4459,7 +4513,7 @@ export class ScheduledTransactionsApi extends BaseAPI {
     /**
      * Returns all scheduled transactions
      * @summary List scheduled transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
@@ -4477,9 +4531,9 @@ export class ScheduledTransactionsApi extends BaseAPI {
 export const TransactionsApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
          * @summary Create a single transaction or multiple transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4525,7 +4579,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} transaction_id - The id of the transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4569,7 +4623,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -4622,7 +4676,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} account_id - The id of the account
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -4681,7 +4735,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} category_id - The id of the category
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -4740,7 +4794,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Returns all transactions for a specified payee
          * @summary List payee transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - The id of the payee
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -4799,7 +4853,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} transaction_id - The id of the transaction
          * @param {SaveTransactionWrapper} data - The transaction to update
          * @param {*} [options] - Override http request options.
@@ -4851,7 +4905,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
         /**
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4904,9 +4958,9 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
 export const TransactionsApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
          * @summary Create a single transaction or multiple transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4928,7 +4982,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} transaction_id - The id of the transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -4950,7 +5004,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -4974,7 +5028,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} account_id - The id of the account
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -4999,7 +5053,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} category_id - The id of the category
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5024,7 +5078,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns all transactions for a specified payee
          * @summary List payee transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - The id of the payee
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5049,7 +5103,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} transaction_id - The id of the transaction
          * @param {SaveTransactionWrapper} data - The transaction to update
          * @param {*} [options] - Override http request options.
@@ -5072,7 +5126,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
         /**
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -5101,9 +5155,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
 export const TransactionsApiFactory = function (configuration?: Configuration) {
     return {
         /**
-         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+         * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
          * @summary Create a single transaction or multiple transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -5114,7 +5168,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns a single transaction
          * @summary Single transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} transaction_id - The id of the transaction
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -5125,7 +5179,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns budget transactions
          * @summary List transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
          * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -5138,7 +5192,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all transactions for a specified account
          * @summary List account transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} account_id - The id of the account
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5152,7 +5206,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all transactions for a specified category
          * @summary List category transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} category_id - The id of the category
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5166,7 +5220,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Returns all transactions for a specified payee
          * @summary List payee transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} payee_id - The id of the payee
          * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
          * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5180,7 +5234,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Updates a transaction
          * @summary Updates an existing transaction
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {string} transaction_id - The id of the transaction
          * @param {SaveTransactionWrapper} data - The transaction to update
          * @param {*} [options] - Override http request options.
@@ -5192,7 +5246,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
         /**
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
-         * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
@@ -5211,9 +5265,9 @@ export const TransactionsApiFactory = function (configuration?: Configuration) {
  */
 export class TransactionsApi extends BaseAPI {
     /**
-     * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.
+     * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * @summary Create a single transaction or multiple transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the 'transaction' object and to create multiple transactions you can specify an array of 'transactions'.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -5226,7 +5280,7 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns a single transaction
      * @summary Single transaction
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} transaction_id - The id of the transaction
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
@@ -5239,7 +5293,7 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns budget transactions
      * @summary List transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
      * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
@@ -5254,7 +5308,7 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} account_id - The id of the account
      * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5270,7 +5324,7 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} category_id - The id of the category
      * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5286,7 +5340,7 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} payee_id - The id of the payee
      * @param {Date} [since_date] - If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30).
      * @param {&#39;uncategorized&#39; | &#39;unapproved&#39;} [type] - If specified, only transactions of the specified type will be included. 'uncategorized' and 'unapproved' are currently supported.
@@ -5302,7 +5356,7 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {string} transaction_id - The id of the transaction
      * @param {SaveTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
@@ -5316,7 +5370,7 @@ export class TransactionsApi extends BaseAPI {
     /**
      * Updates multiple transactions, by 'id' or 'import_id'.
      * @summary Update multiple transactions
-     * @param {string} budget_id - The id of the budget (\"last-used\" can also be used to specify the last used budget)
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}

@@ -114,17 +114,17 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "last_knowledge_of_server",
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -160,10 +160,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -199,17 +198,17 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "last_knowledge_of_server",
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -245,10 +244,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "account_id",
@@ -292,17 +290,17 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "last_knowledge_of_server",
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -338,18 +336,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "category_id",
             "in": "path",
             "description": "The id of the category",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -385,10 +381,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "month",
@@ -403,8 +398,7 @@
             "in": "path",
             "description": "The id of the category",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -438,10 +432,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "month",
@@ -456,8 +449,7 @@
             "in": "path",
             "description": "The id of the category",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "data",
@@ -496,17 +488,17 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "last_knowledge_of_server",
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -542,18 +534,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "payee_id",
             "in": "path",
             "description": "The id of the payee",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -589,10 +579,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -628,18 +617,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "payee_location_id",
             "in": "path",
             "description": "id of payee location",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -675,18 +662,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "payee_id",
             "in": "path",
             "description": "id of payee",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -722,17 +707,17 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "last_knowledge_of_server",
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -768,10 +753,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "month",
@@ -815,10 +799,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "since_date",
@@ -841,7 +824,8 @@
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -868,17 +852,16 @@
       "post": {
         "tags": ["Transactions"],
         "summary": "Create a single transaction or multiple transactions",
-        "description": "Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.",
+        "description": "Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.",
         "operationId": "createTransaction",
         "produces": ["application/json"],
         "parameters": [
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "data",
@@ -921,10 +904,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "data",
@@ -963,10 +945,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "transaction_id",
@@ -1007,10 +988,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "transaction_id",
@@ -1056,10 +1036,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "transactions",
@@ -1098,18 +1077,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "account_id",
             "in": "path",
             "description": "The id of the account",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "since_date",
@@ -1132,7 +1109,8 @@
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -1168,18 +1146,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "category_id",
             "in": "path",
             "description": "The id of the category",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "since_date",
@@ -1202,7 +1178,8 @@
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -1238,18 +1215,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "payee_id",
             "in": "path",
             "description": "The id of the payee",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "since_date",
@@ -1272,7 +1247,8 @@
             "in": "query",
             "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
             "required": false,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -1308,10 +1284,9 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -1347,18 +1322,16 @@
           {
             "name": "budget_id",
             "in": "path",
-            "description": "The id of the budget (\"last-used\" can also be used to specify the last used budget)",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           },
           {
             "name": "scheduled_transaction_id",
             "in": "path",
             "description": "The id of the scheduled transaction",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "responses": {
@@ -1475,7 +1448,8 @@
           "type": "string"
         },
         "decimal_digits": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "decimal_separator": {
           "type": "string"
@@ -1505,13 +1479,17 @@
     },
     "BudgetSummaryWrapper": {
       "type": "object",
-      "required": ["budgets"],
+      "required": ["budgets", "default_budget"],
       "properties": {
         "budgets": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/BudgetSummary"
           }
+        },
+        "default_budget": {
+          "$ref": "#/definitions/BudgetSummary",
+          "description": "The default budget, if the associated application is configured to support specifying it"
         }
       }
     },
@@ -1533,6 +1511,7 @@
         },
         "server_knowledge": {
           "type": "integer",
+          "format": "int64",
           "description": "The knowledge of the server"
         }
       }
@@ -1569,7 +1548,17 @@
         "last_modified_on": {
           "type": "string",
           "format": "date-time",
-          "description": "The last time any changes were made to the budget from either a web or mobile client."
+          "description": "The last time any changes were made to the budget from either a web or mobile client"
+        },
+        "first_month": {
+          "type": "string",
+          "format": "date",
+          "description": "The earliest budget month"
+        },
+        "last_month": {
+          "type": "string",
+          "format": "date",
+          "description": "The latest budget month"
         },
         "date_format": {
           "$ref": "#/definitions/DateFormat"
@@ -1684,6 +1673,7 @@
         },
         "server_knowledge": {
           "type": "integer",
+          "format": "int64",
           "description": "The knowledge of the server"
         }
       }
@@ -1759,24 +1749,23 @@
         },
         "balance": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The current balance of the account in milliunits format"
         },
         "cleared_balance": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The current cleared balance of the account in milliunits format"
         },
         "uncleared_balance": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The current uncleared balance of the account in milliunits format"
         },
         "transfer_payee_id": {
           "type": "string",
           "format": "uuid",
-          "description":
-            "The payee id which should be used when transferring to this account"
+          "description": "The payee id which should be used when transferring to this account"
         },
         "deleted": {
           "type": "boolean",
@@ -1805,6 +1794,7 @@
         },
         "server_knowledge": {
           "type": "integer",
+          "format": "int64",
           "description": "The knowledge of the server"
         }
       }
@@ -1912,14 +1902,17 @@
         },
         "budgeted": {
           "type": "integer",
+          "format": "int64",
           "description": "Budgeted amount in milliunits format"
         },
         "activity": {
           "type": "integer",
+          "format": "int64",
           "description": "Activity amount in milliunits format"
         },
         "balance": {
           "type": "integer",
+          "format": "int64",
           "description": "Balance in milliunits format"
         },
         "goal_type": {
@@ -1934,6 +1927,7 @@
         },
         "goal_target": {
           "type": "integer",
+          "format": "int64",
           "description": "The goal target amount in milliunits"
         },
         "goal_target_month": {
@@ -1943,6 +1937,7 @@
         },
         "goal_percentage_complete": {
           "type": "integer",
+          "format": "int32",
           "description": "The percentage completion of the goal"
         },
         "deleted": {
@@ -1972,6 +1967,7 @@
         },
         "server_knowledge": {
           "type": "integer",
+          "format": "int64",
           "description": "The knowledge of the server"
         }
       }
@@ -2099,6 +2095,7 @@
         },
         "server_knowledge": {
           "type": "integer",
+          "format": "int64",
           "description": "The knowledge of the server"
         }
       }
@@ -2130,11 +2127,17 @@
       "properties": {
         "transaction": {
           "$ref": "#/definitions/SaveTransaction"
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The knowledge of the server"
         }
       }
     },
     "SaveTransactionsWrapper": {
       "type": "object",
+      "required": ["server_knowledge"],
       "properties": {
         "transaction": {
           "$ref": "#/definitions/SaveTransaction"
@@ -2144,6 +2147,11 @@
           "items": {
             "$ref": "#/definitions/SaveTransaction"
           }
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -2157,12 +2165,13 @@
         },
         "date": {
           "type": "string",
-          "format": "date"
+          "format": "date",
+          "description": "The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored."
         },
         "amount": {
           "type": "integer",
-          "format": "1234000",
-          "description": "The transaction amount in milliunits format"
+          "format": "int64",
+          "description": "The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored."
         },
         "payee_id": {
           "type": "string",
@@ -2171,6 +2180,7 @@
         },
         "payee_name": {
           "type": "string",
+          "maxLength": 50,
           "description": "The payee name.  If a payee_name value is provided and payee_id has a null value, the payee_name value will be used to resolve the payee by either (1) a matching payee rename rule (only if import_id is also specified) or (2) a payee with the same name or (3) creation of a new payee."
         },
         "category_id": {
@@ -2179,7 +2189,8 @@
           "description": "The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied.  If an existing transaction has a Split category it cannot be changed."
         },
         "memo": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 200
         },
         "cleared": {
           "type": "string",
@@ -2197,7 +2208,8 @@
         },
         "import_id": {
           "type": "string",
-          "description": "If specified for a new transaction, the transaction will be treated as Imported and assigned this import_id.  If another transaction on the same account with this same import_id is later attempted to be created, it will be skipped to prevent duplication.  Transactions imported through File Based Import or Direct Import and not through the API, are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.  If import_id is specified as null, the transaction will be treated as a user entered transaction."
+          "maxLength": 36,
+          "description": "If specified, the new transaction will be assigned this import_id and considered \"imported\". *At the time of import* we will attempt to match \"imported\" transactions with non-imported (i.e. \"user-entered\") transactions.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API)."
         }
       }
     },
@@ -2229,7 +2241,7 @@
             },
             "duplicate_import_ids": {
               "type": "array",
-              "description": "If multiple transactions were specified, a list of import_ids that were not were created because of an existing import_id found on the same account",
+              "description": "If multiple transactions were specified, a list of import_ids that were not created because of an existing import_id found on the same account",
               "items": {
                 "type": "string"
               }
@@ -2281,11 +2293,12 @@
         },
         "date": {
           "type": "string",
-          "format": "date"
+          "format": "date",
+          "description": "The transaction date in ISO format (e.g. 2016-12-01)"
         },
         "amount": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The transaction amount in milliunits format"
         },
         "memo": {
@@ -2324,12 +2337,10 @@
         },
         "transfer_transaction_id": {
           "type": "string",
-          "format": "uuid",
           "description": "If a transfer transaction, the id of transaction on the other side of the transfer"
         },
         "matched_transaction_id": {
           "type": "string",
-          "format": "uuid",
           "description": "If transaction is matched, the id of the matched transaction"
         },
         "import_id": {
@@ -2349,12 +2360,7 @@
         },
         {
           "type": "object",
-          "required": [
-            "account_name",
-            "payee_name",
-            "category_name",
-            "subtransactions"
-          ],
+          "required": ["account_name", "payee_name", "category_name", "subtransactions"],
           "properties": {
             "account_name": {
               "type": "string"
@@ -2383,13 +2389,7 @@
         },
         {
           "type": "object",
-          "required": [
-            "type",
-            "parent_transaction_id",
-            "account_name",
-            "payee_name",
-            "category_name"
-          ],
+          "required": ["type", "parent_transaction_id", "account_name", "payee_name", "category_name"],
           "properties": {
             "type": {
               "type": "string",
@@ -2415,10 +2415,15 @@
     },
     "SaveMonthCategoryWrapper": {
       "type": "object",
-      "required": ["category"],
+      "required": ["category", "server_knowledge"],
       "properties": {
         "category": {
           "$ref": "#/definitions/SaveMonthCategory"
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -2428,6 +2433,7 @@
       "properties": {
         "budgeted": {
           "type": "integer",
+          "format": "int64",
           "description": "Budgeted amount in milliunits format"
         }
       }
@@ -2503,7 +2509,7 @@
         },
         "amount": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The subtransaction amount in milliunits format"
         },
         "memo": {
@@ -2618,7 +2624,7 @@
         },
         "amount": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The scheduled transaction amount in milliunits format"
         },
         "memo": {
@@ -2659,12 +2665,7 @@
         },
         {
           "type": "object",
-          "required": [
-            "account_name",
-            "payee_name",
-            "category_name",
-            "subtransactions"
-          ],
+          "required": ["account_name", "payee_name", "category_name", "subtransactions"],
           "properties": {
             "account_name": {
               "type": "string"
@@ -2709,7 +2710,7 @@
         },
         "amount": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The scheduled subtransaction amount in milliunits format"
         },
         "memo": {
@@ -2755,6 +2756,7 @@
         },
         "server_knowledge": {
           "type": "integer",
+          "format": "int64",
           "description": "The knowledge of the server"
         }
       }
@@ -2774,21 +2776,17 @@
       "properties": {
         "month": {
           "$ref": "#/definitions/MonthDetail"
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The knowledge of the server"
         }
       }
     },
     "MonthSummary": {
       "type": "object",
-      "required": [
-        "month",
-        "note",
-        "income",
-        "budgeted",
-        "activity",
-        "to_be_budgeted",
-        "age_of_money",
-        "deleted"
-      ],
+      "required": ["month", "note", "income", "budgeted", "activity", "to_be_budgeted", "age_of_money", "deleted"],
       "properties": {
         "month": {
           "type": "string",
@@ -2799,26 +2797,27 @@
         },
         "income": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The total amount in transactions categorized to 'Inflow: To be Budgeted' in the month"
         },
         "budgeted": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The total amount budgeted in the month"
         },
         "activity": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The total amount in transactions in the month, excluding those categorized to 'Inflow: To be Budgeted'"
         },
         "to_be_budgeted": {
           "type": "integer",
-          "format": "1234000",
+          "format": "int64",
           "description": "The available amount for 'To be Budgeted'"
         },
         "age_of_money": {
           "type": "integer",
+          "format": "int32",
           "description": "The Age of Money as of the month"
         },
         "deleted": {
