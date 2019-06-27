@@ -348,7 +348,8 @@ export const saveTransactionsResponseFactory = Factory.makeFactory<api.SaveTrans
   data: Factory.makeFactory({
     transaction_ids: ["1"],
     transaction: transactionFactory.build(),
-    transactions: transactionFactory.buildList(3)
+    transactions: transactionFactory.buildList(3),
+    server_knowledge: Factory.each(i => i)
   })
 });
 
