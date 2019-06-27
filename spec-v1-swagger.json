@@ -1810,10 +1810,15 @@
     },
     "CategoryWrapper": {
       "type": "object",
-      "required": ["category"],
+      "required": ["category", "server_knowledge"],
       "properties": {
         "category": {
           "$ref": "#/definitions/Category"
+        },
+        "server_knowledge": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The knowledge of the server"
         }
       }
     },
@@ -2410,15 +2415,10 @@
     },
     "SaveMonthCategoryWrapper": {
       "type": "object",
-      "required": ["category", "server_knowledge"],
+      "required": ["category"],
       "properties": {
         "category": {
           "$ref": "#/definitions/SaveMonthCategory"
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -2771,11 +2771,6 @@
       "properties": {
         "month": {
           "$ref": "#/definitions/MonthDetail"
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },

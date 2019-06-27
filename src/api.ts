@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.13.2";
+const USER_AGENT = "api_client/js/1.13.3";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -682,6 +682,12 @@ export interface CategoryWrapper {
      * @memberof CategoryWrapper
      */
     category: Category;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof CategoryWrapper
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -848,12 +854,6 @@ export interface MonthDetailWrapper {
      * @memberof MonthDetailWrapper
      */
     month: MonthDetail;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof MonthDetailWrapper
-     */
-    server_knowledge?: number;
 }
 
 /**
@@ -1160,12 +1160,6 @@ export interface SaveMonthCategoryWrapper {
      * @memberof SaveMonthCategoryWrapper
      */
     category: SaveMonthCategory;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof SaveMonthCategoryWrapper
-     */
-    server_knowledge: number;
 }
 
 /**

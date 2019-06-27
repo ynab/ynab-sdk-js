@@ -627,6 +627,12 @@ export interface CategoryWrapper {
      * @memberof CategoryWrapper
      */
     category: Category;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof CategoryWrapper
+     */
+    server_knowledge: number;
 }
 /**
  * The currency format setting for the budget.  In some cases the format will not be available and will be specified as null.
@@ -785,12 +791,6 @@ export interface MonthDetailWrapper {
      * @memberof MonthDetailWrapper
      */
     month: MonthDetail;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof MonthDetailWrapper
-     */
-    server_knowledge?: number;
 }
 /**
  *
@@ -1082,12 +1082,6 @@ export interface SaveMonthCategoryWrapper {
      * @memberof SaveMonthCategoryWrapper
      */
     category: SaveMonthCategory;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof SaveMonthCategoryWrapper
-     */
-    server_knowledge: number;
 }
 /**
  *
