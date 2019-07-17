@@ -465,7 +465,7 @@
           "200": {
             "description": "The month category was successfully updated",
             "schema": {
-              "$ref": "#/definitions/CategoryResponse"
+              "$ref": "#/definitions/SaveCategoryResponse"
             }
           },
           "400": {
@@ -1394,16 +1394,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/UserWrapper"
-        }
-      }
-    },
-    "UserWrapper": {
-      "type": "object",
-      "required": ["user"],
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/User"
+          "type": "object",
+          "required": ["user"],
+          "properties": {
+            "user": {
+              "$ref": "#/definitions/User"
+            }
+          }
         }
       }
     },
@@ -1473,64 +1470,20 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/BudgetSummaryWrapper"
-        }
-      }
-    },
-    "BudgetSummaryWrapper": {
-      "type": "object",
-      "required": ["budgets", "default_budget"],
-      "properties": {
-        "budgets": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BudgetSummary"
+          "type": "object",
+          "required": ["budgets", "default_budget"],
+          "properties": {
+            "budgets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BudgetSummary"
+              }
+            },
+            "default_budget": {
+              "$ref": "#/definitions/BudgetSummary",
+              "description": "The default budget, if the associated application is configured to support specifying it"
+            }
           }
-        },
-        "default_budget": {
-          "$ref": "#/definitions/BudgetSummary",
-          "description": "The default budget, if the associated application is configured to support specifying it"
-        }
-      }
-    },
-    "BudgetDetailResponse": {
-      "type": "object",
-      "required": ["data"],
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/BudgetDetailWrapper"
-        }
-      }
-    },
-    "BudgetDetailWrapper": {
-      "type": "object",
-      "required": ["budget", "server_knowledge"],
-      "properties": {
-        "budget": {
-          "$ref": "#/definitions/BudgetDetail"
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
-        }
-      }
-    },
-    "BudgetSettingsResponse": {
-      "type": "object",
-      "required": ["data"],
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/BudgetSettingsWrapper"
-        }
-      }
-    },
-    "BudgetSettingsWrapper": {
-      "type": "object",
-      "required": ["settings"],
-      "properties": {
-        "settings": {
-          "$ref": "#/definitions/BudgetSettings"
         }
       }
     },
@@ -1568,15 +1521,23 @@
         }
       }
     },
-    "BudgetSettings": {
+    "BudgetDetailResponse": {
       "type": "object",
-      "required": ["date_format", "currency_format"],
+      "required": ["data"],
       "properties": {
-        "date_format": {
-          "$ref": "#/definitions/DateFormat"
-        },
-        "currency_format": {
-          "$ref": "#/definitions/CurrencyFormat"
+        "data": {
+          "type": "object",
+          "required": ["budget", "server_knowledge"],
+          "properties": {
+            "budget": {
+              "$ref": "#/definitions/BudgetDetail"
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
+          }
         }
       }
     },
@@ -1652,29 +1613,53 @@
         }
       ]
     },
+    "BudgetSettingsResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "type": "object",
+          "required": ["settings"],
+          "properties": {
+            "settings": {
+              "$ref": "#/definitions/BudgetSettings"
+            }
+          }
+        }
+      }
+    },
+    "BudgetSettings": {
+      "type": "object",
+      "required": ["date_format", "currency_format"],
+      "properties": {
+        "date_format": {
+          "$ref": "#/definitions/DateFormat"
+        },
+        "currency_format": {
+          "$ref": "#/definitions/CurrencyFormat"
+        }
+      }
+    },
     "AccountsResponse": {
       "type": "object",
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/AccountsWrapper"
-        }
-      }
-    },
-    "AccountsWrapper": {
-      "type": "object",
-      "required": ["accounts", "server_knowledge"],
-      "properties": {
-        "accounts": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Account"
+          "type": "object",
+          "required": ["accounts", "server_knowledge"],
+          "properties": {
+            "accounts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Account"
+              }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
           }
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -1683,16 +1668,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/AccountWrapper"
-        }
-      }
-    },
-    "AccountWrapper": {
-      "type": "object",
-      "required": ["account"],
-      "properties": {
-        "account": {
-          "$ref": "#/definitions/Account"
+          "type": "object",
+          "required": ["account"],
+          "properties": {
+            "account": {
+              "$ref": "#/definitions/Account"
+            }
+          }
         }
       }
     },
@@ -1778,24 +1760,21 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/CategoryGroupsWrapper"
-        }
-      }
-    },
-    "CategoryGroupsWrapper": {
-      "type": "object",
-      "required": ["category_groups", "server_knowledge"],
-      "properties": {
-        "category_groups": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CategoryGroupWithCategories"
+          "type": "object",
+          "required": ["category_groups", "server_knowledge"],
+          "properties": {
+            "category_groups": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CategoryGroupWithCategories"
+              }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
           }
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -1804,42 +1783,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/CategoryWrapper"
-        }
-      }
-    },
-    "CategoryWrapper": {
-      "type": "object",
-      "required": ["category", "server_knowledge"],
-      "properties": {
-        "category": {
-          "$ref": "#/definitions/Category"
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
-        }
-      }
-    },
-    "CategoryGroup": {
-      "type": "object",
-      "required": ["id", "name", "hidden", "deleted"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "name": {
-          "type": "string"
-        },
-        "hidden": {
-          "description": "Whether or not the category group is hidden",
-          "type": "boolean"
-        },
-        "deleted": {
-          "type": "boolean",
-          "description": "Whether or not the category group has been deleted.  Deleted category groups will only be included in delta requests."
+          "type": "object",
+          "required": ["category"],
+          "properties": {
+            "category": {
+              "$ref": "#/definitions/Category"
+            }
+          }
         }
       }
     },
@@ -1862,6 +1812,27 @@
           }
         }
       ]
+    },
+    "CategoryGroup": {
+      "type": "object",
+      "required": ["id", "name", "hidden", "deleted"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Whether or not the category group is hidden",
+          "type": "boolean"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether or not the category group has been deleted.  Deleted category groups will only be included in delta requests."
+        }
+      }
     },
     "Category": {
       "type": "object",
@@ -1951,29 +1922,46 @@
         }
       }
     },
+    "SaveCategoryResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "type": "object",
+          "required": ["category", "server_knowledge"],
+          "properties": {
+            "category": {
+              "$ref": "#/definitions/Category"
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
+          }
+        }
+      }
+    },
     "PayeesResponse": {
       "type": "object",
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/PayeesWrapper"
-        }
-      }
-    },
-    "PayeesWrapper": {
-      "type": "object",
-      "required": ["payees", "server_knowledge"],
-      "properties": {
-        "payees": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Payee"
+          "type": "object",
+          "required": ["payees", "server_knowledge"],
+          "properties": {
+            "payees": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Payee"
+              }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
           }
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -1982,16 +1970,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/PayeeWrapper"
-        }
-      }
-    },
-    "PayeeWrapper": {
-      "type": "object",
-      "required": ["payee"],
-      "properties": {
-        "payee": {
-          "$ref": "#/definitions/Payee"
+          "type": "object",
+          "required": ["payee"],
+          "properties": {
+            "payee": {
+              "$ref": "#/definitions/Payee"
+            }
+          }
         }
       }
     },
@@ -2021,18 +2006,15 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/PayeeLocationsWrapper"
-        }
-      }
-    },
-    "PayeeLocationsWrapper": {
-      "type": "object",
-      "required": ["payee_locations"],
-      "properties": {
-        "payee_locations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PayeeLocation"
+          "type": "object",
+          "required": ["payee_locations"],
+          "properties": {
+            "payee_locations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PayeeLocation"
+              }
+            }
           }
         }
       }
@@ -2042,16 +2024,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/PayeeLocationWrapper"
-        }
-      }
-    },
-    "PayeeLocationWrapper": {
-      "type": "object",
-      "required": ["payee_location"],
-      "properties": {
-        "payee_location": {
-          "$ref": "#/definitions/PayeeLocation"
+          "type": "object",
+          "required": ["payee_location"],
+          "properties": {
+            "payee_location": {
+              "$ref": "#/definitions/PayeeLocation"
+            }
+          }
         }
       }
     },
@@ -2084,24 +2063,21 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/TransactionsWrapper"
-        }
-      }
-    },
-    "TransactionsWrapper": {
-      "type": "object",
-      "required": ["transactions", "server_knowledge"],
-      "properties": {
-        "transactions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TransactionDetail"
+          "type": "object",
+          "required": ["transactions", "server_knowledge"],
+          "properties": {
+            "transactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TransactionDetail"
+              }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
           }
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -2110,18 +2086,15 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/HybridTransactionsWrapper"
-        }
-      }
-    },
-    "HybridTransactionsWrapper": {
-      "type": "object",
-      "required": ["transactions"],
-      "properties": {
-        "transactions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/HybridTransaction"
+          "type": "object",
+          "required": ["transactions"],
+          "properties": {
+            "transactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HybridTransaction"
+              }
+            }
           }
         }
       }
@@ -2137,7 +2110,6 @@
     },
     "SaveTransactionsWrapper": {
       "type": "object",
-      "required": ["server_knowledge"],
       "properties": {
         "transaction": {
           "$ref": "#/definitions/SaveTransaction"
@@ -2255,16 +2227,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/TransactionWrapper"
-        }
-      }
-    },
-    "TransactionWrapper": {
-      "type": "object",
-      "required": ["transaction"],
-      "properties": {
-        "transaction": {
-          "$ref": "#/definitions/TransactionDetail"
+          "type": "object",
+          "required": ["transaction"],
+          "properties": {
+            "transaction": {
+              "$ref": "#/definitions/TransactionDetail"
+            }
+          }
         }
       }
     },
@@ -2433,41 +2402,35 @@
         }
       }
     },
-    "BulkIdWrapper": {
-      "type": "object",
-      "required": ["bulk"],
-      "properties": {
-        "bulk": {
-          "$ref": "#/definitions/BulkIds"
-        }
-      }
-    },
-    "BulkIds": {
-      "type": "object",
-      "required": ["transaction_ids", "duplicate_import_ids"],
-      "properties": {
-        "transaction_ids": {
-          "type": "array",
-          "description": "The list of Transaction ids that were created.",
-          "items": {
-            "type": "string"
-          }
-        },
-        "duplicate_import_ids": {
-          "type": "array",
-          "description": "If any Transactions were not created because they had an import_id matching a transaction already on the same account, the specified import_id(s) will be included in this list.",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "BulkResponse": {
       "type": "object",
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/BulkIdWrapper"
+          "type": "object",
+          "required": ["bulk"],
+          "properties": {
+            "bulk": {
+              "type": "object",
+              "required": ["transaction_ids", "duplicate_import_ids"],
+              "properties": {
+                "transaction_ids": {
+                  "type": "array",
+                  "description": "The list of Transaction ids that were created.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "duplicate_import_ids": {
+                  "type": "array",
+                  "description": "If any Transactions were not created because they had an import_id matching a transaction already on the same account, the specified import_id(s) will be included in this list.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -2534,18 +2497,15 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/ScheduledTransactionsWrapper"
-        }
-      }
-    },
-    "ScheduledTransactionsWrapper": {
-      "type": "object",
-      "required": ["scheduled_transactions"],
-      "properties": {
-        "scheduled_transactions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ScheduledTransactionDetail"
+          "type": "object",
+          "required": ["scheduled_transactions"],
+          "properties": {
+            "scheduled_transactions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScheduledTransactionDetail"
+              }
+            }
           }
         }
       }
@@ -2555,16 +2515,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/ScheduledTransactionWrapper"
-        }
-      }
-    },
-    "ScheduledTransactionWrapper": {
-      "type": "object",
-      "required": ["scheduled_transaction"],
-      "properties": {
-        "scheduled_transaction": {
-          "$ref": "#/definitions/ScheduledTransactionDetail"
+          "type": "object",
+          "required": ["scheduled_transaction"],
+          "properties": {
+            "scheduled_transaction": {
+              "$ref": "#/definitions/ScheduledTransactionDetail"
+            }
+          }
         }
       }
     },
@@ -2735,24 +2692,21 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/MonthSummariesWrapper"
-        }
-      }
-    },
-    "MonthSummariesWrapper": {
-      "type": "object",
-      "required": ["months", "server_knowledge"],
-      "properties": {
-        "months": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MonthSummary"
+          "type": "object",
+          "required": ["months", "server_knowledge"],
+          "properties": {
+            "months": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MonthSummary"
+              }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
           }
-        },
-        "server_knowledge": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The knowledge of the server"
         }
       }
     },
@@ -2761,16 +2715,13 @@
       "required": ["data"],
       "properties": {
         "data": {
-          "$ref": "#/definitions/MonthDetailWrapper"
-        }
-      }
-    },
-    "MonthDetailWrapper": {
-      "type": "object",
-      "required": ["month"],
-      "properties": {
-        "month": {
-          "$ref": "#/definitions/MonthDetail"
+          "type": "object",
+          "required": ["month"],
+          "properties": {
+            "month": {
+              "$ref": "#/definitions/MonthDetail"
+            }
+          }
         }
       }
     },

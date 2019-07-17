@@ -62,8 +62,8 @@ export const accountsResponseFactory = Factory.makeFactory<
   })
 });
 
-export const accountResponseFactory = Factory.makeFactory({
-  data: Factory.makeFactory<api.AccountWrapper>({
+export const accountResponseFactory = Factory.makeFactory<api.AccountResponse>({
+  data: Factory.makeFactory({
     account: accountFactory.build()
   })
 });
@@ -337,7 +337,7 @@ export const bulkTransactionsFactory = Factory.makeFactory<
   ]
 });
 
-export const bulkIdsFactory = Factory.makeFactory<api.BulkIds>({
+export const bulkIdsFactory = Factory.makeFactory({
   transaction_ids: [
     "2E06D718-1810-437E-8B2C-1969534A6676",
     "D99C9967-852C-4FE4-AD62-F8E4B41F5A4E"
