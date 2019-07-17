@@ -68,7 +68,7 @@ export interface FetchArgs {
 export class BaseAPI {
     protected configuration: Configuration;
 
-    constructor(configuration?: Configuration) {
+    constructor(configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
@@ -2565,7 +2565,7 @@ export namespace TransactionDetail {
  * AccountsApi - fetch parameter creator
  * @export
  */
-export const AccountsApiFetchParamCreator = function (configuration?: Configuration) {
+export const AccountsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single account
@@ -2661,7 +2661,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
  * AccountsApi - functional programming interface
  * @export
  */
-export const AccountsApiFp = function(configuration?: Configuration) {
+export const AccountsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single account
@@ -2714,7 +2714,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
  * AccountsApi - factory interface
  * @export
  */
-export const AccountsApiFactory = function (configuration?: Configuration) {
+export const AccountsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single account
@@ -2780,7 +2780,7 @@ export class AccountsApi extends BaseAPI {
  * BudgetsApi - fetch parameter creator
  * @export
  */
-export const BudgetsApiFetchParamCreator = function (configuration?: Configuration) {
+export const BudgetsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -2902,7 +2902,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
  * BudgetsApi - functional programming interface
  * @export
  */
-export const BudgetsApiFp = function(configuration?: Configuration) {
+export const BudgetsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -2974,7 +2974,7 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
  * BudgetsApi - factory interface
  * @export
  */
-export const BudgetsApiFactory = function (configuration?: Configuration) {
+export const BudgetsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -3058,7 +3058,7 @@ export class BudgetsApi extends BaseAPI {
  * CategoriesApi - fetch parameter creator
  * @export
  */
-export const CategoriesApiFetchParamCreator = function (configuration?: Configuration) {
+export const CategoriesApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -3262,7 +3262,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
  * CategoriesApi - functional programming interface
  * @export
  */
-export const CategoriesApiFp = function(configuration?: Configuration) {
+export const CategoriesApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -3362,7 +3362,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
  * CategoriesApi - factory interface
  * @export
  */
-export const CategoriesApiFactory = function (configuration?: Configuration) {
+export const CategoriesApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -3482,7 +3482,7 @@ export class CategoriesApi extends BaseAPI {
  * DeprecatedApi - fetch parameter creator
  * @export
  */
-export const DeprecatedApiFetchParamCreator = function (configuration?: Configuration) {
+export const DeprecatedApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -3537,7 +3537,7 @@ export const DeprecatedApiFetchParamCreator = function (configuration?: Configur
  * DeprecatedApi - functional programming interface
  * @export
  */
-export const DeprecatedApiFp = function(configuration?: Configuration) {
+export const DeprecatedApiFp = function(configuration: Configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -3568,7 +3568,7 @@ export const DeprecatedApiFp = function(configuration?: Configuration) {
  * DeprecatedApi - factory interface
  * @export
  */
-export const DeprecatedApiFactory = function (configuration?: Configuration) {
+export const DeprecatedApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -3610,7 +3610,7 @@ export class DeprecatedApi extends BaseAPI {
  * MonthsApi - fetch parameter creator
  * @export
  */
-export const MonthsApiFetchParamCreator = function (configuration?: Configuration) {
+export const MonthsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget month
@@ -3706,7 +3706,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
  * MonthsApi - functional programming interface
  * @export
  */
-export const MonthsApiFp = function(configuration?: Configuration) {
+export const MonthsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single budget month
@@ -3759,7 +3759,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
  * MonthsApi - factory interface
  * @export
  */
-export const MonthsApiFactory = function (configuration?: Configuration) {
+export const MonthsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget month
@@ -3825,7 +3825,7 @@ export class MonthsApi extends BaseAPI {
  * PayeeLocationsApi - fetch parameter creator
  * @export
  */
-export const PayeeLocationsApiFetchParamCreator = function (configuration?: Configuration) {
+export const PayeeLocationsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single payee location
@@ -3960,7 +3960,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
  * PayeeLocationsApi - functional programming interface
  * @export
  */
-export const PayeeLocationsApiFp = function(configuration?: Configuration) {
+export const PayeeLocationsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single payee location
@@ -4034,7 +4034,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
  * PayeeLocationsApi - factory interface
  * @export
  */
-export const PayeeLocationsApiFactory = function (configuration?: Configuration) {
+export const PayeeLocationsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single payee location
@@ -4122,7 +4122,7 @@ export class PayeeLocationsApi extends BaseAPI {
  * PayeesApi - fetch parameter creator
  * @export
  */
-export const PayeesApiFetchParamCreator = function (configuration?: Configuration) {
+export const PayeesApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns single payee
@@ -4218,7 +4218,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
  * PayeesApi - functional programming interface
  * @export
  */
-export const PayeesApiFp = function(configuration?: Configuration) {
+export const PayeesApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns single payee
@@ -4271,7 +4271,7 @@ export const PayeesApiFp = function(configuration?: Configuration) {
  * PayeesApi - factory interface
  * @export
  */
-export const PayeesApiFactory = function (configuration?: Configuration) {
+export const PayeesApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns single payee
@@ -4337,7 +4337,7 @@ export class PayeesApi extends BaseAPI {
  * ScheduledTransactionsApi - fetch parameter creator
  * @export
  */
-export const ScheduledTransactionsApiFetchParamCreator = function (configuration?: Configuration) {
+export const ScheduledTransactionsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -4428,7 +4428,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
  * ScheduledTransactionsApi - functional programming interface
  * @export
  */
-export const ScheduledTransactionsApiFp = function(configuration?: Configuration) {
+export const ScheduledTransactionsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -4480,7 +4480,7 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
  * ScheduledTransactionsApi - factory interface
  * @export
  */
-export const ScheduledTransactionsApiFactory = function (configuration?: Configuration) {
+export const ScheduledTransactionsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -4544,7 +4544,7 @@ export class ScheduledTransactionsApi extends BaseAPI {
  * TransactionsApi - fetch parameter creator
  * @export
  */
-export const TransactionsApiFetchParamCreator = function (configuration?: Configuration) {
+export const TransactionsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
@@ -4971,7 +4971,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
  * TransactionsApi - functional programming interface
  * @export
  */
-export const TransactionsApiFp = function(configuration?: Configuration) {
+export const TransactionsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
@@ -5168,7 +5168,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
  * TransactionsApi - factory interface
  * @export
  */
-export const TransactionsApiFactory = function (configuration?: Configuration) {
+export const TransactionsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
@@ -5402,7 +5402,7 @@ export class TransactionsApi extends BaseAPI {
  * UserApi - fetch parameter creator
  * @export
  */
-export const UserApiFetchParamCreator = function (configuration?: Configuration) {
+export const UserApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns authenticated user information
@@ -5443,7 +5443,7 @@ export const UserApiFetchParamCreator = function (configuration?: Configuration)
  * UserApi - functional programming interface
  * @export
  */
-export const UserApiFp = function(configuration?: Configuration) {
+export const UserApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns authenticated user information
@@ -5472,7 +5472,7 @@ export const UserApiFp = function(configuration?: Configuration) {
  * UserApi - factory interface
  * @export
  */
-export const UserApiFactory = function (configuration?: Configuration) {
+export const UserApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns authenticated user information

@@ -24,9 +24,9 @@
   },
   "scripts": {
     "generate": "npx jbash ./scripts/generate.js",
-    "build": "npx tsc -b && npx tsc --target ES5 --module ES2015 --outDir dist/esm && npx webpack --mode production && npm run build_examples",
-    "build_examples": "npx tsc -b examples/",
-    "test": "TS_NODE_PROJECT=./test/tsconfig.json npx mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'",
+    "build": "tsc -b src/ test/ examples/ && tsc -p src/ --target ES5 --module ES2015 --outDir ../dist/esm && webpack --mode production && npm run build_examples",
+    "build_examples": "tsc -b examples/",
+    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'",
     "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'; npm-github-release"
   },
   "dependencies": {

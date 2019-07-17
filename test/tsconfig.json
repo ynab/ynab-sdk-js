@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "es2015",
     "sourceMap": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
     "noEmit": true
   },
-  "references": [{ "path": "../" }],
-  "include": ["./**/*.ts"]
+  "references": [{ "path": "../src" }]
 }
