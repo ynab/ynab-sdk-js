@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.13.3";
+const USER_AGENT = "api_client/js/1.13.4";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -68,7 +68,7 @@ export interface FetchArgs {
 export class BaseAPI {
     protected configuration: Configuration;
 
-    constructor(configuration?: Configuration) {
+    constructor(configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
@@ -194,22 +194,22 @@ export namespace Account {
 export interface AccountResponse {
     /**
      * 
-     * @type {AccountWrapper}
+     * @type {AccountResponseData}
      * @memberof AccountResponse
      */
-    data: AccountWrapper;
+    data: AccountResponseData;
 }
 
 /**
  * 
  * @export
- * @interface AccountWrapper
+ * @interface AccountResponseData
  */
-export interface AccountWrapper {
+export interface AccountResponseData {
     /**
      * 
      * @type {Account}
-     * @memberof AccountWrapper
+     * @memberof AccountResponseData
      */
     account: Account;
 }
@@ -222,28 +222,28 @@ export interface AccountWrapper {
 export interface AccountsResponse {
     /**
      * 
-     * @type {AccountsWrapper}
+     * @type {AccountsResponseData}
      * @memberof AccountsResponse
      */
-    data: AccountsWrapper;
+    data: AccountsResponseData;
 }
 
 /**
  * 
  * @export
- * @interface AccountsWrapper
+ * @interface AccountsResponseData
  */
-export interface AccountsWrapper {
+export interface AccountsResponseData {
     /**
      * 
      * @type {Array<Account>}
-     * @memberof AccountsWrapper
+     * @memberof AccountsResponseData
      */
     accounts: Array<Account>;
     /**
      * The knowledge of the server
      * @type {number}
-     * @memberof AccountsWrapper
+     * @memberof AccountsResponseData
      */
     server_knowledge: number;
 }
@@ -256,28 +256,28 @@ export interface AccountsWrapper {
 export interface BudgetDetailResponse {
     /**
      * 
-     * @type {BudgetDetailWrapper}
+     * @type {BudgetDetailResponseData}
      * @memberof BudgetDetailResponse
      */
-    data: BudgetDetailWrapper;
+    data: BudgetDetailResponseData;
 }
 
 /**
  * 
  * @export
- * @interface BudgetDetailWrapper
+ * @interface BudgetDetailResponseData
  */
-export interface BudgetDetailWrapper {
+export interface BudgetDetailResponseData {
     /**
      * 
      * @type {BudgetDetail}
-     * @memberof BudgetDetailWrapper
+     * @memberof BudgetDetailResponseData
      */
     budget: BudgetDetail;
     /**
      * The knowledge of the server
      * @type {number}
-     * @memberof BudgetDetailWrapper
+     * @memberof BudgetDetailResponseData
      */
     server_knowledge: number;
 }
@@ -310,22 +310,22 @@ export interface BudgetSettings {
 export interface BudgetSettingsResponse {
     /**
      * 
-     * @type {BudgetSettingsWrapper}
+     * @type {BudgetSettingsResponseData}
      * @memberof BudgetSettingsResponse
      */
-    data: BudgetSettingsWrapper;
+    data: BudgetSettingsResponseData;
 }
 
 /**
  * 
  * @export
- * @interface BudgetSettingsWrapper
+ * @interface BudgetSettingsResponseData
  */
-export interface BudgetSettingsWrapper {
+export interface BudgetSettingsResponseData {
     /**
      * 
      * @type {BudgetSettings}
-     * @memberof BudgetSettingsWrapper
+     * @memberof BudgetSettingsResponseData
      */
     settings: BudgetSettings;
 }
@@ -388,64 +388,30 @@ export interface BudgetSummary {
 export interface BudgetSummaryResponse {
     /**
      * 
-     * @type {BudgetSummaryWrapper}
+     * @type {BudgetSummaryResponseData}
      * @memberof BudgetSummaryResponse
      */
-    data: BudgetSummaryWrapper;
+    data: BudgetSummaryResponseData;
 }
 
 /**
  * 
  * @export
- * @interface BudgetSummaryWrapper
+ * @interface BudgetSummaryResponseData
  */
-export interface BudgetSummaryWrapper {
+export interface BudgetSummaryResponseData {
     /**
      * 
      * @type {Array<BudgetSummary>}
-     * @memberof BudgetSummaryWrapper
+     * @memberof BudgetSummaryResponseData
      */
     budgets: Array<BudgetSummary>;
     /**
      * The default budget, if the associated application is configured to support specifying it
      * @type {BudgetSummary}
-     * @memberof BudgetSummaryWrapper
+     * @memberof BudgetSummaryResponseData
      */
     default_budget: BudgetSummary;
-}
-
-/**
- * 
- * @export
- * @interface BulkIdWrapper
- */
-export interface BulkIdWrapper {
-    /**
-     * 
-     * @type {BulkIds}
-     * @memberof BulkIdWrapper
-     */
-    bulk: BulkIds;
-}
-
-/**
- * 
- * @export
- * @interface BulkIds
- */
-export interface BulkIds {
-    /**
-     * The list of Transaction ids that were created.
-     * @type {Array<string>}
-     * @memberof BulkIds
-     */
-    transaction_ids: Array<string>;
-    /**
-     * If any Transactions were not created because they had an import_id matching a transaction already on the same account, the specified import_id(s) will be included in this list.
-     * @type {Array<string>}
-     * @memberof BulkIds
-     */
-    duplicate_import_ids: Array<string>;
 }
 
 /**
@@ -456,10 +422,44 @@ export interface BulkIds {
 export interface BulkResponse {
     /**
      * 
-     * @type {BulkIdWrapper}
+     * @type {BulkResponseData}
      * @memberof BulkResponse
      */
-    data: BulkIdWrapper;
+    data: BulkResponseData;
+}
+
+/**
+ * 
+ * @export
+ * @interface BulkResponseData
+ */
+export interface BulkResponseData {
+    /**
+     * 
+     * @type {BulkResponseDataBulk}
+     * @memberof BulkResponseData
+     */
+    bulk: BulkResponseDataBulk;
+}
+
+/**
+ * 
+ * @export
+ * @interface BulkResponseDataBulk
+ */
+export interface BulkResponseDataBulk {
+    /**
+     * The list of Transaction ids that were created.
+     * @type {Array<string>}
+     * @memberof BulkResponseDataBulk
+     */
+    transaction_ids: Array<string>;
+    /**
+     * If any Transactions were not created because they had an import_id matching a transaction already on the same account, the specified import_id(s) will be included in this list.
+     * @type {Array<string>}
+     * @memberof BulkResponseDataBulk
+     */
+    duplicate_import_ids: Array<string>;
 }
 
 /**
@@ -484,10 +484,30 @@ export interface BulkTransactions {
 export interface CategoriesResponse {
     /**
      * 
-     * @type {CategoryGroupsWrapper}
+     * @type {CategoriesResponseData}
      * @memberof CategoriesResponse
      */
-    data: CategoryGroupsWrapper;
+    data: CategoriesResponseData;
+}
+
+/**
+ * 
+ * @export
+ * @interface CategoriesResponseData
+ */
+export interface CategoriesResponseData {
+    /**
+     * 
+     * @type {Array<CategoryGroupWithCategories>}
+     * @memberof CategoriesResponseData
+     */
+    category_groups: Array<CategoryGroupWithCategories>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof CategoriesResponseData
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -639,55 +659,29 @@ export interface CategoryGroup {
 /**
  * 
  * @export
- * @interface CategoryGroupsWrapper
- */
-export interface CategoryGroupsWrapper {
-    /**
-     * 
-     * @type {Array<CategoryGroupWithCategories>}
-     * @memberof CategoryGroupsWrapper
-     */
-    category_groups: Array<CategoryGroupWithCategories>;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof CategoryGroupsWrapper
-     */
-    server_knowledge: number;
-}
-
-/**
- * 
- * @export
  * @interface CategoryResponse
  */
 export interface CategoryResponse {
     /**
      * 
-     * @type {CategoryWrapper}
+     * @type {CategoryResponseData}
      * @memberof CategoryResponse
      */
-    data: CategoryWrapper;
+    data: CategoryResponseData;
 }
 
 /**
  * 
  * @export
- * @interface CategoryWrapper
+ * @interface CategoryResponseData
  */
-export interface CategoryWrapper {
+export interface CategoryResponseData {
     /**
      * 
      * @type {Category}
-     * @memberof CategoryWrapper
+     * @memberof CategoryResponseData
      */
     category: Category;
-    /**
-     * The knowledge of the server
-     * @type {number}
-     * @memberof CategoryWrapper
-     */
-    server_knowledge: number;
 }
 
 /**
@@ -808,22 +802,22 @@ export interface ErrorResponse {
 export interface HybridTransactionsResponse {
     /**
      * 
-     * @type {HybridTransactionsWrapper}
+     * @type {HybridTransactionsResponseData}
      * @memberof HybridTransactionsResponse
      */
-    data: HybridTransactionsWrapper;
+    data: HybridTransactionsResponseData;
 }
 
 /**
  * 
  * @export
- * @interface HybridTransactionsWrapper
+ * @interface HybridTransactionsResponseData
  */
-export interface HybridTransactionsWrapper {
+export interface HybridTransactionsResponseData {
     /**
      * 
      * @type {Array<HybridTransaction>}
-     * @memberof HybridTransactionsWrapper
+     * @memberof HybridTransactionsResponseData
      */
     transactions: Array<HybridTransaction>;
 }
@@ -836,22 +830,22 @@ export interface HybridTransactionsWrapper {
 export interface MonthDetailResponse {
     /**
      * 
-     * @type {MonthDetailWrapper}
+     * @type {MonthDetailResponseData}
      * @memberof MonthDetailResponse
      */
-    data: MonthDetailWrapper;
+    data: MonthDetailResponseData;
 }
 
 /**
  * 
  * @export
- * @interface MonthDetailWrapper
+ * @interface MonthDetailResponseData
  */
-export interface MonthDetailWrapper {
+export interface MonthDetailResponseData {
     /**
      * 
      * @type {MonthDetail}
-     * @memberof MonthDetailWrapper
+     * @memberof MonthDetailResponseData
      */
     month: MonthDetail;
 }
@@ -864,28 +858,28 @@ export interface MonthDetailWrapper {
 export interface MonthSummariesResponse {
     /**
      * 
-     * @type {MonthSummariesWrapper}
+     * @type {MonthSummariesResponseData}
      * @memberof MonthSummariesResponse
      */
-    data: MonthSummariesWrapper;
+    data: MonthSummariesResponseData;
 }
 
 /**
  * 
  * @export
- * @interface MonthSummariesWrapper
+ * @interface MonthSummariesResponseData
  */
-export interface MonthSummariesWrapper {
+export interface MonthSummariesResponseData {
     /**
      * 
      * @type {Array<MonthSummary>}
-     * @memberof MonthSummariesWrapper
+     * @memberof MonthSummariesResponseData
      */
     months: Array<MonthSummary>;
     /**
      * The knowledge of the server
      * @type {number}
-     * @memberof MonthSummariesWrapper
+     * @memberof MonthSummariesResponseData
      */
     server_knowledge: number;
 }
@@ -1024,22 +1018,22 @@ export interface PayeeLocation {
 export interface PayeeLocationResponse {
     /**
      * 
-     * @type {PayeeLocationWrapper}
+     * @type {PayeeLocationResponseData}
      * @memberof PayeeLocationResponse
      */
-    data: PayeeLocationWrapper;
+    data: PayeeLocationResponseData;
 }
 
 /**
  * 
  * @export
- * @interface PayeeLocationWrapper
+ * @interface PayeeLocationResponseData
  */
-export interface PayeeLocationWrapper {
+export interface PayeeLocationResponseData {
     /**
      * 
      * @type {PayeeLocation}
-     * @memberof PayeeLocationWrapper
+     * @memberof PayeeLocationResponseData
      */
     payee_location: PayeeLocation;
 }
@@ -1052,22 +1046,22 @@ export interface PayeeLocationWrapper {
 export interface PayeeLocationsResponse {
     /**
      * 
-     * @type {PayeeLocationsWrapper}
+     * @type {PayeeLocationsResponseData}
      * @memberof PayeeLocationsResponse
      */
-    data: PayeeLocationsWrapper;
+    data: PayeeLocationsResponseData;
 }
 
 /**
  * 
  * @export
- * @interface PayeeLocationsWrapper
+ * @interface PayeeLocationsResponseData
  */
-export interface PayeeLocationsWrapper {
+export interface PayeeLocationsResponseData {
     /**
      * 
      * @type {Array<PayeeLocation>}
-     * @memberof PayeeLocationsWrapper
+     * @memberof PayeeLocationsResponseData
      */
     payee_locations: Array<PayeeLocation>;
 }
@@ -1080,22 +1074,22 @@ export interface PayeeLocationsWrapper {
 export interface PayeeResponse {
     /**
      * 
-     * @type {PayeeWrapper}
+     * @type {PayeeResponseData}
      * @memberof PayeeResponse
      */
-    data: PayeeWrapper;
+    data: PayeeResponseData;
 }
 
 /**
  * 
  * @export
- * @interface PayeeWrapper
+ * @interface PayeeResponseData
  */
-export interface PayeeWrapper {
+export interface PayeeResponseData {
     /**
      * 
      * @type {Payee}
-     * @memberof PayeeWrapper
+     * @memberof PayeeResponseData
      */
     payee: Payee;
 }
@@ -1108,28 +1102,62 @@ export interface PayeeWrapper {
 export interface PayeesResponse {
     /**
      * 
-     * @type {PayeesWrapper}
+     * @type {PayeesResponseData}
      * @memberof PayeesResponse
      */
-    data: PayeesWrapper;
+    data: PayeesResponseData;
 }
 
 /**
  * 
  * @export
- * @interface PayeesWrapper
+ * @interface PayeesResponseData
  */
-export interface PayeesWrapper {
+export interface PayeesResponseData {
     /**
      * 
      * @type {Array<Payee>}
-     * @memberof PayeesWrapper
+     * @memberof PayeesResponseData
      */
     payees: Array<Payee>;
     /**
      * The knowledge of the server
      * @type {number}
-     * @memberof PayeesWrapper
+     * @memberof PayeesResponseData
+     */
+    server_knowledge: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface SaveCategoryResponse
+ */
+export interface SaveCategoryResponse {
+    /**
+     * 
+     * @type {SaveCategoryResponseData}
+     * @memberof SaveCategoryResponse
+     */
+    data: SaveCategoryResponseData;
+}
+
+/**
+ * 
+ * @export
+ * @interface SaveCategoryResponseData
+ */
+export interface SaveCategoryResponseData {
+    /**
+     * 
+     * @type {Category}
+     * @memberof SaveCategoryResponseData
+     */
+    category: Category;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof SaveCategoryResponseData
      */
     server_knowledge: number;
 }
@@ -1414,10 +1442,24 @@ export interface ScheduledSubTransaction {
 export interface ScheduledTransactionResponse {
     /**
      * 
-     * @type {ScheduledTransactionWrapper}
+     * @type {ScheduledTransactionResponseData}
      * @memberof ScheduledTransactionResponse
      */
-    data: ScheduledTransactionWrapper;
+    data: ScheduledTransactionResponseData;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScheduledTransactionResponseData
+ */
+export interface ScheduledTransactionResponseData {
+    /**
+     * 
+     * @type {ScheduledTransactionDetail}
+     * @memberof ScheduledTransactionResponseData
+     */
+    scheduled_transaction: ScheduledTransactionDetail;
 }
 
 /**
@@ -1541,41 +1583,27 @@ export namespace ScheduledTransactionSummary {
 /**
  * 
  * @export
- * @interface ScheduledTransactionWrapper
- */
-export interface ScheduledTransactionWrapper {
-    /**
-     * 
-     * @type {ScheduledTransactionDetail}
-     * @memberof ScheduledTransactionWrapper
-     */
-    scheduled_transaction: ScheduledTransactionDetail;
-}
-
-/**
- * 
- * @export
  * @interface ScheduledTransactionsResponse
  */
 export interface ScheduledTransactionsResponse {
     /**
      * 
-     * @type {ScheduledTransactionsWrapper}
+     * @type {ScheduledTransactionsResponseData}
      * @memberof ScheduledTransactionsResponse
      */
-    data: ScheduledTransactionsWrapper;
+    data: ScheduledTransactionsResponseData;
 }
 
 /**
  * 
  * @export
- * @interface ScheduledTransactionsWrapper
+ * @interface ScheduledTransactionsResponseData
  */
-export interface ScheduledTransactionsWrapper {
+export interface ScheduledTransactionsResponseData {
     /**
      * 
      * @type {Array<ScheduledTransactionDetail>}
-     * @memberof ScheduledTransactionsWrapper
+     * @memberof ScheduledTransactionsResponseData
      */
     scheduled_transactions: Array<ScheduledTransactionDetail>;
 }
@@ -1644,10 +1672,24 @@ export interface SubTransaction {
 export interface TransactionResponse {
     /**
      * 
-     * @type {TransactionWrapper}
+     * @type {TransactionResponseData}
      * @memberof TransactionResponse
      */
-    data: TransactionWrapper;
+    data: TransactionResponseData;
+}
+
+/**
+ * 
+ * @export
+ * @interface TransactionResponseData
+ */
+export interface TransactionResponseData {
+    /**
+     * 
+     * @type {TransactionDetail}
+     * @memberof TransactionResponseData
+     */
+    transaction: TransactionDetail;
 }
 
 /**
@@ -1779,47 +1821,33 @@ export namespace TransactionSummary {
 /**
  * 
  * @export
- * @interface TransactionWrapper
- */
-export interface TransactionWrapper {
-    /**
-     * 
-     * @type {TransactionDetail}
-     * @memberof TransactionWrapper
-     */
-    transaction: TransactionDetail;
-}
-
-/**
- * 
- * @export
  * @interface TransactionsResponse
  */
 export interface TransactionsResponse {
     /**
      * 
-     * @type {TransactionsWrapper}
+     * @type {TransactionsResponseData}
      * @memberof TransactionsResponse
      */
-    data: TransactionsWrapper;
+    data: TransactionsResponseData;
 }
 
 /**
  * 
  * @export
- * @interface TransactionsWrapper
+ * @interface TransactionsResponseData
  */
-export interface TransactionsWrapper {
+export interface TransactionsResponseData {
     /**
      * 
      * @type {Array<TransactionDetail>}
-     * @memberof TransactionsWrapper
+     * @memberof TransactionsResponseData
      */
     transactions: Array<TransactionDetail>;
     /**
      * The knowledge of the server
      * @type {number}
-     * @memberof TransactionsWrapper
+     * @memberof TransactionsResponseData
      */
     server_knowledge: number;
 }
@@ -1846,22 +1874,22 @@ export interface User {
 export interface UserResponse {
     /**
      * 
-     * @type {UserWrapper}
+     * @type {UserResponseData}
      * @memberof UserResponse
      */
-    data: UserWrapper;
+    data: UserResponseData;
 }
 
 /**
  * 
  * @export
- * @interface UserWrapper
+ * @interface UserResponseData
  */
-export interface UserWrapper {
+export interface UserResponseData {
     /**
      * 
      * @type {User}
-     * @memberof UserWrapper
+     * @memberof UserResponseData
      */
     user: User;
 }
@@ -2537,7 +2565,7 @@ export namespace TransactionDetail {
  * AccountsApi - fetch parameter creator
  * @export
  */
-export const AccountsApiFetchParamCreator = function (configuration?: Configuration) {
+export const AccountsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single account
@@ -2633,7 +2661,7 @@ export const AccountsApiFetchParamCreator = function (configuration?: Configurat
  * AccountsApi - functional programming interface
  * @export
  */
-export const AccountsApiFp = function(configuration?: Configuration) {
+export const AccountsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single account
@@ -2686,7 +2714,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
  * AccountsApi - factory interface
  * @export
  */
-export const AccountsApiFactory = function (configuration?: Configuration) {
+export const AccountsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single account
@@ -2752,7 +2780,7 @@ export class AccountsApi extends BaseAPI {
  * BudgetsApi - fetch parameter creator
  * @export
  */
-export const BudgetsApiFetchParamCreator = function (configuration?: Configuration) {
+export const BudgetsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -2874,7 +2902,7 @@ export const BudgetsApiFetchParamCreator = function (configuration?: Configurati
  * BudgetsApi - functional programming interface
  * @export
  */
-export const BudgetsApiFp = function(configuration?: Configuration) {
+export const BudgetsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -2946,7 +2974,7 @@ export const BudgetsApiFp = function(configuration?: Configuration) {
  * BudgetsApi - factory interface
  * @export
  */
-export const BudgetsApiFactory = function (configuration?: Configuration) {
+export const BudgetsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -3030,7 +3058,7 @@ export class BudgetsApi extends BaseAPI {
  * CategoriesApi - fetch parameter creator
  * @export
  */
-export const CategoriesApiFetchParamCreator = function (configuration?: Configuration) {
+export const CategoriesApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -3234,7 +3262,7 @@ export const CategoriesApiFetchParamCreator = function (configuration?: Configur
  * CategoriesApi - functional programming interface
  * @export
  */
-export const CategoriesApiFp = function(configuration?: Configuration) {
+export const CategoriesApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -3313,7 +3341,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse> {
+        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveCategoryResponse> {
             const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).updateMonthCategory(budget_id, month, category_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -3334,7 +3362,7 @@ export const CategoriesApiFp = function(configuration?: Configuration) {
  * CategoriesApi - factory interface
  * @export
  */
-export const CategoriesApiFactory = function (configuration?: Configuration) {
+export const CategoriesApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -3454,7 +3482,7 @@ export class CategoriesApi extends BaseAPI {
  * DeprecatedApi - fetch parameter creator
  * @export
  */
-export const DeprecatedApiFetchParamCreator = function (configuration?: Configuration) {
+export const DeprecatedApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -3509,7 +3537,7 @@ export const DeprecatedApiFetchParamCreator = function (configuration?: Configur
  * DeprecatedApi - functional programming interface
  * @export
  */
-export const DeprecatedApiFp = function(configuration?: Configuration) {
+export const DeprecatedApiFp = function(configuration: Configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -3540,7 +3568,7 @@ export const DeprecatedApiFp = function(configuration?: Configuration) {
  * DeprecatedApi - factory interface
  * @export
  */
-export const DeprecatedApiFactory = function (configuration?: Configuration) {
+export const DeprecatedApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -3582,7 +3610,7 @@ export class DeprecatedApi extends BaseAPI {
  * MonthsApi - fetch parameter creator
  * @export
  */
-export const MonthsApiFetchParamCreator = function (configuration?: Configuration) {
+export const MonthsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget month
@@ -3678,7 +3706,7 @@ export const MonthsApiFetchParamCreator = function (configuration?: Configuratio
  * MonthsApi - functional programming interface
  * @export
  */
-export const MonthsApiFp = function(configuration?: Configuration) {
+export const MonthsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single budget month
@@ -3731,7 +3759,7 @@ export const MonthsApiFp = function(configuration?: Configuration) {
  * MonthsApi - factory interface
  * @export
  */
-export const MonthsApiFactory = function (configuration?: Configuration) {
+export const MonthsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single budget month
@@ -3797,7 +3825,7 @@ export class MonthsApi extends BaseAPI {
  * PayeeLocationsApi - fetch parameter creator
  * @export
  */
-export const PayeeLocationsApiFetchParamCreator = function (configuration?: Configuration) {
+export const PayeeLocationsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single payee location
@@ -3932,7 +3960,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration?: Conf
  * PayeeLocationsApi - functional programming interface
  * @export
  */
-export const PayeeLocationsApiFp = function(configuration?: Configuration) {
+export const PayeeLocationsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single payee location
@@ -4006,7 +4034,7 @@ export const PayeeLocationsApiFp = function(configuration?: Configuration) {
  * PayeeLocationsApi - factory interface
  * @export
  */
-export const PayeeLocationsApiFactory = function (configuration?: Configuration) {
+export const PayeeLocationsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single payee location
@@ -4094,7 +4122,7 @@ export class PayeeLocationsApi extends BaseAPI {
  * PayeesApi - fetch parameter creator
  * @export
  */
-export const PayeesApiFetchParamCreator = function (configuration?: Configuration) {
+export const PayeesApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns single payee
@@ -4190,7 +4218,7 @@ export const PayeesApiFetchParamCreator = function (configuration?: Configuratio
  * PayeesApi - functional programming interface
  * @export
  */
-export const PayeesApiFp = function(configuration?: Configuration) {
+export const PayeesApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns single payee
@@ -4243,7 +4271,7 @@ export const PayeesApiFp = function(configuration?: Configuration) {
  * PayeesApi - factory interface
  * @export
  */
-export const PayeesApiFactory = function (configuration?: Configuration) {
+export const PayeesApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns single payee
@@ -4309,7 +4337,7 @@ export class PayeesApi extends BaseAPI {
  * ScheduledTransactionsApi - fetch parameter creator
  * @export
  */
-export const ScheduledTransactionsApiFetchParamCreator = function (configuration?: Configuration) {
+export const ScheduledTransactionsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -4400,7 +4428,7 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
  * ScheduledTransactionsApi - functional programming interface
  * @export
  */
-export const ScheduledTransactionsApiFp = function(configuration?: Configuration) {
+export const ScheduledTransactionsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -4452,7 +4480,7 @@ export const ScheduledTransactionsApiFp = function(configuration?: Configuration
  * ScheduledTransactionsApi - factory interface
  * @export
  */
-export const ScheduledTransactionsApiFactory = function (configuration?: Configuration) {
+export const ScheduledTransactionsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -4516,7 +4544,7 @@ export class ScheduledTransactionsApi extends BaseAPI {
  * TransactionsApi - fetch parameter creator
  * @export
  */
-export const TransactionsApiFetchParamCreator = function (configuration?: Configuration) {
+export const TransactionsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
@@ -4943,7 +4971,7 @@ export const TransactionsApiFetchParamCreator = function (configuration?: Config
  * TransactionsApi - functional programming interface
  * @export
  */
-export const TransactionsApiFp = function(configuration?: Configuration) {
+export const TransactionsApiFp = function(configuration: Configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
@@ -5140,7 +5168,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
  * TransactionsApi - factory interface
  * @export
  */
-export const TransactionsApiFactory = function (configuration?: Configuration) {
+export const TransactionsApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a 'transaction' object, a single transaction will be created and if you provide a body containing a 'transactions' array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
@@ -5374,7 +5402,7 @@ export class TransactionsApi extends BaseAPI {
  * UserApi - fetch parameter creator
  * @export
  */
-export const UserApiFetchParamCreator = function (configuration?: Configuration) {
+export const UserApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
          * Returns authenticated user information
@@ -5415,7 +5443,7 @@ export const UserApiFetchParamCreator = function (configuration?: Configuration)
  * UserApi - functional programming interface
  * @export
  */
-export const UserApiFp = function(configuration?: Configuration) {
+export const UserApiFp = function(configuration: Configuration) {
     return {
         /**
          * Returns authenticated user information
@@ -5444,7 +5472,7 @@ export const UserApiFp = function(configuration?: Configuration) {
  * UserApi - factory interface
  * @export
  */
-export const UserApiFactory = function (configuration?: Configuration) {
+export const UserApiFactory = function (configuration: Configuration) {
     return {
         /**
          * Returns authenticated user information

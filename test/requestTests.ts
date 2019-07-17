@@ -536,8 +536,8 @@ function verifyRequestDetails(
 
   expect(calls.length, "fetchMock calls").to.equal(numCalls);
   expect(fetchMock.lastUrl()).to.equal(url);
-  expect(fetchMock.lastOptions().method).to.equal(method);
-  const headers = fetchMock.lastOptions().headers;
+  expect(fetchMock.lastOptions()!.method).to.equal(method);
+  const headers = fetchMock.lastOptions()!.headers;
   expect((<any>headers)["Accept"]).to.equal("application/json");
   if (bearerTokenExpected) {
     // Should we deep equals, or just check the Authorization header?

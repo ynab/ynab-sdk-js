@@ -57,7 +57,7 @@ export interface FetchArgs {
 export class BaseAPI {
     protected configuration: Configuration;
 
-    constructor(configuration?: Configuration) {
+    constructor(configuration: Configuration) {
         if (configuration) {
             this.configuration = configuration;
         }
@@ -86,7 +86,7 @@ export class RequiredError extends Error {
  * {{&description}}{{/description}}
  * @export
  */
-export const {{classname}}FetchParamCreator = function (configuration?: Configuration) {
+export const {{classname}}FetchParamCreator = function (configuration: Configuration) {
     return {
     {{#operation}}
         /**
@@ -251,7 +251,7 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
  * {{{description}}}{{/description}}
  * @export
  */
-export const {{classname}}Fp = function(configuration?: Configuration) {
+export const {{classname}}Fp = function(configuration: Configuration) {
     return {
     {{#operation}}
         /**
@@ -288,7 +288,7 @@ export const {{classname}}Fp = function(configuration?: Configuration) {
  * {{&description}}{{/description}}
  * @export
  */
-export const {{classname}}Factory = function (configuration?: Configuration) {
+export const {{classname}}Factory = function (configuration: Configuration) {
     return {
     {{#operation}}
         /**
