@@ -1513,6 +1513,12 @@ export interface ScheduledTransactionsResponseData {
      * @memberof ScheduledTransactionsResponseData
      */
     scheduled_transactions: Array<ScheduledTransactionDetail>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof ScheduledTransactionsResponseData
+     */
+    server_knowledge: number;
 }
 /**
  *
@@ -2469,7 +2475,7 @@ export declare const AccountsApiFetchParamCreator: (configuration: Configuration
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getAccounts(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
 };
 /**
  * AccountsApi - functional programming interface
@@ -2484,7 +2490,7 @@ export declare const AccountsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getAccountById(budget_id: string, account_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse>;
+    getAccountById(budget_id: string, account_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<AccountResponse>;
     /**
      * Returns all accounts
      * @summary Account list
@@ -2493,7 +2499,7 @@ export declare const AccountsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse>;
+    getAccounts(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<AccountsResponse>;
 };
 /**
  * AccountsApi - factory interface
@@ -2517,7 +2523,7 @@ export declare const AccountsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<AccountsResponse>;
+    getAccounts(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): Promise<AccountsResponse>;
 };
 /**
  * AccountsApi - object-oriented interface
@@ -2560,7 +2566,7 @@ export declare const BudgetsApiFetchParamCreator: (configuration: Configuration)
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getBudgetById(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
     /**
      * Returns settings for a budget
      * @summary Budget Settings
@@ -2590,7 +2596,7 @@ export declare const BudgetsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse>;
+    getBudgetById(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<BudgetDetailResponse>;
     /**
      * Returns settings for a budget
      * @summary Budget Settings
@@ -2598,14 +2604,14 @@ export declare const BudgetsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetSettingsById(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSettingsResponse>;
+    getBudgetSettingsById(budget_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<BudgetSettingsResponse>;
     /**
      * Returns budgets list with summary information
      * @summary List budgets
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgets(options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSummaryResponse>;
+    getBudgets(options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<BudgetSummaryResponse>;
 };
 /**
  * BudgetsApi - factory interface
@@ -2620,7 +2626,7 @@ export declare const BudgetsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<BudgetDetailResponse>;
+    getBudgetById(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): Promise<BudgetDetailResponse>;
     /**
      * Returns settings for a budget
      * @summary Budget Settings
@@ -2685,7 +2691,7 @@ export declare const CategoriesApiFetchParamCreator: (configuration: Configurati
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getCategories(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
     /**
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
@@ -2730,7 +2736,7 @@ export declare const CategoriesApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse>;
+    getCategories(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<CategoriesResponse>;
     /**
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
@@ -2739,7 +2745,7 @@ export declare const CategoriesApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getCategoryById(budget_id: string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse>;
+    getCategoryById(budget_id: string, category_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<CategoryResponse>;
     /**
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category for a specific budget month
@@ -2749,7 +2755,7 @@ export declare const CategoriesApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getMonthCategoryById(budget_id: string, month: string | Date, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse>;
+    getMonthCategoryById(budget_id: string, month: string | Date, category_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<CategoryResponse>;
     /**
      * Update a category for a specific month
      * @summary Update a category for a specific month
@@ -2760,7 +2766,7 @@ export declare const CategoriesApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateMonthCategory(budget_id: string, month: string | Date, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveCategoryResponse>;
+    updateMonthCategory(budget_id: string, month: string | Date, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveCategoryResponse>;
 };
 /**
  * CategoriesApi - factory interface
@@ -2775,7 +2781,7 @@ export declare const CategoriesApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<CategoriesResponse>;
+    getCategories(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): Promise<CategoriesResponse>;
     /**
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * @summary Single category
@@ -2886,7 +2892,7 @@ export declare const DeprecatedApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkResponse>;
+    bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<BulkResponse>;
 };
 /**
  * DeprecatedApi - factory interface
@@ -2943,7 +2949,7 @@ export declare const MonthsApiFetchParamCreator: (configuration: Configuration) 
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getBudgetMonths(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
 };
 /**
  * MonthsApi - functional programming interface
@@ -2958,7 +2964,7 @@ export declare const MonthsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetMonth(budget_id: string, month: string | Date, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse>;
+    getBudgetMonth(budget_id: string, month: string | Date, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<MonthDetailResponse>;
     /**
      * Returns all budget months
      * @summary List budget months
@@ -2967,7 +2973,7 @@ export declare const MonthsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse>;
+    getBudgetMonths(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<MonthSummariesResponse>;
 };
 /**
  * MonthsApi - factory interface
@@ -2991,7 +2997,7 @@ export declare const MonthsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<MonthSummariesResponse>;
+    getBudgetMonths(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): Promise<MonthSummariesResponse>;
 };
 /**
  * MonthsApi - object-oriented interface
@@ -3066,7 +3072,7 @@ export declare const PayeeLocationsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationResponse>;
+    getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<PayeeLocationResponse>;
     /**
      * Returns all payee locations
      * @summary List payee locations
@@ -3074,7 +3080,7 @@ export declare const PayeeLocationsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getPayeeLocations(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse>;
+    getPayeeLocations(budget_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<PayeeLocationsResponse>;
     /**
      * Returns all payee locations for the specified payee
      * @summary List locations for a payee
@@ -3083,7 +3089,7 @@ export declare const PayeeLocationsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<PayeeLocationsResponse>;
 };
 /**
  * PayeeLocationsApi - factory interface
@@ -3176,7 +3182,7 @@ export declare const PayeesApiFetchParamCreator: (configuration: Configuration) 
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getPayees(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
 };
 /**
  * PayeesApi - functional programming interface
@@ -3191,7 +3197,7 @@ export declare const PayeesApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getPayeeById(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeResponse>;
+    getPayeeById(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<PayeeResponse>;
     /**
      * Returns all payees
      * @summary List payees
@@ -3200,7 +3206,7 @@ export declare const PayeesApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse>;
+    getPayees(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<PayeesResponse>;
 };
 /**
  * PayeesApi - factory interface
@@ -3224,7 +3230,7 @@ export declare const PayeesApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<PayeesResponse>;
+    getPayees(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): Promise<PayeesResponse>;
 };
 /**
  * PayeesApi - object-oriented interface
@@ -3272,10 +3278,11 @@ export declare const ScheduledTransactionsApiFetchParamCreator: (configuration: 
      * Returns all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getScheduledTransactions(budget_id: string, options?: any): FetchArgs;
+    getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
 };
 /**
  * ScheduledTransactionsApi - functional programming interface
@@ -3290,15 +3297,16 @@ export declare const ScheduledTransactionsApiFp: (configuration: Configuration) 
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionResponse>;
+    getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<ScheduledTransactionResponse>;
     /**
      * Returns all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getScheduledTransactions(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionsResponse>;
+    getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<ScheduledTransactionsResponse>;
 };
 /**
  * ScheduledTransactionsApi - factory interface
@@ -3318,10 +3326,11 @@ export declare const ScheduledTransactionsApiFactory: (configuration: Configurat
      * Returns all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getScheduledTransactions(budget_id: string, options?: any): Promise<ScheduledTransactionsResponse>;
+    getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number | undefined, options?: any): Promise<ScheduledTransactionsResponse>;
 };
 /**
  * ScheduledTransactionsApi - object-oriented interface
@@ -3344,11 +3353,12 @@ export declare class ScheduledTransactionsApi extends BaseAPI {
      * Returns all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    getScheduledTransactions(budget_id: string, options?: any): Promise<ScheduledTransactionsResponse>;
+    getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number, options?: any): Promise<ScheduledTransactionsResponse>;
 }
 /**
  * TransactionsApi - fetch parameter creator
@@ -3383,7 +3393,7 @@ export declare const TransactionsApiFetchParamCreator: (configuration: Configura
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getTransactions(budget_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
@@ -3395,7 +3405,7 @@ export declare const TransactionsApiFetchParamCreator: (configuration: Configura
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
@@ -3407,7 +3417,7 @@ export declare const TransactionsApiFetchParamCreator: (configuration: Configura
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -3419,7 +3429,7 @@ export declare const TransactionsApiFetchParamCreator: (configuration: Configura
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): FetchArgs;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
@@ -3453,7 +3463,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse>;
+    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveTransactionsResponse>;
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -3462,7 +3472,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    getTransactionById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionResponse>;
     /**
      * Returns budget transactions
      * @summary List transactions
@@ -3473,7 +3483,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
@@ -3485,7 +3495,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
@@ -3497,7 +3507,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -3509,7 +3519,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<HybridTransactionsResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
@@ -3519,7 +3529,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse>;
+    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionResponse>;
     /**
      * Updates multiple transactions, by 'id' or 'import_id'.
      * @summary Update multiple transactions
@@ -3528,7 +3538,7 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse>;
+    updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveTransactionsResponse>;
 };
 /**
  * TransactionsApi - factory interface
@@ -3563,7 +3573,7 @@ export declare const TransactionsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactions(budget_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
@@ -3575,7 +3585,7 @@ export declare const TransactionsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
@@ -3587,7 +3597,7 @@ export declare const TransactionsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -3599,7 +3609,7 @@ export declare const TransactionsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
@@ -3744,7 +3754,7 @@ export declare const UserApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getUser(options?: any): (fetchFunction?: FetchAPI) => Promise<UserResponse>;
+    getUser(options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<UserResponse>;
 };
 /**
  * UserApi - factory interface

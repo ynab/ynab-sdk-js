@@ -423,6 +423,7 @@ export const scheduledTransactionsResponseFactory = Factory.makeFactory<
   api.ScheduledTransactionsResponse
 >({
   data: Factory.makeFactory({
+    server_knowledge: Factory.each(i => i),
     scheduled_transactions: scheduledTransactionFactory.buildList(5)
   })
 });

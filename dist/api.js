@@ -16,7 +16,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/1.13.4";
+const USER_AGENT = "api_client/js/1.14.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -2040,10 +2040,11 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
          * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id, options = {}) {
+        getScheduledTransactions(budget_id, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getScheduledTransactions.');
@@ -2060,6 +2061,9 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            if (last_knowledge_of_server !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2105,11 +2109,12 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
          * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id, options) {
-            const localVarFetchArgs = exports.ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, options);
+        getScheduledTransactions(budget_id, last_knowledge_of_server, options) {
+            const localVarFetchArgs = exports.ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2146,11 +2151,12 @@ exports.ScheduledTransactionsApiFactory = function (configuration) {
          * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id, options) {
-            return exports.ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budget_id, options)();
+        getScheduledTransactions(budget_id, last_knowledge_of_server, options) {
+            return exports.ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
@@ -2177,12 +2183,13 @@ class ScheduledTransactionsApi extends BaseAPI {
      * Returns all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    getScheduledTransactions(budget_id, options) {
-        return exports.ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budget_id, options)();
+    getScheduledTransactions(budget_id, last_knowledge_of_server, options) {
+        return exports.ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
     }
 }
 exports.ScheduledTransactionsApi = ScheduledTransactionsApi;
