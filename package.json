@@ -24,10 +24,9 @@
   },
   "scripts": {
     "generate": "npx jbash ./scripts/generate.js",
-    "generate_win32": "node ./scripts/generate-win32.js",
     "build": "tsc -b src/ test/ examples/ && tsc -p src/ --target ES5 --module ES2015 --outDir ../dist/esm && webpack --mode production && npm run build_examples",
     "build_examples": "tsc -b examples/",
-    "test": "cross-env TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'",
+    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'",
     "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'; npm-github-release"
   },
   "dependencies": {
@@ -40,12 +39,10 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.6",
     "chai": "^4.2.0",
-    "cross-env": "^5.2.0",
     "fetch-mock": "^7.3.6",
     "jbash": "^1.48.0",
     "mocha": "^6.1.4",
     "npm-github-release": "^0.9.0",
-    "rimraf": "^2.6.3",
     "swagger-model-validator": "^3.0.11",
     "ts-loader": "^6.0.4",
     "ts-node": "^8.3.0",
