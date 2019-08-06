@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.13.4";
+const USER_AGENT = "api_client/js/1.14.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -1606,6 +1606,12 @@ export interface ScheduledTransactionsResponseData {
      * @memberof ScheduledTransactionsResponseData
      */
     scheduled_transactions: Array<ScheduledTransactionDetail>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof ScheduledTransactionsResponseData
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -4387,10 +4393,11 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
          * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id: string, options: any = {}): FetchArgs {
+        getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling getScheduledTransactions.');
@@ -4409,6 +4416,10 @@ export const ScheduledTransactionsApiFetchParamCreator = function (configuration
             if (configuration && configuration.apiKey) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+
+            if (last_knowledge_of_server !== undefined) {
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -4456,11 +4467,12 @@ export const ScheduledTransactionsApiFp = function(configuration: Configuration)
          * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionsResponse> {
-            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, options);
+        getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionsResponse> {
+            const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -4497,11 +4509,12 @@ export const ScheduledTransactionsApiFactory = function (configuration: Configur
          * Returns all scheduled transactions
          * @summary List scheduled transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id: string, options?: any) {
-            return ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budget_id, options)();
+        getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+            return ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
@@ -4530,12 +4543,13 @@ export class ScheduledTransactionsApi extends BaseAPI {
      * Returns all scheduled transactions
      * @summary List scheduled transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {number} [last_knowledge_of_server] - The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof ScheduledTransactionsApi
      */
-    public getScheduledTransactions(budget_id: string, options?: any) {
-        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budget_id, options)();
+    public getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number, options?: any) {
+        return ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
     }
 
 }

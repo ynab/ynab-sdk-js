@@ -219,7 +219,7 @@
             }
           },
           "404": {
-            "description": "No nccounts were found",
+            "description": "No accounts were found",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1287,6 +1287,14 @@
             "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "last_knowledge_of_server",
+            "in": "query",
+            "description": "The starting server knowledge.  If provided, only entities that have changed since last_knowledge_of_server will be included.",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
@@ -2498,13 +2506,18 @@
       "properties": {
         "data": {
           "type": "object",
-          "required": ["scheduled_transactions"],
+          "required": ["scheduled_transactions", "server_knowledge"],
           "properties": {
             "scheduled_transactions": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/ScheduledTransactionDetail"
               }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
             }
           }
         }
