@@ -914,7 +914,7 @@
             "description": "The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveTransactionsWrapper"
+              "$ref": "#/definitions/UpdateTransactionsWrapper"
             }
           }
         ],
@@ -922,7 +922,7 @@
           "209": {
             "description": "The transactions were successfully updated",
             "schema": {
-              "$ref": "#/definitions/SaveTransactionsResponse"
+              "$ref": "#/definitions/UpdateTransactionsResponse"
             }
           },
           "400": {
@@ -1005,7 +1005,7 @@
             "description": "The transaction to update",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveTransactionWrapper"
+              "$ref": "#/definitions/UpdateTransactionWrapper"
             }
           }
         ],
@@ -1479,7 +1479,7 @@
       "properties": {
         "data": {
           "type": "object",
-          "required": ["budgets", "default_budget"],
+          "required": ["budgets"],
           "properties": {
             "budgets": {
               "type": "array",
@@ -1694,7 +1694,6 @@
         "type",
         "on_budget",
         "closed",
-        "note",
         "balance",
         "cleared_balance",
         "uncleared_balance",
@@ -1849,15 +1848,10 @@
         "category_group_id",
         "name",
         "hidden",
-        "note",
         "budgeted",
         "activity",
         "balance",
-        "goal_type",
-        "goal_creation_month",
         "goal_target",
-        "goal_target_month",
-        "goal_percentage_complete",
         "deleted"
       ],
       "properties": {
@@ -1990,7 +1984,7 @@
     },
     "Payee": {
       "type": "object",
-      "required": ["id", "name", "transfer_account_id", "deleted"],
+      "required": ["id", "name", "deleted"],
       "properties": {
         "id": {
           "type": "string",
@@ -2230,6 +2224,133 @@
         }
       }
     },
+    "UpdateTransactionWrapper": {
+      "type": "object",
+      "required": ["transaction"],
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/UpdateTransaction"
+        }
+      }
+    },
+    "UpdateTransactionsWrapper": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/UpdateTransaction"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UpdateTransaction"
+          }
+        }
+      }
+    },
+    "UpdateTransaction": {
+      "type": "object",
+      "required": ["account_id", "date", "amount"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored."
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored."
+        },
+        "payee_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The payee for the transaction"
+        },
+        "payee_name": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "The payee name.  If a payee_name value is provided and payee_id has a null value, the payee_name value will be used to resolve the payee by either (1) a matching payee rename rule (only if import_id is also specified) or (2) a payee with the same name or (3) creation of a new payee."
+        },
+        "category_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied.  If an existing transaction has a Split category it cannot be changed."
+        },
+        "memo": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "cleared": {
+          "type": "string",
+          "enum": ["cleared", "uncleared", "reconciled"],
+          "description": "The cleared status of the transaction"
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default."
+        },
+        "flag_color": {
+          "type": "string",
+          "enum": ["red", "orange", "yellow", "green", "blue", "purple", null],
+          "description": "The transaction flag"
+        },
+        "import_id": {
+          "type": "string",
+          "maxLength": 36,
+          "description": "If specified, the new transaction will be assigned this import_id and considered \"imported\". *At the time of import* we will attempt to match \"imported\" transactions with non-imported (i.e. \"user-entered\") transactions.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API)."
+        }
+      }
+    },
+    "UpdateTransactionsResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "type": "object",
+          "required": ["transaction_ids", "server_knowledge"],
+          "properties": {
+            "transaction_ids": {
+              "type": "array",
+              "description": "The transaction ids that were saved",
+              "items": {
+                "type": "string"
+              }
+            },
+            "transaction": {
+              "description": "If a single transaction was specified, the transaction that was saved",
+              "$ref": "#/definitions/TransactionDetail"
+            },
+            "transactions": {
+              "type": "array",
+              "description": "If multiple transactions were specified, the transactions that were saved",
+              "items": {
+                "$ref": "#/definitions/TransactionDetail"
+              }
+            },
+            "duplicate_import_ids": {
+              "type": "array",
+              "description": "If multiple transactions were specified, a list of import_ids that were not created because of an existing import_id found on the same account",
+              "items": {
+                "type": "string"
+              }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
+            }
+          }
+        }
+      }
+    },
     "TransactionResponse": {
       "type": "object",
       "required": ["data"],
@@ -2251,17 +2372,9 @@
         "id",
         "date",
         "amount",
-        "memo",
         "cleared",
         "approved",
-        "flag_color",
         "account_id",
-        "payee_id",
-        "category_id",
-        "transfer_account_id",
-        "transfer_transaction_id",
-        "matched_transaction_id",
-        "import_id",
         "deleted"
       ],
       "properties": {
@@ -2337,7 +2450,7 @@
         },
         {
           "type": "object",
-          "required": ["account_name", "payee_name", "category_name", "subtransactions"],
+          "required": ["account_name", "subtransactions"],
           "properties": {
             "account_name": {
               "type": "string"
@@ -2366,7 +2479,7 @@
         },
         {
           "type": "object",
-          "required": ["type", "parent_transaction_id", "account_name", "payee_name", "category_name"],
+          "required": ["type", "account_name", "category_name"],
           "properties": {
             "type": {
               "type": "string",
@@ -2460,10 +2573,6 @@
         "id",
         "transaction_id",
         "amount",
-        "memo",
-        "payee_id",
-        "category_id",
-        "transfer_account_id",
         "deleted"
       ],
       "properties": {
@@ -2546,12 +2655,9 @@
         "date_next",
         "frequency",
         "amount",
-        "memo",
         "flag_color",
         "account_id",
-        "payee_id",
         "category_id",
-        "transfer_account_id",
         "deleted"
       ],
       "properties": {
@@ -2658,10 +2764,7 @@
         "id",
         "scheduled_transaction_id",
         "amount",
-        "memo",
-        "payee_id",
         "category_id",
-        "transfer_account_id",
         "deleted"
       ],
       "properties": {
@@ -2740,7 +2843,7 @@
     },
     "MonthSummary": {
       "type": "object",
-      "required": ["month", "note", "income", "budgeted", "activity", "to_be_budgeted", "age_of_money", "deleted"],
+      "required": ["month", "income", "budgeted", "activity", "to_be_budgeted", "deleted"],
       "properties": {
         "month": {
           "type": "string",
