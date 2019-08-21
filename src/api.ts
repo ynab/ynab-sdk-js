@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.14.0";
+const USER_AGENT = "api_client/js/1.15.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -353,31 +353,31 @@ export interface BudgetSummary {
      * @type {string}
      * @memberof BudgetSummary
      */
-    last_modified_on?: string;
+    last_modified_on?: string | null;
     /**
      * The earliest budget month
      * @type {string}
      * @memberof BudgetSummary
      */
-    first_month?: string;
+    first_month?: string | null;
     /**
      * The latest budget month
      * @type {string}
      * @memberof BudgetSummary
      */
-    last_month?: string;
+    last_month?: string | null;
     /**
      * 
      * @type {DateFormat}
      * @memberof BudgetSummary
      */
-    date_format?: DateFormat;
+    date_format?: DateFormat | null;
     /**
      * 
      * @type {CurrencyFormat}
      * @memberof BudgetSummary
      */
-    currency_format?: CurrencyFormat;
+    currency_format?: CurrencyFormat | null;
 }
 
 /**
@@ -545,7 +545,7 @@ export interface Category {
      * @type {string}
      * @memberof Category
      */
-    original_category_group_id?: string;
+    original_category_group_id?: string | null;
     /**
      * 
      * @type {string}
@@ -1219,49 +1219,49 @@ export interface SaveTransaction {
      * @type {string}
      * @memberof SaveTransaction
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * The payee name.  If a payee_name value is provided and payee_id has a null value, the payee_name value will be used to resolve the payee by either (1) a matching payee rename rule (only if import_id is also specified) or (2) a payee with the same name or (3) creation of a new payee.
      * @type {string}
      * @memberof SaveTransaction
      */
-    payee_name?: string;
+    payee_name?: string | null;
     /**
      * The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied.  If an existing transaction has a Split category it cannot be changed.
      * @type {string}
      * @memberof SaveTransaction
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SaveTransaction
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * The cleared status of the transaction
      * @type {string}
      * @memberof SaveTransaction
      */
-    cleared?: SaveTransaction.ClearedEnum;
+    cleared?: SaveTransaction.ClearedEnum | null;
     /**
      * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
      * @type {boolean}
      * @memberof SaveTransaction
      */
-    approved?: boolean;
+    approved?: boolean | null;
     /**
      * The transaction flag
      * @type {string}
      * @memberof SaveTransaction
      */
-    flag_color?: SaveTransaction.FlagColorEnum;
+    flag_color?: SaveTransaction.FlagColorEnum | null;
     /**
      * If specified, the new transaction will be assigned this import_id and considered \"imported\". *At the time of import* we will attempt to match \"imported\" transactions with non-imported (i.e. \"user-entered\") transactions.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
      * @type {string}
      * @memberof SaveTransaction
      */
-    import_id?: string;
+    import_id?: string | null;
 }
 
 /**
@@ -1337,19 +1337,19 @@ export interface SaveTransactionsResponseData {
      * @type {TransactionDetail}
      * @memberof SaveTransactionsResponseData
      */
-    transaction?: TransactionDetail;
+    transaction?: TransactionDetail | null;
     /**
      * If multiple transactions were specified, the transactions that were saved
      * @type {Array<TransactionDetail>}
      * @memberof SaveTransactionsResponseData
      */
-    transactions?: Array<TransactionDetail>;
+    transactions?: Array<TransactionDetail> | null;
     /**
      * If multiple transactions were specified, a list of import_ids that were not created because of an existing import_id found on the same account
      * @type {Array<string>}
      * @memberof SaveTransactionsResponseData
      */
-    duplicate_import_ids?: Array<string>;
+    duplicate_import_ids?: Array<string> | null;
     /**
      * The knowledge of the server
      * @type {number}
@@ -1369,13 +1369,13 @@ export interface SaveTransactionsWrapper {
      * @type {SaveTransaction}
      * @memberof SaveTransactionsWrapper
      */
-    transaction?: SaveTransaction;
+    transaction?: SaveTransaction | null;
     /**
      * 
      * @type {Array<SaveTransaction>}
      * @memberof SaveTransactionsWrapper
      */
-    transactions?: Array<SaveTransaction>;
+    transactions?: Array<SaveTransaction> | null;
 }
 
 /**
@@ -1923,91 +1923,91 @@ export interface BudgetDetail {
      * @type {string}
      * @memberof BudgetDetail
      */
-    last_modified_on?: string;
+    last_modified_on?: string | null;
     /**
      * The earliest budget month
      * @type {string}
      * @memberof BudgetDetail
      */
-    first_month?: string;
+    first_month?: string | null;
     /**
      * The latest budget month
      * @type {string}
      * @memberof BudgetDetail
      */
-    last_month?: string;
+    last_month?: string | null;
     /**
      * 
      * @type {DateFormat}
      * @memberof BudgetDetail
      */
-    date_format?: DateFormat;
+    date_format?: DateFormat | null;
     /**
      * 
      * @type {CurrencyFormat}
      * @memberof BudgetDetail
      */
-    currency_format?: CurrencyFormat;
+    currency_format?: CurrencyFormat | null;
     /**
      * 
      * @type {Array<Account>}
      * @memberof BudgetDetail
      */
-    accounts?: Array<Account>;
+    accounts?: Array<Account> | null;
     /**
      * 
      * @type {Array<Payee>}
      * @memberof BudgetDetail
      */
-    payees?: Array<Payee>;
+    payees?: Array<Payee> | null;
     /**
      * 
      * @type {Array<PayeeLocation>}
      * @memberof BudgetDetail
      */
-    payee_locations?: Array<PayeeLocation>;
+    payee_locations?: Array<PayeeLocation> | null;
     /**
      * 
      * @type {Array<CategoryGroup>}
      * @memberof BudgetDetail
      */
-    category_groups?: Array<CategoryGroup>;
+    category_groups?: Array<CategoryGroup> | null;
     /**
      * 
      * @type {Array<Category>}
      * @memberof BudgetDetail
      */
-    categories?: Array<Category>;
+    categories?: Array<Category> | null;
     /**
      * 
      * @type {Array<MonthDetail>}
      * @memberof BudgetDetail
      */
-    months?: Array<MonthDetail>;
+    months?: Array<MonthDetail> | null;
     /**
      * 
      * @type {Array<TransactionSummary>}
      * @memberof BudgetDetail
      */
-    transactions?: Array<TransactionSummary>;
+    transactions?: Array<TransactionSummary> | null;
     /**
      * 
      * @type {Array<SubTransaction>}
      * @memberof BudgetDetail
      */
-    subtransactions?: Array<SubTransaction>;
+    subtransactions?: Array<SubTransaction> | null;
     /**
      * 
      * @type {Array<ScheduledTransactionSummary>}
      * @memberof BudgetDetail
      */
-    scheduled_transactions?: Array<ScheduledTransactionSummary>;
+    scheduled_transactions?: Array<ScheduledTransactionSummary> | null;
     /**
      * 
      * @type {Array<ScheduledSubTransaction>}
      * @memberof BudgetDetail
      */
-    scheduled_subtransactions?: Array<ScheduledSubTransaction>;
+    scheduled_subtransactions?: Array<ScheduledSubTransaction> | null;
 }
 
 /**
