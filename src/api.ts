@@ -411,7 +411,7 @@ export interface BudgetSummaryResponseData {
      * @type {BudgetSummary}
      * @memberof BudgetSummaryResponseData
      */
-    default_budget: BudgetSummary;
+    default_budget?: BudgetSummary | null;
 }
 
 /**
@@ -571,7 +571,7 @@ export interface Category {
      */
     balance: number;
     /**
-     * The type of goal, if the cagegory has a goal (TB=Target Category Balance, TBD=Target Category Balance by Date, MF=Monthly Funding)
+     * The type of goal, if the category has a goal (TB=Target Category Balance, TBD=Target Category Balance by Date, MF=Monthly Funding)
      * @type {string}
      * @memberof Category
      */
@@ -620,7 +620,8 @@ export namespace Category {
     export enum GoalTypeEnum {
         TB = <any> 'TB',
         TBD = <any> 'TBD',
-        MF = <any> 'MF'
+        MF = <any> 'MF',
+        NEED = <any> 'NEED'
     }
 }
 
@@ -901,7 +902,7 @@ export interface MonthSummary {
      * @type {string}
      * @memberof MonthSummary
      */
-    note: string;
+    note?: string | null;
     /**
      * The total amount in transactions categorized to 'Inflow: To be Budgeted' in the month
      * @type {number}
@@ -931,7 +932,7 @@ export interface MonthSummary {
      * @type {number}
      * @memberof MonthSummary
      */
-    age_of_money: number;
+    age_of_money?: number | null;
     /**
      * Whether or not the month has been deleted.  Deleted months will only be included in delta requests.
      * @type {boolean}
@@ -963,7 +964,7 @@ export interface Payee {
      * @type {string}
      * @memberof Payee
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the payee has been deleted.  Deleted payees will only be included in delta requests.
      * @type {boolean}
@@ -1215,7 +1216,7 @@ export interface SaveTransaction {
      */
     amount: number;
     /**
-     * The payee for the transaction
+     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as tranfer_payee_id on the account resource.
      * @type {string}
      * @memberof SaveTransaction
      */
@@ -1257,7 +1258,7 @@ export interface SaveTransaction {
      */
     flag_color?: SaveTransaction.FlagColorEnum | null;
     /**
-     * If specified, the new transaction will be assigned this import_id and considered \"imported\". *At the time of import* we will attempt to match \"imported\" transactions with non-imported (i.e. \"user-entered\") transactions.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
+     * If specified, the new transaction will be assigned this import_id and considered \"imported\".  We will also attempt to match this imported transaction to an existing \"user-entered\" transation on the same account, with the same amount, and with a date +/-10 days from the imported transaction date.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
      * @type {string}
      * @memberof SaveTransaction
      */
@@ -1407,25 +1408,25 @@ export interface ScheduledSubTransaction {
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    memo: string;
+    memo?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    payee_id: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    category_id: string;
+    category_id?: string | null;
     /**
      * If a transfer, the account_id which the scheduled subtransaction transfers to
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the scheduled subtransaction has been deleted.  Deleted scheduled subtransactions will only be included in delta requests.
      * @type {boolean}
@@ -1503,13 +1504,13 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    memo: string;
+    memo?: string | null;
     /**
      * The scheduled transaction flag
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    flag_color: ScheduledTransactionSummary.FlagColorEnum;
+    flag_color?: ScheduledTransactionSummary.FlagColorEnum | null;
     /**
      * 
      * @type {string}
@@ -1521,19 +1522,19 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    payee_id: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    category_id: string;
+    category_id?: string | null;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
      * @type {boolean}
@@ -1643,25 +1644,25 @@ export interface SubTransaction {
      * @type {string}
      * @memberof SubTransaction
      */
-    memo: string;
+    memo?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    payee_id: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    category_id: string;
+    category_id?: string | null;
     /**
      * If a transfer, the account_id which the subtransaction transfers to
      * @type {string}
      * @memberof SubTransaction
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the subtransaction has been deleted.  Deleted subtransactions will only be included in delta requests.
      * @type {boolean}
@@ -1727,7 +1728,7 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    memo: string;
+    memo?: string | null;
     /**
      * The cleared status of the transaction
      * @type {string}
@@ -1745,7 +1746,7 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    flag_color: TransactionSummary.FlagColorEnum;
+    flag_color?: TransactionSummary.FlagColorEnum | null;
     /**
      * 
      * @type {string}
@@ -1757,37 +1758,37 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    payee_id: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionSummary
      */
-    category_id: string;
+    category_id?: string | null;
     /**
      * If a transfer transaction, the account to which it transfers
      * @type {string}
      * @memberof TransactionSummary
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * If a transfer transaction, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof TransactionSummary
      */
-    transfer_transaction_id: string;
+    transfer_transaction_id?: string | null;
     /**
      * If transaction is matched, the id of the matched transaction
      * @type {string}
      * @memberof TransactionSummary
      */
-    matched_transaction_id: string;
+    matched_transaction_id?: string | null;
     /**
      * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionSummary
      */
-    import_id: string;
+    import_id?: string | null;
     /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
@@ -1856,6 +1857,20 @@ export interface TransactionsResponseData {
      * @memberof TransactionsResponseData
      */
     server_knowledge: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface UpdateTransactionsWrapper
+ */
+export interface UpdateTransactionsWrapper {
+    /**
+     * 
+     * @type {Array<UpdateTransaction>}
+     * @memberof UpdateTransactionsWrapper
+     */
+    transactions: Array<UpdateTransaction>;
 }
 
 /**
@@ -2077,7 +2092,7 @@ export interface HybridTransaction {
      * @type {string}
      * @memberof HybridTransaction
      */
-    memo: string;
+    memo?: string | null;
     /**
      * The cleared status of the transaction
      * @type {string}
@@ -2095,7 +2110,7 @@ export interface HybridTransaction {
      * @type {string}
      * @memberof HybridTransaction
      */
-    flag_color: HybridTransaction.FlagColorEnum;
+    flag_color?: HybridTransaction.FlagColorEnum | null;
     /**
      * 
      * @type {string}
@@ -2107,37 +2122,37 @@ export interface HybridTransaction {
      * @type {string}
      * @memberof HybridTransaction
      */
-    payee_id: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof HybridTransaction
      */
-    category_id: string;
+    category_id?: string | null;
     /**
      * If a transfer transaction, the account to which it transfers
      * @type {string}
      * @memberof HybridTransaction
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * If a transfer transaction, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof HybridTransaction
      */
-    transfer_transaction_id: string;
+    transfer_transaction_id?: string | null;
     /**
      * If transaction is matched, the id of the matched transaction
      * @type {string}
      * @memberof HybridTransaction
      */
-    matched_transaction_id: string;
+    matched_transaction_id?: string | null;
     /**
      * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof HybridTransaction
      */
-    import_id: string;
+    import_id?: string | null;
     /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
@@ -2151,11 +2166,11 @@ export interface HybridTransaction {
      */
     type: HybridTransaction.TypeEnum;
     /**
-     * For subtransaction types, this is the id of the pararent transaction.  For transaction types, this id will be always be null.
+     * For subtransaction types, this is the id of the parent transaction.  For transaction types, this id will be always be null.
      * @type {string}
      * @memberof HybridTransaction
      */
-    parent_transaction_id: string;
+    parent_transaction_id?: string | null;
     /**
      * 
      * @type {string}
@@ -2167,13 +2182,13 @@ export interface HybridTransaction {
      * @type {string}
      * @memberof HybridTransaction
      */
-    payee_name: string;
+    payee_name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof HybridTransaction
      */
-    category_name: string;
+    category_name?: string | null;
 }
 
 /**
@@ -2229,7 +2244,7 @@ export interface MonthDetail {
      * @type {string}
      * @memberof MonthDetail
      */
-    note: string;
+    note?: string | null;
     /**
      * The total amount in transactions categorized to 'Inflow: To be Budgeted' in the month
      * @type {number}
@@ -2259,7 +2274,7 @@ export interface MonthDetail {
      * @type {number}
      * @memberof MonthDetail
      */
-    age_of_money: number;
+    age_of_money?: number | null;
     /**
      * Whether or not the month has been deleted.  Deleted months will only be included in delta requests.
      * @type {boolean}
@@ -2315,13 +2330,13 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    memo: string;
+    memo?: string | null;
     /**
      * The scheduled transaction flag
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    flag_color: ScheduledTransactionDetail.FlagColorEnum;
+    flag_color?: ScheduledTransactionDetail.FlagColorEnum | null;
     /**
      * 
      * @type {string}
@@ -2333,19 +2348,19 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    payee_id: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    category_id: string;
+    category_id?: string | null;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
      * @type {boolean}
@@ -2363,13 +2378,13 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    payee_name: string;
+    payee_name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    category_name: string;
+    category_name?: string | null;
     /**
      * If a split scheduled transaction, the subtransactions.
      * @type {Array<ScheduledSubTransaction>}
@@ -2445,7 +2460,7 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    memo: string;
+    memo?: string | null;
     /**
      * The cleared status of the transaction
      * @type {string}
@@ -2463,7 +2478,7 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    flag_color: TransactionDetail.FlagColorEnum;
+    flag_color?: TransactionDetail.FlagColorEnum | null;
     /**
      * 
      * @type {string}
@@ -2475,37 +2490,37 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    payee_id: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetail
      */
-    category_id: string;
+    category_id?: string | null;
     /**
      * If a transfer transaction, the account to which it transfers
      * @type {string}
      * @memberof TransactionDetail
      */
-    transfer_account_id: string;
+    transfer_account_id?: string | null;
     /**
      * If a transfer transaction, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof TransactionDetail
      */
-    transfer_transaction_id: string;
+    transfer_transaction_id?: string | null;
     /**
      * If transaction is matched, the id of the matched transaction
      * @type {string}
      * @memberof TransactionDetail
      */
-    matched_transaction_id: string;
+    matched_transaction_id?: string | null;
     /**
      * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionDetail
      */
-    import_id: string;
+    import_id?: string | null;
     /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
@@ -2523,13 +2538,13 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    payee_name: string;
+    payee_name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetail
      */
-    category_name: string;
+    category_name?: string | null;
     /**
      * If a split transaction, the subtransactions.
      * @type {Array<SubTransaction>}
@@ -2543,6 +2558,114 @@ export interface TransactionDetail {
  * @namespace TransactionDetail
  */
 export namespace TransactionDetail {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ClearedEnum {
+        Cleared = <any> 'cleared',
+        Uncleared = <any> 'uncleared',
+        Reconciled = <any> 'reconciled'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum FlagColorEnum {
+        Red = <any> 'red',
+        Orange = <any> 'orange',
+        Yellow = <any> 'yellow',
+        Green = <any> 'green',
+        Blue = <any> 'blue',
+        Purple = <any> 'purple'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface UpdateTransaction
+ */
+export interface UpdateTransaction {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    account_id: string;
+    /**
+     * The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored.
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    date: string;
+    /**
+     * The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored.
+     * @type {number}
+     * @memberof UpdateTransaction
+     */
+    amount: number;
+    /**
+     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as tranfer_payee_id on the account resource.
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    payee_id?: string | null;
+    /**
+     * The payee name.  If a payee_name value is provided and payee_id has a null value, the payee_name value will be used to resolve the payee by either (1) a matching payee rename rule (only if import_id is also specified) or (2) a payee with the same name or (3) creation of a new payee.
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    payee_name?: string | null;
+    /**
+     * The category for the transaction.  Split and Credit Card Payment categories are not permitted and will be ignored if supplied.  If an existing transaction has a Split category it cannot be changed.
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    category_id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    memo?: string | null;
+    /**
+     * The cleared status of the transaction
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    cleared?: UpdateTransaction.ClearedEnum | null;
+    /**
+     * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
+     * @type {boolean}
+     * @memberof UpdateTransaction
+     */
+    approved?: boolean | null;
+    /**
+     * The transaction flag
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    flag_color?: UpdateTransaction.FlagColorEnum | null;
+    /**
+     * If specified, the new transaction will be assigned this import_id and considered \"imported\".  We will also attempt to match this imported transaction to an existing \"user-entered\" transation on the same account, with the same amount, and with a date +/-10 days from the imported transaction date.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    import_id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateTransaction
+     */
+    id: string;
+}
+
+/**
+ * @export
+ * @namespace UpdateTransaction
+ */
+export namespace UpdateTransaction {
     /**
      * @export
      * @enum {string}
@@ -4936,11 +5059,11 @@ export const TransactionsApiFetchParamCreator = function (configuration: Configu
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options: any = {}): FetchArgs {
+        updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options: any = {}): FetchArgs {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
                 throw new RequiredError('budget_id','Required parameter budget_id was null or undefined when calling updateTransactions.');
@@ -5157,11 +5280,11 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse> {
+        updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransactions(budget_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -5277,11 +5400,11 @@ export const TransactionsApiFactory = function (configuration: Configuration) {
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any) {
+        updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any) {
             return TransactionsApiFp(configuration).updateTransactions(budget_id, data, options)();
         },
     };
@@ -5401,12 +5524,12 @@ export class TransactionsApi extends BaseAPI {
      * Updates multiple transactions, by 'id' or 'import_id'.
      * @summary Update multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-     * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+     * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public updateTransactions(budget_id: string, data: SaveTransactionsWrapper, options?: any) {
+    public updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any) {
         return TransactionsApiFp(this.configuration).updateTransactions(budget_id, data, options)();
     }
 

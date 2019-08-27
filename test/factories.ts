@@ -299,7 +299,7 @@ export const hybridtransactionsResponseFactory = Factory.makeFactory<
   })
 });
 
-export const saveTransacionFactory = Factory.makeFactory<api.SaveTransaction>({
+export const saveTransactionFactory = Factory.makeFactory<api.SaveTransaction>({
   account_id: Factory.each(i => `account_id #${i}`),
   date: "2017-01-02",
   amount: Factory.each(i => i * 1000),
@@ -316,22 +316,45 @@ export const saveTransacionFactory = Factory.makeFactory<api.SaveTransaction>({
 export const saveSingleTransactionWrapperFactory = Factory.makeFactory<
   api.SaveTransactionWrapper
 >({
-  transaction: saveTransacionFactory.build()
+  transaction: saveTransactionFactory.build()
 });
 
 export const saveMultipleTransactionsWrapperFactory = Factory.makeFactory<
   api.SaveTransactionsWrapper
 >({
-  transactions: saveTransacionFactory.buildList(3)
+  transactions: saveTransactionFactory.buildList(3)
+});
+
+export const updateTransactionFactory = Factory.makeFactory<
+  api.UpdateTransaction
+>({
+  id: "3045b6ae-4684-4df5-8ade-9f116975688f",
+  account_id: Factory.each(i => `account_id #${i}`),
+  date: "2017-01-02",
+  amount: Factory.each(i => i * 1000),
+  payee_id: Factory.each(i => `payee_id #${i}`),
+  payee_name: null!,
+  category_id: Factory.each(i => `category_id #${i}`),
+  memo: Factory.each(i => `memo #${i}`),
+  cleared: api.SaveTransaction.ClearedEnum.Uncleared,
+  approved: false,
+  flag_color: api.SaveTransaction.FlagColorEnum.Red,
+  import_id: null!
+});
+
+export const updateMultipleTransactionsWrapperFactory = Factory.makeFactory<
+  api.UpdateTransactionsWrapper
+>({
+  transactions: updateTransactionFactory.buildList(3)
 });
 
 export const bulkTransactionsFactory = Factory.makeFactory<
   api.BulkTransactions
 >({
   transactions: [
-    saveTransacionFactory.build(),
-    saveTransacionFactory.build(),
-    saveTransacionFactory.build()
+    saveTransactionFactory.build(),
+    saveTransactionFactory.build(),
+    saveTransactionFactory.build()
   ]
 });
 

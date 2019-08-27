@@ -449,7 +449,7 @@ describe("API requests", () => {
         () =>
           ynabAPI.transactions.updateTransactions(
             budgetId,
-            factories.saveMultipleTransactionsWrapperFactory.build()
+            factories.updateMultipleTransactionsWrapperFactory.build()
           ),
         factories.saveTransactionsResponseFactory.build()
       );
