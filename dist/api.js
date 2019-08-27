@@ -103,6 +103,7 @@ var Category;
         GoalTypeEnum[GoalTypeEnum["TB"] = 'TB'] = "TB";
         GoalTypeEnum[GoalTypeEnum["TBD"] = 'TBD'] = "TBD";
         GoalTypeEnum[GoalTypeEnum["MF"] = 'MF'] = "MF";
+        GoalTypeEnum[GoalTypeEnum["NEED"] = 'NEED'] = "NEED";
     })(GoalTypeEnum = Category.GoalTypeEnum || (Category.GoalTypeEnum = {}));
 })(Category = exports.Category || (exports.Category = {}));
 /**
@@ -314,6 +315,36 @@ var TransactionDetail;
         FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = TransactionDetail.FlagColorEnum || (TransactionDetail.FlagColorEnum = {}));
 })(TransactionDetail = exports.TransactionDetail || (exports.TransactionDetail = {}));
+/**
+ * @export
+ * @namespace UpdateTransaction
+ */
+var UpdateTransaction;
+(function (UpdateTransaction) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let ClearedEnum;
+    (function (ClearedEnum) {
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+    })(ClearedEnum = UpdateTransaction.ClearedEnum || (UpdateTransaction.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = UpdateTransaction.FlagColorEnum || (UpdateTransaction.FlagColorEnum = {}));
+})(UpdateTransaction = exports.UpdateTransaction || (exports.UpdateTransaction = {}));
 /**
  * AccountsApi - fetch parameter creator
  * @export
@@ -2533,7 +2564,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2755,7 +2786,7 @@ exports.TransactionsApiFp = function (configuration) {
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2875,7 +2906,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * Updates multiple transactions, by 'id' or 'import_id'.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2991,7 +3022,7 @@ class TransactionsApi extends BaseAPI {
      * Updates multiple transactions, by 'id' or 'import_id'.
      * @summary Update multiple transactions
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-     * @param {SaveTransactionsWrapper} data - The transactions to update.  Optionally, transaction 'id' value(s) can be specified as null and an 'import_id' value can be provided which will allow transaction(s) to updated by their import_id.
+     * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an 'id' or 'import_id' specified. If 'id' is specified as null an 'import_id' value can be provided which will allow transaction(s) to be updated by their import_id. If an id is specified, it will always be used for lookup.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
