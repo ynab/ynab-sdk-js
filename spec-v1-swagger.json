@@ -1853,11 +1853,7 @@
         "budgeted",
         "activity",
         "balance",
-        "goal_type",
-        "goal_creation_month",
         "goal_target",
-        "goal_target_month",
-        "goal_percentage_complete",
         "deleted"
       ],
       "properties": {
