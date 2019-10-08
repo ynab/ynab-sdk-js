@@ -10,7 +10,7 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "noEmitOnError": true,
-    "composite": true,
+    "composite": true
   },
   "include": ["./**/*.ts"]
 }
