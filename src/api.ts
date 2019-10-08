@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.15.0";
+const USER_AGENT = "api_client/js/1.16.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -129,7 +129,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    note: string;
+    note?: string | null;
     /**
      * The current balance of the account in milliunits format
      * @type {number}
@@ -551,7 +551,7 @@ export interface Category {
      * @type {string}
      * @memberof Category
      */
-    note: string;
+    note?: string | null;
     /**
      * Budgeted amount in milliunits format
      * @type {number}
@@ -575,31 +575,31 @@ export interface Category {
      * @type {string}
      * @memberof Category
      */
-    goal_type: Category.GoalTypeEnum;
+    goal_type?: Category.GoalTypeEnum | null;
     /**
      * The month a goal was created
      * @type {string}
      * @memberof Category
      */
-    goal_creation_month: string;
+    goal_creation_month?: string | null;
     /**
      * The goal target amount in milliunits
      * @type {number}
      * @memberof Category
      */
-    goal_target: number;
+    goal_target?: number | null;
     /**
      * If the goal type is 'TBD' (Target Category Balance by Date), this is the target month for the goal to be completed
      * @type {string}
      * @memberof Category
      */
-    goal_target_month: string;
+    goal_target_month?: string | null;
     /**
      * The percentage completion of the goal
      * @type {number}
      * @memberof Category
      */
-    goal_percentage_complete: number;
+    goal_percentage_complete?: number | null;
     /**
      * Whether or not the category has been deleted.  Deleted categories will only be included in delta requests.
      * @type {boolean}
