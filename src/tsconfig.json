@@ -10,7 +10,9 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "noEmitOnError": true,
-    "composite": true
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./tsconfig.tsbuildinfo"
   },
   "include": ["./**/*.ts"]
 }
