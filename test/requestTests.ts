@@ -77,7 +77,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const getBudgetsResponse = await callApiAndVerifyResponse(
-        () => ynabAPI.budgets.getBudgets(0),
+        () => ynabAPI.budgets.getBudgets(),
         factories.budgetSummaryResponseFactory.build()
       );
       verifyRequestDetails(`${BASE_URL}/budgets`);
