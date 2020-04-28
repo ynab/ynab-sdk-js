@@ -16,7 +16,7 @@ const url = require("url");
 // Requiring portable-fetch like this ensures that we have a global fetch function
 // That makes it easier to override with modules like fetch-mock
 require("portable-fetch");
-const USER_AGENT = "api_client/js/1.17.0";
+const USER_AGENT = "api_client/js/1.18.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -2521,6 +2521,40 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Imports transactions.
+         * @summary Import transactions
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        importTransactions(budget_id, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling importTransactions.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transactions/import`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
@@ -2766,6 +2800,28 @@ exports.TransactionsApiFp = function (configuration) {
             };
         },
         /**
+         * Imports transactions.
+         * @summary Import transactions
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        importTransactions(budget_id, options) {
+            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).importTransactions(budget_id, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
@@ -2898,6 +2954,16 @@ exports.TransactionsApiFactory = function (configuration) {
             return exports.TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options)();
         },
         /**
+         * Imports transactions.
+         * @summary Import transactions
+         * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        importTransactions(budget_id, options) {
+            return exports.TransactionsApiFp(configuration).importTransactions(budget_id, options)();
+        },
+        /**
          * Updates a transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
@@ -3011,6 +3077,17 @@ class TransactionsApi extends BaseAPI {
      */
     getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options) {
         return exports.TransactionsApiFp(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options)();
+    }
+    /**
+     * Imports transactions.
+     * @summary Import transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    importTransactions(budget_id, options) {
+        return exports.TransactionsApiFp(this.configuration).importTransactions(budget_id, options)();
     }
     /**
      * Updates a transaction

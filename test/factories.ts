@@ -377,6 +377,15 @@ export const saveTransactionsResponseFactory = Factory.makeFactory<
   })
 });
 
+export const importTransactionsResponseFactory = Factory.makeFactory<
+  api.TransactionsImportResponse
+>({
+  data: Factory.makeFactory<api.TransactionsImportResponseData>({
+    transaction_ids: ["32533e53-8da2-453f-858a-415517d4ca91"]
+  })
+});
+
+
 export const bulkResponseFactory = Factory.makeFactory<api.BulkResponse>({
   data: Factory.makeFactory<api.BulkResponseData>({
     bulk: bulkIdsFactory.build()

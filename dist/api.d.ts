@@ -1129,7 +1129,7 @@ export interface SaveSubTransaction {
      */
     amount: number;
     /**
-     * The payee for the subtransaction.  Transfer payees are not allowed.
+     * The payee for the subtransaction.
      * @type {string}
      * @memberof SaveSubTransaction
      */
@@ -1786,6 +1786,32 @@ export declare namespace TransactionSummary {
         Blue,
         Purple
     }
+}
+/**
+ *
+ * @export
+ * @interface TransactionsImportResponse
+ */
+export interface TransactionsImportResponse {
+    /**
+     *
+     * @type {TransactionsImportResponseData}
+     * @memberof TransactionsImportResponse
+     */
+    data: TransactionsImportResponseData;
+}
+/**
+ *
+ * @export
+ * @interface TransactionsImportResponseData
+ */
+export interface TransactionsImportResponseData {
+    /**
+     * The list of transaction ids that were imported.
+     * @type {Array<string>}
+     * @memberof TransactionsImportResponseData
+     */
+    transaction_ids: Array<string>;
 }
 /**
  *
@@ -3622,6 +3648,14 @@ export declare const TransactionsApiFetchParamCreator: (configuration: Configura
      */
     getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): FetchArgs;
     /**
+     * Imports transactions.
+     * @summary Import transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    importTransactions(budget_id: string, options?: any): FetchArgs;
+    /**
      * Updates a transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
@@ -3712,6 +3746,14 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      */
     getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<HybridTransactionsResponse>;
     /**
+     * Imports transactions.
+     * @summary Import transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    importTransactions(budget_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionsImportResponse>;
+    /**
      * Updates a transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
@@ -3801,6 +3843,14 @@ export declare const TransactionsApiFactory: (configuration: Configuration) => {
      * @throws {RequiredError}
      */
     getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: string | Date | undefined, type?: "uncategorized" | "unapproved" | undefined, last_knowledge_of_server?: number | undefined, options?: any): Promise<HybridTransactionsResponse>;
+    /**
+     * Imports transactions.
+     * @summary Import transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    importTransactions(budget_id: string, options?: any): Promise<TransactionsImportResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction
@@ -3899,6 +3949,15 @@ export declare class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
+    /**
+     * Imports transactions.
+     * @summary Import transactions
+     * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    importTransactions(budget_id: string, options?: any): Promise<TransactionsImportResponse>;
     /**
      * Updates a transaction
      * @summary Updates an existing transaction

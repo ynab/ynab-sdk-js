@@ -942,6 +942,44 @@
         }
       }
     },
+    "/budgets/{budget_id}/transactions/import": {
+      "post": {
+        "tags": ["Transactions"],
+        "summary": "Import transactions",
+        "description": "Imports transactions.",
+        "operationId": "importTransactions",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful but there were no transactions to import",
+            "schema": {
+              "$ref": "#/definitions/TransactionsImportResponse"
+            }
+          },
+          "201": {
+            "description": "One or more transactions were imported successfully",
+            "schema": {
+              "$ref": "#/definitions/TransactionsImportResponse"
+            }
+          },
+          "400": {
+            "description": "The request could not be understood due to malformed syntax or validation error(s)",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/budgets/{budget_id}/transactions/{transaction_id}": {
       "get": {
         "tags": ["Transactions"],
@@ -2243,7 +2281,7 @@
         "payee_id": {
           "type": "string",
           "format": "uuid",
-          "description": "The payee for the subtransaction.  Transfer payees are not allowed."
+          "description": "The payee for the subtransaction."
         },
         "payee_name": {
           "type": "string",
@@ -2472,6 +2510,25 @@
           "type": "integer",
           "format": "int64",
           "description": "Budgeted amount in milliunits format"
+        }
+      }
+    },
+    "TransactionsImportResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "type": "object",
+          "required": ["transaction_ids"],
+          "properties": {
+            "transaction_ids": {
+              "type": "array",
+              "description": "The list of transaction ids that were imported.",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
         }
       }
     },
