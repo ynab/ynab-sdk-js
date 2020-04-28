@@ -139,6 +139,7 @@ The following methods are available in this library. For more details on paramet
 |                            | [transactions.createTransactions(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                            | Creates multiple transactions                  |
 |                            | [transactions.updateTransaction(budget_id, transaction_id, data)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                  | Updates a single transaction                                 |
 |                            | [transactions.updateTransactions(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                  | Updates multiple transactions                                 |
+|                            | [transactions.importTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                  | Imports transactions                                 |
 | **Scheduled Transactions** | [scheduled_transactions.getScheduledTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                              | Returns all scheduled transactions                    |
 |                            | [scheduled_transactions.getScheduledTransactionById(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts#L2936) | Returns a single scheduled transaction                |
 

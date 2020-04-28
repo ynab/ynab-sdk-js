@@ -462,6 +462,24 @@ describe("API requests", () => {
       );
     });
 
+    it("Should import transactions", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+      await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.transactions.importTransactions(
+            budgetId
+          ),
+        factories.importTransactionsResponseFactory.build()
+      );
+
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/transactions/import`,
+        API_KEY,
+        1,
+        "POST"
+      );
+    });
+
     it("Should bulkCreateTransactions", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
