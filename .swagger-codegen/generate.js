@@ -15,8 +15,9 @@ if ($1 == "--useLocalSpec") {
     `WARNING: --useLocalSpec passed in so the local spec file (spec-v1-swagger.json) will be used.`
   );
 } else {
-  exec(`rm -f ${specFilename}`);
-  exec(`wget https://api.youneedabudget.com/papi/${specFilename}`);
+  exec(
+    `wget https://api.youneedabudget.com/papi/${specFilename} -O ./.swagger-codegen/${specFilename}`
+  );
 }
 
 // Update config file with latest package info
@@ -24,7 +25,10 @@ const package = require("../package.json");
 swaggerConfig = require(`./${swaggerConfigFilename}`);
 swaggerConfig.npmName = package.name;
 swaggerConfig.npmVersion = package.version;
-writeFile(`./.swagger-codegen/${swaggerConfigFilename}`, JSON.stringify(swaggerConfig, null, 2));
+writeFile(
+  `./.swagger-codegen/${swaggerConfigFilename}`,
+  JSON.stringify(swaggerConfig, null, 2)
+);
 
 // Copy ignore file to src/ (workaround for ignore-file-override option not working)
 exec(`cp ./.swagger-codegen/.swagger-codegen-ignore ./src`);
@@ -40,7 +44,9 @@ exec(`docker pull swaggerapi/swagger-codegen-cli && docker run --rm -v ${rootFol
     -o "/local/src"`);
 
 // Move VERSION file out of src/ and into root .swagger-codegen folder for consistent organization
-exec("mv ./src/.swagger-codegen/VERSION ./.swagger-codegen/ && rm -rf ./src/.swagger-codegen")
+exec(
+  "mv ./src/.swagger-codegen/VERSION ./.swagger-codegen/ && rm -rf ./src/.swagger-codegen"
+);
 
 // Remove ignore file from src/
 exec(`rm  ./src/.swagger-codegen-ignore`);
