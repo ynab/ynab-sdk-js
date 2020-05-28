@@ -178,15 +178,15 @@ interface TestInterface {
 }
 
 export type Builder<T> = {
-  [// Each property is either a
-  P in keyof T]:  //literal of that type
+  // Each property is either a
+  [P in keyof T]:  //literal of that type
     | T[P]
     // Or a generator for that type
     | Generator<T[P]>
     // Or a derived property
     | Derived<T, T[P]>
     // Or a factory of that type
-    | Factory<T[P]>
+    | Factory<T[P]>;
 };
 
 export function val<T>(val: T): Generator<T> {
@@ -197,20 +197,20 @@ export function each<T>(f: (seqNum: number) => T): Generator<T> {
   return new Generator(f);
 }
 
-interface BaseDerived {
-  derived: Function;
+interface BaseDerived<T> {
+  derived: Derived<T, T>;
   key: string;
 }
 
 interface BaseBuild<T> {
   readonly value: T;
-  readonly derived: BaseDerived[];
+  readonly derived: BaseDerived<T>[];
 }
 
 function buildBase<T>(seqNum: number, builder: Builder<T>): BaseBuild<T> {
   const t: { [key: string]: any } = {};
   const keys = Object.getOwnPropertyNames(builder);
-  const derived: BaseDerived[] = [];
+  const derived: BaseDerived<T>[] = [];
   for (const key of keys) {
     const v = (builder as any)[key];
     let value = v;
