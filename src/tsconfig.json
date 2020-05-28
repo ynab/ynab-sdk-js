@@ -1,18 +1,13 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "target": "es2015",
-    "lib": ["es2015", "dom"],
+    "target": "es6",
     "module": "commonjs",
     "noImplicitAny": true,
-    "outDir": "../dist",
-    "sourceMap": false,
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "noEmitOnError": true,
-    "composite": true,
-    "incremental": true,
-    "tsBuildInfoFile": "./tsconfig.tsbuildinfo"
-  },
-  "include": ["./**/*.ts"]
+    "outDir": "dist",
+    "rootDir": "."  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }
