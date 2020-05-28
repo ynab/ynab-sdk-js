@@ -2,7 +2,7 @@ import * as ynab from "../src/index";
 import * as chai from "chai";
 
 const Validator = require("swagger-model-validator");
-const swaggerApiDef = require("../spec-v1-swagger.json");
+const swaggerApiDef = require("../.swagger-codegen/spec-v1-swagger.json");
 const validator = new Validator(swaggerApiDef);
 const assert = chai.assert;
 const expect = chai.expect;
