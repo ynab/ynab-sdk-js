@@ -34,7 +34,8 @@ writeFile(
 exec(`cp ./.swagger-codegen/.swagger-codegen-ignore ./src`);
 
 // Share the current folder with docker, and then run the typescript-fetch generator, pointing to the given template
-exec(`docker pull swaggerapi/swagger-codegen-cli && docker run --rm -v ${rootFolder}:/local swaggerapi/swagger-codegen-cli:latest generate \
+const codegenVersion = "2.4.14";
+exec(`docker pull swaggerapi/swagger-codegen-cli:${codegenVersion} && docker run --rm -v ${rootFolder}:/local swaggerapi/swagger-codegen-cli:${codegenVersion} generate \
     -DmodelPropertyNaming=original \
     --type-mappings DateTime=string \
     -i "/local/.swagger-codegen/${specFilename}" \
