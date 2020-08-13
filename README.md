@@ -60,7 +60,7 @@ Using the "latest" tag will result in a 302 redirect to the latest version tag s
 
 To use this client, you must
 [obtain an access token](https://api.youneedabudget.com/#authentication-overview) from
-the [My Account](https://app.youneedabudget.com/settings) area of the YNAB web
+the [Account Settings](https://app.youneedabudget.com/settings) area of the YNAB web
 application.
 
 ```typescript
