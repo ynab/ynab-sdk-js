@@ -54,12 +54,12 @@ describe("API requests", () => {
         error: {
           id: "401",
           name: "unauthorized",
-          description: "Unauthorized"
-        }
+          description: "Unauthorized",
+        },
       };
       fetchMock.once("*", {
         status: 401,
-        body: errorObject
+        body: errorObject,
       });
       try {
         const lastKnowledgeOfServer = 5;
@@ -118,6 +118,26 @@ describe("API requests", () => {
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}`
+      );
+    });
+
+    it("Should create account", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.accounts.createAccount(
+            budgetId,
+            factories.saveAccountWrapperFactory.build()
+          ),
+        factories.accountResponseFactory.build()
+      );
+
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/accounts`,
+        API_KEY,
+        1,
+        "POST"
       );
     });
 
@@ -465,10 +485,7 @@ describe("API requests", () => {
     it("Should import transactions", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       await callApiAndVerifyResponse(
-        () =>
-          ynabAPI.transactions.importTransactions(
-            budgetId
-          ),
+        () => ynabAPI.transactions.importTransactions(budgetId),
         factories.importTransactionsResponseFactory.build()
       );
 

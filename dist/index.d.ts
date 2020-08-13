@@ -31,45 +31,45 @@ export declare class api {
     /**
      * /user endpoints interface
      */
-    readonly user: CodeGen.UserApi;
+    get user(): CodeGen.UserApi;
     protected _budgets: CodeGen.BudgetsApi;
     /**
      * /budgets endpoints interface
      */
-    readonly budgets: CodeGen.BudgetsApi;
+    get budgets(): CodeGen.BudgetsApi;
     protected _accounts: CodeGen.AccountsApi;
     /**
      * /budgets/{budget_id}/accounts endpoints interface
      */
-    readonly accounts: CodeGen.AccountsApi;
+    get accounts(): CodeGen.AccountsApi;
     protected _categories: CodeGen.CategoriesApi;
     /**
      * /budgets/{budget_id}/categories endpoints interface
      */
-    readonly categories: CodeGen.CategoriesApi;
+    get categories(): CodeGen.CategoriesApi;
     protected _months: CodeGen.MonthsApi;
     /**
      * /budgets/{budget_id}/months endpoints interface
      */
-    readonly months: CodeGen.MonthsApi;
+    get months(): CodeGen.MonthsApi;
     protected _payees: CodeGen.PayeesApi;
     /**
      * /budgets/{budget_id}/payees endpoints interface
      */
-    readonly payees: CodeGen.PayeesApi;
+    get payees(): CodeGen.PayeesApi;
     protected _payeeLocations: CodeGen.PayeeLocationsApi;
     /**
      * /budgets/{budget_id}/payee_locations endpoints interface
      */
-    readonly payeeLocations: CodeGen.PayeeLocationsApi;
+    get payeeLocations(): CodeGen.PayeeLocationsApi;
     protected _transactions: TransactionsApi;
     /**
      * /budgets/{budget_id}/transactions endpoints interface
      */
-    readonly transactions: TransactionsApi;
+    get transactions(): TransactionsApi;
     protected _scheduledTransactions: CodeGen.ScheduledTransactionsApi;
     /**
      * /budgets/{budget_id}/scheduled_transactions endpoints interface
      */
-    readonly scheduledTransactions: CodeGen.ScheduledTransactionsApi;
+    get scheduledTransactions(): CodeGen.ScheduledTransactionsApi;
 }

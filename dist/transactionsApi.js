@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TransactionsApi = void 0;
 const CodeGen = require("./api");
 class TransactionsApi extends CodeGen.TransactionsApi {
     /**

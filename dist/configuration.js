@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Configuration = void 0;
 class Configuration {
     constructor(accessToken, basePath) {
         this.apiKey = `Bearer ${accessToken}`;
