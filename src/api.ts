@@ -19,7 +19,7 @@ require("portable-fetch");
 
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.19.0";
+const USER_AGENT = "api_client/js/1.20.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -2859,7 +2859,7 @@ export namespace UpdateTransaction {
 export const AccountsApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
-         * Creates a new account.
+         * Creates a new account
          * @summary Create a new account
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveAccountWrapper} data - The account to create.
@@ -3001,7 +3001,7 @@ export const AccountsApiFetchParamCreator = function (configuration: Configurati
 export const AccountsApiFp = function(configuration: Configuration) {
     return {
         /**
-         * Creates a new account.
+         * Creates a new account
          * @summary Create a new account
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveAccountWrapper} data - The account to create.
@@ -3076,7 +3076,7 @@ export const AccountsApiFp = function(configuration: Configuration) {
 export const AccountsApiFactory = function (configuration: Configuration) {
     return {
         /**
-         * Creates a new account.
+         * Creates a new account
          * @summary Create a new account
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
          * @param {SaveAccountWrapper} data - The account to create.
@@ -3119,7 +3119,7 @@ export const AccountsApiFactory = function (configuration: Configuration) {
  */
 export class AccountsApi extends BaseAPI {
     /**
-     * Creates a new account.
+     * Creates a new account
      * @summary Create a new account
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
      * @param {SaveAccountWrapper} data - The account to create.
@@ -4301,7 +4301,7 @@ export const PayeeLocationsApiFetchParamCreator = function (configuration: Confi
             };
         },
         /**
-         * Returns all payee locations for the specified payee
+         * Returns all payee locations for a specified payee
          * @summary List locations for a payee
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} payee_id - id of payee
@@ -4397,7 +4397,7 @@ export const PayeeLocationsApiFp = function(configuration: Configuration) {
             };
         },
         /**
-         * Returns all payee locations for the specified payee
+         * Returns all payee locations for a specified payee
          * @summary List locations for a payee
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} payee_id - id of payee
@@ -4449,7 +4449,7 @@ export const PayeeLocationsApiFactory = function (configuration: Configuration) 
             return PayeeLocationsApiFp(configuration).getPayeeLocations(budget_id, options)();
         },
         /**
-         * Returns all payee locations for the specified payee
+         * Returns all payee locations for a specified payee
          * @summary List locations for a payee
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} payee_id - id of payee
@@ -4495,7 +4495,7 @@ export class PayeeLocationsApi extends BaseAPI {
     }
 
     /**
-     * Returns all payee locations for the specified payee
+     * Returns all payee locations for a specified payee
      * @summary List locations for a payee
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} payee_id - id of payee
@@ -4516,7 +4516,7 @@ export class PayeeLocationsApi extends BaseAPI {
 export const PayeesApiFetchParamCreator = function (configuration: Configuration) {
     return {
         /**
-         * Returns single payee
+         * Returns a single payee
          * @summary Single payee
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} payee_id - The id of the payee
@@ -4612,7 +4612,7 @@ export const PayeesApiFetchParamCreator = function (configuration: Configuration
 export const PayeesApiFp = function(configuration: Configuration) {
     return {
         /**
-         * Returns single payee
+         * Returns a single payee
          * @summary Single payee
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} payee_id - The id of the payee
@@ -4665,7 +4665,7 @@ export const PayeesApiFp = function(configuration: Configuration) {
 export const PayeesApiFactory = function (configuration: Configuration) {
     return {
         /**
-         * Returns single payee
+         * Returns a single payee
          * @summary Single payee
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} payee_id - The id of the payee
@@ -4697,7 +4697,7 @@ export const PayeesApiFactory = function (configuration: Configuration) {
  */
 export class PayeesApi extends BaseAPI {
     /**
-     * Returns single payee
+     * Returns a single payee
      * @summary Single payee
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} payee_id - The id of the payee
@@ -5266,7 +5266,7 @@ export const TransactionsApiFetchParamCreator = function (configuration: Configu
             };
         },
         /**
-         * Imports transactions.
+         * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
          * @summary Import transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {*} [options] - Override http request options.
@@ -5304,7 +5304,7 @@ export const TransactionsApiFetchParamCreator = function (configuration: Configu
             };
         },
         /**
-         * Updates a transaction
+         * Updates a single transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} transaction_id - The id of the transaction
@@ -5554,7 +5554,7 @@ export const TransactionsApiFp = function(configuration: Configuration) {
             };
         },
         /**
-         * Imports transactions.
+         * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
          * @summary Import transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {*} [options] - Override http request options.
@@ -5575,7 +5575,7 @@ export const TransactionsApiFp = function(configuration: Configuration) {
             };
         },
         /**
-         * Updates a transaction
+         * Updates a single transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} transaction_id - The id of the transaction
@@ -5706,7 +5706,7 @@ export const TransactionsApiFactory = function (configuration: Configuration) {
             return TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options)();
         },
         /**
-         * Imports transactions.
+         * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
          * @summary Import transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {*} [options] - Override http request options.
@@ -5716,7 +5716,7 @@ export const TransactionsApiFactory = function (configuration: Configuration) {
             return TransactionsApiFp(configuration).importTransactions(budget_id, options)();
         },
         /**
-         * Updates a transaction
+         * Updates a single transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} transaction_id - The id of the transaction
@@ -5838,7 +5838,7 @@ export class TransactionsApi extends BaseAPI {
     }
 
     /**
-     * Imports transactions.
+     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * @summary Import transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {*} [options] - Override http request options.
@@ -5850,7 +5850,7 @@ export class TransactionsApi extends BaseAPI {
     }
 
     /**
-     * Updates a transaction
+     * Updates a single transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} transaction_id - The id of the transaction
