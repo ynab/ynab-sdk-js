@@ -40,7 +40,7 @@ var api = /** @class */ (function () {
             }
             return this._user;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "budgets", {
@@ -53,7 +53,7 @@ var api = /** @class */ (function () {
             }
             return this._budgets;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "accounts", {
@@ -66,7 +66,7 @@ var api = /** @class */ (function () {
             }
             return this._accounts;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "categories", {
@@ -79,7 +79,7 @@ var api = /** @class */ (function () {
             }
             return this._categories;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "months", {
@@ -92,7 +92,7 @@ var api = /** @class */ (function () {
             }
             return this._months;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "payees", {
@@ -105,7 +105,7 @@ var api = /** @class */ (function () {
             }
             return this._payees;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "payeeLocations", {
@@ -118,7 +118,7 @@ var api = /** @class */ (function () {
             }
             return this._payeeLocations;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "transactions", {
@@ -131,7 +131,7 @@ var api = /** @class */ (function () {
             }
             return this._transactions;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(api.prototype, "scheduledTransactions", {
@@ -144,7 +144,7 @@ var api = /** @class */ (function () {
             }
             return this._scheduledTransactions;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return api;
