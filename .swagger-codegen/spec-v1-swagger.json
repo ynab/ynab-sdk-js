@@ -1848,6 +1848,14 @@
           "format": "uuid",
           "description": "The payee id which should be used when transferring to this account"
         },
+        "direct_import_linked": {
+          "type": "boolean",
+          "description": "Whether or not the account is linked to a financial institution for automatic transaction import."
+        },
+        "direct_import_in_error": {
+          "type": "boolean",
+          "description": "If an account linked to a financial institution (direct_import_linked=true) and the linked connection is not in a healthy state, this will be true."
+        },
         "deleted": {
           "type": "boolean",
           "description": "Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests."
@@ -2022,12 +2030,32 @@
         "goal_target_month": {
           "type": "string",
           "format": "date",
-          "description": "The target month for the goal to be completed.  Only some goal types specify this date."
+          "description": "The original target month for the goal to be completed.  Only some goal types specify this date."
         },
         "goal_percentage_complete": {
           "type": "integer",
           "format": "int32",
           "description": "The percentage completion of the goal"
+        },
+        "goal_months_to_budget": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of months, including the current month, left in the current goal period."
+        },
+        "goal_under_funded": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The amount of funding still needed in the current month to stay on track towards completing the goal within the current goal period.  This amount will generally correspond to the 'Underfunded' amount in the web and mobile clients except when viewing a category with a Needed for Spending Goal in a future month.  The web and mobile clients will ignore any funding from a prior goal period when viewing category with a Needed for Spending Goal in a future month."
+        },
+        "goal_overall_funded": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The total amount funded towards the goal within the current goal period."
+        },
+        "goal_overall_left": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The amount of funding still needed to complete the goal within the current goal period."
         },
         "deleted": {
           "type": "boolean",
