@@ -124,6 +124,18 @@ export interface Account {
      */
     transfer_payee_id: string;
     /**
+     * Whether or not the account is linked to a financial institution for automatic transaction import.
+     * @type {boolean}
+     * @memberof Account
+     */
+    direct_import_linked?: boolean | null;
+    /**
+     * If an account linked to a financial institution (direct_import_linked=true) and the linked connection is not in a healthy state, this will be true.
+     * @type {boolean}
+     * @memberof Account
+     */
+    direct_import_in_error?: boolean | null;
+    /**
      * Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests.
      * @type {boolean}
      * @memberof Account
@@ -544,7 +556,7 @@ export interface Category {
      */
     goal_target?: number | null;
     /**
-     * The target month for the goal to be completed.  Only some goal types specify this date.
+     * The original target month for the goal to be completed.  Only some goal types specify this date.
      * @type {string}
      * @memberof Category
      */
@@ -555,6 +567,30 @@ export interface Category {
      * @memberof Category
      */
     goal_percentage_complete?: number | null;
+    /**
+     * The number of months, including the current month, left in the current goal period.
+     * @type {number}
+     * @memberof Category
+     */
+    goal_months_to_budget?: number | null;
+    /**
+     * The amount of funding still needed in the current month to stay on track towards completing the goal within the current goal period.  This amount will generally correspond to the 'Underfunded' amount in the web and mobile clients except when viewing a category with a Needed for Spending Goal in a future month.  The web and mobile clients will ignore any funding from a prior goal period when viewing category with a Needed for Spending Goal in a future month.
+     * @type {number}
+     * @memberof Category
+     */
+    goal_under_funded?: number | null;
+    /**
+     * The total amount funded towards the goal within the current goal period.
+     * @type {number}
+     * @memberof Category
+     */
+    goal_overall_funded?: number | null;
+    /**
+     * The amount of funding still needed to complete the goal within the current goal period.
+     * @type {number}
+     * @memberof Category
+     */
+    goal_overall_left?: number | null;
     /**
      * Whether or not the category has been deleted.  Deleted categories will only be included in delta requests.
      * @type {boolean}
