@@ -291,6 +291,17 @@ describe("API requests", () => {
       verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions`);
     });
 
+    it("Should getTransactionsByType and validate the request is sent correctly", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const returnedResponse = await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.transactions.getTransactionsByType(budgetId, "uncategorized"),
+        factories.transactionsResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions?type=uncategorized`);
+    });
+
     it("Should getTransactionById and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
