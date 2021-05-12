@@ -3044,12 +3044,14 @@ export const AccountsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createAccount(budget_id: string, data: SaveAccountWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse> {
+        createAccount(budget_id: string, data: SaveAccountWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).createAccount(budget_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: AccountResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3066,12 +3068,14 @@ export const AccountsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccountById(budget_id: string, account_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse> {
+        getAccountById(budget_id: string, account_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccountById(budget_id, account_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: AccountResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3088,12 +3092,14 @@ export const AccountsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse> {
+        getAccounts(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<AccountsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: AccountsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3336,12 +3342,14 @@ export const BudgetsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse> {
+        getBudgetById(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetDetailResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetById(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: BudgetDetailResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3357,12 +3365,14 @@ export const BudgetsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetSettingsById(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSettingsResponse> {
+        getBudgetSettingsById(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSettingsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetSettingsById(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: BudgetSettingsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3378,12 +3388,14 @@ export const BudgetsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgets(include_accounts?: boolean, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSummaryResponse> {
+        getBudgets(include_accounts?: boolean, options?: any): (fetchFunction?: FetchAPI) => Promise<BudgetSummaryResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgets(include_accounts, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: BudgetSummaryResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3699,12 +3711,14 @@ export const CategoriesApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse> {
+        getCategories(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoriesResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: CategoriesResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3721,12 +3735,14 @@ export const CategoriesApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getCategoryById(budget_id: string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse> {
+        getCategoryById(budget_id: string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategoryById(budget_id, category_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: CategoryResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3744,12 +3760,14 @@ export const CategoriesApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getMonthCategoryById(budget_id: string, month: Date | string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse> {
+        getMonthCategoryById(budget_id: string, month: Date | string, category_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<CategoryResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getMonthCategoryById(budget_id, month, category_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: CategoryResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3768,12 +3786,14 @@ export const CategoriesApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveCategoryResponse> {
+        updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveCategoryResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).updateMonthCategory(budget_id, month, category_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: SaveCategoryResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -3974,12 +3994,14 @@ export const DeprecatedApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkResponse> {
+        bulkCreateTransactions(budget_id: string, transactions: BulkTransactions, options?: any): (fetchFunction?: FetchAPI) => Promise<BulkResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = DeprecatedApiFetchParamCreator(configuration).bulkCreateTransactions(budget_id, transactions, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: BulkResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4143,12 +4165,14 @@ export const MonthsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonth(budget_id: string, month: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse> {
+        getBudgetMonth(budget_id: string, month: Date | string, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthDetailResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonth(budget_id, month, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: MonthDetailResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4165,12 +4189,14 @@ export const MonthsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse> {
+        getBudgetMonths(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<MonthSummariesResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: MonthSummariesResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4397,12 +4423,14 @@ export const PayeeLocationsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationResponse> {
+        getPayeeLocationById(budget_id: string, payee_location_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budget_id, payee_location_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: PayeeLocationResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4418,12 +4446,14 @@ export const PayeeLocationsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocations(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse> {
+        getPayeeLocations(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: PayeeLocationsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4440,12 +4470,14 @@ export const PayeeLocationsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse> {
+        getPayeeLocationsByPayee(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeLocationsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: PayeeLocationsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4655,12 +4687,14 @@ export const PayeesApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayeeById(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeResponse> {
+        getPayeeById(budget_id: string, payee_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeeResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayeeById(budget_id, payee_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: PayeeResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4677,12 +4711,14 @@ export const PayeesApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse> {
+        getPayees(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<PayeesResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: PayeesResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4870,12 +4906,14 @@ export const ScheduledTransactionsApiFp = function(configuration: Configuration)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionResponse> {
+        getScheduledTransactionById(budget_id: string, scheduled_transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: ScheduledTransactionResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -4892,12 +4930,14 @@ export const ScheduledTransactionsApiFp = function(configuration: Configuration)
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionsResponse> {
+        getScheduledTransactions(budget_id: string, last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<ScheduledTransactionsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: ScheduledTransactionsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5454,12 +5494,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse> {
+        createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: SaveTransactionsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5476,12 +5518,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
+        getTransactionById(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionById(budget_id, transaction_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: TransactionResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5500,12 +5544,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactions(budget_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
+        getTransactions(budget_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: TransactionsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5525,12 +5571,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse> {
+        getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: TransactionsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5550,12 +5598,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
+        getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: HybridTransactionsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5575,12 +5625,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse> {
+        getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): (fetchFunction?: FetchAPI) => Promise<HybridTransactionsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: HybridTransactionsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5596,12 +5648,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        importTransactions(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsImportResponse> {
+        importTransactions(budget_id: string, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionsImportResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).importTransactions(budget_id, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: TransactionsImportResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5619,12 +5673,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse> {
+        updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<TransactionResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransaction(budget_id, transaction_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: TransactionResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5641,12 +5697,14 @@ export const TransactionsApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse> {
+        updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI) => Promise<SaveTransactionsResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransactions(budget_id, data, options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: SaveTransactionsResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
@@ -5967,12 +6025,14 @@ export const UserApiFp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        getUser(options?: any): (fetchFunction?: FetchAPI) => Promise<UserResponse> {
+        getUser(options?: any): (fetchFunction?: FetchAPI) => Promise<UserResponse & { rateLimit: string | null }> {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).getUser(options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const apiResponse: UserResponse & { rateLimit: string | null } = await response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response.json().then((e) => {
                             return Promise.reject(e);

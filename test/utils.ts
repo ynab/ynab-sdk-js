@@ -4,7 +4,7 @@ import * as chai from "chai";
 const assert = chai.assert;
 const expect = chai.expect;
 
-describe("utiilities", () => {
+describe("utilities", () => {
   describe("getTodaysDateInISOFormat", () => {
     it("Returns today's date in ISO format", () => {
       let now = new Date();
@@ -25,7 +25,7 @@ describe("utiilities", () => {
   });
 
   describe("convertMilliUnitsToCurrencyAmount", () => {
-    it("Converts millidolars to 2 decimimal currency", () => {
+    it("Converts milliunits to 2 decimal currency", () => {
       expect(utils.convertMilliUnitsToCurrencyAmount(239323, 2)).to.equal(
         239.32
       );
@@ -37,13 +37,13 @@ describe("utiilities", () => {
       );
     });
 
-    it("Converts millidolars to 3 decimal currency", () => {
+    it("Converts milliunits to 3 decimal currency", () => {
       expect(utils.convertMilliUnitsToCurrencyAmount(239323, 3)).to.equal(
         239.323
       );
     });
 
-    it("Converts millidolars to 0 decimal currency", () => {
+    it("Converts milliunits to 0 decimal currency", () => {
       expect(utils.convertMilliUnitsToCurrencyAmount(239323, 0)).to.equal(
         239
       );

@@ -3317,7 +3317,9 @@ export declare const MonthsApiFp: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetMonth(budget_id: string, month: Date | string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<MonthDetailResponse>;
+    getBudgetMonth(budget_id: string, month: Date | string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<MonthDetailResponse & {
+        rateLimit: string | null;
+    }>;
     /**
      * Returns all budget months
      * @summary List budget months
@@ -3341,7 +3343,9 @@ export declare const MonthsApiFactory: (configuration: Configuration) => {
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    getBudgetMonth(budget_id: string, month: Date | string, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonth(budget_id: string, month: Date | string, options?: any): Promise<MonthDetailResponse & {
+        rateLimit: string | null;
+    }>;
     /**
      * Returns all budget months
      * @summary List budget months
@@ -3368,7 +3372,9 @@ export declare class MonthsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MonthsApi
      */
-    getBudgetMonth(budget_id: string, month: Date | string, options?: any): Promise<MonthDetailResponse>;
+    getBudgetMonth(budget_id: string, month: Date | string, options?: any): Promise<MonthDetailResponse & {
+        rateLimit: string | null;
+    }>;
     /**
      * Returns all budget months
      * @summary List budget months
@@ -4045,7 +4051,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactions(budget_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
+    getTransactions(budget_id: string, since_date?: Date | string, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account
      * @summary List account transactions
@@ -4058,7 +4064,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
+    getTransactionsByAccount(budget_id: string, account_id: string, since_date?: Date | string, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category
      * @summary List category transactions
@@ -4071,7 +4077,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(budget_id: string, category_id: string, since_date?: Date | string, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified payee
      * @summary List payee transactions
@@ -4084,7 +4090,7 @@ export declare class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: 'uncategorized' | 'unapproved', last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(budget_id: string, payee_id: string, since_date?: Date | string, type?: "uncategorized" | "unapproved", last_knowledge_of_server?: number, options?: any): Promise<HybridTransactionsResponse>;
     /**
      * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * @summary Import transactions

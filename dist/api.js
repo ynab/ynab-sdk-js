@@ -11,6 +11,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TransactionsApi = exports.TransactionsApiFactory = exports.TransactionsApiFp = exports.TransactionsApiFetchParamCreator = exports.ScheduledTransactionsApi = exports.ScheduledTransactionsApiFactory = exports.ScheduledTransactionsApiFp = exports.ScheduledTransactionsApiFetchParamCreator = exports.PayeesApi = exports.PayeesApiFactory = exports.PayeesApiFp = exports.PayeesApiFetchParamCreator = exports.PayeeLocationsApi = exports.PayeeLocationsApiFactory = exports.PayeeLocationsApiFp = exports.PayeeLocationsApiFetchParamCreator = exports.MonthsApi = exports.MonthsApiFactory = exports.MonthsApiFp = exports.MonthsApiFetchParamCreator = exports.DeprecatedApi = exports.DeprecatedApiFactory = exports.DeprecatedApiFp = exports.DeprecatedApiFetchParamCreator = exports.CategoriesApi = exports.CategoriesApiFactory = exports.CategoriesApiFp = exports.CategoriesApiFetchParamCreator = exports.BudgetsApi = exports.BudgetsApiFactory = exports.BudgetsApiFp = exports.BudgetsApiFetchParamCreator = exports.AccountsApi = exports.AccountsApiFactory = exports.AccountsApiFp = exports.AccountsApiFetchParamCreator = exports.UpdateTransaction = exports.TransactionDetail = exports.ScheduledTransactionDetail = exports.HybridTransaction = exports.TransactionSummary = exports.ScheduledTransactionSummary = exports.SaveTransaction = exports.SaveAccount = exports.Category = exports.Account = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
 const url = require("url");
@@ -50,7 +59,6 @@ class BaseAPI {
     }
 }
 exports.BaseAPI = BaseAPI;
-;
 /**
  *
  * @export
@@ -76,17 +84,17 @@ var Account;
      */
     let TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
-        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
-        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
-        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
-        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
-        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
-        TypeEnum[TypeEnum["PayPal"] = 'payPal'] = "PayPal";
-        TypeEnum[TypeEnum["MerchantAccount"] = 'merchantAccount'] = "MerchantAccount";
-        TypeEnum[TypeEnum["InvestmentAccount"] = 'investmentAccount'] = "InvestmentAccount";
-        TypeEnum[TypeEnum["Mortgage"] = 'mortgage'] = "Mortgage";
+        TypeEnum[TypeEnum["Checking"] = "checking"] = "Checking";
+        TypeEnum[TypeEnum["Savings"] = "savings"] = "Savings";
+        TypeEnum[TypeEnum["Cash"] = "cash"] = "Cash";
+        TypeEnum[TypeEnum["CreditCard"] = "creditCard"] = "CreditCard";
+        TypeEnum[TypeEnum["LineOfCredit"] = "lineOfCredit"] = "LineOfCredit";
+        TypeEnum[TypeEnum["OtherAsset"] = "otherAsset"] = "OtherAsset";
+        TypeEnum[TypeEnum["OtherLiability"] = "otherLiability"] = "OtherLiability";
+        TypeEnum[TypeEnum["PayPal"] = "payPal"] = "PayPal";
+        TypeEnum[TypeEnum["MerchantAccount"] = "merchantAccount"] = "MerchantAccount";
+        TypeEnum[TypeEnum["InvestmentAccount"] = "investmentAccount"] = "InvestmentAccount";
+        TypeEnum[TypeEnum["Mortgage"] = "mortgage"] = "Mortgage";
     })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
 })(Account = exports.Account || (exports.Account = {}));
 /**
@@ -101,10 +109,10 @@ var Category;
      */
     let GoalTypeEnum;
     (function (GoalTypeEnum) {
-        GoalTypeEnum[GoalTypeEnum["TB"] = 'TB'] = "TB";
-        GoalTypeEnum[GoalTypeEnum["TBD"] = 'TBD'] = "TBD";
-        GoalTypeEnum[GoalTypeEnum["MF"] = 'MF'] = "MF";
-        GoalTypeEnum[GoalTypeEnum["NEED"] = 'NEED'] = "NEED";
+        GoalTypeEnum[GoalTypeEnum["TB"] = "TB"] = "TB";
+        GoalTypeEnum[GoalTypeEnum["TBD"] = "TBD"] = "TBD";
+        GoalTypeEnum[GoalTypeEnum["MF"] = "MF"] = "MF";
+        GoalTypeEnum[GoalTypeEnum["NEED"] = "NEED"] = "NEED";
     })(GoalTypeEnum = Category.GoalTypeEnum || (Category.GoalTypeEnum = {}));
 })(Category = exports.Category || (exports.Category = {}));
 /**
@@ -119,13 +127,13 @@ var SaveAccount;
      */
     let TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
-        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
-        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
-        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
-        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
-        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
+        TypeEnum[TypeEnum["Checking"] = "checking"] = "Checking";
+        TypeEnum[TypeEnum["Savings"] = "savings"] = "Savings";
+        TypeEnum[TypeEnum["CreditCard"] = "creditCard"] = "CreditCard";
+        TypeEnum[TypeEnum["Cash"] = "cash"] = "Cash";
+        TypeEnum[TypeEnum["LineOfCredit"] = "lineOfCredit"] = "LineOfCredit";
+        TypeEnum[TypeEnum["OtherAsset"] = "otherAsset"] = "OtherAsset";
+        TypeEnum[TypeEnum["OtherLiability"] = "otherLiability"] = "OtherLiability";
     })(TypeEnum = SaveAccount.TypeEnum || (SaveAccount.TypeEnum = {}));
 })(SaveAccount = exports.SaveAccount || (exports.SaveAccount = {}));
 /**
@@ -140,9 +148,9 @@ var SaveTransaction;
      */
     let ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
     })(ClearedEnum = SaveTransaction.ClearedEnum || (SaveTransaction.ClearedEnum = {}));
     /**
      * @export
@@ -150,12 +158,12 @@ var SaveTransaction;
      */
     let FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
     })(FlagColorEnum = SaveTransaction.FlagColorEnum || (SaveTransaction.FlagColorEnum = {}));
 })(SaveTransaction = exports.SaveTransaction || (exports.SaveTransaction = {}));
 /**
@@ -170,19 +178,19 @@ var ScheduledTransactionSummary;
      */
     let FrequencyEnum;
     (function (FrequencyEnum) {
-        FrequencyEnum[FrequencyEnum["Never"] = 'never'] = "Never";
-        FrequencyEnum[FrequencyEnum["Daily"] = 'daily'] = "Daily";
-        FrequencyEnum[FrequencyEnum["Weekly"] = 'weekly'] = "Weekly";
-        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = 'everyOtherWeek'] = "EveryOtherWeek";
-        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = 'twiceAMonth'] = "TwiceAMonth";
-        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'every4Weeks'] = "Every4Weeks";
-        FrequencyEnum[FrequencyEnum["Monthly"] = 'monthly'] = "Monthly";
-        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = 'everyOtherMonth'] = "EveryOtherMonth";
-        FrequencyEnum[FrequencyEnum["Every3Months"] = 'every3Months'] = "Every3Months";
-        FrequencyEnum[FrequencyEnum["Every4Months"] = 'every4Months'] = "Every4Months";
-        FrequencyEnum[FrequencyEnum["TwiceAYear"] = 'twiceAYear'] = "TwiceAYear";
-        FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
-        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
+        FrequencyEnum[FrequencyEnum["Never"] = "never"] = "Never";
+        FrequencyEnum[FrequencyEnum["Daily"] = "daily"] = "Daily";
+        FrequencyEnum[FrequencyEnum["Weekly"] = "weekly"] = "Weekly";
+        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = "everyOtherWeek"] = "EveryOtherWeek";
+        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = "twiceAMonth"] = "TwiceAMonth";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = "every4Weeks"] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Monthly"] = "monthly"] = "Monthly";
+        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = "everyOtherMonth"] = "EveryOtherMonth";
+        FrequencyEnum[FrequencyEnum["Every3Months"] = "every3Months"] = "Every3Months";
+        FrequencyEnum[FrequencyEnum["Every4Months"] = "every4Months"] = "Every4Months";
+        FrequencyEnum[FrequencyEnum["TwiceAYear"] = "twiceAYear"] = "TwiceAYear";
+        FrequencyEnum[FrequencyEnum["Yearly"] = "yearly"] = "Yearly";
+        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = "everyOtherYear"] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionSummary.FrequencyEnum || (ScheduledTransactionSummary.FrequencyEnum = {}));
     /**
      * @export
@@ -190,12 +198,12 @@ var ScheduledTransactionSummary;
      */
     let FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
     })(FlagColorEnum = ScheduledTransactionSummary.FlagColorEnum || (ScheduledTransactionSummary.FlagColorEnum = {}));
 })(ScheduledTransactionSummary = exports.ScheduledTransactionSummary || (exports.ScheduledTransactionSummary = {}));
 /**
@@ -210,9 +218,9 @@ var TransactionSummary;
      */
     let ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
     })(ClearedEnum = TransactionSummary.ClearedEnum || (TransactionSummary.ClearedEnum = {}));
     /**
      * @export
@@ -220,12 +228,12 @@ var TransactionSummary;
      */
     let FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
     })(FlagColorEnum = TransactionSummary.FlagColorEnum || (TransactionSummary.FlagColorEnum = {}));
 })(TransactionSummary = exports.TransactionSummary || (exports.TransactionSummary = {}));
 /**
@@ -240,9 +248,9 @@ var HybridTransaction;
      */
     let ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
     })(ClearedEnum = HybridTransaction.ClearedEnum || (HybridTransaction.ClearedEnum = {}));
     /**
      * @export
@@ -250,12 +258,12 @@ var HybridTransaction;
      */
     let FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
     })(FlagColorEnum = HybridTransaction.FlagColorEnum || (HybridTransaction.FlagColorEnum = {}));
     /**
      * @export
@@ -263,8 +271,8 @@ var HybridTransaction;
      */
     let TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Transaction"] = 'transaction'] = "Transaction";
-        TypeEnum[TypeEnum["Subtransaction"] = 'subtransaction'] = "Subtransaction";
+        TypeEnum[TypeEnum["Transaction"] = "transaction"] = "Transaction";
+        TypeEnum[TypeEnum["Subtransaction"] = "subtransaction"] = "Subtransaction";
     })(TypeEnum = HybridTransaction.TypeEnum || (HybridTransaction.TypeEnum = {}));
 })(HybridTransaction = exports.HybridTransaction || (exports.HybridTransaction = {}));
 /**
@@ -279,19 +287,19 @@ var ScheduledTransactionDetail;
      */
     let FrequencyEnum;
     (function (FrequencyEnum) {
-        FrequencyEnum[FrequencyEnum["Never"] = 'never'] = "Never";
-        FrequencyEnum[FrequencyEnum["Daily"] = 'daily'] = "Daily";
-        FrequencyEnum[FrequencyEnum["Weekly"] = 'weekly'] = "Weekly";
-        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = 'everyOtherWeek'] = "EveryOtherWeek";
-        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = 'twiceAMonth'] = "TwiceAMonth";
-        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'every4Weeks'] = "Every4Weeks";
-        FrequencyEnum[FrequencyEnum["Monthly"] = 'monthly'] = "Monthly";
-        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = 'everyOtherMonth'] = "EveryOtherMonth";
-        FrequencyEnum[FrequencyEnum["Every3Months"] = 'every3Months'] = "Every3Months";
-        FrequencyEnum[FrequencyEnum["Every4Months"] = 'every4Months'] = "Every4Months";
-        FrequencyEnum[FrequencyEnum["TwiceAYear"] = 'twiceAYear'] = "TwiceAYear";
-        FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
-        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
+        FrequencyEnum[FrequencyEnum["Never"] = "never"] = "Never";
+        FrequencyEnum[FrequencyEnum["Daily"] = "daily"] = "Daily";
+        FrequencyEnum[FrequencyEnum["Weekly"] = "weekly"] = "Weekly";
+        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = "everyOtherWeek"] = "EveryOtherWeek";
+        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = "twiceAMonth"] = "TwiceAMonth";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = "every4Weeks"] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Monthly"] = "monthly"] = "Monthly";
+        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = "everyOtherMonth"] = "EveryOtherMonth";
+        FrequencyEnum[FrequencyEnum["Every3Months"] = "every3Months"] = "Every3Months";
+        FrequencyEnum[FrequencyEnum["Every4Months"] = "every4Months"] = "Every4Months";
+        FrequencyEnum[FrequencyEnum["TwiceAYear"] = "twiceAYear"] = "TwiceAYear";
+        FrequencyEnum[FrequencyEnum["Yearly"] = "yearly"] = "Yearly";
+        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = "everyOtherYear"] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionDetail.FrequencyEnum || (ScheduledTransactionDetail.FrequencyEnum = {}));
     /**
      * @export
@@ -299,12 +307,12 @@ var ScheduledTransactionDetail;
      */
     let FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
     })(FlagColorEnum = ScheduledTransactionDetail.FlagColorEnum || (ScheduledTransactionDetail.FlagColorEnum = {}));
 })(ScheduledTransactionDetail = exports.ScheduledTransactionDetail || (exports.ScheduledTransactionDetail = {}));
 /**
@@ -319,9 +327,9 @@ var TransactionDetail;
      */
     let ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
     })(ClearedEnum = TransactionDetail.ClearedEnum || (TransactionDetail.ClearedEnum = {}));
     /**
      * @export
@@ -329,12 +337,12 @@ var TransactionDetail;
      */
     let FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
     })(FlagColorEnum = TransactionDetail.FlagColorEnum || (TransactionDetail.FlagColorEnum = {}));
 })(TransactionDetail = exports.TransactionDetail || (exports.TransactionDetail = {}));
 /**
@@ -349,9 +357,9 @@ var UpdateTransaction;
      */
     let ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
     })(ClearedEnum = UpdateTransaction.ClearedEnum || (UpdateTransaction.ClearedEnum = {}));
     /**
      * @export
@@ -359,12 +367,12 @@ var UpdateTransaction;
      */
     let FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
     })(FlagColorEnum = UpdateTransaction.FlagColorEnum || (UpdateTransaction.FlagColorEnum = {}));
 })(UpdateTransaction = exports.UpdateTransaction || (exports.UpdateTransaction = {}));
 /**
@@ -384,16 +392,15 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
         createAccount(budget_id, data, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling createAccount.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling createAccount.");
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data', 'Required parameter data was null or undefined when calling createAccount.');
+                throw new RequiredError("data", "Required parameter data was null or undefined when calling createAccount.");
             }
-            const localVarPath = `/budgets/{budget_id}/accounts`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/accounts`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarRequestOptions = Object.assign({ method: "POST" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -403,7 +410,7 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter["Content-Type"] = "application/json";
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -425,17 +432,17 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
         getAccountById(budget_id, account_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getAccountById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getAccountById.");
             }
             // verify required parameter 'account_id' is not null or undefined
             if (account_id === null || account_id === undefined) {
-                throw new RequiredError('account_id', 'Required parameter account_id was null or undefined when calling getAccountById.');
+                throw new RequiredError("account_id", "Required parameter account_id was null or undefined when calling getAccountById.");
             }
             const localVarPath = `/budgets/{budget_id}/accounts/{account_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -465,12 +472,11 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
         getAccounts(budget_id, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getAccounts.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getAccounts.");
             }
-            const localVarPath = `/budgets/{budget_id}/accounts`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/accounts`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -481,7 +487,8 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -674,12 +681,11 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
         getBudgetById(budget_id, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetById.");
             }
-            const localVarPath = `/budgets/{budget_id}`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -690,7 +696,8 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -711,12 +718,11 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
         getBudgetSettingsById(budget_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetSettingsById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetSettingsById.");
             }
-            const localVarPath = `/budgets/{budget_id}/settings`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/settings`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -745,7 +751,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
         getBudgets(include_accounts, options = {}) {
             const localVarPath = `/budgets`;
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -756,7 +762,7 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (include_accounts !== undefined) {
-                localVarQueryParameter['include_accounts'] = include_accounts;
+                localVarQueryParameter["include_accounts"] = include_accounts;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -943,12 +949,11 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
         getCategories(budget_id, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getCategories.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getCategories.");
             }
-            const localVarPath = `/budgets/{budget_id}/categories`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/categories`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -959,7 +964,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -981,17 +987,17 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
         getCategoryById(budget_id, category_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getCategoryById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getCategoryById.");
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getCategoryById.');
+                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling getCategoryById.");
             }
             const localVarPath = `/budgets/{budget_id}/categories/{category_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1022,22 +1028,22 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
         getMonthCategoryById(budget_id, month, category_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getMonthCategoryById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getMonthCategoryById.");
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError('month', 'Required parameter month was null or undefined when calling getMonthCategoryById.');
+                throw new RequiredError("month", "Required parameter month was null or undefined when calling getMonthCategoryById.");
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getMonthCategoryById.');
+                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling getMonthCategoryById.");
             }
             const localVarPath = `/budgets/{budget_id}/months/{month}/categories/{category_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1069,26 +1075,26 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
         updateMonthCategory(budget_id, month, category_id, data, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateMonthCategory.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling updateMonthCategory.");
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError('month', 'Required parameter month was null or undefined when calling updateMonthCategory.');
+                throw new RequiredError("month", "Required parameter month was null or undefined when calling updateMonthCategory.");
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling updateMonthCategory.');
+                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling updateMonthCategory.");
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data', 'Required parameter data was null or undefined when calling updateMonthCategory.');
+                throw new RequiredError("data", "Required parameter data was null or undefined when calling updateMonthCategory.");
             }
             const localVarPath = `/budgets/{budget_id}/months/{month}/categories/{category_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarRequestOptions = Object.assign({ method: "PATCH" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1098,7 +1104,7 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter["Content-Type"] = "application/json";
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -1346,16 +1352,15 @@ exports.DeprecatedApiFetchParamCreator = function (configuration) {
         bulkCreateTransactions(budget_id, transactions, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling bulkCreateTransactions.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling bulkCreateTransactions.");
             }
             // verify required parameter 'transactions' is not null or undefined
             if (transactions === null || transactions === undefined) {
-                throw new RequiredError('transactions', 'Required parameter transactions was null or undefined when calling bulkCreateTransactions.');
+                throw new RequiredError("transactions", "Required parameter transactions was null or undefined when calling bulkCreateTransactions.");
             }
-            const localVarPath = `/budgets/{budget_id}/transactions/bulk`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/transactions/bulk`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarRequestOptions = Object.assign({ method: "POST" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1365,7 +1370,7 @@ exports.DeprecatedApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter["Content-Type"] = "application/json";
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -1466,17 +1471,17 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
         getBudgetMonth(budget_id, month, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetMonth.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetMonth.");
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError('month', 'Required parameter month was null or undefined when calling getBudgetMonth.');
+                throw new RequiredError("month", "Required parameter month was null or undefined when calling getBudgetMonth.");
             }
             const localVarPath = `/budgets/{budget_id}/months/{month}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1506,12 +1511,11 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
         getBudgetMonths(budget_id, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetMonths.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetMonths.");
             }
-            const localVarPath = `/budgets/{budget_id}/months`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/months`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1522,7 +1526,8 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1552,16 +1557,18 @@ exports.MonthsApiFp = function (configuration) {
         getBudgetMonth(budget_id, month, options) {
             const localVarFetchArgs = exports.MonthsApiFetchParamCreator(configuration).getBudgetMonth(budget_id, month, options);
             return (fetchFunction = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        const foo = yield response.json();
+                        foo.rateLimit = response.headers.get("X-Rate-Limit");
+                        return foo;
                     }
                     else {
                         return response.json().then((e) => {
                             return Promise.reject(e);
                         });
                     }
-                });
+                }));
             };
         },
         /**
@@ -1669,17 +1676,17 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         getPayeeLocationById(budget_id, payee_location_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocationById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeLocationById.");
             }
             // verify required parameter 'payee_location_id' is not null or undefined
             if (payee_location_id === null || payee_location_id === undefined) {
-                throw new RequiredError('payee_location_id', 'Required parameter payee_location_id was null or undefined when calling getPayeeLocationById.');
+                throw new RequiredError("payee_location_id", "Required parameter payee_location_id was null or undefined when calling getPayeeLocationById.");
             }
             const localVarPath = `/budgets/{budget_id}/payee_locations/{payee_location_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_location_id"}}`, encodeURIComponent(String(payee_location_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1708,12 +1715,11 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         getPayeeLocations(budget_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocations.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeLocations.");
             }
-            const localVarPath = `/budgets/{budget_id}/payee_locations`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/payee_locations`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1743,17 +1749,17 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
         getPayeeLocationsByPayee(budget_id, payee_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocationsByPayee.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeLocationsByPayee.");
             }
             // verify required parameter 'payee_id' is not null or undefined
             if (payee_id === null || payee_id === undefined) {
-                throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getPayeeLocationsByPayee.');
+                throw new RequiredError("payee_id", "Required parameter payee_id was null or undefined when calling getPayeeLocationsByPayee.");
             }
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/payee_locations`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1951,17 +1957,17 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
         getPayeeById(budget_id, payee_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeById.");
             }
             // verify required parameter 'payee_id' is not null or undefined
             if (payee_id === null || payee_id === undefined) {
-                throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getPayeeById.');
+                throw new RequiredError("payee_id", "Required parameter payee_id was null or undefined when calling getPayeeById.");
             }
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1991,12 +1997,11 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
         getPayees(budget_id, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayees.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayees.");
             }
-            const localVarPath = `/budgets/{budget_id}/payees`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/payees`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2007,7 +2012,8 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2154,17 +2160,18 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
         getScheduledTransactionById(budget_id, scheduled_transaction_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getScheduledTransactionById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getScheduledTransactionById.");
             }
             // verify required parameter 'scheduled_transaction_id' is not null or undefined
-            if (scheduled_transaction_id === null || scheduled_transaction_id === undefined) {
-                throw new RequiredError('scheduled_transaction_id', 'Required parameter scheduled_transaction_id was null or undefined when calling getScheduledTransactionById.');
+            if (scheduled_transaction_id === null ||
+                scheduled_transaction_id === undefined) {
+                throw new RequiredError("scheduled_transaction_id", "Required parameter scheduled_transaction_id was null or undefined when calling getScheduledTransactionById.");
             }
             const localVarPath = `/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(scheduled_transaction_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2194,12 +2201,11 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
         getScheduledTransactions(budget_id, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getScheduledTransactions.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getScheduledTransactions.");
             }
-            const localVarPath = `/budgets/{budget_id}/scheduled_transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/scheduled_transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2210,7 +2216,8 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2357,16 +2364,15 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         createTransaction(budget_id, data, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling createTransaction.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling createTransaction.");
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data', 'Required parameter data was null or undefined when calling createTransaction.');
+                throw new RequiredError("data", "Required parameter data was null or undefined when calling createTransaction.");
             }
-            const localVarPath = `/budgets/{budget_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarRequestOptions = Object.assign({ method: "POST" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2376,7 +2382,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter["Content-Type"] = "application/json";
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -2398,17 +2404,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         getTransactionById(budget_id, transaction_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionById.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionById.");
             }
             // verify required parameter 'transaction_id' is not null or undefined
             if (transaction_id === null || transaction_id === undefined) {
-                throw new RequiredError('transaction_id', 'Required parameter transaction_id was null or undefined when calling getTransactionById.');
+                throw new RequiredError("transaction_id", "Required parameter transaction_id was null or undefined when calling getTransactionById.");
             }
             const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2440,12 +2446,11 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         getTransactions(budget_id, since_date, type, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactions.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactions.");
             }
-            const localVarPath = `/budgets/{budget_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2456,13 +2461,15 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter["since_date"] =
+                    convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
+                localVarQueryParameter["type"] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2487,17 +2494,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByAccount.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionsByAccount.");
             }
             // verify required parameter 'account_id' is not null or undefined
             if (account_id === null || account_id === undefined) {
-                throw new RequiredError('account_id', 'Required parameter account_id was null or undefined when calling getTransactionsByAccount.');
+                throw new RequiredError("account_id", "Required parameter account_id was null or undefined when calling getTransactionsByAccount.");
             }
             const localVarPath = `/budgets/{budget_id}/accounts/{account_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2508,13 +2515,15 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter["since_date"] =
+                    convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
+                localVarQueryParameter["type"] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2539,17 +2548,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByCategory.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionsByCategory.");
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getTransactionsByCategory.');
+                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling getTransactionsByCategory.");
             }
             const localVarPath = `/budgets/{budget_id}/categories/{category_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2560,13 +2569,15 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter["since_date"] =
+                    convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
+                localVarQueryParameter["type"] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2591,17 +2602,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByPayee.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionsByPayee.");
             }
             // verify required parameter 'payee_id' is not null or undefined
             if (payee_id === null || payee_id === undefined) {
-                throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getTransactionsByPayee.');
+                throw new RequiredError("payee_id", "Required parameter payee_id was null or undefined when calling getTransactionsByPayee.");
             }
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2612,13 +2623,15 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter["since_date"] =
+                    convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
+                localVarQueryParameter["type"] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
+                localVarQueryParameter["last_knowledge_of_server"] =
+                    last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2639,12 +2652,11 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         importTransactions(budget_id, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling importTransactions.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling importTransactions.");
             }
-            const localVarPath = `/budgets/{budget_id}/transactions/import`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/transactions/import`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarRequestOptions = Object.assign({ method: "POST" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2675,21 +2687,21 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         updateTransaction(budget_id, transaction_id, data, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateTransaction.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling updateTransaction.");
             }
             // verify required parameter 'transaction_id' is not null or undefined
             if (transaction_id === null || transaction_id === undefined) {
-                throw new RequiredError('transaction_id', 'Required parameter transaction_id was null or undefined when calling updateTransaction.');
+                throw new RequiredError("transaction_id", "Required parameter transaction_id was null or undefined when calling updateTransaction.");
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data', 'Required parameter data was null or undefined when calling updateTransaction.');
+                throw new RequiredError("data", "Required parameter data was null or undefined when calling updateTransaction.");
             }
             const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarRequestOptions = Object.assign({ method: "PUT" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2699,7 +2711,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter["Content-Type"] = "application/json";
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -2721,16 +2733,15 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
         updateTransactions(budget_id, data, options = {}) {
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateTransactions.');
+                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling updateTransactions.");
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data', 'Required parameter data was null or undefined when calling updateTransactions.');
+                throw new RequiredError("data", "Required parameter data was null or undefined when calling updateTransactions.");
             }
-            const localVarPath = `/budgets/{budget_id}/transactions`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
+            const localVarPath = `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarRequestOptions = Object.assign({ method: "PATCH" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2740,7 +2751,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter["Content-Type"] = "application/json";
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -3240,7 +3251,7 @@ exports.UserApiFetchParamCreator = function (configuration) {
         getUser(options = {}) {
             const localVarPath = `/user`;
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: "GET" }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
