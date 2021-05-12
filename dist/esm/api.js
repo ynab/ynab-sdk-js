@@ -97,6 +97,7 @@ var BaseAPI = /** @class */ (function () {
     return BaseAPI;
 }());
 export { BaseAPI };
+;
 /**
  *
  * @export
@@ -125,17 +126,17 @@ export var Account;
      */
     var TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = "checking"] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = "savings"] = "Savings";
-        TypeEnum[TypeEnum["Cash"] = "cash"] = "Cash";
-        TypeEnum[TypeEnum["CreditCard"] = "creditCard"] = "CreditCard";
-        TypeEnum[TypeEnum["LineOfCredit"] = "lineOfCredit"] = "LineOfCredit";
-        TypeEnum[TypeEnum["OtherAsset"] = "otherAsset"] = "OtherAsset";
-        TypeEnum[TypeEnum["OtherLiability"] = "otherLiability"] = "OtherLiability";
-        TypeEnum[TypeEnum["PayPal"] = "payPal"] = "PayPal";
-        TypeEnum[TypeEnum["MerchantAccount"] = "merchantAccount"] = "MerchantAccount";
-        TypeEnum[TypeEnum["InvestmentAccount"] = "investmentAccount"] = "InvestmentAccount";
-        TypeEnum[TypeEnum["Mortgage"] = "mortgage"] = "Mortgage";
+        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
+        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
+        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
+        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
+        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
+        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
+        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
+        TypeEnum[TypeEnum["PayPal"] = 'payPal'] = "PayPal";
+        TypeEnum[TypeEnum["MerchantAccount"] = 'merchantAccount'] = "MerchantAccount";
+        TypeEnum[TypeEnum["InvestmentAccount"] = 'investmentAccount'] = "InvestmentAccount";
+        TypeEnum[TypeEnum["Mortgage"] = 'mortgage'] = "Mortgage";
     })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
 })(Account || (Account = {}));
 /**
@@ -150,10 +151,10 @@ export var Category;
      */
     var GoalTypeEnum;
     (function (GoalTypeEnum) {
-        GoalTypeEnum[GoalTypeEnum["TB"] = "TB"] = "TB";
-        GoalTypeEnum[GoalTypeEnum["TBD"] = "TBD"] = "TBD";
-        GoalTypeEnum[GoalTypeEnum["MF"] = "MF"] = "MF";
-        GoalTypeEnum[GoalTypeEnum["NEED"] = "NEED"] = "NEED";
+        GoalTypeEnum[GoalTypeEnum["TB"] = 'TB'] = "TB";
+        GoalTypeEnum[GoalTypeEnum["TBD"] = 'TBD'] = "TBD";
+        GoalTypeEnum[GoalTypeEnum["MF"] = 'MF'] = "MF";
+        GoalTypeEnum[GoalTypeEnum["NEED"] = 'NEED'] = "NEED";
     })(GoalTypeEnum = Category.GoalTypeEnum || (Category.GoalTypeEnum = {}));
 })(Category || (Category = {}));
 /**
@@ -168,13 +169,13 @@ export var SaveAccount;
      */
     var TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = "checking"] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = "savings"] = "Savings";
-        TypeEnum[TypeEnum["CreditCard"] = "creditCard"] = "CreditCard";
-        TypeEnum[TypeEnum["Cash"] = "cash"] = "Cash";
-        TypeEnum[TypeEnum["LineOfCredit"] = "lineOfCredit"] = "LineOfCredit";
-        TypeEnum[TypeEnum["OtherAsset"] = "otherAsset"] = "OtherAsset";
-        TypeEnum[TypeEnum["OtherLiability"] = "otherLiability"] = "OtherLiability";
+        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
+        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
+        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
+        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
+        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
+        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
+        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
     })(TypeEnum = SaveAccount.TypeEnum || (SaveAccount.TypeEnum = {}));
 })(SaveAccount || (SaveAccount = {}));
 /**
@@ -189,9 +190,9 @@ export var SaveTransaction;
      */
     var ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = SaveTransaction.ClearedEnum || (SaveTransaction.ClearedEnum = {}));
     /**
      * @export
@@ -199,12 +200,12 @@ export var SaveTransaction;
      */
     var FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = SaveTransaction.FlagColorEnum || (SaveTransaction.FlagColorEnum = {}));
 })(SaveTransaction || (SaveTransaction = {}));
 /**
@@ -219,19 +220,19 @@ export var ScheduledTransactionSummary;
      */
     var FrequencyEnum;
     (function (FrequencyEnum) {
-        FrequencyEnum[FrequencyEnum["Never"] = "never"] = "Never";
-        FrequencyEnum[FrequencyEnum["Daily"] = "daily"] = "Daily";
-        FrequencyEnum[FrequencyEnum["Weekly"] = "weekly"] = "Weekly";
-        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = "everyOtherWeek"] = "EveryOtherWeek";
-        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = "twiceAMonth"] = "TwiceAMonth";
-        FrequencyEnum[FrequencyEnum["Every4Weeks"] = "every4Weeks"] = "Every4Weeks";
-        FrequencyEnum[FrequencyEnum["Monthly"] = "monthly"] = "Monthly";
-        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = "everyOtherMonth"] = "EveryOtherMonth";
-        FrequencyEnum[FrequencyEnum["Every3Months"] = "every3Months"] = "Every3Months";
-        FrequencyEnum[FrequencyEnum["Every4Months"] = "every4Months"] = "Every4Months";
-        FrequencyEnum[FrequencyEnum["TwiceAYear"] = "twiceAYear"] = "TwiceAYear";
-        FrequencyEnum[FrequencyEnum["Yearly"] = "yearly"] = "Yearly";
-        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = "everyOtherYear"] = "EveryOtherYear";
+        FrequencyEnum[FrequencyEnum["Never"] = 'never'] = "Never";
+        FrequencyEnum[FrequencyEnum["Daily"] = 'daily'] = "Daily";
+        FrequencyEnum[FrequencyEnum["Weekly"] = 'weekly'] = "Weekly";
+        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = 'everyOtherWeek'] = "EveryOtherWeek";
+        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = 'twiceAMonth'] = "TwiceAMonth";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'every4Weeks'] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Monthly"] = 'monthly'] = "Monthly";
+        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = 'everyOtherMonth'] = "EveryOtherMonth";
+        FrequencyEnum[FrequencyEnum["Every3Months"] = 'every3Months'] = "Every3Months";
+        FrequencyEnum[FrequencyEnum["Every4Months"] = 'every4Months'] = "Every4Months";
+        FrequencyEnum[FrequencyEnum["TwiceAYear"] = 'twiceAYear'] = "TwiceAYear";
+        FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
+        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionSummary.FrequencyEnum || (ScheduledTransactionSummary.FrequencyEnum = {}));
     /**
      * @export
@@ -239,12 +240,12 @@ export var ScheduledTransactionSummary;
      */
     var FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = ScheduledTransactionSummary.FlagColorEnum || (ScheduledTransactionSummary.FlagColorEnum = {}));
 })(ScheduledTransactionSummary || (ScheduledTransactionSummary = {}));
 /**
@@ -259,9 +260,9 @@ export var TransactionSummary;
      */
     var ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = TransactionSummary.ClearedEnum || (TransactionSummary.ClearedEnum = {}));
     /**
      * @export
@@ -269,12 +270,12 @@ export var TransactionSummary;
      */
     var FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = TransactionSummary.FlagColorEnum || (TransactionSummary.FlagColorEnum = {}));
 })(TransactionSummary || (TransactionSummary = {}));
 /**
@@ -289,9 +290,9 @@ export var HybridTransaction;
      */
     var ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = HybridTransaction.ClearedEnum || (HybridTransaction.ClearedEnum = {}));
     /**
      * @export
@@ -299,12 +300,12 @@ export var HybridTransaction;
      */
     var FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = HybridTransaction.FlagColorEnum || (HybridTransaction.FlagColorEnum = {}));
     /**
      * @export
@@ -312,8 +313,8 @@ export var HybridTransaction;
      */
     var TypeEnum;
     (function (TypeEnum) {
-        TypeEnum[TypeEnum["Transaction"] = "transaction"] = "Transaction";
-        TypeEnum[TypeEnum["Subtransaction"] = "subtransaction"] = "Subtransaction";
+        TypeEnum[TypeEnum["Transaction"] = 'transaction'] = "Transaction";
+        TypeEnum[TypeEnum["Subtransaction"] = 'subtransaction'] = "Subtransaction";
     })(TypeEnum = HybridTransaction.TypeEnum || (HybridTransaction.TypeEnum = {}));
 })(HybridTransaction || (HybridTransaction = {}));
 /**
@@ -328,19 +329,19 @@ export var ScheduledTransactionDetail;
      */
     var FrequencyEnum;
     (function (FrequencyEnum) {
-        FrequencyEnum[FrequencyEnum["Never"] = "never"] = "Never";
-        FrequencyEnum[FrequencyEnum["Daily"] = "daily"] = "Daily";
-        FrequencyEnum[FrequencyEnum["Weekly"] = "weekly"] = "Weekly";
-        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = "everyOtherWeek"] = "EveryOtherWeek";
-        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = "twiceAMonth"] = "TwiceAMonth";
-        FrequencyEnum[FrequencyEnum["Every4Weeks"] = "every4Weeks"] = "Every4Weeks";
-        FrequencyEnum[FrequencyEnum["Monthly"] = "monthly"] = "Monthly";
-        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = "everyOtherMonth"] = "EveryOtherMonth";
-        FrequencyEnum[FrequencyEnum["Every3Months"] = "every3Months"] = "Every3Months";
-        FrequencyEnum[FrequencyEnum["Every4Months"] = "every4Months"] = "Every4Months";
-        FrequencyEnum[FrequencyEnum["TwiceAYear"] = "twiceAYear"] = "TwiceAYear";
-        FrequencyEnum[FrequencyEnum["Yearly"] = "yearly"] = "Yearly";
-        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = "everyOtherYear"] = "EveryOtherYear";
+        FrequencyEnum[FrequencyEnum["Never"] = 'never'] = "Never";
+        FrequencyEnum[FrequencyEnum["Daily"] = 'daily'] = "Daily";
+        FrequencyEnum[FrequencyEnum["Weekly"] = 'weekly'] = "Weekly";
+        FrequencyEnum[FrequencyEnum["EveryOtherWeek"] = 'everyOtherWeek'] = "EveryOtherWeek";
+        FrequencyEnum[FrequencyEnum["TwiceAMonth"] = 'twiceAMonth'] = "TwiceAMonth";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'every4Weeks'] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Monthly"] = 'monthly'] = "Monthly";
+        FrequencyEnum[FrequencyEnum["EveryOtherMonth"] = 'everyOtherMonth'] = "EveryOtherMonth";
+        FrequencyEnum[FrequencyEnum["Every3Months"] = 'every3Months'] = "Every3Months";
+        FrequencyEnum[FrequencyEnum["Every4Months"] = 'every4Months'] = "Every4Months";
+        FrequencyEnum[FrequencyEnum["TwiceAYear"] = 'twiceAYear'] = "TwiceAYear";
+        FrequencyEnum[FrequencyEnum["Yearly"] = 'yearly'] = "Yearly";
+        FrequencyEnum[FrequencyEnum["EveryOtherYear"] = 'everyOtherYear'] = "EveryOtherYear";
     })(FrequencyEnum = ScheduledTransactionDetail.FrequencyEnum || (ScheduledTransactionDetail.FrequencyEnum = {}));
     /**
      * @export
@@ -348,12 +349,12 @@ export var ScheduledTransactionDetail;
      */
     var FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = ScheduledTransactionDetail.FlagColorEnum || (ScheduledTransactionDetail.FlagColorEnum = {}));
 })(ScheduledTransactionDetail || (ScheduledTransactionDetail = {}));
 /**
@@ -368,9 +369,9 @@ export var TransactionDetail;
      */
     var ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = TransactionDetail.ClearedEnum || (TransactionDetail.ClearedEnum = {}));
     /**
      * @export
@@ -378,12 +379,12 @@ export var TransactionDetail;
      */
     var FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = TransactionDetail.FlagColorEnum || (TransactionDetail.FlagColorEnum = {}));
 })(TransactionDetail || (TransactionDetail = {}));
 /**
@@ -398,9 +399,9 @@ export var UpdateTransaction;
      */
     var ClearedEnum;
     (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = "cleared"] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = "uncleared"] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = "reconciled"] = "Reconciled";
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
     })(ClearedEnum = UpdateTransaction.ClearedEnum || (UpdateTransaction.ClearedEnum = {}));
     /**
      * @export
@@ -408,12 +409,12 @@ export var UpdateTransaction;
      */
     var FlagColorEnum;
     (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = "red"] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = "orange"] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = "yellow"] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = "green"] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = "blue"] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = "purple"] = "Purple";
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = UpdateTransaction.FlagColorEnum || (UpdateTransaction.FlagColorEnum = {}));
 })(UpdateTransaction || (UpdateTransaction = {}));
 /**
@@ -434,15 +435,16 @@ export var AccountsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling createAccount.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling createAccount.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError("data", "Required parameter data was null or undefined when calling createAccount.");
+                throw new RequiredError('data', 'Required parameter data was null or undefined when calling createAccount.');
             }
-            var localVarPath = "/budgets/{budget_id}/accounts".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/accounts"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "POST" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -452,7 +454,7 @@ export var AccountsApiFetchParamCreator = function (configuration) {
                 var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter["Content-Type"] = "application/json";
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -475,17 +477,17 @@ export var AccountsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getAccountById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getAccountById.');
             }
             // verify required parameter 'account_id' is not null or undefined
             if (account_id === null || account_id === undefined) {
-                throw new RequiredError("account_id", "Required parameter account_id was null or undefined when calling getAccountById.");
+                throw new RequiredError('account_id', 'Required parameter account_id was null or undefined when calling getAccountById.');
             }
             var localVarPath = "/budgets/{budget_id}/accounts/{account_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "account_id" + "}", encodeURIComponent(String(account_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -516,11 +518,12 @@ export var AccountsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getAccounts.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getAccounts.');
             }
-            var localVarPath = "/budgets/{budget_id}/accounts".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/accounts"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -531,8 +534,7 @@ export var AccountsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -560,19 +562,27 @@ export var AccountsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         createAccount: function (budget_id, data, options) {
+            var _this = this;
             var localVarFetchArgs = AccountsApiFetchParamCreator(configuration).createAccount(budget_id, data, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -584,19 +594,27 @@ export var AccountsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAccountById: function (budget_id, account_id, options) {
+            var _this = this;
             var localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccountById(budget_id, account_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -608,19 +626,27 @@ export var AccountsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAccounts: function (budget_id, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -734,11 +760,12 @@ export var BudgetsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetById.');
             }
-            var localVarPath = "/budgets/{budget_id}".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -749,8 +776,7 @@ export var BudgetsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -772,11 +798,12 @@ export var BudgetsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetSettingsById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetSettingsById.');
             }
-            var localVarPath = "/budgets/{budget_id}/settings".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/settings"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -806,7 +833,7 @@ export var BudgetsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/budgets";
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -817,7 +844,7 @@ export var BudgetsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (include_accounts !== undefined) {
-                localVarQueryParameter["include_accounts"] = include_accounts;
+                localVarQueryParameter['include_accounts'] = include_accounts;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -845,19 +872,27 @@ export var BudgetsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetById: function (budget_id, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetById(budget_id, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -868,19 +903,27 @@ export var BudgetsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetSettingsById: function (budget_id, options) {
+            var _this = this;
             var localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgetSettingsById(budget_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -891,19 +934,27 @@ export var BudgetsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgets: function (include_accounts, options) {
+            var _this = this;
             var localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).getBudgets(include_accounts, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -1013,11 +1064,12 @@ export var CategoriesApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getCategories.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getCategories.');
             }
-            var localVarPath = "/budgets/{budget_id}/categories".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/categories"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1028,8 +1080,7 @@ export var CategoriesApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1052,17 +1103,17 @@ export var CategoriesApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getCategoryById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getCategoryById.');
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling getCategoryById.");
+                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getCategoryById.');
             }
             var localVarPath = "/budgets/{budget_id}/categories/{category_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "category_id" + "}", encodeURIComponent(String(category_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1094,22 +1145,22 @@ export var CategoriesApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getMonthCategoryById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getMonthCategoryById.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError("month", "Required parameter month was null or undefined when calling getMonthCategoryById.");
+                throw new RequiredError('month', 'Required parameter month was null or undefined when calling getMonthCategoryById.');
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling getMonthCategoryById.");
+                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getMonthCategoryById.');
             }
             var localVarPath = "/budgets/{budget_id}/months/{month}/categories/{category_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "month" + "}", encodeURIComponent(convertDateToFullDateStringFormat(month)))
                 .replace("{" + "category_id" + "}", encodeURIComponent(String(category_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1142,26 +1193,26 @@ export var CategoriesApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling updateMonthCategory.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateMonthCategory.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError("month", "Required parameter month was null or undefined when calling updateMonthCategory.");
+                throw new RequiredError('month', 'Required parameter month was null or undefined when calling updateMonthCategory.');
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling updateMonthCategory.");
+                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling updateMonthCategory.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError("data", "Required parameter data was null or undefined when calling updateMonthCategory.");
+                throw new RequiredError('data', 'Required parameter data was null or undefined when calling updateMonthCategory.');
             }
             var localVarPath = "/budgets/{budget_id}/months/{month}/categories/{category_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "month" + "}", encodeURIComponent(convertDateToFullDateStringFormat(month)))
                 .replace("{" + "category_id" + "}", encodeURIComponent(String(category_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "PATCH" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1171,7 +1222,7 @@ export var CategoriesApiFetchParamCreator = function (configuration) {
                 var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter["Content-Type"] = "application/json";
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -1199,19 +1250,27 @@ export var CategoriesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCategories: function (budget_id, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -1223,19 +1282,27 @@ export var CategoriesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCategoryById: function (budget_id, category_id, options) {
+            var _this = this;
             var localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getCategoryById(budget_id, category_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -1248,19 +1315,27 @@ export var CategoriesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getMonthCategoryById: function (budget_id, month, category_id, options) {
+            var _this = this;
             var localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).getMonthCategoryById(budget_id, month, category_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -1274,19 +1349,27 @@ export var CategoriesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateMonthCategory: function (budget_id, month, category_id, data, options) {
+            var _this = this;
             var localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).updateMonthCategory(budget_id, month, category_id, data, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -1429,15 +1512,16 @@ export var DeprecatedApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling bulkCreateTransactions.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling bulkCreateTransactions.');
             }
             // verify required parameter 'transactions' is not null or undefined
             if (transactions === null || transactions === undefined) {
-                throw new RequiredError("transactions", "Required parameter transactions was null or undefined when calling bulkCreateTransactions.");
+                throw new RequiredError('transactions', 'Required parameter transactions was null or undefined when calling bulkCreateTransactions.');
             }
-            var localVarPath = "/budgets/{budget_id}/transactions/bulk".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/transactions/bulk"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "POST" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1447,7 +1531,7 @@ export var DeprecatedApiFetchParamCreator = function (configuration) {
                 var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter["Content-Type"] = "application/json";
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -1475,19 +1559,27 @@ export var DeprecatedApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         bulkCreateTransactions: function (budget_id, transactions, options) {
+            var _this = this;
             var localVarFetchArgs = DeprecatedApiFetchParamCreator(configuration).bulkCreateTransactions(budget_id, transactions, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -1555,17 +1647,17 @@ export var MonthsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetMonth.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetMonth.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError("month", "Required parameter month was null or undefined when calling getBudgetMonth.");
+                throw new RequiredError('month', 'Required parameter month was null or undefined when calling getBudgetMonth.');
             }
             var localVarPath = "/budgets/{budget_id}/months/{month}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "month" + "}", encodeURIComponent(convertDateToFullDateStringFormat(month)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1596,11 +1688,12 @@ export var MonthsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getBudgetMonths.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getBudgetMonths.');
             }
-            var localVarPath = "/budgets/{budget_id}/months".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/months"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1611,8 +1704,7 @@ export var MonthsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1645,16 +1737,16 @@ export var MonthsApiFp = function (configuration) {
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
-                    var foo;
+                    var apiResponse;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
                                 if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
                                 return [4 /*yield*/, response.json()];
                             case 1:
-                                foo = _a.sent();
-                                foo.rateLimit = response.headers.get("X-Rate-Limit");
-                                return [2 /*return*/, foo];
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
                             case 2: return [2 /*return*/, response.json().then(function (e) {
                                     return Promise.reject(e);
                                 })];
@@ -1672,19 +1764,27 @@ export var MonthsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetMonths: function (budget_id, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -1775,17 +1875,17 @@ export var PayeeLocationsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeLocationById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocationById.');
             }
             // verify required parameter 'payee_location_id' is not null or undefined
             if (payee_location_id === null || payee_location_id === undefined) {
-                throw new RequiredError("payee_location_id", "Required parameter payee_location_id was null or undefined when calling getPayeeLocationById.");
+                throw new RequiredError('payee_location_id', 'Required parameter payee_location_id was null or undefined when calling getPayeeLocationById.');
             }
             var localVarPath = "/budgets/{budget_id}/payee_locations/{payee_location_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "payee_location_id" + "}", encodeURIComponent(String(payee_location_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1815,11 +1915,12 @@ export var PayeeLocationsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeLocations.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocations.');
             }
-            var localVarPath = "/budgets/{budget_id}/payee_locations".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/payee_locations"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1850,17 +1951,17 @@ export var PayeeLocationsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeLocationsByPayee.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeLocationsByPayee.');
             }
             // verify required parameter 'payee_id' is not null or undefined
             if (payee_id === null || payee_id === undefined) {
-                throw new RequiredError("payee_id", "Required parameter payee_id was null or undefined when calling getPayeeLocationsByPayee.");
+                throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getPayeeLocationsByPayee.');
             }
             var localVarPath = "/budgets/{budget_id}/payees/{payee_id}/payee_locations"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "payee_id" + "}", encodeURIComponent(String(payee_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -1896,19 +1997,27 @@ export var PayeeLocationsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocationById: function (budget_id, payee_location_id, options) {
+            var _this = this;
             var localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budget_id, payee_location_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -1919,19 +2028,27 @@ export var PayeeLocationsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocations: function (budget_id, options) {
+            var _this = this;
             var localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budget_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -1943,19 +2060,27 @@ export var PayeeLocationsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocationsByPayee: function (budget_id, payee_id, options) {
+            var _this = this;
             var localVarFetchArgs = PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -2067,17 +2192,17 @@ export var PayeesApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayeeById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayeeById.');
             }
             // verify required parameter 'payee_id' is not null or undefined
             if (payee_id === null || payee_id === undefined) {
-                throw new RequiredError("payee_id", "Required parameter payee_id was null or undefined when calling getPayeeById.");
+                throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getPayeeById.');
             }
             var localVarPath = "/budgets/{budget_id}/payees/{payee_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "payee_id" + "}", encodeURIComponent(String(payee_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2108,11 +2233,12 @@ export var PayeesApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getPayees.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getPayees.');
             }
-            var localVarPath = "/budgets/{budget_id}/payees".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/payees"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2123,8 +2249,7 @@ export var PayeesApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2152,19 +2277,27 @@ export var PayeesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeById: function (budget_id, payee_id, options) {
+            var _this = this;
             var localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayeeById(budget_id, payee_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -2176,19 +2309,27 @@ export var PayeesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayees: function (budget_id, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = PayeesApiFetchParamCreator(configuration).getPayees(budget_id, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -2279,18 +2420,17 @@ export var ScheduledTransactionsApiFetchParamCreator = function (configuration) 
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getScheduledTransactionById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getScheduledTransactionById.');
             }
             // verify required parameter 'scheduled_transaction_id' is not null or undefined
-            if (scheduled_transaction_id === null ||
-                scheduled_transaction_id === undefined) {
-                throw new RequiredError("scheduled_transaction_id", "Required parameter scheduled_transaction_id was null or undefined when calling getScheduledTransactionById.");
+            if (scheduled_transaction_id === null || scheduled_transaction_id === undefined) {
+                throw new RequiredError('scheduled_transaction_id', 'Required parameter scheduled_transaction_id was null or undefined when calling getScheduledTransactionById.');
             }
             var localVarPath = "/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "scheduled_transaction_id" + "}", encodeURIComponent(String(scheduled_transaction_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2321,11 +2461,12 @@ export var ScheduledTransactionsApiFetchParamCreator = function (configuration) 
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getScheduledTransactions.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getScheduledTransactions.');
             }
-            var localVarPath = "/budgets/{budget_id}/scheduled_transactions".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/scheduled_transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2336,8 +2477,7 @@ export var ScheduledTransactionsApiFetchParamCreator = function (configuration) 
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2365,19 +2505,27 @@ export var ScheduledTransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScheduledTransactionById: function (budget_id, scheduled_transaction_id, options) {
+            var _this = this;
             var localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -2389,19 +2537,27 @@ export var ScheduledTransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScheduledTransactions: function (budget_id, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -2492,15 +2648,16 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling createTransaction.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling createTransaction.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError("data", "Required parameter data was null or undefined when calling createTransaction.");
+                throw new RequiredError('data', 'Required parameter data was null or undefined when calling createTransaction.');
             }
-            var localVarPath = "/budgets/{budget_id}/transactions".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "POST" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2510,7 +2667,7 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
                 var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter["Content-Type"] = "application/json";
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -2533,17 +2690,17 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionById.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionById.');
             }
             // verify required parameter 'transaction_id' is not null or undefined
             if (transaction_id === null || transaction_id === undefined) {
-                throw new RequiredError("transaction_id", "Required parameter transaction_id was null or undefined when calling getTransactionById.");
+                throw new RequiredError('transaction_id', 'Required parameter transaction_id was null or undefined when calling getTransactionById.');
             }
             var localVarPath = "/budgets/{budget_id}/transactions/{transaction_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "transaction_id" + "}", encodeURIComponent(String(transaction_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2576,11 +2733,12 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactions.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactions.');
             }
-            var localVarPath = "/budgets/{budget_id}/transactions".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2591,15 +2749,13 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter["since_date"] =
-                    convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter["type"] = type;
+                localVarQueryParameter['type'] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2625,17 +2781,17 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionsByAccount.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByAccount.');
             }
             // verify required parameter 'account_id' is not null or undefined
             if (account_id === null || account_id === undefined) {
-                throw new RequiredError("account_id", "Required parameter account_id was null or undefined when calling getTransactionsByAccount.");
+                throw new RequiredError('account_id', 'Required parameter account_id was null or undefined when calling getTransactionsByAccount.');
             }
             var localVarPath = "/budgets/{budget_id}/accounts/{account_id}/transactions"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "account_id" + "}", encodeURIComponent(String(account_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2646,15 +2802,13 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter["since_date"] =
-                    convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter["type"] = type;
+                localVarQueryParameter['type'] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2680,17 +2834,17 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionsByCategory.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByCategory.');
             }
             // verify required parameter 'category_id' is not null or undefined
             if (category_id === null || category_id === undefined) {
-                throw new RequiredError("category_id", "Required parameter category_id was null or undefined when calling getTransactionsByCategory.");
+                throw new RequiredError('category_id', 'Required parameter category_id was null or undefined when calling getTransactionsByCategory.');
             }
             var localVarPath = "/budgets/{budget_id}/categories/{category_id}/transactions"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "category_id" + "}", encodeURIComponent(String(category_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2701,15 +2855,13 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter["since_date"] =
-                    convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter["type"] = type;
+                localVarQueryParameter['type'] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2735,17 +2887,17 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling getTransactionsByPayee.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling getTransactionsByPayee.');
             }
             // verify required parameter 'payee_id' is not null or undefined
             if (payee_id === null || payee_id === undefined) {
-                throw new RequiredError("payee_id", "Required parameter payee_id was null or undefined when calling getTransactionsByPayee.");
+                throw new RequiredError('payee_id', 'Required parameter payee_id was null or undefined when calling getTransactionsByPayee.');
             }
             var localVarPath = "/budgets/{budget_id}/payees/{payee_id}/transactions"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "payee_id" + "}", encodeURIComponent(String(payee_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2756,15 +2908,13 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             if (since_date !== undefined) {
-                localVarQueryParameter["since_date"] =
-                    convertDateToFullDateStringFormat(since_date);
+                localVarQueryParameter['since_date'] = convertDateToFullDateStringFormat(since_date);
             }
             if (type !== undefined) {
-                localVarQueryParameter["type"] = type;
+                localVarQueryParameter['type'] = type;
             }
             if (last_knowledge_of_server !== undefined) {
-                localVarQueryParameter["last_knowledge_of_server"] =
-                    last_knowledge_of_server;
+                localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -2786,11 +2936,12 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling importTransactions.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling importTransactions.');
             }
-            var localVarPath = "/budgets/{budget_id}/transactions/import".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/transactions/import"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "POST" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2822,21 +2973,21 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling updateTransaction.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateTransaction.');
             }
             // verify required parameter 'transaction_id' is not null or undefined
             if (transaction_id === null || transaction_id === undefined) {
-                throw new RequiredError("transaction_id", "Required parameter transaction_id was null or undefined when calling updateTransaction.");
+                throw new RequiredError('transaction_id', 'Required parameter transaction_id was null or undefined when calling updateTransaction.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError("data", "Required parameter data was null or undefined when calling updateTransaction.");
+                throw new RequiredError('data', 'Required parameter data was null or undefined when calling updateTransaction.');
             }
             var localVarPath = "/budgets/{budget_id}/transactions/{transaction_id}"
                 .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)))
                 .replace("{" + "transaction_id" + "}", encodeURIComponent(String(transaction_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "PUT" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2846,7 +2997,7 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
                 var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter["Content-Type"] = "application/json";
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -2869,15 +3020,16 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'budget_id' is not null or undefined
             if (budget_id === null || budget_id === undefined) {
-                throw new RequiredError("budget_id", "Required parameter budget_id was null or undefined when calling updateTransactions.");
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling updateTransactions.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError("data", "Required parameter data was null or undefined when calling updateTransactions.");
+                throw new RequiredError('data', 'Required parameter data was null or undefined when calling updateTransactions.');
             }
-            var localVarPath = "/budgets/{budget_id}/transactions".replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
+            var localVarPath = "/budgets/{budget_id}/transactions"
+                .replace("{" + "budget_id" + "}", encodeURIComponent(String(budget_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "PATCH" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -2887,7 +3039,7 @@ export var TransactionsApiFetchParamCreator = function (configuration) {
                 var localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarHeaderParameter["Content-Type"] = "application/json";
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -2915,19 +3067,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         createTransaction: function (budget_id, data, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, data, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -2939,19 +3099,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionById: function (budget_id, transaction_id, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionById(budget_id, transaction_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -2965,19 +3133,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactions: function (budget_id, since_date, type, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -2992,19 +3168,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByAccount: function (budget_id, account_id, since_date, type, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -3019,19 +3203,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByCategory: function (budget_id, category_id, since_date, type, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -3046,19 +3238,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByPayee: function (budget_id, payee_id, since_date, type, last_knowledge_of_server, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -3069,19 +3269,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         importTransactions: function (budget_id, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).importTransactions(budget_id, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -3094,19 +3302,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTransaction: function (budget_id, transaction_id, data, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransaction(budget_id, transaction_id, data, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
         /**
@@ -3118,19 +3334,27 @@ export var TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTransactions: function (budget_id, data, options) {
+            var _this = this;
             var localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).updateTransactions(budget_id, data, options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
@@ -3402,7 +3626,7 @@ export var UserApiFetchParamCreator = function (configuration) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/user";
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: "GET" }, options);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             localVarHeaderParameter["User-Agent"] = USER_AGENT;
@@ -3436,19 +3660,27 @@ export var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getUser: function (options) {
+            var _this = this;
             var localVarFetchArgs = UserApiFetchParamCreator(configuration).getUser(options);
             return function (fetchFunction) {
                 if (fetchFunction === void 0) { fetchFunction = fetch; }
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        return response.json().then(function (e) {
-                            return Promise.reject(e);
-                        });
-                    }
-                });
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
+                    var apiResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!(response.status >= 200 && response.status < 300)) return [3 /*break*/, 2];
+                                return [4 /*yield*/, response.json()];
+                            case 1:
+                                apiResponse = _a.sent();
+                                apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                                return [2 /*return*/, apiResponse];
+                            case 2: return [2 /*return*/, response.json().then(function (e) {
+                                    return Promise.reject(e);
+                                })];
+                        }
+                    });
+                }); });
             };
         },
     };
