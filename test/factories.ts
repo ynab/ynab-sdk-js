@@ -5,10 +5,13 @@ export const userFactory = Factory.makeFactory<api.User>({
   id: Factory.each((i) => `${i}`),
 });
 
-export const userResponseFactory = Factory.makeFactory<api.UserResponse>({
+export const userResponseFactory = Factory.makeFactory<
+  api.UserResponse & { rateLimit: string | null }
+>({
   data: {
     user: userFactory.build(),
   },
+  rateLimit: "1/200",
 });
 
 export const budgetSummaryFactory = Factory.makeFactory<api.BudgetSummary>({
@@ -31,12 +34,13 @@ export const budgetSummaryFactory = Factory.makeFactory<api.BudgetSummary>({
 });
 
 export const budgetSummaryResponseFactory = Factory.makeFactory<
-  api.BudgetSummaryResponse
+  api.BudgetSummaryResponse & { rateLimit: string | null }
 >({
   data: {
     budgets: budgetSummaryFactory.buildList(3),
     default_budget: budgetSummaryFactory.build(),
   },
+  rateLimit: "1/200",
 });
 
 export const accountFactory = Factory.makeFactory<api.Account>({
@@ -54,18 +58,22 @@ export const accountFactory = Factory.makeFactory<api.Account>({
 });
 
 export const accountsResponseFactory = Factory.makeFactory<
-  api.AccountsResponse
+  api.AccountsResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     server_knowledge: Factory.each((i) => i),
     accounts: accountFactory.buildList(5),
   }),
+  rateLimit: "1/200",
 });
 
-export const accountResponseFactory = Factory.makeFactory<api.AccountResponse>({
+export const accountResponseFactory = Factory.makeFactory<
+  api.AccountResponse & { rateLimit: string | null }
+>({
   data: Factory.makeFactory({
     account: accountFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
 export const saveAccountFactory = Factory.makeFactory<api.SaveAccount>({
@@ -74,11 +82,10 @@ export const saveAccountFactory = Factory.makeFactory<api.SaveAccount>({
   balance: 140235,
 });
 
-export const saveAccountWrapperFactory = Factory.makeFactory<
-  api.SaveAccountWrapper
->({
-  account: saveAccountFactory.build(),
-});
+export const saveAccountWrapperFactory =
+  Factory.makeFactory<api.SaveAccountWrapper>({
+    account: saveAccountFactory.build(),
+  });
 
 export const categoryFactory = Factory.makeFactory<api.Category>({
   id: Factory.each((i) => `ID#${i}`),
@@ -97,31 +104,32 @@ export const categoryFactory = Factory.makeFactory<api.Category>({
   goal_percentage_complete: 40,
 });
 
-export const categoryGroupWithCategoriesFactory = Factory.makeFactory<
-  api.CategoryGroupWithCategories
->({
-  id: Factory.each((i) => `ID#${i}`),
-  name: Factory.each((i) => `Name ${i}`),
-  hidden: false,
-  categories: categoryFactory.buildList(3),
-  deleted: false,
-});
+export const categoryGroupWithCategoriesFactory =
+  Factory.makeFactory<api.CategoryGroupWithCategories>({
+    id: Factory.each((i) => `ID#${i}`),
+    name: Factory.each((i) => `Name ${i}`),
+    hidden: false,
+    categories: categoryFactory.buildList(3),
+    deleted: false,
+  });
 
 export const categoriesResponseFactory = Factory.makeFactory<
-  api.CategoriesResponse
+  api.CategoriesResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     server_knowledge: Factory.each((i) => i),
     category_groups: categoryGroupWithCategoriesFactory.buildList(3),
   }),
+  rateLimit: "1/200",
 });
 
 export const categoryResponseFactory = Factory.makeFactory<
-  api.CategoryResponse
+  api.CategoryResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory<api.CategoryResponseData>({
     category: categoryFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
 export const monthSummaryFactory = Factory.makeFactory<api.MonthSummary>({
@@ -136,12 +144,13 @@ export const monthSummaryFactory = Factory.makeFactory<api.MonthSummary>({
 });
 
 export const monthSummariesResponseFactory = Factory.makeFactory<
-  api.MonthSummariesResponse
+  api.MonthSummariesResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     server_knowledge: Factory.each((i) => i),
     months: monthSummaryFactory.buildList(5),
   }),
+  rateLimit: "1/200",
 });
 
 export const monthDetailFactory = Factory.makeFactory<api.MonthDetail>({
@@ -157,11 +166,12 @@ export const monthDetailFactory = Factory.makeFactory<api.MonthDetail>({
 });
 
 export const monthDetailResponseFactory = Factory.makeFactory<
-  api.MonthDetailResponse
+  api.MonthDetailResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory<api.MonthDetailResponseData>({
     month: monthDetailFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
 export const payeeFactory = Factory.makeFactory<api.Payee>({
@@ -171,17 +181,23 @@ export const payeeFactory = Factory.makeFactory<api.Payee>({
   deleted: false,
 });
 
-export const payeesResponseFactory = Factory.makeFactory<api.PayeesResponse>({
+export const payeesResponseFactory = Factory.makeFactory<
+  api.PayeesResponse & { rateLimit: string | null }
+>({
   data: Factory.makeFactory({
     server_knowledge: Factory.each((i) => i),
     payees: payeeFactory.buildList(5),
   }),
+  rateLimit: "1/200",
 });
 
-export const payeeResponseFactory = Factory.makeFactory<api.PayeeResponse>({
+export const payeeResponseFactory = Factory.makeFactory<
+  api.PayeeResponse & { rateLimit: string | null }
+>({
   data: Factory.makeFactory({
     payee: payeeFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
 export const payeeLocationFactory = Factory.makeFactory<api.PayeeLocation>({
@@ -193,19 +209,21 @@ export const payeeLocationFactory = Factory.makeFactory<api.PayeeLocation>({
 });
 
 export const payeeLocationsResponseFactory = Factory.makeFactory<
-  api.PayeeLocationsResponse
+  api.PayeeLocationsResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     payee_locations: payeeLocationFactory.buildList(5),
   }),
+  rateLimit: "1/200",
 });
 
 export const payeeLocationResponseFactory = Factory.makeFactory<
-  api.PayeeLocationResponse
+  api.PayeeLocationResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     payee_location: payeeLocationFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
 export const subTransactionFactory = Factory.makeFactory<api.SubTransaction>({
@@ -241,74 +259,75 @@ export const transactionFactory = Factory.makeFactory<api.TransactionDetail>({
   matched_transaction_id: null!,
 });
 
-export const hybridTransactionFactory = Factory.makeFactory<
-  api.HybridTransaction
->({
-  type: api.HybridTransaction.TypeEnum.Transaction,
-  parent_transaction_id: null!,
-  id: Factory.each((i) => `id #${i}`),
-  date: "2017-01-02",
-  amount: Factory.each((i) => i * 1000),
-  memo: Factory.each((i) => `memo #${i}`),
-  cleared: api.TransactionDetail.ClearedEnum.Cleared,
-  approved: true,
-  flag_color: api.TransactionDetail.FlagColorEnum.Red,
-  account_id: Factory.each((i) => `account_id #${i}`),
-  payee_id: Factory.each((i) => `payee_id #${i}`),
-  category_id: Factory.each((i) => `category_id #${i}`),
-  transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
-  transfer_transaction_id: null!,
-  import_id: null!,
-  account_name: "Test Account",
-  payee_name: "Test Payee",
-  category_name: "Test Category",
-  deleted: false,
-  matched_transaction_id: null!,
-});
+export const hybridTransactionFactory =
+  Factory.makeFactory<api.HybridTransaction>({
+    type: api.HybridTransaction.TypeEnum.Transaction,
+    parent_transaction_id: null!,
+    id: Factory.each((i) => `id #${i}`),
+    date: "2017-01-02",
+    amount: Factory.each((i) => i * 1000),
+    memo: Factory.each((i) => `memo #${i}`),
+    cleared: api.TransactionDetail.ClearedEnum.Cleared,
+    approved: true,
+    flag_color: api.TransactionDetail.FlagColorEnum.Red,
+    account_id: Factory.each((i) => `account_id #${i}`),
+    payee_id: Factory.each((i) => `payee_id #${i}`),
+    category_id: Factory.each((i) => `category_id #${i}`),
+    transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
+    transfer_transaction_id: null!,
+    import_id: null!,
+    account_name: "Test Account",
+    payee_name: "Test Payee",
+    category_name: "Test Category",
+    deleted: false,
+    matched_transaction_id: null!,
+  });
 
 export const transactionResponseFactory = Factory.makeFactory<
-  api.TransactionResponse
+  api.TransactionResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     transaction: transactionFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
-export const transactionSummaryFactory = Factory.makeFactory<
-  api.TransactionSummary
->({
-  id: Factory.each((i) => `id #${i}`),
-  date: "2017-01-02",
-  amount: Factory.each((i) => i * 1000),
-  memo: Factory.each((i) => `memo #${i}`),
-  cleared: api.TransactionDetail.ClearedEnum.Cleared,
-  approved: true,
-  flag_color: api.TransactionSummary.FlagColorEnum.Red,
-  account_id: Factory.each((i) => `account_id #${i}`),
-  payee_id: Factory.each((i) => `payee_id #${i}`),
-  category_id: Factory.each((i) => `category_id #${i}`),
-  transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
-  transfer_transaction_id: null!,
-  import_id: null!,
-  deleted: false,
-  matched_transaction_id: null!,
-});
+export const transactionSummaryFactory =
+  Factory.makeFactory<api.TransactionSummary>({
+    id: Factory.each((i) => `id #${i}`),
+    date: "2017-01-02",
+    amount: Factory.each((i) => i * 1000),
+    memo: Factory.each((i) => `memo #${i}`),
+    cleared: api.TransactionDetail.ClearedEnum.Cleared,
+    approved: true,
+    flag_color: api.TransactionSummary.FlagColorEnum.Red,
+    account_id: Factory.each((i) => `account_id #${i}`),
+    payee_id: Factory.each((i) => `payee_id #${i}`),
+    category_id: Factory.each((i) => `category_id #${i}`),
+    transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
+    transfer_transaction_id: null!,
+    import_id: null!,
+    deleted: false,
+    matched_transaction_id: null!,
+  });
 
 export const transactionsResponseFactory = Factory.makeFactory<
-  api.TransactionsResponse
+  api.TransactionsResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     server_knowledge: Factory.each((i) => i),
     transactions: transactionFactory.buildList(5),
   }),
+  rateLimit: "1/200",
 });
 
 export const hybridtransactionsResponseFactory = Factory.makeFactory<
-  api.HybridTransactionsResponse
+  api.HybridTransactionsResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     transactions: hybridTransactionFactory.buildList(5),
   }),
+  rateLimit: "1/200",
 });
 
 export const saveTransactionFactory = Factory.makeFactory<api.SaveTransaction>({
@@ -325,50 +344,45 @@ export const saveTransactionFactory = Factory.makeFactory<api.SaveTransaction>({
   import_id: null!,
 });
 
-export const saveSingleTransactionWrapperFactory = Factory.makeFactory<
-  api.SaveTransactionWrapper
->({
-  transaction: saveTransactionFactory.build(),
-});
+export const saveSingleTransactionWrapperFactory =
+  Factory.makeFactory<api.SaveTransactionWrapper>({
+    transaction: saveTransactionFactory.build(),
+  });
 
-export const saveMultipleTransactionsWrapperFactory = Factory.makeFactory<
-  api.SaveTransactionsWrapper
->({
-  transactions: saveTransactionFactory.buildList(3),
-});
+export const saveMultipleTransactionsWrapperFactory =
+  Factory.makeFactory<api.SaveTransactionsWrapper>({
+    transactions: saveTransactionFactory.buildList(3),
+  });
 
-export const updateTransactionFactory = Factory.makeFactory<
-  api.UpdateTransaction
->({
-  id: "3045b6ae-4684-4df5-8ade-9f116975688f",
-  account_id: Factory.each((i) => `account_id #${i}`),
-  date: "2017-01-02",
-  amount: Factory.each((i) => i * 1000),
-  payee_id: Factory.each((i) => `payee_id #${i}`),
-  payee_name: null!,
-  category_id: Factory.each((i) => `category_id #${i}`),
-  memo: Factory.each((i) => `memo #${i}`),
-  cleared: api.SaveTransaction.ClearedEnum.Uncleared,
-  approved: false,
-  flag_color: api.SaveTransaction.FlagColorEnum.Red,
-  import_id: null!,
-});
+export const updateTransactionFactory =
+  Factory.makeFactory<api.UpdateTransaction>({
+    id: "3045b6ae-4684-4df5-8ade-9f116975688f",
+    account_id: Factory.each((i) => `account_id #${i}`),
+    date: "2017-01-02",
+    amount: Factory.each((i) => i * 1000),
+    payee_id: Factory.each((i) => `payee_id #${i}`),
+    payee_name: null!,
+    category_id: Factory.each((i) => `category_id #${i}`),
+    memo: Factory.each((i) => `memo #${i}`),
+    cleared: api.SaveTransaction.ClearedEnum.Uncleared,
+    approved: false,
+    flag_color: api.SaveTransaction.FlagColorEnum.Red,
+    import_id: null!,
+  });
 
-export const updateMultipleTransactionsWrapperFactory = Factory.makeFactory<
-  api.UpdateTransactionsWrapper
->({
-  transactions: updateTransactionFactory.buildList(3),
-});
+export const updateMultipleTransactionsWrapperFactory =
+  Factory.makeFactory<api.UpdateTransactionsWrapper>({
+    transactions: updateTransactionFactory.buildList(3),
+  });
 
-export const bulkTransactionsFactory = Factory.makeFactory<
-  api.BulkTransactions
->({
-  transactions: [
-    saveTransactionFactory.build(),
-    saveTransactionFactory.build(),
-    saveTransactionFactory.build(),
-  ],
-});
+export const bulkTransactionsFactory =
+  Factory.makeFactory<api.BulkTransactions>({
+    transactions: [
+      saveTransactionFactory.build(),
+      saveTransactionFactory.build(),
+      saveTransactionFactory.build(),
+    ],
+  });
 
 export const bulkIdsFactory = Factory.makeFactory({
   transaction_ids: [
@@ -379,7 +393,7 @@ export const bulkIdsFactory = Factory.makeFactory({
 });
 
 export const saveTransactionsResponseFactory = Factory.makeFactory<
-  api.SaveTransactionsResponse
+  api.SaveTransactionsResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory<api.SaveTransactionsResponseData>({
     transaction_ids: ["1"],
@@ -387,88 +401,91 @@ export const saveTransactionsResponseFactory = Factory.makeFactory<
     transactions: transactionFactory.buildList(3),
     server_knowledge: Factory.each((i) => i),
   }),
+  rateLimit: "1/200",
 });
 
-export const importTransactionsResponseFactory = Factory.makeFactory<
-  api.TransactionsImportResponse
+export const importTransactionsResponseFactory =
+  Factory.makeFactory<api.TransactionsImportResponse  & { rateLimit: string | null }>({
+    data: Factory.makeFactory<api.TransactionsImportResponseData>({
+      transaction_ids: ["32533e53-8da2-453f-858a-415517d4ca91"],
+    }),
+    rateLimit: "1/200",
+  });
+
+export const bulkResponseFactory = Factory.makeFactory<
+  api.BulkResponse & { rateLimit: string | null }
 >({
-  data: Factory.makeFactory<api.TransactionsImportResponseData>({
-    transaction_ids: ["32533e53-8da2-453f-858a-415517d4ca91"],
-  }),
-});
-
-export const bulkResponseFactory = Factory.makeFactory<api.BulkResponse>({
   data: Factory.makeFactory<api.BulkResponseData>({
     bulk: bulkIdsFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
-export const scheduledSubTransactionFactory = Factory.makeFactory<
-  api.ScheduledSubTransaction
->({
-  id: Factory.each((i) => `id #${i}`),
-  amount: Factory.each((i) => i * 1000),
-  memo: Factory.each((i) => `memo #${i}`),
-  scheduled_transaction_id: Factory.each((i) => `transaction_id #${i}`),
-  payee_id: Factory.each((i) => `payee_id #${i}`),
-  category_id: Factory.each((i) => `category_id #${i}`),
-  transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
-  deleted: false,
-});
+export const scheduledSubTransactionFactory =
+  Factory.makeFactory<api.ScheduledSubTransaction>({
+    id: Factory.each((i) => `id #${i}`),
+    amount: Factory.each((i) => i * 1000),
+    memo: Factory.each((i) => `memo #${i}`),
+    scheduled_transaction_id: Factory.each((i) => `transaction_id #${i}`),
+    payee_id: Factory.each((i) => `payee_id #${i}`),
+    category_id: Factory.each((i) => `category_id #${i}`),
+    transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
+    deleted: false,
+  });
 
-export const scheduledTransactionFactory = Factory.makeFactory<
-  api.ScheduledTransactionDetail
->({
-  id: Factory.each((i) => `id #${i}`),
-  date_first: "2017-01-02",
-  date_next: "2017-01-03",
-  amount: Factory.each((i) => i * 1000),
-  memo: Factory.each((i) => `memo #${i}`),
-  flag_color: api.ScheduledTransactionDetail.FlagColorEnum.Red,
-  frequency: api.ScheduledTransactionDetail.FrequencyEnum.Daily,
-  account_id: Factory.each((i) => `account_id #${i}`),
-  account_name: "Test Account",
-  payee_id: Factory.each((i) => `payee_id #${i}`),
-  payee_name: "Test Payee",
-  category_id: Factory.each((i) => `category_id #${i}`),
-  category_name: "Test Category",
-  transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
-  subtransactions: scheduledSubTransactionFactory.buildList(3),
-  deleted: false,
-});
+export const scheduledTransactionFactory =
+  Factory.makeFactory<api.ScheduledTransactionDetail>({
+    id: Factory.each((i) => `id #${i}`),
+    date_first: "2017-01-02",
+    date_next: "2017-01-03",
+    amount: Factory.each((i) => i * 1000),
+    memo: Factory.each((i) => `memo #${i}`),
+    flag_color: api.ScheduledTransactionDetail.FlagColorEnum.Red,
+    frequency: api.ScheduledTransactionDetail.FrequencyEnum.Daily,
+    account_id: Factory.each((i) => `account_id #${i}`),
+    account_name: "Test Account",
+    payee_id: Factory.each((i) => `payee_id #${i}`),
+    payee_name: "Test Payee",
+    category_id: Factory.each((i) => `category_id #${i}`),
+    category_name: "Test Category",
+    transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
+    subtransactions: scheduledSubTransactionFactory.buildList(3),
+    deleted: false,
+  });
 
 export const scheduledTransactionDetailResponseFactory = Factory.makeFactory<
-  api.ScheduledTransactionResponse
+  api.ScheduledTransactionResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     scheduled_transaction: scheduledTransactionFactory.build(),
   }),
+  rateLimit: "1/200",
 });
 
-export const scheduledTransactionSummaryFactory = Factory.makeFactory<
-  api.ScheduledTransactionSummary
->({
-  id: Factory.each((i) => `id #${i}`),
-  date_first: "2017-01-02",
-  date_next: "2017-01-03",
-  amount: Factory.each((i) => i * 1000),
-  memo: Factory.each((i) => `memo #${i}`),
-  flag_color: api.ScheduledTransactionSummary.FlagColorEnum.Red,
-  frequency: api.ScheduledTransactionSummary.FrequencyEnum.Daily,
-  account_id: Factory.each((i) => `account_id #${i}`),
-  payee_id: Factory.each((i) => `payee_id #${i}`),
-  category_id: Factory.each((i) => `category_id #${i}`),
-  transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
-  deleted: false,
-});
+export const scheduledTransactionSummaryFactory =
+  Factory.makeFactory<api.ScheduledTransactionSummary>({
+    id: Factory.each((i) => `id #${i}`),
+    date_first: "2017-01-02",
+    date_next: "2017-01-03",
+    amount: Factory.each((i) => i * 1000),
+    memo: Factory.each((i) => `memo #${i}`),
+    flag_color: api.ScheduledTransactionSummary.FlagColorEnum.Red,
+    frequency: api.ScheduledTransactionSummary.FrequencyEnum.Daily,
+    account_id: Factory.each((i) => `account_id #${i}`),
+    payee_id: Factory.each((i) => `payee_id #${i}`),
+    category_id: Factory.each((i) => `category_id #${i}`),
+    transfer_account_id: Factory.each((i) => `transfer_account_id #${i}`),
+    deleted: false,
+  });
 
 export const scheduledTransactionsResponseFactory = Factory.makeFactory<
-  api.ScheduledTransactionsResponse
+  api.ScheduledTransactionsResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     server_knowledge: Factory.each((i) => i),
     scheduled_transactions: scheduledTransactionFactory.buildList(5),
   }),
+  rateLimit: "1/200",
 });
 
 export const budgetDetailFactory = Factory.makeFactory<api.BudgetDetail>({
@@ -501,10 +518,11 @@ export const budgetDetailFactory = Factory.makeFactory<api.BudgetDetail>({
 });
 
 export const budgetDetailResponseFactory = Factory.makeFactory<
-  api.BudgetDetailResponse
+  api.BudgetDetailResponse & { rateLimit: string | null }
 >({
   data: Factory.makeFactory({
     server_knowledge: Factory.each((i) => i),
     budget: budgetDetailFactory.build(),
   }),
+  rateLimit: "1/200",
 });

@@ -265,12 +265,14 @@ export const {{classname}}Fp = function(configuration: Configuration) {
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
-        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{>dataTypeRespectingFormattedDateStrings}}, {{/allParams}}options?: any): (fetchFunction?: FetchAPI) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
+        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{>dataTypeRespectingFormattedDateStrings}}, {{/allParams}}options?: any): (fetchFunction?: FetchAPI) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}} & { rateLimit: string | null }> {
             const localVarFetchArgs = {{classname}}FetchParamCreator(configuration).{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options);
             return (fetchFunction: FetchAPI = fetch) => {
-                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(async (response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response{{#returnType}}.json(){{/returnType}};
+                        const apiResponse: {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}} & { rateLimit: string | null } = await response{{#returnType}}.json(){{/returnType}};
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
                     } else {
                         return response{{#returnType}}.json(){{/returnType}}.then((e) => {
                             return Promise.reject(e);

@@ -63,10 +63,7 @@ describe("API requests", () => {
       });
       try {
         const lastKnowledgeOfServer = 5;
-        let actualResponse = await ynabAPI.budgets.getBudgetById(
-          budgetId,
-          lastKnowledgeOfServer
-        );
+        await ynabAPI.budgets.getBudgetById(budgetId, lastKnowledgeOfServer);
         assert(false, "Expected the above method to throw an error");
       } catch (errorResponse) {
         expect(errorResponse).to.deep.equal(errorObject);
@@ -299,7 +296,9 @@ describe("API requests", () => {
           ynabAPI.transactions.getTransactionsByType(budgetId, "uncategorized"),
         factories.transactionsResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions?type=uncategorized`);
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/transactions?type=uncategorized`
+      );
     });
 
     it("Should getTransactionById and validate the request is sent correctly", async () => {
@@ -533,7 +532,7 @@ describe("API requests", () => {
     it("Should getScheduledTransactions and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.scheduledTransactions.getScheduledTransactions(budgetId),
         factories.scheduledTransactionsResponseFactory.build()
       );
@@ -565,7 +564,7 @@ async function callApiAndVerifyResponse<ResponseType>(
   promiseFunc: () => Promise<ResponseType>,
   mockResponse: ResponseType
 ) {
-  fetchMock.once("*", mockResponse);
+  fetchMock.once("*", { body: mockResponse, headers: { "X-Rate-Limit": "1/200" }});
   let actualResponse = await promiseFunc();
   expect(actualResponse).to.deep.equal(mockResponse);
   return actualResponse;
