@@ -64,6 +64,7 @@ the [Account Settings](https://app.youneedabudget.com/settings) area of the YNAB
 application.
 
 ```typescript
+const ynab = require("ynab");
 const accessToken = "b43439eaafe2_this_is_fake_b43439eaafe2";
 const ynabAPI = new ynab.API(accessToken);
 
