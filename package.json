@@ -52,7 +52,7 @@
     "webpack-cli": "^3.3.12"
   },
   "resolutions": {
-    "node-fetch": "3.1.0"
+    "node-fetch": "2.6.1"
   },
   "engines": {
     "npm": "^5.2.0"
