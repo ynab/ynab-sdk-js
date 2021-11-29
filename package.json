@@ -23,6 +23,7 @@
     "url": "https://github.com/ynab/ynab-sdk-js.git"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "generate": "npx jbash ./.swagger-codegen/generate.js",
     "build": "tsc -b src/ test/ examples/ && tsc -p src/ --target ES5 --module ES2015 --outDir dist/esm && webpack --mode production && npm run build_examples",
     "build_examples": "tsc -b examples/",
@@ -49,6 +50,9 @@
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
+  },
+  "resolutions": {
+    "node-fetch": "3.1.0"
   },
   "engines": {
     "npm": "^5.2.0"
