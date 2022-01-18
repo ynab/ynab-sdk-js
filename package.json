@@ -49,8 +49,5 @@
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
-  },
-  "engines": {
-    "npm": "^5.2.0"
   }
 }
