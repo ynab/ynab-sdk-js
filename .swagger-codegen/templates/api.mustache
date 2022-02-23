@@ -1,11 +1,16 @@
 // tslint:disable
 {{>licenseInfo}}
 
-import * as url from "url";
-// Requiring portable-fetch like this ensures that we have a global fetch function
-// That makes it easier to override with modules like fetch-mock
-require("portable-fetch");
+// Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
+const fetchPonyfill = require("fetch-ponyfill")();
+if (!globalThis.fetch) {
+  globalThis.fetch = fetchPonyfill.fetch;
+  globalThis.Response = fetchPonyfill.Response;
+  globalThis.Headers = fetchPonyfill.Headers;
+  globalThis.Request = fetchPonyfill.Request;
+}
 
+import * as url from "url";
 import { Configuration } from "./configuration";
 
 const USER_AGENT = "api_client/js/{{npmVersion}}";
