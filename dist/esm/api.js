@@ -59,10 +59,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+// Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
+var fetchPonyfill = require("fetch-ponyfill")();
+if (!globalThis.fetch) {
+    globalThis.fetch = fetchPonyfill.fetch;
+    globalThis.Response = fetchPonyfill.Response;
+    globalThis.Headers = fetchPonyfill.Headers;
+    globalThis.Request = fetchPonyfill.Request;
+}
 import * as url from "url";
-// Requiring portable-fetch like this ensures that we have a global fetch function
-// That makes it easier to override with modules like fetch-mock
-require("portable-fetch");
 var USER_AGENT = "api_client/js/1.24.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"

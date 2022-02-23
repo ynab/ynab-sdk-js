@@ -1,17 +1,11 @@
 import * as ynab from "../src/index";
 import * as chai from "chai";
+import * as factories from "./factories";
+import fetchMock from "fetch-mock";
 
-const Validator = require("swagger-model-validator");
-const swaggerApiDef = require("../.swagger-codegen/spec-v1-swagger.json");
-const validator = new Validator(swaggerApiDef);
 const assert = chai.assert;
 const expect = chai.expect;
 chai.config.includeStack = true;
-
-// We've made some modifications to factory.ts
-import * as factories from "./factories";
-
-import * as fetchMock from "fetch-mock";
 
 const BASE_URL = "http://localhost:3000/papi/v1";
 

@@ -22,10 +22,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TransactionsApi = exports.TransactionsApiFactory = exports.TransactionsApiFp = exports.TransactionsApiFetchParamCreator = exports.ScheduledTransactionsApi = exports.ScheduledTransactionsApiFactory = exports.ScheduledTransactionsApiFp = exports.ScheduledTransactionsApiFetchParamCreator = exports.PayeesApi = exports.PayeesApiFactory = exports.PayeesApiFp = exports.PayeesApiFetchParamCreator = exports.PayeeLocationsApi = exports.PayeeLocationsApiFactory = exports.PayeeLocationsApiFp = exports.PayeeLocationsApiFetchParamCreator = exports.MonthsApi = exports.MonthsApiFactory = exports.MonthsApiFp = exports.MonthsApiFetchParamCreator = exports.DeprecatedApi = exports.DeprecatedApiFactory = exports.DeprecatedApiFp = exports.DeprecatedApiFetchParamCreator = exports.CategoriesApi = exports.CategoriesApiFactory = exports.CategoriesApiFp = exports.CategoriesApiFetchParamCreator = exports.BudgetsApi = exports.BudgetsApiFactory = exports.BudgetsApiFp = exports.BudgetsApiFetchParamCreator = exports.AccountsApi = exports.AccountsApiFactory = exports.AccountsApiFp = exports.AccountsApiFetchParamCreator = exports.UpdateTransaction = exports.TransactionDetail = exports.ScheduledTransactionDetail = exports.HybridTransaction = exports.TransactionSummary = exports.ScheduledTransactionSummary = exports.SaveTransaction = exports.SaveAccount = exports.Category = exports.Account = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+// Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
+const fetchPonyfill = require("fetch-ponyfill")();
+if (!globalThis.fetch) {
+    globalThis.fetch = fetchPonyfill.fetch;
+    globalThis.Response = fetchPonyfill.Response;
+    globalThis.Headers = fetchPonyfill.Headers;
+    globalThis.Request = fetchPonyfill.Request;
+}
 const url = require("url");
-// Requiring portable-fetch like this ensures that we have a global fetch function
-// That makes it easier to override with modules like fetch-mock
-require("portable-fetch");
 const USER_AGENT = "api_client/js/1.24.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
