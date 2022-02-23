@@ -1,5 +1,3 @@
-import * as CodeGen from "./api";
-
 export default {
   /**
    * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
