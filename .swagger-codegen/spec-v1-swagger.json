@@ -33,7 +33,7 @@
     },
     {
       "name": "Months",
-      "description": "Each budget contains one or more months, which is where To be Budgeted, Age of Money and category (budgeted / activity / balances) amounts are available."
+      "description": "Each budget contains one or more months, which is where Ready to Assign, Age of Money and category (budgeted / activity / balances) amounts are available."
     },
     {
       "name": "Transactions",
@@ -2932,7 +2932,7 @@
         "income": {
           "type": "integer",
           "format": "int64",
-          "description": "The total amount of transactions categorized to 'Inflow: To be Budgeted' in the month"
+          "description": "The total amount of transactions categorized to 'Inflow: Ready to Assign' in the month"
         },
         "budgeted": {
           "type": "integer",
@@ -2942,12 +2942,12 @@
         "activity": {
           "type": "integer",
           "format": "int64",
-          "description": "The total amount of transactions in the month, excluding those categorized to 'Inflow: To be Budgeted'"
+          "description": "The total amount of transactions in the month, excluding those categorized to 'Inflow: Ready to Assign'"
         },
         "to_be_budgeted": {
           "type": "integer",
           "format": "int64",
-          "description": "The available amount for 'To be Budgeted'"
+          "description": "The available amount for 'Ready to Assign'"
         },
         "age_of_money": {
           "type": "integer",
