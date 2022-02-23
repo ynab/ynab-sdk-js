@@ -880,7 +880,7 @@ export interface MonthSummary {
      */
     note?: string | null;
     /**
-     * The total amount of transactions categorized to 'Inflow: To be Budgeted' in the month
+     * The total amount of transactions categorized to 'Inflow: Ready to Assign' in the month
      * @type {number}
      * @memberof MonthSummary
      */
@@ -892,13 +892,13 @@ export interface MonthSummary {
      */
     budgeted: number;
     /**
-     * The total amount of transactions in the month, excluding those categorized to 'Inflow: To be Budgeted'
+     * The total amount of transactions in the month, excluding those categorized to 'Inflow: Ready to Assign'
      * @type {number}
      * @memberof MonthSummary
      */
     activity: number;
     /**
-     * The available amount for 'To be Budgeted'
+     * The available amount for 'Ready to Assign'
      * @type {number}
      * @memberof MonthSummary
      */
@@ -2323,7 +2323,7 @@ export interface MonthDetail {
      */
     note?: string | null;
     /**
-     * The total amount of transactions categorized to 'Inflow: To be Budgeted' in the month
+     * The total amount of transactions categorized to 'Inflow: Ready to Assign' in the month
      * @type {number}
      * @memberof MonthDetail
      */
@@ -2335,13 +2335,13 @@ export interface MonthDetail {
      */
     budgeted: number;
     /**
-     * The total amount of transactions in the month, excluding those categorized to 'Inflow: To be Budgeted'
+     * The total amount of transactions in the month, excluding those categorized to 'Inflow: Ready to Assign'
      * @type {number}
      * @memberof MonthDetail
      */
     activity: number;
     /**
-     * The available amount for 'To be Budgeted'
+     * The available amount for 'Ready to Assign'
      * @type {number}
      * @memberof MonthDetail
      */
