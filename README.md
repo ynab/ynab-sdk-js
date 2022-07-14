@@ -178,6 +178,6 @@ utils.convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigit
 
 ## License
 
-Copyright (c) 2018 You Need A Budget, LLC
+Copyright (c) 2022 You Need A Budget, LLC
 
 Licensed under the Apache-2.0 license
