@@ -22,6 +22,9 @@
     "type": "git",
     "url": "https://github.com/ynab/ynab-sdk-js.git"
   },
+  "engines" : { 
+    "node" : "<17.0.0"
+  },
   "scripts": {
     "generate": "npx jbash ./.swagger-codegen/generate.js",
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production && npm run build_examples",
