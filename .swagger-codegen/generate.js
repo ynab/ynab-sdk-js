@@ -1,7 +1,4 @@
-#!/usr/bin/env npx jbash
-
-set("-x");
-set("-e");
+#!/usr/local/bin/npx jsh
 
 const rootFolder = require("path").join(__dirname, "../");
 const specFilename = `spec-v1-swagger.json`;
