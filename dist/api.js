@@ -31,7 +31,7 @@ if (!globalThis.fetch) {
     globalThis.Request = fetchPonyfill.Request;
 }
 const url = require("url");
-const USER_AGENT = "api_client/js/1.27.0";
+const USER_AGENT = "api_client/js/1.28.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -119,6 +119,7 @@ var Category;
         GoalTypeEnum[GoalTypeEnum["TBD"] = 'TBD'] = "TBD";
         GoalTypeEnum[GoalTypeEnum["MF"] = 'MF'] = "MF";
         GoalTypeEnum[GoalTypeEnum["NEED"] = 'NEED'] = "NEED";
+        GoalTypeEnum[GoalTypeEnum["DEBT"] = 'DEBT'] = "DEBT";
     })(GoalTypeEnum = Category.GoalTypeEnum || (Category.GoalTypeEnum = {}));
 })(Category = exports.Category || (exports.Category = {}));
 /**

@@ -611,7 +611,8 @@ export declare namespace Category {
         TB,
         TBD,
         MF,
-        NEED
+        NEED,
+        DEBT
     }
 }
 /**
