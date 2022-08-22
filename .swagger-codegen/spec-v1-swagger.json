@@ -2014,7 +2014,7 @@
         },
         "goal_type": {
           "type": "string",
-          "enum": ["TB", "TBD", "MF", "NEED", null],
+          "enum": ["TB", "TBD", "MF", "NEED", "DEBT", null],
           "description": "The type of goal, if the category has a goal (TB='Target Category Balance', TBD='Target Category Balance by Date', MF='Monthly Funding', NEED='Plan Your Spending')"
         },
         "goal_creation_month": {
