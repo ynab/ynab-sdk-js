@@ -76,11 +76,11 @@ export interface Account {
      */
     name: string;
     /**
-     * The type of account. Note: payPal, merchantAccount, investmentAccount, and mortgage types have been deprecated and will be removed in the future.
-     * @type {string}
+     *
+     * @type {AccountType}
      * @memberof Account
      */
-    type: Account.TypeEnum;
+    type: AccountType;
     /**
      * Whether this account is on budget or not
      * @type {boolean}
@@ -143,29 +143,6 @@ export interface Account {
     deleted: boolean;
 }
 /**
- * @export
- * @namespace Account
- */
-export declare namespace Account {
-    /**
-     * @export
-     * @enum {string}
-     */
-    enum TypeEnum {
-        Checking,
-        Savings,
-        Cash,
-        CreditCard,
-        LineOfCredit,
-        OtherAsset,
-        OtherLiability,
-        PayPal,
-        MerchantAccount,
-        InvestmentAccount,
-        Mortgage
-    }
-}
-/**
  *
  * @export
  * @interface AccountResponse
@@ -190,6 +167,26 @@ export interface AccountResponseData {
      * @memberof AccountResponseData
      */
     account: Account;
+}
+/**
+ * The type of account
+ * @export
+ * @enum {string}
+ */
+export declare enum AccountType {
+    Checking,
+    Savings,
+    Cash,
+    CreditCard,
+    LineOfCredit,
+    OtherAsset,
+    OtherLiability,
+    Mortgage,
+    AutoLoan,
+    StudentLoan,
+    PersonalLoan,
+    MedicalDebt,
+    OtherDebt
 }
 /**
  *
@@ -1108,36 +1105,17 @@ export interface SaveAccount {
      */
     name: string;
     /**
-     * The account type
-     * @type {string}
+     *
+     * @type {AccountType}
      * @memberof SaveAccount
      */
-    type: SaveAccount.TypeEnum;
+    type: AccountType;
     /**
      * The current balance of the account in milliunits format
      * @type {number}
      * @memberof SaveAccount
      */
     balance: number;
-}
-/**
- * @export
- * @namespace SaveAccount
- */
-export declare namespace SaveAccount {
-    /**
-     * @export
-     * @enum {string}
-     */
-    enum TypeEnum {
-        Checking,
-        Savings,
-        CreditCard,
-        Cash,
-        LineOfCredit,
-        OtherAsset,
-        OtherLiability
-    }
 }
 /**
  *

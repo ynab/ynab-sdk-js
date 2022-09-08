@@ -68,7 +68,7 @@ if (!globalThis.fetch) {
     globalThis.Request = fetchPonyfill.Request;
 }
 import * as url from "url";
-var USER_AGENT = "api_client/js/1.28.0";
+var USER_AGENT = "api_client/js/1.29.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -120,30 +120,26 @@ var RequiredError = /** @class */ (function (_super) {
 }(Error));
 export { RequiredError };
 /**
+ * The type of account
  * @export
- * @namespace Account
+ * @enum {string}
  */
-export var Account;
-(function (Account) {
-    /**
-     * @export
-     * @enum {string}
-     */
-    var TypeEnum;
-    (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
-        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
-        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
-        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
-        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
-        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
-        TypeEnum[TypeEnum["PayPal"] = 'payPal'] = "PayPal";
-        TypeEnum[TypeEnum["MerchantAccount"] = 'merchantAccount'] = "MerchantAccount";
-        TypeEnum[TypeEnum["InvestmentAccount"] = 'investmentAccount'] = "InvestmentAccount";
-        TypeEnum[TypeEnum["Mortgage"] = 'mortgage'] = "Mortgage";
-    })(TypeEnum = Account.TypeEnum || (Account.TypeEnum = {}));
-})(Account || (Account = {}));
+export var AccountType;
+(function (AccountType) {
+    AccountType[AccountType["Checking"] = 'checking'] = "Checking";
+    AccountType[AccountType["Savings"] = 'savings'] = "Savings";
+    AccountType[AccountType["Cash"] = 'cash'] = "Cash";
+    AccountType[AccountType["CreditCard"] = 'creditCard'] = "CreditCard";
+    AccountType[AccountType["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
+    AccountType[AccountType["OtherAsset"] = 'otherAsset'] = "OtherAsset";
+    AccountType[AccountType["OtherLiability"] = 'otherLiability'] = "OtherLiability";
+    AccountType[AccountType["Mortgage"] = 'mortgage'] = "Mortgage";
+    AccountType[AccountType["AutoLoan"] = 'autoLoan'] = "AutoLoan";
+    AccountType[AccountType["StudentLoan"] = 'studentLoan'] = "StudentLoan";
+    AccountType[AccountType["PersonalLoan"] = 'personalLoan'] = "PersonalLoan";
+    AccountType[AccountType["MedicalDebt"] = 'medicalDebt'] = "MedicalDebt";
+    AccountType[AccountType["OtherDebt"] = 'otherDebt'] = "OtherDebt";
+})(AccountType || (AccountType = {}));
 /**
  * @export
  * @namespace Category
@@ -163,27 +159,6 @@ export var Category;
         GoalTypeEnum[GoalTypeEnum["DEBT"] = 'DEBT'] = "DEBT";
     })(GoalTypeEnum = Category.GoalTypeEnum || (Category.GoalTypeEnum = {}));
 })(Category || (Category = {}));
-/**
- * @export
- * @namespace SaveAccount
- */
-export var SaveAccount;
-(function (SaveAccount) {
-    /**
-     * @export
-     * @enum {string}
-     */
-    var TypeEnum;
-    (function (TypeEnum) {
-        TypeEnum[TypeEnum["Checking"] = 'checking'] = "Checking";
-        TypeEnum[TypeEnum["Savings"] = 'savings'] = "Savings";
-        TypeEnum[TypeEnum["CreditCard"] = 'creditCard'] = "CreditCard";
-        TypeEnum[TypeEnum["Cash"] = 'cash'] = "Cash";
-        TypeEnum[TypeEnum["LineOfCredit"] = 'lineOfCredit'] = "LineOfCredit";
-        TypeEnum[TypeEnum["OtherAsset"] = 'otherAsset'] = "OtherAsset";
-        TypeEnum[TypeEnum["OtherLiability"] = 'otherLiability'] = "OtherLiability";
-    })(TypeEnum = SaveAccount.TypeEnum || (SaveAccount.TypeEnum = {}));
-})(SaveAccount || (SaveAccount = {}));
 /**
  * @export
  * @namespace SaveTransaction
