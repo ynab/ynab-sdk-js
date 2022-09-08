@@ -1801,21 +1801,7 @@
           "type": "string"
         },
         "type": {
-          "type": "string",
-          "description": "The type of account. Note: payPal, merchantAccount, investmentAccount, and mortgage types have been deprecated and will be removed in the future.",
-          "enum": [
-            "checking",
-            "savings",
-            "cash",
-            "creditCard",
-            "lineOfCredit",
-            "otherAsset",
-            "otherLiability",
-            "payPal",
-            "merchantAccount",
-            "investmentAccount",
-            "mortgage"
-          ]
+          "$ref": "#/definitions/AccountType"
         },
         "on_budget": {
           "type": "boolean",
@@ -1880,9 +1866,7 @@
           "description": "The name of the account"
         },
         "type": {
-          "type": "string",
-          "enum": ["checking", "savings", "creditCard", "cash", "lineOfCredit", "otherAsset", "otherLiability"],
-          "description": "The account type"
+          "$ref": "#/definitions/AccountType"
         },
         "balance": {
           "type": "integer",
@@ -1890,6 +1874,25 @@
           "description": "The current balance of the account in milliunits format"
         }
       }
+    },
+    "AccountType": {
+      "type": "string",
+      "description": "The type of account",
+      "enum": [
+        "checking",
+        "savings",
+        "cash",
+        "creditCard",
+        "lineOfCredit",
+        "otherAsset",
+        "otherLiability",
+        "mortgage",
+        "autoLoan",
+        "studentLoan",
+        "personalLoan",
+        "medicalDebt",
+        "otherDebt"
+      ]
     },
     "CategoriesResponse": {
       "type": "object",

@@ -46,7 +46,7 @@ export const budgetSummaryResponseFactory = Factory.makeFactory<
 export const accountFactory = Factory.makeFactory<api.Account>({
   id: Factory.each((i) => `AccountID${i}`),
   name: Factory.each((i) => `Account ${i}`),
-  type: api.Account.TypeEnum.Checking,
+  type: api.AccountType.Checking,
   on_budget: true,
   closed: false,
   note: Factory.each((i) => `Note #${i}`),
@@ -78,7 +78,7 @@ export const accountResponseFactory = Factory.makeFactory<
 
 export const saveAccountFactory = Factory.makeFactory<api.SaveAccount>({
   name: `AccountID${1}`,
-  type: api.SaveAccount.TypeEnum.Checking,
+  type: api.AccountType.Checking,
   balance: 140235,
 });
 

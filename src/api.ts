@@ -24,7 +24,7 @@ if (!globalThis.fetch) {
 import * as url from "url";
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.28.0";
+const USER_AGENT = "api_client/js/1.29.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -112,11 +112,11 @@ export interface Account {
      */
     name: string;
     /**
-     * The type of account. Note: payPal, merchantAccount, investmentAccount, and mortgage types have been deprecated and will be removed in the future.
-     * @type {string}
+     * 
+     * @type {AccountType}
      * @memberof Account
      */
-    type: Account.TypeEnum;
+    type: AccountType;
     /**
      * Whether this account is on budget or not
      * @type {boolean}
@@ -180,30 +180,6 @@ export interface Account {
 }
 
 /**
- * @export
- * @namespace Account
- */
-export namespace Account {
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TypeEnum {
-        Checking = <any> 'checking',
-        Savings = <any> 'savings',
-        Cash = <any> 'cash',
-        CreditCard = <any> 'creditCard',
-        LineOfCredit = <any> 'lineOfCredit',
-        OtherAsset = <any> 'otherAsset',
-        OtherLiability = <any> 'otherLiability',
-        PayPal = <any> 'payPal',
-        MerchantAccount = <any> 'merchantAccount',
-        InvestmentAccount = <any> 'investmentAccount',
-        Mortgage = <any> 'mortgage'
-    }
-}
-
-/**
  * 
  * @export
  * @interface AccountResponse
@@ -229,6 +205,27 @@ export interface AccountResponseData {
      * @memberof AccountResponseData
      */
     account: Account;
+}
+
+/**
+ * The type of account
+ * @export
+ * @enum {string}
+ */
+export enum AccountType {
+    Checking = <any> 'checking',
+    Savings = <any> 'savings',
+    Cash = <any> 'cash',
+    CreditCard = <any> 'creditCard',
+    LineOfCredit = <any> 'lineOfCredit',
+    OtherAsset = <any> 'otherAsset',
+    OtherLiability = <any> 'otherLiability',
+    Mortgage = <any> 'mortgage',
+    AutoLoan = <any> 'autoLoan',
+    StudentLoan = <any> 'studentLoan',
+    PersonalLoan = <any> 'personalLoan',
+    MedicalDebt = <any> 'medicalDebt',
+    OtherDebt = <any> 'otherDebt'
 }
 
 /**
@@ -1190,37 +1187,17 @@ export interface SaveAccount {
      */
     name: string;
     /**
-     * The account type
-     * @type {string}
+     * 
+     * @type {AccountType}
      * @memberof SaveAccount
      */
-    type: SaveAccount.TypeEnum;
+    type: AccountType;
     /**
      * The current balance of the account in milliunits format
      * @type {number}
      * @memberof SaveAccount
      */
     balance: number;
-}
-
-/**
- * @export
- * @namespace SaveAccount
- */
-export namespace SaveAccount {
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum TypeEnum {
-        Checking = <any> 'checking',
-        Savings = <any> 'savings',
-        CreditCard = <any> 'creditCard',
-        Cash = <any> 'cash',
-        LineOfCredit = <any> 'lineOfCredit',
-        OtherAsset = <any> 'otherAsset',
-        OtherLiability = <any> 'otherLiability'
-    }
 }
 
 /**
