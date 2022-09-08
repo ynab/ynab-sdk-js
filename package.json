@@ -39,7 +39,7 @@
     "@types/node": "^14.0.27",
     "chai": "^4.2.0",
     "fetch-mock": "^9.10.6",
-    "jsh": "^0.32.0",
+    "jsh": "0.34.0",
     "mocha": "^8.1.1",
     "npm-github-release": "^0.13.0",
     "swagger-model-validator": "^3.0.19",
