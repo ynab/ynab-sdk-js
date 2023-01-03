@@ -800,6 +800,12 @@ export interface HybridTransactionsResponseData {
      * @memberof HybridTransactionsResponseData
      */
     transactions: Array<HybridTransaction>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof HybridTransactionsResponseData
+     */
+    server_knowledge?: number | null;
 }
 /**
  *

@@ -68,7 +68,7 @@ if (!globalThis.fetch) {
     globalThis.Request = fetchPonyfill.Request;
 }
 import * as url from "url";
-var USER_AGENT = "api_client/js/1.29.0";
+var USER_AGENT = "api_client/js/1.32.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
