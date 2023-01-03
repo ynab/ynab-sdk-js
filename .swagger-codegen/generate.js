@@ -8,6 +8,7 @@ cd(rootFolder);
 
 // Download latest spec from the API
 if ($1 == "--useLocalSpec") {
+  echo.yellow("NOTE: Using local `spec-v1-swagger.json` file")
   echo(
     `WARNING: --useLocalSpec passed in so the local spec file (spec-v1-swagger.json) will be used.`
   );

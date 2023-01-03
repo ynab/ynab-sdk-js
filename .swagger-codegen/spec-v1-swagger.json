@@ -2238,6 +2238,11 @@
               "items": {
                 "$ref": "#/definitions/HybridTransaction"
               }
+            },
+            "server_knowledge": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The knowledge of the server"
             }
           }
         }
