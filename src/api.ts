@@ -24,7 +24,7 @@ if (!globalThis.fetch) {
 import * as url from "url";
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.29.0";
+const USER_AGENT = "api_client/js/1.32.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -866,6 +866,12 @@ export interface HybridTransactionsResponseData {
      * @memberof HybridTransactionsResponseData
      */
     transactions: Array<HybridTransaction>;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof HybridTransactionsResponseData
+     */
+    server_knowledge?: number | null;
 }
 
 /**
