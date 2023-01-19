@@ -3,7 +3,7 @@ export default {
      * Returns the current month (system timezone) in ISO 8601 format (i.e. '2015-12-01')
      */
     getCurrentMonthInISOFormat: function () {
-        return this.getCurrentDateInISOFormat().substr(0, 7) + "-01";
+        return "".concat(this.getCurrentDateInISOFormat().substr(0, 7), "-01");
     },
     /**
      * Returns the current date (system timezone) in ISO 8601 format (i.e. '2015-12-15')

@@ -12,7 +12,7 @@
  */
 var Configuration = /** @class */ (function () {
     function Configuration(accessToken, basePath) {
-        this.apiKey = "Bearer " + accessToken;
+        this.apiKey = "Bearer ".concat(accessToken);
         this.basePath = basePath;
     }
     return Configuration;
