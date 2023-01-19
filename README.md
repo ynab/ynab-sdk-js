@@ -1,6 +1,6 @@
 # YNAB API JavaScript Library
 
-[![Build Status](https://travis-ci.org/ynab/ynab-sdk-js.svg?branch=main)](https://travis-ci.org/ynab/ynab-sdk-js)
+[![Continuous Integration](https://github.com/ynab/ynab-sdk-js/actions/workflows/ci.yml/badge.svg)](https://github.com/ynab/ynab-sdk-js/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/ynab.svg)](https://badge.fury.io/js/ynab)
 
 Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of available resources.
