@@ -32,7 +32,7 @@ describe("API requests", () => {
     it("Should get user", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.user.getUser(),
         factories.userResponseFactory.build()
       );
@@ -92,7 +92,7 @@ describe("API requests", () => {
     it("Should getAccounts and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.accounts.getAccounts(budgetId),
         factories.accountsResponseFactory.build()
       );
@@ -103,7 +103,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const accountId = "DummyAccountId";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.accounts.getAccountById(budgetId, accountId),
         factories.accountResponseFactory.build()
       );
@@ -115,7 +115,7 @@ describe("API requests", () => {
     it("Should create account", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.accounts.createAccount(
             budgetId,
@@ -137,7 +137,7 @@ describe("API requests", () => {
 
       const budgetId = "/://{}?";
       const accountId = "/://{}?";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.accounts.getAccountById(budgetId, accountId),
         factories.accountResponseFactory.build()
       );
@@ -155,7 +155,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const accountId = "DummyAccountId";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.categories.getCategories(budgetId),
         mockResponse
       );
@@ -166,7 +166,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const categoryId = "DummyCategoryId";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.categories.getCategoryById(budgetId, categoryId),
         factories.categoryResponseFactory.build()
       );
@@ -180,7 +180,7 @@ describe("API requests", () => {
     it("Should getBudgetMonths and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonths(budgetId),
         factories.monthSummariesResponseFactory.build()
       );
@@ -191,7 +191,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const budgetMonth = getUTCDate(2017, 1, 1);
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonth(budgetId, budgetMonth),
         factories.monthDetailResponseFactory.build()
       );
@@ -201,7 +201,7 @@ describe("API requests", () => {
     it("Should getBudgetMonth with a string param and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonth(budgetId, "2017-01"),
         factories.monthDetailResponseFactory.build()
       );
@@ -211,7 +211,7 @@ describe("API requests", () => {
     it("Should getBudgetMonth with a string param of 'current' and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonth(budgetId, "current"),
         factories.monthDetailResponseFactory.build()
       );
@@ -223,7 +223,7 @@ describe("API requests", () => {
     it("Should getPayees and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.payees.getPayees(budgetId),
         factories.payeesResponseFactory.build()
       );
@@ -234,7 +234,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const payeeId = "payeeId";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.payees.getPayeeById(budgetId, payeeId),
         factories.payeeResponseFactory.build()
       );
@@ -246,7 +246,7 @@ describe("API requests", () => {
     it("Should getPayeeLocations and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.payeeLocations.getPayeeLocations(budgetId),
         factories.payeeLocationsResponseFactory.build()
       );
@@ -257,7 +257,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const payeeLocationId = "payeeLocationId";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.payeeLocations.getPayeeLocationById(
             budgetId,
@@ -275,7 +275,7 @@ describe("API requests", () => {
     it("Should getTransactions and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.transactions.getTransactions(budgetId),
         factories.transactionsResponseFactory.build()
       );
@@ -285,7 +285,7 @@ describe("API requests", () => {
     it("Should getTransactionsByType and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.getTransactionsByType(budgetId, "uncategorized"),
         factories.transactionsResponseFactory.build()
@@ -299,7 +299,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const transactionId = "TransactionId";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () => ynabAPI.transactions.getTransactionById(budgetId, transactionId),
         factories.transactionResponseFactory.build()
       );
@@ -313,7 +313,7 @@ describe("API requests", () => {
 
       const accountId = "accountId";
       const sinceDate = getUTCDate(2017, 1, 1);
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.getTransactionsByAccount(
             budgetId,
@@ -332,7 +332,7 @@ describe("API requests", () => {
 
       const accountId = "accountId";
       const sinceDate = "2017-02";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.getTransactionsByAccount(
             budgetId,
@@ -351,7 +351,7 @@ describe("API requests", () => {
 
       const categoryId = "categoryId";
       const sinceDate = getUTCDate(2017, 1, 1);
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.getTransactionsByCategory(
             budgetId,
@@ -371,7 +371,7 @@ describe("API requests", () => {
       const categoryId = "categoryId";
       // Make sure we can pass a string as well
       const sinceDate = "2017-03";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.getTransactionsByCategory(
             budgetId,
@@ -385,10 +385,9 @@ describe("API requests", () => {
       );
     });
 
-    it("Should createTransaction", async () => {
+    it("Should create a transaction", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
-
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.createTransaction(
             budgetId,
@@ -407,8 +406,7 @@ describe("API requests", () => {
 
     it("Should create multple transactions", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
-
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.createTransaction(
             budgetId,
@@ -427,8 +425,7 @@ describe("API requests", () => {
 
     it("Should create multple transactions via alias", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
-
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.createTransactions(
             budgetId,
@@ -445,15 +442,15 @@ describe("API requests", () => {
       );
     });
 
-    it("Should updateTransaction", async () => {
+    it("Should update a transaction", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.updateTransaction(
             budgetId,
             transactionId,
-            factories.saveSingleTransactionWrapperFactory.build()
+            factories.updateSingleTransactionWrapperFactory.build()
           ),
         factories.transactionResponseFactory.build()
       );
@@ -468,8 +465,7 @@ describe("API requests", () => {
 
     it("Should update multiple transactions", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
-      const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.updateTransactions(
             budgetId,
@@ -501,10 +497,10 @@ describe("API requests", () => {
       );
     });
 
-    it("Should bulkCreateTransactions", async () => {
+    it("Should bulk create transactions", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.bulkCreateTransactions(
             budgetId,
@@ -518,6 +514,22 @@ describe("API requests", () => {
         API_KEY,
         1,
         "POST"
+      );
+    });
+
+    it("Should delete a transaction ", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+      const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
+      await callApiAndVerifyResponse(
+        () => ynabAPI.transactions.deleteTransaction(budgetId, transactionId),
+        factories.transactionResponseFactory.build()
+      );
+
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`,
+        API_KEY,
+        1,
+        "DELETE"
       );
     });
   });
@@ -539,7 +551,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const scheduledTransactionId = "scheduledTransactionId";
-      const returnedResponse = await callApiAndVerifyResponse(
+      await callApiAndVerifyResponse(
         () =>
           ynabAPI.scheduledTransactions.getScheduledTransactionById(
             budgetId,
@@ -558,7 +570,10 @@ async function callApiAndVerifyResponse<ResponseType>(
   promiseFunc: () => Promise<ResponseType>,
   mockResponse: ResponseType
 ) {
-  fetchMock.once("*", { body: mockResponse, headers: { "X-Rate-Limit": "1/200" }});
+  fetchMock.once("*", {
+    body: mockResponse,
+    headers: { "X-Rate-Limit": "1/200" },
+  });
   let actualResponse = await promiseFunc();
   expect(actualResponse).to.deep.equal(mockResponse);
   return actualResponse;
@@ -568,7 +583,7 @@ function verifyRequestDetails(
   url: string,
   bearerTokenExpected: string = API_KEY,
   numCalls: number = 1,
-  method: "GET" | "POST" | "PUT" | "PATCH" = "GET"
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" = "GET"
 ) {
   // TODO: Lastest version of @types/fetch-mock has incorrect type for calls(); once updated, remove this forced cast
   const calls = <Array<string>>(<any>fetchMock.calls());

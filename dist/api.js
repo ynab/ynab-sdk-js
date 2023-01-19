@@ -21,7 +21,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TransactionsApi = exports.TransactionsApiFactory = exports.TransactionsApiFp = exports.TransactionsApiFetchParamCreator = exports.ScheduledTransactionsApi = exports.ScheduledTransactionsApiFactory = exports.ScheduledTransactionsApiFp = exports.ScheduledTransactionsApiFetchParamCreator = exports.PayeesApi = exports.PayeesApiFactory = exports.PayeesApiFp = exports.PayeesApiFetchParamCreator = exports.PayeeLocationsApi = exports.PayeeLocationsApiFactory = exports.PayeeLocationsApiFp = exports.PayeeLocationsApiFetchParamCreator = exports.MonthsApi = exports.MonthsApiFactory = exports.MonthsApiFp = exports.MonthsApiFetchParamCreator = exports.DeprecatedApi = exports.DeprecatedApiFactory = exports.DeprecatedApiFp = exports.DeprecatedApiFetchParamCreator = exports.CategoriesApi = exports.CategoriesApiFactory = exports.CategoriesApiFp = exports.CategoriesApiFetchParamCreator = exports.BudgetsApi = exports.BudgetsApiFactory = exports.BudgetsApiFp = exports.BudgetsApiFetchParamCreator = exports.AccountsApi = exports.AccountsApiFactory = exports.AccountsApiFp = exports.AccountsApiFetchParamCreator = exports.UpdateTransaction = exports.TransactionDetail = exports.ScheduledTransactionDetail = exports.HybridTransaction = exports.TransactionSummary = exports.ScheduledTransactionSummary = exports.SaveTransaction = exports.Category = exports.AccountType = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.UserApiFetchParamCreator = exports.TransactionsApi = exports.TransactionsApiFactory = exports.TransactionsApiFp = exports.TransactionsApiFetchParamCreator = exports.ScheduledTransactionsApi = exports.ScheduledTransactionsApiFactory = exports.ScheduledTransactionsApiFp = exports.ScheduledTransactionsApiFetchParamCreator = exports.PayeesApi = exports.PayeesApiFactory = exports.PayeesApiFp = exports.PayeesApiFetchParamCreator = exports.PayeeLocationsApi = exports.PayeeLocationsApiFactory = exports.PayeeLocationsApiFp = exports.PayeeLocationsApiFetchParamCreator = exports.MonthsApi = exports.MonthsApiFactory = exports.MonthsApiFp = exports.MonthsApiFetchParamCreator = exports.DeprecatedApi = exports.DeprecatedApiFactory = exports.DeprecatedApiFp = exports.DeprecatedApiFetchParamCreator = exports.CategoriesApi = exports.CategoriesApiFactory = exports.CategoriesApiFp = exports.CategoriesApiFetchParamCreator = exports.BudgetsApi = exports.BudgetsApiFactory = exports.BudgetsApiFp = exports.BudgetsApiFetchParamCreator = exports.AccountsApi = exports.AccountsApiFactory = exports.AccountsApiFp = exports.AccountsApiFetchParamCreator = exports.TransactionDetail = exports.ScheduledTransactionDetail = exports.SaveTransactionWithId = exports.SaveTransaction = exports.HybridTransaction = exports.TransactionSummary = exports.ScheduledTransactionSummary = exports.SaveTransactionWithOptionalFields = exports.Category = exports.AccountType = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.UserApi = exports.UserApiFactory = exports.UserApiFp = void 0;
 // Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
 const fetchPonyfill = require("fetch-ponyfill")();
 if (!globalThis.fetch) {
@@ -30,8 +31,7 @@ if (!globalThis.fetch) {
     globalThis.Headers = fetchPonyfill.Headers;
     globalThis.Request = fetchPonyfill.Request;
 }
-const url = require("url");
-const USER_AGENT = "api_client/js/1.32.0";
+const USER_AGENT = "api_client/js/1.42.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -120,10 +120,10 @@ var Category;
 })(Category = exports.Category || (exports.Category = {}));
 /**
  * @export
- * @namespace SaveTransaction
+ * @namespace SaveTransactionWithOptionalFields
  */
-var SaveTransaction;
-(function (SaveTransaction) {
+var SaveTransactionWithOptionalFields;
+(function (SaveTransactionWithOptionalFields) {
     /**
      * @export
      * @enum {string}
@@ -133,7 +133,7 @@ var SaveTransaction;
         ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
         ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
         ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
-    })(ClearedEnum = SaveTransaction.ClearedEnum || (SaveTransaction.ClearedEnum = {}));
+    })(ClearedEnum = SaveTransactionWithOptionalFields.ClearedEnum || (SaveTransactionWithOptionalFields.ClearedEnum = {}));
     /**
      * @export
      * @enum {string}
@@ -146,8 +146,8 @@ var SaveTransaction;
         FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
         FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
         FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
-    })(FlagColorEnum = SaveTransaction.FlagColorEnum || (SaveTransaction.FlagColorEnum = {}));
-})(SaveTransaction = exports.SaveTransaction || (exports.SaveTransaction = {}));
+    })(FlagColorEnum = SaveTransactionWithOptionalFields.FlagColorEnum || (SaveTransactionWithOptionalFields.FlagColorEnum = {}));
+})(SaveTransactionWithOptionalFields = exports.SaveTransactionWithOptionalFields || (exports.SaveTransactionWithOptionalFields = {}));
 /**
  * @export
  * @namespace ScheduledTransactionSummary
@@ -259,6 +259,66 @@ var HybridTransaction;
 })(HybridTransaction = exports.HybridTransaction || (exports.HybridTransaction = {}));
 /**
  * @export
+ * @namespace SaveTransaction
+ */
+var SaveTransaction;
+(function (SaveTransaction) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let ClearedEnum;
+    (function (ClearedEnum) {
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+    })(ClearedEnum = SaveTransaction.ClearedEnum || (SaveTransaction.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = SaveTransaction.FlagColorEnum || (SaveTransaction.FlagColorEnum = {}));
+})(SaveTransaction = exports.SaveTransaction || (exports.SaveTransaction = {}));
+/**
+ * @export
+ * @namespace SaveTransactionWithId
+ */
+var SaveTransactionWithId;
+(function (SaveTransactionWithId) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    let ClearedEnum;
+    (function (ClearedEnum) {
+        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
+        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
+        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
+    })(ClearedEnum = SaveTransactionWithId.ClearedEnum || (SaveTransactionWithId.ClearedEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    let FlagColorEnum;
+    (function (FlagColorEnum) {
+        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
+        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
+        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
+        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
+        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
+        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
+    })(FlagColorEnum = SaveTransactionWithId.FlagColorEnum || (SaveTransactionWithId.FlagColorEnum = {}));
+})(SaveTransactionWithId = exports.SaveTransactionWithId || (exports.SaveTransactionWithId = {}));
+/**
+ * @export
  * @namespace ScheduledTransactionDetail
  */
 var ScheduledTransactionDetail;
@@ -328,46 +388,16 @@ var TransactionDetail;
     })(FlagColorEnum = TransactionDetail.FlagColorEnum || (TransactionDetail.FlagColorEnum = {}));
 })(TransactionDetail = exports.TransactionDetail || (exports.TransactionDetail = {}));
 /**
- * @export
- * @namespace UpdateTransaction
- */
-var UpdateTransaction;
-(function (UpdateTransaction) {
-    /**
-     * @export
-     * @enum {string}
-     */
-    let ClearedEnum;
-    (function (ClearedEnum) {
-        ClearedEnum[ClearedEnum["Cleared"] = 'cleared'] = "Cleared";
-        ClearedEnum[ClearedEnum["Uncleared"] = 'uncleared'] = "Uncleared";
-        ClearedEnum[ClearedEnum["Reconciled"] = 'reconciled'] = "Reconciled";
-    })(ClearedEnum = UpdateTransaction.ClearedEnum || (UpdateTransaction.ClearedEnum = {}));
-    /**
-     * @export
-     * @enum {string}
-     */
-    let FlagColorEnum;
-    (function (FlagColorEnum) {
-        FlagColorEnum[FlagColorEnum["Red"] = 'red'] = "Red";
-        FlagColorEnum[FlagColorEnum["Orange"] = 'orange'] = "Orange";
-        FlagColorEnum[FlagColorEnum["Yellow"] = 'yellow'] = "Yellow";
-        FlagColorEnum[FlagColorEnum["Green"] = 'green'] = "Green";
-        FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
-        FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
-    })(FlagColorEnum = UpdateTransaction.FlagColorEnum || (UpdateTransaction.FlagColorEnum = {}));
-})(UpdateTransaction = exports.UpdateTransaction || (exports.UpdateTransaction = {}));
-/**
  * AccountsApi - fetch parameter creator
  * @export
  */
-exports.AccountsApiFetchParamCreator = function (configuration) {
+const AccountsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Creates a new account
          * @summary Create a new account
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveAccountWrapper} data - The account to create.
+         * @param {PostAccountWrapper} data - The account to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -382,7 +412,8 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/accounts`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -394,13 +425,18 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = JSON.stringify(data || {});
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -424,7 +460,8 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/accounts/{account_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -435,12 +472,17 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -459,7 +501,8 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/accounts`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -473,33 +516,39 @@ exports.AccountsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.AccountsApiFetchParamCreator = AccountsApiFetchParamCreator;
 /**
  * AccountsApi - functional programming interface
  * @export
  */
-exports.AccountsApiFp = function (configuration) {
+const AccountsApiFp = function (configuration) {
     return {
         /**
          * Creates a new account
          * @summary Create a new account
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveAccountWrapper} data - The account to create.
+         * @param {PostAccountWrapper} data - The account to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         createAccount(budget_id, data, options) {
-            const localVarFetchArgs = exports.AccountsApiFetchParamCreator(configuration).createAccount(budget_id, data, options);
+            const localVarFetchArgs = (0, exports.AccountsApiFetchParamCreator)(configuration).createAccount(budget_id, data, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -524,7 +573,7 @@ exports.AccountsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAccountById(budget_id, account_id, options) {
-            const localVarFetchArgs = exports.AccountsApiFetchParamCreator(configuration).getAccountById(budget_id, account_id, options);
+            const localVarFetchArgs = (0, exports.AccountsApiFetchParamCreator)(configuration).getAccountById(budget_id, account_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -549,7 +598,7 @@ exports.AccountsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAccounts(budget_id, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.AccountsApiFetchParamCreator(configuration).getAccounts(budget_id, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.AccountsApiFetchParamCreator)(configuration).getAccounts(budget_id, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -567,22 +616,23 @@ exports.AccountsApiFp = function (configuration) {
         },
     };
 };
+exports.AccountsApiFp = AccountsApiFp;
 /**
  * AccountsApi - factory interface
  * @export
  */
-exports.AccountsApiFactory = function (configuration) {
+const AccountsApiFactory = function (configuration) {
     return {
         /**
          * Creates a new account
          * @summary Create a new account
          * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-         * @param {SaveAccountWrapper} data - The account to create.
+         * @param {PostAccountWrapper} data - The account to create.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         createAccount(budget_id, data, options) {
-            return exports.AccountsApiFp(configuration).createAccount(budget_id, data, options)();
+            return (0, exports.AccountsApiFp)(configuration).createAccount(budget_id, data, options)();
         },
         /**
          * Returns a single account
@@ -593,7 +643,7 @@ exports.AccountsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getAccountById(budget_id, account_id, options) {
-            return exports.AccountsApiFp(configuration).getAccountById(budget_id, account_id, options)();
+            return (0, exports.AccountsApiFp)(configuration).getAccountById(budget_id, account_id, options)();
         },
         /**
          * Returns all accounts
@@ -604,10 +654,11 @@ exports.AccountsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getAccounts(budget_id, last_knowledge_of_server, options) {
-            return exports.AccountsApiFp(configuration).getAccounts(budget_id, last_knowledge_of_server, options)();
+            return (0, exports.AccountsApiFp)(configuration).getAccounts(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
+exports.AccountsApiFactory = AccountsApiFactory;
 /**
  * AccountsApi - object-oriented interface
  * @export
@@ -619,13 +670,13 @@ class AccountsApi extends BaseAPI {
      * Creates a new account
      * @summary Create a new account
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-     * @param {SaveAccountWrapper} data - The account to create.
+     * @param {PostAccountWrapper} data - The account to create.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
     createAccount(budget_id, data, options) {
-        return exports.AccountsApiFp(this.configuration).createAccount(budget_id, data, options)();
+        return (0, exports.AccountsApiFp)(this.configuration).createAccount(budget_id, data, options)();
     }
     /**
      * Returns a single account
@@ -637,7 +688,7 @@ class AccountsApi extends BaseAPI {
      * @memberof AccountsApi
      */
     getAccountById(budget_id, account_id, options) {
-        return exports.AccountsApiFp(this.configuration).getAccountById(budget_id, account_id, options)();
+        return (0, exports.AccountsApiFp)(this.configuration).getAccountById(budget_id, account_id, options)();
     }
     /**
      * Returns all accounts
@@ -649,7 +700,7 @@ class AccountsApi extends BaseAPI {
      * @memberof AccountsApi
      */
     getAccounts(budget_id, last_knowledge_of_server, options) {
-        return exports.AccountsApiFp(this.configuration).getAccounts(budget_id, last_knowledge_of_server, options)();
+        return (0, exports.AccountsApiFp)(this.configuration).getAccounts(budget_id, last_knowledge_of_server, options)();
     }
 }
 exports.AccountsApi = AccountsApi;
@@ -657,7 +708,7 @@ exports.AccountsApi = AccountsApi;
  * BudgetsApi - fetch parameter creator
  * @export
  */
-exports.BudgetsApiFetchParamCreator = function (configuration) {
+const BudgetsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -674,7 +725,8 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -688,12 +740,17 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -711,7 +768,8 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/settings`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -722,12 +780,17 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -740,7 +803,8 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
          */
         getBudgets(include_accounts, options = {}) {
             const localVarPath = `/budgets`;
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -754,22 +818,28 @@ exports.BudgetsApiFetchParamCreator = function (configuration) {
             if (include_accounts !== undefined) {
                 localVarQueryParameter['include_accounts'] = include_accounts;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.BudgetsApiFetchParamCreator = BudgetsApiFetchParamCreator;
 /**
  * BudgetsApi - functional programming interface
  * @export
  */
-exports.BudgetsApiFp = function (configuration) {
+const BudgetsApiFp = function (configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -780,7 +850,7 @@ exports.BudgetsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetById(budget_id, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.BudgetsApiFetchParamCreator(configuration).getBudgetById(budget_id, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.BudgetsApiFetchParamCreator)(configuration).getBudgetById(budget_id, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -804,7 +874,7 @@ exports.BudgetsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetSettingsById(budget_id, options) {
-            const localVarFetchArgs = exports.BudgetsApiFetchParamCreator(configuration).getBudgetSettingsById(budget_id, options);
+            const localVarFetchArgs = (0, exports.BudgetsApiFetchParamCreator)(configuration).getBudgetSettingsById(budget_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -828,7 +898,7 @@ exports.BudgetsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgets(include_accounts, options) {
-            const localVarFetchArgs = exports.BudgetsApiFetchParamCreator(configuration).getBudgets(include_accounts, options);
+            const localVarFetchArgs = (0, exports.BudgetsApiFetchParamCreator)(configuration).getBudgets(include_accounts, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -846,11 +916,12 @@ exports.BudgetsApiFp = function (configuration) {
         },
     };
 };
+exports.BudgetsApiFp = BudgetsApiFp;
 /**
  * BudgetsApi - factory interface
  * @export
  */
-exports.BudgetsApiFactory = function (configuration) {
+const BudgetsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single budget with all related entities.  This resource is effectively a full budget export.
@@ -861,7 +932,7 @@ exports.BudgetsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetById(budget_id, last_knowledge_of_server, options) {
-            return exports.BudgetsApiFp(configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
+            return (0, exports.BudgetsApiFp)(configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
         },
         /**
          * Returns settings for a budget
@@ -871,7 +942,7 @@ exports.BudgetsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetSettingsById(budget_id, options) {
-            return exports.BudgetsApiFp(configuration).getBudgetSettingsById(budget_id, options)();
+            return (0, exports.BudgetsApiFp)(configuration).getBudgetSettingsById(budget_id, options)();
         },
         /**
          * Returns budgets list with summary information
@@ -881,10 +952,11 @@ exports.BudgetsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgets(include_accounts, options) {
-            return exports.BudgetsApiFp(configuration).getBudgets(include_accounts, options)();
+            return (0, exports.BudgetsApiFp)(configuration).getBudgets(include_accounts, options)();
         },
     };
 };
+exports.BudgetsApiFactory = BudgetsApiFactory;
 /**
  * BudgetsApi - object-oriented interface
  * @export
@@ -902,7 +974,7 @@ class BudgetsApi extends BaseAPI {
      * @memberof BudgetsApi
      */
     getBudgetById(budget_id, last_knowledge_of_server, options) {
-        return exports.BudgetsApiFp(this.configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
+        return (0, exports.BudgetsApiFp)(this.configuration).getBudgetById(budget_id, last_knowledge_of_server, options)();
     }
     /**
      * Returns settings for a budget
@@ -913,7 +985,7 @@ class BudgetsApi extends BaseAPI {
      * @memberof BudgetsApi
      */
     getBudgetSettingsById(budget_id, options) {
-        return exports.BudgetsApiFp(this.configuration).getBudgetSettingsById(budget_id, options)();
+        return (0, exports.BudgetsApiFp)(this.configuration).getBudgetSettingsById(budget_id, options)();
     }
     /**
      * Returns budgets list with summary information
@@ -924,7 +996,7 @@ class BudgetsApi extends BaseAPI {
      * @memberof BudgetsApi
      */
     getBudgets(include_accounts, options) {
-        return exports.BudgetsApiFp(this.configuration).getBudgets(include_accounts, options)();
+        return (0, exports.BudgetsApiFp)(this.configuration).getBudgets(include_accounts, options)();
     }
 }
 exports.BudgetsApi = BudgetsApi;
@@ -932,7 +1004,7 @@ exports.BudgetsApi = BudgetsApi;
  * CategoriesApi - fetch parameter creator
  * @export
  */
-exports.CategoriesApiFetchParamCreator = function (configuration) {
+const CategoriesApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -949,7 +1021,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/categories`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -963,12 +1036,17 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -992,7 +1070,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/categories/{category_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1003,12 +1082,17 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -1038,7 +1122,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1049,12 +1134,17 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -1064,7 +1154,7 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
-         * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+         * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -1089,7 +1179,8 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1101,23 +1192,29 @@ exports.CategoriesApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = JSON.stringify(data || {});
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.CategoriesApiFetchParamCreator = CategoriesApiFetchParamCreator;
 /**
  * CategoriesApi - functional programming interface
  * @export
  */
-exports.CategoriesApiFp = function (configuration) {
+const CategoriesApiFp = function (configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -1128,7 +1225,7 @@ exports.CategoriesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCategories(budget_id, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.CategoriesApiFetchParamCreator(configuration).getCategories(budget_id, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.CategoriesApiFetchParamCreator)(configuration).getCategories(budget_id, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1153,7 +1250,7 @@ exports.CategoriesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCategoryById(budget_id, category_id, options) {
-            const localVarFetchArgs = exports.CategoriesApiFetchParamCreator(configuration).getCategoryById(budget_id, category_id, options);
+            const localVarFetchArgs = (0, exports.CategoriesApiFetchParamCreator)(configuration).getCategoryById(budget_id, category_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1179,7 +1276,7 @@ exports.CategoriesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getMonthCategoryById(budget_id, month, category_id, options) {
-            const localVarFetchArgs = exports.CategoriesApiFetchParamCreator(configuration).getMonthCategoryById(budget_id, month, category_id, options);
+            const localVarFetchArgs = (0, exports.CategoriesApiFetchParamCreator)(configuration).getMonthCategoryById(budget_id, month, category_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1201,12 +1298,12 @@ exports.CategoriesApiFp = function (configuration) {
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
-         * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+         * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         updateMonthCategory(budget_id, month, category_id, data, options) {
-            const localVarFetchArgs = exports.CategoriesApiFetchParamCreator(configuration).updateMonthCategory(budget_id, month, category_id, data, options);
+            const localVarFetchArgs = (0, exports.CategoriesApiFetchParamCreator)(configuration).updateMonthCategory(budget_id, month, category_id, data, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1224,11 +1321,12 @@ exports.CategoriesApiFp = function (configuration) {
         },
     };
 };
+exports.CategoriesApiFp = CategoriesApiFp;
 /**
  * CategoriesApi - factory interface
  * @export
  */
-exports.CategoriesApiFactory = function (configuration) {
+const CategoriesApiFactory = function (configuration) {
     return {
         /**
          * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -1239,7 +1337,7 @@ exports.CategoriesApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getCategories(budget_id, last_knowledge_of_server, options) {
-            return exports.CategoriesApiFp(configuration).getCategories(budget_id, last_knowledge_of_server, options)();
+            return (0, exports.CategoriesApiFp)(configuration).getCategories(budget_id, last_knowledge_of_server, options)();
         },
         /**
          * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -1250,7 +1348,7 @@ exports.CategoriesApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getCategoryById(budget_id, category_id, options) {
-            return exports.CategoriesApiFp(configuration).getCategoryById(budget_id, category_id, options)();
+            return (0, exports.CategoriesApiFp)(configuration).getCategoryById(budget_id, category_id, options)();
         },
         /**
          * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -1262,7 +1360,7 @@ exports.CategoriesApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getMonthCategoryById(budget_id, month, category_id, options) {
-            return exports.CategoriesApiFp(configuration).getMonthCategoryById(budget_id, month, category_id, options)();
+            return (0, exports.CategoriesApiFp)(configuration).getMonthCategoryById(budget_id, month, category_id, options)();
         },
         /**
          * Update a category for a specific month.  Only `budgeted` amount can be updated.
@@ -1270,15 +1368,16 @@ exports.CategoriesApiFactory = function (configuration) {
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
          * @param {string} category_id - The id of the category
-         * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+         * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         updateMonthCategory(budget_id, month, category_id, data, options) {
-            return exports.CategoriesApiFp(configuration).updateMonthCategory(budget_id, month, category_id, data, options)();
+            return (0, exports.CategoriesApiFp)(configuration).updateMonthCategory(budget_id, month, category_id, data, options)();
         },
     };
 };
+exports.CategoriesApiFactory = CategoriesApiFactory;
 /**
  * CategoriesApi - object-oriented interface
  * @export
@@ -1296,7 +1395,7 @@ class CategoriesApi extends BaseAPI {
      * @memberof CategoriesApi
      */
     getCategories(budget_id, last_knowledge_of_server, options) {
-        return exports.CategoriesApiFp(this.configuration).getCategories(budget_id, last_knowledge_of_server, options)();
+        return (0, exports.CategoriesApiFp)(this.configuration).getCategories(budget_id, last_knowledge_of_server, options)();
     }
     /**
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -1308,7 +1407,7 @@ class CategoriesApi extends BaseAPI {
      * @memberof CategoriesApi
      */
     getCategoryById(budget_id, category_id, options) {
-        return exports.CategoriesApiFp(this.configuration).getCategoryById(budget_id, category_id, options)();
+        return (0, exports.CategoriesApiFp)(this.configuration).getCategoryById(budget_id, category_id, options)();
     }
     /**
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
@@ -1321,7 +1420,7 @@ class CategoriesApi extends BaseAPI {
      * @memberof CategoriesApi
      */
     getMonthCategoryById(budget_id, month, category_id, options) {
-        return exports.CategoriesApiFp(this.configuration).getMonthCategoryById(budget_id, month, category_id, options)();
+        return (0, exports.CategoriesApiFp)(this.configuration).getMonthCategoryById(budget_id, month, category_id, options)();
     }
     /**
      * Update a category for a specific month.  Only `budgeted` amount can be updated.
@@ -1329,13 +1428,13 @@ class CategoriesApi extends BaseAPI {
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
-     * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+     * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
     updateMonthCategory(budget_id, month, category_id, data, options) {
-        return exports.CategoriesApiFp(this.configuration).updateMonthCategory(budget_id, month, category_id, data, options)();
+        return (0, exports.CategoriesApiFp)(this.configuration).updateMonthCategory(budget_id, month, category_id, data, options)();
     }
 }
 exports.CategoriesApi = CategoriesApi;
@@ -1343,7 +1442,7 @@ exports.CategoriesApi = CategoriesApi;
  * DeprecatedApi - fetch parameter creator
  * @export
  */
-exports.DeprecatedApiFetchParamCreator = function (configuration) {
+const DeprecatedApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -1364,7 +1463,8 @@ exports.DeprecatedApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/transactions/bulk`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1376,23 +1476,29 @@ exports.DeprecatedApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = JSON.stringify(transactions || {});
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.DeprecatedApiFetchParamCreator = DeprecatedApiFetchParamCreator;
 /**
  * DeprecatedApi - functional programming interface
  * @export
  */
-exports.DeprecatedApiFp = function (configuration) {
+const DeprecatedApiFp = function (configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -1403,7 +1509,7 @@ exports.DeprecatedApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         bulkCreateTransactions(budget_id, transactions, options) {
-            const localVarFetchArgs = exports.DeprecatedApiFetchParamCreator(configuration).bulkCreateTransactions(budget_id, transactions, options);
+            const localVarFetchArgs = (0, exports.DeprecatedApiFetchParamCreator)(configuration).bulkCreateTransactions(budget_id, transactions, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1421,11 +1527,12 @@ exports.DeprecatedApiFp = function (configuration) {
         },
     };
 };
+exports.DeprecatedApiFp = DeprecatedApiFp;
 /**
  * DeprecatedApi - factory interface
  * @export
  */
-exports.DeprecatedApiFactory = function (configuration) {
+const DeprecatedApiFactory = function (configuration) {
     return {
         /**
          * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use 'POST /budgets/{budget_id}/transactions' to create multiple transactions.
@@ -1436,10 +1543,11 @@ exports.DeprecatedApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         bulkCreateTransactions(budget_id, transactions, options) {
-            return exports.DeprecatedApiFp(configuration).bulkCreateTransactions(budget_id, transactions, options)();
+            return (0, exports.DeprecatedApiFp)(configuration).bulkCreateTransactions(budget_id, transactions, options)();
         },
     };
 };
+exports.DeprecatedApiFactory = DeprecatedApiFactory;
 /**
  * DeprecatedApi - object-oriented interface
  * @export
@@ -1457,7 +1565,7 @@ class DeprecatedApi extends BaseAPI {
      * @memberof DeprecatedApi
      */
     bulkCreateTransactions(budget_id, transactions, options) {
-        return exports.DeprecatedApiFp(this.configuration).bulkCreateTransactions(budget_id, transactions, options)();
+        return (0, exports.DeprecatedApiFp)(this.configuration).bulkCreateTransactions(budget_id, transactions, options)();
     }
 }
 exports.DeprecatedApi = DeprecatedApi;
@@ -1465,7 +1573,7 @@ exports.DeprecatedApi = DeprecatedApi;
  * MonthsApi - fetch parameter creator
  * @export
  */
-exports.MonthsApiFetchParamCreator = function (configuration) {
+const MonthsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single budget month
@@ -1487,7 +1595,8 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/months/{month}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"month"}}`, encodeURIComponent(convertDateToFullDateStringFormat(month)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1498,12 +1607,17 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -1522,7 +1636,8 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/months`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1536,22 +1651,28 @@ exports.MonthsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.MonthsApiFetchParamCreator = MonthsApiFetchParamCreator;
 /**
  * MonthsApi - functional programming interface
  * @export
  */
-exports.MonthsApiFp = function (configuration) {
+const MonthsApiFp = function (configuration) {
     return {
         /**
          * Returns a single budget month
@@ -1562,7 +1683,7 @@ exports.MonthsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetMonth(budget_id, month, options) {
-            const localVarFetchArgs = exports.MonthsApiFetchParamCreator(configuration).getBudgetMonth(budget_id, month, options);
+            const localVarFetchArgs = (0, exports.MonthsApiFetchParamCreator)(configuration).getBudgetMonth(budget_id, month, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1587,7 +1708,7 @@ exports.MonthsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetMonths(budget_id, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.MonthsApiFetchParamCreator(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.MonthsApiFetchParamCreator)(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1605,11 +1726,12 @@ exports.MonthsApiFp = function (configuration) {
         },
     };
 };
+exports.MonthsApiFp = MonthsApiFp;
 /**
  * MonthsApi - factory interface
  * @export
  */
-exports.MonthsApiFactory = function (configuration) {
+const MonthsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single budget month
@@ -1620,7 +1742,7 @@ exports.MonthsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetMonth(budget_id, month, options) {
-            return exports.MonthsApiFp(configuration).getBudgetMonth(budget_id, month, options)();
+            return (0, exports.MonthsApiFp)(configuration).getBudgetMonth(budget_id, month, options)();
         },
         /**
          * Returns all budget months
@@ -1631,10 +1753,11 @@ exports.MonthsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getBudgetMonths(budget_id, last_knowledge_of_server, options) {
-            return exports.MonthsApiFp(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options)();
+            return (0, exports.MonthsApiFp)(configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
+exports.MonthsApiFactory = MonthsApiFactory;
 /**
  * MonthsApi - object-oriented interface
  * @export
@@ -1652,7 +1775,7 @@ class MonthsApi extends BaseAPI {
      * @memberof MonthsApi
      */
     getBudgetMonth(budget_id, month, options) {
-        return exports.MonthsApiFp(this.configuration).getBudgetMonth(budget_id, month, options)();
+        return (0, exports.MonthsApiFp)(this.configuration).getBudgetMonth(budget_id, month, options)();
     }
     /**
      * Returns all budget months
@@ -1664,7 +1787,7 @@ class MonthsApi extends BaseAPI {
      * @memberof MonthsApi
      */
     getBudgetMonths(budget_id, last_knowledge_of_server, options) {
-        return exports.MonthsApiFp(this.configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options)();
+        return (0, exports.MonthsApiFp)(this.configuration).getBudgetMonths(budget_id, last_knowledge_of_server, options)();
     }
 }
 exports.MonthsApi = MonthsApi;
@@ -1672,7 +1795,7 @@ exports.MonthsApi = MonthsApi;
  * PayeeLocationsApi - fetch parameter creator
  * @export
  */
-exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
+const PayeeLocationsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single payee location
@@ -1694,7 +1817,8 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/payee_locations/{payee_location_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_location_id"}}`, encodeURIComponent(String(payee_location_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1705,12 +1829,17 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -1728,7 +1857,8 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/payee_locations`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1739,12 +1869,17 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -1768,7 +1903,8 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/payee_locations`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1779,22 +1915,28 @@ exports.PayeeLocationsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.PayeeLocationsApiFetchParamCreator = PayeeLocationsApiFetchParamCreator;
 /**
  * PayeeLocationsApi - functional programming interface
  * @export
  */
-exports.PayeeLocationsApiFp = function (configuration) {
+const PayeeLocationsApiFp = function (configuration) {
     return {
         /**
          * Returns a single payee location
@@ -1805,7 +1947,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocationById(budget_id, payee_location_id, options) {
-            const localVarFetchArgs = exports.PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationById(budget_id, payee_location_id, options);
+            const localVarFetchArgs = (0, exports.PayeeLocationsApiFetchParamCreator)(configuration).getPayeeLocationById(budget_id, payee_location_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1829,7 +1971,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocations(budget_id, options) {
-            const localVarFetchArgs = exports.PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocations(budget_id, options);
+            const localVarFetchArgs = (0, exports.PayeeLocationsApiFetchParamCreator)(configuration).getPayeeLocations(budget_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1854,7 +1996,7 @@ exports.PayeeLocationsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocationsByPayee(budget_id, payee_id, options) {
-            const localVarFetchArgs = exports.PayeeLocationsApiFetchParamCreator(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options);
+            const localVarFetchArgs = (0, exports.PayeeLocationsApiFetchParamCreator)(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -1872,11 +2014,12 @@ exports.PayeeLocationsApiFp = function (configuration) {
         },
     };
 };
+exports.PayeeLocationsApiFp = PayeeLocationsApiFp;
 /**
  * PayeeLocationsApi - factory interface
  * @export
  */
-exports.PayeeLocationsApiFactory = function (configuration) {
+const PayeeLocationsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single payee location
@@ -1887,7 +2030,7 @@ exports.PayeeLocationsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocationById(budget_id, payee_location_id, options) {
-            return exports.PayeeLocationsApiFp(configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
+            return (0, exports.PayeeLocationsApiFp)(configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
         },
         /**
          * Returns all payee locations
@@ -1897,7 +2040,7 @@ exports.PayeeLocationsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocations(budget_id, options) {
-            return exports.PayeeLocationsApiFp(configuration).getPayeeLocations(budget_id, options)();
+            return (0, exports.PayeeLocationsApiFp)(configuration).getPayeeLocations(budget_id, options)();
         },
         /**
          * Returns all payee locations for a specified payee
@@ -1908,10 +2051,11 @@ exports.PayeeLocationsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeLocationsByPayee(budget_id, payee_id, options) {
-            return exports.PayeeLocationsApiFp(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
+            return (0, exports.PayeeLocationsApiFp)(configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
         },
     };
 };
+exports.PayeeLocationsApiFactory = PayeeLocationsApiFactory;
 /**
  * PayeeLocationsApi - object-oriented interface
  * @export
@@ -1929,7 +2073,7 @@ class PayeeLocationsApi extends BaseAPI {
      * @memberof PayeeLocationsApi
      */
     getPayeeLocationById(budget_id, payee_location_id, options) {
-        return exports.PayeeLocationsApiFp(this.configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
+        return (0, exports.PayeeLocationsApiFp)(this.configuration).getPayeeLocationById(budget_id, payee_location_id, options)();
     }
     /**
      * Returns all payee locations
@@ -1940,7 +2084,7 @@ class PayeeLocationsApi extends BaseAPI {
      * @memberof PayeeLocationsApi
      */
     getPayeeLocations(budget_id, options) {
-        return exports.PayeeLocationsApiFp(this.configuration).getPayeeLocations(budget_id, options)();
+        return (0, exports.PayeeLocationsApiFp)(this.configuration).getPayeeLocations(budget_id, options)();
     }
     /**
      * Returns all payee locations for a specified payee
@@ -1952,7 +2096,7 @@ class PayeeLocationsApi extends BaseAPI {
      * @memberof PayeeLocationsApi
      */
     getPayeeLocationsByPayee(budget_id, payee_id, options) {
-        return exports.PayeeLocationsApiFp(this.configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
+        return (0, exports.PayeeLocationsApiFp)(this.configuration).getPayeeLocationsByPayee(budget_id, payee_id, options)();
     }
 }
 exports.PayeeLocationsApi = PayeeLocationsApi;
@@ -1960,7 +2104,7 @@ exports.PayeeLocationsApi = PayeeLocationsApi;
  * PayeesApi - fetch parameter creator
  * @export
  */
-exports.PayeesApiFetchParamCreator = function (configuration) {
+const PayeesApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single payee
@@ -1982,7 +2126,8 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -1993,12 +2138,17 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2017,7 +2167,8 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/payees`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2031,22 +2182,28 @@ exports.PayeesApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.PayeesApiFetchParamCreator = PayeesApiFetchParamCreator;
 /**
  * PayeesApi - functional programming interface
  * @export
  */
-exports.PayeesApiFp = function (configuration) {
+const PayeesApiFp = function (configuration) {
     return {
         /**
          * Returns a single payee
@@ -2057,7 +2214,7 @@ exports.PayeesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeById(budget_id, payee_id, options) {
-            const localVarFetchArgs = exports.PayeesApiFetchParamCreator(configuration).getPayeeById(budget_id, payee_id, options);
+            const localVarFetchArgs = (0, exports.PayeesApiFetchParamCreator)(configuration).getPayeeById(budget_id, payee_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2082,7 +2239,7 @@ exports.PayeesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPayees(budget_id, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.PayeesApiFetchParamCreator(configuration).getPayees(budget_id, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.PayeesApiFetchParamCreator)(configuration).getPayees(budget_id, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2100,11 +2257,12 @@ exports.PayeesApiFp = function (configuration) {
         },
     };
 };
+exports.PayeesApiFp = PayeesApiFp;
 /**
  * PayeesApi - factory interface
  * @export
  */
-exports.PayeesApiFactory = function (configuration) {
+const PayeesApiFactory = function (configuration) {
     return {
         /**
          * Returns a single payee
@@ -2115,7 +2273,7 @@ exports.PayeesApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getPayeeById(budget_id, payee_id, options) {
-            return exports.PayeesApiFp(configuration).getPayeeById(budget_id, payee_id, options)();
+            return (0, exports.PayeesApiFp)(configuration).getPayeeById(budget_id, payee_id, options)();
         },
         /**
          * Returns all payees
@@ -2126,10 +2284,11 @@ exports.PayeesApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getPayees(budget_id, last_knowledge_of_server, options) {
-            return exports.PayeesApiFp(configuration).getPayees(budget_id, last_knowledge_of_server, options)();
+            return (0, exports.PayeesApiFp)(configuration).getPayees(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
+exports.PayeesApiFactory = PayeesApiFactory;
 /**
  * PayeesApi - object-oriented interface
  * @export
@@ -2147,7 +2306,7 @@ class PayeesApi extends BaseAPI {
      * @memberof PayeesApi
      */
     getPayeeById(budget_id, payee_id, options) {
-        return exports.PayeesApiFp(this.configuration).getPayeeById(budget_id, payee_id, options)();
+        return (0, exports.PayeesApiFp)(this.configuration).getPayeeById(budget_id, payee_id, options)();
     }
     /**
      * Returns all payees
@@ -2159,7 +2318,7 @@ class PayeesApi extends BaseAPI {
      * @memberof PayeesApi
      */
     getPayees(budget_id, last_knowledge_of_server, options) {
-        return exports.PayeesApiFp(this.configuration).getPayees(budget_id, last_knowledge_of_server, options)();
+        return (0, exports.PayeesApiFp)(this.configuration).getPayees(budget_id, last_knowledge_of_server, options)();
     }
 }
 exports.PayeesApi = PayeesApi;
@@ -2167,7 +2326,7 @@ exports.PayeesApi = PayeesApi;
  * ScheduledTransactionsApi - fetch parameter creator
  * @export
  */
-exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
+const ScheduledTransactionsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -2189,7 +2348,8 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(scheduled_transaction_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2200,12 +2360,17 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2224,7 +2389,8 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/scheduled_transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2238,22 +2404,28 @@ exports.ScheduledTransactionsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.ScheduledTransactionsApiFetchParamCreator = ScheduledTransactionsApiFetchParamCreator;
 /**
  * ScheduledTransactionsApi - functional programming interface
  * @export
  */
-exports.ScheduledTransactionsApiFp = function (configuration) {
+const ScheduledTransactionsApiFp = function (configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -2264,7 +2436,7 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScheduledTransactionById(budget_id, scheduled_transaction_id, options) {
-            const localVarFetchArgs = exports.ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options);
+            const localVarFetchArgs = (0, exports.ScheduledTransactionsApiFetchParamCreator)(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2289,7 +2461,7 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScheduledTransactions(budget_id, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.ScheduledTransactionsApiFetchParamCreator(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.ScheduledTransactionsApiFetchParamCreator)(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2307,11 +2479,12 @@ exports.ScheduledTransactionsApiFp = function (configuration) {
         },
     };
 };
+exports.ScheduledTransactionsApiFp = ScheduledTransactionsApiFp;
 /**
  * ScheduledTransactionsApi - factory interface
  * @export
  */
-exports.ScheduledTransactionsApiFactory = function (configuration) {
+const ScheduledTransactionsApiFactory = function (configuration) {
     return {
         /**
          * Returns a single scheduled transaction
@@ -2322,7 +2495,7 @@ exports.ScheduledTransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getScheduledTransactionById(budget_id, scheduled_transaction_id, options) {
-            return exports.ScheduledTransactionsApiFp(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
+            return (0, exports.ScheduledTransactionsApiFp)(configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
         },
         /**
          * Returns all scheduled transactions
@@ -2333,10 +2506,11 @@ exports.ScheduledTransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getScheduledTransactions(budget_id, last_knowledge_of_server, options) {
-            return exports.ScheduledTransactionsApiFp(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
+            return (0, exports.ScheduledTransactionsApiFp)(configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
         },
     };
 };
+exports.ScheduledTransactionsApiFactory = ScheduledTransactionsApiFactory;
 /**
  * ScheduledTransactionsApi - object-oriented interface
  * @export
@@ -2354,7 +2528,7 @@ class ScheduledTransactionsApi extends BaseAPI {
      * @memberof ScheduledTransactionsApi
      */
     getScheduledTransactionById(budget_id, scheduled_transaction_id, options) {
-        return exports.ScheduledTransactionsApiFp(this.configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
+        return (0, exports.ScheduledTransactionsApiFp)(this.configuration).getScheduledTransactionById(budget_id, scheduled_transaction_id, options)();
     }
     /**
      * Returns all scheduled transactions
@@ -2366,7 +2540,7 @@ class ScheduledTransactionsApi extends BaseAPI {
      * @memberof ScheduledTransactionsApi
      */
     getScheduledTransactions(budget_id, last_knowledge_of_server, options) {
-        return exports.ScheduledTransactionsApiFp(this.configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
+        return (0, exports.ScheduledTransactionsApiFp)(this.configuration).getScheduledTransactions(budget_id, last_knowledge_of_server, options)();
     }
 }
 exports.ScheduledTransactionsApi = ScheduledTransactionsApi;
@@ -2374,13 +2548,13 @@ exports.ScheduledTransactionsApi = ScheduledTransactionsApi;
  * TransactionsApi - fetch parameter creator
  * @export
  */
-exports.TransactionsApiFetchParamCreator = function (configuration) {
+const TransactionsApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
          * @summary Create a single transaction or multiple transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-         * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+         * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2395,7 +2569,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2407,13 +2582,64 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = JSON.stringify(data || {});
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a transaction
+         * @summary Deletes an existing transaction
+         * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+         * @param {string} transaction_id - The id of the transaction
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        deleteTransaction(budget_id, transaction_id, options = {}) {
+            // verify required parameter 'budget_id' is not null or undefined
+            if (budget_id === null || budget_id === undefined) {
+                throw new RequiredError('budget_id', 'Required parameter budget_id was null or undefined when calling deleteTransaction.');
+            }
+            // verify required parameter 'transaction_id' is not null or undefined
+            if (transaction_id === null || transaction_id === undefined) {
+                throw new RequiredError('transaction_id', 'Required parameter transaction_id was null or undefined when calling deleteTransaction.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
+                .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter["User-Agent"] = USER_AGENT;
+            localVarHeaderParameter["Accept"] = "application/json";
+            // authentication bearer required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = configuration.apiKey;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2437,7 +2663,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2448,12 +2675,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2474,7 +2706,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2494,12 +2727,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2526,7 +2764,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/accounts/{account_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(account_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2546,12 +2785,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2578,7 +2822,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/categories/{category_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(category_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2598,12 +2843,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2630,7 +2880,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/payees/{payee_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"payee_id"}}`, encodeURIComponent(String(payee_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2650,12 +2901,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             if (last_knowledge_of_server !== undefined) {
                 localVarQueryParameter['last_knowledge_of_server'] = last_knowledge_of_server;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2673,7 +2929,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/transactions/import`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2684,12 +2941,17 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2698,7 +2960,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} transaction_id - The id of the transaction
-         * @param {SaveTransactionWrapper} data - The transaction to update
+         * @param {PutTransactionWrapper} data - The transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2718,7 +2980,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             const localVarPath = `/budgets/{budget_id}/transactions/{transaction_id}`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)))
                 .replace(`{${"transaction_id"}}`, encodeURIComponent(String(transaction_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2730,13 +2993,18 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = JSON.stringify(data || {});
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
@@ -2744,7 +3012,7 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
          * Updates multiple transactions, by `id` or `import_id`.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+         * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
@@ -2759,7 +3027,8 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
             }
             const localVarPath = `/budgets/{budget_id}/transactions`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budget_id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -2771,34 +3040,65 @@ exports.TransactionsApiFetchParamCreator = function (configuration) {
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = JSON.stringify(data || {});
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.TransactionsApiFetchParamCreator = TransactionsApiFetchParamCreator;
 /**
  * TransactionsApi - functional programming interface
  * @export
  */
-exports.TransactionsApiFp = function (configuration) {
+const TransactionsApiFp = function (configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
          * @summary Create a single transaction or multiple transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-         * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+         * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         createTransaction(budget_id, data, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).createTransaction(budget_id, data, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).createTransaction(budget_id, data, options);
+            return (fetchFunction = fetch) => {
+                return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
+                    if (response.status >= 200 && response.status < 300) {
+                        const apiResponse = yield response.json();
+                        apiResponse.rateLimit = response.headers.get("X-Rate-Limit");
+                        return apiResponse;
+                    }
+                    else {
+                        return response.json().then((e) => {
+                            return Promise.reject(e);
+                        });
+                    }
+                }));
+            };
+        },
+        /**
+         * Deletes a transaction
+         * @summary Deletes an existing transaction
+         * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+         * @param {string} transaction_id - The id of the transaction
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        deleteTransaction(budget_id, transaction_id, options) {
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).deleteTransaction(budget_id, transaction_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2823,7 +3123,7 @@ exports.TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionById(budget_id, transaction_id, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactionById(budget_id, transaction_id, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).getTransactionById(budget_id, transaction_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2850,7 +3150,7 @@ exports.TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactions(budget_id, since_date, type, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2878,7 +3178,7 @@ exports.TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2906,7 +3206,7 @@ exports.TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2934,7 +3234,7 @@ exports.TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2958,7 +3258,7 @@ exports.TransactionsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         importTransactions(budget_id, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).importTransactions(budget_id, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).importTransactions(budget_id, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -2979,12 +3279,12 @@ exports.TransactionsApiFp = function (configuration) {
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} transaction_id - The id of the transaction
-         * @param {SaveTransactionWrapper} data - The transaction to update
+         * @param {PutTransactionWrapper} data - The transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         updateTransaction(budget_id, transaction_id, data, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).updateTransaction(budget_id, transaction_id, data, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).updateTransaction(budget_id, transaction_id, data, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -3004,12 +3304,12 @@ exports.TransactionsApiFp = function (configuration) {
          * Updates multiple transactions, by `id` or `import_id`.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+         * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         updateTransactions(budget_id, data, options) {
-            const localVarFetchArgs = exports.TransactionsApiFetchParamCreator(configuration).updateTransactions(budget_id, data, options);
+            const localVarFetchArgs = (0, exports.TransactionsApiFetchParamCreator)(configuration).updateTransactions(budget_id, data, options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -3027,22 +3327,34 @@ exports.TransactionsApiFp = function (configuration) {
         },
     };
 };
+exports.TransactionsApiFp = TransactionsApiFp;
 /**
  * TransactionsApi - factory interface
  * @export
  */
-exports.TransactionsApiFactory = function (configuration) {
+const TransactionsApiFactory = function (configuration) {
     return {
         /**
          * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
          * @summary Create a single transaction or multiple transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-         * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+         * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         createTransaction(budget_id, data, options) {
-            return exports.TransactionsApiFp(configuration).createTransaction(budget_id, data, options)();
+            return (0, exports.TransactionsApiFp)(configuration).createTransaction(budget_id, data, options)();
+        },
+        /**
+         * Deletes a transaction
+         * @summary Deletes an existing transaction
+         * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+         * @param {string} transaction_id - The id of the transaction
+         * @param {*} [options] - Override http request options.
+         * @throws {RequiredError}
+         */
+        deleteTransaction(budget_id, transaction_id, options) {
+            return (0, exports.TransactionsApiFp)(configuration).deleteTransaction(budget_id, transaction_id, options)();
         },
         /**
          * Returns a single transaction
@@ -3053,7 +3365,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionById(budget_id, transaction_id, options) {
-            return exports.TransactionsApiFp(configuration).getTransactionById(budget_id, transaction_id, options)();
+            return (0, exports.TransactionsApiFp)(configuration).getTransactionById(budget_id, transaction_id, options)();
         },
         /**
          * Returns budget transactions
@@ -3066,7 +3378,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactions(budget_id, since_date, type, last_knowledge_of_server, options) {
-            return exports.TransactionsApiFp(configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options)();
+            return (0, exports.TransactionsApiFp)(configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options)();
         },
         /**
          * Returns all transactions for a specified account
@@ -3080,7 +3392,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options) {
-            return exports.TransactionsApiFp(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options)();
+            return (0, exports.TransactionsApiFp)(configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options)();
         },
         /**
          * Returns all transactions for a specified category
@@ -3094,7 +3406,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options) {
-            return exports.TransactionsApiFp(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options)();
+            return (0, exports.TransactionsApiFp)(configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options)();
         },
         /**
          * Returns all transactions for a specified payee
@@ -3108,7 +3420,7 @@ exports.TransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options) {
-            return exports.TransactionsApiFp(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options)();
+            return (0, exports.TransactionsApiFp)(configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options)();
         },
         /**
          * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
@@ -3118,33 +3430,34 @@ exports.TransactionsApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         importTransactions(budget_id, options) {
-            return exports.TransactionsApiFp(configuration).importTransactions(budget_id, options)();
+            return (0, exports.TransactionsApiFp)(configuration).importTransactions(budget_id, options)();
         },
         /**
          * Updates a single transaction
          * @summary Updates an existing transaction
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
          * @param {string} transaction_id - The id of the transaction
-         * @param {SaveTransactionWrapper} data - The transaction to update
+         * @param {PutTransactionWrapper} data - The transaction to update
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         updateTransaction(budget_id, transaction_id, data, options) {
-            return exports.TransactionsApiFp(configuration).updateTransaction(budget_id, transaction_id, data, options)();
+            return (0, exports.TransactionsApiFp)(configuration).updateTransaction(budget_id, transaction_id, data, options)();
         },
         /**
          * Updates multiple transactions, by `id` or `import_id`.
          * @summary Update multiple transactions
          * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-         * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+         * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
          * @param {*} [options] - Override http request options.
          * @throws {RequiredError}
          */
         updateTransactions(budget_id, data, options) {
-            return exports.TransactionsApiFp(configuration).updateTransactions(budget_id, data, options)();
+            return (0, exports.TransactionsApiFp)(configuration).updateTransactions(budget_id, data, options)();
         },
     };
 };
+exports.TransactionsApiFactory = TransactionsApiFactory;
 /**
  * TransactionsApi - object-oriented interface
  * @export
@@ -3156,13 +3469,25 @@ class TransactionsApi extends BaseAPI {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+     * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
     createTransaction(budget_id, data, options) {
-        return exports.TransactionsApiFp(this.configuration).createTransaction(budget_id, data, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).createTransaction(budget_id, data, options)();
+    }
+    /**
+     * Deletes a transaction
+     * @summary Deletes an existing transaction
+     * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+     * @param {string} transaction_id - The id of the transaction
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    deleteTransaction(budget_id, transaction_id, options) {
+        return (0, exports.TransactionsApiFp)(this.configuration).deleteTransaction(budget_id, transaction_id, options)();
     }
     /**
      * Returns a single transaction
@@ -3174,7 +3499,7 @@ class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionById(budget_id, transaction_id, options) {
-        return exports.TransactionsApiFp(this.configuration).getTransactionById(budget_id, transaction_id, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).getTransactionById(budget_id, transaction_id, options)();
     }
     /**
      * Returns budget transactions
@@ -3188,7 +3513,7 @@ class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactions(budget_id, since_date, type, last_knowledge_of_server, options) {
-        return exports.TransactionsApiFp(this.configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).getTransactions(budget_id, since_date, type, last_knowledge_of_server, options)();
     }
     /**
      * Returns all transactions for a specified account
@@ -3203,7 +3528,7 @@ class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options) {
-        return exports.TransactionsApiFp(this.configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).getTransactionsByAccount(budget_id, account_id, since_date, type, last_knowledge_of_server, options)();
     }
     /**
      * Returns all transactions for a specified category
@@ -3218,7 +3543,7 @@ class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options) {
-        return exports.TransactionsApiFp(this.configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).getTransactionsByCategory(budget_id, category_id, since_date, type, last_knowledge_of_server, options)();
     }
     /**
      * Returns all transactions for a specified payee
@@ -3233,7 +3558,7 @@ class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options) {
-        return exports.TransactionsApiFp(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).getTransactionsByPayee(budget_id, payee_id, since_date, type, last_knowledge_of_server, options)();
     }
     /**
      * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
@@ -3244,32 +3569,32 @@ class TransactionsApi extends BaseAPI {
      * @memberof TransactionsApi
      */
     importTransactions(budget_id, options) {
-        return exports.TransactionsApiFp(this.configuration).importTransactions(budget_id, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).importTransactions(budget_id, options)();
     }
     /**
      * Updates a single transaction
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} data - The transaction to update
+     * @param {PutTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
     updateTransaction(budget_id, transaction_id, data, options) {
-        return exports.TransactionsApiFp(this.configuration).updateTransaction(budget_id, transaction_id, data, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).updateTransaction(budget_id, transaction_id, data, options)();
     }
     /**
      * Updates multiple transactions, by `id` or `import_id`.
      * @summary Update multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+     * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
     updateTransactions(budget_id, data, options) {
-        return exports.TransactionsApiFp(this.configuration).updateTransactions(budget_id, data, options)();
+        return (0, exports.TransactionsApiFp)(this.configuration).updateTransactions(budget_id, data, options)();
     }
 }
 exports.TransactionsApi = TransactionsApi;
@@ -3277,7 +3602,7 @@ exports.TransactionsApi = TransactionsApi;
  * UserApi - fetch parameter creator
  * @export
  */
-exports.UserApiFetchParamCreator = function (configuration) {
+const UserApiFetchParamCreator = function (configuration) {
     return {
         /**
          * Returns authenticated user information
@@ -3287,7 +3612,8 @@ exports.UserApiFetchParamCreator = function (configuration) {
          */
         getUser(options = {}) {
             const localVarPath = `/user`;
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
@@ -3298,22 +3624,28 @@ exports.UserApiFetchParamCreator = function (configuration) {
                 const localVarApiKeyValue = configuration.apiKey;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.UserApiFetchParamCreator = UserApiFetchParamCreator;
 /**
  * UserApi - functional programming interface
  * @export
  */
-exports.UserApiFp = function (configuration) {
+const UserApiFp = function (configuration) {
     return {
         /**
          * Returns authenticated user information
@@ -3322,7 +3654,7 @@ exports.UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getUser(options) {
-            const localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).getUser(options);
+            const localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).getUser(options);
             return (fetchFunction = fetch) => {
                 return fetchFunction(configuration.basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => __awaiter(this, void 0, void 0, function* () {
                     if (response.status >= 200 && response.status < 300) {
@@ -3340,11 +3672,12 @@ exports.UserApiFp = function (configuration) {
         },
     };
 };
+exports.UserApiFp = UserApiFp;
 /**
  * UserApi - factory interface
  * @export
  */
-exports.UserApiFactory = function (configuration) {
+const UserApiFactory = function (configuration) {
     return {
         /**
          * Returns authenticated user information
@@ -3353,10 +3686,11 @@ exports.UserApiFactory = function (configuration) {
          * @throws {RequiredError}
          */
         getUser(options) {
-            return exports.UserApiFp(configuration).getUser(options)();
+            return (0, exports.UserApiFp)(configuration).getUser(options)();
         },
     };
 };
+exports.UserApiFactory = UserApiFactory;
 /**
  * UserApi - object-oriented interface
  * @export
@@ -3372,7 +3706,7 @@ class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     getUser(options) {
-        return exports.UserApiFp(this.configuration).getUser(options)();
+        return (0, exports.UserApiFp)(this.configuration).getUser(options)();
     }
 }
 exports.UserApi = UserApi;

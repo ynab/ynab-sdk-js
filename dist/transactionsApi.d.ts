@@ -22,7 +22,7 @@ export declare class TransactionsApi extends CodeGen.TransactionsApi {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransactions(budget_id: string, data: CodeGen.SaveTransactionsWrapper, options?: any): Promise<CodeGen.SaveTransactionsResponse & {
+    createTransactions(budget_id: string, data: CodeGen.PostTransactionsWrapper, options?: any): Promise<CodeGen.SaveTransactionsResponse & {
         rateLimit: string | null;
     }>;
     /**

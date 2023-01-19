@@ -37,7 +37,7 @@ export class TransactionsApi extends CodeGen.TransactionsApi {
    */
   public createTransactions(
     budget_id: string,
-    data: CodeGen.SaveTransactionsWrapper,
+    data: CodeGen.PostTransactionsWrapper,
     options?: any
   ) {
     return CodeGen.TransactionsApiFp(this.configuration).createTransaction(
