@@ -116,7 +116,8 @@ export const {{classname}}FetchParamCreator = function (configuration: Configura
     {{/allParams}}
             const localVarPath = `{{{path}}}`{{#pathParams}}
                 .replace(`{${"{{baseName}}"}}`, encodeURIComponent({{#isDateTime}}{{paramName}}.toISOString(){{/isDateTime}}{{^isDateTime}}{{#isDate}}convertDateToFullDateStringFormat({{paramName}}){{/isDate}}{{^isDate}}String({{paramName}}){{/isDate}}{{/isDateTime}})){{/pathParams}};
-            const localVarUrlObj = url.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             const localVarRequestOptions = Object.assign({ method: '{{httpMethod}}' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -231,9 +232,14 @@ export const {{classname}}FetchParamCreator = function (configuration: Configura
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
     {{/bodyParam}}
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
     {{#hasFormParams}}
             localVarRequestOptions.body = localVarFormParams.toString();
@@ -243,7 +249,7 @@ export const {{classname}}FetchParamCreator = function (configuration: Configura
     {{/bodyParam}}
 
             return {
-                url: url.format(localVarUrlObj),
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
             };
         },
