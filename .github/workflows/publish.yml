@@ -25,7 +25,7 @@ jobs:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
       - run: npm install
-      - name: Version
+      - name: Bump Version
         run: |
           npm version ${{ github.event.inputs.version_type }} --force -m "Version %s"
       - name: Push release commit and tag to GitHub
