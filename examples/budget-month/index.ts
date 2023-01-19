@@ -1,4 +1,4 @@
-import * as ynab from "../../dist/index.js";
+import * as ynab from "../../src/index";
 
 const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
 const ynabAPI = new ynab.API(accessToken);
