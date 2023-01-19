@@ -1,0 +1,50 @@
+name: Publish
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        type: choice
+        description: Version type
+        default: minor
+        options:
+        - major
+        - minor
+        - patch
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: refs/heads/main
+      - name: Setup git repo
+        run: |
+          git config user.name $GITHUB_ACTOR
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+      - run: npm install
+      - name: Version
+        run: |
+          npm version ${{ github.event.inputs.version_type }} --force -m "Version %s"
+      - name: Push release commit and tag to GitHub
+        id: push
+        run: |
+          git push gh-origin HEAD:main --tags
+          echo "::set-output name=tag-name::$(git describe --tags --abbrev=0)"
+      - name: Publish to npm
+        run: |
+          npm set //registry.npmjs.org/:_authToken ${{ secrets.NODE_AUTH_TOKEN }}
+          npm publish
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: npm-logs
+          path: ~/.npm/_logs
+      - name: Create a Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.push.outputs.tag-name }}
+          generate_release_notes: true

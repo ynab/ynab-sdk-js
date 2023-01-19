@@ -30,7 +30,7 @@
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production && npm run build_examples",
     "build_examples": "tsc -b examples/",
     "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'",
-    "release": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'; npm-github-release"
+    "prepublishOnly": "npm run build && npm run test && git add dist/* && git commit -m 'Build dist/'"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
@@ -41,7 +41,6 @@
     "fetch-mock": "^9.10.6",
     "jsh": "0.34.0",
     "mocha": "^10.2.0",
-    "npm-github-release": "^0.13.0",
     "swagger-model-validator": "^3.0.19",
     "ts-loader": "^8.0.2",
     "ts-node": "^8.10.2",
