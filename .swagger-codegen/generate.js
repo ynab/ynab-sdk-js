@@ -1,4 +1,4 @@
-#!/usr/local/bin/npx jsh
+#!/usr/bin/env npx jsh
 
 const rootFolder = require("path").join(__dirname, "../");
 const specFilename = `spec-v1-swagger.json`;
