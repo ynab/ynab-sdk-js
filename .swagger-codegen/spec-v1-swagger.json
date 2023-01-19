@@ -260,7 +260,7 @@
             "description": "The account to create.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveAccountWrapper"
+              "$ref": "#/definitions/PostAccountWrapper"
             }
           }
         ],
@@ -504,7 +504,7 @@
             "description": "The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveMonthCategoryWrapper"
+              "$ref": "#/definitions/PatchMonthCategoryWrapper"
             }
           }
         ],
@@ -916,7 +916,7 @@
             "description": "The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveTransactionsWrapper"
+              "$ref": "#/definitions/PostTransactionsWrapper"
             }
           }
         ],
@@ -961,7 +961,7 @@
             "description": "The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/UpdateTransactionsWrapper"
+              "$ref": "#/definitions/PatchTransactionsWrapper"
             }
           }
         ],
@@ -1090,7 +1090,7 @@
             "description": "The transaction to update",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveTransactionWrapper"
+              "$ref": "#/definitions/PutTransactionWrapper"
             }
           }
         ],
@@ -1103,6 +1103,43 @@
           },
           "400": {
             "description": "The request could not be understood due to malformed syntax or validation error(s)",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Transactions"],
+        "summary": "Deletes an existing transaction",
+        "description": "Deletes a transaction",
+        "operationId": "deleteTransaction",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "budget_id",
+            "in": "path",
+            "description": "The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "The id of the transaction",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The transaction was successfully deleted",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponse"
+            }
+          },
+          "404": {
+            "description": "The transaction was not found",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1848,7 +1885,7 @@
         }
       }
     },
-    "SaveAccountWrapper": {
+    "PostAccountWrapper": {
       "type": "object",
       "required": ["account"],
       "properties": {
@@ -2248,7 +2285,7 @@
         }
       }
     },
-    "SaveTransactionWrapper": {
+    "PutTransactionWrapper": {
       "type": "object",
       "required": ["transaction"],
       "properties": {
@@ -2257,7 +2294,7 @@
         }
       }
     },
-    "SaveTransactionsWrapper": {
+    "PostTransactionsWrapper": {
       "type": "object",
       "properties": {
         "transaction": {
@@ -2271,23 +2308,32 @@
         }
       }
     },
-    "UpdateTransactionsWrapper": {
+    "SaveTransaction": {
+      "allOf": [
+        {
+          "required": ["account_id", "date", "amount"]
+        },
+        {
+          "$ref": "#/definitions/SaveTransactionWithOptionalFields"
+        }
+      ]
+    },
+    "PatchTransactionsWrapper": {
       "type": "object",
       "required": ["transactions"],
       "properties": {
         "transactions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/UpdateTransaction"
+            "$ref": "#/definitions/SaveTransactionWithId"
           }
         }
       }
     },
-    "UpdateTransaction": {
+    "SaveTransactionWithId": {
       "allOf": [
         {
           "type": "object",
-          "required": ["id"],
           "properties": {
             "id": {
               "type": "string"
@@ -2295,13 +2341,12 @@
           }
         },
         {
-          "$ref": "#/definitions/SaveTransaction"
+          "$ref": "#/definitions/SaveTransactionWithOptionalFields"
         }
       ]
     },
-    "SaveTransaction": {
+    "SaveTransactionWithOptionalFields": {
       "type": "object",
-      "required": ["account_id", "date", "amount"],
       "properties": {
         "account_id": {
           "type": "string",
@@ -2512,7 +2557,17 @@
         },
         "import_id": {
           "type": "string",
-          "description": "If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'."
+          "description": "If the transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'."
+        },
+        "import_payee_name": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "If the transaction was imported, the payee name that was used when importing and before applying any payee rename rules"
+        },
+        "import_payee_name_original": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "If the transaction was imported, the original payee name as it appeared on the statement"
         },
         "deleted": {
           "type": "boolean",
@@ -2580,7 +2635,7 @@
         }
       ]
     },
-    "SaveMonthCategoryWrapper": {
+    "PatchMonthCategoryWrapper": {
       "type": "object",
       "required": ["category"],
       "properties": {

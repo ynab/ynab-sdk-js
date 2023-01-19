@@ -923,6 +923,32 @@ export interface MonthSummary {
 /**
  *
  * @export
+ * @interface PatchMonthCategoryWrapper
+ */
+export interface PatchMonthCategoryWrapper {
+    /**
+     *
+     * @type {SaveMonthCategory}
+     * @memberof PatchMonthCategoryWrapper
+     */
+    category: SaveMonthCategory;
+}
+/**
+ *
+ * @export
+ * @interface PatchTransactionsWrapper
+ */
+export interface PatchTransactionsWrapper {
+    /**
+     *
+     * @type {Array<SaveTransactionWithId>}
+     * @memberof PatchTransactionsWrapper
+     */
+    transactions: Array<SaveTransactionWithId>;
+}
+/**
+ *
+ * @export
  * @interface Payee
  */
 export interface Payee {
@@ -1101,6 +1127,51 @@ export interface PayeesResponseData {
 /**
  *
  * @export
+ * @interface PostAccountWrapper
+ */
+export interface PostAccountWrapper {
+    /**
+     *
+     * @type {SaveAccount}
+     * @memberof PostAccountWrapper
+     */
+    account: SaveAccount;
+}
+/**
+ *
+ * @export
+ * @interface PostTransactionsWrapper
+ */
+export interface PostTransactionsWrapper {
+    /**
+     *
+     * @type {SaveTransaction}
+     * @memberof PostTransactionsWrapper
+     */
+    transaction?: SaveTransaction | null;
+    /**
+     *
+     * @type {Array<SaveTransaction>}
+     * @memberof PostTransactionsWrapper
+     */
+    transactions?: Array<SaveTransaction> | null;
+}
+/**
+ *
+ * @export
+ * @interface PutTransactionWrapper
+ */
+export interface PutTransactionWrapper {
+    /**
+     *
+     * @type {SaveTransaction}
+     * @memberof PutTransactionWrapper
+     */
+    transaction: SaveTransaction;
+}
+/**
+ *
+ * @export
  * @interface SaveAccount
  */
 export interface SaveAccount {
@@ -1122,19 +1193,6 @@ export interface SaveAccount {
      * @memberof SaveAccount
      */
     balance: number;
-}
-/**
- *
- * @export
- * @interface SaveAccountWrapper
- */
-export interface SaveAccountWrapper {
-    /**
-     *
-     * @type {SaveAccount}
-     * @memberof SaveAccountWrapper
-     */
-    account: SaveAccount;
 }
 /**
  *
@@ -1184,19 +1242,6 @@ export interface SaveMonthCategory {
 /**
  *
  * @export
- * @interface SaveMonthCategoryWrapper
- */
-export interface SaveMonthCategoryWrapper {
-    /**
-     *
-     * @type {SaveMonthCategory}
-     * @memberof SaveMonthCategoryWrapper
-     */
-    category: SaveMonthCategory;
-}
-/**
- *
- * @export
  * @interface SaveSubTransaction
  */
 export interface SaveSubTransaction {
@@ -1234,87 +1279,87 @@ export interface SaveSubTransaction {
 /**
  *
  * @export
- * @interface SaveTransaction
+ * @interface SaveTransactionWithOptionalFields
  */
-export interface SaveTransaction {
+export interface SaveTransactionWithOptionalFields {
     /**
      *
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
-    account_id: string;
+    account_id?: string | null;
     /**
      * The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored.
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
-    date: string;
+    date?: string | null;
     /**
      * The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored.
      * @type {number}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
-    amount: number;
+    amount?: number | null;
     /**
      * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `tranfer_payee_id` on the account resource.
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
     payee_id?: string | null;
     /**
      * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if `import_id` is also specified) or (2) a payee with the same name or (3) creation of a new payee.
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
     payee_name?: string | null;
     /**
      * The category for the transaction.  To configure a split transaction, you can specify null for `category_id` and provide a `subtransactions` array as part of the transaction object.  If an existing transaction is a split, the `category_id` cannot be changed.  Credit Card Payment categories are not permitted and will be ignored if supplied.
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
     category_id?: string | null;
     /**
      *
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
     memo?: string | null;
     /**
      * The cleared status of the transaction
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
-    cleared?: SaveTransaction.ClearedEnum | null;
+    cleared?: SaveTransactionWithOptionalFields.ClearedEnum | null;
     /**
      * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
      * @type {boolean}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
     approved?: boolean | null;
     /**
      * The transaction flag
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
-    flag_color?: SaveTransaction.FlagColorEnum | null;
+    flag_color?: SaveTransactionWithOptionalFields.FlagColorEnum | null;
     /**
      * If specified, the new transaction will be assigned this `import_id` and considered \"imported\".  We will also attempt to match this imported transaction to an existing \"user-entered\" transation on the same account, with the same amount, and with a date +/-10 days from the imported transaction date.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
      * @type {string}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
     import_id?: string | null;
     /**
      * An array of subtransactions to configure a transaction as a split.  Updating `subtransactions` on an existing split transaction is not supported.
      * @type {Array<SaveSubTransaction>}
-     * @memberof SaveTransaction
+     * @memberof SaveTransactionWithOptionalFields
      */
     subtransactions?: Array<SaveSubTransaction> | null;
 }
 /**
  * @export
- * @namespace SaveTransaction
+ * @namespace SaveTransactionWithOptionalFields
  */
-export declare namespace SaveTransaction {
+export declare namespace SaveTransactionWithOptionalFields {
     /**
      * @export
      * @enum {string}
@@ -1336,19 +1381,6 @@ export declare namespace SaveTransaction {
         Blue,
         Purple
     }
-}
-/**
- *
- * @export
- * @interface SaveTransactionWrapper
- */
-export interface SaveTransactionWrapper {
-    /**
-     *
-     * @type {SaveTransaction}
-     * @memberof SaveTransactionWrapper
-     */
-    transaction: SaveTransaction;
 }
 /**
  *
@@ -1399,25 +1431,6 @@ export interface SaveTransactionsResponseData {
      * @memberof SaveTransactionsResponseData
      */
     server_knowledge: number;
-}
-/**
- *
- * @export
- * @interface SaveTransactionsWrapper
- */
-export interface SaveTransactionsWrapper {
-    /**
-     *
-     * @type {SaveTransaction}
-     * @memberof SaveTransactionsWrapper
-     */
-    transaction?: SaveTransaction | null;
-    /**
-     *
-     * @type {Array<SaveTransaction>}
-     * @memberof SaveTransactionsWrapper
-     */
-    transactions?: Array<SaveTransaction> | null;
 }
 /**
  *
@@ -1832,11 +1845,23 @@ export interface TransactionSummary {
      */
     matched_transaction_id?: string | null;
     /**
-     * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
+     * If the transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionSummary
      */
     import_id?: string | null;
+    /**
+     * If the transaction was imported, the payee name that was used when importing and before applying any payee rename rules
+     * @type {string}
+     * @memberof TransactionSummary
+     */
+    import_payee_name?: string | null;
+    /**
+     * If the transaction was imported, the original payee name as it appeared on the statement
+     * @type {string}
+     * @memberof TransactionSummary
+     */
+    import_payee_name_original?: string | null;
     /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
@@ -1928,19 +1953,6 @@ export interface TransactionsResponseData {
      * @memberof TransactionsResponseData
      */
     server_knowledge: number;
-}
-/**
- *
- * @export
- * @interface UpdateTransactionsWrapper
- */
-export interface UpdateTransactionsWrapper {
-    /**
-     *
-     * @type {Array<UpdateTransaction>}
-     * @memberof UpdateTransactionsWrapper
-     */
-    transactions: Array<UpdateTransaction>;
 }
 /**
  *
@@ -2212,11 +2224,23 @@ export interface HybridTransaction {
      */
     matched_transaction_id?: string | null;
     /**
-     * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
+     * If the transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof HybridTransaction
      */
     import_id?: string | null;
+    /**
+     * If the transaction was imported, the payee name that was used when importing and before applying any payee rename rules
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    import_payee_name?: string | null;
+    /**
+     * If the transaction was imported, the original payee name as it appeared on the statement
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    import_payee_name_original?: string | null;
     /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
@@ -2349,6 +2373,224 @@ export interface MonthDetail {
      * @memberof MonthDetail
      */
     categories: Array<Category>;
+}
+/**
+ *
+ * @export
+ * @interface SaveTransaction
+ */
+export interface SaveTransaction {
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    account_id?: string | null;
+    /**
+     * The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    date?: string | null;
+    /**
+     * The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored.
+     * @type {number}
+     * @memberof SaveTransaction
+     */
+    amount?: number | null;
+    /**
+     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `tranfer_payee_id` on the account resource.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    payee_id?: string | null;
+    /**
+     * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if `import_id` is also specified) or (2) a payee with the same name or (3) creation of a new payee.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    payee_name?: string | null;
+    /**
+     * The category for the transaction.  To configure a split transaction, you can specify null for `category_id` and provide a `subtransactions` array as part of the transaction object.  If an existing transaction is a split, the `category_id` cannot be changed.  Credit Card Payment categories are not permitted and will be ignored if supplied.
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    category_id?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    memo?: string | null;
+    /**
+     * The cleared status of the transaction
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    cleared?: SaveTransaction.ClearedEnum | null;
+    /**
+     * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
+     * @type {boolean}
+     * @memberof SaveTransaction
+     */
+    approved?: boolean | null;
+    /**
+     * The transaction flag
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    flag_color?: SaveTransaction.FlagColorEnum | null;
+    /**
+     * If specified, the new transaction will be assigned this `import_id` and considered \"imported\".  We will also attempt to match this imported transaction to an existing \"user-entered\" transation on the same account, with the same amount, and with a date +/-10 days from the imported transaction date.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
+     * @type {string}
+     * @memberof SaveTransaction
+     */
+    import_id?: string | null;
+    /**
+     * An array of subtransactions to configure a transaction as a split.  Updating `subtransactions` on an existing split transaction is not supported.
+     * @type {Array<SaveSubTransaction>}
+     * @memberof SaveTransaction
+     */
+    subtransactions?: Array<SaveSubTransaction> | null;
+}
+/**
+ * @export
+ * @namespace SaveTransaction
+ */
+export declare namespace SaveTransaction {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ClearedEnum {
+        Cleared,
+        Uncleared,
+        Reconciled
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum FlagColorEnum {
+        Red,
+        Orange,
+        Yellow,
+        Green,
+        Blue,
+        Purple
+    }
+}
+/**
+ *
+ * @export
+ * @interface SaveTransactionWithId
+ */
+export interface SaveTransactionWithId {
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    account_id?: string | null;
+    /**
+     * The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored.
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    date?: string | null;
+    /**
+     * The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored.
+     * @type {number}
+     * @memberof SaveTransactionWithId
+     */
+    amount?: number | null;
+    /**
+     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `tranfer_payee_id` on the account resource.
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    payee_id?: string | null;
+    /**
+     * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if `import_id` is also specified) or (2) a payee with the same name or (3) creation of a new payee.
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    payee_name?: string | null;
+    /**
+     * The category for the transaction.  To configure a split transaction, you can specify null for `category_id` and provide a `subtransactions` array as part of the transaction object.  If an existing transaction is a split, the `category_id` cannot be changed.  Credit Card Payment categories are not permitted and will be ignored if supplied.
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    category_id?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    memo?: string | null;
+    /**
+     * The cleared status of the transaction
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    cleared?: SaveTransactionWithId.ClearedEnum | null;
+    /**
+     * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
+     * @type {boolean}
+     * @memberof SaveTransactionWithId
+     */
+    approved?: boolean | null;
+    /**
+     * The transaction flag
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    flag_color?: SaveTransactionWithId.FlagColorEnum | null;
+    /**
+     * If specified, the new transaction will be assigned this `import_id` and considered \"imported\".  We will also attempt to match this imported transaction to an existing \"user-entered\" transation on the same account, with the same amount, and with a date +/-10 days from the imported transaction date.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    import_id?: string | null;
+    /**
+     * An array of subtransactions to configure a transaction as a split.  Updating `subtransactions` on an existing split transaction is not supported.
+     * @type {Array<SaveSubTransaction>}
+     * @memberof SaveTransactionWithId
+     */
+    subtransactions?: Array<SaveSubTransaction> | null;
+    /**
+     *
+     * @type {string}
+     * @memberof SaveTransactionWithId
+     */
+    id?: string | null;
+}
+/**
+ * @export
+ * @namespace SaveTransactionWithId
+ */
+export declare namespace SaveTransactionWithId {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ClearedEnum {
+        Cleared,
+        Uncleared,
+        Reconciled
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum FlagColorEnum {
+        Red,
+        Orange,
+        Yellow,
+        Green,
+        Blue,
+        Purple
+    }
 }
 /**
  *
@@ -2575,11 +2817,23 @@ export interface TransactionDetail {
      */
     matched_transaction_id?: string | null;
     /**
-     * If the Transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
+     * If the transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionDetail
      */
     import_id?: string | null;
+    /**
+     * If the transaction was imported, the payee name that was used when importing and before applying any payee rename rules
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    import_payee_name?: string | null;
+    /**
+     * If the transaction was imported, the original payee name as it appeared on the statement
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    import_payee_name_original?: string | null;
     /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
@@ -2639,118 +2893,6 @@ export declare namespace TransactionDetail {
     }
 }
 /**
- *
- * @export
- * @interface UpdateTransaction
- */
-export interface UpdateTransaction {
-    /**
-     *
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    account_id: string;
-    /**
-     * The transaction date in ISO format (e.g. 2016-12-01).  Future dates (scheduled transactions) are not permitted.  Split transaction dates cannot be changed and if a different date is supplied it will be ignored.
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    date: string;
-    /**
-     * The transaction amount in milliunits format.  Split transaction amounts cannot be changed and if a different amount is supplied it will be ignored.
-     * @type {number}
-     * @memberof UpdateTransaction
-     */
-    amount: number;
-    /**
-     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `tranfer_payee_id` on the account resource.
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    payee_id?: string | null;
-    /**
-     * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if `import_id` is also specified) or (2) a payee with the same name or (3) creation of a new payee.
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    payee_name?: string | null;
-    /**
-     * The category for the transaction.  To configure a split transaction, you can specify null for `category_id` and provide a `subtransactions` array as part of the transaction object.  If an existing transaction is a split, the `category_id` cannot be changed.  Credit Card Payment categories are not permitted and will be ignored if supplied.
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    category_id?: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    memo?: string | null;
-    /**
-     * The cleared status of the transaction
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    cleared?: UpdateTransaction.ClearedEnum | null;
-    /**
-     * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
-     * @type {boolean}
-     * @memberof UpdateTransaction
-     */
-    approved?: boolean | null;
-    /**
-     * The transaction flag
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    flag_color?: UpdateTransaction.FlagColorEnum | null;
-    /**
-     * If specified, the new transaction will be assigned this `import_id` and considered \"imported\".  We will also attempt to match this imported transaction to an existing \"user-entered\" transation on the same account, with the same amount, and with a date +/-10 days from the imported transaction date.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a \"user-entered\" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    import_id?: string | null;
-    /**
-     * An array of subtransactions to configure a transaction as a split.  Updating `subtransactions` on an existing split transaction is not supported.
-     * @type {Array<SaveSubTransaction>}
-     * @memberof UpdateTransaction
-     */
-    subtransactions?: Array<SaveSubTransaction> | null;
-    /**
-     *
-     * @type {string}
-     * @memberof UpdateTransaction
-     */
-    id: string;
-}
-/**
- * @export
- * @namespace UpdateTransaction
- */
-export declare namespace UpdateTransaction {
-    /**
-     * @export
-     * @enum {string}
-     */
-    enum ClearedEnum {
-        Cleared,
-        Uncleared,
-        Reconciled
-    }
-    /**
-     * @export
-     * @enum {string}
-     */
-    enum FlagColorEnum {
-        Red,
-        Orange,
-        Yellow,
-        Green,
-        Blue,
-        Purple
-    }
-}
-/**
  * AccountsApi - fetch parameter creator
  * @export
  */
@@ -2759,11 +2901,11 @@ export declare const AccountsApiFetchParamCreator: (configuration: Configuration
      * Creates a new account
      * @summary Create a new account
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-     * @param {SaveAccountWrapper} data - The account to create.
+     * @param {PostAccountWrapper} data - The account to create.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createAccount(budget_id: string, data: SaveAccountWrapper, options?: any): FetchArgs;
+    createAccount(budget_id: string, data: PostAccountWrapper, options?: any): FetchArgs;
     /**
      * Returns a single account
      * @summary Single account
@@ -2792,11 +2934,11 @@ export declare const AccountsApiFp: (configuration: Configuration) => {
      * Creates a new account
      * @summary Create a new account
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-     * @param {SaveAccountWrapper} data - The account to create.
+     * @param {PostAccountWrapper} data - The account to create.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createAccount(budget_id: string, data: SaveAccountWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<AccountResponse & {
+    createAccount(budget_id: string, data: PostAccountWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<AccountResponse & {
         rateLimit: string | null;
     }>;
     /**
@@ -2831,11 +2973,11 @@ export declare const AccountsApiFactory: (configuration: Configuration) => {
      * Creates a new account
      * @summary Create a new account
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-     * @param {SaveAccountWrapper} data - The account to create.
+     * @param {PostAccountWrapper} data - The account to create.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createAccount(budget_id: string, data: SaveAccountWrapper, options?: any): Promise<AccountResponse & {
+    createAccount(budget_id: string, data: PostAccountWrapper, options?: any): Promise<AccountResponse & {
         rateLimit: string | null;
     }>;
     /**
@@ -2872,12 +3014,12 @@ export declare class AccountsApi extends BaseAPI {
      * Creates a new account
      * @summary Create a new account
      * @param {string} budget_id - The id of the budget (\"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget)
-     * @param {SaveAccountWrapper} data - The account to create.
+     * @param {PostAccountWrapper} data - The account to create.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    createAccount(budget_id: string, data: SaveAccountWrapper, options?: any): Promise<AccountResponse & {
+    createAccount(budget_id: string, data: PostAccountWrapper, options?: any): Promise<AccountResponse & {
         rateLimit: string | null;
     }>;
     /**
@@ -3091,11 +3233,11 @@ export declare const CategoriesApiFetchParamCreator: (configuration: Configurati
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
-     * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+     * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): FetchArgs;
+    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: PatchMonthCategoryWrapper, options?: any): FetchArgs;
 };
 /**
  * CategoriesApi - functional programming interface
@@ -3142,11 +3284,11 @@ export declare const CategoriesApiFp: (configuration: Configuration) => {
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
-     * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+     * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveCategoryResponse & {
+    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: PatchMonthCategoryWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveCategoryResponse & {
         rateLimit: string | null;
     }>;
 };
@@ -3195,11 +3337,11 @@ export declare const CategoriesApiFactory: (configuration: Configuration) => {
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
-     * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+     * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): Promise<SaveCategoryResponse & {
+    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: PatchMonthCategoryWrapper, options?: any): Promise<SaveCategoryResponse & {
         rateLimit: string | null;
     }>;
 };
@@ -3253,12 +3395,12 @@ export declare class CategoriesApi extends BaseAPI {
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {Date} month - The budget month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
      * @param {string} category_id - The id of the category
-     * @param {SaveMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
+     * @param {PatchMonthCategoryWrapper} data - The category to update.  Only `budgeted` amount can be updated and any other fields specified will be ignored.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof CategoriesApi
      */
-    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: SaveMonthCategoryWrapper, options?: any): Promise<SaveCategoryResponse & {
+    updateMonthCategory(budget_id: string, month: Date | string, category_id: string, data: PatchMonthCategoryWrapper, options?: any): Promise<SaveCategoryResponse & {
         rateLimit: string | null;
     }>;
 }
@@ -3827,11 +3969,20 @@ export declare const TransactionsApiFetchParamCreator: (configuration: Configura
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+     * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): FetchArgs;
+    createTransaction(budget_id: string, data: PostTransactionsWrapper, options?: any): FetchArgs;
+    /**
+     * Deletes a transaction
+     * @summary Deletes an existing transaction
+     * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+     * @param {string} transaction_id - The id of the transaction
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    deleteTransaction(budget_id: string, transaction_id: string, options?: any): FetchArgs;
     /**
      * Returns a single transaction
      * @summary Single transaction
@@ -3901,20 +4052,20 @@ export declare const TransactionsApiFetchParamCreator: (configuration: Configura
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} data - The transaction to update
+     * @param {PutTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): FetchArgs;
+    updateTransaction(budget_id: string, transaction_id: string, data: PutTransactionWrapper, options?: any): FetchArgs;
     /**
      * Updates multiple transactions, by `id` or `import_id`.
      * @summary Update multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+     * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any): FetchArgs;
+    updateTransactions(budget_id: string, data: PatchTransactionsWrapper, options?: any): FetchArgs;
 };
 /**
  * TransactionsApi - functional programming interface
@@ -3925,11 +4076,22 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+     * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveTransactionsResponse & {
+    createTransaction(budget_id: string, data: PostTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveTransactionsResponse & {
+        rateLimit: string | null;
+    }>;
+    /**
+     * Deletes a transaction
+     * @summary Deletes an existing transaction
+     * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+     * @param {string} transaction_id - The id of the transaction
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    deleteTransaction(budget_id: string, transaction_id: string, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionResponse & {
         rateLimit: string | null;
     }>;
     /**
@@ -4013,22 +4175,22 @@ export declare const TransactionsApiFp: (configuration: Configuration) => {
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} data - The transaction to update
+     * @param {PutTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionResponse & {
+    updateTransaction(budget_id: string, transaction_id: string, data: PutTransactionWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<TransactionResponse & {
         rateLimit: string | null;
     }>;
     /**
      * Updates multiple transactions, by `id` or `import_id`.
      * @summary Update multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+     * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveTransactionsResponse & {
+    updateTransactions(budget_id: string, data: PatchTransactionsWrapper, options?: any): (fetchFunction?: FetchAPI | undefined) => Promise<SaveTransactionsResponse & {
         rateLimit: string | null;
     }>;
 };
@@ -4041,11 +4203,22 @@ export declare const TransactionsApiFactory: (configuration: Configuration) => {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+     * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
+    createTransaction(budget_id: string, data: PostTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
+        rateLimit: string | null;
+    }>;
+    /**
+     * Deletes a transaction
+     * @summary Deletes an existing transaction
+     * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+     * @param {string} transaction_id - The id of the transaction
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     */
+    deleteTransaction(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse & {
         rateLimit: string | null;
     }>;
     /**
@@ -4129,22 +4302,22 @@ export declare const TransactionsApiFactory: (configuration: Configuration) => {
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} data - The transaction to update
+     * @param {PutTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): Promise<TransactionResponse & {
+    updateTransaction(budget_id: string, transaction_id: string, data: PutTransactionWrapper, options?: any): Promise<TransactionResponse & {
         rateLimit: string | null;
     }>;
     /**
      * Updates multiple transactions, by `id` or `import_id`.
      * @summary Update multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+     * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      */
-    updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
+    updateTransactions(budget_id: string, data: PatchTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
         rateLimit: string | null;
     }>;
 };
@@ -4159,12 +4332,24 @@ export declare class TransactionsApi extends BaseAPI {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * @summary Create a single transaction or multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {SaveTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
+     * @param {PostTransactionsWrapper} data - The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransaction(budget_id: string, data: SaveTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
+    createTransaction(budget_id: string, data: PostTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
+        rateLimit: string | null;
+    }>;
+    /**
+     * Deletes a transaction
+     * @summary Deletes an existing transaction
+     * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
+     * @param {string} transaction_id - The id of the transaction
+     * @param {*} [options] - Override http request options.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    deleteTransaction(budget_id: string, transaction_id: string, options?: any): Promise<TransactionResponse & {
         rateLimit: string | null;
     }>;
     /**
@@ -4254,24 +4439,24 @@ export declare class TransactionsApi extends BaseAPI {
      * @summary Updates an existing transaction
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
      * @param {string} transaction_id - The id of the transaction
-     * @param {SaveTransactionWrapper} data - The transaction to update
+     * @param {PutTransactionWrapper} data - The transaction to update
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    updateTransaction(budget_id: string, transaction_id: string, data: SaveTransactionWrapper, options?: any): Promise<TransactionResponse & {
+    updateTransaction(budget_id: string, transaction_id: string, data: PutTransactionWrapper, options?: any): Promise<TransactionResponse & {
         rateLimit: string | null;
     }>;
     /**
      * Updates multiple transactions, by `id` or `import_id`.
      * @summary Update multiple transactions
      * @param {string} budget_id - The id of the budget. \"last-used\" can be used to specify the last used budget and \"default\" can be used if default budget selection is enabled (see: https://api.youneedabudget.com/#oauth-default-budget).
-     * @param {UpdateTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
+     * @param {PatchTransactionsWrapper} data - The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by their `import_id`. If an `id` is specified, it will always be used for lookup.
      * @param {*} [options] - Override http request options.
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    updateTransactions(budget_id: string, data: UpdateTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
+    updateTransactions(budget_id: string, data: PatchTransactionsWrapper, options?: any): Promise<SaveTransactionsResponse & {
         rateLimit: string | null;
     }>;
 }

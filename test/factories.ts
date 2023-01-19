@@ -83,7 +83,7 @@ export const saveAccountFactory = Factory.makeFactory<api.SaveAccount>({
 });
 
 export const saveAccountWrapperFactory =
-  Factory.makeFactory<api.SaveAccountWrapper>({
+  Factory.makeFactory<api.PostAccountWrapper>({
     account: saveAccountFactory.build(),
   });
 
@@ -344,18 +344,24 @@ export const saveTransactionFactory = Factory.makeFactory<api.SaveTransaction>({
   import_id: null!,
 });
 
+
 export const saveSingleTransactionWrapperFactory =
-  Factory.makeFactory<api.SaveTransactionWrapper>({
+  Factory.makeFactory<api.PostTransactionsWrapper>({
+    transaction: saveTransactionFactory.build(),
+  });
+
+  export const updateSingleTransactionWrapperFactory =
+  Factory.makeFactory<api.PutTransactionWrapper>({
     transaction: saveTransactionFactory.build(),
   });
 
 export const saveMultipleTransactionsWrapperFactory =
-  Factory.makeFactory<api.SaveTransactionsWrapper>({
+  Factory.makeFactory<api.PostTransactionsWrapper>({
     transactions: saveTransactionFactory.buildList(3),
   });
 
 export const updateTransactionFactory =
-  Factory.makeFactory<api.UpdateTransaction>({
+  Factory.makeFactory<api.SaveTransactionWithId>({
     id: "3045b6ae-4684-4df5-8ade-9f116975688f",
     account_id: Factory.each((i) => `account_id #${i}`),
     date: "2017-01-02",
@@ -371,7 +377,7 @@ export const updateTransactionFactory =
   });
 
 export const updateMultipleTransactionsWrapperFactory =
-  Factory.makeFactory<api.UpdateTransactionsWrapper>({
+  Factory.makeFactory<api.PatchTransactionsWrapper>({
     transactions: updateTransactionFactory.buildList(3),
   });
 
