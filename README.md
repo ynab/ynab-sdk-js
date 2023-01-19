@@ -1,6 +1,6 @@
 # YNAB API JavaScript Library
 
-[![Build Status](https://travis-ci.org/ynab/ynab-sdk-js.svg?branch=master)](https://travis-ci.org/ynab/ynab-sdk-js)
+[![Build Status](https://travis-ci.org/ynab/ynab-sdk-js.svg?branch=main)](https://travis-ci.org/ynab/ynab-sdk-js)
 [![npm version](https://badge.fury.io/js/ynab.svg)](https://badge.fury.io/js/ynab)
 
 Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of available resources.
@@ -120,44 +120,44 @@ console.log(budgetsResponse.rateLimit); // ex: "36/200"
 
 ## Examples
 
-See the [examples](https://github.com/ynab/ynab-sdk-js/tree/master/examples)
+See the [examples](https://github.com/ynab/ynab-sdk-js/tree/main/examples)
 folder for example usage scenarios.
 
 ## Methods
 
-The following methods are available in this library. For more details on parameters and usage, the [TypeScript declaration file](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts) can be referenced.
+The following methods are available in this library. For more details on parameters and usage, the [TypeScript declaration file](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts) can be referenced.
 
 |                            | Method                                                                                                                                                         | Description                                           |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|
-| **User**                   | [user.getUser()](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                                          | Returns authenticated user information                |
-| **Budgets**                | [budgets.getBudgets()](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                                    | Returns budgets list with summary information         |
-|                            | [budgets.getBudgetById(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                        | Returns a single budget with all related entities     |
-|                            | [budgets.getBudgetSettingsById(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                | Returns settings for a budget                         |
-| **Accounts**               | [accounts.getAccounts(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                         | Returns all accounts                                  |
-|                            | [accounts.getAccountById(budget_id, account_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                          | Returns a single account                              |
-| **Categories**             | [categories.getCategories(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                     | Returns all categories grouped by category group.     |
-|                            | [categories.getCategoryById(budget_id, category_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                      | Returns a single category                             |
-|                            | [categories.updateMonthCategory(budget_id, month, category_id, month_category)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts#L2629)               | Update an existing month category                     |
-| **Payees**                 | [payees.getPayees(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                             | Returns all payees                                    |
-|                            | [payees.getPayeeById(budget_id, payee_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                | Returns single payee                                  |
-| **Payee Locations**        | [payee_locations.getPayeeLocations(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                            | Returns all payee locations                           |
-|                            | [payee_locations.getPayeeLocationById(budget_id, payee_location_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                      | Returns a single payee location                       |
-|                            | [payee_locations.getPayeeLocationsByPayee(budget_id, payee_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                           | Returns all payee locations for the specified payee   |
-| **Months**                 | [months.getBudgetMonths(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                       | Returns all budget months                             |
-|                            | [months.getBudgetMonth(budget_id, month)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                 | Returns a single budget month                         |
-|                            | [months.getMonthCategory_by_id(budget_id, month, category_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                            | Returns a single category for a specific budget month |
-| **Transactions**           | [transactions.getTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                                                 | Returns budget transactions                           |
-|                            | [transactions.getTransactionsByAccount(budget_id, account_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                            | Returns all transactions for a specified account      |
-|                            | [transactions.getTransactionsByCategory(budget_id, category_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                          | Returns all transactions for a specified category     |
-|                            | [transactions.getTransactionsByType(budget_id, type)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/transactionsApi.d.ts)                                      | Returns all transactions of a specified type ("unapproved" or "uncategorized")     |
-|                            | [transactions.getTransactionById(budget_id, transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                              | Returns a single transaction                          |
-|                            | [transactions.createTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                            | Creates a single transaction                  |
-|                            | [transactions.createTransactions(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/transactionsApi.d.ts)                            | Creates multiple transactions                  |
-|                            | [transactions.updateTransaction(budget_id, transaction_id, data)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                  | Updates a single transaction                                 |
-|                            | [transactions.updateTransactions(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                  | Updates multiple transactions                                 |
-|                            | [transactions.importTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                  | Imports transactions                                 |
-| **Scheduled Transactions** | [scheduled_transactions.getScheduledTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts)                              | Returns all scheduled transactions                    |
-|                            | [scheduled_transactions.getScheduledTransactionById(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/master/dist/api.d.ts#L2936) | Returns a single scheduled transaction                |
+| **User**                   | [user.getUser()](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                                          | Returns authenticated user information                |
+| **Budgets**                | [budgets.getBudgets()](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                                    | Returns budgets list with summary information         |
+|                            | [budgets.getBudgetById(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                        | Returns a single budget with all related entities     |
+|                            | [budgets.getBudgetSettingsById(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                | Returns settings for a budget                         |
+| **Accounts**               | [accounts.getAccounts(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                         | Returns all accounts                                  |
+|                            | [accounts.getAccountById(budget_id, account_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                          | Returns a single account                              |
+| **Categories**             | [categories.getCategories(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                     | Returns all categories grouped by category group.     |
+|                            | [categories.getCategoryById(budget_id, category_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                      | Returns a single category                             |
+|                            | [categories.updateMonthCategory(budget_id, month, category_id, month_category)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts#L2629)               | Update an existing month category                     |
+| **Payees**                 | [payees.getPayees(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                             | Returns all payees                                    |
+|                            | [payees.getPayeeById(budget_id, payee_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                | Returns single payee                                  |
+| **Payee Locations**        | [payee_locations.getPayeeLocations(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                            | Returns all payee locations                           |
+|                            | [payee_locations.getPayeeLocationById(budget_id, payee_location_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                      | Returns a single payee location                       |
+|                            | [payee_locations.getPayeeLocationsByPayee(budget_id, payee_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                           | Returns all payee locations for the specified payee   |
+| **Months**                 | [months.getBudgetMonths(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                       | Returns all budget months                             |
+|                            | [months.getBudgetMonth(budget_id, month)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                 | Returns a single budget month                         |
+|                            | [months.getMonthCategory_by_id(budget_id, month, category_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                            | Returns a single category for a specific budget month |
+| **Transactions**           | [transactions.getTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                                                 | Returns budget transactions                           |
+|                            | [transactions.getTransactionsByAccount(budget_id, account_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                            | Returns all transactions for a specified account      |
+|                            | [transactions.getTransactionsByCategory(budget_id, category_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                          | Returns all transactions for a specified category     |
+|                            | [transactions.getTransactionsByType(budget_id, type)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/transactionsApi.d.ts)                                      | Returns all transactions of a specified type ("unapproved" or "uncategorized")     |
+|                            | [transactions.getTransactionById(budget_id, transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                              | Returns a single transaction                          |
+|                            | [transactions.createTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                            | Creates a single transaction                  |
+|                            | [transactions.createTransactions(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/transactionsApi.d.ts)                            | Creates multiple transactions                  |
+|                            | [transactions.updateTransaction(budget_id, transaction_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                  | Updates a single transaction                                 |
+|                            | [transactions.updateTransactions(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                  | Updates multiple transactions                                 |
+|                            | [transactions.importTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                  | Imports transactions                                 |
+| **Scheduled Transactions** | [scheduled_transactions.getScheduledTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts)                              | Returns all scheduled transactions                    |
+|                            | [scheduled_transactions.getScheduledTransactionById(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts#L2936) | Returns a single scheduled transaction                |
 
 ### Utilities
 
