@@ -8,6 +8,7 @@ const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
         const transaction = (await ynabAPI.transactions.getTransactionById(budgetId, transactionId)).data.transaction;
         transaction.memo = "Updated memo";
         transaction.flag_color = ynab.SaveTransaction.FlagColorEnum.Blue;
+        transaction.id;
         await ynabAPI.transactions.updateTransaction(budgetId, transactionId, {
             transaction
         });

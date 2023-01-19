@@ -5,7 +5,7 @@ const budgetId = "378f111e-4b27-4ee5-a9fd-0ba03c1de0f0";
 (async function () {
     const account = {
         name: "New Account",
-        type: ynab.SaveAccount.TypeEnum.Checking,
+        type: ynab.AccountType.Checking,
         balance: 103352,
     };
     try {
