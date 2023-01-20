@@ -5,12 +5,10 @@ const budgetId = "f968197b-2863-473a-8974-c2406dbe7f0d";
 const categoryId = "75655c30-ab05-4533-ae4b-8d958e02e73c";
 const month = "2018-09-01";
 const data = { category: { budgeted: 20382 } };
-(async function () {
-    try {
-        await ynabAPI.categories.updateMonthCategory(budgetId, month, categoryId, data);
-    }
-    catch (err) {
-        const error = err.error;
-        console.log(`ERROR: id=${error.id}; name=${error.name}; detail: ${error.detail}`);
-    }
-})();
+try {
+    await ynabAPI.categories.updateMonthCategory(budgetId, month, categoryId, data);
+}
+catch (err) {
+    const error = err.error;
+    console.log(`ERROR: id=${error.id}; name=${error.name}; detail: ${error.detail}`);
+}

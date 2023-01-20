@@ -5,6 +5,6 @@
     "noImplicitAny": true,
     "noImplicitUseStrict": true
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "./**/*.mts"],
   "references": [{ "path": "../src" }]
 }
