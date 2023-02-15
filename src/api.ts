@@ -24,7 +24,7 @@ if (!globalThis.fetch) {
 import * as url from "url";
 import { Configuration } from "./configuration";
 
-const USER_AGENT = "api_client/js/1.42.0";
+const USER_AGENT = "api_client/js/1.45.0";
 
 function convertDateToFullDateStringFormat(date: Date | string): string {
   // Convert to RFC 3339 "full-date" format, like "2017-11-27"
@@ -171,6 +171,36 @@ export interface Account {
      * @memberof Account
      */
     direct_import_in_error?: boolean | null;
+    /**
+     * A date/time specifying when the account was last reconciled.
+     * @type {string}
+     * @memberof Account
+     */
+    last_reconciled_at?: string | null;
+    /**
+     * The original debt/loan account balance, specified in milliunits format.
+     * @type {number}
+     * @memberof Account
+     */
+    debt_original_balance?: number | null;
+    /**
+     * The debt/loan account interest rate(s), by effective date.
+     * @type {LoanAccountPeriodicValue}
+     * @memberof Account
+     */
+    debt_interest_rates?: LoanAccountPeriodicValue | null;
+    /**
+     * The minimum payment amount(s) for the debt/loan account, by effective date.  The amounts are specified in milliunits format.
+     * @type {LoanAccountPeriodicValue}
+     * @memberof Account
+     */
+    debt_minimum_payments?: LoanAccountPeriodicValue | null;
+    /**
+     * The escrow value(s) for the debt/loan account, by effective date.  The amounts are specified in milliunits format.
+     * @type {LoanAccountPeriodicValue}
+     * @memberof Account
+     */
+    debt_escrow_amounts?: LoanAccountPeriodicValue | null;
     /**
      * Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests.
      * @type {boolean}
@@ -597,6 +627,24 @@ export interface Category {
      */
     goal_type?: Category.GoalTypeEnum | null;
     /**
+     * The day of the goal
+     * @type {number}
+     * @memberof Category
+     */
+    goal_day?: number | null;
+    /**
+     * The goal cadence
+     * @type {number}
+     * @memberof Category
+     */
+    goal_cadence?: number | null;
+    /**
+     * The goal cadence frequency
+     * @type {number}
+     * @memberof Category
+     */
+    goal_cadence_frequency?: number | null;
+    /**
      * The month a goal was created
      * @type {string}
      * @memberof Category
@@ -872,6 +920,16 @@ export interface HybridTransactionsResponseData {
      * @memberof HybridTransactionsResponseData
      */
     server_knowledge?: number | null;
+}
+
+/**
+ * 
+ * @export
+ * @interface LoanAccountPeriodicValue
+ */
+export interface LoanAccountPeriodicValue {
+    [key: string]: number;
+
 }
 
 /**
@@ -1969,6 +2027,12 @@ export interface TransactionSummary {
      */
     import_payee_name_original?: string | null;
     /**
+     * If the transaction is a debt/loan account transaction, the type of transaction
+     * @type {string}
+     * @memberof TransactionSummary
+     */
+    debt_transaction_type?: TransactionSummary.DebtTransactionTypeEnum | null;
+    /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
      * @memberof TransactionSummary
@@ -2001,6 +2065,20 @@ export namespace TransactionSummary {
         Green = <any> 'green',
         Blue = <any> 'blue',
         Purple = <any> 'purple'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum DebtTransactionTypeEnum {
+        Payment = <any> 'payment',
+        Refund = <any> 'refund',
+        Fee = <any> 'fee',
+        Interest = <any> 'interest',
+        Escrow = <any> 'escrow',
+        BalancedAdjustment = <any> 'balancedAdjustment',
+        Credit = <any> 'credit',
+        Charge = <any> 'charge'
     }
 }
 
@@ -2359,6 +2437,12 @@ export interface HybridTransaction {
      */
     import_payee_name_original?: string | null;
     /**
+     * If the transaction is a debt/loan account transaction, the type of transaction
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    debt_transaction_type?: HybridTransaction.DebtTransactionTypeEnum | null;
+    /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
      * @memberof HybridTransaction
@@ -2421,6 +2505,20 @@ export namespace HybridTransaction {
         Green = <any> 'green',
         Blue = <any> 'blue',
         Purple = <any> 'purple'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum DebtTransactionTypeEnum {
+        Payment = <any> 'payment',
+        Refund = <any> 'refund',
+        Fee = <any> 'fee',
+        Interest = <any> 'interest',
+        Escrow = <any> 'escrow',
+        BalancedAdjustment = <any> 'balancedAdjustment',
+        Credit = <any> 'credit',
+        Charge = <any> 'charge'
     }
     /**
      * @export
@@ -2961,6 +3059,12 @@ export interface TransactionDetail {
      */
     import_payee_name_original?: string | null;
     /**
+     * If the transaction is a debt/loan account transaction, the type of transaction
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    debt_transaction_type?: TransactionDetail.DebtTransactionTypeEnum | null;
+    /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
      * @memberof TransactionDetail
@@ -3017,6 +3121,20 @@ export namespace TransactionDetail {
         Green = <any> 'green',
         Blue = <any> 'blue',
         Purple = <any> 'purple'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum DebtTransactionTypeEnum {
+        Payment = <any> 'payment',
+        Refund = <any> 'refund',
+        Fee = <any> 'fee',
+        Interest = <any> 'interest',
+        Escrow = <any> 'escrow',
+        BalancedAdjustment = <any> 'balancedAdjustment',
+        Credit = <any> 'credit',
+        Charge = <any> 'charge'
     }
 }
 

@@ -1879,6 +1879,28 @@
           "type": "boolean",
           "description": "If an account linked to a financial institution (direct_import_linked=true) and the linked connection is not in a healthy state, this will be true."
         },
+        "last_reconciled_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "A date/time specifying when the account was last reconciled."
+        },
+        "debt_original_balance": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The original debt/loan account balance, specified in milliunits format."
+        },
+        "debt_interest_rates": {
+          "$ref": "#/definitions/LoanAccountPeriodicValue",
+          "description": "The debt/loan account interest rate(s), by effective date."
+        },
+        "debt_minimum_payments": {
+          "$ref": "#/definitions/LoanAccountPeriodicValue",
+          "description": "The minimum payment amount(s) for the debt/loan account, by effective date.  The amounts are specified in milliunits format."
+        },
+        "debt_escrow_amounts": {
+          "$ref": "#/definitions/LoanAccountPeriodicValue",
+          "description": "The escrow value(s) for the debt/loan account, by effective date.  The amounts are specified in milliunits format."
+        },
         "deleted": {
           "type": "boolean",
           "description": "Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests."
@@ -1910,6 +1932,13 @@
           "format": "int64",
           "description": "The current balance of the account in milliunits format"
         }
+      }
+    },
+    "LoanAccountPeriodicValue": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "format": "int64"
       }
     },
     "AccountType": {
@@ -2056,6 +2085,21 @@
           "type": "string",
           "enum": ["TB", "TBD", "MF", "NEED", "DEBT", null],
           "description": "The type of goal, if the category has a goal (TB='Target Category Balance', TBD='Target Category Balance by Date', MF='Monthly Funding', NEED='Plan Your Spending')"
+        },
+        "goal_day": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The day of the goal"
+        },
+        "goal_cadence": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The goal cadence"
+        },
+        "goal_cadence_frequency": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The goal cadence frequency"
         },
         "goal_creation_month": {
           "type": "string",
@@ -2568,6 +2612,21 @@
           "type": "string",
           "maxLength": 200,
           "description": "If the transaction was imported, the original payee name as it appeared on the statement"
+        },
+        "debt_transaction_type": {
+          "type": "string",
+          "enum": [
+            "payment",
+            "refund",
+            "fee",
+            "interest",
+            "escrow",
+            "balancedAdjustment",
+            "credit",
+            "charge",
+            null
+          ],
+          "description": "If the transaction is a debt/loan account transaction, the type of transaction"
         },
         "deleted": {
           "type": "boolean",
