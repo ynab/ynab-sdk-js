@@ -3,7 +3,7 @@
 [![Continuous Integration](https://github.com/ynab/ynab-sdk-js/actions/workflows/ci.yml/badge.svg)](https://github.com/ynab/ynab-sdk-js/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/ynab.svg)](https://badge.fury.io/js/ynab)
 
-Please read the [YNAB API documentation](https://api.youneedabudget.com) for an overview of using the API and a complete list of available resources.
+Please read the [YNAB API documentation](https://api.ynab.com) for an overview of using the API and a complete list of available resources.
 
 This client is generated using the [Swagger Code Generator](https://github.com/swagger-api/swagger-codegen).
 
@@ -59,8 +59,8 @@ Using the "latest" tag will result in a 302 redirect to the latest version tag s
 ## Usage
 
 To use this client, you must
-[obtain an access token](https://api.youneedabudget.com/#authentication-overview) from
-the [Account Settings](https://app.youneedabudget.com/settings) area of the YNAB web
+[obtain an access token](https://api.ynab.com/#authentication-overview) from
+the [Account Settings](https://app.ynab.com/settings) area of the YNAB web
 application.
 
 ```typescript
@@ -106,9 +106,9 @@ const budgetsResponse = ynabAPI.budgets
 
 ### Rate Limiting
 
-The API enforces [Rate Limiting](https://api.youneedabudget.com/#rate-limiting).
+The API enforces [Rate Limiting](https://api.ynab.com/#rate-limiting).
 
-If the rate limit is exceeded, a `429` [Error Response](https://api.youneedabudget.com/#errors) will be returned from the API which will result in an [error being thrown](https://github.com/ynab/ynab-sdk-js#error-handling) in this library.
+If the rate limit is exceeded, a `429` [Error Response](https://api.ynab.com/#errors) will be returned from the API which will result in an [error being thrown](https://github.com/ynab/ynab-sdk-js#error-handling) in this library.
 
 You can access the rate limiting info through the `rateLimit` property on a response object.  It will contain the value from the `X-Rate-Limit` response header.
 
@@ -163,7 +163,7 @@ The following methods are available in this library. For more details on paramet
 ### Utilities
 
 There are several utilities available on the `utils` export to make working
-with [ISO dates and milliunits](https://api.youneedabudget.com/#formats) a bit
+with [ISO dates and milliunits](https://api.ynab.com/#formats) a bit
 easier.
 
 ```typescript
