@@ -2,7 +2,9 @@
   "name": "ynab",
   "version": "1.47.0",
   "description": "YNAB API Javascript (Node) Library",
-  "author": "You Need a Budget, LLC",
+  "author": "YNAB",
+  "email": "api@ynab.com",
+  "url": "https://api.ynab.com",
   "keywords": [
     "typescript",
     "swagger-client",

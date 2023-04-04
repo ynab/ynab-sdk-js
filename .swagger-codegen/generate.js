@@ -14,7 +14,7 @@ if ($1 == "--useLocalSpec") {
   );
 } else {
   exec(
-    `wget https://api.youneedabudget.com/papi/${specFilename} -O ./.swagger-codegen/${specFilename}`
+    `wget https://api.ynab.com/papi/${specFilename} -O ./.swagger-codegen/${specFilename}`
   );
 }
 
