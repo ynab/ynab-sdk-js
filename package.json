@@ -25,7 +25,7 @@
     "url": "https://github.com/ynab/ynab-sdk-js.git"
   },
   "engines": {
-    "node": "<17.0.0"
+    "node": "<=18"
   },
   "scripts": {
     "generate": "npx jsh ./.swagger-codegen/generate.js",
