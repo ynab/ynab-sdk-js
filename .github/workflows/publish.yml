@@ -25,18 +25,20 @@ jobs:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
       - run: npm install
+      - name: Build and test
+        run: npm build && npm test
       - name: Bump Version
         run: |
           npm version ${{ github.event.inputs.version_type }} --force -m "Version %s"
-      - name: Publish to npm
-        run: |
-          npm set //registry.npmjs.org/:_authToken ${{ secrets.NODE_AUTH_TOKEN }}
-          npm publish
       - name: Push release commit and tag to GitHub
         id: push
         run: |
           git push gh-origin HEAD:main --tags
           echo "tag-name=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+      - name: Publish to npm
+        run: |
+          npm set //registry.npmjs.org/:_authToken ${{ secrets.NODE_AUTH_TOKEN }}
+          npm publish
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
