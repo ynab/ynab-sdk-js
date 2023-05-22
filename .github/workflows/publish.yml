@@ -26,7 +26,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: npm install
       - name: Build and test
-        run: npm build && npm test
+        run: npm run build && npm run test
       - name: Bump Version
         run: |
           npm version ${{ github.event.inputs.version_type }} --force -m "Version %s"
