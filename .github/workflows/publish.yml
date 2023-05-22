@@ -31,7 +31,7 @@ jobs:
       - name: Push release commit and tag to GitHub
         id: push
         run: |
-          git push gh-origin HEAD:main --tags
+          git push gh-origin HEAD:main && git push gh-origin HEAD:main --tags
           echo "tag-name=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
       - name: Publish to npm
         run: |
