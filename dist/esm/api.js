@@ -69,7 +69,7 @@ if (!globalThis.fetch) {
     globalThis.Headers = fetchPonyfill.Headers;
     globalThis.Request = fetchPonyfill.Request;
 }
-var USER_AGENT = "api_client/js/1.42.0";
+var USER_AGENT = "api_client/js/1.45.0";
 function convertDateToFullDateStringFormat(date) {
     // Convert to RFC 3339 "full-date" format, like "2017-11-27"
     if (date instanceof Date) {
@@ -259,6 +259,21 @@ export var TransactionSummary;
         FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
         FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = TransactionSummary.FlagColorEnum || (TransactionSummary.FlagColorEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var DebtTransactionTypeEnum;
+    (function (DebtTransactionTypeEnum) {
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Payment"] = 'payment'] = "Payment";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Refund"] = 'refund'] = "Refund";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Fee"] = 'fee'] = "Fee";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Interest"] = 'interest'] = "Interest";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Escrow"] = 'escrow'] = "Escrow";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["BalancedAdjustment"] = 'balancedAdjustment'] = "BalancedAdjustment";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Credit"] = 'credit'] = "Credit";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Charge"] = 'charge'] = "Charge";
+    })(DebtTransactionTypeEnum = TransactionSummary.DebtTransactionTypeEnum || (TransactionSummary.DebtTransactionTypeEnum = {}));
 })(TransactionSummary || (TransactionSummary = {}));
 /**
  * @export
@@ -289,6 +304,21 @@ export var HybridTransaction;
         FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
         FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = HybridTransaction.FlagColorEnum || (HybridTransaction.FlagColorEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var DebtTransactionTypeEnum;
+    (function (DebtTransactionTypeEnum) {
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Payment"] = 'payment'] = "Payment";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Refund"] = 'refund'] = "Refund";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Fee"] = 'fee'] = "Fee";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Interest"] = 'interest'] = "Interest";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Escrow"] = 'escrow'] = "Escrow";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["BalancedAdjustment"] = 'balancedAdjustment'] = "BalancedAdjustment";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Credit"] = 'credit'] = "Credit";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Charge"] = 'charge'] = "Charge";
+    })(DebtTransactionTypeEnum = HybridTransaction.DebtTransactionTypeEnum || (HybridTransaction.DebtTransactionTypeEnum = {}));
     /**
      * @export
      * @enum {string}
@@ -428,6 +458,21 @@ export var TransactionDetail;
         FlagColorEnum[FlagColorEnum["Blue"] = 'blue'] = "Blue";
         FlagColorEnum[FlagColorEnum["Purple"] = 'purple'] = "Purple";
     })(FlagColorEnum = TransactionDetail.FlagColorEnum || (TransactionDetail.FlagColorEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var DebtTransactionTypeEnum;
+    (function (DebtTransactionTypeEnum) {
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Payment"] = 'payment'] = "Payment";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Refund"] = 'refund'] = "Refund";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Fee"] = 'fee'] = "Fee";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Interest"] = 'interest'] = "Interest";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Escrow"] = 'escrow'] = "Escrow";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["BalancedAdjustment"] = 'balancedAdjustment'] = "BalancedAdjustment";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Credit"] = 'credit'] = "Credit";
+        DebtTransactionTypeEnum[DebtTransactionTypeEnum["Charge"] = 'charge'] = "Charge";
+    })(DebtTransactionTypeEnum = TransactionDetail.DebtTransactionTypeEnum || (TransactionDetail.DebtTransactionTypeEnum = {}));
 })(TransactionDetail || (TransactionDetail = {}));
 /**
  * AccountsApi - fetch parameter creator
