@@ -29,6 +29,7 @@ jobs:
       - run: npm run test
       - name: Bump Version
         run: |
+          git add dist/*
           npm version ${{ github.event.inputs.version_type }} --force -m "Version %s"
       - name: Push release commit and tag to GitHub
         id: push
