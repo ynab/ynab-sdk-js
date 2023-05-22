@@ -31,8 +31,7 @@
     "generate": "npx jsh ./.swagger-codegen/generate.js",
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production && npm run build_examples",
     "build_examples": "tsc -b examples/",
-    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'",
-    "prepublishOnly": "npm run build && npm run test && git add dist/*"
+    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
