@@ -5,7 +5,7 @@
 
 Please read the [YNAB API documentation](https://api.ynab.com) for an overview of using the API and a complete list of available resources.
 
-This client is generated using the [Swagger Code Generator](https://github.com/swagger-api/swagger-codegen).
+This client is generated using the [OpenAPI Generator](https://openapi-generator.tech/).
 
 ## Installation
 
@@ -110,13 +110,6 @@ The API enforces [Rate Limiting](https://api.ynab.com/#rate-limiting).
 
 If the rate limit is exceeded, a `429` [Error Response](https://api.ynab.com/#errors) will be returned from the API which will result in an [error being thrown](https://github.com/ynab/ynab-sdk-js#error-handling) in this library.
 
-You can access the rate limiting info through the `rateLimit` property on a response object.  It will contain the value from the `X-Rate-Limit` response header.
-
-```typescript
-const ynabAPI = new ynab.API(accessToken);
-const budgetsResponse = await ynabAPI.budgets.getBudgets();
-console.log(budgetsResponse.rateLimit); // ex: "36/200"
-```
 
 ## Examples
 

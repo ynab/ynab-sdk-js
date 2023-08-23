@@ -7,7 +7,7 @@ const transactions = [
         account_id: "d99072b8-f598-484c-a0f8-ae607350f70a",
         category_id: "8d505bc0-efbe-4803-b8ef-0898213a1092",
         payee_id: null,
-        cleared: ynab.SaveTransaction.ClearedEnum.Cleared,
+        cleared: ynab.SaveTransactionClearedEnum.Cleared,
         approved: true,
         date: ynab.utils.getCurrentDateInISOFormat(),
         amount: -23430,
@@ -17,7 +17,7 @@ const transactions = [
         account_id: "d99072b8-f598-484c-a0f8-ae607350f70a",
         category_id: "8d505bc0-efbe-4803-b8ef-0898213a1092",
         payee_id: null,
-        cleared: ynab.SaveTransaction.ClearedEnum.Uncleared,
+        cleared: ynab.SaveTransactionClearedEnum.Uncleared,
         approved: false,
         date: ynab.utils.getCurrentDateInISOFormat(),
         amount: 13430,
@@ -25,7 +25,10 @@ const transactions = [
     },
 ];
 try {
-    await ynabAPI.transactions.createTransactions(budgetId, { transactions });
+    await ynabAPI.transactions.createTransactions({
+        budgetId,
+        data: { transactions },
+    });
 }
 catch (err) {
     const error = err.error;

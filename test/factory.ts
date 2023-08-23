@@ -57,6 +57,7 @@ export class Factory<T> {
         }
       }
     }
+
     return v;
   }
 

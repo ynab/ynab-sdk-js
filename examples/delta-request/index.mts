@@ -35,9 +35,9 @@ try {
     console.log(
       `Fetching contents of budget: ${budgetToFetch.name} - ${budgetToFetch.id}`
     );
-    const budgetContents = await ynabAPI.budgets.getBudgetById(
-      budgetToFetch.id
-    );
+    const budgetContents = await ynabAPI.budgets.getBudgetById({
+      budgetId: budgetToFetch.id,
+    });
 
     const categories = budgetContents.data.budget.categories;
 
@@ -64,10 +64,10 @@ try {
       console.log(`Will poll for changes in ${pollWaitTimeInMs}ms...`);
       setTimeout(async () => {
         console.log("Polling for changes now...");
-        const budgetChangesResponse = await ynabAPI.budgets.getBudgetById(
-          budgetToFetch.id,
-          lastServerKnowledge
-        );
+        const budgetChangesResponse = await ynabAPI.budgets.getBudgetById({
+          budgetId: budgetToFetch.id,
+          lastKnowledgeOfServer: lastServerKnowledge,
+        });
 
         console.log(
           `Current server knowledge is now : ${budgetChangesResponse.data.server_knowledge}`
