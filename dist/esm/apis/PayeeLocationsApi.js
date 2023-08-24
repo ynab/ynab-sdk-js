@@ -117,12 +117,12 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
      * Returns a single payee location
      * Single payee location
      */
-    PayeeLocationsApi.prototype.getPayeeLocationById = function (requestParameters, initOverrides) {
+    PayeeLocationsApi.prototype.getPayeeLocationById = function (budgetId, payeeLocationId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeeLocationByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeeLocationByIdRaw({ budgetId: budgetId, payeeLocationId: payeeLocationId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -173,12 +173,12 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
      * Returns all payee locations
      * List payee locations
      */
-    PayeeLocationsApi.prototype.getPayeeLocations = function (requestParameters, initOverrides) {
+    PayeeLocationsApi.prototype.getPayeeLocations = function (budgetId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeeLocationsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeeLocationsRaw({ budgetId: budgetId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -232,12 +232,12 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
      * Returns all payee locations for a specified payee
      * List locations for a payee
      */
-    PayeeLocationsApi.prototype.getPayeeLocationsByPayee = function (requestParameters, initOverrides) {
+    PayeeLocationsApi.prototype.getPayeeLocationsByPayee = function (budgetId, payeeId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeeLocationsByPayeeRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeeLocationsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

@@ -117,12 +117,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * List categories
      */
-    CategoriesApi.prototype.getCategories = function (requestParameters, initOverrides) {
+    CategoriesApi.prototype.getCategories = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getCategoriesRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getCategoriesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -176,12 +176,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category
      */
-    CategoriesApi.prototype.getCategoryById = function (requestParameters, initOverrides) {
+    CategoriesApi.prototype.getCategoryById = function (budgetId, categoryId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getCategoryByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getCategoryByIdRaw({ budgetId: budgetId, categoryId: categoryId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -238,12 +238,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category for a specific budget month
      */
-    CategoriesApi.prototype.getMonthCategoryById = function (requestParameters, initOverrides) {
+    CategoriesApi.prototype.getMonthCategoryById = function (budgetId, month, categoryId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getMonthCategoryByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getMonthCategoryByIdRaw({ budgetId: budgetId, month: month, categoryId: categoryId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -305,12 +305,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Update a category for a specific month.  Only `budgeted` amount can be updated.
      * Update a category for a specific month
      */
-    CategoriesApi.prototype.updateMonthCategory = function (requestParameters, initOverrides) {
+    CategoriesApi.prototype.updateMonthCategory = function (budgetId, month, categoryId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateMonthCategoryRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateMonthCategoryRaw({ budgetId: budgetId, month: month, categoryId: categoryId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

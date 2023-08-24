@@ -83,8 +83,8 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns a single scheduled transaction
      * Single scheduled transaction
      */
-    async getScheduledTransactionById(requestParameters: GetScheduledTransactionByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse> {
-        const response = await this.getScheduledTransactionByIdRaw(requestParameters, initOverrides);
+    async getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse> {
+        const response = await this.getScheduledTransactionByIdRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides);
         return await response.value();
     }
 
@@ -128,8 +128,8 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns all scheduled transactions
      * List scheduled transactions
      */
-    async getScheduledTransactions(requestParameters: GetScheduledTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse> {
-        const response = await this.getScheduledTransactionsRaw(requestParameters, initOverrides);
+    async getScheduledTransactions(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse> {
+        const response = await this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 

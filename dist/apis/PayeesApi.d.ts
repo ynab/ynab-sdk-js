@@ -32,7 +32,7 @@ export declare class PayeesApi extends runtime.BaseAPI {
      * Returns a single payee
      * Single payee
      */
-    getPayeeById(requestParameters: GetPayeeByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeResponse>;
+    getPayeeById(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeResponse>;
     /**
      * Returns all payees
      * List payees
@@ -42,5 +42,5 @@ export declare class PayeesApi extends runtime.BaseAPI {
      * Returns all payees
      * List payees
      */
-    getPayees(requestParameters: GetPayeesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeesResponse>;
+    getPayees(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeesResponse>;
 }

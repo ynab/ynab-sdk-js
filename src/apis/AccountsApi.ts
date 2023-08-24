@@ -94,8 +94,8 @@ export class AccountsApi extends runtime.BaseAPI {
      * Creates a new account
      * Create a new account
      */
-    async createAccount(requestParameters: CreateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse> {
-        const response = await this.createAccountRaw(requestParameters, initOverrides);
+    async createAccount(budgetId: string, data: PostAccountWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse> {
+        const response = await this.createAccountRaw({ budgetId: budgetId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -139,8 +139,8 @@ export class AccountsApi extends runtime.BaseAPI {
      * Returns a single account
      * Single account
      */
-    async getAccountById(requestParameters: GetAccountByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse> {
-        const response = await this.getAccountByIdRaw(requestParameters, initOverrides);
+    async getAccountById(budgetId: string, accountId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse> {
+        const response = await this.getAccountByIdRaw({ budgetId: budgetId, accountId: accountId }, initOverrides);
         return await response.value();
     }
 
@@ -184,8 +184,8 @@ export class AccountsApi extends runtime.BaseAPI {
      * Returns all accounts
      * Account list
      */
-    async getAccounts(requestParameters: GetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountsResponse> {
-        const response = await this.getAccountsRaw(requestParameters, initOverrides);
+    async getAccounts(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountsResponse> {
+        const response = await this.getAccountsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 

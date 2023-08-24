@@ -32,7 +32,7 @@ export declare class MonthsApi extends runtime.BaseAPI {
      * Returns a single budget month
      * Single budget month
      */
-    getBudgetMonth(requestParameters: GetBudgetMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse>;
+    getBudgetMonth(budgetId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse>;
     /**
      * Returns all budget months
      * List budget months
@@ -42,5 +42,5 @@ export declare class MonthsApi extends runtime.BaseAPI {
      * Returns all budget months
      * List budget months
      */
-    getBudgetMonths(requestParameters: GetBudgetMonthsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse>;
+    getBudgetMonths(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse>;
 }

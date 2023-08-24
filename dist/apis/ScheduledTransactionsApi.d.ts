@@ -32,7 +32,7 @@ export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns a single scheduled transaction
      * Single scheduled transaction
      */
-    getScheduledTransactionById(requestParameters: GetScheduledTransactionByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
+    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
     /**
      * Returns all scheduled transactions
      * List scheduled transactions
@@ -42,5 +42,5 @@ export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns all scheduled transactions
      * List scheduled transactions
      */
-    getScheduledTransactions(requestParameters: GetScheduledTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse>;
+    getScheduledTransactions(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse>;
 }

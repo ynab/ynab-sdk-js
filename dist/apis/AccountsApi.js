@@ -55,8 +55,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Creates a new account
      * Create a new account
      */
-    async createAccount(requestParameters, initOverrides) {
-        const response = await this.createAccountRaw(requestParameters, initOverrides);
+    async createAccount(budgetId, data, initOverrides) {
+        const response = await this.createAccountRaw({ budgetId: budgetId, data: data }, initOverrides);
         return await response.value();
     }
     /**
@@ -92,8 +92,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Returns a single account
      * Single account
      */
-    async getAccountById(requestParameters, initOverrides) {
-        const response = await this.getAccountByIdRaw(requestParameters, initOverrides);
+    async getAccountById(budgetId, accountId, initOverrides) {
+        const response = await this.getAccountByIdRaw({ budgetId: budgetId, accountId: accountId }, initOverrides);
         return await response.value();
     }
     /**
@@ -129,8 +129,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Returns all accounts
      * Account list
      */
-    async getAccounts(requestParameters, initOverrides) {
-        const response = await this.getAccountsRaw(requestParameters, initOverrides);
+    async getAccounts(budgetId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getAccountsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 }

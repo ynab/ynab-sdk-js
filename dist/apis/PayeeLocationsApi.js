@@ -53,8 +53,8 @@ class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns a single payee location
      * Single payee location
      */
-    async getPayeeLocationById(requestParameters, initOverrides) {
-        const response = await this.getPayeeLocationByIdRaw(requestParameters, initOverrides);
+    async getPayeeLocationById(budgetId, payeeLocationId, initOverrides) {
+        const response = await this.getPayeeLocationByIdRaw({ budgetId: budgetId, payeeLocationId: payeeLocationId }, initOverrides);
         return await response.value();
     }
     /**
@@ -87,8 +87,8 @@ class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations
      * List payee locations
      */
-    async getPayeeLocations(requestParameters, initOverrides) {
-        const response = await this.getPayeeLocationsRaw(requestParameters, initOverrides);
+    async getPayeeLocations(budgetId, initOverrides) {
+        const response = await this.getPayeeLocationsRaw({ budgetId: budgetId }, initOverrides);
         return await response.value();
     }
     /**
@@ -124,8 +124,8 @@ class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations for a specified payee
      * List locations for a payee
      */
-    async getPayeeLocationsByPayee(requestParameters, initOverrides) {
-        const response = await this.getPayeeLocationsByPayeeRaw(requestParameters, initOverrides);
+    async getPayeeLocationsByPayee(budgetId, payeeId, initOverrides) {
+        const response = await this.getPayeeLocationsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides);
         return await response.value();
     }
 }

@@ -117,12 +117,12 @@ var PayeesApi = /** @class */ (function (_super) {
      * Returns a single payee
      * Single payee
      */
-    PayeesApi.prototype.getPayeeById = function (requestParameters, initOverrides) {
+    PayeesApi.prototype.getPayeeById = function (budgetId, payeeId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeeByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeeByIdRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -176,12 +176,12 @@ var PayeesApi = /** @class */ (function (_super) {
      * Returns all payees
      * List payees
      */
-    PayeesApi.prototype.getPayees = function (requestParameters, initOverrides) {
+    PayeesApi.prototype.getPayees = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeesRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

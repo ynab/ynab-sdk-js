@@ -55,8 +55,8 @@ class DeprecatedApi extends runtime.BaseAPI {
      * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use \'POST /budgets/{budget_id}/transactions\' to create multiple transactions.
      * Bulk create transactions
      */
-    async bulkCreateTransactions(requestParameters, initOverrides) {
-        const response = await this.bulkCreateTransactionsRaw(requestParameters, initOverrides);
+    async bulkCreateTransactions(budgetId, transactions, initOverrides) {
+        const response = await this.bulkCreateTransactionsRaw({ budgetId: budgetId, transactions: transactions }, initOverrides);
         return await response.value();
     }
 }

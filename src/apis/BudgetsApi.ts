@@ -89,8 +89,8 @@ export class BudgetsApi extends runtime.BaseAPI {
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * Single budget
      */
-    async getBudgetById(requestParameters: GetBudgetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetDetailResponse> {
-        const response = await this.getBudgetByIdRaw(requestParameters, initOverrides);
+    async getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetDetailResponse> {
+        const response = await this.getBudgetByIdRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -130,8 +130,8 @@ export class BudgetsApi extends runtime.BaseAPI {
      * Returns settings for a budget
      * Budget Settings
      */
-    async getBudgetSettingsById(requestParameters: GetBudgetSettingsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSettingsResponse> {
-        const response = await this.getBudgetSettingsByIdRaw(requestParameters, initOverrides);
+    async getBudgetSettingsById(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSettingsResponse> {
+        const response = await this.getBudgetSettingsByIdRaw({ budgetId: budgetId }, initOverrides);
         return await response.value();
     }
 
@@ -171,8 +171,8 @@ export class BudgetsApi extends runtime.BaseAPI {
      * Returns budgets list with summary information
      * List budgets
      */
-    async getBudgets(requestParameters: GetBudgetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSummaryResponse> {
-        const response = await this.getBudgetsRaw(requestParameters, initOverrides);
+    async getBudgets(includeAccounts?: boolean, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSummaryResponse> {
+        const response = await this.getBudgetsRaw({ includeAccounts: includeAccounts }, initOverrides);
         return await response.value();
     }
 

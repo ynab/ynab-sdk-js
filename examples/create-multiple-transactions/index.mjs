@@ -25,10 +25,7 @@ const transactions = [
     },
 ];
 try {
-    await ynabAPI.transactions.createTransactions({
-        budgetId,
-        data: { transactions },
-    });
+    await ynabAPI.transactions.createTransactions(budgetId, { transactions });
 }
 catch (err) {
     const error = err.error;

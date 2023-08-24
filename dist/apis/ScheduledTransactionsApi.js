@@ -53,8 +53,8 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns a single scheduled transaction
      * Single scheduled transaction
      */
-    async getScheduledTransactionById(requestParameters, initOverrides) {
-        const response = await this.getScheduledTransactionByIdRaw(requestParameters, initOverrides);
+    async getScheduledTransactionById(budgetId, scheduledTransactionId, initOverrides) {
+        const response = await this.getScheduledTransactionByIdRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides);
         return await response.value();
     }
     /**
@@ -90,8 +90,8 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns all scheduled transactions
      * List scheduled transactions
      */
-    async getScheduledTransactions(requestParameters, initOverrides) {
-        const response = await this.getScheduledTransactionsRaw(requestParameters, initOverrides);
+    async getScheduledTransactions(budgetId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 }

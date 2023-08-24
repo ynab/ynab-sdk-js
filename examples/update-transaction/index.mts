@@ -10,19 +10,15 @@ const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
 
 try {
   const transaction = (
-    await ynabAPI.transactions.getTransactionById({ budgetId, transactionId })
+    await ynabAPI.transactions.getTransactionById(budgetId, transactionId)
   ).data.transaction;
 
   transaction.memo = "Updated memo";
   transaction.flag_color = SaveTransactionFlagColorEnum.Blue;
   transaction.id;
 
-  await ynabAPI.transactions.updateTransaction({
-    budgetId,
-    transactionId,
-    data: {
-      transaction,
-    },
+  await ynabAPI.transactions.updateTransaction(budgetId, transactionId, {
+    transaction,
   });
 } catch (err) {
   const error = err.error;

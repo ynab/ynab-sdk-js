@@ -43,7 +43,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * List categories
      */
-    getCategories(requestParameters: GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoriesResponse>;
+    getCategories(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoriesResponse>;
     /**
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category
@@ -53,7 +53,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category
      */
-    getCategoryById(requestParameters: GetCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
+    getCategoryById(budgetId: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
     /**
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category for a specific budget month
@@ -63,7 +63,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category for a specific budget month
      */
-    getMonthCategoryById(requestParameters: GetMonthCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
+    getMonthCategoryById(budgetId: string, month: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
     /**
      * Update a category for a specific month.  Only `budgeted` amount can be updated.
      * Update a category for a specific month
@@ -73,5 +73,5 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Update a category for a specific month.  Only `budgeted` amount can be updated.
      * Update a category for a specific month
      */
-    updateMonthCategory(requestParameters: UpdateMonthCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
+    updateMonthCategory(budgetId: string, month: string, categoryId: string, data: PatchMonthCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
 }

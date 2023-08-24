@@ -35,7 +35,7 @@ export declare class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns a single payee location
      * Single payee location
      */
-    getPayeeLocationById(requestParameters: GetPayeeLocationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse>;
+    getPayeeLocationById(budgetId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse>;
     /**
      * Returns all payee locations
      * List payee locations
@@ -45,7 +45,7 @@ export declare class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations
      * List payee locations
      */
-    getPayeeLocations(requestParameters: GetPayeeLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
+    getPayeeLocations(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
     /**
      * Returns all payee locations for a specified payee
      * List locations for a payee
@@ -55,5 +55,5 @@ export declare class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations for a specified payee
      * List locations for a payee
      */
-    getPayeeLocationsByPayee(requestParameters: GetPayeeLocationsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
 }

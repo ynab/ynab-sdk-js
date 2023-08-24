@@ -29,10 +29,7 @@ const transactions: Array<ynab.SaveTransaction> = [
 ];
 
 try {
-  await ynabAPI.transactions.createTransactions({
-    budgetId,
-    data: { transactions },
-  });
+  await ynabAPI.transactions.createTransactions(budgetId, { transactions });
 } catch (err) {
   const error = err.error;
   console.log(

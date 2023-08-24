@@ -14,7 +14,7 @@ const account: ynab.PostAccountWrapper = {
 };
 
 try {
-  await ynabAPI.accounts.createAccount({ budgetId, data: account });
+  await ynabAPI.accounts.createAccount(budgetId, account);
 } catch (err) {
   const error = err.error;
   console.log(

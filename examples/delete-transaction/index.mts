@@ -7,14 +7,14 @@ const budgetId = "default";
 const transactionId = "8fdf39f9-8f62-4efe-8dd2-64cb167ac6da";
 
 // Fetch transaction before deleting it
-await ynabAPI.transactions.getTransactionById({budgetId, transactionId});
+await ynabAPI.transactions.getTransactionById(budgetId, transactionId);
 
 // Delete the transaction
-await ynabAPI.transactions.deleteTransaction({budgetId, transactionId});
+await ynabAPI.transactions.deleteTransaction(budgetId, transactionId);
 
 // Try to fetch the transaction again and see that it was deleted
 try {
-  await ynabAPI.transactions.getTransactionById({budgetId, transactionId});
+  await ynabAPI.transactions.getTransactionById(budgetId, transactionId);
 } catch (error) {
   console.log(
     "As expected, the transaction was not found because it was deleted."

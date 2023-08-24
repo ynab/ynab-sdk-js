@@ -17,7 +17,7 @@ const transaction: ynab.SaveTransaction = {
 };
 
 try {
-  await ynabAPI.transactions.createTransaction({budgetId, data: { transaction }});
+  await ynabAPI.transactions.createTransaction(budgetId, { transaction });
 } catch (err) {
   const error = err.error;
   console.log(

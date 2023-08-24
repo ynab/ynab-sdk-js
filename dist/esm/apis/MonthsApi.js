@@ -117,12 +117,12 @@ var MonthsApi = /** @class */ (function (_super) {
      * Returns a single budget month
      * Single budget month
      */
-    MonthsApi.prototype.getBudgetMonth = function (requestParameters, initOverrides) {
+    MonthsApi.prototype.getBudgetMonth = function (budgetId, month, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getBudgetMonthRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getBudgetMonthRaw({ budgetId: budgetId, month: month }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -176,12 +176,12 @@ var MonthsApi = /** @class */ (function (_super) {
      * Returns all budget months
      * List budget months
      */
-    MonthsApi.prototype.getBudgetMonths = function (requestParameters, initOverrides) {
+    MonthsApi.prototype.getBudgetMonths = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getBudgetMonthsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getBudgetMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

@@ -53,8 +53,8 @@ class CategoriesApi extends runtime.BaseAPI {
      * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * List categories
      */
-    async getCategories(requestParameters, initOverrides) {
-        const response = await this.getCategoriesRaw(requestParameters, initOverrides);
+    async getCategories(budgetId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getCategoriesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
@@ -90,8 +90,8 @@ class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category
      */
-    async getCategoryById(requestParameters, initOverrides) {
-        const response = await this.getCategoryByIdRaw(requestParameters, initOverrides);
+    async getCategoryById(budgetId, categoryId, initOverrides) {
+        const response = await this.getCategoryByIdRaw({ budgetId: budgetId, categoryId: categoryId }, initOverrides);
         return await response.value();
     }
     /**
@@ -130,8 +130,8 @@ class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
      * Single category for a specific budget month
      */
-    async getMonthCategoryById(requestParameters, initOverrides) {
-        const response = await this.getMonthCategoryByIdRaw(requestParameters, initOverrides);
+    async getMonthCategoryById(budgetId, month, categoryId, initOverrides) {
+        const response = await this.getMonthCategoryByIdRaw({ budgetId: budgetId, month: month, categoryId: categoryId }, initOverrides);
         return await response.value();
     }
     /**
@@ -175,8 +175,8 @@ class CategoriesApi extends runtime.BaseAPI {
      * Update a category for a specific month.  Only `budgeted` amount can be updated.
      * Update a category for a specific month
      */
-    async updateMonthCategory(requestParameters, initOverrides) {
-        const response = await this.updateMonthCategoryRaw(requestParameters, initOverrides);
+    async updateMonthCategory(budgetId, month, categoryId, data, initOverrides) {
+        const response = await this.updateMonthCategoryRaw({ budgetId: budgetId, month: month, categoryId: categoryId, data: data }, initOverrides);
         return await response.value();
     }
 }

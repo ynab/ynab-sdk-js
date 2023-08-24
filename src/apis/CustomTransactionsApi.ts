@@ -29,13 +29,19 @@ export class CustomTransactionsApi extends TransactionsApi {
    * @throws {RequiredError}
    * @memberof TransactionsApi
    */
-  public getTransactionsByType(requestParameters: {
-    budgetId: string;
-    type: "uncategorized" | "unapproved";
-    lastKnowledgeOfServer?: number;
-    options?: any;
-  }) {
-    return this.getTransactions(requestParameters);
+  public getTransactionsByType(
+    budgetId: string,
+    type: "uncategorized" | "unapproved",
+    lastKnowledgeOfServer?: number,
+    options?: any
+  ) {
+    return this.getTransactions(
+      budgetId,
+      undefined,
+      type,
+      lastKnowledgeOfServer,
+      options
+    );
   }
 
   /**
@@ -47,11 +53,11 @@ export class CustomTransactionsApi extends TransactionsApi {
    * @throws {RequiredError}
    * @memberof TransactionsApi
    */
-  public createTransactions(requestParameters: {
+  public createTransactions(
     budgetId: string,
     data: PostTransactionsWrapper,
-    options?: any}
+    options?: any
   ) {
-    return this.createTransaction(requestParameters);
+    return this.createTransaction(budgetId, data, options);
   }
 }

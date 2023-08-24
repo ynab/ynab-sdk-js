@@ -119,12 +119,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
-    TransactionsApi.prototype.createTransaction = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.createTransaction = function (budgetId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createTransactionRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createTransactionRaw({ budgetId: budgetId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -178,12 +178,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Deletes a transaction
      * Deletes an existing transaction
      */
-    TransactionsApi.prototype.deleteTransaction = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.deleteTransaction = function (budgetId, transactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteTransactionRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.deleteTransactionRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -237,12 +237,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Returns a single transaction
      * Single transaction
      */
-    TransactionsApi.prototype.getTransactionById = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.getTransactionById = function (budgetId, transactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionByIdRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -302,12 +302,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Returns budget transactions
      * List transactions
      */
-    TransactionsApi.prototype.getTransactions = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.getTransactions = function (budgetId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsRaw({ budgetId: budgetId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -370,12 +370,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Returns all transactions for a specified account
      * List account transactions
      */
-    TransactionsApi.prototype.getTransactionsByAccount = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByAccount = function (budgetId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByAccountRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByAccountRaw({ budgetId: budgetId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -438,12 +438,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Returns all transactions for a specified category
      * List category transactions
      */
-    TransactionsApi.prototype.getTransactionsByCategory = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByCategory = function (budgetId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByCategoryRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByCategoryRaw({ budgetId: budgetId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -506,12 +506,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Returns all transactions for a specified payee
      * List payee transactions
      */
-    TransactionsApi.prototype.getTransactionsByPayee = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByPayee = function (budgetId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByPayeeRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -562,12 +562,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
-    TransactionsApi.prototype.importTransactions = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.importTransactions = function (budgetId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.importTransactionsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.importTransactionsRaw({ budgetId: budgetId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -626,12 +626,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Updates a single transaction
      * Updates an existing transaction
      */
-    TransactionsApi.prototype.updateTransaction = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.updateTransaction = function (budgetId, transactionId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateTransactionRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateTransactionRaw({ budgetId: budgetId, transactionId: transactionId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -687,12 +687,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Updates multiple transactions, by `id` or `import_id`.
      * Update multiple transactions
      */
-    TransactionsApi.prototype.updateTransactions = function (requestParameters, initOverrides) {
+    TransactionsApi.prototype.updateTransactions = function (budgetId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateTransactionsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateTransactionsRaw({ budgetId: budgetId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

@@ -29,8 +29,8 @@ class CustomTransactionsApi extends TransactionsApi_1.TransactionsApi {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByType(requestParameters) {
-        return this.getTransactions(requestParameters);
+    getTransactionsByType(budgetId, type, lastKnowledgeOfServer, options) {
+        return this.getTransactions(budgetId, undefined, type, lastKnowledgeOfServer, options);
     }
     /**
      * Creates multiple transactions. Provide a body containing a 'transactions' array, multiple transactions will be created.
@@ -41,8 +41,8 @@ class CustomTransactionsApi extends TransactionsApi_1.TransactionsApi {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    createTransactions(requestParameters) {
-        return this.createTransaction(requestParameters);
+    createTransactions(budgetId, data, options) {
+        return this.createTransaction(budgetId, data, options);
     }
 }
 exports.CustomTransactionsApi = CustomTransactionsApi;

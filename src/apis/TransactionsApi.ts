@@ -155,8 +155,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
-    async createTransaction(requestParameters: CreateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
-        const response = await this.createTransactionRaw(requestParameters, initOverrides);
+    async createTransaction(budgetId: string, data: PostTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
+        const response = await this.createTransactionRaw({ budgetId: budgetId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -200,8 +200,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Deletes a transaction
      * Deletes an existing transaction
      */
-    async deleteTransaction(requestParameters: DeleteTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
-        const response = await this.deleteTransactionRaw(requestParameters, initOverrides);
+    async deleteTransaction(budgetId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
+        const response = await this.deleteTransactionRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
         return await response.value();
     }
 
@@ -245,8 +245,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns a single transaction
      * Single transaction
      */
-    async getTransactionById(requestParameters: GetTransactionByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
-        const response = await this.getTransactionByIdRaw(requestParameters, initOverrides);
+    async getTransactionById(budgetId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
+        const response = await this.getTransactionByIdRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
         return await response.value();
     }
 
@@ -298,8 +298,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns budget transactions
      * List transactions
      */
-    async getTransactions(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsRaw(requestParameters, initOverrides);
+    async getTransactions(budgetId: string, sinceDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsRaw({ budgetId: budgetId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -355,8 +355,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified account
      * List account transactions
      */
-    async getTransactionsByAccount(requestParameters: GetTransactionsByAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsByAccountRaw(requestParameters, initOverrides);
+    async getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsByAccountRaw({ budgetId: budgetId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -412,8 +412,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified category
      * List category transactions
      */
-    async getTransactionsByCategory(requestParameters: GetTransactionsByCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
-        const response = await this.getTransactionsByCategoryRaw(requestParameters, initOverrides);
+    async getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
+        const response = await this.getTransactionsByCategoryRaw({ budgetId: budgetId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -469,8 +469,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified payee
      * List payee transactions
      */
-    async getTransactionsByPayee(requestParameters: GetTransactionsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
-        const response = await this.getTransactionsByPayeeRaw(requestParameters, initOverrides);
+    async getTransactionsByPayee(budgetId: string, payeeId: string, sinceDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
+        const response = await this.getTransactionsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -510,8 +510,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
-    async importTransactions(requestParameters: ImportTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsImportResponse> {
-        const response = await this.importTransactionsRaw(requestParameters, initOverrides);
+    async importTransactions(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsImportResponse> {
+        const response = await this.importTransactionsRaw({ budgetId: budgetId }, initOverrides);
         return await response.value();
     }
 
@@ -562,8 +562,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Updates a single transaction
      * Updates an existing transaction
      */
-    async updateTransaction(requestParameters: UpdateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
-        const response = await this.updateTransactionRaw(requestParameters, initOverrides);
+    async updateTransaction(budgetId: string, transactionId: string, data: PutTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
+        const response = await this.updateTransactionRaw({ budgetId: budgetId, transactionId: transactionId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -610,8 +610,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Updates multiple transactions, by `id` or `import_id`.
      * Update multiple transactions
      */
-    async updateTransactions(requestParameters: UpdateTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
-        const response = await this.updateTransactionsRaw(requestParameters, initOverrides);
+    async updateTransactions(budgetId: string, data: PatchTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
+        const response = await this.updateTransactionsRaw({ budgetId: budgetId, data: data }, initOverrides);
         return await response.value();
     }
 

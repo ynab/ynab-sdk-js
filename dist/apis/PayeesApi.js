@@ -53,8 +53,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Returns a single payee
      * Single payee
      */
-    async getPayeeById(requestParameters, initOverrides) {
-        const response = await this.getPayeeByIdRaw(requestParameters, initOverrides);
+    async getPayeeById(budgetId, payeeId, initOverrides) {
+        const response = await this.getPayeeByIdRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides);
         return await response.value();
     }
     /**
@@ -90,8 +90,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Returns all payees
      * List payees
      */
-    async getPayees(requestParameters, initOverrides) {
-        const response = await this.getPayeesRaw(requestParameters, initOverrides);
+    async getPayees(budgetId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getPayeesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 }

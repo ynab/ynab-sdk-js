@@ -117,12 +117,12 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
      * Returns a single scheduled transaction
      * Single scheduled transaction
      */
-    ScheduledTransactionsApi.prototype.getScheduledTransactionById = function (requestParameters, initOverrides) {
+    ScheduledTransactionsApi.prototype.getScheduledTransactionById = function (budgetId, scheduledTransactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getScheduledTransactionByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getScheduledTransactionByIdRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -176,12 +176,12 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
      * Returns all scheduled transactions
      * List scheduled transactions
      */
-    ScheduledTransactionsApi.prototype.getScheduledTransactions = function (requestParameters, initOverrides) {
+    ScheduledTransactionsApi.prototype.getScheduledTransactions = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getScheduledTransactionsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

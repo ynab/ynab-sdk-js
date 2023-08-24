@@ -9,12 +9,12 @@ const month = "2018-09-01";
 const data = { category: { budgeted: 20382 } };
 
 try {
-  await ynabAPI.categories.updateMonthCategory({
+  await ynabAPI.categories.updateMonthCategory(
     budgetId,
     month,
     categoryId,
-    data,
-  });
+    data
+  );
 } catch (err) {
   const error = err.error;
   console.log(

@@ -119,12 +119,12 @@ var DeprecatedApi = /** @class */ (function (_super) {
      * Creates multiple transactions.  Although this endpoint is still supported, it is recommended to use \'POST /budgets/{budget_id}/transactions\' to create multiple transactions.
      * Bulk create transactions
      */
-    DeprecatedApi.prototype.bulkCreateTransactions = function (requestParameters, initOverrides) {
+    DeprecatedApi.prototype.bulkCreateTransactions = function (budgetId, transactions, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.bulkCreateTransactionsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.bulkCreateTransactionsRaw({ budgetId: budgetId, transactions: transactions }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

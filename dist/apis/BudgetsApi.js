@@ -53,8 +53,8 @@ class BudgetsApi extends runtime.BaseAPI {
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * Single budget
      */
-    async getBudgetById(requestParameters, initOverrides) {
-        const response = await this.getBudgetByIdRaw(requestParameters, initOverrides);
+    async getBudgetById(budgetId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getBudgetByIdRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
@@ -87,8 +87,8 @@ class BudgetsApi extends runtime.BaseAPI {
      * Returns settings for a budget
      * Budget Settings
      */
-    async getBudgetSettingsById(requestParameters, initOverrides) {
-        const response = await this.getBudgetSettingsByIdRaw(requestParameters, initOverrides);
+    async getBudgetSettingsById(budgetId, initOverrides) {
+        const response = await this.getBudgetSettingsByIdRaw({ budgetId: budgetId }, initOverrides);
         return await response.value();
     }
     /**
@@ -121,8 +121,8 @@ class BudgetsApi extends runtime.BaseAPI {
      * Returns budgets list with summary information
      * List budgets
      */
-    async getBudgets(requestParameters = {}, initOverrides) {
-        const response = await this.getBudgetsRaw(requestParameters, initOverrides);
+    async getBudgets(includeAccounts, initOverrides) {
+        const response = await this.getBudgetsRaw({ includeAccounts: includeAccounts }, initOverrides);
         return await response.value();
     }
 }

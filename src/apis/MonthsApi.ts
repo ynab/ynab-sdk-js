@@ -83,8 +83,8 @@ export class MonthsApi extends runtime.BaseAPI {
      * Returns a single budget month
      * Single budget month
      */
-    async getBudgetMonth(requestParameters: GetBudgetMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse> {
-        const response = await this.getBudgetMonthRaw(requestParameters, initOverrides);
+    async getBudgetMonth(budgetId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse> {
+        const response = await this.getBudgetMonthRaw({ budgetId: budgetId, month: month }, initOverrides);
         return await response.value();
     }
 
@@ -128,8 +128,8 @@ export class MonthsApi extends runtime.BaseAPI {
      * Returns all budget months
      * List budget months
      */
-    async getBudgetMonths(requestParameters: GetBudgetMonthsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse> {
-        const response = await this.getBudgetMonthsRaw(requestParameters, initOverrides);
+    async getBudgetMonths(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse> {
+        const response = await this.getBudgetMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 

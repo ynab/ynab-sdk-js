@@ -34,7 +34,7 @@ export declare class BudgetsApi extends runtime.BaseAPI {
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * Single budget
      */
-    getBudgetById(requestParameters: GetBudgetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetDetailResponse>;
+    getBudgetById(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetDetailResponse>;
     /**
      * Returns settings for a budget
      * Budget Settings
@@ -44,7 +44,7 @@ export declare class BudgetsApi extends runtime.BaseAPI {
      * Returns settings for a budget
      * Budget Settings
      */
-    getBudgetSettingsById(requestParameters: GetBudgetSettingsByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSettingsResponse>;
+    getBudgetSettingsById(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSettingsResponse>;
     /**
      * Returns budgets list with summary information
      * List budgets
@@ -54,5 +54,5 @@ export declare class BudgetsApi extends runtime.BaseAPI {
      * Returns budgets list with summary information
      * List budgets
      */
-    getBudgets(requestParameters?: GetBudgetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSummaryResponse>;
+    getBudgets(includeAccounts?: boolean, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BudgetSummaryResponse>;
 }

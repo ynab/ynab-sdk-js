@@ -87,8 +87,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns a single payee location
      * Single payee location
      */
-    async getPayeeLocationById(requestParameters: GetPayeeLocationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse> {
-        const response = await this.getPayeeLocationByIdRaw(requestParameters, initOverrides);
+    async getPayeeLocationById(budgetId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse> {
+        const response = await this.getPayeeLocationByIdRaw({ budgetId: budgetId, payeeLocationId: payeeLocationId }, initOverrides);
         return await response.value();
     }
 
@@ -128,8 +128,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations
      * List payee locations
      */
-    async getPayeeLocations(requestParameters: GetPayeeLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
-        const response = await this.getPayeeLocationsRaw(requestParameters, initOverrides);
+    async getPayeeLocations(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
+        const response = await this.getPayeeLocationsRaw({ budgetId: budgetId }, initOverrides);
         return await response.value();
     }
 
@@ -173,8 +173,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations for a specified payee
      * List locations for a payee
      */
-    async getPayeeLocationsByPayee(requestParameters: GetPayeeLocationsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
-        const response = await this.getPayeeLocationsByPayeeRaw(requestParameters, initOverrides);
+    async getPayeeLocationsByPayee(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
+        const response = await this.getPayeeLocationsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides);
         return await response.value();
     }
 

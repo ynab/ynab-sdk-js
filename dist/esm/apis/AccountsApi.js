@@ -119,12 +119,12 @@ var AccountsApi = /** @class */ (function (_super) {
      * Creates a new account
      * Create a new account
      */
-    AccountsApi.prototype.createAccount = function (requestParameters, initOverrides) {
+    AccountsApi.prototype.createAccount = function (budgetId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createAccountRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createAccountRaw({ budgetId: budgetId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -178,12 +178,12 @@ var AccountsApi = /** @class */ (function (_super) {
      * Returns a single account
      * Single account
      */
-    AccountsApi.prototype.getAccountById = function (requestParameters, initOverrides) {
+    AccountsApi.prototype.getAccountById = function (budgetId, accountId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAccountByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getAccountByIdRaw({ budgetId: budgetId, accountId: accountId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -237,12 +237,12 @@ var AccountsApi = /** @class */ (function (_super) {
      * Returns all accounts
      * Account list
      */
-    AccountsApi.prototype.getAccounts = function (requestParameters, initOverrides) {
+    AccountsApi.prototype.getAccounts = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAccountsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getAccountsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

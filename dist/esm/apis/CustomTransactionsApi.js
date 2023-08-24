@@ -45,8 +45,8 @@ var CustomTransactionsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    CustomTransactionsApi.prototype.getTransactionsByType = function (requestParameters) {
-        return this.getTransactions(requestParameters);
+    CustomTransactionsApi.prototype.getTransactionsByType = function (budgetId, type, lastKnowledgeOfServer, options) {
+        return this.getTransactions(budgetId, undefined, type, lastKnowledgeOfServer, options);
     };
     /**
      * Creates multiple transactions. Provide a body containing a 'transactions' array, multiple transactions will be created.
@@ -57,8 +57,8 @@ var CustomTransactionsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    CustomTransactionsApi.prototype.createTransactions = function (requestParameters) {
-        return this.createTransaction(requestParameters);
+    CustomTransactionsApi.prototype.createTransactions = function (budgetId, data, options) {
+        return this.createTransaction(budgetId, data, options);
     };
     return CustomTransactionsApi;
 }(TransactionsApi));

@@ -117,12 +117,12 @@ var BudgetsApi = /** @class */ (function (_super) {
      * Returns a single budget with all related entities.  This resource is effectively a full budget export.
      * Single budget
      */
-    BudgetsApi.prototype.getBudgetById = function (requestParameters, initOverrides) {
+    BudgetsApi.prototype.getBudgetById = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getBudgetByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getBudgetByIdRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -173,12 +173,12 @@ var BudgetsApi = /** @class */ (function (_super) {
      * Returns settings for a budget
      * Budget Settings
      */
-    BudgetsApi.prototype.getBudgetSettingsById = function (requestParameters, initOverrides) {
+    BudgetsApi.prototype.getBudgetSettingsById = function (budgetId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getBudgetSettingsByIdRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getBudgetSettingsByIdRaw({ budgetId: budgetId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -229,13 +229,12 @@ var BudgetsApi = /** @class */ (function (_super) {
      * Returns budgets list with summary information
      * List budgets
      */
-    BudgetsApi.prototype.getBudgets = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
+    BudgetsApi.prototype.getBudgets = function (includeAccounts, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getBudgetsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getBudgetsRaw({ includeAccounts: includeAccounts }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

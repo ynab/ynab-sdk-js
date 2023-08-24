@@ -36,7 +36,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Creates a new account
      * Create a new account
      */
-    createAccount(requestParameters: CreateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
+    createAccount(budgetId: string, data: PostAccountWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
     /**
      * Returns a single account
      * Single account
@@ -46,7 +46,7 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Returns a single account
      * Single account
      */
-    getAccountById(requestParameters: GetAccountByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
+    getAccountById(budgetId: string, accountId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
     /**
      * Returns all accounts
      * Account list
@@ -56,5 +56,5 @@ export declare class AccountsApi extends runtime.BaseAPI {
      * Returns all accounts
      * Account list
      */
-    getAccounts(requestParameters: GetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountsResponse>;
+    getAccounts(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountsResponse>;
 }
