@@ -5,14 +5,16 @@ const ynabAPI = new ynab.API(accessToken);
 
 const budgetId = "378f111e-4b27-4ee5-a9fd-0ba03c1de0f0";
 
-const account: ynab.SaveAccount = {
-  name: "New Account",
-  type: ynab.AccountType.Checking,
-  balance: 103352,
+const account: ynab.PostAccountWrapper = {
+  account: {
+    name: "New Account",
+    type: ynab.AccountType.Checking,
+    balance: 103352,
+  },
 };
 
 try {
-  await ynabAPI.accounts.createAccount(budgetId, { account });
+  await ynabAPI.accounts.createAccount(budgetId, account);
 } catch (err) {
   const error = err.error;
   console.log(

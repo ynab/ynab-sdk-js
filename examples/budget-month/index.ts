@@ -8,7 +8,7 @@ ynabAPI.months
     "f968197b-2863-473a-8974-c2406dbe7f0d",
     ynab.utils.getCurrentMonthInISOFormat()
   )
-  .then(response => {
+  .then((response) => {
     let budgetMonth = response.data.month;
     console.log(`
 ============

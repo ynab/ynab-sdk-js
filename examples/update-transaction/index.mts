@@ -1,5 +1,7 @@
 import * as ynab from "../../src/index";
 
+import { SaveTransactionFlagColorEnum } from "../../src/models/SaveTransaction";
+
 const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
 const ynabAPI = new ynab.API(accessToken);
 
@@ -12,7 +14,7 @@ try {
   ).data.transaction;
 
   transaction.memo = "Updated memo";
-  transaction.flag_color = ynab.SaveTransaction.FlagColorEnum.Blue;
+  transaction.flag_color = SaveTransactionFlagColorEnum.Blue;
   transaction.id;
 
   await ynabAPI.transactions.updateTransaction(budgetId, transactionId, {

@@ -9,7 +9,7 @@ const transaction: ynab.SaveTransaction = {
   account_id: "d99072b8-f598-484c-a0f8-ae607350f70a",
   category_id: "8d505bc0-efbe-4803-b8ef-0898213a1092",
   payee_id: null,
-  cleared: ynab.SaveTransaction.ClearedEnum.Cleared,
+  cleared: ynab.SaveTransactionClearedEnum.Cleared,
   approved: true,
   date: ynab.utils.getCurrentDateInISOFormat(),
   amount: -23430,

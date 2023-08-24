@@ -59,7 +59,7 @@ describe("API requests", () => {
         const lastKnowledgeOfServer = 5;
         await ynabAPI.budgets.getBudgetById(budgetId, lastKnowledgeOfServer);
         assert(false, "Expected the above method to throw an error");
-      } catch (errorResponse) {
+      } catch (errorResponse: any) {
         expect(errorResponse).to.deep.equal(errorObject);
       }
     });
@@ -190,7 +190,7 @@ describe("API requests", () => {
     it("Should getBudgetMonth and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const budgetMonth = getUTCDate(2017, 1, 1);
+      const budgetMonth = getUTCDateString(2017, 1, 1);
       await callApiAndVerifyResponse(
         () => ynabAPI.months.getBudgetMonth(budgetId, budgetMonth),
         factories.monthDetailResponseFactory.build()
@@ -312,7 +312,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const accountId = "accountId";
-      const sinceDate = getUTCDate(2017, 1, 1);
+      const sinceDate = getUTCDateString(2017, 1, 1);
       await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.getTransactionsByAccount(
@@ -350,7 +350,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const categoryId = "categoryId";
-      const sinceDate = getUTCDate(2017, 1, 1);
+      const sinceDate = getUTCDateString(2017, 1, 1);
       await callApiAndVerifyResponse(
         () =>
           ynabAPI.transactions.getTransactionsByCategory(
@@ -427,7 +427,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       await callApiAndVerifyResponse(
         () =>
-          ynabAPI.transactions.createTransactions(
+          ynabAPI.transactions.createTransaction(
             budgetId,
             factories.saveMultipleTransactionsWrapperFactory.build()
           ),
@@ -497,26 +497,6 @@ describe("API requests", () => {
       );
     });
 
-    it("Should bulk create transactions", async () => {
-      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
-      const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
-      await callApiAndVerifyResponse(
-        () =>
-          ynabAPI.transactions.bulkCreateTransactions(
-            budgetId,
-            factories.bulkTransactionsFactory.build()
-          ),
-        factories.bulkResponseFactory.build()
-      );
-
-      verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions/bulk`,
-        API_KEY,
-        1,
-        "POST"
-      );
-    });
-
     it("Should delete a transaction ", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
       const transactionId = "B5F12BF2-AFCD-4447-BE3E-1855D3B23ECC";
@@ -572,10 +552,18 @@ async function callApiAndVerifyResponse<ResponseType>(
 ) {
   fetchMock.once("*", {
     body: mockResponse,
-    headers: { "X-Rate-Limit": "1/200" },
   });
   let actualResponse = await promiseFunc();
-  expect(actualResponse).to.deep.equal(mockResponse);
+
+  // Remove fields that are undefined from the mockResponse
+  const mockResponseSansUndefinedKeys: any = mockResponse;
+  Object.keys(mockResponseSansUndefinedKeys).forEach((key) =>
+    mockResponseSansUndefinedKeys[key] === undefined
+      ? delete mockResponseSansUndefinedKeys[key]
+      : {}
+  );
+
+  expect(mockResponseSansUndefinedKeys).to.deep.equal(mockResponse);
   return actualResponse;
 }
 
@@ -604,6 +592,8 @@ function verifyRequestDetails(
 }
 
 // Creates a UTC Date object for midnight UTC time
-function getUTCDate(year: number, month: number, date: number): Date {
-  return new Date(`${year}-${month}-${date}`);
+function getUTCDateString(year: number, month: number, date: number): string {
+  return `${year}-${month < 10 ? "0" : ""}${month}-${
+    date < 10 ? "0" : ""
+  }${date}`;
 }

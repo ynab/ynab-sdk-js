@@ -1,13 +1,13 @@
 {
   "name": "ynab",
-  "version": "1.55.0",
+  "version": "2.0.0-rc.1",
   "description": "YNAB API Javascript (Node) Library",
   "author": "YNAB",
   "email": "api@ynab.com",
   "url": "https://api.ynab.com",
   "keywords": [
     "typescript",
-    "swagger-client",
+    "open-api",
     "ynab",
     "api"
   ],
@@ -28,7 +28,8 @@
     "node": "<=18"
   },
   "scripts": {
-    "generate": "npx jsh ./.swagger-codegen/generate.js",
+    "generate": "openapi-generator generate -i ./open_api_spec.yaml -g \"typescript-fetch\" --type-mappings Date=string --additional-properties=modelPropertyNaming=original,useSingleRequestParameter=false -t ./templates -o src",
+    "download_lastest_spec": "wget https://api.ynab.com/papi/open_api_spec.yaml -O open_api_spec.yaml",
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production && npm run build_examples",
     "build_examples": "tsc -b examples/",
     "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'"
@@ -42,7 +43,6 @@
     "fetch-mock": "^9.10.6",
     "jsh": "0.34.0",
     "mocha": "^10.2.0",
-    "swagger-model-validator": "^3.0.19",
     "ts-loader": "^8.0.2",
     "ts-node": "^8.10.2",
     "typescript": "4.5.5",
