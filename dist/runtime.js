@@ -14,6 +14,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TextApiResponse = exports.BlobApiResponse = exports.VoidApiResponse = exports.JSONApiResponse = exports.canConsumeForm = exports.mapValues = exports.querystring = exports.exists = exports.COLLECTION_FORMATS = exports.RequiredError = exports.FetchError = exports.ResponseError = exports.BaseAPI = exports.DefaultConfig = exports.Configuration = exports.BASE_PATH = void 0;
+// Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
+const fetchPonyfill = require("fetch-ponyfill")();
+if (!globalThis.fetch) {
+    globalThis.fetch = fetchPonyfill.fetch;
+    globalThis.Response = fetchPonyfill.Response;
+    globalThis.Headers = fetchPonyfill.Headers;
+    globalThis.Request = fetchPonyfill.Request;
+}
 exports.BASE_PATH = "https://api.ynab.com/v1".replace(/\/+$/, "");
 class Configuration {
     constructor(configuration = {}) {

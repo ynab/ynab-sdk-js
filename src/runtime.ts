@@ -13,6 +13,15 @@
  */
 
 
+// Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
+const fetchPonyfill = require("fetch-ponyfill")();
+if (!globalThis.fetch) {
+  globalThis.fetch = fetchPonyfill.fetch;
+  globalThis.Response = fetchPonyfill.Response;
+  globalThis.Headers = fetchPonyfill.Headers;
+  globalThis.Request = fetchPonyfill.Request;
+}
+
 export const BASE_PATH = "https://api.ynab.com/v1".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {

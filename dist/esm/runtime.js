@@ -73,6 +73,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+// Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
+var fetchPonyfill = require("fetch-ponyfill")();
+if (!globalThis.fetch) {
+    globalThis.fetch = fetchPonyfill.fetch;
+    globalThis.Response = fetchPonyfill.Response;
+    globalThis.Headers = fetchPonyfill.Headers;
+    globalThis.Request = fetchPonyfill.Request;
+}
 export var BASE_PATH = "https://api.ynab.com/v1".replace(/\/+$/, "");
 var Configuration = /** @class */ (function () {
     function Configuration(configuration) {
