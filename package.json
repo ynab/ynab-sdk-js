@@ -1,6 +1,6 @@
 {
   "name": "ynab",
-  "version": "1.55.0",
+  "version": "2.0.0-rc.0",
   "description": "YNAB API Javascript (Node) Library",
   "author": "YNAB",
   "email": "api@ynab.com",
