@@ -28,7 +28,7 @@
     "node": "<=18"
   },
   "scripts": {
-    "generate": "openapi-generator generate -i ./open_api_spec.yaml -g \"typescript-fetch\" --type-mappings Date=string --additional-properties=modelPropertyNaming=original,useSingleRequestParameter=false -t ./templates -o src",
+    "generate": "npm run download_lastest_spec && openapi-generator generate -i ./open_api_spec.yaml -g \"typescript-fetch\" --type-mappings Date=string --additional-properties=modelPropertyNaming=original,useSingleRequestParameter=false -t ./templates -o src",
     "download_lastest_spec": "wget https://api.ynab.com/papi/open_api_spec.yaml -O open_api_spec.yaml",
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production && npm run build_examples",
     "build_examples": "tsc -b examples/",
