@@ -118,7 +118,7 @@ folder for example usage scenarios.
 
 ## Methods
 
-The following methods are available in this library. For more details on parameters and usage, the [TypeScript declaration file](https://github.com/ynab/ynab-sdk-js/blob/main/dist/api.d.ts) can be referenced.
+The following methods are available in this library.
 
 |                            | Method                                                                                                                                                         | Description                                           |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|
