@@ -13,29 +13,11 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaveTransactionWithIdToJSON = exports.SaveTransactionWithIdFromJSONTyped = exports.SaveTransactionWithIdFromJSON = exports.instanceOfSaveTransactionWithId = exports.SaveTransactionWithIdFlagColorEnum = exports.SaveTransactionWithIdClearedEnum = void 0;
+exports.SaveTransactionWithIdToJSON = exports.SaveTransactionWithIdFromJSONTyped = exports.SaveTransactionWithIdFromJSON = exports.instanceOfSaveTransactionWithId = void 0;
 const runtime_1 = require("../runtime");
 const SaveSubTransaction_1 = require("./SaveSubTransaction");
-/**
- * @export
- */
-exports.SaveTransactionWithIdClearedEnum = {
-    Cleared: 'cleared',
-    Uncleared: 'uncleared',
-    Reconciled: 'reconciled'
-};
-/**
- * @export
- */
-exports.SaveTransactionWithIdFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-};
+const TransactionClearedStatus_1 = require("./TransactionClearedStatus");
+const TransactionFlagColor_1 = require("./TransactionFlagColor");
 /**
  * Check if a given object implements the SaveTransactionWithId interface.
  */
@@ -61,9 +43,9 @@ function SaveTransactionWithIdFromJSONTyped(json, ignoreDiscriminator) {
         'payee_name': !(0, runtime_1.exists)(json, 'payee_name') ? undefined : json['payee_name'],
         'category_id': !(0, runtime_1.exists)(json, 'category_id') ? undefined : json['category_id'],
         'memo': !(0, runtime_1.exists)(json, 'memo') ? undefined : json['memo'],
-        'cleared': !(0, runtime_1.exists)(json, 'cleared') ? undefined : json['cleared'],
+        'cleared': !(0, runtime_1.exists)(json, 'cleared') ? undefined : (0, TransactionClearedStatus_1.TransactionClearedStatusFromJSON)(json['cleared']),
         'approved': !(0, runtime_1.exists)(json, 'approved') ? undefined : json['approved'],
-        'flag_color': !(0, runtime_1.exists)(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !(0, runtime_1.exists)(json, 'flag_color') ? undefined : (0, TransactionFlagColor_1.TransactionFlagColorFromJSON)(json['flag_color']),
         'import_id': !(0, runtime_1.exists)(json, 'import_id') ? undefined : json['import_id'],
         'subtransactions': !(0, runtime_1.exists)(json, 'subtransactions') ? undefined : (json['subtransactions'].map(SaveSubTransaction_1.SaveSubTransactionFromJSON)),
     };
@@ -85,9 +67,9 @@ function SaveTransactionWithIdToJSON(value) {
         'payee_name': value.payee_name,
         'category_id': value.category_id,
         'memo': value.memo,
-        'cleared': value.cleared,
+        'cleared': (0, TransactionClearedStatus_1.TransactionClearedStatusToJSON)(value.cleared),
         'approved': value.approved,
-        'flag_color': value.flag_color,
+        'flag_color': (0, TransactionFlagColor_1.TransactionFlagColorToJSON)(value.flag_color),
         'import_id': value.import_id,
         'subtransactions': value.subtransactions === undefined ? undefined : (value.subtransactions.map(SaveSubTransaction_1.SaveSubTransactionToJSON)),
     };

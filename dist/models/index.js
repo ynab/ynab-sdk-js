@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -55,6 +59,7 @@ __exportStar(require("./MonthDetailResponseData"), exports);
 __exportStar(require("./MonthSummariesResponse"), exports);
 __exportStar(require("./MonthSummariesResponseData"), exports);
 __exportStar(require("./MonthSummary"), exports);
+__exportStar(require("./PatchCategoryWrapper"), exports);
 __exportStar(require("./PatchMonthCategoryWrapper"), exports);
 __exportStar(require("./PatchTransactionsWrapper"), exports);
 __exportStar(require("./Payee"), exports);
@@ -71,6 +76,7 @@ __exportStar(require("./PostAccountWrapper"), exports);
 __exportStar(require("./PostTransactionsWrapper"), exports);
 __exportStar(require("./PutTransactionWrapper"), exports);
 __exportStar(require("./SaveAccount"), exports);
+__exportStar(require("./SaveCategory"), exports);
 __exportStar(require("./SaveCategoryResponse"), exports);
 __exportStar(require("./SaveCategoryResponseData"), exports);
 __exportStar(require("./SaveMonthCategory"), exports);
@@ -90,8 +96,10 @@ __exportStar(require("./ScheduledTransactionSummary"), exports);
 __exportStar(require("./ScheduledTransactionsResponse"), exports);
 __exportStar(require("./ScheduledTransactionsResponseData"), exports);
 __exportStar(require("./SubTransaction"), exports);
+__exportStar(require("./TransactionClearedStatus"), exports);
 __exportStar(require("./TransactionDetail"), exports);
 __exportStar(require("./TransactionDetailAllOf"), exports);
+__exportStar(require("./TransactionFlagColor"), exports);
 __exportStar(require("./TransactionResponse"), exports);
 __exportStar(require("./TransactionResponseData"), exports);
 __exportStar(require("./TransactionSummary"), exports);

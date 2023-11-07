@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TransactionFlagColor } from './TransactionFlagColor';
+import {
+    TransactionFlagColorFromJSON,
+    TransactionFlagColorFromJSONTyped,
+    TransactionFlagColorToJSON,
+} from './TransactionFlagColor';
+
 /**
  * 
  * @export
@@ -56,11 +63,11 @@ export interface ScheduledTransactionSummary {
      */
     memo?: string | null;
     /**
-     * The scheduled transaction flag
-     * @type {string}
+     * 
+     * @type {TransactionFlagColor}
      * @memberof ScheduledTransactionSummary
      */
-    flag_color?: ScheduledTransactionSummaryFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      * 
      * @type {string}
@@ -114,20 +121,6 @@ export const ScheduledTransactionSummaryFrequencyEnum = {
 } as const;
 export type ScheduledTransactionSummaryFrequencyEnum = typeof ScheduledTransactionSummaryFrequencyEnum[keyof typeof ScheduledTransactionSummaryFrequencyEnum];
 
-/**
- * @export
- */
-export const ScheduledTransactionSummaryFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-} as const;
-export type ScheduledTransactionSummaryFlagColorEnum = typeof ScheduledTransactionSummaryFlagColorEnum[keyof typeof ScheduledTransactionSummaryFlagColorEnum];
-
 
 /**
  * Check if a given object implements the ScheduledTransactionSummary interface.
@@ -161,7 +154,7 @@ export function ScheduledTransactionSummaryFromJSONTyped(json: any, ignoreDiscri
         'frequency': json['frequency'],
         'amount': json['amount'],
         'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'flag_color': !exists(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !exists(json, 'flag_color') ? undefined : TransactionFlagColorFromJSON(json['flag_color']),
         'account_id': json['account_id'],
         'payee_id': !exists(json, 'payee_id') ? undefined : json['payee_id'],
         'category_id': !exists(json, 'category_id') ? undefined : json['category_id'],
@@ -185,7 +178,7 @@ export function ScheduledTransactionSummaryToJSON(value?: ScheduledTransactionSu
         'frequency': value.frequency,
         'amount': value.amount,
         'memo': value.memo,
-        'flag_color': value.flag_color,
+        'flag_color': TransactionFlagColorToJSON(value.flag_color),
         'account_id': value.account_id,
         'payee_id': value.payee_id,
         'category_id': value.category_id,

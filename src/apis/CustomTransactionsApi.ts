@@ -31,7 +31,7 @@ export class CustomTransactionsApi extends TransactionsApi {
    */
   public getTransactionsByType(
     budgetId: string,
-    type: "uncategorized" | "unapproved",
+    type: "uncategorized" | "unapproved" | undefined,
     lastKnowledgeOfServer?: number,
     options?: any
   ) {

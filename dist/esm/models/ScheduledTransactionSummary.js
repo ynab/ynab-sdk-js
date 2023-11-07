@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 import { exists } from '../runtime';
+import { TransactionFlagColorFromJSON, TransactionFlagColorToJSON, } from './TransactionFlagColor';
 /**
  * @export
  */
@@ -29,18 +30,6 @@ export var ScheduledTransactionSummaryFrequencyEnum = {
     TwiceAYear: 'twiceAYear',
     Yearly: 'yearly',
     EveryOtherYear: 'everyOtherYear'
-};
-/**
- * @export
- */
-export var ScheduledTransactionSummaryFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
 };
 /**
  * Check if a given object implements the ScheduledTransactionSummary interface.
@@ -70,7 +59,7 @@ export function ScheduledTransactionSummaryFromJSONTyped(json, ignoreDiscriminat
         'frequency': json['frequency'],
         'amount': json['amount'],
         'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'flag_color': !exists(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !exists(json, 'flag_color') ? undefined : TransactionFlagColorFromJSON(json['flag_color']),
         'account_id': json['account_id'],
         'payee_id': !exists(json, 'payee_id') ? undefined : json['payee_id'],
         'category_id': !exists(json, 'category_id') ? undefined : json['category_id'],
@@ -92,7 +81,7 @@ export function ScheduledTransactionSummaryToJSON(value) {
         'frequency': value.frequency,
         'amount': value.amount,
         'memo': value.memo,
-        'flag_color': value.flag_color,
+        'flag_color': TransactionFlagColorToJSON(value.flag_color),
         'account_id': value.account_id,
         'payee_id': value.payee_id,
         'category_id': value.category_id,

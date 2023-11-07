@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { CategoriesResponse, CategoryResponse, PatchMonthCategoryWrapper, SaveCategoryResponse } from '../models/index';
+import type { CategoriesResponse, CategoryResponse, PatchCategoryWrapper, PatchMonthCategoryWrapper, SaveCategoryResponse } from '../models/index';
 export interface GetCategoriesRequest {
     budgetId: string;
     lastKnowledgeOfServer?: number;
@@ -23,6 +23,11 @@ export interface GetMonthCategoryByIdRequest {
     budgetId: string;
     month: string;
     categoryId: string;
+}
+export interface UpdateCategoryRequest {
+    budgetId: string;
+    categoryId: string;
+    data: PatchCategoryWrapper;
 }
 export interface UpdateMonthCategoryRequest {
     budgetId: string;
@@ -64,6 +69,16 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Single category for a specific budget month
      */
     getMonthCategoryById(budgetId: string, month: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
+    /**
+     * Update a category
+     * Update a category
+     */
+    updateCategoryRaw(requestParameters: UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCategoryResponse>>;
+    /**
+     * Update a category
+     * Update a category
+     */
+    updateCategory(budgetId: string, categoryId: string, data: PatchCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
     /**
      * Update a category for a specific month.  Only `budgeted` amount can be updated.
      * Update a category for a specific month

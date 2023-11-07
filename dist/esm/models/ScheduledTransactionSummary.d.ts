@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { TransactionFlagColor } from './TransactionFlagColor';
 /**
  *
  * @export
@@ -52,11 +53,11 @@ export interface ScheduledTransactionSummary {
      */
     memo?: string | null;
     /**
-     * The scheduled transaction flag
-     * @type {string}
+     *
+     * @type {TransactionFlagColor}
      * @memberof ScheduledTransactionSummary
      */
-    flag_color?: ScheduledTransactionSummaryFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      *
      * @type {string}
@@ -107,19 +108,6 @@ export declare const ScheduledTransactionSummaryFrequencyEnum: {
     readonly EveryOtherYear: "everyOtherYear";
 };
 export declare type ScheduledTransactionSummaryFrequencyEnum = typeof ScheduledTransactionSummaryFrequencyEnum[keyof typeof ScheduledTransactionSummaryFrequencyEnum];
-/**
- * @export
- */
-export declare const ScheduledTransactionSummaryFlagColorEnum: {
-    readonly Red: "red";
-    readonly Orange: "orange";
-    readonly Yellow: "yellow";
-    readonly Green: "green";
-    readonly Blue: "blue";
-    readonly Purple: "purple";
-    readonly Null: "null";
-};
-export declare type ScheduledTransactionSummaryFlagColorEnum = typeof ScheduledTransactionSummaryFlagColorEnum[keyof typeof ScheduledTransactionSummaryFlagColorEnum];
 /**
  * Check if a given object implements the ScheduledTransactionSummary interface.
  */

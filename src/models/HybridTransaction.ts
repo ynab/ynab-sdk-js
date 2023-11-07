@@ -13,6 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TransactionClearedStatus } from './TransactionClearedStatus';
+import {
+    TransactionClearedStatusFromJSON,
+    TransactionClearedStatusFromJSONTyped,
+    TransactionClearedStatusToJSON,
+} from './TransactionClearedStatus';
+import type { TransactionFlagColor } from './TransactionFlagColor';
+import {
+    TransactionFlagColorFromJSON,
+    TransactionFlagColorFromJSONTyped,
+    TransactionFlagColorToJSON,
+} from './TransactionFlagColor';
+
 /**
  * 
  * @export
@@ -44,11 +57,11 @@ export interface HybridTransaction {
      */
     memo?: string | null;
     /**
-     * The cleared status of the transaction
-     * @type {string}
+     * 
+     * @type {TransactionClearedStatus}
      * @memberof HybridTransaction
      */
-    cleared: HybridTransactionClearedEnum;
+    cleared: TransactionClearedStatus;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -56,11 +69,11 @@ export interface HybridTransaction {
      */
     approved: boolean;
     /**
-     * The transaction flag
-     * @type {string}
+     * 
+     * @type {TransactionFlagColor}
      * @memberof HybridTransaction
      */
-    flag_color?: HybridTransactionFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      * 
      * @type {string}
@@ -163,40 +176,16 @@ export interface HybridTransaction {
 /**
  * @export
  */
-export const HybridTransactionClearedEnum = {
-    Cleared: 'cleared',
-    Uncleared: 'uncleared',
-    Reconciled: 'reconciled'
-} as const;
-export type HybridTransactionClearedEnum = typeof HybridTransactionClearedEnum[keyof typeof HybridTransactionClearedEnum];
-
-/**
- * @export
- */
-export const HybridTransactionFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-} as const;
-export type HybridTransactionFlagColorEnum = typeof HybridTransactionFlagColorEnum[keyof typeof HybridTransactionFlagColorEnum];
-
-/**
- * @export
- */
 export const HybridTransactionDebtTransactionTypeEnum = {
     Payment: 'payment',
     Refund: 'refund',
     Fee: 'fee',
     Interest: 'interest',
     Escrow: 'escrow',
-    BalancedAdjustment: 'balancedAdjustment',
+    BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
     Charge: 'charge',
-    Null: 'null'
+    
 } as const;
 export type HybridTransactionDebtTransactionTypeEnum = typeof HybridTransactionDebtTransactionTypeEnum[keyof typeof HybridTransactionDebtTransactionTypeEnum];
 
@@ -242,9 +231,9 @@ export function HybridTransactionFromJSONTyped(json: any, ignoreDiscriminator: b
         'date': json['date'],
         'amount': json['amount'],
         'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'cleared': json['cleared'],
+        'cleared': TransactionClearedStatusFromJSON(json['cleared']),
         'approved': json['approved'],
-        'flag_color': !exists(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !exists(json, 'flag_color') ? undefined : TransactionFlagColorFromJSON(json['flag_color']),
         'account_id': json['account_id'],
         'payee_id': !exists(json, 'payee_id') ? undefined : json['payee_id'],
         'category_id': !exists(json, 'category_id') ? undefined : json['category_id'],
@@ -277,9 +266,9 @@ export function HybridTransactionToJSON(value?: HybridTransaction | null): any {
         'date': value.date,
         'amount': value.amount,
         'memo': value.memo,
-        'cleared': value.cleared,
+        'cleared': TransactionClearedStatusToJSON(value.cleared),
         'approved': value.approved,
-        'flag_color': value.flag_color,
+        'flag_color': TransactionFlagColorToJSON(value.flag_color),
         'account_id': value.account_id,
         'payee_id': value.payee_id,
         'category_id': value.category_id,

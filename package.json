@@ -25,11 +25,10 @@
     "url": "https://github.com/ynab/ynab-sdk-js.git"
   },
   "engines": {
-    "node": "<=18"
+    "node": ">=14"
   },
   "scripts": {
-    "generate": "npm run download_lastest_spec && openapi-generator generate -i ./open_api_spec.yaml -g \"typescript-fetch\" --type-mappings Date=string --additional-properties=modelPropertyNaming=original,useSingleRequestParameter=false -t ./templates -o src",
-    "download_lastest_spec": "wget https://api.ynab.com/papi/open_api_spec.yaml -O open_api_spec.yaml",
+    "generate": "./scripts/generate.mjs",
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production && npm run build_examples",
     "build_examples": "tsc -b examples/",
     "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'"
@@ -41,11 +40,11 @@
     "@types/node": "^14.0.27",
     "chai": "^4.2.0",
     "fetch-mock": "^9.10.6",
-    "jsh": "0.34.0",
+    "jsh": "0.55.0",
     "mocha": "^10.2.0",
     "ts-loader": "^8.0.2",
-    "ts-node": "^8.10.2",
-    "typescript": "4.5.5",
+    "ts-node": "10.9.1",
+    "typescript": "5.2.2",
     "url": "^0.11.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^5.0.1"

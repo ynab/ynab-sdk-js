@@ -1,7 +1,6 @@
 apis/AccountsApi.ts
 apis/BudgetsApi.ts
 apis/CategoriesApi.ts
-apis/DeprecatedApi.ts
 apis/MonthsApi.ts
 apis/PayeeLocationsApi.ts
 apis/PayeesApi.ts
@@ -53,6 +52,7 @@ models/MonthDetailResponseData.ts
 models/MonthSummariesResponse.ts
 models/MonthSummariesResponseData.ts
 models/MonthSummary.ts
+models/PatchCategoryWrapper.ts
 models/PatchMonthCategoryWrapper.ts
 models/PatchTransactionsWrapper.ts
 models/Payee.ts
@@ -69,6 +69,7 @@ models/PostAccountWrapper.ts
 models/PostTransactionsWrapper.ts
 models/PutTransactionWrapper.ts
 models/SaveAccount.ts
+models/SaveCategory.ts
 models/SaveCategoryResponse.ts
 models/SaveCategoryResponseData.ts
 models/SaveMonthCategory.ts
@@ -88,8 +89,10 @@ models/ScheduledTransactionSummary.ts
 models/ScheduledTransactionsResponse.ts
 models/ScheduledTransactionsResponseData.ts
 models/SubTransaction.ts
+models/TransactionClearedStatus.ts
 models/TransactionDetail.ts
 models/TransactionDetailAllOf.ts
+models/TransactionFlagColor.ts
 models/TransactionResponse.ts
 models/TransactionResponseData.ts
 models/TransactionSummary.ts

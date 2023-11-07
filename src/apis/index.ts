@@ -3,7 +3,6 @@
 export * from './AccountsApi';
 export * from './BudgetsApi';
 export * from './CategoriesApi';
-export * from './DeprecatedApi';
 export * from './MonthsApi';
 export * from './PayeeLocationsApi';
 export * from './PayeesApi';

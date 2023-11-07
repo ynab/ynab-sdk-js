@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 import type { SubTransaction } from './SubTransaction';
+import type { TransactionClearedStatus } from './TransactionClearedStatus';
+import type { TransactionFlagColor } from './TransactionFlagColor';
 /**
  *
  * @export
@@ -41,11 +43,11 @@ export interface TransactionDetail {
      */
     memo?: string | null;
     /**
-     * The cleared status of the transaction
-     * @type {string}
+     *
+     * @type {TransactionClearedStatus}
      * @memberof TransactionDetail
      */
-    cleared: TransactionDetailClearedEnum;
+    cleared: TransactionClearedStatus;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -53,11 +55,11 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     * The transaction flag
-     * @type {string}
+     *
+     * @type {TransactionFlagColor}
      * @memberof TransactionDetail
      */
-    flag_color?: TransactionDetailFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      *
      * @type {string}
@@ -152,38 +154,15 @@ export interface TransactionDetail {
 /**
  * @export
  */
-export declare const TransactionDetailClearedEnum: {
-    readonly Cleared: "cleared";
-    readonly Uncleared: "uncleared";
-    readonly Reconciled: "reconciled";
-};
-export declare type TransactionDetailClearedEnum = typeof TransactionDetailClearedEnum[keyof typeof TransactionDetailClearedEnum];
-/**
- * @export
- */
-export declare const TransactionDetailFlagColorEnum: {
-    readonly Red: "red";
-    readonly Orange: "orange";
-    readonly Yellow: "yellow";
-    readonly Green: "green";
-    readonly Blue: "blue";
-    readonly Purple: "purple";
-    readonly Null: "null";
-};
-export declare type TransactionDetailFlagColorEnum = typeof TransactionDetailFlagColorEnum[keyof typeof TransactionDetailFlagColorEnum];
-/**
- * @export
- */
 export declare const TransactionDetailDebtTransactionTypeEnum: {
     readonly Payment: "payment";
     readonly Refund: "refund";
     readonly Fee: "fee";
     readonly Interest: "interest";
     readonly Escrow: "escrow";
-    readonly BalancedAdjustment: "balancedAdjustment";
+    readonly BalanceAdjustment: "balanceAdjustment";
     readonly Credit: "credit";
     readonly Charge: "charge";
-    readonly Null: "null";
 };
 export declare type TransactionDetailDebtTransactionTypeEnum = typeof TransactionDetailDebtTransactionTypeEnum[keyof typeof TransactionDetailDebtTransactionTypeEnum];
 /**

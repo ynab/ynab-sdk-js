@@ -13,26 +13,8 @@
  */
 import { exists } from '../runtime';
 import { SaveSubTransactionFromJSON, SaveSubTransactionToJSON, } from './SaveSubTransaction';
-/**
- * @export
- */
-export var SaveTransactionWithIdClearedEnum = {
-    Cleared: 'cleared',
-    Uncleared: 'uncleared',
-    Reconciled: 'reconciled'
-};
-/**
- * @export
- */
-export var SaveTransactionWithIdFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-};
+import { TransactionClearedStatusFromJSON, TransactionClearedStatusToJSON, } from './TransactionClearedStatus';
+import { TransactionFlagColorFromJSON, TransactionFlagColorToJSON, } from './TransactionFlagColor';
 /**
  * Check if a given object implements the SaveTransactionWithId interface.
  */
@@ -56,9 +38,9 @@ export function SaveTransactionWithIdFromJSONTyped(json, ignoreDiscriminator) {
         'payee_name': !exists(json, 'payee_name') ? undefined : json['payee_name'],
         'category_id': !exists(json, 'category_id') ? undefined : json['category_id'],
         'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'cleared': !exists(json, 'cleared') ? undefined : json['cleared'],
+        'cleared': !exists(json, 'cleared') ? undefined : TransactionClearedStatusFromJSON(json['cleared']),
         'approved': !exists(json, 'approved') ? undefined : json['approved'],
-        'flag_color': !exists(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !exists(json, 'flag_color') ? undefined : TransactionFlagColorFromJSON(json['flag_color']),
         'import_id': !exists(json, 'import_id') ? undefined : json['import_id'],
         'subtransactions': !exists(json, 'subtransactions') ? undefined : (json['subtransactions'].map(SaveSubTransactionFromJSON)),
     };
@@ -79,9 +61,9 @@ export function SaveTransactionWithIdToJSON(value) {
         'payee_name': value.payee_name,
         'category_id': value.category_id,
         'memo': value.memo,
-        'cleared': value.cleared,
+        'cleared': TransactionClearedStatusToJSON(value.cleared),
         'approved': value.approved,
-        'flag_color': value.flag_color,
+        'flag_color': TransactionFlagColorToJSON(value.flag_color),
         'import_id': value.import_id,
         'subtransactions': value.subtransactions === undefined ? undefined : (value.subtransactions.map(SaveSubTransactionToJSON)),
     };

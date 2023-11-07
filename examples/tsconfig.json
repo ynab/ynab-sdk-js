@@ -2,8 +2,7 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "ESNext",
-    "noImplicitAny": true,
-    "noImplicitUseStrict": true
+    "noImplicitAny": true
   },
   "include": ["./**/*.ts", "./**/*.mts"],
   "references": [{ "path": "../src" }]

@@ -163,7 +163,6 @@ export declare const CategoryGoalTypeEnum: {
     readonly Mf: "MF";
     readonly Need: "NEED";
     readonly Debt: "DEBT";
-    readonly Null: "null";
 };
 export declare type CategoryGoalTypeEnum = typeof CategoryGoalTypeEnum[keyof typeof CategoryGoalTypeEnum];
 /**
