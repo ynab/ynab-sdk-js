@@ -28,7 +28,7 @@ export declare const AccountType: {
     readonly MedicalDebt: "medicalDebt";
     readonly OtherDebt: "otherDebt";
 };
-export declare type AccountType = typeof AccountType[keyof typeof AccountType];
+export type AccountType = typeof AccountType[keyof typeof AccountType];
 export declare function AccountTypeFromJSON(json: any): AccountType;
 export declare function AccountTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountType;
 export declare function AccountTypeToJSON(value?: AccountType | null): any;

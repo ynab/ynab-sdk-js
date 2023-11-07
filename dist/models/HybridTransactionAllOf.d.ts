@@ -53,7 +53,7 @@ export declare const HybridTransactionAllOfTypeEnum: {
     readonly Transaction: "transaction";
     readonly Subtransaction: "subtransaction";
 };
-export declare type HybridTransactionAllOfTypeEnum = typeof HybridTransactionAllOfTypeEnum[keyof typeof HybridTransactionAllOfTypeEnum];
+export type HybridTransactionAllOfTypeEnum = typeof HybridTransactionAllOfTypeEnum[keyof typeof HybridTransactionAllOfTypeEnum];
 /**
  * Check if a given object implements the HybridTransactionAllOf interface.
  */

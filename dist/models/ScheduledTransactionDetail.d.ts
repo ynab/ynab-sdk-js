@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import type { ScheduledSubTransaction } from './ScheduledSubTransaction';
+import type { TransactionFlagColor } from './TransactionFlagColor';
 /**
  *
  * @export
@@ -53,11 +54,11 @@ export interface ScheduledTransactionDetail {
      */
     memo?: string | null;
     /**
-     * The scheduled transaction flag
-     * @type {string}
+     *
+     * @type {TransactionFlagColor}
      * @memberof ScheduledTransactionDetail
      */
-    flag_color?: ScheduledTransactionDetailFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      *
      * @type {string}
@@ -131,20 +132,7 @@ export declare const ScheduledTransactionDetailFrequencyEnum: {
     readonly Yearly: "yearly";
     readonly EveryOtherYear: "everyOtherYear";
 };
-export declare type ScheduledTransactionDetailFrequencyEnum = typeof ScheduledTransactionDetailFrequencyEnum[keyof typeof ScheduledTransactionDetailFrequencyEnum];
-/**
- * @export
- */
-export declare const ScheduledTransactionDetailFlagColorEnum: {
-    readonly Red: "red";
-    readonly Orange: "orange";
-    readonly Yellow: "yellow";
-    readonly Green: "green";
-    readonly Blue: "blue";
-    readonly Purple: "purple";
-    readonly Null: "null";
-};
-export declare type ScheduledTransactionDetailFlagColorEnum = typeof ScheduledTransactionDetailFlagColorEnum[keyof typeof ScheduledTransactionDetailFlagColorEnum];
+export type ScheduledTransactionDetailFrequencyEnum = typeof ScheduledTransactionDetailFrequencyEnum[keyof typeof ScheduledTransactionDetailFrequencyEnum];
 /**
  * Check if a given object implements the ScheduledTransactionDetail interface.
  */

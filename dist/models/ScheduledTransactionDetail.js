@@ -13,9 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ScheduledTransactionDetailToJSON = exports.ScheduledTransactionDetailFromJSONTyped = exports.ScheduledTransactionDetailFromJSON = exports.instanceOfScheduledTransactionDetail = exports.ScheduledTransactionDetailFlagColorEnum = exports.ScheduledTransactionDetailFrequencyEnum = void 0;
+exports.ScheduledTransactionDetailToJSON = exports.ScheduledTransactionDetailFromJSONTyped = exports.ScheduledTransactionDetailFromJSON = exports.instanceOfScheduledTransactionDetail = exports.ScheduledTransactionDetailFrequencyEnum = void 0;
 const runtime_1 = require("../runtime");
 const ScheduledSubTransaction_1 = require("./ScheduledSubTransaction");
+const TransactionFlagColor_1 = require("./TransactionFlagColor");
 /**
  * @export
  */
@@ -33,18 +34,6 @@ exports.ScheduledTransactionDetailFrequencyEnum = {
     TwiceAYear: 'twiceAYear',
     Yearly: 'yearly',
     EveryOtherYear: 'everyOtherYear'
-};
-/**
- * @export
- */
-exports.ScheduledTransactionDetailFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
 };
 /**
  * Check if a given object implements the ScheduledTransactionDetail interface.
@@ -78,7 +67,7 @@ function ScheduledTransactionDetailFromJSONTyped(json, ignoreDiscriminator) {
         'frequency': json['frequency'],
         'amount': json['amount'],
         'memo': !(0, runtime_1.exists)(json, 'memo') ? undefined : json['memo'],
-        'flag_color': !(0, runtime_1.exists)(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !(0, runtime_1.exists)(json, 'flag_color') ? undefined : (0, TransactionFlagColor_1.TransactionFlagColorFromJSON)(json['flag_color']),
         'account_id': json['account_id'],
         'payee_id': !(0, runtime_1.exists)(json, 'payee_id') ? undefined : json['payee_id'],
         'category_id': !(0, runtime_1.exists)(json, 'category_id') ? undefined : json['category_id'],
@@ -105,7 +94,7 @@ function ScheduledTransactionDetailToJSON(value) {
         'frequency': value.frequency,
         'amount': value.amount,
         'memo': value.memo,
-        'flag_color': value.flag_color,
+        'flag_color': (0, TransactionFlagColor_1.TransactionFlagColorToJSON)(value.flag_color),
         'account_id': value.account_id,
         'payee_id': value.payee_id,
         'category_id': value.category_id,

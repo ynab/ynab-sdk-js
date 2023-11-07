@@ -19,6 +19,18 @@ import {
     SubTransactionFromJSONTyped,
     SubTransactionToJSON,
 } from './SubTransaction';
+import type { TransactionClearedStatus } from './TransactionClearedStatus';
+import {
+    TransactionClearedStatusFromJSON,
+    TransactionClearedStatusFromJSONTyped,
+    TransactionClearedStatusToJSON,
+} from './TransactionClearedStatus';
+import type { TransactionFlagColor } from './TransactionFlagColor';
+import {
+    TransactionFlagColorFromJSON,
+    TransactionFlagColorFromJSONTyped,
+    TransactionFlagColorToJSON,
+} from './TransactionFlagColor';
 
 /**
  * 
@@ -51,11 +63,11 @@ export interface TransactionDetail {
      */
     memo?: string | null;
     /**
-     * The cleared status of the transaction
-     * @type {string}
+     * 
+     * @type {TransactionClearedStatus}
      * @memberof TransactionDetail
      */
-    cleared: TransactionDetailClearedEnum;
+    cleared: TransactionClearedStatus;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -63,11 +75,11 @@ export interface TransactionDetail {
      */
     approved: boolean;
     /**
-     * The transaction flag
-     * @type {string}
+     * 
+     * @type {TransactionFlagColor}
      * @memberof TransactionDetail
      */
-    flag_color?: TransactionDetailFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      * 
      * @type {string}
@@ -164,40 +176,16 @@ export interface TransactionDetail {
 /**
  * @export
  */
-export const TransactionDetailClearedEnum = {
-    Cleared: 'cleared',
-    Uncleared: 'uncleared',
-    Reconciled: 'reconciled'
-} as const;
-export type TransactionDetailClearedEnum = typeof TransactionDetailClearedEnum[keyof typeof TransactionDetailClearedEnum];
-
-/**
- * @export
- */
-export const TransactionDetailFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-} as const;
-export type TransactionDetailFlagColorEnum = typeof TransactionDetailFlagColorEnum[keyof typeof TransactionDetailFlagColorEnum];
-
-/**
- * @export
- */
 export const TransactionDetailDebtTransactionTypeEnum = {
     Payment: 'payment',
     Refund: 'refund',
     Fee: 'fee',
     Interest: 'interest',
     Escrow: 'escrow',
-    BalancedAdjustment: 'balancedAdjustment',
+    BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
     Charge: 'charge',
-    Null: 'null'
+    
 } as const;
 export type TransactionDetailDebtTransactionTypeEnum = typeof TransactionDetailDebtTransactionTypeEnum[keyof typeof TransactionDetailDebtTransactionTypeEnum];
 
@@ -234,9 +222,9 @@ export function TransactionDetailFromJSONTyped(json: any, ignoreDiscriminator: b
         'date': json['date'],
         'amount': json['amount'],
         'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'cleared': json['cleared'],
+        'cleared': TransactionClearedStatusFromJSON(json['cleared']),
         'approved': json['approved'],
-        'flag_color': !exists(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !exists(json, 'flag_color') ? undefined : TransactionFlagColorFromJSON(json['flag_color']),
         'account_id': json['account_id'],
         'payee_id': !exists(json, 'payee_id') ? undefined : json['payee_id'],
         'category_id': !exists(json, 'category_id') ? undefined : json['category_id'],
@@ -268,9 +256,9 @@ export function TransactionDetailToJSON(value?: TransactionDetail | null): any {
         'date': value.date,
         'amount': value.amount,
         'memo': value.memo,
-        'cleared': value.cleared,
+        'cleared': TransactionClearedStatusToJSON(value.cleared),
         'approved': value.approved,
-        'flag_color': value.flag_color,
+        'flag_color': TransactionFlagColorToJSON(value.flag_color),
         'account_id': value.account_id,
         'payee_id': value.payee_id,
         'category_id': value.category_id,

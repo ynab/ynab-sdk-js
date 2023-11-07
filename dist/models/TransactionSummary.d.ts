@@ -9,6 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { TransactionClearedStatus } from './TransactionClearedStatus';
+import type { TransactionFlagColor } from './TransactionFlagColor';
 /**
  *
  * @export
@@ -40,11 +42,11 @@ export interface TransactionSummary {
      */
     memo?: string | null;
     /**
-     * The cleared status of the transaction
-     * @type {string}
+     *
+     * @type {TransactionClearedStatus}
      * @memberof TransactionSummary
      */
-    cleared: TransactionSummaryClearedEnum;
+    cleared: TransactionClearedStatus;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -52,11 +54,11 @@ export interface TransactionSummary {
      */
     approved: boolean;
     /**
-     * The transaction flag
-     * @type {string}
+     *
+     * @type {TransactionFlagColor}
      * @memberof TransactionSummary
      */
-    flag_color?: TransactionSummaryFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      *
      * @type {string}
@@ -127,40 +129,17 @@ export interface TransactionSummary {
 /**
  * @export
  */
-export declare const TransactionSummaryClearedEnum: {
-    readonly Cleared: "cleared";
-    readonly Uncleared: "uncleared";
-    readonly Reconciled: "reconciled";
-};
-export declare type TransactionSummaryClearedEnum = typeof TransactionSummaryClearedEnum[keyof typeof TransactionSummaryClearedEnum];
-/**
- * @export
- */
-export declare const TransactionSummaryFlagColorEnum: {
-    readonly Red: "red";
-    readonly Orange: "orange";
-    readonly Yellow: "yellow";
-    readonly Green: "green";
-    readonly Blue: "blue";
-    readonly Purple: "purple";
-    readonly Null: "null";
-};
-export declare type TransactionSummaryFlagColorEnum = typeof TransactionSummaryFlagColorEnum[keyof typeof TransactionSummaryFlagColorEnum];
-/**
- * @export
- */
 export declare const TransactionSummaryDebtTransactionTypeEnum: {
     readonly Payment: "payment";
     readonly Refund: "refund";
     readonly Fee: "fee";
     readonly Interest: "interest";
     readonly Escrow: "escrow";
-    readonly BalancedAdjustment: "balancedAdjustment";
+    readonly BalanceAdjustment: "balanceAdjustment";
     readonly Credit: "credit";
     readonly Charge: "charge";
-    readonly Null: "null";
 };
-export declare type TransactionSummaryDebtTransactionTypeEnum = typeof TransactionSummaryDebtTransactionTypeEnum[keyof typeof TransactionSummaryDebtTransactionTypeEnum];
+export type TransactionSummaryDebtTransactionTypeEnum = typeof TransactionSummaryDebtTransactionTypeEnum[keyof typeof TransactionSummaryDebtTransactionTypeEnum];
 /**
  * Check if a given object implements the TransactionSummary interface.
  */

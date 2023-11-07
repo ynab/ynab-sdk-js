@@ -63,7 +63,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import * as runtime from '../runtime';
-import { CategoriesResponseFromJSON, CategoryResponseFromJSON, PatchMonthCategoryWrapperToJSON, SaveCategoryResponseFromJSON, } from '../models/index';
+import { CategoriesResponseFromJSON, CategoryResponseFromJSON, PatchCategoryWrapperToJSON, PatchMonthCategoryWrapperToJSON, SaveCategoryResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -244,6 +244,70 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.getMonthCategoryByIdRaw({ budgetId: budgetId, month: month, categoryId: categoryId }, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Update a category
+     * Update a category
+     */
+    CategoriesApi.prototype.updateCategoryRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, token, tokenString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateCategory.');
+                        }
+                        if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
+                            throw new runtime.RequiredError('categoryId', 'Required parameter requestParameters.categoryId was null or undefined when calling updateCategory.');
+                        }
+                        if (requestParameters.data === null || requestParameters.data === undefined) {
+                            throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling updateCategory.');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Accept'] = 'application/json';
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.accessToken)) return [3 /*break*/, 2];
+                        token = this.configuration.accessToken;
+                        return [4 /*yield*/, token("bearer", [])];
+                    case 1:
+                        tokenString = _a.sent();
+                        if (tokenString) {
+                            headerParameters["Authorization"] = "Bearer ".concat(tokenString);
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/budgets/{budget_id}/categories/{category_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            method: 'PATCH',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: PatchCategoryWrapperToJSON(requestParameters.data),
+                        }, initOverrides)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return SaveCategoryResponseFromJSON(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Update a category
+     * Update a category
+     */
+    CategoriesApi.prototype.updateCategory = function (budgetId, categoryId, data, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.updateCategoryRaw({ budgetId: budgetId, categoryId: categoryId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

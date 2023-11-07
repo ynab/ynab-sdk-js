@@ -19,6 +19,18 @@ import {
     SaveSubTransactionFromJSONTyped,
     SaveSubTransactionToJSON,
 } from './SaveSubTransaction';
+import type { TransactionClearedStatus } from './TransactionClearedStatus';
+import {
+    TransactionClearedStatusFromJSON,
+    TransactionClearedStatusFromJSONTyped,
+    TransactionClearedStatusToJSON,
+} from './TransactionClearedStatus';
+import type { TransactionFlagColor } from './TransactionFlagColor';
+import {
+    TransactionFlagColorFromJSON,
+    TransactionFlagColorFromJSONTyped,
+    TransactionFlagColorToJSON,
+} from './TransactionFlagColor';
 
 /**
  * 
@@ -75,11 +87,11 @@ export interface SaveTransactionWithId {
      */
     memo?: string | null;
     /**
-     * The cleared status of the transaction
-     * @type {string}
+     * 
+     * @type {TransactionClearedStatus}
      * @memberof SaveTransactionWithId
      */
-    cleared?: SaveTransactionWithIdClearedEnum;
+    cleared?: TransactionClearedStatus;
     /**
      * Whether or not the transaction is approved.  If not supplied, transaction will be unapproved by default.
      * @type {boolean}
@@ -87,11 +99,11 @@ export interface SaveTransactionWithId {
      */
     approved?: boolean;
     /**
-     * The transaction flag
-     * @type {string}
+     * 
+     * @type {TransactionFlagColor}
      * @memberof SaveTransactionWithId
      */
-    flag_color?: SaveTransactionWithIdFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      * If specified, the new transaction will be assigned this `import_id` and considered "imported".  We will also attempt to match this imported transaction to an existing "user-entered" transation on the same account, with the same amount, and with a date +/-10 days from the imported transaction date.<br><br>Transactions imported through File Based Import or Direct Import (not through the API) are assigned an import_id in the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent duplicates through Direct Import and File Based Import.<br><br>If import_id is omitted or specified as null, the transaction will be treated as a "user-entered" transaction. As such, it will be eligible to be matched against transactions later being imported (via DI, FBI, or API).
      * @type {string}
@@ -105,32 +117,6 @@ export interface SaveTransactionWithId {
      */
     subtransactions?: Array<SaveSubTransaction>;
 }
-
-
-/**
- * @export
- */
-export const SaveTransactionWithIdClearedEnum = {
-    Cleared: 'cleared',
-    Uncleared: 'uncleared',
-    Reconciled: 'reconciled'
-} as const;
-export type SaveTransactionWithIdClearedEnum = typeof SaveTransactionWithIdClearedEnum[keyof typeof SaveTransactionWithIdClearedEnum];
-
-/**
- * @export
- */
-export const SaveTransactionWithIdFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-} as const;
-export type SaveTransactionWithIdFlagColorEnum = typeof SaveTransactionWithIdFlagColorEnum[keyof typeof SaveTransactionWithIdFlagColorEnum];
-
 
 /**
  * Check if a given object implements the SaveTransactionWithId interface.
@@ -159,9 +145,9 @@ export function SaveTransactionWithIdFromJSONTyped(json: any, ignoreDiscriminato
         'payee_name': !exists(json, 'payee_name') ? undefined : json['payee_name'],
         'category_id': !exists(json, 'category_id') ? undefined : json['category_id'],
         'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'cleared': !exists(json, 'cleared') ? undefined : json['cleared'],
+        'cleared': !exists(json, 'cleared') ? undefined : TransactionClearedStatusFromJSON(json['cleared']),
         'approved': !exists(json, 'approved') ? undefined : json['approved'],
-        'flag_color': !exists(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !exists(json, 'flag_color') ? undefined : TransactionFlagColorFromJSON(json['flag_color']),
         'import_id': !exists(json, 'import_id') ? undefined : json['import_id'],
         'subtransactions': !exists(json, 'subtransactions') ? undefined : ((json['subtransactions'] as Array<any>).map(SaveSubTransactionFromJSON)),
     };
@@ -184,9 +170,9 @@ export function SaveTransactionWithIdToJSON(value?: SaveTransactionWithId | null
         'payee_name': value.payee_name,
         'category_id': value.category_id,
         'memo': value.memo,
-        'cleared': value.cleared,
+        'cleared': TransactionClearedStatusToJSON(value.cleared),
         'approved': value.approved,
-        'flag_color': value.flag_color,
+        'flag_color': TransactionFlagColorToJSON(value.flag_color),
         'import_id': value.import_id,
         'subtransactions': value.subtransactions === undefined ? undefined : ((value.subtransactions as Array<any>).map(SaveSubTransactionToJSON)),
     };

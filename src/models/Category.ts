@@ -169,7 +169,7 @@ export const CategoryGoalTypeEnum = {
     Mf: 'MF',
     Need: 'NEED',
     Debt: 'DEBT',
-    Null: 'null'
+    
 } as const;
 export type CategoryGoalTypeEnum = typeof CategoryGoalTypeEnum[keyof typeof CategoryGoalTypeEnum];
 

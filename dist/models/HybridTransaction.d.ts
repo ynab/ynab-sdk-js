@@ -9,6 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { TransactionClearedStatus } from './TransactionClearedStatus';
+import type { TransactionFlagColor } from './TransactionFlagColor';
 /**
  *
  * @export
@@ -40,11 +42,11 @@ export interface HybridTransaction {
      */
     memo?: string | null;
     /**
-     * The cleared status of the transaction
-     * @type {string}
+     *
+     * @type {TransactionClearedStatus}
      * @memberof HybridTransaction
      */
-    cleared: HybridTransactionClearedEnum;
+    cleared: TransactionClearedStatus;
     /**
      * Whether or not the transaction is approved
      * @type {boolean}
@@ -52,11 +54,11 @@ export interface HybridTransaction {
      */
     approved: boolean;
     /**
-     * The transaction flag
-     * @type {string}
+     *
+     * @type {TransactionFlagColor}
      * @memberof HybridTransaction
      */
-    flag_color?: HybridTransactionFlagColorEnum;
+    flag_color?: TransactionFlagColor | null;
     /**
      *
      * @type {string}
@@ -157,40 +159,17 @@ export interface HybridTransaction {
 /**
  * @export
  */
-export declare const HybridTransactionClearedEnum: {
-    readonly Cleared: "cleared";
-    readonly Uncleared: "uncleared";
-    readonly Reconciled: "reconciled";
-};
-export declare type HybridTransactionClearedEnum = typeof HybridTransactionClearedEnum[keyof typeof HybridTransactionClearedEnum];
-/**
- * @export
- */
-export declare const HybridTransactionFlagColorEnum: {
-    readonly Red: "red";
-    readonly Orange: "orange";
-    readonly Yellow: "yellow";
-    readonly Green: "green";
-    readonly Blue: "blue";
-    readonly Purple: "purple";
-    readonly Null: "null";
-};
-export declare type HybridTransactionFlagColorEnum = typeof HybridTransactionFlagColorEnum[keyof typeof HybridTransactionFlagColorEnum];
-/**
- * @export
- */
 export declare const HybridTransactionDebtTransactionTypeEnum: {
     readonly Payment: "payment";
     readonly Refund: "refund";
     readonly Fee: "fee";
     readonly Interest: "interest";
     readonly Escrow: "escrow";
-    readonly BalancedAdjustment: "balancedAdjustment";
+    readonly BalanceAdjustment: "balanceAdjustment";
     readonly Credit: "credit";
     readonly Charge: "charge";
-    readonly Null: "null";
 };
-export declare type HybridTransactionDebtTransactionTypeEnum = typeof HybridTransactionDebtTransactionTypeEnum[keyof typeof HybridTransactionDebtTransactionTypeEnum];
+export type HybridTransactionDebtTransactionTypeEnum = typeof HybridTransactionDebtTransactionTypeEnum[keyof typeof HybridTransactionDebtTransactionTypeEnum];
 /**
  * @export
  */
@@ -198,7 +177,7 @@ export declare const HybridTransactionTypeEnum: {
     readonly Transaction: "transaction";
     readonly Subtransaction: "subtransaction";
 };
-export declare type HybridTransactionTypeEnum = typeof HybridTransactionTypeEnum[keyof typeof HybridTransactionTypeEnum];
+export type HybridTransactionTypeEnum = typeof HybridTransactionTypeEnum[keyof typeof HybridTransactionTypeEnum];
 /**
  * Check if a given object implements the HybridTransaction interface.
  */

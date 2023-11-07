@@ -174,7 +174,7 @@ export declare const GetTransactionsTypeEnum: {
     readonly Uncategorized: "uncategorized";
     readonly Unapproved: "unapproved";
 };
-export declare type GetTransactionsTypeEnum = typeof GetTransactionsTypeEnum[keyof typeof GetTransactionsTypeEnum];
+export type GetTransactionsTypeEnum = typeof GetTransactionsTypeEnum[keyof typeof GetTransactionsTypeEnum];
 /**
  * @export
  */
@@ -182,7 +182,7 @@ export declare const GetTransactionsByAccountTypeEnum: {
     readonly Uncategorized: "uncategorized";
     readonly Unapproved: "unapproved";
 };
-export declare type GetTransactionsByAccountTypeEnum = typeof GetTransactionsByAccountTypeEnum[keyof typeof GetTransactionsByAccountTypeEnum];
+export type GetTransactionsByAccountTypeEnum = typeof GetTransactionsByAccountTypeEnum[keyof typeof GetTransactionsByAccountTypeEnum];
 /**
  * @export
  */
@@ -190,7 +190,7 @@ export declare const GetTransactionsByCategoryTypeEnum: {
     readonly Uncategorized: "uncategorized";
     readonly Unapproved: "unapproved";
 };
-export declare type GetTransactionsByCategoryTypeEnum = typeof GetTransactionsByCategoryTypeEnum[keyof typeof GetTransactionsByCategoryTypeEnum];
+export type GetTransactionsByCategoryTypeEnum = typeof GetTransactionsByCategoryTypeEnum[keyof typeof GetTransactionsByCategoryTypeEnum];
 /**
  * @export
  */
@@ -198,4 +198,4 @@ export declare const GetTransactionsByPayeeTypeEnum: {
     readonly Uncategorized: "uncategorized";
     readonly Unapproved: "unapproved";
 };
-export declare type GetTransactionsByPayeeTypeEnum = typeof GetTransactionsByPayeeTypeEnum[keyof typeof GetTransactionsByPayeeTypeEnum];
+export type GetTransactionsByPayeeTypeEnum = typeof GetTransactionsByPayeeTypeEnum[keyof typeof GetTransactionsByPayeeTypeEnum];

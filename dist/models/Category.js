@@ -24,7 +24,6 @@ exports.CategoryGoalTypeEnum = {
     Mf: 'MF',
     Need: 'NEED',
     Debt: 'DEBT',
-    Null: 'null'
 };
 /**
  * Check if a given object implements the Category interface.

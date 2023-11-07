@@ -18,6 +18,7 @@ import type {
   CategoriesResponse,
   CategoryResponse,
   ErrorResponse,
+  PatchCategoryWrapper,
   PatchMonthCategoryWrapper,
   SaveCategoryResponse,
 } from '../models/index';
@@ -28,6 +29,8 @@ import {
     CategoryResponseToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    PatchCategoryWrapperFromJSON,
+    PatchCategoryWrapperToJSON,
     PatchMonthCategoryWrapperFromJSON,
     PatchMonthCategoryWrapperToJSON,
     SaveCategoryResponseFromJSON,
@@ -48,6 +51,12 @@ export interface GetMonthCategoryByIdRequest {
     budgetId: string;
     month: string;
     categoryId: string;
+}
+
+export interface UpdateCategoryRequest {
+    budgetId: string;
+    categoryId: string;
+    data: PatchCategoryWrapper;
 }
 
 export interface UpdateMonthCategoryRequest {
@@ -198,6 +207,58 @@ export class CategoriesApi extends runtime.BaseAPI {
      */
     async getMonthCategoryById(budgetId: string, month: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse> {
         const response = await this.getMonthCategoryByIdRaw({ budgetId: budgetId, month: month, categoryId: categoryId }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a category
+     * Update a category
+     */
+    async updateCategoryRaw(requestParameters: UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCategoryResponse>> {
+        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updateCategory.');
+        }
+
+        if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
+            throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling updateCategory.');
+        }
+
+        if (requestParameters.data === null || requestParameters.data === undefined) {
+            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling updateCategory.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+        headerParameters['Accept'] = 'application/json';
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/budgets/{budget_id}/categories/{category_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PatchCategoryWrapperToJSON(requestParameters.data),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SaveCategoryResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a category
+     * Update a category
+     */
+    async updateCategory(budgetId: string, categoryId: string, data: PatchCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse> {
+        const response = await this.updateCategoryRaw({ budgetId: budgetId, categoryId: categoryId, data: data }, initOverrides);
         return await response.value();
     }
 

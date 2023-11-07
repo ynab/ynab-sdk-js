@@ -12,26 +12,8 @@
  * Do not edit the class manually.
  */
 import { exists } from '../runtime';
-/**
- * @export
- */
-export var TransactionSummaryClearedEnum = {
-    Cleared: 'cleared',
-    Uncleared: 'uncleared',
-    Reconciled: 'reconciled'
-};
-/**
- * @export
- */
-export var TransactionSummaryFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-};
+import { TransactionClearedStatusFromJSON, TransactionClearedStatusToJSON, } from './TransactionClearedStatus';
+import { TransactionFlagColorFromJSON, TransactionFlagColorToJSON, } from './TransactionFlagColor';
 /**
  * @export
  */
@@ -41,10 +23,9 @@ export var TransactionSummaryDebtTransactionTypeEnum = {
     Fee: 'fee',
     Interest: 'interest',
     Escrow: 'escrow',
-    BalancedAdjustment: 'balancedAdjustment',
+    BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
     Charge: 'charge',
-    Null: 'null'
 };
 /**
  * Check if a given object implements the TransactionSummary interface.
@@ -72,9 +53,9 @@ export function TransactionSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'date': json['date'],
         'amount': json['amount'],
         'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'cleared': json['cleared'],
+        'cleared': TransactionClearedStatusFromJSON(json['cleared']),
         'approved': json['approved'],
-        'flag_color': !exists(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !exists(json, 'flag_color') ? undefined : TransactionFlagColorFromJSON(json['flag_color']),
         'account_id': json['account_id'],
         'payee_id': !exists(json, 'payee_id') ? undefined : json['payee_id'],
         'category_id': !exists(json, 'category_id') ? undefined : json['category_id'],
@@ -100,9 +81,9 @@ export function TransactionSummaryToJSON(value) {
         'date': value.date,
         'amount': value.amount,
         'memo': value.memo,
-        'cleared': value.cleared,
+        'cleared': TransactionClearedStatusToJSON(value.cleared),
         'approved': value.approved,
-        'flag_color': value.flag_color,
+        'flag_color': TransactionFlagColorToJSON(value.flag_color),
         'account_id': value.account_id,
         'payee_id': value.payee_id,
         'category_id': value.category_id,

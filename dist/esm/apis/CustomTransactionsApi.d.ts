@@ -25,7 +25,7 @@ export declare class CustomTransactionsApi extends TransactionsApi {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getTransactionsByType(budgetId: string, type: "uncategorized" | "unapproved", lastKnowledgeOfServer?: number, options?: any): Promise<import("..").TransactionsResponse>;
+    getTransactionsByType(budgetId: string, type: "uncategorized" | "unapproved" | undefined, lastKnowledgeOfServer?: number, options?: any): Promise<import("..").TransactionsResponse>;
     /**
      * Creates multiple transactions. Provide a body containing a 'transactions' array, multiple transactions will be created.
      * @summary Create a single transaction or multiple transactions

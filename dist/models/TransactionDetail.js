@@ -13,29 +13,11 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionDetailToJSON = exports.TransactionDetailFromJSONTyped = exports.TransactionDetailFromJSON = exports.instanceOfTransactionDetail = exports.TransactionDetailDebtTransactionTypeEnum = exports.TransactionDetailFlagColorEnum = exports.TransactionDetailClearedEnum = void 0;
+exports.TransactionDetailToJSON = exports.TransactionDetailFromJSONTyped = exports.TransactionDetailFromJSON = exports.instanceOfTransactionDetail = exports.TransactionDetailDebtTransactionTypeEnum = void 0;
 const runtime_1 = require("../runtime");
 const SubTransaction_1 = require("./SubTransaction");
-/**
- * @export
- */
-exports.TransactionDetailClearedEnum = {
-    Cleared: 'cleared',
-    Uncleared: 'uncleared',
-    Reconciled: 'reconciled'
-};
-/**
- * @export
- */
-exports.TransactionDetailFlagColorEnum = {
-    Red: 'red',
-    Orange: 'orange',
-    Yellow: 'yellow',
-    Green: 'green',
-    Blue: 'blue',
-    Purple: 'purple',
-    Null: 'null'
-};
+const TransactionClearedStatus_1 = require("./TransactionClearedStatus");
+const TransactionFlagColor_1 = require("./TransactionFlagColor");
 /**
  * @export
  */
@@ -45,10 +27,9 @@ exports.TransactionDetailDebtTransactionTypeEnum = {
     Fee: 'fee',
     Interest: 'interest',
     Escrow: 'escrow',
-    BalancedAdjustment: 'balancedAdjustment',
+    BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
     Charge: 'charge',
-    Null: 'null'
 };
 /**
  * Check if a given object implements the TransactionDetail interface.
@@ -80,9 +61,9 @@ function TransactionDetailFromJSONTyped(json, ignoreDiscriminator) {
         'date': json['date'],
         'amount': json['amount'],
         'memo': !(0, runtime_1.exists)(json, 'memo') ? undefined : json['memo'],
-        'cleared': json['cleared'],
+        'cleared': (0, TransactionClearedStatus_1.TransactionClearedStatusFromJSON)(json['cleared']),
         'approved': json['approved'],
-        'flag_color': !(0, runtime_1.exists)(json, 'flag_color') ? undefined : json['flag_color'],
+        'flag_color': !(0, runtime_1.exists)(json, 'flag_color') ? undefined : (0, TransactionFlagColor_1.TransactionFlagColorFromJSON)(json['flag_color']),
         'account_id': json['account_id'],
         'payee_id': !(0, runtime_1.exists)(json, 'payee_id') ? undefined : json['payee_id'],
         'category_id': !(0, runtime_1.exists)(json, 'category_id') ? undefined : json['category_id'],
@@ -113,9 +94,9 @@ function TransactionDetailToJSON(value) {
         'date': value.date,
         'amount': value.amount,
         'memo': value.memo,
-        'cleared': value.cleared,
+        'cleared': (0, TransactionClearedStatus_1.TransactionClearedStatusToJSON)(value.cleared),
         'approved': value.approved,
-        'flag_color': value.flag_color,
+        'flag_color': (0, TransactionFlagColor_1.TransactionFlagColorToJSON)(value.flag_color),
         'account_id': value.account_id,
         'payee_id': value.payee_id,
         'category_id': value.category_id,
