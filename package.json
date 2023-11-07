@@ -25,7 +25,7 @@
     "url": "https://github.com/ynab/ynab-sdk-js.git"
   },
   "engines": {
-    "node": "<=18"
+    "node": ">=14"
   },
   "scripts": {
     "generate": "./scripts/generate.mjs",
