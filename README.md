@@ -9,7 +9,7 @@ This client is generated using the [OpenAPI Generator](https://openapi-generator
 
 ## Installation
 
-First, install the module with npm (or yarn):
+First, install the module with npm:
 
 ```shell
 npm install ynab
