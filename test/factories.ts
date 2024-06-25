@@ -324,7 +324,7 @@ export const hybridtransactionsResponseFactory = Factory.makeFactory<
 });
 
 export const saveTransactionFactory =
-  Factory.makeFactory<models.SaveTransaction>({
+  Factory.makeFactory<models.SaveTransactionWithIdOrImportId>({
     account_id: Factory.each((i) => `account_id #${i}`),
     date: "2017-01-02",
     amount: Factory.each((i) => i * 1000),
@@ -354,7 +354,7 @@ export const saveMultipleTransactionsWrapperFactory =
   });
 
 export const updateTransactionFactory =
-  Factory.makeFactory<models.SaveTransactionWithId>({
+  Factory.makeFactory<models.SaveTransactionWithIdOrImportId>({
     id: "3045b6ae-4684-4df5-8ade-9f116975688f",
     account_id: Factory.each((i) => `account_id #${i}`),
     date: "2017-01-02",
