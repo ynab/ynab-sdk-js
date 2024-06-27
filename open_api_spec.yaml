@@ -6,7 +6,7 @@ info:
     upon HTTPS for transport. We respond with meaningful HTTP response codes and
     if an error occurs, we include error details in the response body.  API
     Documentation is at https://api.ynab.com
-  version: 1.0.0
+  version: 1.70.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -633,6 +633,53 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+    patch:
+      tags:
+        - Payees
+      summary: Update a payee
+      description: >-
+        Update a payee
+      operationId: updatePayee
+      parameters:
+        - name: budget_id
+          in: path
+          description: >-
+            The id of the budget. "last-used" can be used to specify the last
+            used budget and "default" can be used if default budget selection is
+            enabled (see: https://api.ynab.com/#oauth-default-budget).
+          required: true
+          schema:
+            type: string
+        - name: payee_id
+          in: path
+          description: The id of the payee
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: >-
+          The payee to update
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/PatchPayeeWrapper"
+        required: true
+      responses:
+        "200":
+          description: The payee was successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SavePayeeResponse"
+        "400":
+          description: >-
+            The request could not be understood due to malformed syntax or
+            validation error(s)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      x-codegen-request-body-name: data
   /budgets/{budget_id}/payee_locations:
     get:
       tags:
@@ -847,7 +894,7 @@ paths:
       tags:
         - Transactions
       summary: List transactions
-      description: Returns budget transactions
+      description: Returns budget transactions, excluding any pending transactions
       operationId: getTransactions
       parameters:
         - name: budget_id
@@ -982,8 +1029,10 @@ paths:
           The transactions to update. Each transaction must have either an `id`
           or `import_id` specified. If `id` is specified as null an `import_id`
           value can be provided which will allow transaction(s) to be updated by
-          their `import_id`. If an `id` is specified, it will always be used for
-          lookup.
+          its `import_id`. If an `id` is specified, it will always be used for
+          lookup.  You should not specify both `id` and `import_id`.  Updating
+          an `import_id` on an existing transaction is not allowed; if an `import_id`
+          is specified, it will only be used to lookup the transaction.
         content:
           "application/json":
             schema:
@@ -1177,7 +1226,7 @@ paths:
       tags:
         - Transactions
       summary: List account transactions
-      description: Returns all transactions for a specified account
+      description: Returns all transactions for a specified account, excluding any pending transactions
       operationId: getTransactionsByAccount
       parameters:
         - name: budget_id
@@ -1244,7 +1293,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: List category transactions
+      summary: List category transactions, excluding any pending transactions
       description: Returns all transactions for a specified category
       operationId: getTransactionsByCategory
       parameters:
@@ -1312,7 +1361,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: List payee transactions
+      summary: List payee transactions, excluding any pending transactions
       description: Returns all transactions for a specified payee
       operationId: getTransactionsByPayee
       parameters:
@@ -1967,6 +2016,15 @@ components:
             - DEBT
             - null
           nullable: true
+        goal_needs_whole_amount:
+          type: boolean
+          description: >-
+            Indicates the monthly rollover behavior for "NEED"-type goals. When
+            "true", the goal will always ask for the target amount in the new
+            month ("Set Aside"). When "false", previous month category funding is
+            used ("Refill"). For other goal types, this field will be null.
+          nullable: true
+          default: null
         goal_day:
           type: integer
           description: >-
@@ -2109,6 +2167,23 @@ components:
           properties:
             payee:
               $ref: "#/components/schemas/Payee"
+    SavePayeeResponse:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          required:
+            - payee
+            - server_knowledge
+          type: object
+          properties:
+            payee:
+              $ref: "#/components/schemas/Payee"
+            server_knowledge:
+              type: integer
+              description: The knowledge of the server
+              format: int64
     Payee:
       required:
         - deleted
@@ -2225,20 +2300,16 @@ components:
       type: object
       properties:
         transaction:
-          $ref: "#/components/schemas/SaveTransaction"
+          $ref: "#/components/schemas/ExistingTransaction"
     PostTransactionsWrapper:
       type: object
       properties:
         transaction:
-          $ref: "#/components/schemas/SaveTransaction"
+          $ref: "#/components/schemas/NewTransaction"
         transactions:
           type: array
           items:
-            $ref: "#/components/schemas/SaveTransaction"
-    SaveTransaction:
-      allOf:
-        - type: object
-        - $ref: "#/components/schemas/SaveTransactionWithOptionalFields"
+            $ref: "#/components/schemas/NewTransaction"
     PatchTransactionsWrapper:
       required:
         - transactions
@@ -2247,13 +2318,60 @@ components:
         transactions:
           type: array
           items:
-            $ref: "#/components/schemas/SaveTransactionWithId"
-    SaveTransactionWithId:
+            $ref: "#/components/schemas/SaveTransactionWithIdOrImportId"
+    ExistingTransaction:
+      allOf:
+        - type: object
+        - $ref: "#/components/schemas/SaveTransactionWithOptionalFields"
+    NewTransaction:
+      allOf:
+        - $ref: "#/components/schemas/SaveTransactionWithOptionalFields"
+        - type: object
+          properties:
+            import_id:
+              maxLength: 36
+              type: string
+              nullable: true
+              description: >-
+                If specified, a new transaction will be assigned this `import_id`
+                and considered "imported".  We will also attempt to match this
+                imported transaction to an existing "user-entered" transaction on the
+                same account, with the same amount, and with a date +/-10 days from
+                the imported transaction date.<br><br>Transactions imported through
+                File Based Import or Direct Import (not through the API) are
+                assigned an import_id in the format:
+                'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a
+                transaction dated 2015-12-30 in the amount of -$294.23 USD would
+                have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second
+                transaction on the same account was imported and had the same date
+                and same amount, its import_id would be
+                'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent
+                duplicates through Direct Import and File Based Import.<br><br>If
+                import_id is omitted or specified as null, the transaction will be
+                treated as a "user-entered" transaction. As such, it will be
+                eligible to be matched against transactions later being imported
+                (via DI, FBI, or API).
+    SaveTransactionWithIdOrImportId:
       allOf:
         - type: object
           properties:
             id:
               type: string
+              nullable: true
+              description: >-
+                If specified, this id will be used to lookup a transaction by
+                its `id` for the purpose of updating the transaction itself.
+                If not specified, an `import_id` should be supplied.
+            import_id:
+              maxLength: 36
+              type: string
+              nullable: true
+              description: >-
+                If specified, this id will be used to lookup a transaction by
+                its `import_id` for the purpose of updating the transaction itself.
+                If not specified, an `id` should be supplied.  You may not
+                provide both an `id` and an `import_id` and updating an `import_id`
+                on an existing transaction is not allowed.
         - $ref: "#/components/schemas/SaveTransactionWithOptionalFields"
     SaveTransactionWithOptionalFields:
       type: object
@@ -2319,29 +2437,6 @@ components:
             transaction will be unapproved by default.
         flag_color:
           $ref: "#/components/schemas/TransactionFlagColor"
-        import_id:
-          maxLength: 36
-          type: string
-          nullable: true
-          description: >-
-            If specified, the new transaction will be assigned this `import_id`
-            and considered "imported".  We will also attempt to match this
-            imported transaction to an existing "user-entered" transation on the
-            same account, with the same amount, and with a date +/-10 days from
-            the imported transaction date.<br><br>Transactions imported through
-            File Based Import or Direct Import (not through the API) are
-            assigned an import_id in the format:
-            'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'. For example, a
-            transaction dated 2015-12-30 in the amount of -$294.23 USD would
-            have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second
-            transaction on the same account was imported and had the same date
-            and same amount, its import_id would be
-            'YNAB:-294230:2015-12-30:2'.  Using a consistent format will prevent
-            duplicates through Direct Import and File Based Import.<br><br>If
-            import_id is omitted or specified as null, the transaction will be
-            treated as a "user-entered" transaction. As such, it will be
-            eligible to be matched against transactions later being imported
-            (via DI, FBI, or API).
         subtransactions:
           type: array
           description: >-
@@ -2465,6 +2560,8 @@ components:
           description: Whether or not the transaction is approved
         flag_color:
           $ref: "#/components/schemas/TransactionFlagColor"
+        flag_name:
+          $ref: "#/components/schemas/TransactionFlagName"
         account_id:
           type: string
           format: uuid
@@ -2594,6 +2691,21 @@ components:
               description: >-
                 The name of the category.  If a split transaction, this will be
                 'Split'.
+    PatchPayeeWrapper:
+      required:
+        - payee
+      type: object
+      properties:
+        payee:
+          $ref: "#/components/schemas/SavePayee"
+    SavePayee:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: false
+          maxLength: 500
+          description: The name of the payee. The name must be a maximum of 500 characters.
     PatchCategoryWrapper:
       required:
         - category
@@ -2682,7 +2794,7 @@ components:
         transactions:
           type: array
           items:
-            $ref: "#/components/schemas/SaveTransaction"
+            $ref: "#/components/schemas/SaveTransactionWithOptionalFields"
     SubTransaction:
       required:
         - amount
@@ -2810,6 +2922,8 @@ components:
           nullable: true
         flag_color:
           $ref: "#/components/schemas/TransactionFlagColor"
+        flag_name:
+          $ref: "#/components/schemas/TransactionFlagName"
         account_id:
           type: string
           format: uuid
@@ -3001,6 +3115,10 @@ components:
         - blue
         - purple
         - null
+      nullable: true
+    TransactionFlagName:
+      type: string
+      description: The customized name of a transaction flag
       nullable: true
     TransactionClearedStatus:
       type: string

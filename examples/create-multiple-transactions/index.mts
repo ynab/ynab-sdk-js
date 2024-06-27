@@ -6,7 +6,7 @@ const ynabAPI = new ynab.API(accessToken);
 
 const budgetId = "378f111e-4b27-4ee5-a9fd-0ba03c1de0f0";
 
-const transactions: Array<ynab.SaveTransaction> = [
+const transactions: Array<ynab.SaveTransactionWithIdOrImportId> = [
   {
     account_id: "d99072b8-f598-484c-a0f8-ae607350f70a",
     category_id: "8d505bc0-efbe-4803-b8ef-0898213a1092",
