@@ -52,29 +52,29 @@ export interface SaveTransactionWithOptionalFields {
      */
     amount?: number;
     /**
-     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `tranfer_payee_id` on the account resource.
+     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `transfer_payee_id` on the account resource.
      * @type {string}
      * @memberof SaveTransactionWithOptionalFields
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if `import_id` is also specified) or (2) a payee with the same name or (3) creation of a new payee.
      * @type {string}
      * @memberof SaveTransactionWithOptionalFields
      */
-    payee_name?: string;
+    payee_name?: string | null;
     /**
      * The category for the transaction.  To configure a split transaction, you can specify null for `category_id` and provide a `subtransactions` array as part of the transaction object.  If an existing transaction is a split, the `category_id` cannot be changed.  Credit Card Payment categories are not permitted and will be ignored if supplied.
      * @type {string}
      * @memberof SaveTransactionWithOptionalFields
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SaveTransactionWithOptionalFields
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * 
      * @type {TransactionClearedStatus}
@@ -92,7 +92,7 @@ export interface SaveTransactionWithOptionalFields {
      * @type {TransactionFlagColor}
      * @memberof SaveTransactionWithOptionalFields
      */
-    flag_color?: TransactionFlagColor;
+    flag_color?: TransactionFlagColor | null;
     /**
      * An array of subtransactions to configure a transaction as a split. Updating `subtransactions` on an existing split transaction is not supported.
      * @type {Array<SaveSubTransaction>}

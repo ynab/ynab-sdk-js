@@ -19,13 +19,13 @@ export interface SaveCategory {
      * @type {string}
      * @memberof SaveCategory
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SaveCategory
      */
-    note?: string;
+    note?: string | null;
     /**
      * 
      * @type {string}

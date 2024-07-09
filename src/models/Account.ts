@@ -56,7 +56,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    note?: string;
+    note?: string | null;
     /**
      * The current balance of the account in milliunits format
      * @type {number}
@@ -98,31 +98,31 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    last_reconciled_at?: string;
+    last_reconciled_at?: string | null;
     /**
      * The original debt/loan account balance, specified in milliunits format.
      * @type {number}
      * @memberof Account
      */
-    debt_original_balance?: number;
+    debt_original_balance?: number | null;
     /**
      * 
      * @type {{ [key: string]: number; }}
      * @memberof Account
      */
-    debt_interest_rates?: { [key: string]: number; };
+    debt_interest_rates?: { [key: string]: number; } | null;
     /**
      * 
      * @type {{ [key: string]: number; }}
      * @memberof Account
      */
-    debt_minimum_payments?: { [key: string]: number; };
+    debt_minimum_payments?: { [key: string]: number; } | null;
     /**
      * 
      * @type {{ [key: string]: number; }}
      * @memberof Account
      */
-    debt_escrow_amounts?: { [key: string]: number; };
+    debt_escrow_amounts?: { [key: string]: number; } | null;
     /**
      * Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests.
      * @type {boolean}

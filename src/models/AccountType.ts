@@ -33,7 +33,7 @@ export type AccountType = typeof AccountType[keyof typeof AccountType];
 export function instanceOfAccountType(value: any): boolean {
     for (const key in AccountType) {
         if (Object.prototype.hasOwnProperty.call(AccountType, key)) {
-            if (AccountType[key as keyof typeof AccountType] === value) {
+            if ((AccountType as Record<string, AccountType>)[key] === value) {
                 return true;
             }
         }

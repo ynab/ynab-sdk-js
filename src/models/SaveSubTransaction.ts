@@ -25,25 +25,25 @@ export interface SaveSubTransaction {
      * @type {string}
      * @memberof SaveSubTransaction
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if import_id is also specified on parent transaction) or (2) a payee with the same name or (3) creation of a new payee.
      * @type {string}
      * @memberof SaveSubTransaction
      */
-    payee_name?: string;
+    payee_name?: string | null;
     /**
      * The category for the subtransaction.  Credit Card Payment categories are not permitted and will be ignored if supplied.
      * @type {string}
      * @memberof SaveSubTransaction
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SaveSubTransaction
      */
-    memo?: string;
+    memo?: string | null;
 }
 
 /**

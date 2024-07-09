@@ -23,7 +23,7 @@ export type TransactionClearedStatus = typeof TransactionClearedStatus[keyof typ
 export function instanceOfTransactionClearedStatus(value: any): boolean {
     for (const key in TransactionClearedStatus) {
         if (Object.prototype.hasOwnProperty.call(TransactionClearedStatus, key)) {
-            if (TransactionClearedStatus[key as keyof typeof TransactionClearedStatus ] === value) {
+            if ((TransactionClearedStatus as Record<string, TransactionClearedStatus>)[key] === value) {
                 return true;
             }
         }

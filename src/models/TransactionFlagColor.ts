@@ -19,7 +19,7 @@ export const TransactionFlagColor = {
     Green: 'green',
     Blue: 'blue',
     Purple: 'purple',
-
+    
 } as const;
 export type TransactionFlagColor = typeof TransactionFlagColor[keyof typeof TransactionFlagColor];
 
@@ -27,7 +27,7 @@ export type TransactionFlagColor = typeof TransactionFlagColor[keyof typeof Tran
 export function instanceOfTransactionFlagColor(value: any): boolean {
     for (const key in TransactionFlagColor) {
         if (Object.prototype.hasOwnProperty.call(TransactionFlagColor, key)) {
-            if (TransactionFlagColor[key as keyof typeof TransactionFlagColor] === value) {
+            if ((TransactionFlagColor as Record<string, TransactionFlagColor>)[key] === value) {
                 return true;
             }
         }

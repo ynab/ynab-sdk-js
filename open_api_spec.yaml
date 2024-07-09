@@ -6,7 +6,7 @@ info:
     upon HTTPS for transport. We respond with meaningful HTTP response codes and
     if an error occurs, we include error details in the response body.  API
     Documentation is at https://api.ynab.com
-  version: 1.70.0
+  version: 1.71.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -959,8 +959,8 @@ paths:
         Creates a single transaction or multiple transactions.  If you provide a
         body containing a `transaction` object, a single transaction will be
         created and if you provide a body containing a `transactions` array,
-        multiple transactions will be created.  Scheduled transactions cannot be
-        created on this endpoint.
+        multiple transactions will be created.  Scheduled transactions (transactions with a future date)
+        cannot be created on this endpoint.
       operationId: createTransaction
       parameters:
         - name: budget_id
@@ -1469,6 +1469,47 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+    post:
+      tags:
+        - Scheduled Transactions
+      summary: Create a single scheduled transaction
+      description: >-
+        Creates a single scheduled transaction.
+      operationId: createScheduledTransaction
+      parameters:
+        - name: budget_id
+          in: path
+          description: >-
+            The id of the budget. "last-used" can be used to specify the last
+            used budget and "default" can be used if default budget selection is
+            enabled (see: https://api.ynab.com/#oauth-default-budget).
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: >-
+          The scheduled transaction to create
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/PostScheduledTransactionWrapper"
+        required: true
+      responses:
+        "201":
+          description: The scheduled transaction was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledTransactionResponse"
+        "400":
+          description: >-
+            The request could not be understood due to malformed syntax or
+            validation error(s).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      x-codegen-request-body-name: data
   /budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}:
     get:
       tags:
@@ -2401,7 +2442,7 @@ components:
             The payee for the transaction.  To create a transfer between two
             accounts, use the account transfer payee pointing to the target
             account.  Account transfer payees are specified as
-            `tranfer_payee_id` on the account resource.
+            `transfer_payee_id` on the account resource.
           format: uuid
         payee_name:
           maxLength: 50
@@ -2875,6 +2916,64 @@ components:
           properties:
             scheduled_transaction:
               $ref: "#/components/schemas/ScheduledTransactionDetail"
+    PostScheduledTransactionWrapper:
+      required:
+        - scheduled_transaction
+      type: object
+      properties:
+        scheduled_transaction:
+          $ref: "#/components/schemas/SaveScheduledTransaction"
+    SaveScheduledTransaction:
+      required:
+        - account_id
+        - date
+      type: object
+      properties:
+        account_id:
+          type: string
+          format: uuid
+        date:
+          type: string
+          description: >-
+            The scheduled transaction date in ISO format (e.g. 2016-12-01).
+          format: date
+        amount:
+          type: integer
+          description: >-
+            The scheduled transaction amount in milliunits format.
+          format: int64
+        payee_id:
+          type: string
+          nullable: true
+          description: >-
+            The payee for the scheduled transaction.  To create a transfer between two
+            accounts, use the account transfer payee pointing to the target
+            account.  Account transfer payees are specified as
+            `transfer_payee_id` on the account resource.
+          format: uuid
+        payee_name:
+          maxLength: 50
+          type: string
+          nullable: true
+          description: >-
+            The payee name for the the scheduled transaction.  If a `payee_name` value is provided and `payee_id`
+            has a null value, the `payee_name` value will be used to resolve the
+            payee by either (1) a payee with the same name or (2) creation of a new payee.
+        category_id:
+          type: string
+          nullable: true
+          description: >-
+            The category for the scheduled transaction. Credit Card Payment categories are not permitted.
+            Creating a split scheduled transaction is not currently supported.
+          format: uuid
+        memo:
+          maxLength: 200
+          type: string
+          nullable: true
+        flag_color:
+          $ref: "#/components/schemas/TransactionFlagColor"
+        frequency:
+          $ref: "#/components/schemas/ScheduledTransactionFrequency"
     ScheduledTransactionSummary:
       required:
         - account_id
@@ -3127,6 +3226,23 @@ components:
         - cleared
         - uncleared
         - reconciled
+    ScheduledTransactionFrequency:
+      type: string
+      description: The scheduled transaction frequency
+      enum:
+        - never
+        - daily
+        - weekly
+        - everyOtherWeek
+        - twiceAMonth
+        - every4Weeks
+        - monthly
+        - everyOtherMonth
+        - every3Months
+        - every4Months
+        - twiceAYear
+        - yearly
+        - everyOtherYear
   securitySchemes:
     bearer:
       type: http

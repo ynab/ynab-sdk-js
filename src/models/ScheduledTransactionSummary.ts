@@ -56,19 +56,19 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * 
      * @type {TransactionFlagColor}
      * @memberof ScheduledTransactionSummary
      */
-    flag_color?: TransactionFlagColor;
+    flag_color?: TransactionFlagColor | null;
     /**
      * The customized name of a transaction flag
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    flag_name?: string;
+    flag_name?: string | null;
     /**
      * 
      * @type {string}
@@ -80,19 +80,19 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    transfer_account_id?: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
      * @type {boolean}

@@ -31,7 +31,7 @@ export interface Payee {
      * @type {string}
      * @memberof Payee
      */
-    transfer_account_id?: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the payee has been deleted.  Deleted payees will only be included in delta requests.
      * @type {boolean}

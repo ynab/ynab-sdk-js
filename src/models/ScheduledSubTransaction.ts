@@ -37,25 +37,25 @@ export interface ScheduledSubTransaction {
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * If a transfer, the account_id which the scheduled subtransaction transfers to
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    transfer_account_id?: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the scheduled subtransaction has been deleted. Deleted scheduled subtransactions will only be included in delta requests.
      * @type {boolean}
