@@ -543,6 +543,25 @@ describe("API requests", () => {
         `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${scheduledTransactionId}`
       );
     });
+
+    it("Should create a scheduled transaction", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+      await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.scheduledTransactions.createScheduledTransaction(
+            budgetId,
+            factories.saveSingleScheduledTransactionWrapperFactory.build()
+          ),
+        factories.scheduledTransactionDetailResponseFactory.build()
+      );
+
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`,
+        API_KEY,
+        1,
+        "POST"
+      );
+    });
   });
 });
 

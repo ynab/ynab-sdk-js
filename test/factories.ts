@@ -1,17 +1,15 @@
 import * as Factory from "./factory";
-import * as api from "../src/apis";
 import * as models from "../src/models";
+import utils from "../src/utils";
 
 export const userFactory = Factory.makeFactory<models.User>({
   id: Factory.each((i) => `${i}`),
 });
 
-export const userResponseFactory = Factory.makeFactory<
-  models.UserResponse
->({
+export const userResponseFactory = Factory.makeFactory<models.UserResponse>({
   data: {
     user: userFactory.build(),
-  }
+  },
 });
 
 export const budgetSummaryFactory = Factory.makeFactory<models.BudgetSummary>({
@@ -36,14 +34,13 @@ export const budgetSummaryFactory = Factory.makeFactory<models.BudgetSummary>({
   last_month: "2023-12-01",
 });
 
-export const budgetSummaryResponseFactory = Factory.makeFactory<
-  models.BudgetSummaryResponse
->({
-  data: {
-    budgets: budgetSummaryFactory.buildList(3),
-    default_budget: budgetSummaryFactory.build(),
-  }
-});
+export const budgetSummaryResponseFactory =
+  Factory.makeFactory<models.BudgetSummaryResponse>({
+    data: {
+      budgets: budgetSummaryFactory.buildList(3),
+      default_budget: budgetSummaryFactory.build(),
+    },
+  });
 
 export const accountFactory = Factory.makeFactory<models.Account>({
   id: Factory.each((i) => `AccountID${i}`),
@@ -59,22 +56,20 @@ export const accountFactory = Factory.makeFactory<models.Account>({
   deleted: false,
 });
 
-export const accountsResponseFactory = Factory.makeFactory<
-  models.AccountsResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each((i) => i),
-    accounts: accountFactory.buildList(5),
-  })
-});
+export const accountsResponseFactory =
+  Factory.makeFactory<models.AccountsResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      accounts: accountFactory.buildList(5),
+    }),
+  });
 
-export const accountResponseFactory = Factory.makeFactory<
-  models.AccountResponse
->({
-  data: Factory.makeFactory({
-    account: accountFactory.build(),
-  })
-});
+export const accountResponseFactory =
+  Factory.makeFactory<models.AccountResponse>({
+    data: Factory.makeFactory({
+      account: accountFactory.build(),
+    }),
+  });
 
 export const saveAccountFactory = Factory.makeFactory<models.SaveAccount>({
   name: `AccountID${1}`,
@@ -113,22 +108,20 @@ export const categoryGroupWithCategoriesFactory =
     deleted: false,
   });
 
-export const categoriesResponseFactory = Factory.makeFactory<
-  models.CategoriesResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each((i) => i),
-    category_groups: categoryGroupWithCategoriesFactory.buildList(3),
-  })
-});
+export const categoriesResponseFactory =
+  Factory.makeFactory<models.CategoriesResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      category_groups: categoryGroupWithCategoriesFactory.buildList(3),
+    }),
+  });
 
-export const categoryResponseFactory = Factory.makeFactory<
-  models.CategoryResponse
->({
-  data: Factory.makeFactory<models.CategoryResponseData>({
-    category: categoryFactory.build(),
-  })
-});
+export const categoryResponseFactory =
+  Factory.makeFactory<models.CategoryResponse>({
+    data: Factory.makeFactory<models.CategoryResponseData>({
+      category: categoryFactory.build(),
+    }),
+  });
 
 export const monthSummaryFactory = Factory.makeFactory<models.MonthSummary>({
   month: "2017-01-01",
@@ -141,14 +134,13 @@ export const monthSummaryFactory = Factory.makeFactory<models.MonthSummary>({
   deleted: false,
 });
 
-export const monthSummariesResponseFactory = Factory.makeFactory<
-  models.MonthSummariesResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each((i) => i),
-    months: monthSummaryFactory.buildList(5),
-  })
-});
+export const monthSummariesResponseFactory =
+  Factory.makeFactory<models.MonthSummariesResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      months: monthSummaryFactory.buildList(5),
+    }),
+  });
 
 export const monthDetailFactory = Factory.makeFactory<models.MonthDetail>({
   month: "2017-01-01",
@@ -162,13 +154,12 @@ export const monthDetailFactory = Factory.makeFactory<models.MonthDetail>({
   deleted: false,
 });
 
-export const monthDetailResponseFactory = Factory.makeFactory<
-  models.MonthDetailResponse
->({
-  data: Factory.makeFactory<models.MonthDetailResponseData>({
-    month: monthDetailFactory.build(),
-  })
-});
+export const monthDetailResponseFactory =
+  Factory.makeFactory<models.MonthDetailResponse>({
+    data: Factory.makeFactory<models.MonthDetailResponseData>({
+      month: monthDetailFactory.build(),
+    }),
+  });
 
 export const payeeFactory = Factory.makeFactory<models.Payee>({
   id: Factory.each((i) => `id #${i}`),
@@ -177,21 +168,19 @@ export const payeeFactory = Factory.makeFactory<models.Payee>({
   deleted: false,
 });
 
-export const payeesResponseFactory = Factory.makeFactory<
-  models.PayeesResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each((i) => i),
-    payees: payeeFactory.buildList(5),
-  })
-});
+export const payeesResponseFactory = Factory.makeFactory<models.PayeesResponse>(
+  {
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      payees: payeeFactory.buildList(5),
+    }),
+  }
+);
 
-export const payeeResponseFactory = Factory.makeFactory<
-  models.PayeeResponse
->({
+export const payeeResponseFactory = Factory.makeFactory<models.PayeeResponse>({
   data: Factory.makeFactory({
     payee: payeeFactory.build(),
-  })
+  }),
 });
 
 export const payeeLocationFactory = Factory.makeFactory<models.PayeeLocation>({
@@ -202,21 +191,19 @@ export const payeeLocationFactory = Factory.makeFactory<models.PayeeLocation>({
   deleted: false,
 });
 
-export const payeeLocationsResponseFactory = Factory.makeFactory<
-  models.PayeeLocationsResponse
->({
-  data: Factory.makeFactory({
-    payee_locations: payeeLocationFactory.buildList(5),
-  })
-});
+export const payeeLocationsResponseFactory =
+  Factory.makeFactory<models.PayeeLocationsResponse>({
+    data: Factory.makeFactory({
+      payee_locations: payeeLocationFactory.buildList(5),
+    }),
+  });
 
-export const payeeLocationResponseFactory = Factory.makeFactory<
-  models.PayeeLocationResponse
->({
-  data: Factory.makeFactory({
-    payee_location: payeeLocationFactory.build(),
-  })
-});
+export const payeeLocationResponseFactory =
+  Factory.makeFactory<models.PayeeLocationResponse>({
+    data: Factory.makeFactory({
+      payee_location: payeeLocationFactory.build(),
+    }),
+  });
 
 export const subTransactionFactory = Factory.makeFactory<models.SubTransaction>(
   {
@@ -279,13 +266,12 @@ export const hybridTransactionFactory =
     matched_transaction_id: null!,
   });
 
-export const transactionResponseFactory = Factory.makeFactory<
-  models.TransactionResponse
->({
-  data: Factory.makeFactory({
-    transaction: transactionFactory.build(),
-  })
-});
+export const transactionResponseFactory =
+  Factory.makeFactory<models.TransactionResponse>({
+    data: Factory.makeFactory({
+      transaction: transactionFactory.build(),
+    }),
+  });
 
 export const transactionSummaryFactory =
   Factory.makeFactory<models.TransactionSummary>({
@@ -306,22 +292,20 @@ export const transactionSummaryFactory =
     matched_transaction_id: null!,
   });
 
-export const transactionsResponseFactory = Factory.makeFactory<
-  models.TransactionsResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each((i) => i),
-    transactions: transactionFactory.buildList(5),
-  })
-});
+export const transactionsResponseFactory =
+  Factory.makeFactory<models.TransactionsResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      transactions: transactionFactory.buildList(5),
+    }),
+  });
 
-export const hybridtransactionsResponseFactory = Factory.makeFactory<
-  models.HybridTransactionsResponse
->({
-  data: Factory.makeFactory({
-    transactions: hybridTransactionFactory.buildList(5),
-  })
-});
+export const hybridtransactionsResponseFactory =
+  Factory.makeFactory<models.HybridTransactionsResponse>({
+    data: Factory.makeFactory({
+      transactions: hybridTransactionFactory.buildList(5),
+    }),
+  });
 
 export const saveTransactionFactory =
   Factory.makeFactory<models.SaveTransactionWithIdOrImportId>({
@@ -391,25 +375,22 @@ export const bulkIdsFactory = Factory.makeFactory({
   duplicate_import_ids: [],
 });
 
-export const saveTransactionsResponseFactory = Factory.makeFactory<
-  models.SaveTransactionsResponse
->({
-  data: Factory.makeFactory<models.SaveTransactionsResponseData>({
-    transaction_ids: ["1"],
-    transaction: transactionFactory.build(),
-    transactions: transactionFactory.buildList(3),
-    server_knowledge: Factory.each((i) => i),
-  })
-});
+export const saveTransactionsResponseFactory =
+  Factory.makeFactory<models.SaveTransactionsResponse>({
+    data: Factory.makeFactory<models.SaveTransactionsResponseData>({
+      transaction_ids: ["1"],
+      transaction: transactionFactory.build(),
+      transactions: transactionFactory.buildList(3),
+      server_knowledge: Factory.each((i) => i),
+    }),
+  });
 
-export const importTransactionsResponseFactory = Factory.makeFactory<
-  models.TransactionsImportResponse
->({
-  data: Factory.makeFactory<models.TransactionsImportResponseData>({
-    transaction_ids: ["32533e53-8da2-453f-858a-415517d4ca91"],
-  })
-});
-
+export const importTransactionsResponseFactory =
+  Factory.makeFactory<models.TransactionsImportResponse>({
+    data: Factory.makeFactory<models.TransactionsImportResponseData>({
+      transaction_ids: ["32533e53-8da2-453f-858a-415517d4ca91"],
+    }),
+  });
 
 export const scheduledSubTransactionFactory =
   Factory.makeFactory<models.ScheduledSubTransaction>({
@@ -443,13 +424,34 @@ export const scheduledTransactionFactory =
     deleted: false,
   });
 
-export const scheduledTransactionDetailResponseFactory = Factory.makeFactory<
-  models.ScheduledTransactionResponse
->({
-  data: Factory.makeFactory({
-    scheduled_transaction: scheduledTransactionFactory.build(),
-  })
-});
+export const saveScheduledTransactionFactory =
+  Factory.makeFactory<models.SaveScheduledTransaction>({
+    date: utils
+      .getCurrentDateInISOFormat()
+      .replace(
+        new Date().getFullYear().toString(),
+        (new Date().getFullYear() + 1).toString()
+      ),
+    amount: Factory.each((i) => i * 1000),
+    memo: Factory.each((i) => `memo #${i}`),
+    flag_color: models.TransactionFlagColor.Red,
+    frequency: models.ScheduledTransactionFrequency.Daily,
+    account_id: Factory.each((i) => `account_id #${i}`),
+    payee_id: Factory.each((i) => `payee_id #${i}`),
+    category_id: Factory.each((i) => `category_id #${i}`),
+  });
+
+export const scheduledTransactionDetailResponseFactory =
+  Factory.makeFactory<models.ScheduledTransactionResponse>({
+    data: Factory.makeFactory({
+      scheduled_transaction: scheduledTransactionFactory.build(),
+    }),
+  });
+
+export const saveSingleScheduledTransactionWrapperFactory =
+  Factory.makeFactory<models.PostScheduledTransactionWrapper>({
+    scheduled_transaction: saveScheduledTransactionFactory.build(),
+  });
 
 export const scheduledTransactionSummaryFactory =
   Factory.makeFactory<models.ScheduledTransactionSummary>({
@@ -467,14 +469,13 @@ export const scheduledTransactionSummaryFactory =
     deleted: false,
   });
 
-export const scheduledTransactionsResponseFactory = Factory.makeFactory<
-  models.ScheduledTransactionsResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each((i) => i),
-    scheduled_transactions: scheduledTransactionFactory.buildList(5),
-  })
-});
+export const scheduledTransactionsResponseFactory =
+  Factory.makeFactory<models.ScheduledTransactionsResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      scheduled_transactions: scheduledTransactionFactory.buildList(5),
+    }),
+  });
 
 export const budgetDetailFactory = Factory.makeFactory<models.BudgetDetail>({
   id: Factory.each((i) => `${i}`),
@@ -505,11 +506,10 @@ export const budgetDetailFactory = Factory.makeFactory<models.BudgetDetail>({
   scheduled_subtransactions: scheduledSubTransactionFactory.buildList(5),
 });
 
-export const budgetDetailResponseFactory = Factory.makeFactory<
-  models.BudgetDetailResponse
->({
-  data: Factory.makeFactory({
-    server_knowledge: Factory.each((i) => i),
-    budget: budgetDetailFactory.build(),
-  })
-});
+export const budgetDetailResponseFactory =
+  Factory.makeFactory<models.BudgetDetailResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      budget: budgetDetailFactory.build(),
+    }),
+  });
