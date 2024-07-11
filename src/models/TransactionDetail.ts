@@ -56,7 +56,7 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * 
      * @type {TransactionClearedStatus}
@@ -74,13 +74,13 @@ export interface TransactionDetail {
      * @type {TransactionFlagColor}
      * @memberof TransactionDetail
      */
-    flag_color?: TransactionFlagColor;
+    flag_color?: TransactionFlagColor | null;
     /**
      * The customized name of a transaction flag
      * @type {string}
      * @memberof TransactionDetail
      */
-    flag_name?: string;
+    flag_name?: string | null;
     /**
      * 
      * @type {string}
@@ -92,55 +92,55 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetail
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * If a transfer transaction, the account to which it transfers
      * @type {string}
      * @memberof TransactionDetail
      */
-    transfer_account_id?: string;
+    transfer_account_id?: string | null;
     /**
      * If a transfer transaction, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof TransactionDetail
      */
-    transfer_transaction_id?: string;
+    transfer_transaction_id?: string | null;
     /**
      * If transaction is matched, the id of the matched transaction
      * @type {string}
      * @memberof TransactionDetail
      */
-    matched_transaction_id?: string;
+    matched_transaction_id?: string | null;
     /**
      * If the transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionDetail
      */
-    import_id?: string;
+    import_id?: string | null;
     /**
      * If the transaction was imported, the payee name that was used when importing and before applying any payee rename rules
      * @type {string}
      * @memberof TransactionDetail
      */
-    import_payee_name?: string;
+    import_payee_name?: string | null;
     /**
      * If the transaction was imported, the original payee name as it appeared on the statement
      * @type {string}
      * @memberof TransactionDetail
      */
-    import_payee_name_original?: string;
+    import_payee_name_original?: string | null;
     /**
      * If the transaction is a debt/loan account transaction, the type of transaction
      * @type {string}
      * @memberof TransactionDetail
      */
-    debt_transaction_type?: TransactionDetailDebtTransactionTypeEnum;
+    debt_transaction_type?: TransactionDetailDebtTransactionTypeEnum | null;
     /**
      * Whether or not the transaction has been deleted.  Deleted transactions will only be included in delta requests.
      * @type {boolean}
@@ -158,13 +158,13 @@ export interface TransactionDetail {
      * @type {string}
      * @memberof TransactionDetail
      */
-    payee_name?: string;
+    payee_name?: string | null;
     /**
      * The name of the category.  If a split transaction, this will be 'Split'.
      * @type {string}
      * @memberof TransactionDetail
      */
-    category_name?: string;
+    category_name?: string | null;
     /**
      * If a split transaction, the subtransactions.
      * @type {Array<SubTransaction>}

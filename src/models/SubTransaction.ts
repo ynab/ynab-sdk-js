@@ -37,43 +37,43 @@ export interface SubTransaction {
      * @type {string}
      * @memberof SubTransaction
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    payee_name?: string;
+    payee_name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    category_name?: string;
+    category_name?: string | null;
     /**
      * If a transfer, the account_id which the subtransaction transfers to
      * @type {string}
      * @memberof SubTransaction
      */
-    transfer_account_id?: string;
+    transfer_account_id?: string | null;
     /**
      * If a transfer, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof SubTransaction
      */
-    transfer_transaction_id?: string;
+    transfer_transaction_id?: string | null;
     /**
      * Whether or not the subtransaction has been deleted.  Deleted subtransactions will only be included in delta requests.
      * @type {boolean}

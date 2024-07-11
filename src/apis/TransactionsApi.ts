@@ -79,6 +79,14 @@ export interface GetTransactionsByCategoryRequest {
     lastKnowledgeOfServer?: number;
 }
 
+export interface GetTransactionsByMonthRequest {
+    budgetId: string;
+    month: string;
+    sinceDate?: string;
+    type?: GetTransactionsByMonthTypeEnum;
+    lastKnowledgeOfServer?: number;
+}
+
 export interface GetTransactionsByPayeeRequest {
     budgetId: string;
     payeeId: string;
@@ -108,7 +116,7 @@ export interface UpdateTransactionsRequest {
 export class TransactionsApi extends runtime.BaseAPI {
 
     /**
-     * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
+     * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions (transactions with a future date) cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
     async createTransactionRaw(requestParameters: CreateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveTransactionsResponse>> {
@@ -147,7 +155,7 @@ export class TransactionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions cannot be created on this endpoint.
+     * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions (transactions with a future date) cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
     async createTransaction(budgetId: string, data: PostTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
@@ -413,6 +421,63 @@ export class TransactionsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Returns all transactions for a specified month
+     * List transactions in month, excluding any pending transactions
+     */
+    async getTransactionsByMonthRaw(requestParameters: GetTransactionsByMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HybridTransactionsResponse>> {
+        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByMonth.');
+        }
+
+        if (requestParameters.month === null || requestParameters.month === undefined) {
+            throw new runtime.RequiredError('month','Required parameter requestParameters.month was null or undefined when calling getTransactionsByMonth.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.sinceDate !== undefined) {
+            queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+
+        if (requestParameters.type !== undefined) {
+            queryParameters['type'] = requestParameters.type;
+        }
+
+        if (requestParameters.lastKnowledgeOfServer !== undefined) {
+            queryParameters['last_knowledge_of_server'] = requestParameters.lastKnowledgeOfServer;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+        headerParameters['Accept'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/budgets/{budget_id}/months/{month}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => HybridTransactionsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns all transactions for a specified month
+     * List transactions in month, excluding any pending transactions
+     */
+    async getTransactionsByMonth(budgetId: string, month: string, sinceDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
+        const response = await this.getTransactionsByMonthRaw({ budgetId: budgetId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Returns all transactions for a specified payee
      * List payee transactions, excluding any pending transactions
      */
@@ -636,6 +701,14 @@ export const GetTransactionsByCategoryTypeEnum = {
     Unapproved: 'unapproved'
 } as const;
 export type GetTransactionsByCategoryTypeEnum = typeof GetTransactionsByCategoryTypeEnum[keyof typeof GetTransactionsByCategoryTypeEnum];
+/**
+ * @export
+ */
+export const GetTransactionsByMonthTypeEnum = {
+    Uncategorized: 'uncategorized',
+    Unapproved: 'unapproved'
+} as const;
+export type GetTransactionsByMonthTypeEnum = typeof GetTransactionsByMonthTypeEnum[keyof typeof GetTransactionsByMonthTypeEnum];
 /**
  * @export
  */

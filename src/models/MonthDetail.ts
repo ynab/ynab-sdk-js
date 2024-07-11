@@ -32,7 +32,7 @@ export interface MonthDetail {
      * @type {string}
      * @memberof MonthDetail
      */
-    note?: string;
+    note?: string | null;
     /**
      * The total amount of transactions categorized to 'Inflow: Ready to Assign' in the month
      * @type {number}
@@ -62,7 +62,7 @@ export interface MonthDetail {
      * @type {number}
      * @memberof MonthDetail
      */
-    age_of_money?: number;
+    age_of_money?: number | null;
     /**
      * Whether or not the month has been deleted.  Deleted months will only be included in delta requests.
      * @type {boolean}

@@ -122,13 +122,13 @@ export interface BudgetDetail {
      * @type {DateFormat}
      * @memberof BudgetDetail
      */
-    date_format?: DateFormat;
+    date_format?: DateFormat | null;
     /**
      * 
      * @type {CurrencyFormat}
      * @memberof BudgetDetail
      */
-    currency_format?: CurrencyFormat;
+    currency_format?: CurrencyFormat | null;
     /**
      * 
      * @type {Array<Account>}

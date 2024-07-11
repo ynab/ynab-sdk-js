@@ -68,13 +68,13 @@ export interface BudgetSummary {
      * @type {DateFormat}
      * @memberof BudgetSummary
      */
-    date_format?: DateFormat;
+    date_format?: DateFormat | null;
     /**
      * 
      * @type {CurrencyFormat}
      * @memberof BudgetSummary
      */
-    currency_format?: CurrencyFormat;
+    currency_format?: CurrencyFormat | null;
     /**
      * The budget accounts (only included if `include_accounts=true` specified as query parameter)
      * @type {Array<Account>}

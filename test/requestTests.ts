@@ -365,6 +365,22 @@ describe("API requests", () => {
       );
     });
 
+    it("Should getTransactionsByMonth and validate the request is sent correctly", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const month = "2024-07-01";
+      await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.transactions.getTransactionsByMonth(
+            budgetId, month
+          ),
+        factories.hybridtransactionsResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/months/${month}/transactions`
+      );
+    });
+
     it("Should getTransactionsByCategory with a string `sinceDate` and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -541,6 +557,25 @@ describe("API requests", () => {
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${scheduledTransactionId}`
+      );
+    });
+
+    it("Should create a scheduled transaction", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+      await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.scheduledTransactions.createScheduledTransaction(
+            budgetId,
+            factories.saveSingleScheduledTransactionWrapperFactory.build()
+          ),
+        factories.scheduledTransactionDetailResponseFactory.build()
+      );
+
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`,
+        API_KEY,
+        1,
+        "POST"
       );
     });
   });

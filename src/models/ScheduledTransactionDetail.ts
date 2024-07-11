@@ -62,19 +62,19 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * 
      * @type {TransactionFlagColor}
      * @memberof ScheduledTransactionDetail
      */
-    flag_color?: TransactionFlagColor;
+    flag_color?: TransactionFlagColor | null;
     /**
      * The customized name of a transaction flag
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    flag_name?: string;
+    flag_name?: string | null;
     /**
      * 
      * @type {string}
@@ -86,19 +86,19 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    transfer_account_id?: string;
+    transfer_account_id?: string | null;
     /**
      * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
      * @type {boolean}
@@ -116,13 +116,13 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    payee_name?: string;
+    payee_name?: string | null;
     /**
      * The name of the category.  If a split scheduled transaction, this will be 'Split'.
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    category_name?: string;
+    category_name?: string | null;
     /**
      * If a split scheduled transaction, the subtransactions.
      * @type {Array<ScheduledSubTransaction>}

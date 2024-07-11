@@ -52,29 +52,29 @@ export interface SaveTransactionWithIdOrImportId {
      */
     amount?: number;
     /**
-     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `tranfer_payee_id` on the account resource.
+     * The payee for the transaction.  To create a transfer between two accounts, use the account transfer payee pointing to the target account.  Account transfer payees are specified as `transfer_payee_id` on the account resource.
      * @type {string}
      * @memberof SaveTransactionWithIdOrImportId
      */
-    payee_id?: string;
+    payee_id?: string | null;
     /**
      * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if `import_id` is also specified) or (2) a payee with the same name or (3) creation of a new payee.
      * @type {string}
      * @memberof SaveTransactionWithIdOrImportId
      */
-    payee_name?: string;
+    payee_name?: string | null;
     /**
      * The category for the transaction.  To configure a split transaction, you can specify null for `category_id` and provide a `subtransactions` array as part of the transaction object.  If an existing transaction is a split, the `category_id` cannot be changed.  Credit Card Payment categories are not permitted and will be ignored if supplied.
      * @type {string}
      * @memberof SaveTransactionWithIdOrImportId
      */
-    category_id?: string;
+    category_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SaveTransactionWithIdOrImportId
      */
-    memo?: string;
+    memo?: string | null;
     /**
      * 
      * @type {TransactionClearedStatus}
@@ -92,7 +92,7 @@ export interface SaveTransactionWithIdOrImportId {
      * @type {TransactionFlagColor}
      * @memberof SaveTransactionWithIdOrImportId
      */
-    flag_color?: TransactionFlagColor;
+    flag_color?: TransactionFlagColor | null;
     /**
      * An array of subtransactions to configure a transaction as a split. Updating `subtransactions` on an existing split transaction is not supported.
      * @type {Array<SaveSubTransaction>}
@@ -104,13 +104,13 @@ export interface SaveTransactionWithIdOrImportId {
      * @type {string}
      * @memberof SaveTransactionWithIdOrImportId
      */
-    id?: string;
+    id?: string | null;
     /**
      * If specified, this id will be used to lookup a transaction by its `import_id` for the purpose of updating the transaction itself. If not specified, an `id` should be supplied.  You may not provide both an `id` and an `import_id` and updating an `import_id` on an existing transaction is not allowed.
      * @type {string}
      * @memberof SaveTransactionWithIdOrImportId
      */
-    import_id?: string;
+    import_id?: string | null;
 }
 
 /**

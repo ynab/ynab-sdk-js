@@ -11,17 +11,25 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
+  PostScheduledTransactionWrapper,
   ScheduledTransactionResponse,
   ScheduledTransactionsResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    PostScheduledTransactionWrapperFromJSON,
+    PostScheduledTransactionWrapperToJSON,
     ScheduledTransactionResponseFromJSON,
     ScheduledTransactionResponseToJSON,
     ScheduledTransactionsResponseFromJSON,
     ScheduledTransactionsResponseToJSON,
 } from '../models/index';
+
+export interface CreateScheduledTransactionRequest {
+    budgetId: string;
+    data: PostScheduledTransactionWrapper;
+}
 
 export interface GetScheduledTransactionByIdRequest {
     budgetId: string;
@@ -37,6 +45,54 @@ export interface GetScheduledTransactionsRequest {
  * 
  */
 export class ScheduledTransactionsApi extends runtime.BaseAPI {
+
+    /**
+     * Creates a single scheduled transaction.
+     * Create a single scheduled transaction
+     */
+    async createScheduledTransactionRaw(requestParameters: CreateScheduledTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>> {
+        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling createScheduledTransaction.');
+        }
+
+        if (requestParameters.data === null || requestParameters.data === undefined) {
+            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling createScheduledTransaction.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+        headerParameters['Accept'] = 'application/json';
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/budgets/{budget_id}/scheduled_transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostScheduledTransactionWrapperToJSON(requestParameters.data),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ScheduledTransactionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates a single scheduled transaction.
+     * Create a single scheduled transaction
+     */
+    async createScheduledTransaction(budgetId: string, data: PostScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse> {
+        const response = await this.createScheduledTransactionRaw({ budgetId: budgetId, data: data }, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Returns a single scheduled transaction
