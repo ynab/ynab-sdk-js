@@ -365,6 +365,22 @@ describe("API requests", () => {
       );
     });
 
+    it("Should getTransactionsByMonth and validate the request is sent correctly", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const month = "2024-07-01";
+      await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.transactions.getTransactionsByMonth(
+            budgetId, month
+          ),
+        factories.hybridtransactionsResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/budgets/${budgetId}/months/${month}/transactions`
+      );
+    });
+
     it("Should getTransactionsByCategory with a string `sinceDate` and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
