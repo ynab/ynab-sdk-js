@@ -153,7 +153,7 @@ The following methods are available in this library.
 |                            | [transactions.importTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/TransactionsApi.d.ts)                                     | Imports transactions                                  |
 | **Scheduled Transactions** | [scheduled_transactions.getScheduledTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)            | Returns all scheduled transactions                    |
 |                            | [scheduled_transactions.getScheduledTransactionById(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts) | Returns a single scheduled transaction          |
-|                            | [scheduled_transactions.createScheduledTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts) | Creates a single scheduled transaction          |
+|                            | [scheduled_transactions.createScheduledTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Creates a single scheduled transaction          |
 
 ### Utilities
 
