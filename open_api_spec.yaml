@@ -6,7 +6,7 @@ info:
     upon HTTPS for transport. We respond with meaningful HTTP response codes and
     if an error occurs, we include error details in the response body.  API
     Documentation is at https://api.ynab.com
-  version: 1.71.0
+  version: 1.72.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -1377,6 +1377,76 @@ paths:
         - name: payee_id
           in: path
           description: The id of the payee
+          required: true
+          schema:
+            type: string
+        - name: since_date
+          in: query
+          description: >-
+            If specified, only transactions on or after this date will be
+            included.  The date should be ISO formatted (e.g. 2016-12-30).
+          schema:
+            type: string
+            format: date
+        - name: type
+          in: query
+          description: >-
+            If specified, only transactions of the specified type will be
+            included. "uncategorized" and "unapproved" are currently supported.
+          schema:
+            type: string
+            enum:
+              - uncategorized
+              - unapproved
+        - name: last_knowledge_of_server
+          in: query
+          description: >-
+            The starting server knowledge.  If provided, only entities that have
+            changed since `last_knowledge_of_server` will be included.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: The list of requested transactions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HybridTransactionsResponse"
+        "404":
+          description: No transactions were found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        default:
+          description: An error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /budgets/{budget_id}/months/{month}/transactions:
+    get:
+      tags:
+        - Transactions
+      summary: List transactions in month, excluding any pending transactions
+      description: Returns all transactions for a specified month
+      operationId: getTransactionsByMonth
+      parameters:
+        - name: budget_id
+          in: path
+          description: >-
+            The id of the budget. "last-used" can be used to specify the last
+            used budget and "default" can be used if default budget selection is
+            enabled (see: https://api.ynab.com/#oauth-default-budget).
+          required: true
+          schema:
+            type: string
+        - name: month
+          in: path
+          description: >-
+            The budget month in ISO format (e.g. 2016-12-01) ("current" can also
+            be used to specify the current calendar month (UTC))
           required: true
           schema:
             type: string
