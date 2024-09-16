@@ -10,6 +10,7 @@
     "noEmitOnError": true,
     "composite": true,
     "incremental": true,
+    "esModuleInterop": true,
     "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
     "rootDir": "."
   },
