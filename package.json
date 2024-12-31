@@ -1,7 +1,7 @@
 {
   "name": "ynab",
   "version": "2.6.0",
-  "description": "YNAB API Javascript (Node) Library",
+  "description": "Official JavaScript client for the YNAB API. API documentation available at https://api.ynab.com. Generated from server specification version 1.72.0",
   "author": "YNAB",
   "email": "api@ynab.com",
   "url": "https://api.ynab.com",
@@ -40,6 +40,7 @@
     "@types/node": "^14.0.27",
     "chai": "^4.2.0",
     "fetch-mock": "^9.10.6",
+    "js-yaml": "^4.1.0",
     "jsh": "0.55.0",
     "mocha": "^10.2.0",
     "ts-loader": "^8.0.2",
