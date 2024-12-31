@@ -174,7 +174,7 @@ utils.convertMilliUnitsToCurrencyAmount(milliunits: number, currencyDecimalDigit
 
 ## Versioning
 
-The version of this client is defined in the `package.json` file and follows [semantic versioning](https://semver.org/).  The version of this client is maintained independently and does not align with the the version of YNAB API itself (which is defined in the [OpenAPI spec](https://api.ynab.com/papi/open_api_spec.yaml)).  To determine which spec version of the YNAB API was used when generating this client you can refer to the `description` field in the `package.json` file.
+The version of this client is defined in the `package.json` file and follows [semantic versioning](https://semver.org/).  The version of this client is maintained independently and does not align with the the version of YNAB API itself (which is defined in the [OpenAPI spec](https://api.ynab.com/papi/open_api_spec.yaml)).  To determine which spec version of the YNAB API was used when generating this client you can refer to the "description" field in the `package.json` file.
 
 ## License
 
