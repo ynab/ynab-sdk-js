@@ -1,7 +1,7 @@
 # YNAB API JavaScript Library
 
 [![Build](https://github.com/ynab/ynab-sdk-js/actions/workflows/build-test.yml/badge.svg)](https://github.com/ynab/ynab-sdk-js/actions/workflows/build-test.yml)
-[![npm version](https://badge.fury.io/js/ynab.svg)](https://badge.fury.io/js/ynab)
+[![npm version](https://badge.fury.io/js/ynab.svg?icon=si%3Anpm)](https://badge.fury.io/js/ynab)
 
 Please read the [YNAB API documentation](https://api.ynab.com) for an overview of using the API and a complete list of available resources.
 
