@@ -42,7 +42,7 @@
     "fetch-mock": "^9.10.6",
     "js-yaml": "^4.1.0",
     "jsh": "0.55.0",
-    "mocha": "^10.2.0",
+    "mocha": "^10.8.2",
     "ts-loader": "^8.0.2",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
