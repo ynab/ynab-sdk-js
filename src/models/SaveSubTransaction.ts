@@ -72,10 +72,15 @@ export function SaveSubTransactionFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function SaveSubTransactionToJSON(value?: SaveSubTransaction | null): any {
+export function SaveSubTransactionToJSON(json: any): SaveSubTransaction {
+    return SaveSubTransactionToJSONTyped(json, false);
+}
+
+export function SaveSubTransactionToJSONTyped(value?: SaveSubTransaction | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'amount': value['amount'],

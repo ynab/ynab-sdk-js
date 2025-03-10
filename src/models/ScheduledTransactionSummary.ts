@@ -13,6 +13,7 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 
 /**
@@ -163,10 +164,15 @@ export function ScheduledTransactionSummaryFromJSONTyped(json: any, ignoreDiscri
     };
 }
 
-export function ScheduledTransactionSummaryToJSON(value?: ScheduledTransactionSummary | null): any {
+export function ScheduledTransactionSummaryToJSON(json: any): ScheduledTransactionSummary {
+    return ScheduledTransactionSummaryToJSONTyped(json, false);
+}
+
+export function ScheduledTransactionSummaryToJSONTyped(value?: ScheduledTransactionSummary | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

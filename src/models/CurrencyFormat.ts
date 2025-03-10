@@ -100,10 +100,15 @@ export function CurrencyFormatFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function CurrencyFormatToJSON(value?: CurrencyFormat | null): any {
+export function CurrencyFormatToJSON(json: any): CurrencyFormat {
+    return CurrencyFormatToJSONTyped(json, false);
+}
+
+export function CurrencyFormatToJSONTyped(value?: CurrencyFormat | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'iso_code': value['iso_code'],

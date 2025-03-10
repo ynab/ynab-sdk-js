@@ -13,6 +13,7 @@ import {
     SaveTransactionWithOptionalFieldsFromJSON,
     SaveTransactionWithOptionalFieldsFromJSONTyped,
     SaveTransactionWithOptionalFieldsToJSON,
+    SaveTransactionWithOptionalFieldsToJSONTyped,
 } from './SaveTransactionWithOptionalFields';
 
 /**
@@ -51,10 +52,15 @@ export function BulkTransactionsFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function BulkTransactionsToJSON(value?: BulkTransactions | null): any {
+export function BulkTransactionsToJSON(json: any): BulkTransactions {
+    return BulkTransactionsToJSONTyped(json, false);
+}
+
+export function BulkTransactionsToJSONTyped(value?: BulkTransactions | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transactions': ((value['transactions'] as Array<any>).map(SaveTransactionWithOptionalFieldsToJSON)),

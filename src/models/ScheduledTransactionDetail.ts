@@ -13,12 +13,14 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 import type { ScheduledSubTransaction } from './ScheduledSubTransaction';
 import {
     ScheduledSubTransactionFromJSON,
     ScheduledSubTransactionFromJSONTyped,
     ScheduledSubTransactionToJSON,
+    ScheduledSubTransactionToJSONTyped,
 } from './ScheduledSubTransaction';
 
 /**
@@ -199,10 +201,15 @@ export function ScheduledTransactionDetailFromJSONTyped(json: any, ignoreDiscrim
     };
 }
 
-export function ScheduledTransactionDetailToJSON(value?: ScheduledTransactionDetail | null): any {
+export function ScheduledTransactionDetailToJSON(json: any): ScheduledTransactionDetail {
+    return ScheduledTransactionDetailToJSONTyped(json, false);
+}
+
+export function ScheduledTransactionDetailToJSONTyped(value?: ScheduledTransactionDetail | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

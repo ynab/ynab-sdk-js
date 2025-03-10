@@ -44,10 +44,15 @@ export function TransactionsImportResponseDataFromJSONTyped(json: any, ignoreDis
     };
 }
 
-export function TransactionsImportResponseDataToJSON(value?: TransactionsImportResponseData | null): any {
+export function TransactionsImportResponseDataToJSON(json: any): TransactionsImportResponseData {
+    return TransactionsImportResponseDataToJSONTyped(json, false);
+}
+
+export function TransactionsImportResponseDataToJSONTyped(value?: TransactionsImportResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transaction_ids': value['transaction_ids'],

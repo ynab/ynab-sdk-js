@@ -13,18 +13,21 @@ import {
     AccountFromJSON,
     AccountFromJSONTyped,
     AccountToJSON,
+    AccountToJSONTyped,
 } from './Account';
 import type { CurrencyFormat } from './CurrencyFormat';
 import {
     CurrencyFormatFromJSON,
     CurrencyFormatFromJSONTyped,
     CurrencyFormatToJSON,
+    CurrencyFormatToJSONTyped,
 } from './CurrencyFormat';
 import type { DateFormat } from './DateFormat';
 import {
     DateFormatFromJSON,
     DateFormatFromJSONTyped,
     DateFormatToJSON,
+    DateFormatToJSONTyped,
 } from './DateFormat';
 
 /**
@@ -113,10 +116,15 @@ export function BudgetSummaryFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function BudgetSummaryToJSON(value?: BudgetSummary | null): any {
+export function BudgetSummaryToJSON(json: any): BudgetSummary {
+    return BudgetSummaryToJSONTyped(json, false);
+}
+
+export function BudgetSummaryToJSONTyped(value?: BudgetSummary | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

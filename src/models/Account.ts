@@ -13,6 +13,7 @@ import {
     AccountTypeFromJSON,
     AccountTypeFromJSONTyped,
     AccountTypeToJSON,
+    AccountTypeToJSONTyped,
 } from './AccountType';
 
 /**
@@ -131,6 +132,8 @@ export interface Account {
     deleted: boolean;
 }
 
+
+
 /**
  * Check if a given object implements the Account interface.
  */
@@ -179,10 +182,15 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
     };
 }
 
-export function AccountToJSON(value?: Account | null): any {
+export function AccountToJSON(json: any): Account {
+    return AccountToJSONTyped(json, false);
+}
+
+export function AccountToJSONTyped(value?: Account | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

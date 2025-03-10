@@ -44,10 +44,15 @@ export function SaveMonthCategoryFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function SaveMonthCategoryToJSON(value?: SaveMonthCategory | null): any {
+export function SaveMonthCategoryToJSON(json: any): SaveMonthCategory {
+    return SaveMonthCategoryToJSONTyped(json, false);
+}
+
+export function SaveMonthCategoryToJSONTyped(value?: SaveMonthCategory | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'budgeted': value['budgeted'],

@@ -98,10 +98,15 @@ export function MonthSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function MonthSummaryToJSON(value?: MonthSummary | null): any {
+export function MonthSummaryToJSON(json: any): MonthSummary {
+    return MonthSummaryToJSONTyped(json, false);
+}
+
+export function MonthSummaryToJSONTyped(value?: MonthSummary | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'month': value['month'],

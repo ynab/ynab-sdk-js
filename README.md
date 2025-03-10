@@ -131,6 +131,7 @@ The following methods are available in this library.
 | **Categories**             | [categories.getCategories(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/CategoriesApi.d.ts)                                              | Returns all categories grouped by category group.     |
 |                            | [categories.getCategoryById(budget_id, category_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/CategoriesApi.d.ts)                               | Returns a single category                             |
 |                            | [categories.getMonthCategoryById(budget_id, month, category_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/CategoriesApi.d.ts)                   | Returns a single category for a specific budget month |
+|                            | [categories.updateCategory(budget_id, category_id, category)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/CategoriesApi.d.ts)    | Update an existing category                     |
 |                            | [categories.updateMonthCategory(budget_id, month, category_id, month_category)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/CategoriesApi.d.ts)    | Update an existing month category                     |
 | **Payees**                 | [payees.getPayees(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/PayeesApi.d.ts)                                                          | Returns all payees                                    |
 |                            | [payees.getPayeeById(budget_id, payee_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/PayeesApi.d.ts)                                             | Returns single payee                                  |
@@ -154,6 +155,8 @@ The following methods are available in this library.
 | **Scheduled Transactions** | [scheduled_transactions.getScheduledTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)            | Returns all scheduled transactions                    |
 |                            | [scheduled_transactions.getScheduledTransactionById(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts) | Returns a single scheduled transaction          |
 |                            | [scheduled_transactions.createScheduledTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Creates a single scheduled transaction          |
+|                            | [scheduled_transactions.updateScheduledTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Updates a single scheduled transaction          |
+|                            | [scheduled_transactions.deleteScheduledTransaction(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Deletes a single scheduled transaction          |
 
 ### Utilities
 

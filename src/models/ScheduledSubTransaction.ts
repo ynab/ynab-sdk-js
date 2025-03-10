@@ -49,7 +49,19 @@ export interface ScheduledSubTransaction {
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
+    payee_name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScheduledSubTransaction
+     */
     category_id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScheduledSubTransaction
+     */
+    category_name?: string | null;
     /**
      * If a transfer, the account_id which the scheduled subtransaction transfers to
      * @type {string}
@@ -90,16 +102,23 @@ export function ScheduledSubTransactionFromJSONTyped(json: any, ignoreDiscrimina
         'amount': json['amount'],
         'memo': json['memo'] == null ? undefined : json['memo'],
         'payee_id': json['payee_id'] == null ? undefined : json['payee_id'],
+        'payee_name': json['payee_name'] == null ? undefined : json['payee_name'],
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
+        'category_name': json['category_name'] == null ? undefined : json['category_name'],
         'transfer_account_id': json['transfer_account_id'] == null ? undefined : json['transfer_account_id'],
         'deleted': json['deleted'],
     };
 }
 
-export function ScheduledSubTransactionToJSON(value?: ScheduledSubTransaction | null): any {
+export function ScheduledSubTransactionToJSON(json: any): ScheduledSubTransaction {
+    return ScheduledSubTransactionToJSONTyped(json, false);
+}
+
+export function ScheduledSubTransactionToJSONTyped(value?: ScheduledSubTransaction | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],
@@ -107,7 +126,9 @@ export function ScheduledSubTransactionToJSON(value?: ScheduledSubTransaction | 
         'amount': value['amount'],
         'memo': value['memo'],
         'payee_id': value['payee_id'],
+        'payee_name': value['payee_name'],
         'category_id': value['category_id'],
+        'category_name': value['category_name'],
         'transfer_account_id': value['transfer_account_id'],
         'deleted': value['deleted'],
     };

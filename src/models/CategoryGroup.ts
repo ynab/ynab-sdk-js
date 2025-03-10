@@ -68,10 +68,15 @@ export function CategoryGroupFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function CategoryGroupToJSON(value?: CategoryGroup | null): any {
+export function CategoryGroupToJSON(json: any): CategoryGroup {
+    return CategoryGroupToJSONTyped(json, false);
+}
+
+export function CategoryGroupToJSONTyped(value?: CategoryGroup | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

@@ -13,6 +13,7 @@ import {
     AccountFromJSON,
     AccountFromJSONTyped,
     AccountToJSON,
+    AccountToJSONTyped,
 } from './Account';
 
 /**
@@ -59,10 +60,15 @@ export function AccountsResponseDataFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function AccountsResponseDataToJSON(value?: AccountsResponseData | null): any {
+export function AccountsResponseDataToJSON(json: any): AccountsResponseData {
+    return AccountsResponseDataToJSONTyped(json, false);
+}
+
+export function AccountsResponseDataToJSONTyped(value?: AccountsResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'accounts': ((value['accounts'] as Array<any>).map(AccountToJSON)),

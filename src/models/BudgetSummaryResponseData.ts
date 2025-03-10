@@ -13,6 +13,7 @@ import {
     BudgetSummaryFromJSON,
     BudgetSummaryFromJSONTyped,
     BudgetSummaryToJSON,
+    BudgetSummaryToJSONTyped,
 } from './BudgetSummary';
 
 /**
@@ -58,10 +59,15 @@ export function BudgetSummaryResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function BudgetSummaryResponseDataToJSON(value?: BudgetSummaryResponseData | null): any {
+export function BudgetSummaryResponseDataToJSON(json: any): BudgetSummaryResponseData {
+    return BudgetSummaryResponseDataToJSONTyped(json, false);
+}
+
+export function BudgetSummaryResponseDataToJSONTyped(value?: BudgetSummaryResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'budgets': ((value['budgets'] as Array<any>).map(BudgetSummaryToJSON)),

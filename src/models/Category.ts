@@ -169,8 +169,7 @@ export const CategoryGoalTypeEnum = {
     Tbd: 'TBD',
     Mf: 'MF',
     Need: 'NEED',
-    Debt: 'DEBT',
-    
+    Debt: 'DEBT'
 } as const;
 export type CategoryGoalTypeEnum = typeof CategoryGoalTypeEnum[keyof typeof CategoryGoalTypeEnum];
 
@@ -227,10 +226,15 @@ export function CategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-export function CategoryToJSON(value?: Category | null): any {
+export function CategoryToJSON(json: any): Category {
+    return CategoryToJSONTyped(json, false);
+}
+
+export function CategoryToJSONTyped(value?: Category | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

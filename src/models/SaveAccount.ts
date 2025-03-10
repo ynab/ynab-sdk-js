@@ -13,6 +13,7 @@ import {
     AccountTypeFromJSON,
     AccountTypeFromJSONTyped,
     AccountTypeToJSON,
+    AccountTypeToJSONTyped,
 } from './AccountType';
 
 /**
@@ -41,6 +42,8 @@ export interface SaveAccount {
     balance: number;
 }
 
+
+
 /**
  * Check if a given object implements the SaveAccount interface.
  */
@@ -67,10 +70,15 @@ export function SaveAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function SaveAccountToJSON(value?: SaveAccount | null): any {
+export function SaveAccountToJSON(json: any): SaveAccount {
+    return SaveAccountToJSONTyped(json, false);
+}
+
+export function SaveAccountToJSONTyped(value?: SaveAccount | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'name': value['name'],

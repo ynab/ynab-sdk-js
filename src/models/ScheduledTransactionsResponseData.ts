@@ -13,6 +13,7 @@ import {
     ScheduledTransactionDetailFromJSON,
     ScheduledTransactionDetailFromJSONTyped,
     ScheduledTransactionDetailToJSON,
+    ScheduledTransactionDetailToJSONTyped,
 } from './ScheduledTransactionDetail';
 
 /**
@@ -59,10 +60,15 @@ export function ScheduledTransactionsResponseDataFromJSONTyped(json: any, ignore
     };
 }
 
-export function ScheduledTransactionsResponseDataToJSON(value?: ScheduledTransactionsResponseData | null): any {
+export function ScheduledTransactionsResponseDataToJSON(json: any): ScheduledTransactionsResponseData {
+    return ScheduledTransactionsResponseDataToJSONTyped(json, false);
+}
+
+export function ScheduledTransactionsResponseDataToJSONTyped(value?: ScheduledTransactionsResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'scheduled_transactions': ((value['scheduled_transactions'] as Array<any>).map(ScheduledTransactionDetailToJSON)),

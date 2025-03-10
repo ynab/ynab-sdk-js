@@ -13,6 +13,7 @@ import {
     TransactionsImportResponseDataFromJSON,
     TransactionsImportResponseDataFromJSONTyped,
     TransactionsImportResponseDataToJSON,
+    TransactionsImportResponseDataToJSONTyped,
 } from './TransactionsImportResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function TransactionsImportResponseFromJSONTyped(json: any, ignoreDiscrim
     };
 }
 
-export function TransactionsImportResponseToJSON(value?: TransactionsImportResponse | null): any {
+export function TransactionsImportResponseToJSON(json: any): TransactionsImportResponse {
+    return TransactionsImportResponseToJSONTyped(json, false);
+}
+
+export function TransactionsImportResponseToJSONTyped(value?: TransactionsImportResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': TransactionsImportResponseDataToJSON(value['data']),

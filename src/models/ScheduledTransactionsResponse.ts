@@ -13,6 +13,7 @@ import {
     ScheduledTransactionsResponseDataFromJSON,
     ScheduledTransactionsResponseDataFromJSONTyped,
     ScheduledTransactionsResponseDataToJSON,
+    ScheduledTransactionsResponseDataToJSONTyped,
 } from './ScheduledTransactionsResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function ScheduledTransactionsResponseFromJSONTyped(json: any, ignoreDisc
     };
 }
 
-export function ScheduledTransactionsResponseToJSON(value?: ScheduledTransactionsResponse | null): any {
+export function ScheduledTransactionsResponseToJSON(json: any): ScheduledTransactionsResponse {
+    return ScheduledTransactionsResponseToJSONTyped(json, false);
+}
+
+export function ScheduledTransactionsResponseToJSONTyped(value?: ScheduledTransactionsResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': ScheduledTransactionsResponseDataToJSON(value['data']),

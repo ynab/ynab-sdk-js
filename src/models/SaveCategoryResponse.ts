@@ -13,6 +13,7 @@ import {
     SaveCategoryResponseDataFromJSON,
     SaveCategoryResponseDataFromJSONTyped,
     SaveCategoryResponseDataToJSON,
+    SaveCategoryResponseDataToJSONTyped,
 } from './SaveCategoryResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function SaveCategoryResponseFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function SaveCategoryResponseToJSON(value?: SaveCategoryResponse | null): any {
+export function SaveCategoryResponseToJSON(json: any): SaveCategoryResponse {
+    return SaveCategoryResponseToJSONTyped(json, false);
+}
+
+export function SaveCategoryResponseToJSONTyped(value?: SaveCategoryResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': SaveCategoryResponseDataToJSON(value['data']),

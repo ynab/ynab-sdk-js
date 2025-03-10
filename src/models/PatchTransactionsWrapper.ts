@@ -13,6 +13,7 @@ import {
     SaveTransactionWithIdOrImportIdFromJSON,
     SaveTransactionWithIdOrImportIdFromJSONTyped,
     SaveTransactionWithIdOrImportIdToJSON,
+    SaveTransactionWithIdOrImportIdToJSONTyped,
 } from './SaveTransactionWithIdOrImportId';
 
 /**
@@ -51,10 +52,15 @@ export function PatchTransactionsWrapperFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function PatchTransactionsWrapperToJSON(value?: PatchTransactionsWrapper | null): any {
+export function PatchTransactionsWrapperToJSON(json: any): PatchTransactionsWrapper {
+    return PatchTransactionsWrapperToJSONTyped(json, false);
+}
+
+export function PatchTransactionsWrapperToJSONTyped(value?: PatchTransactionsWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transactions': ((value['transactions'] as Array<any>).map(SaveTransactionWithIdOrImportIdToJSON)),

@@ -13,6 +13,7 @@ import {
     CategoryFromJSON,
     CategoryFromJSONTyped,
     CategoryToJSON,
+    CategoryToJSONTyped,
 } from './Category';
 
 /**
@@ -59,10 +60,15 @@ export function SaveCategoryResponseDataFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function SaveCategoryResponseDataToJSON(value?: SaveCategoryResponseData | null): any {
+export function SaveCategoryResponseDataToJSON(json: any): SaveCategoryResponseData {
+    return SaveCategoryResponseDataToJSONTyped(json, false);
+}
+
+export function SaveCategoryResponseDataToJSONTyped(value?: SaveCategoryResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'category': CategoryToJSON(value['category']),

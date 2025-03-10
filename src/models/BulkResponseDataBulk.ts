@@ -52,10 +52,15 @@ export function BulkResponseDataBulkFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function BulkResponseDataBulkToJSON(value?: BulkResponseDataBulk | null): any {
+export function BulkResponseDataBulkToJSON(json: any): BulkResponseDataBulk {
+    return BulkResponseDataBulkToJSONTyped(json, false);
+}
+
+export function BulkResponseDataBulkToJSONTyped(value?: BulkResponseDataBulk | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transaction_ids': value['transaction_ids'],

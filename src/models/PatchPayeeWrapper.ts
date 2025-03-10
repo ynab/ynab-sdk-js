@@ -13,6 +13,7 @@ import {
     SavePayeeFromJSON,
     SavePayeeFromJSONTyped,
     SavePayeeToJSON,
+    SavePayeeToJSONTyped,
 } from './SavePayee';
 
 /**
@@ -51,10 +52,15 @@ export function PatchPayeeWrapperFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function PatchPayeeWrapperToJSON(value?: PatchPayeeWrapper | null): any {
+export function PatchPayeeWrapperToJSON(json: any): PatchPayeeWrapper {
+    return PatchPayeeWrapperToJSONTyped(json, false);
+}
+
+export function PatchPayeeWrapperToJSONTyped(value?: PatchPayeeWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'payee': SavePayeeToJSON(value['payee']),

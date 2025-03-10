@@ -13,12 +13,14 @@ import {
     CurrencyFormatFromJSON,
     CurrencyFormatFromJSONTyped,
     CurrencyFormatToJSON,
+    CurrencyFormatToJSONTyped,
 } from './CurrencyFormat';
 import type { DateFormat } from './DateFormat';
 import {
     DateFormatFromJSON,
     DateFormatFromJSONTyped,
     DateFormatToJSON,
+    DateFormatToJSONTyped,
 } from './DateFormat';
 
 /**
@@ -65,10 +67,15 @@ export function BudgetSettingsFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function BudgetSettingsToJSON(value?: BudgetSettings | null): any {
+export function BudgetSettingsToJSON(json: any): BudgetSettings {
+    return BudgetSettingsToJSONTyped(json, false);
+}
+
+export function BudgetSettingsToJSONTyped(value?: BudgetSettings | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'date_format': DateFormatToJSON(value['date_format']),

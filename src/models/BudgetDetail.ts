@@ -13,72 +13,84 @@ import {
     PayeeLocationFromJSON,
     PayeeLocationFromJSONTyped,
     PayeeLocationToJSON,
+    PayeeLocationToJSONTyped,
 } from './PayeeLocation';
 import type { Account } from './Account';
 import {
     AccountFromJSON,
     AccountFromJSONTyped,
     AccountToJSON,
+    AccountToJSONTyped,
 } from './Account';
 import type { ScheduledTransactionSummary } from './ScheduledTransactionSummary';
 import {
     ScheduledTransactionSummaryFromJSON,
     ScheduledTransactionSummaryFromJSONTyped,
     ScheduledTransactionSummaryToJSON,
+    ScheduledTransactionSummaryToJSONTyped,
 } from './ScheduledTransactionSummary';
 import type { Category } from './Category';
 import {
     CategoryFromJSON,
     CategoryFromJSONTyped,
     CategoryToJSON,
+    CategoryToJSONTyped,
 } from './Category';
 import type { CurrencyFormat } from './CurrencyFormat';
 import {
     CurrencyFormatFromJSON,
     CurrencyFormatFromJSONTyped,
     CurrencyFormatToJSON,
+    CurrencyFormatToJSONTyped,
 } from './CurrencyFormat';
 import type { DateFormat } from './DateFormat';
 import {
     DateFormatFromJSON,
     DateFormatFromJSONTyped,
     DateFormatToJSON,
+    DateFormatToJSONTyped,
 } from './DateFormat';
 import type { SubTransaction } from './SubTransaction';
 import {
     SubTransactionFromJSON,
     SubTransactionFromJSONTyped,
     SubTransactionToJSON,
+    SubTransactionToJSONTyped,
 } from './SubTransaction';
 import type { MonthDetail } from './MonthDetail';
 import {
     MonthDetailFromJSON,
     MonthDetailFromJSONTyped,
     MonthDetailToJSON,
+    MonthDetailToJSONTyped,
 } from './MonthDetail';
 import type { Payee } from './Payee';
 import {
     PayeeFromJSON,
     PayeeFromJSONTyped,
     PayeeToJSON,
+    PayeeToJSONTyped,
 } from './Payee';
 import type { ScheduledSubTransaction } from './ScheduledSubTransaction';
 import {
     ScheduledSubTransactionFromJSON,
     ScheduledSubTransactionFromJSONTyped,
     ScheduledSubTransactionToJSON,
+    ScheduledSubTransactionToJSONTyped,
 } from './ScheduledSubTransaction';
 import type { TransactionSummary } from './TransactionSummary';
 import {
     TransactionSummaryFromJSON,
     TransactionSummaryFromJSONTyped,
     TransactionSummaryToJSON,
+    TransactionSummaryToJSONTyped,
 } from './TransactionSummary';
 import type { CategoryGroup } from './CategoryGroup';
 import {
     CategoryGroupFromJSON,
     CategoryGroupFromJSONTyped,
     CategoryGroupToJSON,
+    CategoryGroupToJSONTyped,
 } from './CategoryGroup';
 
 /**
@@ -230,10 +242,15 @@ export function BudgetDetailFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function BudgetDetailToJSON(value?: BudgetDetail | null): any {
+export function BudgetDetailToJSON(json: any): BudgetDetail {
+    return BudgetDetailToJSONTyped(json, false);
+}
+
+export function BudgetDetailToJSONTyped(value?: BudgetDetail | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

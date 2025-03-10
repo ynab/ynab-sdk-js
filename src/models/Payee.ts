@@ -67,10 +67,15 @@ export function PayeeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pay
     };
 }
 
-export function PayeeToJSON(value?: Payee | null): any {
+export function PayeeToJSON(json: any): Payee {
+    return PayeeToJSONTyped(json, false);
+}
+
+export function PayeeToJSONTyped(value?: Payee | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

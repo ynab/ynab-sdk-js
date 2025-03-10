@@ -44,10 +44,15 @@ export function DateFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function DateFormatToJSON(value?: DateFormat | null): any {
+export function DateFormatToJSON(json: any): DateFormat {
+    return DateFormatToJSONTyped(json, false);
+}
+
+export function DateFormatToJSONTyped(value?: DateFormat | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'format': value['format'],

@@ -13,18 +13,21 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 import type { TransactionClearedStatus } from './TransactionClearedStatus';
 import {
     TransactionClearedStatusFromJSON,
     TransactionClearedStatusFromJSONTyped,
     TransactionClearedStatusToJSON,
+    TransactionClearedStatusToJSONTyped,
 } from './TransactionClearedStatus';
 import type { SaveSubTransaction } from './SaveSubTransaction';
 import {
     SaveSubTransactionFromJSON,
     SaveSubTransactionFromJSONTyped,
     SaveSubTransactionToJSON,
+    SaveSubTransactionToJSONTyped,
 } from './SaveSubTransaction';
 
 /**
@@ -107,6 +110,8 @@ export interface NewTransaction {
     import_id?: string | null;
 }
 
+
+
 /**
  * Check if a given object implements the NewTransaction interface.
  */
@@ -139,10 +144,15 @@ export function NewTransactionFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function NewTransactionToJSON(value?: NewTransaction | null): any {
+export function NewTransactionToJSON(json: any): NewTransaction {
+    return NewTransactionToJSONTyped(json, false);
+}
+
+export function NewTransactionToJSONTyped(value?: NewTransaction | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'account_id': value['account_id'],

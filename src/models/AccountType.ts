@@ -33,7 +33,7 @@ export type AccountType = typeof AccountType[keyof typeof AccountType];
 export function instanceOfAccountType(value: any): boolean {
     for (const key in AccountType) {
         if (Object.prototype.hasOwnProperty.call(AccountType, key)) {
-            if ((AccountType as Record<string, AccountType>)[key] === value) {
+            if (AccountType[key as keyof typeof AccountType] === value) {
                 return true;
             }
         }
@@ -51,5 +51,9 @@ export function AccountTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean
 
 export function AccountTypeToJSON(value?: AccountType | null): any {
     return value as any;
+}
+
+export function AccountTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): AccountType {
+    return value as AccountType;
 }
 

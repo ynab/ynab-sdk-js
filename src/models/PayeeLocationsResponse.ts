@@ -13,6 +13,7 @@ import {
     PayeeLocationsResponseDataFromJSON,
     PayeeLocationsResponseDataFromJSONTyped,
     PayeeLocationsResponseDataToJSON,
+    PayeeLocationsResponseDataToJSONTyped,
 } from './PayeeLocationsResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function PayeeLocationsResponseFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function PayeeLocationsResponseToJSON(value?: PayeeLocationsResponse | null): any {
+export function PayeeLocationsResponseToJSON(json: any): PayeeLocationsResponse {
+    return PayeeLocationsResponseToJSONTyped(json, false);
+}
+
+export function PayeeLocationsResponseToJSONTyped(value?: PayeeLocationsResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': PayeeLocationsResponseDataToJSON(value['data']),
