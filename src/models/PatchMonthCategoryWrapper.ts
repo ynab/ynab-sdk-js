@@ -13,6 +13,7 @@ import {
     SaveMonthCategoryFromJSON,
     SaveMonthCategoryFromJSONTyped,
     SaveMonthCategoryToJSON,
+    SaveMonthCategoryToJSONTyped,
 } from './SaveMonthCategory';
 
 /**
@@ -51,10 +52,15 @@ export function PatchMonthCategoryWrapperFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function PatchMonthCategoryWrapperToJSON(value?: PatchMonthCategoryWrapper | null): any {
+export function PatchMonthCategoryWrapperToJSON(json: any): PatchMonthCategoryWrapper {
+    return PatchMonthCategoryWrapperToJSONTyped(json, false);
+}
+
+export function PatchMonthCategoryWrapperToJSONTyped(value?: PatchMonthCategoryWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'category': SaveMonthCategoryToJSON(value['category']),

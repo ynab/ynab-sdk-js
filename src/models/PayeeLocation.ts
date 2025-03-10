@@ -76,10 +76,15 @@ export function PayeeLocationFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function PayeeLocationToJSON(value?: PayeeLocation | null): any {
+export function PayeeLocationToJSON(json: any): PayeeLocation {
+    return PayeeLocationToJSONTyped(json, false);
+}
+
+export function PayeeLocationToJSONTyped(value?: PayeeLocation | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

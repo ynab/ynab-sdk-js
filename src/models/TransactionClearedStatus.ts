@@ -23,7 +23,7 @@ export type TransactionClearedStatus = typeof TransactionClearedStatus[keyof typ
 export function instanceOfTransactionClearedStatus(value: any): boolean {
     for (const key in TransactionClearedStatus) {
         if (Object.prototype.hasOwnProperty.call(TransactionClearedStatus, key)) {
-            if ((TransactionClearedStatus as Record<string, TransactionClearedStatus>)[key] === value) {
+            if (TransactionClearedStatus[key as keyof typeof TransactionClearedStatus] === value) {
                 return true;
             }
         }
@@ -41,5 +41,9 @@ export function TransactionClearedStatusFromJSONTyped(json: any, ignoreDiscrimin
 
 export function TransactionClearedStatusToJSON(value?: TransactionClearedStatus | null): any {
     return value as any;
+}
+
+export function TransactionClearedStatusToJSONTyped(value: any, ignoreDiscriminator: boolean): TransactionClearedStatus {
+    return value as TransactionClearedStatus;
 }
 

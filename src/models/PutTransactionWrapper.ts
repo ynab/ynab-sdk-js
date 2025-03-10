@@ -13,6 +13,7 @@ import {
     ExistingTransactionFromJSON,
     ExistingTransactionFromJSONTyped,
     ExistingTransactionToJSON,
+    ExistingTransactionToJSONTyped,
 } from './ExistingTransaction';
 
 /**
@@ -51,10 +52,15 @@ export function PutTransactionWrapperFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function PutTransactionWrapperToJSON(value?: PutTransactionWrapper | null): any {
+export function PutTransactionWrapperToJSON(json: any): PutTransactionWrapper {
+    return PutTransactionWrapperToJSONTyped(json, false);
+}
+
+export function PutTransactionWrapperToJSONTyped(value?: PutTransactionWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transaction': ExistingTransactionToJSON(value['transaction']),

@@ -13,12 +13,14 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 import type { ScheduledTransactionFrequency } from './ScheduledTransactionFrequency';
 import {
     ScheduledTransactionFrequencyFromJSON,
     ScheduledTransactionFrequencyFromJSONTyped,
     ScheduledTransactionFrequencyToJSON,
+    ScheduledTransactionFrequencyToJSONTyped,
 } from './ScheduledTransactionFrequency';
 
 /**
@@ -34,7 +36,7 @@ export interface SaveScheduledTransaction {
      */
     account_id: string;
     /**
-     * The scheduled transaction date in ISO format (e.g. 2016-12-01).
+     * The scheduled transaction date in ISO format (e.g. 2016-12-01).  This should be a future date no more than 5 years into the future.
      * @type {string}
      * @memberof SaveScheduledTransaction
      */
@@ -83,6 +85,8 @@ export interface SaveScheduledTransaction {
     frequency?: ScheduledTransactionFrequency;
 }
 
+
+
 /**
  * Check if a given object implements the SaveScheduledTransaction interface.
  */
@@ -114,10 +118,15 @@ export function SaveScheduledTransactionFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function SaveScheduledTransactionToJSON(value?: SaveScheduledTransaction | null): any {
+export function SaveScheduledTransactionToJSON(json: any): SaveScheduledTransaction {
+    return SaveScheduledTransactionToJSONTyped(json, false);
+}
+
+export function SaveScheduledTransactionToJSONTyped(value?: SaveScheduledTransaction | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'account_id': value['account_id'],

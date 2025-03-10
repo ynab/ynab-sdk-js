@@ -32,6 +32,12 @@ export interface SaveCategory {
      * @memberof SaveCategory
      */
     category_group_id?: string;
+    /**
+     * The goal target amount in milliunits format.  This amount can only be changed if the category already has a configured goal (goal_type != null).
+     * @type {number}
+     * @memberof SaveCategory
+     */
+    goal_target?: number | null;
 }
 
 /**
@@ -54,18 +60,25 @@ export function SaveCategoryFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'name': json['name'] == null ? undefined : json['name'],
         'note': json['note'] == null ? undefined : json['note'],
         'category_group_id': json['category_group_id'] == null ? undefined : json['category_group_id'],
+        'goal_target': json['goal_target'] == null ? undefined : json['goal_target'],
     };
 }
 
-export function SaveCategoryToJSON(value?: SaveCategory | null): any {
+export function SaveCategoryToJSON(json: any): SaveCategory {
+    return SaveCategoryToJSONTyped(json, false);
+}
+
+export function SaveCategoryToJSONTyped(value?: SaveCategory | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'name': value['name'],
         'note': value['note'],
         'category_group_id': value['category_group_id'],
+        'goal_target': value['goal_target'],
     };
 }
 

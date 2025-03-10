@@ -13,18 +13,21 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 import type { TransactionClearedStatus } from './TransactionClearedStatus';
 import {
     TransactionClearedStatusFromJSON,
     TransactionClearedStatusFromJSONTyped,
     TransactionClearedStatusToJSON,
+    TransactionClearedStatusToJSONTyped,
 } from './TransactionClearedStatus';
 import type { SaveSubTransaction } from './SaveSubTransaction';
 import {
     SaveSubTransactionFromJSON,
     SaveSubTransactionFromJSONTyped,
     SaveSubTransactionToJSON,
+    SaveSubTransactionToJSONTyped,
 } from './SaveSubTransaction';
 
 /**
@@ -101,6 +104,8 @@ export interface ExistingTransaction {
     subtransactions?: Array<SaveSubTransaction>;
 }
 
+
+
 /**
  * Check if a given object implements the ExistingTransaction interface.
  */
@@ -132,10 +137,15 @@ export function ExistingTransactionFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function ExistingTransactionToJSON(value?: ExistingTransaction | null): any {
+export function ExistingTransactionToJSON(json: any): ExistingTransaction {
+    return ExistingTransactionToJSONTyped(json, false);
+}
+
+export function ExistingTransactionToJSONTyped(value?: ExistingTransaction | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'account_id': value['account_id'],

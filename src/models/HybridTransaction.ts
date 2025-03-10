@@ -13,12 +13,14 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 import type { TransactionClearedStatus } from './TransactionClearedStatus';
 import {
     TransactionClearedStatusFromJSON,
     TransactionClearedStatusFromJSONTyped,
     TransactionClearedStatusToJSON,
+    TransactionClearedStatusToJSONTyped,
 } from './TransactionClearedStatus';
 
 /**
@@ -185,8 +187,7 @@ export const HybridTransactionDebtTransactionTypeEnum = {
     Escrow: 'escrow',
     BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
-    Charge: 'charge',
-    
+    Charge: 'charge'
 } as const;
 export type HybridTransactionDebtTransactionTypeEnum = typeof HybridTransactionDebtTransactionTypeEnum[keyof typeof HybridTransactionDebtTransactionTypeEnum];
 
@@ -253,10 +254,15 @@ export function HybridTransactionFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function HybridTransactionToJSON(value?: HybridTransaction | null): any {
+export function HybridTransactionToJSON(json: any): HybridTransaction {
+    return HybridTransactionToJSONTyped(json, false);
+}
+
+export function HybridTransactionToJSONTyped(value?: HybridTransaction | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

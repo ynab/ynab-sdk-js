@@ -13,6 +13,7 @@ import {
     PayeeFromJSON,
     PayeeFromJSONTyped,
     PayeeToJSON,
+    PayeeToJSONTyped,
 } from './Payee';
 
 /**
@@ -51,10 +52,15 @@ export function PayeeResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function PayeeResponseDataToJSON(value?: PayeeResponseData | null): any {
+export function PayeeResponseDataToJSON(json: any): PayeeResponseData {
+    return PayeeResponseDataToJSONTyped(json, false);
+}
+
+export function PayeeResponseDataToJSONTyped(value?: PayeeResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'payee': PayeeToJSON(value['payee']),

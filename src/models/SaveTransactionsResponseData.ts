@@ -13,6 +13,7 @@ import {
     TransactionDetailFromJSON,
     TransactionDetailFromJSONTyped,
     TransactionDetailToJSON,
+    TransactionDetailToJSONTyped,
 } from './TransactionDetail';
 
 /**
@@ -80,10 +81,15 @@ export function SaveTransactionsResponseDataFromJSONTyped(json: any, ignoreDiscr
     };
 }
 
-export function SaveTransactionsResponseDataToJSON(value?: SaveTransactionsResponseData | null): any {
+export function SaveTransactionsResponseDataToJSON(json: any): SaveTransactionsResponseData {
+    return SaveTransactionsResponseDataToJSONTyped(json, false);
+}
+
+export function SaveTransactionsResponseDataToJSONTyped(value?: SaveTransactionsResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transaction_ids': value['transaction_ids'],

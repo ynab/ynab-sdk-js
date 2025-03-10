@@ -13,6 +13,7 @@ import {
     SaveCategoryFromJSON,
     SaveCategoryFromJSONTyped,
     SaveCategoryToJSON,
+    SaveCategoryToJSONTyped,
 } from './SaveCategory';
 
 /**
@@ -51,10 +52,15 @@ export function PatchCategoryWrapperFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function PatchCategoryWrapperToJSON(value?: PatchCategoryWrapper | null): any {
+export function PatchCategoryWrapperToJSON(json: any): PatchCategoryWrapper {
+    return PatchCategoryWrapperToJSONTyped(json, false);
+}
+
+export function PatchCategoryWrapperToJSONTyped(value?: PatchCategoryWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'category': SaveCategoryToJSON(value['category']),

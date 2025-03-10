@@ -13,18 +13,21 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 import type { TransactionClearedStatus } from './TransactionClearedStatus';
 import {
     TransactionClearedStatusFromJSON,
     TransactionClearedStatusFromJSONTyped,
     TransactionClearedStatusToJSON,
+    TransactionClearedStatusToJSONTyped,
 } from './TransactionClearedStatus';
 import type { SaveSubTransaction } from './SaveSubTransaction';
 import {
     SaveSubTransactionFromJSON,
     SaveSubTransactionFromJSONTyped,
     SaveSubTransactionToJSON,
+    SaveSubTransactionToJSONTyped,
 } from './SaveSubTransaction';
 
 /**
@@ -113,6 +116,8 @@ export interface SaveTransactionWithIdOrImportId {
     import_id?: string | null;
 }
 
+
+
 /**
  * Check if a given object implements the SaveTransactionWithIdOrImportId interface.
  */
@@ -146,10 +151,15 @@ export function SaveTransactionWithIdOrImportIdFromJSONTyped(json: any, ignoreDi
     };
 }
 
-export function SaveTransactionWithIdOrImportIdToJSON(value?: SaveTransactionWithIdOrImportId | null): any {
+export function SaveTransactionWithIdOrImportIdToJSON(json: any): SaveTransactionWithIdOrImportId {
+    return SaveTransactionWithIdOrImportIdToJSONTyped(json, false);
+}
+
+export function SaveTransactionWithIdOrImportIdToJSONTyped(value?: SaveTransactionWithIdOrImportId | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'account_id': value['account_id'],

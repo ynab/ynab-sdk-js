@@ -13,6 +13,7 @@ import {
     BulkResponseDataFromJSON,
     BulkResponseDataFromJSONTyped,
     BulkResponseDataToJSON,
+    BulkResponseDataToJSONTyped,
 } from './BulkResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function BulkResponseFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function BulkResponseToJSON(value?: BulkResponse | null): any {
+export function BulkResponseToJSON(json: any): BulkResponse {
+    return BulkResponseToJSONTyped(json, false);
+}
+
+export function BulkResponseToJSONTyped(value?: BulkResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': BulkResponseDataToJSON(value['data']),

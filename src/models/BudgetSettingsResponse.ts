@@ -13,6 +13,7 @@ import {
     BudgetSettingsResponseDataFromJSON,
     BudgetSettingsResponseDataFromJSONTyped,
     BudgetSettingsResponseDataToJSON,
+    BudgetSettingsResponseDataToJSONTyped,
 } from './BudgetSettingsResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function BudgetSettingsResponseFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function BudgetSettingsResponseToJSON(value?: BudgetSettingsResponse | null): any {
+export function BudgetSettingsResponseToJSON(json: any): BudgetSettingsResponse {
+    return BudgetSettingsResponseToJSONTyped(json, false);
+}
+
+export function BudgetSettingsResponseToJSONTyped(value?: BudgetSettingsResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': BudgetSettingsResponseDataToJSON(value['data']),

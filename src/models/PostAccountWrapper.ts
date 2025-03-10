@@ -13,6 +13,7 @@ import {
     SaveAccountFromJSON,
     SaveAccountFromJSONTyped,
     SaveAccountToJSON,
+    SaveAccountToJSONTyped,
 } from './SaveAccount';
 
 /**
@@ -51,10 +52,15 @@ export function PostAccountWrapperFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function PostAccountWrapperToJSON(value?: PostAccountWrapper | null): any {
+export function PostAccountWrapperToJSON(json: any): PostAccountWrapper {
+    return PostAccountWrapperToJSONTyped(json, false);
+}
+
+export function PostAccountWrapperToJSONTyped(value?: PostAccountWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'account': SaveAccountToJSON(value['account']),

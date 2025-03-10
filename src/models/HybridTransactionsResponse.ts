@@ -13,6 +13,7 @@ import {
     HybridTransactionsResponseDataFromJSON,
     HybridTransactionsResponseDataFromJSONTyped,
     HybridTransactionsResponseDataToJSON,
+    HybridTransactionsResponseDataToJSONTyped,
 } from './HybridTransactionsResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function HybridTransactionsResponseFromJSONTyped(json: any, ignoreDiscrim
     };
 }
 
-export function HybridTransactionsResponseToJSON(value?: HybridTransactionsResponse | null): any {
+export function HybridTransactionsResponseToJSON(json: any): HybridTransactionsResponse {
+    return HybridTransactionsResponseToJSONTyped(json, false);
+}
+
+export function HybridTransactionsResponseToJSONTyped(value?: HybridTransactionsResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': HybridTransactionsResponseDataToJSON(value['data']),

@@ -43,10 +43,15 @@ export function SavePayeeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function SavePayeeToJSON(value?: SavePayee | null): any {
+export function SavePayeeToJSON(json: any): SavePayee {
+    return SavePayeeToJSONTyped(json, false);
+}
+
+export function SavePayeeToJSONTyped(value?: SavePayee | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'name': value['name'],

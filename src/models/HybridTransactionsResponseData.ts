@@ -13,6 +13,7 @@ import {
     HybridTransactionFromJSON,
     HybridTransactionFromJSONTyped,
     HybridTransactionToJSON,
+    HybridTransactionToJSONTyped,
 } from './HybridTransaction';
 
 /**
@@ -58,10 +59,15 @@ export function HybridTransactionsResponseDataFromJSONTyped(json: any, ignoreDis
     };
 }
 
-export function HybridTransactionsResponseDataToJSON(value?: HybridTransactionsResponseData | null): any {
+export function HybridTransactionsResponseDataToJSON(json: any): HybridTransactionsResponseData {
+    return HybridTransactionsResponseDataToJSONTyped(json, false);
+}
+
+export function HybridTransactionsResponseDataToJSONTyped(value?: HybridTransactionsResponseData | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transactions': ((value['transactions'] as Array<any>).map(HybridTransactionToJSON)),

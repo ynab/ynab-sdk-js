@@ -12,6 +12,7 @@ import * as runtime from '../runtime';
 import type {
   ErrorResponse,
   PostScheduledTransactionWrapper,
+  PutScheduledTransactionWrapper,
   ScheduledTransactionResponse,
   ScheduledTransactionsResponse,
 } from '../models/index';
@@ -20,6 +21,8 @@ import {
     ErrorResponseToJSON,
     PostScheduledTransactionWrapperFromJSON,
     PostScheduledTransactionWrapperToJSON,
+    PutScheduledTransactionWrapperFromJSON,
+    PutScheduledTransactionWrapperToJSON,
     ScheduledTransactionResponseFromJSON,
     ScheduledTransactionResponseToJSON,
     ScheduledTransactionsResponseFromJSON,
@@ -29,6 +32,11 @@ import {
 export interface CreateScheduledTransactionRequest {
     budgetId: string;
     data: PostScheduledTransactionWrapper;
+}
+
+export interface DeleteScheduledTransactionRequest {
+    budgetId: string;
+    scheduledTransactionId: string;
 }
 
 export interface GetScheduledTransactionByIdRequest {
@@ -41,13 +49,19 @@ export interface GetScheduledTransactionsRequest {
     lastKnowledgeOfServer?: number;
 }
 
+export interface UpdateScheduledTransactionRequest {
+    budgetId: string;
+    scheduledTransactionId: string;
+    putScheduledTransactionWrapper: PutScheduledTransactionWrapper;
+}
+
 /**
  * 
  */
 export class ScheduledTransactionsApi extends runtime.BaseAPI {
 
     /**
-     * Creates a single scheduled transaction.
+     * Creates a single scheduled transaction (a transaction with a future date).
      * Create a single scheduled transaction
      */
     async createScheduledTransactionRaw(requestParameters: CreateScheduledTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>> {
@@ -86,11 +100,56 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a single scheduled transaction.
+     * Creates a single scheduled transaction (a transaction with a future date).
      * Create a single scheduled transaction
      */
     async createScheduledTransaction(budgetId: string, data: PostScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse> {
         const response = await this.createScheduledTransactionRaw({ budgetId: budgetId, data: data }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Deletes a scheduled transaction
+     * Deletes an existing scheduled transaction
+     */
+    async deleteScheduledTransactionRaw(requestParameters: DeleteScheduledTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>> {
+        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling deleteScheduledTransaction.');
+        }
+
+        if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
+            throw new runtime.RequiredError('scheduledTransactionId','Required parameter requestParameters.scheduledTransactionId was null or undefined when calling deleteScheduledTransaction.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+        headerParameters['Accept'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/budgets/{budget_id}/scheduled_transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ScheduledTransactionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Deletes a scheduled transaction
+     * Deletes an existing scheduled transaction
+     */
+    async deleteScheduledTransaction(budgetId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse> {
+        const response = await this.deleteScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides);
         return await response.value();
     }
 
@@ -181,6 +240,58 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
      */
     async getScheduledTransactions(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse> {
         const response = await this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Updates a single scheduled transaction
+     * Updates an existing scheduled transaction
+     */
+    async updateScheduledTransactionRaw(requestParameters: UpdateScheduledTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>> {
+        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updateScheduledTransaction.');
+        }
+
+        if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
+            throw new runtime.RequiredError('scheduledTransactionId','Required parameter requestParameters.scheduledTransactionId was null or undefined when calling updateScheduledTransaction.');
+        }
+
+        if (requestParameters.putScheduledTransactionWrapper === null || requestParameters.putScheduledTransactionWrapper === undefined) {
+            throw new runtime.RequiredError('putScheduledTransactionWrapper','Required parameter requestParameters.putScheduledTransactionWrapper was null or undefined when calling updateScheduledTransaction.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+        headerParameters['Accept'] = 'application/json';
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/budgets/{budget_id}/scheduled_transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PutScheduledTransactionWrapperToJSON(requestParameters.putScheduledTransactionWrapper),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ScheduledTransactionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Updates a single scheduled transaction
+     * Updates an existing scheduled transaction
+     */
+    async updateScheduledTransaction(budgetId: string, scheduledTransactionId: string, putScheduledTransactionWrapper: PutScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse> {
+        const response = await this.updateScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId, putScheduledTransactionWrapper: putScheduledTransactionWrapper }, initOverrides);
         return await response.value();
     }
 

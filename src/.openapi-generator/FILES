@@ -67,6 +67,7 @@ models/PayeesResponseData.ts
 models/PostAccountWrapper.ts
 models/PostScheduledTransactionWrapper.ts
 models/PostTransactionsWrapper.ts
+models/PutScheduledTransactionWrapper.ts
 models/PutTransactionWrapper.ts
 models/SaveAccount.ts
 models/SaveCategory.ts

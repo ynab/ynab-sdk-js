@@ -13,6 +13,7 @@ import {
     NewTransactionFromJSON,
     NewTransactionFromJSONTyped,
     NewTransactionToJSON,
+    NewTransactionToJSONTyped,
 } from './NewTransaction';
 
 /**
@@ -57,10 +58,15 @@ export function PostTransactionsWrapperFromJSONTyped(json: any, ignoreDiscrimina
     };
 }
 
-export function PostTransactionsWrapperToJSON(value?: PostTransactionsWrapper | null): any {
+export function PostTransactionsWrapperToJSON(json: any): PostTransactionsWrapper {
+    return PostTransactionsWrapperToJSONTyped(json, false);
+}
+
+export function PostTransactionsWrapperToJSONTyped(value?: PostTransactionsWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'transaction': NewTransactionToJSON(value['transaction']),

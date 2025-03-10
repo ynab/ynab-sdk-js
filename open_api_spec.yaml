@@ -6,7 +6,7 @@ info:
     upon HTTPS for transport. We respond with meaningful HTTP response codes and
     if an error occurs, we include error details in the response body.  API
     Documentation is at https://api.ynab.com
-  version: 1.72.0
+  version: 1.74.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -1544,7 +1544,7 @@ paths:
         - Scheduled Transactions
       summary: Create a single scheduled transaction
       description: >-
-        Creates a single scheduled transaction.
+        Creates a single scheduled transaction (a transaction with a future date).
       operationId: createScheduledTransaction
       parameters:
         - name: budget_id
@@ -1580,6 +1580,85 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
+    put:
+      tags:
+        - Scheduled Transactions
+      summary: Updates an existing scheduled transaction
+      description: Updates a single scheduled transaction
+      operationId: updateScheduledTransaction
+      parameters:
+        - name: budget_id
+          in: path
+          description: >-
+            The id of the budget. "last-used" can be used to specify the last
+            used budget and "default" can be used if default budget selection is
+            enabled (see: https://api.ynab.com/#oauth-default-budget).
+          required: true
+          schema:
+            type: string
+        - name: scheduled_transaction_id
+          in: path
+          description: The id of the scheduled transaction
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The scheduled transaction to update
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/PutScheduledTransactionWrapper"
+        required: true
+      responses:
+        "200":
+          description: The scheduled transaction was successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledTransactionResponse"
+        "400":
+          description: >-
+            The request could not be understood due to malformed syntax or
+            validation error(s)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      tags:
+        - Scheduled Transactions
+      summary: Deletes an existing scheduled transaction
+      description: Deletes a scheduled transaction
+      operationId: deleteScheduledTransaction
+      parameters:
+        - name: budget_id
+          in: path
+          description: >-
+            The id of the budget. "last-used" can be used to specify the last
+            used budget and "default" can be used if default budget selection is
+            enabled (see: https://api.ynab.com/#oauth-default-budget).
+          required: true
+          schema:
+            type: string
+        - name: scheduled_transaction_id
+          in: path
+          description: The id of the scheduled transaction
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The scheduled transaction was successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledTransactionResponse"
+        "404":
+          description: The scheduled transaction was not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}:
     get:
       tags:
@@ -2515,7 +2594,7 @@ components:
             `transfer_payee_id` on the account resource.
           format: uuid
         payee_name:
-          maxLength: 50
+          maxLength: 200
           type: string
           nullable: true
           description: >-
@@ -2536,7 +2615,7 @@ components:
             be ignored if supplied.
           format: uuid
         memo:
-          maxLength: 200
+          maxLength: 500
           type: string
           nullable: true
         cleared:
@@ -2571,7 +2650,7 @@ components:
           description: The payee for the subtransaction.
           format: uuid
         payee_name:
-          maxLength: 50
+          maxLength: 200
           type: string
           nullable: true
           description: >-
@@ -2588,7 +2667,7 @@ components:
             are not permitted and will be ignored if supplied.
           format: uuid
         memo:
-          maxLength: 200
+          maxLength: 500
           type: string
           nullable: true
     SaveTransactionsResponse:
@@ -2836,6 +2915,11 @@ components:
         category_group_id:
           type: string
           format: uuid
+        goal_target:
+          type: integer
+          description: The goal target amount in milliunits format.  This amount can only be changed if the category already has a configured goal (goal_type != null).
+          format: int64
+          nullable: true
     PatchMonthCategoryWrapper:
       required:
         - category
@@ -2986,6 +3070,13 @@ components:
           properties:
             scheduled_transaction:
               $ref: "#/components/schemas/ScheduledTransactionDetail"
+    PutScheduledTransactionWrapper:
+      required:
+        - scheduled_transaction
+      type: object
+      properties:
+        scheduled_transaction:
+          $ref: "#/components/schemas/SaveScheduledTransaction"
     PostScheduledTransactionWrapper:
       required:
         - scheduled_transaction
@@ -3005,7 +3096,7 @@ components:
         date:
           type: string
           description: >-
-            The scheduled transaction date in ISO format (e.g. 2016-12-01).
+            The scheduled transaction date in ISO format (e.g. 2016-12-01).  This should be a future date no more than 5 years into the future.
           format: date
         amount:
           type: integer
@@ -3022,7 +3113,7 @@ components:
             `transfer_payee_id` on the account resource.
           format: uuid
         payee_name:
-          maxLength: 50
+          maxLength: 200
           type: string
           nullable: true
           description: >-
@@ -3037,7 +3128,7 @@ components:
             Creating a split scheduled transaction is not currently supported.
           format: uuid
         memo:
-          maxLength: 200
+          maxLength: 500
           type: string
           nullable: true
         flag_color:
@@ -3165,10 +3256,16 @@ components:
           type: string
           nullable: true
           format: uuid
+        payee_name:
+          type: string
+          nullable: true
         category_id:
           type: string
           nullable: true
           format: uuid
+        category_name:
+          type: string
+          nullable: true
         transfer_account_id:
           type: string
           nullable: true

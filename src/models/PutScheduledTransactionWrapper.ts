@@ -19,30 +19,30 @@ import {
 /**
  * 
  * @export
- * @interface PostScheduledTransactionWrapper
+ * @interface PutScheduledTransactionWrapper
  */
-export interface PostScheduledTransactionWrapper {
+export interface PutScheduledTransactionWrapper {
     /**
      * 
      * @type {SaveScheduledTransaction}
-     * @memberof PostScheduledTransactionWrapper
+     * @memberof PutScheduledTransactionWrapper
      */
     scheduled_transaction: SaveScheduledTransaction;
 }
 
 /**
- * Check if a given object implements the PostScheduledTransactionWrapper interface.
+ * Check if a given object implements the PutScheduledTransactionWrapper interface.
  */
-export function instanceOfPostScheduledTransactionWrapper(value: object): value is PostScheduledTransactionWrapper {
+export function instanceOfPutScheduledTransactionWrapper(value: object): value is PutScheduledTransactionWrapper {
     if (!('scheduled_transaction' in value) || value['scheduled_transaction'] === undefined) return false;
     return true;
 }
 
-export function PostScheduledTransactionWrapperFromJSON(json: any): PostScheduledTransactionWrapper {
-    return PostScheduledTransactionWrapperFromJSONTyped(json, false);
+export function PutScheduledTransactionWrapperFromJSON(json: any): PutScheduledTransactionWrapper {
+    return PutScheduledTransactionWrapperFromJSONTyped(json, false);
 }
 
-export function PostScheduledTransactionWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostScheduledTransactionWrapper {
+export function PutScheduledTransactionWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PutScheduledTransactionWrapper {
     if (json == null) {
         return json;
     }
@@ -52,11 +52,11 @@ export function PostScheduledTransactionWrapperFromJSONTyped(json: any, ignoreDi
     };
 }
 
-export function PostScheduledTransactionWrapperToJSON(json: any): PostScheduledTransactionWrapper {
-    return PostScheduledTransactionWrapperToJSONTyped(json, false);
+export function PutScheduledTransactionWrapperToJSON(json: any): PutScheduledTransactionWrapper {
+    return PutScheduledTransactionWrapperToJSONTyped(json, false);
 }
 
-export function PostScheduledTransactionWrapperToJSONTyped(value?: PostScheduledTransactionWrapper | null, ignoreDiscriminator: boolean = false): any {
+export function PutScheduledTransactionWrapperToJSONTyped(value?: PutScheduledTransactionWrapper | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

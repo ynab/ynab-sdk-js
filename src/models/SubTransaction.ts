@@ -117,10 +117,15 @@ export function SubTransactionFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function SubTransactionToJSON(value?: SubTransaction | null): any {
+export function SubTransactionToJSON(json: any): SubTransaction {
+    return SubTransactionToJSONTyped(json, false);
+}
+
+export function SubTransactionToJSONTyped(value?: SubTransaction | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

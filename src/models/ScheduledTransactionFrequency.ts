@@ -33,7 +33,7 @@ export type ScheduledTransactionFrequency = typeof ScheduledTransactionFrequency
 export function instanceOfScheduledTransactionFrequency(value: any): boolean {
     for (const key in ScheduledTransactionFrequency) {
         if (Object.prototype.hasOwnProperty.call(ScheduledTransactionFrequency, key)) {
-            if ((ScheduledTransactionFrequency as Record<string, ScheduledTransactionFrequency>)[key] === value) {
+            if (ScheduledTransactionFrequency[key as keyof typeof ScheduledTransactionFrequency] === value) {
                 return true;
             }
         }
@@ -51,5 +51,9 @@ export function ScheduledTransactionFrequencyFromJSONTyped(json: any, ignoreDisc
 
 export function ScheduledTransactionFrequencyToJSON(value?: ScheduledTransactionFrequency | null): any {
     return value as any;
+}
+
+export function ScheduledTransactionFrequencyToJSONTyped(value: any, ignoreDiscriminator: boolean): ScheduledTransactionFrequency {
+    return value as ScheduledTransactionFrequency;
 }
 

@@ -13,6 +13,7 @@ import {
     UserResponseDataFromJSON,
     UserResponseDataFromJSONTyped,
     UserResponseDataToJSON,
+    UserResponseDataToJSONTyped,
 } from './UserResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function UserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function UserResponseToJSON(value?: UserResponse | null): any {
+export function UserResponseToJSON(json: any): UserResponse {
+    return UserResponseToJSONTyped(json, false);
+}
+
+export function UserResponseToJSONTyped(value?: UserResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': UserResponseDataToJSON(value['data']),

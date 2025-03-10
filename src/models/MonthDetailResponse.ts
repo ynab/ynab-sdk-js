@@ -13,6 +13,7 @@ import {
     MonthDetailResponseDataFromJSON,
     MonthDetailResponseDataFromJSONTyped,
     MonthDetailResponseDataToJSON,
+    MonthDetailResponseDataToJSONTyped,
 } from './MonthDetailResponseData';
 
 /**
@@ -51,10 +52,15 @@ export function MonthDetailResponseFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function MonthDetailResponseToJSON(value?: MonthDetailResponse | null): any {
+export function MonthDetailResponseToJSON(json: any): MonthDetailResponse {
+    return MonthDetailResponseToJSONTyped(json, false);
+}
+
+export function MonthDetailResponseToJSONTyped(value?: MonthDetailResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'data': MonthDetailResponseDataToJSON(value['data']),

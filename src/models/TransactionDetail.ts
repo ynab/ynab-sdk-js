@@ -13,18 +13,21 @@ import {
     TransactionFlagColorFromJSON,
     TransactionFlagColorFromJSONTyped,
     TransactionFlagColorToJSON,
+    TransactionFlagColorToJSONTyped,
 } from './TransactionFlagColor';
 import type { TransactionClearedStatus } from './TransactionClearedStatus';
 import {
     TransactionClearedStatusFromJSON,
     TransactionClearedStatusFromJSONTyped,
     TransactionClearedStatusToJSON,
+    TransactionClearedStatusToJSONTyped,
 } from './TransactionClearedStatus';
 import type { SubTransaction } from './SubTransaction';
 import {
     SubTransactionFromJSON,
     SubTransactionFromJSONTyped,
     SubTransactionToJSON,
+    SubTransactionToJSONTyped,
 } from './SubTransaction';
 
 /**
@@ -185,8 +188,7 @@ export const TransactionDetailDebtTransactionTypeEnum = {
     Escrow: 'escrow',
     BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
-    Charge: 'charge',
-    
+    Charge: 'charge'
 } as const;
 export type TransactionDetailDebtTransactionTypeEnum = typeof TransactionDetailDebtTransactionTypeEnum[keyof typeof TransactionDetailDebtTransactionTypeEnum];
 
@@ -243,10 +245,15 @@ export function TransactionDetailFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function TransactionDetailToJSON(value?: TransactionDetail | null): any {
+export function TransactionDetailToJSON(json: any): TransactionDetail {
+    return TransactionDetailToJSONTyped(json, false);
+}
+
+export function TransactionDetailToJSONTyped(value?: TransactionDetail | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

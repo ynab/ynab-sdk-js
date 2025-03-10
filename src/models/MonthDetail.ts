@@ -13,6 +13,7 @@ import {
     CategoryFromJSON,
     CategoryFromJSONTyped,
     CategoryToJSON,
+    CategoryToJSONTyped,
 } from './Category';
 
 /**
@@ -113,10 +114,15 @@ export function MonthDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function MonthDetailToJSON(value?: MonthDetail | null): any {
+export function MonthDetailToJSON(json: any): MonthDetail {
+    return MonthDetailToJSONTyped(json, false);
+}
+
+export function MonthDetailToJSONTyped(value?: MonthDetail | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'month': value['month'],
