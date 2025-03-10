@@ -30,4 +30,5 @@ export interface PayeesResponseData {
 export declare function instanceOfPayeesResponseData(value: object): value is PayeesResponseData;
 export declare function PayeesResponseDataFromJSON(json: any): PayeesResponseData;
 export declare function PayeesResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): PayeesResponseData;
-export declare function PayeesResponseDataToJSON(value?: PayeesResponseData | null): any;
+export declare function PayeesResponseDataToJSON(json: any): PayeesResponseData;
+export declare function PayeesResponseDataToJSONTyped(value?: PayeesResponseData | null, ignoreDiscriminator?: boolean): any;

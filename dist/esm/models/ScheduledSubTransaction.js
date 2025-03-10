@@ -33,12 +33,18 @@ export function ScheduledSubTransactionFromJSONTyped(json, ignoreDiscriminator) 
         'amount': json['amount'],
         'memo': json['memo'] == null ? undefined : json['memo'],
         'payee_id': json['payee_id'] == null ? undefined : json['payee_id'],
+        'payee_name': json['payee_name'] == null ? undefined : json['payee_name'],
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
+        'category_name': json['category_name'] == null ? undefined : json['category_name'],
         'transfer_account_id': json['transfer_account_id'] == null ? undefined : json['transfer_account_id'],
         'deleted': json['deleted'],
     };
 }
-export function ScheduledSubTransactionToJSON(value) {
+export function ScheduledSubTransactionToJSON(json) {
+    return ScheduledSubTransactionToJSONTyped(json, false);
+}
+export function ScheduledSubTransactionToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }
@@ -48,7 +54,9 @@ export function ScheduledSubTransactionToJSON(value) {
         'amount': value['amount'],
         'memo': value['memo'],
         'payee_id': value['payee_id'],
+        'payee_name': value['payee_name'],
         'category_id': value['category_id'],
+        'category_name': value['category_name'],
         'transfer_account_id': value['transfer_account_id'],
         'deleted': value['deleted'],
     };

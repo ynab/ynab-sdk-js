@@ -29,7 +29,11 @@ export function CategoriesResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         'server_knowledge': json['server_knowledge'],
     };
 }
-export function CategoriesResponseDataToJSON(value) {
+export function CategoriesResponseDataToJSON(json) {
+    return CategoriesResponseDataToJSONTyped(json, false);
+}
+export function CategoriesResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

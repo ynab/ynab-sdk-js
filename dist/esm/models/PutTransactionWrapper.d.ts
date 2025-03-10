@@ -24,4 +24,5 @@ export interface PutTransactionWrapper {
 export declare function instanceOfPutTransactionWrapper(value: object): value is PutTransactionWrapper;
 export declare function PutTransactionWrapperFromJSON(json: any): PutTransactionWrapper;
 export declare function PutTransactionWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PutTransactionWrapper;
-export declare function PutTransactionWrapperToJSON(value?: PutTransactionWrapper | null): any;
+export declare function PutTransactionWrapperToJSON(json: any): PutTransactionWrapper;
+export declare function PutTransactionWrapperToJSONTyped(value?: PutTransactionWrapper | null, ignoreDiscriminator?: boolean): any;

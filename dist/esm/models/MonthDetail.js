@@ -46,7 +46,11 @@ export function MonthDetailFromJSONTyped(json, ignoreDiscriminator) {
         'categories': (json['categories'].map(CategoryFromJSON)),
     };
 }
-export function MonthDetailToJSON(value) {
+export function MonthDetailToJSON(json) {
+    return MonthDetailToJSONTyped(json, false);
+}
+export function MonthDetailToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

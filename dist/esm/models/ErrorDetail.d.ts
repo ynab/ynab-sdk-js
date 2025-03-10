@@ -35,4 +35,5 @@ export interface ErrorDetail {
 export declare function instanceOfErrorDetail(value: object): value is ErrorDetail;
 export declare function ErrorDetailFromJSON(json: any): ErrorDetail;
 export declare function ErrorDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean): ErrorDetail;
-export declare function ErrorDetailToJSON(value?: ErrorDetail | null): any;
+export declare function ErrorDetailToJSON(json: any): ErrorDetail;
+export declare function ErrorDetailToJSONTyped(value?: ErrorDetail | null, ignoreDiscriminator?: boolean): any;

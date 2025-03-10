@@ -24,4 +24,5 @@ export interface BudgetSettingsResponse {
 export declare function instanceOfBudgetSettingsResponse(value: object): value is BudgetSettingsResponse;
 export declare function BudgetSettingsResponseFromJSON(json: any): BudgetSettingsResponse;
 export declare function BudgetSettingsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BudgetSettingsResponse;
-export declare function BudgetSettingsResponseToJSON(value?: BudgetSettingsResponse | null): any;
+export declare function BudgetSettingsResponseToJSON(json: any): BudgetSettingsResponse;
+export declare function BudgetSettingsResponseToJSONTyped(value?: BudgetSettingsResponse | null, ignoreDiscriminator?: boolean): any;

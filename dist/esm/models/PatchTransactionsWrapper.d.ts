@@ -24,4 +24,5 @@ export interface PatchTransactionsWrapper {
 export declare function instanceOfPatchTransactionsWrapper(value: object): value is PatchTransactionsWrapper;
 export declare function PatchTransactionsWrapperFromJSON(json: any): PatchTransactionsWrapper;
 export declare function PatchTransactionsWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PatchTransactionsWrapper;
-export declare function PatchTransactionsWrapperToJSON(value?: PatchTransactionsWrapper | null): any;
+export declare function PatchTransactionsWrapperToJSON(json: any): PatchTransactionsWrapper;
+export declare function PatchTransactionsWrapperToJSONTyped(value?: PatchTransactionsWrapper | null, ignoreDiscriminator?: boolean): any;

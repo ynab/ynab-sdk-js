@@ -26,7 +26,11 @@ export function ScheduledTransactionResponseDataFromJSONTyped(json, ignoreDiscri
         'scheduled_transaction': ScheduledTransactionDetailFromJSON(json['scheduled_transaction']),
     };
 }
-export function ScheduledTransactionResponseDataToJSON(value) {
+export function ScheduledTransactionResponseDataToJSON(json) {
+    return ScheduledTransactionResponseDataToJSONTyped(json, false);
+}
+export function ScheduledTransactionResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

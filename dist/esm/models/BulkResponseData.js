@@ -26,7 +26,11 @@ export function BulkResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         'bulk': BulkResponseDataBulkFromJSON(json['bulk']),
     };
 }
-export function BulkResponseDataToJSON(value) {
+export function BulkResponseDataToJSON(json) {
+    return BulkResponseDataToJSONTyped(json, false);
+}
+export function BulkResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

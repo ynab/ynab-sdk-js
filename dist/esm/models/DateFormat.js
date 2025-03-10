@@ -25,7 +25,11 @@ export function DateFormatFromJSONTyped(json, ignoreDiscriminator) {
         'format': json['format'],
     };
 }
-export function DateFormatToJSON(value) {
+export function DateFormatToJSON(json) {
+    return DateFormatToJSONTyped(json, false);
+}
+export function DateFormatToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

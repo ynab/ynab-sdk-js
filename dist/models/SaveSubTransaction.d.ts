@@ -47,4 +47,5 @@ export interface SaveSubTransaction {
 export declare function instanceOfSaveSubTransaction(value: object): value is SaveSubTransaction;
 export declare function SaveSubTransactionFromJSON(json: any): SaveSubTransaction;
 export declare function SaveSubTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveSubTransaction;
-export declare function SaveSubTransactionToJSON(value?: SaveSubTransaction | null): any;
+export declare function SaveSubTransactionToJSON(json: any): SaveSubTransaction;
+export declare function SaveSubTransactionToJSONTyped(value?: SaveSubTransaction | null, ignoreDiscriminator?: boolean): any;

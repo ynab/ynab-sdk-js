@@ -24,4 +24,5 @@ export interface AccountsResponse {
 export declare function instanceOfAccountsResponse(value: object): value is AccountsResponse;
 export declare function AccountsResponseFromJSON(json: any): AccountsResponse;
 export declare function AccountsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountsResponse;
-export declare function AccountsResponseToJSON(value?: AccountsResponse | null): any;
+export declare function AccountsResponseToJSON(json: any): AccountsResponse;
+export declare function AccountsResponseToJSONTyped(value?: AccountsResponse | null, ignoreDiscriminator?: boolean): any;

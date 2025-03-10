@@ -58,7 +58,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import * as runtime from '../runtime';
-import { PostScheduledTransactionWrapperToJSON, ScheduledTransactionResponseFromJSON, ScheduledTransactionsResponseFromJSON, } from '../models/index';
+import { PostScheduledTransactionWrapperToJSON, PutScheduledTransactionWrapperToJSON, ScheduledTransactionResponseFromJSON, ScheduledTransactionsResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -68,7 +68,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Creates a single scheduled transaction.
+     * Creates a single scheduled transaction (a transaction with a future date).
      * Create a single scheduled transaction
      */
     ScheduledTransactionsApi.prototype.createScheduledTransactionRaw = function (requestParameters, initOverrides) {
@@ -111,7 +111,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Creates a single scheduled transaction.
+     * Creates a single scheduled transaction (a transaction with a future date).
      * Create a single scheduled transaction
      */
     ScheduledTransactionsApi.prototype.createScheduledTransaction = function (budgetId, data, initOverrides) {
@@ -120,6 +120,65 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.createScheduledTransactionRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Deletes a scheduled transaction
+     * Deletes an existing scheduled transaction
+     */
+    ScheduledTransactionsApi.prototype.deleteScheduledTransactionRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, token, tokenString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling deleteScheduledTransaction.');
+                        }
+                        if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
+                            throw new runtime.RequiredError('scheduledTransactionId', 'Required parameter requestParameters.scheduledTransactionId was null or undefined when calling deleteScheduledTransaction.');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Accept'] = 'application/json';
+                        if (!(this.configuration && this.configuration.accessToken)) return [3 /*break*/, 2];
+                        token = this.configuration.accessToken;
+                        return [4 /*yield*/, token("bearer", [])];
+                    case 1:
+                        tokenString = _a.sent();
+                        if (tokenString) {
+                            headerParameters["Authorization"] = "Bearer ".concat(tokenString);
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/budgets/{budget_id}/scheduled_transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            method: 'DELETE',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return ScheduledTransactionResponseFromJSON(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Deletes a scheduled transaction
+     * Deletes an existing scheduled transaction
+     */
+    ScheduledTransactionsApi.prototype.deleteScheduledTransaction = function (budgetId, scheduledTransactionId, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.deleteScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -238,6 +297,70 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Updates a single scheduled transaction
+     * Updates an existing scheduled transaction
+     */
+    ScheduledTransactionsApi.prototype.updateScheduledTransactionRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, token, tokenString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateScheduledTransaction.');
+                        }
+                        if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
+                            throw new runtime.RequiredError('scheduledTransactionId', 'Required parameter requestParameters.scheduledTransactionId was null or undefined when calling updateScheduledTransaction.');
+                        }
+                        if (requestParameters.putScheduledTransactionWrapper === null || requestParameters.putScheduledTransactionWrapper === undefined) {
+                            throw new runtime.RequiredError('putScheduledTransactionWrapper', 'Required parameter requestParameters.putScheduledTransactionWrapper was null or undefined when calling updateScheduledTransaction.');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Accept'] = 'application/json';
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.accessToken)) return [3 /*break*/, 2];
+                        token = this.configuration.accessToken;
+                        return [4 /*yield*/, token("bearer", [])];
+                    case 1:
+                        tokenString = _a.sent();
+                        if (tokenString) {
+                            headerParameters["Authorization"] = "Bearer ".concat(tokenString);
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/budgets/{budget_id}/scheduled_transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            method: 'PUT',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: PutScheduledTransactionWrapperToJSON(requestParameters.putScheduledTransactionWrapper),
+                        }, initOverrides)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return ScheduledTransactionResponseFromJSON(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Updates a single scheduled transaction
+     * Updates an existing scheduled transaction
+     */
+    ScheduledTransactionsApi.prototype.updateScheduledTransaction = function (budgetId, scheduledTransactionId, putScheduledTransactionWrapper, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.updateScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId, putScheduledTransactionWrapper: putScheduledTransactionWrapper }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

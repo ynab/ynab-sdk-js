@@ -29,7 +29,11 @@ export function BudgetDetailResponseDataFromJSONTyped(json, ignoreDiscriminator)
         'server_knowledge': json['server_knowledge'],
     };
 }
-export function BudgetDetailResponseDataToJSON(value) {
+export function BudgetDetailResponseDataToJSON(json) {
+    return BudgetDetailResponseDataToJSONTyped(json, false);
+}
+export function BudgetDetailResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

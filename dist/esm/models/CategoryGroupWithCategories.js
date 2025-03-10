@@ -38,7 +38,11 @@ export function CategoryGroupWithCategoriesFromJSONTyped(json, ignoreDiscriminat
         'categories': (json['categories'].map(CategoryFromJSON)),
     };
 }
-export function CategoryGroupWithCategoriesToJSON(value) {
+export function CategoryGroupWithCategoriesToJSON(json) {
+    return CategoryGroupWithCategoriesToJSONTyped(json, false);
+}
+export function CategoryGroupWithCategoriesToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

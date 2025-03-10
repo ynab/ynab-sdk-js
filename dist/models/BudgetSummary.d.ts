@@ -68,4 +68,5 @@ export interface BudgetSummary {
 export declare function instanceOfBudgetSummary(value: object): value is BudgetSummary;
 export declare function BudgetSummaryFromJSON(json: any): BudgetSummary;
 export declare function BudgetSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): BudgetSummary;
-export declare function BudgetSummaryToJSON(value?: BudgetSummary | null): any;
+export declare function BudgetSummaryToJSON(json: any): BudgetSummary;
+export declare function BudgetSummaryToJSONTyped(value?: BudgetSummary | null, ignoreDiscriminator?: boolean): any;

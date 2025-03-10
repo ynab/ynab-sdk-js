@@ -24,4 +24,5 @@ export interface PostScheduledTransactionWrapper {
 export declare function instanceOfPostScheduledTransactionWrapper(value: object): value is PostScheduledTransactionWrapper;
 export declare function PostScheduledTransactionWrapperFromJSON(json: any): PostScheduledTransactionWrapper;
 export declare function PostScheduledTransactionWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostScheduledTransactionWrapper;
-export declare function PostScheduledTransactionWrapperToJSON(value?: PostScheduledTransactionWrapper | null): any;
+export declare function PostScheduledTransactionWrapperToJSON(json: any): PostScheduledTransactionWrapper;
+export declare function PostScheduledTransactionWrapperToJSONTyped(value?: PostScheduledTransactionWrapper | null, ignoreDiscriminator?: boolean): any;

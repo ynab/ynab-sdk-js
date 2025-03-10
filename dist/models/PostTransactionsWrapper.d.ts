@@ -30,4 +30,5 @@ export interface PostTransactionsWrapper {
 export declare function instanceOfPostTransactionsWrapper(value: object): value is PostTransactionsWrapper;
 export declare function PostTransactionsWrapperFromJSON(json: any): PostTransactionsWrapper;
 export declare function PostTransactionsWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostTransactionsWrapper;
-export declare function PostTransactionsWrapperToJSON(value?: PostTransactionsWrapper | null): any;
+export declare function PostTransactionsWrapperToJSON(json: any): PostTransactionsWrapper;
+export declare function PostTransactionsWrapperToJSONTyped(value?: PostTransactionsWrapper | null, ignoreDiscriminator?: boolean): any;

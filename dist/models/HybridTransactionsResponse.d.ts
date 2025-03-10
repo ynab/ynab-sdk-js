@@ -24,4 +24,5 @@ export interface HybridTransactionsResponse {
 export declare function instanceOfHybridTransactionsResponse(value: object): value is HybridTransactionsResponse;
 export declare function HybridTransactionsResponseFromJSON(json: any): HybridTransactionsResponse;
 export declare function HybridTransactionsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): HybridTransactionsResponse;
-export declare function HybridTransactionsResponseToJSON(value?: HybridTransactionsResponse | null): any;
+export declare function HybridTransactionsResponseToJSON(json: any): HybridTransactionsResponse;
+export declare function HybridTransactionsResponseToJSONTyped(value?: HybridTransactionsResponse | null, ignoreDiscriminator?: boolean): any;

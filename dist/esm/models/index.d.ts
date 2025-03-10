@@ -56,6 +56,7 @@ export * from './PayeesResponseData';
 export * from './PostAccountWrapper';
 export * from './PostScheduledTransactionWrapper';
 export * from './PostTransactionsWrapper';
+export * from './PutScheduledTransactionWrapper';
 export * from './PutTransactionWrapper';
 export * from './SaveAccount';
 export * from './SaveCategory';

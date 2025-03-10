@@ -29,7 +29,11 @@ export function SaveSubTransactionFromJSONTyped(json, ignoreDiscriminator) {
         'memo': json['memo'] == null ? undefined : json['memo'],
     };
 }
-export function SaveSubTransactionToJSON(value) {
+export function SaveSubTransactionToJSON(json) {
+    return SaveSubTransactionToJSONTyped(json, false);
+}
+export function SaveSubTransactionToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

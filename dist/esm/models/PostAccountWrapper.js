@@ -26,7 +26,11 @@ export function PostAccountWrapperFromJSONTyped(json, ignoreDiscriminator) {
         'account': SaveAccountFromJSON(json['account']),
     };
 }
-export function PostAccountWrapperToJSON(value) {
+export function PostAccountWrapperToJSON(json) {
+    return PostAccountWrapperToJSONTyped(json, false);
+}
+export function PostAccountWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

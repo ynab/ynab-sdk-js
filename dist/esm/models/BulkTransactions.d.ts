@@ -24,4 +24,5 @@ export interface BulkTransactions {
 export declare function instanceOfBulkTransactions(value: object): value is BulkTransactions;
 export declare function BulkTransactionsFromJSON(json: any): BulkTransactions;
 export declare function BulkTransactionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): BulkTransactions;
-export declare function BulkTransactionsToJSON(value?: BulkTransactions | null): any;
+export declare function BulkTransactionsToJSON(json: any): BulkTransactions;
+export declare function BulkTransactionsToJSONTyped(value?: BulkTransactions | null, ignoreDiscriminator?: boolean): any;

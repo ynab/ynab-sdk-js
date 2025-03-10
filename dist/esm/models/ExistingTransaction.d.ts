@@ -86,4 +86,5 @@ export interface ExistingTransaction {
 export declare function instanceOfExistingTransaction(value: object): value is ExistingTransaction;
 export declare function ExistingTransactionFromJSON(json: any): ExistingTransaction;
 export declare function ExistingTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExistingTransaction;
-export declare function ExistingTransactionToJSON(value?: ExistingTransaction | null): any;
+export declare function ExistingTransactionToJSON(json: any): ExistingTransaction;
+export declare function ExistingTransactionToJSONTyped(value?: ExistingTransaction | null, ignoreDiscriminator?: boolean): any;

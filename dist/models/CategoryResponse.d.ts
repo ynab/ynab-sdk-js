@@ -24,4 +24,5 @@ export interface CategoryResponse {
 export declare function instanceOfCategoryResponse(value: object): value is CategoryResponse;
 export declare function CategoryResponseFromJSON(json: any): CategoryResponse;
 export declare function CategoryResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CategoryResponse;
-export declare function CategoryResponseToJSON(value?: CategoryResponse | null): any;
+export declare function CategoryResponseToJSON(json: any): CategoryResponse;
+export declare function CategoryResponseToJSONTyped(value?: CategoryResponse | null, ignoreDiscriminator?: boolean): any;

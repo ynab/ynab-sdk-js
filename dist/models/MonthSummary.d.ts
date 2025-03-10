@@ -65,4 +65,5 @@ export interface MonthSummary {
 export declare function instanceOfMonthSummary(value: object): value is MonthSummary;
 export declare function MonthSummaryFromJSON(json: any): MonthSummary;
 export declare function MonthSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): MonthSummary;
-export declare function MonthSummaryToJSON(value?: MonthSummary | null): any;
+export declare function MonthSummaryToJSON(json: any): MonthSummary;
+export declare function MonthSummaryToJSONTyped(value?: MonthSummary | null, ignoreDiscriminator?: boolean): any;

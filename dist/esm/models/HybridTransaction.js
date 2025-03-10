@@ -19,7 +19,7 @@ export var HybridTransactionDebtTransactionTypeEnum = {
     Escrow: 'escrow',
     BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
-    Charge: 'charge',
+    Charge: 'charge'
 };
 /**
  * @export
@@ -86,7 +86,11 @@ export function HybridTransactionFromJSONTyped(json, ignoreDiscriminator) {
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
     };
 }
-export function HybridTransactionToJSON(value) {
+export function HybridTransactionToJSON(json) {
+    return HybridTransactionToJSONTyped(json, false);
+}
+export function HybridTransactionToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

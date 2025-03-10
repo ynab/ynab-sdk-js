@@ -28,3 +28,4 @@ export declare function instanceOfScheduledTransactionFrequency(value: any): boo
 export declare function ScheduledTransactionFrequencyFromJSON(json: any): ScheduledTransactionFrequency;
 export declare function ScheduledTransactionFrequencyFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScheduledTransactionFrequency;
 export declare function ScheduledTransactionFrequencyToJSON(value?: ScheduledTransactionFrequency | null): any;
+export declare function ScheduledTransactionFrequencyToJSONTyped(value: any, ignoreDiscriminator: boolean): ScheduledTransactionFrequency;

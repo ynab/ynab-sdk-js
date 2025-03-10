@@ -28,3 +28,4 @@ export declare function instanceOfAccountType(value: any): boolean;
 export declare function AccountTypeFromJSON(json: any): AccountType;
 export declare function AccountTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountType;
 export declare function AccountTypeToJSON(value?: AccountType | null): any;
+export declare function AccountTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): AccountType;

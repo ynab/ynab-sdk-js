@@ -25,7 +25,11 @@ export function TransactionsImportResponseDataFromJSONTyped(json, ignoreDiscrimi
         'transaction_ids': json['transaction_ids'],
     };
 }
-export function TransactionsImportResponseDataToJSON(value) {
+export function TransactionsImportResponseDataToJSON(json) {
+    return TransactionsImportResponseDataToJSONTyped(json, false);
+}
+export function TransactionsImportResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

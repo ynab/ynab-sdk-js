@@ -131,4 +131,5 @@ export interface BudgetDetail {
 export declare function instanceOfBudgetDetail(value: object): value is BudgetDetail;
 export declare function BudgetDetailFromJSON(json: any): BudgetDetail;
 export declare function BudgetDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean): BudgetDetail;
-export declare function BudgetDetailToJSON(value?: BudgetDetail | null): any;
+export declare function BudgetDetailToJSON(json: any): BudgetDetail;
+export declare function BudgetDetailToJSONTyped(value?: BudgetDetail | null, ignoreDiscriminator?: boolean): any;

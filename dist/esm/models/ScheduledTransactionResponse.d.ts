@@ -24,4 +24,5 @@ export interface ScheduledTransactionResponse {
 export declare function instanceOfScheduledTransactionResponse(value: object): value is ScheduledTransactionResponse;
 export declare function ScheduledTransactionResponseFromJSON(json: any): ScheduledTransactionResponse;
 export declare function ScheduledTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScheduledTransactionResponse;
-export declare function ScheduledTransactionResponseToJSON(value?: ScheduledTransactionResponse | null): any;
+export declare function ScheduledTransactionResponseToJSON(json: any): ScheduledTransactionResponse;
+export declare function ScheduledTransactionResponseToJSONTyped(value?: ScheduledTransactionResponse | null, ignoreDiscriminator?: boolean): any;

@@ -26,7 +26,11 @@ export function ErrorResponseFromJSONTyped(json, ignoreDiscriminator) {
         'error': ErrorDetailFromJSON(json['error']),
     };
 }
-export function ErrorResponseToJSON(value) {
+export function ErrorResponseToJSON(json) {
+    return ErrorResponseToJSONTyped(json, false);
+}
+export function ErrorResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

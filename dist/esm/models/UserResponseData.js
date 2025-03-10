@@ -26,7 +26,11 @@ export function UserResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         'user': UserFromJSON(json['user']),
     };
 }
-export function UserResponseDataToJSON(value) {
+export function UserResponseDataToJSON(json) {
+    return UserResponseDataToJSONTyped(json, false);
+}
+export function UserResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

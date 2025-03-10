@@ -36,4 +36,5 @@ export interface SaveAccount {
 export declare function instanceOfSaveAccount(value: object): value is SaveAccount;
 export declare function SaveAccountFromJSON(json: any): SaveAccount;
 export declare function SaveAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveAccount;
-export declare function SaveAccountToJSON(value?: SaveAccount | null): any;
+export declare function SaveAccountToJSON(json: any): SaveAccount;
+export declare function SaveAccountToJSONTyped(value?: SaveAccount | null, ignoreDiscriminator?: boolean): any;

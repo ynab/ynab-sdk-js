@@ -18,3 +18,4 @@ export declare function instanceOfTransactionClearedStatus(value: any): boolean;
 export declare function TransactionClearedStatusFromJSON(json: any): TransactionClearedStatus;
 export declare function TransactionClearedStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionClearedStatus;
 export declare function TransactionClearedStatusToJSON(value?: TransactionClearedStatus | null): any;
+export declare function TransactionClearedStatusToJSONTyped(value: any, ignoreDiscriminator: boolean): TransactionClearedStatus;

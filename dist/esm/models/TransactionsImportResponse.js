@@ -26,7 +26,11 @@ export function TransactionsImportResponseFromJSONTyped(json, ignoreDiscriminato
         'data': TransactionsImportResponseDataFromJSON(json['data']),
     };
 }
-export function TransactionsImportResponseToJSON(value) {
+export function TransactionsImportResponseToJSON(json) {
+    return TransactionsImportResponseToJSONTyped(json, false);
+}
+export function TransactionsImportResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

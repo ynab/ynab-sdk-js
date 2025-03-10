@@ -44,3 +44,6 @@ export function ScheduledTransactionFrequencyFromJSONTyped(json, ignoreDiscrimin
 export function ScheduledTransactionFrequencyToJSON(value) {
     return value;
 }
+export function ScheduledTransactionFrequencyToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

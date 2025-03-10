@@ -32,7 +32,11 @@ export function SaveAccountFromJSONTyped(json, ignoreDiscriminator) {
         'balance': json['balance'],
     };
 }
-export function SaveAccountToJSON(value) {
+export function SaveAccountToJSON(json) {
+    return SaveAccountToJSONTyped(json, false);
+}
+export function SaveAccountToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

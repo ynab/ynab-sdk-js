@@ -24,4 +24,5 @@ export interface UserResponseData {
 export declare function instanceOfUserResponseData(value: object): value is UserResponseData;
 export declare function UserResponseDataFromJSON(json: any): UserResponseData;
 export declare function UserResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserResponseData;
-export declare function UserResponseDataToJSON(value?: UserResponseData | null): any;
+export declare function UserResponseDataToJSON(json: any): UserResponseData;
+export declare function UserResponseDataToJSONTyped(value?: UserResponseData | null, ignoreDiscriminator?: boolean): any;

@@ -29,7 +29,11 @@ export function ScheduledTransactionsResponseDataFromJSONTyped(json, ignoreDiscr
         'server_knowledge': json['server_knowledge'],
     };
 }
-export function ScheduledTransactionsResponseDataToJSON(value) {
+export function ScheduledTransactionsResponseDataToJSON(json) {
+    return ScheduledTransactionsResponseDataToJSONTyped(json, false);
+}
+export function ScheduledTransactionsResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

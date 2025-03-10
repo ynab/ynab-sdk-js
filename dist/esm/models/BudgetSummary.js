@@ -37,7 +37,11 @@ export function BudgetSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'accounts': json['accounts'] == null ? undefined : (json['accounts'].map(AccountFromJSON)),
     };
 }
-export function BudgetSummaryToJSON(value) {
+export function BudgetSummaryToJSON(json) {
+    return BudgetSummaryToJSONTyped(json, false);
+}
+export function BudgetSummaryToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

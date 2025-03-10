@@ -28,6 +28,12 @@ export interface SaveCategory {
      * @memberof SaveCategory
      */
     category_group_id?: string;
+    /**
+     * The goal target amount in milliunits format.  This amount can only be changed if the category already has a configured goal (goal_type != null).
+     * @type {number}
+     * @memberof SaveCategory
+     */
+    goal_target?: number | null;
 }
 /**
  * Check if a given object implements the SaveCategory interface.
@@ -35,4 +41,5 @@ export interface SaveCategory {
 export declare function instanceOfSaveCategory(value: object): value is SaveCategory;
 export declare function SaveCategoryFromJSON(json: any): SaveCategory;
 export declare function SaveCategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveCategory;
-export declare function SaveCategoryToJSON(value?: SaveCategory | null): any;
+export declare function SaveCategoryToJSON(json: any): SaveCategory;
+export declare function SaveCategoryToJSONTyped(value?: SaveCategory | null, ignoreDiscriminator?: boolean): any;

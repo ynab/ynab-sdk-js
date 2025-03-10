@@ -92,4 +92,5 @@ export interface NewTransaction {
 export declare function instanceOfNewTransaction(value: object): value is NewTransaction;
 export declare function NewTransactionFromJSON(json: any): NewTransaction;
 export declare function NewTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): NewTransaction;
-export declare function NewTransactionToJSON(value?: NewTransaction | null): any;
+export declare function NewTransactionToJSON(json: any): NewTransaction;
+export declare function NewTransactionToJSONTyped(value?: NewTransaction | null, ignoreDiscriminator?: boolean): any;

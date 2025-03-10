@@ -98,4 +98,5 @@ export interface SaveTransactionWithIdOrImportId {
 export declare function instanceOfSaveTransactionWithIdOrImportId(value: object): value is SaveTransactionWithIdOrImportId;
 export declare function SaveTransactionWithIdOrImportIdFromJSON(json: any): SaveTransactionWithIdOrImportId;
 export declare function SaveTransactionWithIdOrImportIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveTransactionWithIdOrImportId;
-export declare function SaveTransactionWithIdOrImportIdToJSON(value?: SaveTransactionWithIdOrImportId | null): any;
+export declare function SaveTransactionWithIdOrImportIdToJSON(json: any): SaveTransactionWithIdOrImportId;
+export declare function SaveTransactionWithIdOrImportIdToJSONTyped(value?: SaveTransactionWithIdOrImportId | null, ignoreDiscriminator?: boolean): any;

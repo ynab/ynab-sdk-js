@@ -26,7 +26,11 @@ export function SaveCategoryResponseFromJSONTyped(json, ignoreDiscriminator) {
         'data': SaveCategoryResponseDataFromJSON(json['data']),
     };
 }
-export function SaveCategoryResponseToJSON(value) {
+export function SaveCategoryResponseToJSON(json) {
+    return SaveCategoryResponseToJSONTyped(json, false);
+}
+export function SaveCategoryResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

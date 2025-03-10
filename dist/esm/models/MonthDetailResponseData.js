@@ -26,7 +26,11 @@ export function MonthDetailResponseDataFromJSONTyped(json, ignoreDiscriminator) 
         'month': MonthDetailFromJSON(json['month']),
     };
 }
-export function MonthDetailResponseDataToJSON(value) {
+export function MonthDetailResponseDataToJSON(json) {
+    return MonthDetailResponseDataToJSONTyped(json, false);
+}
+export function MonthDetailResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

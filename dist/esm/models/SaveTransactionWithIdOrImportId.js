@@ -38,7 +38,11 @@ export function SaveTransactionWithIdOrImportIdFromJSONTyped(json, ignoreDiscrim
         'import_id': json['import_id'] == null ? undefined : json['import_id'],
     };
 }
-export function SaveTransactionWithIdOrImportIdToJSON(value) {
+export function SaveTransactionWithIdOrImportIdToJSON(json) {
+    return SaveTransactionWithIdOrImportIdToJSONTyped(json, false);
+}
+export function SaveTransactionWithIdOrImportIdToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

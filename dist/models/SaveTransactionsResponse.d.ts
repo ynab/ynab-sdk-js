@@ -24,4 +24,5 @@ export interface SaveTransactionsResponse {
 export declare function instanceOfSaveTransactionsResponse(value: object): value is SaveTransactionsResponse;
 export declare function SaveTransactionsResponseFromJSON(json: any): SaveTransactionsResponse;
 export declare function SaveTransactionsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveTransactionsResponse;
-export declare function SaveTransactionsResponseToJSON(value?: SaveTransactionsResponse | null): any;
+export declare function SaveTransactionsResponseToJSON(json: any): SaveTransactionsResponse;
+export declare function SaveTransactionsResponseToJSONTyped(value?: SaveTransactionsResponse | null, ignoreDiscriminator?: boolean): any;

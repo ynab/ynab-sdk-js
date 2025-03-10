@@ -26,7 +26,11 @@ export function AccountResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         'account': AccountFromJSON(json['account']),
     };
 }
-export function AccountResponseDataToJSON(value) {
+export function AccountResponseDataToJSON(json) {
+    return AccountResponseDataToJSONTyped(json, false);
+}
+export function AccountResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

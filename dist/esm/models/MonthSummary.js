@@ -42,7 +42,11 @@ export function MonthSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function MonthSummaryToJSON(value) {
+export function MonthSummaryToJSON(json) {
+    return MonthSummaryToJSONTyped(json, false);
+}
+export function MonthSummaryToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

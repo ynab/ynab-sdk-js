@@ -41,7 +41,11 @@ export function SubTransactionFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function SubTransactionToJSON(value) {
+export function SubTransactionToJSON(json) {
+    return SubTransactionToJSONTyped(json, false);
+}
+export function SubTransactionToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

@@ -48,4 +48,5 @@ export interface CategoryGroupWithCategories {
 export declare function instanceOfCategoryGroupWithCategories(value: object): value is CategoryGroupWithCategories;
 export declare function CategoryGroupWithCategoriesFromJSON(json: any): CategoryGroupWithCategories;
 export declare function CategoryGroupWithCategoriesFromJSONTyped(json: any, ignoreDiscriminator: boolean): CategoryGroupWithCategories;
-export declare function CategoryGroupWithCategoriesToJSON(value?: CategoryGroupWithCategories | null): any;
+export declare function CategoryGroupWithCategoriesToJSON(json: any): CategoryGroupWithCategories;
+export declare function CategoryGroupWithCategoriesToJSONTyped(value?: CategoryGroupWithCategories | null, ignoreDiscriminator?: boolean): any;

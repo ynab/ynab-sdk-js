@@ -23,7 +23,11 @@ export function SavePayeeFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'] == null ? undefined : json['name'],
     };
 }
-export function SavePayeeToJSON(value) {
+export function SavePayeeToJSON(json) {
+    return SavePayeeToJSONTyped(json, false);
+}
+export function SavePayeeToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

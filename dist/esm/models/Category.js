@@ -14,7 +14,7 @@ export var CategoryGoalTypeEnum = {
     Tbd: 'TBD',
     Mf: 'MF',
     Need: 'NEED',
-    Debt: 'DEBT',
+    Debt: 'DEBT'
 };
 /**
  * Check if a given object implements the Category interface.
@@ -72,7 +72,11 @@ export function CategoryFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function CategoryToJSON(value) {
+export function CategoryToJSON(json) {
+    return CategoryToJSONTyped(json, false);
+}
+export function CategoryToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

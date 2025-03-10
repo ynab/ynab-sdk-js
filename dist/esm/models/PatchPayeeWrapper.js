@@ -26,7 +26,11 @@ export function PatchPayeeWrapperFromJSONTyped(json, ignoreDiscriminator) {
         'payee': SavePayeeFromJSON(json['payee']),
     };
 }
-export function PatchPayeeWrapperToJSON(value) {
+export function PatchPayeeWrapperToJSON(json) {
+    return PatchPayeeWrapperToJSONTyped(json, false);
+}
+export function PatchPayeeWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

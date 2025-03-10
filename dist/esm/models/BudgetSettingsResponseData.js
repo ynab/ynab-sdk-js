@@ -26,7 +26,11 @@ export function BudgetSettingsResponseDataFromJSONTyped(json, ignoreDiscriminato
         'settings': BudgetSettingsFromJSON(json['settings']),
     };
 }
-export function BudgetSettingsResponseDataToJSON(value) {
+export function BudgetSettingsResponseDataToJSON(json) {
+    return BudgetSettingsResponseDataToJSONTyped(json, false);
+}
+export function BudgetSettingsResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

@@ -83,4 +83,5 @@ export interface SubTransaction {
 export declare function instanceOfSubTransaction(value: object): value is SubTransaction;
 export declare function SubTransactionFromJSON(json: any): SubTransaction;
 export declare function SubTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SubTransaction;
-export declare function SubTransactionToJSON(value?: SubTransaction | null): any;
+export declare function SubTransactionToJSON(json: any): SubTransaction;
+export declare function SubTransactionToJSONTyped(value?: SubTransaction | null, ignoreDiscriminator?: boolean): any;

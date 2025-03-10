@@ -37,7 +37,11 @@ export function NewTransactionFromJSONTyped(json, ignoreDiscriminator) {
         'import_id': json['import_id'] == null ? undefined : json['import_id'],
     };
 }
-export function NewTransactionToJSON(value) {
+export function NewTransactionToJSON(json) {
+    return NewTransactionToJSONTyped(json, false);
+}
+export function NewTransactionToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

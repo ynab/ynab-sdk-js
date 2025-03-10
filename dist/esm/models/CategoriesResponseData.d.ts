@@ -30,4 +30,5 @@ export interface CategoriesResponseData {
 export declare function instanceOfCategoriesResponseData(value: object): value is CategoriesResponseData;
 export declare function CategoriesResponseDataFromJSON(json: any): CategoriesResponseData;
 export declare function CategoriesResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CategoriesResponseData;
-export declare function CategoriesResponseDataToJSON(value?: CategoriesResponseData | null): any;
+export declare function CategoriesResponseDataToJSON(json: any): CategoriesResponseData;
+export declare function CategoriesResponseDataToJSONTyped(value?: CategoriesResponseData | null, ignoreDiscriminator?: boolean): any;

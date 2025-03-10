@@ -72,4 +72,5 @@ export interface MonthDetail {
 export declare function instanceOfMonthDetail(value: object): value is MonthDetail;
 export declare function MonthDetailFromJSON(json: any): MonthDetail;
 export declare function MonthDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean): MonthDetail;
-export declare function MonthDetailToJSON(value?: MonthDetail | null): any;
+export declare function MonthDetailToJSON(json: any): MonthDetail;
+export declare function MonthDetailToJSONTyped(value?: MonthDetail | null, ignoreDiscriminator?: boolean): any;

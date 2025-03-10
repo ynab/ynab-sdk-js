@@ -36,7 +36,11 @@ export function ExistingTransactionFromJSONTyped(json, ignoreDiscriminator) {
         'subtransactions': json['subtransactions'] == null ? undefined : (json['subtransactions'].map(SaveSubTransactionFromJSON)),
     };
 }
-export function ExistingTransactionToJSON(value) {
+export function ExistingTransactionToJSON(json) {
+    return ExistingTransactionToJSONTyped(json, false);
+}
+export function ExistingTransactionToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

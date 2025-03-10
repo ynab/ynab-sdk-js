@@ -24,4 +24,5 @@ export interface SavePayeeResponse {
 export declare function instanceOfSavePayeeResponse(value: object): value is SavePayeeResponse;
 export declare function SavePayeeResponseFromJSON(json: any): SavePayeeResponse;
 export declare function SavePayeeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SavePayeeResponse;
-export declare function SavePayeeResponseToJSON(value?: SavePayeeResponse | null): any;
+export declare function SavePayeeResponseToJSON(json: any): SavePayeeResponse;
+export declare function SavePayeeResponseToJSONTyped(value?: SavePayeeResponse | null, ignoreDiscriminator?: boolean): any;

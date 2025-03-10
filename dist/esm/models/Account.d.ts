@@ -132,4 +132,5 @@ export interface Account {
 export declare function instanceOfAccount(value: object): value is Account;
 export declare function AccountFromJSON(json: any): Account;
 export declare function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): Account;
-export declare function AccountToJSON(value?: Account | null): any;
+export declare function AccountToJSON(json: any): Account;
+export declare function AccountToJSONTyped(value?: Account | null, ignoreDiscriminator?: boolean): any;

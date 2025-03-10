@@ -26,7 +26,11 @@ export function PutTransactionWrapperFromJSONTyped(json, ignoreDiscriminator) {
         'transaction': ExistingTransactionFromJSON(json['transaction']),
     };
 }
-export function PutTransactionWrapperToJSON(value) {
+export function PutTransactionWrapperToJSON(json) {
+    return PutTransactionWrapperToJSONTyped(json, false);
+}
+export function PutTransactionWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

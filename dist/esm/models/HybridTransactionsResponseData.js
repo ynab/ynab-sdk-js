@@ -27,7 +27,11 @@ export function HybridTransactionsResponseDataFromJSONTyped(json, ignoreDiscrimi
         'server_knowledge': json['server_knowledge'] == null ? undefined : json['server_knowledge'],
     };
 }
-export function HybridTransactionsResponseDataToJSON(value) {
+export function HybridTransactionsResponseDataToJSON(json) {
+    return HybridTransactionsResponseDataToJSONTyped(json, false);
+}
+export function HybridTransactionsResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

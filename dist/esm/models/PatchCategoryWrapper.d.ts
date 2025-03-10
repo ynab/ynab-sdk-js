@@ -24,4 +24,5 @@ export interface PatchCategoryWrapper {
 export declare function instanceOfPatchCategoryWrapper(value: object): value is PatchCategoryWrapper;
 export declare function PatchCategoryWrapperFromJSON(json: any): PatchCategoryWrapper;
 export declare function PatchCategoryWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PatchCategoryWrapper;
-export declare function PatchCategoryWrapperToJSON(value?: PatchCategoryWrapper | null): any;
+export declare function PatchCategoryWrapperToJSON(json: any): PatchCategoryWrapper;
+export declare function PatchCategoryWrapperToJSONTyped(value?: PatchCategoryWrapper | null, ignoreDiscriminator?: boolean): any;

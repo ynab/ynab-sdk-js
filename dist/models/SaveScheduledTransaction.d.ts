@@ -19,7 +19,7 @@ export interface SaveScheduledTransaction {
      */
     account_id: string;
     /**
-     * The scheduled transaction date in ISO format (e.g. 2016-12-01).
+     * The scheduled transaction date in ISO format (e.g. 2016-12-01).  This should be a future date no more than 5 years into the future.
      * @type {string}
      * @memberof SaveScheduledTransaction
      */
@@ -73,4 +73,5 @@ export interface SaveScheduledTransaction {
 export declare function instanceOfSaveScheduledTransaction(value: object): value is SaveScheduledTransaction;
 export declare function SaveScheduledTransactionFromJSON(json: any): SaveScheduledTransaction;
 export declare function SaveScheduledTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveScheduledTransaction;
-export declare function SaveScheduledTransactionToJSON(value?: SaveScheduledTransaction | null): any;
+export declare function SaveScheduledTransactionToJSON(json: any): SaveScheduledTransaction;
+export declare function SaveScheduledTransactionToJSONTyped(value?: SaveScheduledTransaction | null, ignoreDiscriminator?: boolean): any;

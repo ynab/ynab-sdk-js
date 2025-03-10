@@ -68,14 +68,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import fetchPonyfill from "fetch-ponyfill";
 // Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
-var fetchPonyfillInstance = fetchPonyfill();
+var fetchPonyfill = require("fetch-ponyfill")();
 if (!globalThis.fetch) {
-    globalThis.fetch = fetchPonyfillInstance.fetch;
-    globalThis.Response = fetchPonyfillInstance.Response;
-    globalThis.Headers = fetchPonyfillInstance.Headers;
-    globalThis.Request = fetchPonyfillInstance.Request;
+    globalThis.fetch = fetchPonyfill.fetch;
+    globalThis.Response = fetchPonyfill.Response;
+    globalThis.Headers = fetchPonyfill.Headers;
+    globalThis.Request = fetchPonyfill.Request;
 }
 export var BASE_PATH = "https://api.ynab.com/v1".replace(/\/+$/, "");
 var Configuration = /** @class */ (function () {
@@ -92,9 +91,7 @@ var Configuration = /** @class */ (function () {
     });
     Object.defineProperty(Configuration.prototype, "basePath", {
         get: function () {
-            return this.configuration.basePath != null
-                ? this.configuration.basePath
-                : BASE_PATH;
+            return this.configuration.basePath != null ? this.configuration.basePath : BASE_PATH;
         },
         enumerable: false,
         configurable: true
@@ -138,7 +135,7 @@ var Configuration = /** @class */ (function () {
         get: function () {
             var apiKey = this.configuration.apiKey;
             if (apiKey) {
-                return typeof apiKey === "function" ? apiKey : function () { return apiKey; };
+                return typeof apiKey === 'function' ? apiKey : function () { return apiKey; };
             }
             return undefined;
         },
@@ -150,11 +147,9 @@ var Configuration = /** @class */ (function () {
             var _this = this;
             var accessToken = this.configuration.accessToken;
             if (accessToken) {
-                return typeof accessToken === "function"
-                    ? accessToken
-                    : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                        return [2 /*return*/, accessToken];
-                    }); }); };
+                return typeof accessToken === 'function' ? accessToken : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    return [2 /*return*/, accessToken];
+                }); }); };
             }
             return undefined;
         },
@@ -201,8 +196,7 @@ var BaseAPI = /** @class */ (function () {
                         if (!middleware.pre) return [3 /*break*/, 3];
                         return [4 /*yield*/, middleware.pre(__assign({ fetch: this.fetchApi }, fetchParams))];
                     case 2:
-                        fetchParams =
-                            (_f.sent()) || fetchParams;
+                        fetchParams = (_f.sent()) || fetchParams;
                         _f.label = 3;
                     case 3:
                         _i++;
@@ -232,8 +226,7 @@ var BaseAPI = /** @class */ (function () {
                                 response: response ? response.clone() : undefined,
                             })];
                     case 9:
-                        response =
-                            (_f.sent()) || response;
+                        response = (_f.sent()) || response;
                         _f.label = 10;
                     case 10:
                         _b++;
@@ -241,7 +234,7 @@ var BaseAPI = /** @class */ (function () {
                     case 11:
                         if (response === undefined) {
                             if (e_1 instanceof Error) {
-                                throw new FetchError(e_1, "The request failed and the interceptors did not return an alternative response");
+                                throw new FetchError(e_1, 'The request failed and the interceptors did not return an alternative response');
                             }
                             else {
                                 throw e_1;
@@ -262,8 +255,7 @@ var BaseAPI = /** @class */ (function () {
                                 response: response.clone(),
                             })];
                     case 14:
-                        response =
-                            (_f.sent()) || response;
+                        response = (_f.sent()) || response;
                         _f.label = 15;
                     case 15:
                         _d++;
@@ -327,7 +319,7 @@ var BaseAPI = /** @class */ (function () {
                         return [4 /*yield*/, this.fetchApi(url, init)];
                     case 2:
                         response = _b.sent();
-                        if (!(response && response.status >= 200 && response.status < 300)) return [3 /*break*/, 3];
+                        if (!(response && (response.status >= 200 && response.status < 300))) return [3 /*break*/, 3];
                         return [2 /*return*/, response];
                     case 3: return [4 /*yield*/, response.json()];
                     case 4: throw _b.sent();
@@ -343,17 +335,14 @@ var BaseAPI = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         url = this.configuration.basePath + context.path;
-                        if (context.query !== undefined &&
-                            Object.keys(context.query).length !== 0) {
+                        if (context.query !== undefined && Object.keys(context.query).length !== 0) {
                             // only add the querystring to the URL if there are query parameters.
                             // this is done to avoid urls ending with a "?" character which buggy webservers
                             // do not handle correctly sometimes.
-                            url += "?" + this.configuration.queryParamsStringify(context.query);
+                            url += '?' + this.configuration.queryParamsStringify(context.query);
                         }
                         headers = Object.assign({}, this.configuration.headers, context.headers);
-                        Object.keys(headers).forEach(function (key) {
-                            return headers[key] === undefined ? delete headers[key] : {};
-                        });
+                        Object.keys(headers).forEach(function (key) { return headers[key] === undefined ? delete headers[key] : {}; });
                         initOverrideFn = typeof initOverrides === "function"
                             ? initOverrides
                             : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
@@ -372,12 +361,12 @@ var BaseAPI = /** @class */ (function () {
                             })];
                     case 1:
                         overriddenInit = __assign.apply(void 0, _a.concat([(_b.sent())]));
-                        if (isFormData(overriddenInit.body) ||
-                            overriddenInit.body instanceof URLSearchParams ||
-                            isBlob(overriddenInit.body)) {
+                        if (isFormData(overriddenInit.body)
+                            || (overriddenInit.body instanceof URLSearchParams)
+                            || isBlob(overriddenInit.body)) {
                             body = overriddenInit.body;
                         }
-                        else if (this.isJsonMime(headers["Content-Type"])) {
+                        else if (this.isJsonMime(headers['Content-Type'])) {
                             body = JSON.stringify(overriddenInit.body);
                         }
                         else {
@@ -399,12 +388,13 @@ var BaseAPI = /** @class */ (function () {
         next.middleware = this.middleware.slice();
         return next;
     };
-    BaseAPI.jsonRegex = new RegExp("^(:?application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(:?;.*)?$", "i");
+    BaseAPI.jsonRegex = new RegExp('^(:?application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(:?;.*)?$', 'i');
     return BaseAPI;
 }());
 export { BaseAPI };
+;
 function isBlob(value) {
-    return typeof Blob !== "undefined" && value instanceof Blob;
+    return typeof Blob !== 'undefined' && value instanceof Blob;
 }
 function isFormData(value) {
     return typeof FormData !== "undefined" && value instanceof FormData;
@@ -453,18 +443,17 @@ export function exists(json, key) {
     return value !== null && value !== undefined;
 }
 export function querystring(params, prefix) {
-    if (prefix === void 0) { prefix = ""; }
+    if (prefix === void 0) { prefix = ''; }
     return Object.keys(params)
         .map(function (key) { return querystringSingleKey(key, params[key], prefix); })
         .filter(function (part) { return part.length > 0; })
-        .join("&");
+        .join('&');
 }
 function querystringSingleKey(key, value, keyPrefix) {
-    if (keyPrefix === void 0) { keyPrefix = ""; }
+    if (keyPrefix === void 0) { keyPrefix = ''; }
     var fullKey = keyPrefix + (keyPrefix.length ? "[".concat(key, "]") : key);
     if (value instanceof Array) {
-        var multiValue = value
-            .map(function (singleValue) { return encodeURIComponent(String(singleValue)); })
+        var multiValue = value.map(function (singleValue) { return encodeURIComponent(String(singleValue)); })
             .join("&".concat(encodeURIComponent(fullKey), "="));
         return "".concat(encodeURIComponent(fullKey), "=").concat(multiValue);
     }
@@ -489,7 +478,7 @@ export function mapValues(data, fn) {
 export function canConsumeForm(consumes) {
     for (var _i = 0, consumes_1 = consumes; _i < consumes_1.length; _i++) {
         var consume = consumes_1[_i];
-        if ("multipart/form-data" === consume.contentType) {
+        if ('multipart/form-data' === consume.contentType) {
             return true;
         }
     }
@@ -545,6 +534,7 @@ var BlobApiResponse = /** @class */ (function () {
             });
         });
     };
+    ;
     return BlobApiResponse;
 }());
 export { BlobApiResponse };
@@ -562,6 +552,7 @@ var TextApiResponse = /** @class */ (function () {
             });
         });
     };
+    ;
     return TextApiResponse;
 }());
 export { TextApiResponse };

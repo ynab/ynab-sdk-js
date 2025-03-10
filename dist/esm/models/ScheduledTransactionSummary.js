@@ -68,7 +68,11 @@ export function ScheduledTransactionSummaryFromJSONTyped(json, ignoreDiscriminat
         'deleted': json['deleted'],
     };
 }
-export function ScheduledTransactionSummaryToJSON(value) {
+export function ScheduledTransactionSummaryToJSON(json) {
+    return ScheduledTransactionSummaryToJSONTyped(json, false);
+}
+export function ScheduledTransactionSummaryToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

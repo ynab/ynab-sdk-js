@@ -24,4 +24,5 @@ export interface PayeeResponse {
 export declare function instanceOfPayeeResponse(value: object): value is PayeeResponse;
 export declare function PayeeResponseFromJSON(json: any): PayeeResponse;
 export declare function PayeeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PayeeResponse;
-export declare function PayeeResponseToJSON(value?: PayeeResponse | null): any;
+export declare function PayeeResponseToJSON(json: any): PayeeResponse;
+export declare function PayeeResponseToJSONTyped(value?: PayeeResponse | null, ignoreDiscriminator?: boolean): any;

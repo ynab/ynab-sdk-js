@@ -32,7 +32,11 @@ export function PayeeFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function PayeeToJSON(value) {
+export function PayeeToJSON(json) {
+    return PayeeToJSONTyped(json, false);
+}
+export function PayeeToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

@@ -23,9 +23,14 @@ export function SaveCategoryFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'] == null ? undefined : json['name'],
         'note': json['note'] == null ? undefined : json['note'],
         'category_group_id': json['category_group_id'] == null ? undefined : json['category_group_id'],
+        'goal_target': json['goal_target'] == null ? undefined : json['goal_target'],
     };
 }
-export function SaveCategoryToJSON(value) {
+export function SaveCategoryToJSON(json) {
+    return SaveCategoryToJSONTyped(json, false);
+}
+export function SaveCategoryToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }
@@ -33,5 +38,6 @@ export function SaveCategoryToJSON(value) {
         'name': value['name'],
         'note': value['note'],
         'category_group_id': value['category_group_id'],
+        'goal_target': value['goal_target'],
     };
 }

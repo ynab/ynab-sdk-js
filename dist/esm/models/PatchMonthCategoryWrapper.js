@@ -26,7 +26,11 @@ export function PatchMonthCategoryWrapperFromJSONTyped(json, ignoreDiscriminator
         'category': SaveMonthCategoryFromJSON(json['category']),
     };
 }
-export function PatchMonthCategoryWrapperToJSON(value) {
+export function PatchMonthCategoryWrapperToJSON(json) {
+    return PatchMonthCategoryWrapperToJSONTyped(json, false);
+}
+export function PatchMonthCategoryWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

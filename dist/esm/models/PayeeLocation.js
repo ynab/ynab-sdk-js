@@ -37,7 +37,11 @@ export function PayeeLocationFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function PayeeLocationToJSON(value) {
+export function PayeeLocationToJSON(json) {
+    return PayeeLocationToJSONTyped(json, false);
+}
+export function PayeeLocationToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

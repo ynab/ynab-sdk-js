@@ -24,4 +24,5 @@ export interface PostAccountWrapper {
 export declare function instanceOfPostAccountWrapper(value: object): value is PostAccountWrapper;
 export declare function PostAccountWrapperFromJSON(json: any): PostAccountWrapper;
 export declare function PostAccountWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostAccountWrapper;
-export declare function PostAccountWrapperToJSON(value?: PostAccountWrapper | null): any;
+export declare function PostAccountWrapperToJSON(json: any): PostAccountWrapper;
+export declare function PostAccountWrapperToJSONTyped(value?: PostAccountWrapper | null, ignoreDiscriminator?: boolean): any;

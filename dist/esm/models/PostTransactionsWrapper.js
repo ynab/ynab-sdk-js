@@ -25,7 +25,11 @@ export function PostTransactionsWrapperFromJSONTyped(json, ignoreDiscriminator) 
         'transactions': json['transactions'] == null ? undefined : (json['transactions'].map(NewTransactionFromJSON)),
     };
 }
-export function PostTransactionsWrapperToJSON(value) {
+export function PostTransactionsWrapperToJSON(json) {
+    return PostTransactionsWrapperToJSONTyped(json, false);
+}
+export function PostTransactionsWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

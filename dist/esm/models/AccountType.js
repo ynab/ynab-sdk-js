@@ -44,3 +44,6 @@ export function AccountTypeFromJSONTyped(json, ignoreDiscriminator) {
 export function AccountTypeToJSON(value) {
     return value;
 }
+export function AccountTypeToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

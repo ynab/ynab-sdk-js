@@ -23,4 +23,5 @@ export interface SavePayee {
 export declare function instanceOfSavePayee(value: object): value is SavePayee;
 export declare function SavePayeeFromJSON(json: any): SavePayee;
 export declare function SavePayeeFromJSONTyped(json: any, ignoreDiscriminator: boolean): SavePayee;
-export declare function SavePayeeToJSON(value?: SavePayee | null): any;
+export declare function SavePayeeToJSON(json: any): SavePayee;
+export declare function SavePayeeToJSONTyped(value?: SavePayee | null, ignoreDiscriminator?: boolean): any;

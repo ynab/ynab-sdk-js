@@ -24,4 +24,5 @@ export interface MonthDetailResponse {
 export declare function instanceOfMonthDetailResponse(value: object): value is MonthDetailResponse;
 export declare function MonthDetailResponseFromJSON(json: any): MonthDetailResponse;
 export declare function MonthDetailResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MonthDetailResponse;
-export declare function MonthDetailResponseToJSON(value?: MonthDetailResponse | null): any;
+export declare function MonthDetailResponseToJSON(json: any): MonthDetailResponse;
+export declare function MonthDetailResponseToJSONTyped(value?: MonthDetailResponse | null, ignoreDiscriminator?: boolean): any;

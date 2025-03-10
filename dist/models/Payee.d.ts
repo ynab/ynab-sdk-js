@@ -41,4 +41,5 @@ export interface Payee {
 export declare function instanceOfPayee(value: object): value is Payee;
 export declare function PayeeFromJSON(json: any): Payee;
 export declare function PayeeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Payee;
-export declare function PayeeToJSON(value?: Payee | null): any;
+export declare function PayeeToJSON(json: any): Payee;
+export declare function PayeeToJSONTyped(value?: Payee | null, ignoreDiscriminator?: boolean): any;

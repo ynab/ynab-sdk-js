@@ -24,4 +24,5 @@ export interface PayeeLocationResponseData {
 export declare function instanceOfPayeeLocationResponseData(value: object): value is PayeeLocationResponseData;
 export declare function PayeeLocationResponseDataFromJSON(json: any): PayeeLocationResponseData;
 export declare function PayeeLocationResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): PayeeLocationResponseData;
-export declare function PayeeLocationResponseDataToJSON(value?: PayeeLocationResponseData | null): any;
+export declare function PayeeLocationResponseDataToJSON(json: any): PayeeLocationResponseData;
+export declare function PayeeLocationResponseDataToJSONTyped(value?: PayeeLocationResponseData | null, ignoreDiscriminator?: boolean): any;

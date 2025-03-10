@@ -74,6 +74,7 @@ __exportStar(require("./PayeesResponseData"), exports);
 __exportStar(require("./PostAccountWrapper"), exports);
 __exportStar(require("./PostScheduledTransactionWrapper"), exports);
 __exportStar(require("./PostTransactionsWrapper"), exports);
+__exportStar(require("./PutScheduledTransactionWrapper"), exports);
 __exportStar(require("./PutTransactionWrapper"), exports);
 __exportStar(require("./SaveAccount"), exports);
 __exportStar(require("./SaveCategory"), exports);

@@ -26,7 +26,11 @@ export function BulkTransactionsFromJSONTyped(json, ignoreDiscriminator) {
         'transactions': (json['transactions'].map(SaveTransactionWithOptionalFieldsFromJSON)),
     };
 }
-export function BulkTransactionsToJSON(value) {
+export function BulkTransactionsToJSON(json) {
+    return BulkTransactionsToJSONTyped(json, false);
+}
+export function BulkTransactionsToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

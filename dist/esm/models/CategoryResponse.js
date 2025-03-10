@@ -26,7 +26,11 @@ export function CategoryResponseFromJSONTyped(json, ignoreDiscriminator) {
         'data': CategoryResponseDataFromJSON(json['data']),
     };
 }
-export function CategoryResponseToJSON(value) {
+export function CategoryResponseToJSON(json) {
+    return CategoryResponseToJSONTyped(json, false);
+}
+export function CategoryResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

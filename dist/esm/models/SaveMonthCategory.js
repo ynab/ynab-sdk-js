@@ -25,7 +25,11 @@ export function SaveMonthCategoryFromJSONTyped(json, ignoreDiscriminator) {
         'budgeted': json['budgeted'],
     };
 }
-export function SaveMonthCategoryToJSON(value) {
+export function SaveMonthCategoryToJSON(json) {
+    return SaveMonthCategoryToJSONTyped(json, false);
+}
+export function SaveMonthCategoryToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

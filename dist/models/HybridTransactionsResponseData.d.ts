@@ -30,4 +30,5 @@ export interface HybridTransactionsResponseData {
 export declare function instanceOfHybridTransactionsResponseData(value: object): value is HybridTransactionsResponseData;
 export declare function HybridTransactionsResponseDataFromJSON(json: any): HybridTransactionsResponseData;
 export declare function HybridTransactionsResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): HybridTransactionsResponseData;
-export declare function HybridTransactionsResponseDataToJSON(value?: HybridTransactionsResponseData | null): any;
+export declare function HybridTransactionsResponseDataToJSON(json: any): HybridTransactionsResponseData;
+export declare function HybridTransactionsResponseDataToJSONTyped(value?: HybridTransactionsResponseData | null, ignoreDiscriminator?: boolean): any;

@@ -172,4 +172,5 @@ export type TransactionDetailDebtTransactionTypeEnum = typeof TransactionDetailD
 export declare function instanceOfTransactionDetail(value: object): value is TransactionDetail;
 export declare function TransactionDetailFromJSON(json: any): TransactionDetail;
 export declare function TransactionDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionDetail;
-export declare function TransactionDetailToJSON(value?: TransactionDetail | null): any;
+export declare function TransactionDetailToJSON(json: any): TransactionDetail;
+export declare function TransactionDetailToJSONTyped(value?: TransactionDetail | null, ignoreDiscriminator?: boolean): any;

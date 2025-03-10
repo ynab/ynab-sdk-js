@@ -26,7 +26,11 @@ export function ScheduledTransactionsResponseFromJSONTyped(json, ignoreDiscrimin
         'data': ScheduledTransactionsResponseDataFromJSON(json['data']),
     };
 }
-export function ScheduledTransactionsResponseToJSON(value) {
+export function ScheduledTransactionsResponseToJSON(json) {
+    return ScheduledTransactionsResponseToJSONTyped(json, false);
+}
+export function ScheduledTransactionsResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

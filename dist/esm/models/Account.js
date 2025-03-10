@@ -61,7 +61,11 @@ export function AccountFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function AccountToJSON(value) {
+export function AccountToJSON(json) {
+    return AccountToJSONTyped(json, false);
+}
+export function AccountToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

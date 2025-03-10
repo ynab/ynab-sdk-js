@@ -115,4 +115,5 @@ export type ScheduledTransactionSummaryFrequencyEnum = typeof ScheduledTransacti
 export declare function instanceOfScheduledTransactionSummary(value: object): value is ScheduledTransactionSummary;
 export declare function ScheduledTransactionSummaryFromJSON(json: any): ScheduledTransactionSummary;
 export declare function ScheduledTransactionSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScheduledTransactionSummary;
-export declare function ScheduledTransactionSummaryToJSON(value?: ScheduledTransactionSummary | null): any;
+export declare function ScheduledTransactionSummaryToJSON(json: any): ScheduledTransactionSummary;
+export declare function ScheduledTransactionSummaryToJSONTyped(value?: ScheduledTransactionSummary | null, ignoreDiscriminator?: boolean): any;

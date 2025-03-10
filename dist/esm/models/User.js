@@ -25,7 +25,11 @@ export function UserFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
     };
 }
-export function UserToJSON(value) {
+export function UserToJSON(json) {
+    return UserToJSONTyped(json, false);
+}
+export function UserToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

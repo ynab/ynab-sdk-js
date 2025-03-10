@@ -26,7 +26,11 @@ export function PostScheduledTransactionWrapperFromJSONTyped(json, ignoreDiscrim
         'scheduled_transaction': SaveScheduledTransactionFromJSON(json['scheduled_transaction']),
     };
 }
-export function PostScheduledTransactionWrapperToJSON(value) {
+export function PostScheduledTransactionWrapperToJSON(json) {
+    return PostScheduledTransactionWrapperToJSONTyped(json, false);
+}
+export function PostScheduledTransactionWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

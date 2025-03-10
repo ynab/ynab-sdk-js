@@ -147,4 +147,5 @@ export type TransactionSummaryDebtTransactionTypeEnum = typeof TransactionSummar
 export declare function instanceOfTransactionSummary(value: object): value is TransactionSummary;
 export declare function TransactionSummaryFromJSON(json: any): TransactionSummary;
 export declare function TransactionSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionSummary;
-export declare function TransactionSummaryToJSON(value?: TransactionSummary | null): any;
+export declare function TransactionSummaryToJSON(json: any): TransactionSummary;
+export declare function TransactionSummaryToJSONTyped(value?: TransactionSummary | null, ignoreDiscriminator?: boolean): any;

@@ -30,4 +30,5 @@ export interface TransactionsResponseData {
 export declare function instanceOfTransactionsResponseData(value: object): value is TransactionsResponseData;
 export declare function TransactionsResponseDataFromJSON(json: any): TransactionsResponseData;
 export declare function TransactionsResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionsResponseData;
-export declare function TransactionsResponseDataToJSON(value?: TransactionsResponseData | null): any;
+export declare function TransactionsResponseDataToJSON(json: any): TransactionsResponseData;
+export declare function TransactionsResponseDataToJSONTyped(value?: TransactionsResponseData | null, ignoreDiscriminator?: boolean): any;

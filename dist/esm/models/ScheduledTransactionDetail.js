@@ -77,7 +77,11 @@ export function ScheduledTransactionDetailFromJSONTyped(json, ignoreDiscriminato
         'subtransactions': (json['subtransactions'].map(ScheduledSubTransactionFromJSON)),
     };
 }
-export function ScheduledTransactionDetailToJSON(value) {
+export function ScheduledTransactionDetailToJSON(json) {
+    return ScheduledTransactionDetailToJSONTyped(json, false);
+}
+export function ScheduledTransactionDetailToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

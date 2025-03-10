@@ -31,4 +31,5 @@ export interface BudgetSettings {
 export declare function instanceOfBudgetSettings(value: object): value is BudgetSettings;
 export declare function BudgetSettingsFromJSON(json: any): BudgetSettings;
 export declare function BudgetSettingsFromJSONTyped(json: any, ignoreDiscriminator: boolean): BudgetSettings;
-export declare function BudgetSettingsToJSON(value?: BudgetSettings | null): any;
+export declare function BudgetSettingsToJSON(json: any): BudgetSettings;
+export declare function BudgetSettingsToJSONTyped(value?: BudgetSettings | null, ignoreDiscriminator?: boolean): any;

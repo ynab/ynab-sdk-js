@@ -46,7 +46,11 @@ export function CurrencyFormatFromJSONTyped(json, ignoreDiscriminator) {
         'display_symbol': json['display_symbol'],
     };
 }
-export function CurrencyFormatToJSON(value) {
+export function CurrencyFormatToJSON(json) {
+    return CurrencyFormatToJSONTyped(json, false);
+}
+export function CurrencyFormatToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

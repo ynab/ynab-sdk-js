@@ -36,7 +36,11 @@ export function SaveTransactionWithOptionalFieldsFromJSONTyped(json, ignoreDiscr
         'subtransactions': json['subtransactions'] == null ? undefined : (json['subtransactions'].map(SaveSubTransactionFromJSON)),
     };
 }
-export function SaveTransactionWithOptionalFieldsToJSON(value) {
+export function SaveTransactionWithOptionalFieldsToJSON(json) {
+    return SaveTransactionWithOptionalFieldsToJSONTyped(json, false);
+}
+export function SaveTransactionWithOptionalFieldsToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

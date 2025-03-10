@@ -86,4 +86,5 @@ export interface SaveTransactionWithOptionalFields {
 export declare function instanceOfSaveTransactionWithOptionalFields(value: object): value is SaveTransactionWithOptionalFields;
 export declare function SaveTransactionWithOptionalFieldsFromJSON(json: any): SaveTransactionWithOptionalFields;
 export declare function SaveTransactionWithOptionalFieldsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveTransactionWithOptionalFields;
-export declare function SaveTransactionWithOptionalFieldsToJSON(value?: SaveTransactionWithOptionalFields | null): any;
+export declare function SaveTransactionWithOptionalFieldsToJSON(json: any): SaveTransactionWithOptionalFields;
+export declare function SaveTransactionWithOptionalFieldsToJSONTyped(value?: SaveTransactionWithOptionalFields | null, ignoreDiscriminator?: boolean): any;

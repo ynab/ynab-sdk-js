@@ -27,7 +27,11 @@ export function BudgetSummaryResponseDataFromJSONTyped(json, ignoreDiscriminator
         'default_budget': json['default_budget'] == null ? undefined : BudgetSummaryFromJSON(json['default_budget']),
     };
 }
-export function BudgetSummaryResponseDataToJSON(value) {
+export function BudgetSummaryResponseDataToJSON(json) {
+    return BudgetSummaryResponseDataToJSONTyped(json, false);
+}
+export function BudgetSummaryResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

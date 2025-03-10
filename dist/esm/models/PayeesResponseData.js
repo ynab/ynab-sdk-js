@@ -29,7 +29,11 @@ export function PayeesResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         'server_knowledge': json['server_knowledge'],
     };
 }
-export function PayeesResponseDataToJSON(value) {
+export function PayeesResponseDataToJSON(json) {
+    return PayeesResponseDataToJSONTyped(json, false);
+}
+export function PayeesResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

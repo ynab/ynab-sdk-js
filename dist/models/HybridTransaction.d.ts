@@ -185,4 +185,5 @@ export type HybridTransactionTypeEnum = typeof HybridTransactionTypeEnum[keyof t
 export declare function instanceOfHybridTransaction(value: object): value is HybridTransaction;
 export declare function HybridTransactionFromJSON(json: any): HybridTransaction;
 export declare function HybridTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): HybridTransaction;
-export declare function HybridTransactionToJSON(value?: HybridTransaction | null): any;
+export declare function HybridTransactionToJSON(json: any): HybridTransaction;
+export declare function HybridTransactionToJSONTyped(value?: HybridTransaction | null, ignoreDiscriminator?: boolean): any;

@@ -26,7 +26,11 @@ export function BudgetSummaryResponseFromJSONTyped(json, ignoreDiscriminator) {
         'data': BudgetSummaryResponseDataFromJSON(json['data']),
     };
 }
-export function BudgetSummaryResponseToJSON(value) {
+export function BudgetSummaryResponseToJSON(json) {
+    return BudgetSummaryResponseToJSONTyped(json, false);
+}
+export function BudgetSummaryResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

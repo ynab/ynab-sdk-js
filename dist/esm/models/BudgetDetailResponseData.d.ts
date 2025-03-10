@@ -30,4 +30,5 @@ export interface BudgetDetailResponseData {
 export declare function instanceOfBudgetDetailResponseData(value: object): value is BudgetDetailResponseData;
 export declare function BudgetDetailResponseDataFromJSON(json: any): BudgetDetailResponseData;
 export declare function BudgetDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): BudgetDetailResponseData;
-export declare function BudgetDetailResponseDataToJSON(value?: BudgetDetailResponseData | null): any;
+export declare function BudgetDetailResponseDataToJSON(json: any): BudgetDetailResponseData;
+export declare function BudgetDetailResponseDataToJSONTyped(value?: BudgetDetailResponseData | null, ignoreDiscriminator?: boolean): any;

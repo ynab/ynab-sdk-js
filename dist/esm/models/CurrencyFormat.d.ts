@@ -65,4 +65,5 @@ export interface CurrencyFormat {
 export declare function instanceOfCurrencyFormat(value: object): value is CurrencyFormat;
 export declare function CurrencyFormatFromJSON(json: any): CurrencyFormat;
 export declare function CurrencyFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): CurrencyFormat;
-export declare function CurrencyFormatToJSON(value?: CurrencyFormat | null): any;
+export declare function CurrencyFormatToJSON(json: any): CurrencyFormat;
+export declare function CurrencyFormatToJSONTyped(value?: CurrencyFormat | null, ignoreDiscriminator?: boolean): any;

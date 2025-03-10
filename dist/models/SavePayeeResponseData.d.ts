@@ -30,4 +30,5 @@ export interface SavePayeeResponseData {
 export declare function instanceOfSavePayeeResponseData(value: object): value is SavePayeeResponseData;
 export declare function SavePayeeResponseDataFromJSON(json: any): SavePayeeResponseData;
 export declare function SavePayeeResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SavePayeeResponseData;
-export declare function SavePayeeResponseDataToJSON(value?: SavePayeeResponseData | null): any;
+export declare function SavePayeeResponseDataToJSON(json: any): SavePayeeResponseData;
+export declare function SavePayeeResponseDataToJSONTyped(value?: SavePayeeResponseData | null, ignoreDiscriminator?: boolean): any;

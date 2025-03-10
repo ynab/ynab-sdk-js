@@ -26,7 +26,11 @@ export function PatchTransactionsWrapperFromJSONTyped(json, ignoreDiscriminator)
         'transactions': (json['transactions'].map(SaveTransactionWithIdOrImportIdFromJSON)),
     };
 }
-export function PatchTransactionsWrapperToJSON(value) {
+export function PatchTransactionsWrapperToJSON(json) {
+    return PatchTransactionsWrapperToJSONTyped(json, false);
+}
+export function PatchTransactionsWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

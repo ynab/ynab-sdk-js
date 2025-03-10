@@ -26,7 +26,11 @@ export function PatchCategoryWrapperFromJSONTyped(json, ignoreDiscriminator) {
         'category': SaveCategoryFromJSON(json['category']),
     };
 }
-export function PatchCategoryWrapperToJSON(value) {
+export function PatchCategoryWrapperToJSON(json) {
+    return PatchCategoryWrapperToJSONTyped(json, false);
+}
+export function PatchCategoryWrapperToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

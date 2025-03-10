@@ -48,4 +48,5 @@ export interface SaveTransactionsResponseData {
 export declare function instanceOfSaveTransactionsResponseData(value: object): value is SaveTransactionsResponseData;
 export declare function SaveTransactionsResponseDataFromJSON(json: any): SaveTransactionsResponseData;
 export declare function SaveTransactionsResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveTransactionsResponseData;
-export declare function SaveTransactionsResponseDataToJSON(value?: SaveTransactionsResponseData | null): any;
+export declare function SaveTransactionsResponseDataToJSON(json: any): SaveTransactionsResponseData;
+export declare function SaveTransactionsResponseDataToJSONTyped(value?: SaveTransactionsResponseData | null, ignoreDiscriminator?: boolean): any;

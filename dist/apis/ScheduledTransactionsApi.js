@@ -39,7 +39,7 @@ const index_1 = require("../models/index");
  */
 class ScheduledTransactionsApi extends runtime.BaseAPI {
     /**
-     * Creates a single scheduled transaction.
+     * Creates a single scheduled transaction (a transaction with a future date).
      * Create a single scheduled transaction
      */
     async createScheduledTransactionRaw(requestParameters, initOverrides) {
@@ -70,11 +70,48 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ScheduledTransactionResponseFromJSON)(jsonValue));
     }
     /**
-     * Creates a single scheduled transaction.
+     * Creates a single scheduled transaction (a transaction with a future date).
      * Create a single scheduled transaction
      */
     async createScheduledTransaction(budgetId, data, initOverrides) {
         const response = await this.createScheduledTransactionRaw({ budgetId: budgetId, data: data }, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Deletes a scheduled transaction
+     * Deletes an existing scheduled transaction
+     */
+    async deleteScheduledTransactionRaw(requestParameters, initOverrides) {
+        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling deleteScheduledTransaction.');
+        }
+        if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
+            throw new runtime.RequiredError('scheduledTransactionId', 'Required parameter requestParameters.scheduledTransactionId was null or undefined when calling deleteScheduledTransaction.');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Accept'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/budgets/{budget_id}/scheduled_transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ScheduledTransactionResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Deletes a scheduled transaction
+     * Deletes an existing scheduled transaction
+     */
+    async deleteScheduledTransaction(budgetId, scheduledTransactionId, initOverrides) {
+        const response = await this.deleteScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides);
         return await response.value();
     }
     /**
@@ -149,6 +186,48 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
      */
     async getScheduledTransactions(budgetId, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Updates a single scheduled transaction
+     * Updates an existing scheduled transaction
+     */
+    async updateScheduledTransactionRaw(requestParameters, initOverrides) {
+        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateScheduledTransaction.');
+        }
+        if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
+            throw new runtime.RequiredError('scheduledTransactionId', 'Required parameter requestParameters.scheduledTransactionId was null or undefined when calling updateScheduledTransaction.');
+        }
+        if (requestParameters.putScheduledTransactionWrapper === null || requestParameters.putScheduledTransactionWrapper === undefined) {
+            throw new runtime.RequiredError('putScheduledTransactionWrapper', 'Required parameter requestParameters.putScheduledTransactionWrapper was null or undefined when calling updateScheduledTransaction.');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Accept'] = 'application/json';
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/budgets/{budget_id}/scheduled_transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.PutScheduledTransactionWrapperToJSON)(requestParameters.putScheduledTransactionWrapper),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ScheduledTransactionResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Updates a single scheduled transaction
+     * Updates an existing scheduled transaction
+     */
+    async updateScheduledTransaction(budgetId, scheduledTransactionId, putScheduledTransactionWrapper, initOverrides) {
+        const response = await this.updateScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId, putScheduledTransactionWrapper: putScheduledTransactionWrapper }, initOverrides);
         return await response.value();
     }
 }

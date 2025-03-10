@@ -26,7 +26,11 @@ export function HybridTransactionsResponseFromJSONTyped(json, ignoreDiscriminato
         'data': HybridTransactionsResponseDataFromJSON(json['data']),
     };
 }
-export function HybridTransactionsResponseToJSON(value) {
+export function HybridTransactionsResponseToJSON(json) {
+    return HybridTransactionsResponseToJSONTyped(json, false);
+}
+export function HybridTransactionsResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

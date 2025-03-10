@@ -32,7 +32,11 @@ export function SaveTransactionsResponseDataFromJSONTyped(json, ignoreDiscrimina
         'server_knowledge': json['server_knowledge'],
     };
 }
-export function SaveTransactionsResponseDataToJSON(value) {
+export function SaveTransactionsResponseDataToJSON(json) {
+    return SaveTransactionsResponseDataToJSONTyped(json, false);
+}
+export function SaveTransactionsResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

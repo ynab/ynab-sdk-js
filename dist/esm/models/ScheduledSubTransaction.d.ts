@@ -45,7 +45,19 @@ export interface ScheduledSubTransaction {
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
+    payee_name?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof ScheduledSubTransaction
+     */
     category_id?: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof ScheduledSubTransaction
+     */
+    category_name?: string | null;
     /**
      * If a transfer, the account_id which the scheduled subtransaction transfers to
      * @type {string}
@@ -65,4 +77,5 @@ export interface ScheduledSubTransaction {
 export declare function instanceOfScheduledSubTransaction(value: object): value is ScheduledSubTransaction;
 export declare function ScheduledSubTransactionFromJSON(json: any): ScheduledSubTransaction;
 export declare function ScheduledSubTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScheduledSubTransaction;
-export declare function ScheduledSubTransactionToJSON(value?: ScheduledSubTransaction | null): any;
+export declare function ScheduledSubTransactionToJSON(json: any): ScheduledSubTransaction;
+export declare function ScheduledSubTransactionToJSONTyped(value?: ScheduledSubTransaction | null, ignoreDiscriminator?: boolean): any;

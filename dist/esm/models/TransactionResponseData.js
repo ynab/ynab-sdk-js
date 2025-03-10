@@ -26,7 +26,11 @@ export function TransactionResponseDataFromJSONTyped(json, ignoreDiscriminator) 
         'transaction': TransactionDetailFromJSON(json['transaction']),
     };
 }
-export function TransactionResponseDataToJSON(value) {
+export function TransactionResponseDataToJSON(json) {
+    return TransactionResponseDataToJSONTyped(json, false);
+}
+export function TransactionResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

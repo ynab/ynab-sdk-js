@@ -21,3 +21,4 @@ export declare function instanceOfTransactionFlagColor(value: any): boolean;
 export declare function TransactionFlagColorFromJSON(json: any): TransactionFlagColor;
 export declare function TransactionFlagColorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionFlagColor;
 export declare function TransactionFlagColorToJSON(value?: TransactionFlagColor | null): any;
+export declare function TransactionFlagColorToJSONTyped(value: any, ignoreDiscriminator: boolean): TransactionFlagColor;

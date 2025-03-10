@@ -23,4 +23,5 @@ export interface DateFormat {
 export declare function instanceOfDateFormat(value: object): value is DateFormat;
 export declare function DateFormatFromJSON(json: any): DateFormat;
 export declare function DateFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): DateFormat;
-export declare function DateFormatToJSON(value?: DateFormat | null): any;
+export declare function DateFormatToJSON(json: any): DateFormat;
+export declare function DateFormatToJSONTyped(value?: DateFormat | null, ignoreDiscriminator?: boolean): any;

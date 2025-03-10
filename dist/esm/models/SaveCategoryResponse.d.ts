@@ -24,4 +24,5 @@ export interface SaveCategoryResponse {
 export declare function instanceOfSaveCategoryResponse(value: object): value is SaveCategoryResponse;
 export declare function SaveCategoryResponseFromJSON(json: any): SaveCategoryResponse;
 export declare function SaveCategoryResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveCategoryResponse;
-export declare function SaveCategoryResponseToJSON(value?: SaveCategoryResponse | null): any;
+export declare function SaveCategoryResponseToJSON(json: any): SaveCategoryResponse;
+export declare function SaveCategoryResponseToJSONTyped(value?: SaveCategoryResponse | null, ignoreDiscriminator?: boolean): any;

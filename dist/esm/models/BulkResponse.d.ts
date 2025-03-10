@@ -24,4 +24,5 @@ export interface BulkResponse {
 export declare function instanceOfBulkResponse(value: object): value is BulkResponse;
 export declare function BulkResponseFromJSON(json: any): BulkResponse;
 export declare function BulkResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BulkResponse;
-export declare function BulkResponseToJSON(value?: BulkResponse | null): any;
+export declare function BulkResponseToJSON(json: any): BulkResponse;
+export declare function BulkResponseToJSONTyped(value?: BulkResponse | null, ignoreDiscriminator?: boolean): any;

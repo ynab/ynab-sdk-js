@@ -31,7 +31,11 @@ export function ErrorDetailFromJSONTyped(json, ignoreDiscriminator) {
         'detail': json['detail'],
     };
 }
-export function ErrorDetailToJSON(value) {
+export function ErrorDetailToJSON(json) {
+    return ErrorDetailToJSONTyped(json, false);
+}
+export function ErrorDetailToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

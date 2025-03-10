@@ -23,4 +23,5 @@ export interface SaveMonthCategory {
 export declare function instanceOfSaveMonthCategory(value: object): value is SaveMonthCategory;
 export declare function SaveMonthCategoryFromJSON(json: any): SaveMonthCategory;
 export declare function SaveMonthCategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): SaveMonthCategory;
-export declare function SaveMonthCategoryToJSON(value?: SaveMonthCategory | null): any;
+export declare function SaveMonthCategoryToJSON(json: any): SaveMonthCategory;
+export declare function SaveMonthCategoryToJSONTyped(value?: SaveMonthCategory | null, ignoreDiscriminator?: boolean): any;

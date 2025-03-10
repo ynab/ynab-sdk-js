@@ -29,7 +29,11 @@ export function SaveCategoryResponseDataFromJSONTyped(json, ignoreDiscriminator)
         'server_knowledge': json['server_knowledge'],
     };
 }
-export function SaveCategoryResponseDataToJSON(value) {
+export function SaveCategoryResponseDataToJSON(json) {
+    return SaveCategoryResponseDataToJSONTyped(json, false);
+}
+export function SaveCategoryResponseDataToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

@@ -30,7 +30,11 @@ export function BudgetSettingsFromJSONTyped(json, ignoreDiscriminator) {
         'currency_format': CurrencyFormatFromJSON(json['currency_format']),
     };
 }
-export function BudgetSettingsToJSON(value) {
+export function BudgetSettingsToJSON(json) {
+    return BudgetSettingsToJSONTyped(json, false);
+}
+export function BudgetSettingsToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

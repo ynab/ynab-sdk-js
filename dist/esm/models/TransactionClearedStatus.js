@@ -34,3 +34,6 @@ export function TransactionClearedStatusFromJSONTyped(json, ignoreDiscriminator)
 export function TransactionClearedStatusToJSON(value) {
     return value;
 }
+export function TransactionClearedStatusToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

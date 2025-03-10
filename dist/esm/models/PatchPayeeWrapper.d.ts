@@ -24,4 +24,5 @@ export interface PatchPayeeWrapper {
 export declare function instanceOfPatchPayeeWrapper(value: object): value is PatchPayeeWrapper;
 export declare function PatchPayeeWrapperFromJSON(json: any): PatchPayeeWrapper;
 export declare function PatchPayeeWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PatchPayeeWrapper;
-export declare function PatchPayeeWrapperToJSON(value?: PatchPayeeWrapper | null): any;
+export declare function PatchPayeeWrapperToJSON(json: any): PatchPayeeWrapper;
+export declare function PatchPayeeWrapperToJSONTyped(value?: PatchPayeeWrapper | null, ignoreDiscriminator?: boolean): any;

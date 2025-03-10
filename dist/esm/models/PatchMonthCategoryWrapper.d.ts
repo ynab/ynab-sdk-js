@@ -24,4 +24,5 @@ export interface PatchMonthCategoryWrapper {
 export declare function instanceOfPatchMonthCategoryWrapper(value: object): value is PatchMonthCategoryWrapper;
 export declare function PatchMonthCategoryWrapperFromJSON(json: any): PatchMonthCategoryWrapper;
 export declare function PatchMonthCategoryWrapperFromJSONTyped(json: any, ignoreDiscriminator: boolean): PatchMonthCategoryWrapper;
-export declare function PatchMonthCategoryWrapperToJSON(value?: PatchMonthCategoryWrapper | null): any;
+export declare function PatchMonthCategoryWrapperToJSON(json: any): PatchMonthCategoryWrapper;
+export declare function PatchMonthCategoryWrapperToJSONTyped(value?: PatchMonthCategoryWrapper | null, ignoreDiscriminator?: boolean): any;

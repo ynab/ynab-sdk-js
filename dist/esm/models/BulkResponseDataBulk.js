@@ -28,7 +28,11 @@ export function BulkResponseDataBulkFromJSONTyped(json, ignoreDiscriminator) {
         'duplicate_import_ids': json['duplicate_import_ids'],
     };
 }
-export function BulkResponseDataBulkToJSON(value) {
+export function BulkResponseDataBulkToJSON(json) {
+    return BulkResponseDataBulkToJSONTyped(json, false);
+}
+export function BulkResponseDataBulkToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

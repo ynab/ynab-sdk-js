@@ -26,7 +26,11 @@ export function SavePayeeResponseFromJSONTyped(json, ignoreDiscriminator) {
         'data': SavePayeeResponseDataFromJSON(json['data']),
     };
 }
-export function SavePayeeResponseToJSON(value) {
+export function SavePayeeResponseToJSON(json) {
+    return SavePayeeResponseToJSONTyped(json, false);
+}
+export function SavePayeeResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

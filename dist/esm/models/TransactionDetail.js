@@ -20,7 +20,7 @@ export var TransactionDetailDebtTransactionTypeEnum = {
     Escrow: 'escrow',
     BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
-    Charge: 'charge',
+    Charge: 'charge'
 };
 /**
  * Check if a given object implements the TransactionDetail interface.
@@ -79,7 +79,11 @@ export function TransactionDetailFromJSONTyped(json, ignoreDiscriminator) {
         'subtransactions': (json['subtransactions'].map(SubTransactionFromJSON)),
     };
 }
-export function TransactionDetailToJSON(value) {
+export function TransactionDetailToJSON(json) {
+    return TransactionDetailToJSONTyped(json, false);
+}
+export function TransactionDetailToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

@@ -26,7 +26,11 @@ export function BudgetDetailResponseFromJSONTyped(json, ignoreDiscriminator) {
         'data': BudgetDetailResponseDataFromJSON(json['data']),
     };
 }
-export function BudgetDetailResponseToJSON(value) {
+export function BudgetDetailResponseToJSON(json) {
+    return BudgetDetailResponseToJSONTyped(json, false);
+}
+export function BudgetDetailResponseToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

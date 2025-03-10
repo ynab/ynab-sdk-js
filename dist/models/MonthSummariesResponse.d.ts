@@ -24,4 +24,5 @@ export interface MonthSummariesResponse {
 export declare function instanceOfMonthSummariesResponse(value: object): value is MonthSummariesResponse;
 export declare function MonthSummariesResponseFromJSON(json: any): MonthSummariesResponse;
 export declare function MonthSummariesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MonthSummariesResponse;
-export declare function MonthSummariesResponseToJSON(value?: MonthSummariesResponse | null): any;
+export declare function MonthSummariesResponseToJSON(json: any): MonthSummariesResponse;
+export declare function MonthSummariesResponseToJSONTyped(value?: MonthSummariesResponse | null, ignoreDiscriminator?: boolean): any;

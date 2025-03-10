@@ -34,7 +34,11 @@ export function CategoryGroupFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function CategoryGroupToJSON(value) {
+export function CategoryGroupToJSON(json) {
+    return CategoryGroupToJSONTyped(json, false);
+}
+export function CategoryGroupToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

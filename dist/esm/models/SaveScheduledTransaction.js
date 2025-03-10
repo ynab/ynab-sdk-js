@@ -37,7 +37,11 @@ export function SaveScheduledTransactionFromJSONTyped(json, ignoreDiscriminator)
         'frequency': json['frequency'] == null ? undefined : ScheduledTransactionFrequencyFromJSON(json['frequency']),
     };
 }
-export function SaveScheduledTransactionToJSON(value) {
+export function SaveScheduledTransactionToJSON(json) {
+    return SaveScheduledTransactionToJSONTyped(json, false);
+}
+export function SaveScheduledTransactionToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

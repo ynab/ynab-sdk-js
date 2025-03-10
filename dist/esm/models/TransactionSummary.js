@@ -19,7 +19,7 @@ export var TransactionSummaryDebtTransactionTypeEnum = {
     Escrow: 'escrow',
     BalanceAdjustment: 'balanceAdjustment',
     Credit: 'credit',
-    Charge: 'charge',
+    Charge: 'charge'
 };
 /**
  * Check if a given object implements the TransactionSummary interface.
@@ -70,7 +70,11 @@ export function TransactionSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'deleted': json['deleted'],
     };
 }
-export function TransactionSummaryToJSON(value) {
+export function TransactionSummaryToJSON(json) {
+    return TransactionSummaryToJSONTyped(json, false);
+}
+export function TransactionSummaryToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }

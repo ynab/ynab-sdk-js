@@ -55,7 +55,11 @@ export function BudgetDetailFromJSONTyped(json, ignoreDiscriminator) {
         'scheduled_subtransactions': json['scheduled_subtransactions'] == null ? undefined : (json['scheduled_subtransactions'].map(ScheduledSubTransactionFromJSON)),
     };
 }
-export function BudgetDetailToJSON(value) {
+export function BudgetDetailToJSON(json) {
+    return BudgetDetailToJSONTyped(json, false);
+}
+export function BudgetDetailToJSONTyped(value, ignoreDiscriminator) {
+    if (ignoreDiscriminator === void 0) { ignoreDiscriminator = false; }
     if (value == null) {
         return value;
     }
