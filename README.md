@@ -155,7 +155,7 @@ The following methods are available in this library.
 | **Scheduled Transactions** | [scheduled_transactions.getScheduledTransactions(budget_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)            | Returns all scheduled transactions                    |
 |                            | [scheduled_transactions.getScheduledTransactionById(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts) | Returns a single scheduled transaction          |
 |                            | [scheduled_transactions.createScheduledTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Creates a single scheduled transaction          |
-|                            | [scheduled_transactions.updateScheduledTransaction(budget_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Updates a single scheduled transaction          |
+|                            | [scheduled_transactions.updateScheduledTransaction(budget_id, scheduled_transaction_id, data)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Updates a single scheduled transaction          |
 |                            | [scheduled_transactions.deleteScheduledTransaction(budget_id, scheduled_transaction_id)](https://github.com/ynab/ynab-sdk-js/blob/main/dist/apis/ScheduledTransactionsApi.d.ts)    | Deletes a single scheduled transaction          |
 
 ### Utilities
