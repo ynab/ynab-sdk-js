@@ -1580,6 +1580,48 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
+  /budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}:
+    get:
+      tags:
+        - Scheduled Transactions
+      summary: Single scheduled transaction
+      description: Returns a single scheduled transaction
+      operationId: getScheduledTransactionById
+      parameters:
+        - name: budget_id
+          in: path
+          description: >-
+            The id of the budget. "last-used" can be used to specify the last
+            used budget and "default" can be used if default budget selection is
+            enabled (see: https://api.ynab.com/#oauth-default-budget).
+          required: true
+          schema:
+            type: string
+        - name: scheduled_transaction_id
+          in: path
+          description: The id of the scheduled transaction
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The requested Scheduled Transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledTransactionResponse"
+        "404":
+          description: The scheduled transaction was not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        default:
+          description: An error occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
     put:
       tags:
         - Scheduled Transactions
@@ -1655,48 +1697,6 @@ paths:
                 $ref: "#/components/schemas/ScheduledTransactionResponse"
         "404":
           description: The scheduled transaction was not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}:
-    get:
-      tags:
-        - Scheduled Transactions
-      summary: Single scheduled transaction
-      description: Returns a single scheduled transaction
-      operationId: getScheduledTransactionById
-      parameters:
-        - name: budget_id
-          in: path
-          description: >-
-            The id of the budget. "last-used" can be used to specify the last
-            used budget and "default" can be used if default budget selection is
-            enabled (see: https://api.ynab.com/#oauth-default-budget).
-          required: true
-          schema:
-            type: string
-        - name: scheduled_transaction_id
-          in: path
-          description: The id of the scheduled transaction
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: The requested Scheduled Transaction
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ScheduledTransactionResponse"
-        "404":
-          description: The scheduled transaction was not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        default:
-          description: An error occurred
           content:
             application/json:
               schema:
