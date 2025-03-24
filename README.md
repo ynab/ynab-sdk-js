@@ -59,7 +59,7 @@ Using the "latest" tag will result in a 302 redirect to the latest version tag s
 ## Usage
 
 To use this client, you must
-[obtain an access token](https://api.ynab.com/#authentication-overview) from
+[obtain an access token](https://api.ynab.com/#authentication) from
 the [Account Settings](https://app.ynab.com/settings) area of the YNAB web
 application.
 
