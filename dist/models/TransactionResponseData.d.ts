@@ -17,6 +17,12 @@ export interface TransactionResponseData {
      * @memberof TransactionResponseData
      */
     transaction: TransactionDetail;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof TransactionResponseData
+     */
+    server_knowledge: number;
 }
 /**
  * Check if a given object implements the TransactionResponseData interface.

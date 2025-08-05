@@ -28,6 +28,12 @@ export interface TransactionResponseData {
      * @memberof TransactionResponseData
      */
     transaction: TransactionDetail;
+    /**
+     * The knowledge of the server
+     * @type {number}
+     * @memberof TransactionResponseData
+     */
+    server_knowledge: number;
 }
 
 /**
@@ -35,6 +41,7 @@ export interface TransactionResponseData {
  */
 export function instanceOfTransactionResponseData(value: object): value is TransactionResponseData {
     if (!('transaction' in value) || value['transaction'] === undefined) return false;
+    if (!('server_knowledge' in value) || value['server_knowledge'] === undefined) return false;
     return true;
 }
 
@@ -49,6 +56,7 @@ export function TransactionResponseDataFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'transaction': TransactionDetailFromJSON(json['transaction']),
+        'server_knowledge': json['server_knowledge'],
     };
 }
 
@@ -64,6 +72,7 @@ export function TransactionResponseDataToJSONTyped(value?: TransactionResponseDa
     return {
         
         'transaction': TransactionDetailToJSON(value['transaction']),
+        'server_knowledge': value['server_knowledge'],
     };
 }
 

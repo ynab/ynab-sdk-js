@@ -19,7 +19,8 @@ exports.TransactionFlagColor = {
     Yellow: 'yellow',
     Green: 'green',
     Blue: 'blue',
-    Purple: 'purple'
+    Purple: 'purple',
+    Empty: ''
 };
 function instanceOfTransactionFlagColor(value) {
     for (const key in exports.TransactionFlagColor) {

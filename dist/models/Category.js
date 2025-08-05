@@ -74,6 +74,7 @@ function CategoryFromJSONTyped(json, ignoreDiscriminator) {
         'goal_under_funded': json['goal_under_funded'] == null ? undefined : json['goal_under_funded'],
         'goal_overall_funded': json['goal_overall_funded'] == null ? undefined : json['goal_overall_funded'],
         'goal_overall_left': json['goal_overall_left'] == null ? undefined : json['goal_overall_left'],
+        'goal_snoozed_at': json['goal_snoozed_at'] == null ? undefined : json['goal_snoozed_at'],
         'deleted': json['deleted'],
     };
 }
@@ -110,6 +111,7 @@ function CategoryToJSONTyped(value, ignoreDiscriminator = false) {
         'goal_under_funded': value['goal_under_funded'],
         'goal_overall_funded': value['goal_overall_funded'],
         'goal_overall_left': value['goal_overall_left'],
+        'goal_snoozed_at': value['goal_snoozed_at'],
         'deleted': value['deleted'],
     };
 }

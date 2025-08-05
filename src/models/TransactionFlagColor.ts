@@ -18,7 +18,8 @@ export const TransactionFlagColor = {
     Yellow: 'yellow',
     Green: 'green',
     Blue: 'blue',
-    Purple: 'purple'
+    Purple: 'purple',
+    Empty: ''
 } as const;
 export type TransactionFlagColor = typeof TransactionFlagColor[keyof typeof TransactionFlagColor];
 

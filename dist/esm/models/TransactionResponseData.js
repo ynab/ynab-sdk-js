@@ -13,6 +13,8 @@ import { TransactionDetailFromJSON, TransactionDetailToJSON, } from './Transacti
 export function instanceOfTransactionResponseData(value) {
     if (!('transaction' in value) || value['transaction'] === undefined)
         return false;
+    if (!('server_knowledge' in value) || value['server_knowledge'] === undefined)
+        return false;
     return true;
 }
 export function TransactionResponseDataFromJSON(json) {
@@ -24,6 +26,7 @@ export function TransactionResponseDataFromJSONTyped(json, ignoreDiscriminator) 
     }
     return {
         'transaction': TransactionDetailFromJSON(json['transaction']),
+        'server_knowledge': json['server_knowledge'],
     };
 }
 export function TransactionResponseDataToJSON(json) {
@@ -36,5 +39,6 @@ export function TransactionResponseDataToJSONTyped(value, ignoreDiscriminator) {
     }
     return {
         'transaction': TransactionDetailToJSON(value['transaction']),
+        'server_knowledge': value['server_knowledge'],
     };
 }

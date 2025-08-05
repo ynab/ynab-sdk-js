@@ -16,6 +16,8 @@ const TransactionDetail_1 = require("./TransactionDetail");
 function instanceOfTransactionResponseData(value) {
     if (!('transaction' in value) || value['transaction'] === undefined)
         return false;
+    if (!('server_knowledge' in value) || value['server_knowledge'] === undefined)
+        return false;
     return true;
 }
 exports.instanceOfTransactionResponseData = instanceOfTransactionResponseData;
@@ -29,6 +31,7 @@ function TransactionResponseDataFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'transaction': (0, TransactionDetail_1.TransactionDetailFromJSON)(json['transaction']),
+        'server_knowledge': json['server_knowledge'],
     };
 }
 exports.TransactionResponseDataFromJSONTyped = TransactionResponseDataFromJSONTyped;
@@ -42,6 +45,7 @@ function TransactionResponseDataToJSONTyped(value, ignoreDiscriminator = false) 
     }
     return {
         'transaction': (0, TransactionDetail_1.TransactionDetailToJSON)(value['transaction']),
+        'server_knowledge': value['server_knowledge'],
     };
 }
 exports.TransactionResponseDataToJSONTyped = TransactionResponseDataToJSONTyped;

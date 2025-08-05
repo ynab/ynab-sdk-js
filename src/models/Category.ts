@@ -153,6 +153,12 @@ export interface Category {
      */
     goal_overall_left?: number | null;
     /**
+     * The date/time the goal was snoozed.  If the goal is not snoozed, this will be null.
+     * @type {string}
+     * @memberof Category
+     */
+    goal_snoozed_at?: string | null;
+    /**
      * Whether or not the category has been deleted.  Deleted categories will only be included in delta requests.
      * @type {boolean}
      * @memberof Category
@@ -222,6 +228,7 @@ export function CategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'goal_under_funded': json['goal_under_funded'] == null ? undefined : json['goal_under_funded'],
         'goal_overall_funded': json['goal_overall_funded'] == null ? undefined : json['goal_overall_funded'],
         'goal_overall_left': json['goal_overall_left'] == null ? undefined : json['goal_overall_left'],
+        'goal_snoozed_at': json['goal_snoozed_at'] == null ? undefined : json['goal_snoozed_at'],
         'deleted': json['deleted'],
     };
 }
@@ -260,6 +267,7 @@ export function CategoryToJSONTyped(value?: Category | null, ignoreDiscriminator
         'goal_under_funded': value['goal_under_funded'],
         'goal_overall_funded': value['goal_overall_funded'],
         'goal_overall_left': value['goal_overall_left'],
+        'goal_snoozed_at': value['goal_snoozed_at'],
         'deleted': value['deleted'],
     };
 }
