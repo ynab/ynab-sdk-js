@@ -1,6 +1,6 @@
 {
   "name": "ynab",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "description": "Official JavaScript client for the YNAB API. API documentation available at https://api.ynab.com. Generated from server specification version 1.76.0",
   "author": "YNAB",
   "email": "api@ynab.com",
