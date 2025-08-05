@@ -149,6 +149,12 @@ export interface Category {
      */
     goal_overall_left?: number | null;
     /**
+     * The date/time the goal was snoozed.  If the goal is not snoozed, this will be null.
+     * @type {string}
+     * @memberof Category
+     */
+    goal_snoozed_at?: string | null;
+    /**
      * Whether or not the category has been deleted.  Deleted categories will only be included in delta requests.
      * @type {boolean}
      * @memberof Category

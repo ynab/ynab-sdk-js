@@ -16,7 +16,8 @@ export var TransactionFlagColor = {
     Yellow: 'yellow',
     Green: 'green',
     Blue: 'blue',
-    Purple: 'purple'
+    Purple: 'purple',
+    Empty: ''
 };
 export function instanceOfTransactionFlagColor(value) {
     for (var key in TransactionFlagColor) {

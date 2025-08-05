@@ -6,7 +6,7 @@ info:
     upon HTTPS for transport. We respond with meaningful HTTP response codes and
     if an error occurs, we include error details in the response body.  API
     Documentation is at https://api.ynab.com
-  version: 1.74.0
+  version: 1.76.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -2304,6 +2304,13 @@ components:
             current goal period.
           format: int64
           nullable: true
+        goal_snoozed_at:
+          type: string
+          description: >-
+            The date/time the goal was snoozed.  If the goal is not snoozed, this
+            will be null.
+          format: date-time
+          nullable: true
         deleted:
           type: boolean
           description: >-
@@ -2715,10 +2722,15 @@ components:
         data:
           required:
             - transaction
+            - server_knowledge
           type: object
           properties:
             transaction:
               $ref: "#/components/schemas/TransactionDetail"
+            server_knowledge:
+              type: integer
+              description: The knowledge of the server
+              format: int64
     TransactionSummary:
       required:
         - account_id
@@ -3380,6 +3392,7 @@ components:
         - green
         - blue
         - purple
+        - ""
         - null
       nullable: true
     TransactionFlagName:

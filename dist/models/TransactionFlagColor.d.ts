@@ -15,6 +15,7 @@ export declare const TransactionFlagColor: {
     readonly Green: "green";
     readonly Blue: "blue";
     readonly Purple: "purple";
+    readonly Empty: "";
 };
 export type TransactionFlagColor = typeof TransactionFlagColor[keyof typeof TransactionFlagColor];
 export declare function instanceOfTransactionFlagColor(value: any): boolean;

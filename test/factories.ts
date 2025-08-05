@@ -270,6 +270,7 @@ export const transactionResponseFactory =
   Factory.makeFactory<models.TransactionResponse>({
     data: Factory.makeFactory({
       transaction: transactionFactory.build(),
+      server_knowledge: Factory.each((i) => i)
     }),
   });
 
