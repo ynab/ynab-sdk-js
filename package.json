@@ -30,7 +30,7 @@
   "scripts": {
     "generate": "./scripts/generate.mjs",
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production",
-    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'"
+    "test": "NODE_OPTIONS=--no-experimental-strip-types TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
