@@ -179,8 +179,8 @@ export var DefaultConfig = new Configuration();
  */
 var BaseAPI = /** @class */ (function () {
     function BaseAPI(configuration) {
-        var _this = this;
         if (configuration === void 0) { configuration = DefaultConfig; }
+        var _this = this;
         this.configuration = configuration;
         this.fetchApi = function (url, init) { return __awaiter(_this, void 0, void 0, function () {
             var fetchParams, _i, _a, middleware, response, e_1, _b, _c, middleware, _d, _e, middleware;

@@ -29,8 +29,7 @@
   },
   "scripts": {
     "generate": "./scripts/generate.mjs",
-    "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production && npm run build_examples",
-    "build_examples": "tsc -b examples/",
+    "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production",
     "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'"
   },
   "devDependencies": {
