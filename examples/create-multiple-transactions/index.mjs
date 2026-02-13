@@ -1,5 +1,5 @@
-import * as ynab from "../../src/index";
-import { TransactionClearedStatus } from "../../src/index";
+import * as ynab from "ynab";
+import { TransactionClearedStatus } from "ynab";
 const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
 const ynabAPI = new ynab.API(accessToken);
 const budgetId = "378f111e-4b27-4ee5-a9fd-0ba03c1de0f0";

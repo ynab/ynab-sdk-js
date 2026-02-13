@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "ESNext",
-    "noImplicitAny": true
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "paths": {
+      "ynab": ["../src/index.ts"]
+    }
   },
   "include": ["./**/*.ts", "./**/*.mts"],
   "references": [{ "path": "../src" }]

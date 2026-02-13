@@ -1,5 +1,5 @@
-import * as ynab from "../../src/index";
-import { TransactionFlagColor } from "../../src/index";
+import * as ynab from "ynab";
+import { TransactionFlagColor } from "ynab";
 
 const accessToken = "ccbb2db8-7c1b-not-real-b755-784876927790";
 const ynabAPI = new ynab.API(accessToken);
