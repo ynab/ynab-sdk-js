@@ -23,13 +23,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountsApi = void 0;
 const runtime = __importStar(require("../runtime"));
@@ -40,7 +50,7 @@ const index_1 = require("../models/index");
 class AccountsApi extends runtime.BaseAPI {
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
     async createAccountRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -71,7 +81,7 @@ class AccountsApi extends runtime.BaseAPI {
     }
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
     async createAccount(budgetId, data, initOverrides) {
         const response = await this.createAccountRaw({ budgetId: budgetId, data: data }, initOverrides);
@@ -79,7 +89,7 @@ class AccountsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
     async getAccountByIdRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -108,7 +118,7 @@ class AccountsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
     async getAccountById(budgetId, accountId, initOverrides) {
         const response = await this.getAccountByIdRaw({ budgetId: budgetId, accountId: accountId }, initOverrides);
@@ -116,7 +126,7 @@ class AccountsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
     async getAccountsRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -145,7 +155,7 @@ class AccountsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
     async getAccounts(budgetId, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getAccountsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);

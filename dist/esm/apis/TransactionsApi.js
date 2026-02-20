@@ -31,8 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -130,7 +130,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
     TransactionsApi.prototype.deleteTransactionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -171,7 +171,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
     TransactionsApi.prototype.deleteTransaction = function (budgetId, transactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -189,7 +189,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
     TransactionsApi.prototype.getTransactionByIdRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -230,7 +230,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
     TransactionsApi.prototype.getTransactionById = function (budgetId, transactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -247,8 +247,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
     TransactionsApi.prototype.getTransactionsRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -294,8 +294,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
     TransactionsApi.prototype.getTransactions = function (budgetId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -313,7 +313,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
     TransactionsApi.prototype.getTransactionsByAccountRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -363,7 +363,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
     TransactionsApi.prototype.getTransactionsByAccount = function (budgetId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -380,8 +380,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
     TransactionsApi.prototype.getTransactionsByCategoryRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -430,8 +430,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
     TransactionsApi.prototype.getTransactionsByCategory = function (budgetId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -448,8 +448,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
     TransactionsApi.prototype.getTransactionsByMonthRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -492,14 +492,14 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }, initOverrides)];
                     case 3:
                         response = _a.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return HybridTransactionsResponseFromJSON(jsonValue); })];
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return TransactionsResponseFromJSON(jsonValue); })];
                 }
             });
         });
     };
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
     TransactionsApi.prototype.getTransactionsByMonth = function (budgetId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -516,8 +516,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
     TransactionsApi.prototype.getTransactionsByPayeeRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -566,8 +566,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
     TransactionsApi.prototype.getTransactionsByPayee = function (budgetId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -584,7 +584,7 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
     TransactionsApi.prototype.importTransactionsRaw = function (requestParameters, initOverrides) {
@@ -622,7 +622,7 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
     TransactionsApi.prototype.importTransactions = function (budgetId, initOverrides) {
@@ -641,7 +641,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
     TransactionsApi.prototype.updateTransactionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -687,7 +687,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
     TransactionsApi.prototype.updateTransaction = function (budgetId, transactionId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {

@@ -31,7 +31,7 @@ export interface ScheduledTransactionSummary {
     date_next: string;
     /**
      *
-     * @type {string}
+     * @type {ScheduledTransactionSummaryFrequencyEnum}
      * @memberof ScheduledTransactionSummary
      */
     frequency: ScheduledTransactionSummaryFrequencyEnum;

@@ -6,11 +6,11 @@
  */
 import * as runtime from '../runtime';
 import type { MonthDetailResponse, MonthSummariesResponse } from '../models/index';
-export interface GetBudgetMonthRequest {
+export interface GetPlanMonthRequest {
     budgetId: string;
     month: string;
 }
-export interface GetBudgetMonthsRequest {
+export interface GetPlanMonthsRequest {
     budgetId: string;
     lastKnowledgeOfServer?: number;
 }
@@ -19,23 +19,23 @@ export interface GetBudgetMonthsRequest {
  */
 export declare class MonthsApi extends runtime.BaseAPI {
     /**
-     * Returns a single budget month
-     * Single budget month
+     * Returns a single plan month
+     * Get a plan month
      */
-    getBudgetMonthRaw(requestParameters: GetBudgetMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MonthDetailResponse>>;
+    getPlanMonthRaw(requestParameters: GetPlanMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MonthDetailResponse>>;
     /**
-     * Returns a single budget month
-     * Single budget month
+     * Returns a single plan month
+     * Get a plan month
      */
-    getBudgetMonth(budgetId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse>;
+    getPlanMonth(budgetId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse>;
     /**
-     * Returns all budget months
-     * List budget months
+     * Returns all plan months
+     * Get all plan months
      */
-    getBudgetMonthsRaw(requestParameters: GetBudgetMonthsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MonthSummariesResponse>>;
+    getPlanMonthsRaw(requestParameters: GetPlanMonthsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MonthSummariesResponse>>;
     /**
-     * Returns all budget months
-     * List budget months
+     * Returns all plan months
+     * Get all plan months
      */
-    getBudgetMonths(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse>;
+    getPlanMonths(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse>;
 }

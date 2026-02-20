@@ -31,8 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -69,7 +69,7 @@ var AccountsApi = /** @class */ (function (_super) {
     }
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
     AccountsApi.prototype.createAccountRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -112,7 +112,7 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
     AccountsApi.prototype.createAccount = function (budgetId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -130,7 +130,7 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
     AccountsApi.prototype.getAccountByIdRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -171,7 +171,7 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
     AccountsApi.prototype.getAccountById = function (budgetId, accountId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -189,7 +189,7 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
     AccountsApi.prototype.getAccountsRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -230,7 +230,7 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
     AccountsApi.prototype.getAccounts = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {

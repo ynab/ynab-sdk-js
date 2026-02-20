@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionSummaryDebtTransactionTypeToJSON = exports.TransactionSummaryDebtTransactionTypeFromJSONTyped = exports.TransactionSummaryDebtTransactionTypeFromJSON = exports.instanceOfTransactionSummaryDebtTransactionType = void 0;
+exports.instanceOfTransactionSummaryDebtTransactionType = instanceOfTransactionSummaryDebtTransactionType;
+exports.TransactionSummaryDebtTransactionTypeFromJSON = TransactionSummaryDebtTransactionTypeFromJSON;
+exports.TransactionSummaryDebtTransactionTypeFromJSONTyped = TransactionSummaryDebtTransactionTypeFromJSONTyped;
+exports.TransactionSummaryDebtTransactionTypeToJSON = TransactionSummaryDebtTransactionTypeToJSON;
 /**
  * Check if a given object implements the TransactionSummaryDebtTransactionType interface.
  */
@@ -21,16 +24,12 @@ function instanceOfTransactionSummaryDebtTransactionType(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfTransactionSummaryDebtTransactionType = instanceOfTransactionSummaryDebtTransactionType;
 function TransactionSummaryDebtTransactionTypeFromJSON(json) {
     return TransactionSummaryDebtTransactionTypeFromJSONTyped(json, false);
 }
-exports.TransactionSummaryDebtTransactionTypeFromJSON = TransactionSummaryDebtTransactionTypeFromJSON;
 function TransactionSummaryDebtTransactionTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.TransactionSummaryDebtTransactionTypeFromJSONTyped = TransactionSummaryDebtTransactionTypeFromJSONTyped;
 function TransactionSummaryDebtTransactionTypeToJSON(value) {
     return value;
 }
-exports.TransactionSummaryDebtTransactionTypeToJSON = TransactionSummaryDebtTransactionTypeToJSON;

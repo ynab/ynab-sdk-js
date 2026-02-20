@@ -39,15 +39,15 @@ export class api {
     return this._user;
   }
 
-  protected _budgets: apis.BudgetsApi;
+  protected _plans: apis.PlansApi;
   /**
-   * /budgets endpoints interface
+   * /plans endpoints interface
    */
-  public get budgets(): apis.BudgetsApi {
-    if (!this._budgets) {
-      this._budgets = new apis.BudgetsApi(this._configuration);
+  public get plans(): apis.PlansApi {
+    if (!this._plans) {
+      this._plans = new apis.PlansApi(this._configuration);
     }
-    return this._budgets;
+    return this._plans;
   }
 
   protected _accounts: apis.AccountsApi;

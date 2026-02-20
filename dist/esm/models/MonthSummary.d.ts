@@ -29,7 +29,7 @@ export interface MonthSummary {
      */
     income: number;
     /**
-     * The total amount budgeted in the month
+     * The total amount assigned (budgeted) in the month
      * @type {number}
      * @memberof MonthSummary
      */

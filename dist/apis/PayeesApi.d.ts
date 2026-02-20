@@ -25,22 +25,22 @@ export interface UpdatePayeeRequest {
 export declare class PayeesApi extends runtime.BaseAPI {
     /**
      * Returns a single payee
-     * Single payee
+     * Get a payee
      */
     getPayeeByIdRaw(requestParameters: GetPayeeByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeResponse>>;
     /**
      * Returns a single payee
-     * Single payee
+     * Get a payee
      */
     getPayeeById(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeResponse>;
     /**
      * Returns all payees
-     * List payees
+     * Get all payees
      */
     getPayeesRaw(requestParameters: GetPayeesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeesResponse>>;
     /**
      * Returns all payees
-     * List payees
+     * Get all payees
      */
     getPayees(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeesResponse>;
     /**

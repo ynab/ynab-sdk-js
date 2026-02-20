@@ -31,8 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -58,7 +58,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import * as runtime from '../runtime';
-import { CategoriesResponseFromJSON, CategoryResponseFromJSON, PatchCategoryWrapperToJSON, PatchMonthCategoryWrapperToJSON, SaveCategoryResponseFromJSON, } from '../models/index';
+import { CategoriesResponseFromJSON, CategoryResponseFromJSON, PatchCategoryGroupWrapperToJSON, PatchCategoryWrapperToJSON, PatchMonthCategoryWrapperToJSON, PostCategoryGroupWrapperToJSON, PostCategoryWrapperToJSON, SaveCategoryGroupResponseFromJSON, SaveCategoryResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -68,8 +68,130 @@ var CategoriesApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
-     * List categories
+     * Creates a new category
+     * Create a category
+     */
+    CategoriesApi.prototype.createCategoryRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, token, tokenString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createCategory.');
+                        }
+                        if (requestParameters.data === null || requestParameters.data === undefined) {
+                            throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createCategory.');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Accept'] = 'application/json';
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.accessToken)) return [3 /*break*/, 2];
+                        token = this.configuration.accessToken;
+                        return [4 /*yield*/, token("bearer", [])];
+                    case 1:
+                        tokenString = _a.sent();
+                        if (tokenString) {
+                            headerParameters["Authorization"] = "Bearer ".concat(tokenString);
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/budgets/{budget_id}/categories".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            method: 'POST',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: PostCategoryWrapperToJSON(requestParameters.data),
+                        }, initOverrides)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return SaveCategoryResponseFromJSON(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Creates a new category
+     * Create a category
+     */
+    CategoriesApi.prototype.createCategory = function (budgetId, data, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.createCategoryRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Creates a new category group
+     * Create a category group
+     */
+    CategoriesApi.prototype.createCategoryGroupRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, token, tokenString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createCategoryGroup.');
+                        }
+                        if (requestParameters.data === null || requestParameters.data === undefined) {
+                            throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createCategoryGroup.');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Accept'] = 'application/json';
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.accessToken)) return [3 /*break*/, 2];
+                        token = this.configuration.accessToken;
+                        return [4 /*yield*/, token("bearer", [])];
+                    case 1:
+                        tokenString = _a.sent();
+                        if (tokenString) {
+                            headerParameters["Authorization"] = "Bearer ".concat(tokenString);
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/budgets/{budget_id}/category_groups".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            method: 'POST',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: PostCategoryGroupWrapperToJSON(requestParameters.data),
+                        }, initOverrides)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return SaveCategoryGroupResponseFromJSON(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Creates a new category group
+     * Create a category group
+     */
+    CategoriesApi.prototype.createCategoryGroup = function (budgetId, data, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.createCategoryGroupRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Returns all categories grouped by category group.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
+     * Get all categories
      */
     CategoriesApi.prototype.getCategoriesRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -109,8 +231,8 @@ var CategoriesApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all categories grouped by category group.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
-     * List categories
+     * Returns all categories grouped by category group.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
+     * Get all categories
      */
     CategoriesApi.prototype.getCategories = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -127,8 +249,8 @@ var CategoriesApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
-     * Single category
+     * Returns a single category.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
+     * Get a category
      */
     CategoriesApi.prototype.getCategoryByIdRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -168,8 +290,8 @@ var CategoriesApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns a single category.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
-     * Single category
+     * Returns a single category.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
+     * Get a category
      */
     CategoriesApi.prototype.getCategoryById = function (budgetId, categoryId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -186,8 +308,8 @@ var CategoriesApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
-     * Single category for a specific budget month
+     * Returns a single category for a specific plan month.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
+     * Get a category for a specific plan month
      */
     CategoriesApi.prototype.getMonthCategoryByIdRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -230,8 +352,8 @@ var CategoriesApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns a single category for a specific budget month.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
-     * Single category for a specific budget month
+     * Returns a single category for a specific plan month.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
+     * Get a category for a specific plan month
      */
     CategoriesApi.prototype.getMonthCategoryById = function (budgetId, month, categoryId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -312,7 +434,71 @@ var CategoriesApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Update a category for a specific month.  Only `budgeted` amount can be updated.
+     * Update a category group
+     * Update a category group
+     */
+    CategoriesApi.prototype.updateCategoryGroupRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, token, tokenString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateCategoryGroup.');
+                        }
+                        if (requestParameters.categoryGroupId === null || requestParameters.categoryGroupId === undefined) {
+                            throw new runtime.RequiredError('categoryGroupId', 'Required parameter requestParameters.categoryGroupId was null or undefined when calling updateCategoryGroup.');
+                        }
+                        if (requestParameters.data === null || requestParameters.data === undefined) {
+                            throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling updateCategoryGroup.');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Accept'] = 'application/json';
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.accessToken)) return [3 /*break*/, 2];
+                        token = this.configuration.accessToken;
+                        return [4 /*yield*/, token("bearer", [])];
+                    case 1:
+                        tokenString = _a.sent();
+                        if (tokenString) {
+                            headerParameters["Authorization"] = "Bearer ".concat(tokenString);
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/budgets/{budget_id}/category_groups/{category_group_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("category_group_id", "}"), encodeURIComponent(String(requestParameters.categoryGroupId))),
+                            method: 'PATCH',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: PatchCategoryGroupWrapperToJSON(requestParameters.data),
+                        }, initOverrides)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return SaveCategoryGroupResponseFromJSON(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Update a category group
+     * Update a category group
+     */
+    CategoriesApi.prototype.updateCategoryGroup = function (budgetId, categoryGroupId, data, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.updateCategoryGroupRaw({ budgetId: budgetId, categoryGroupId: categoryGroupId, data: data }, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Update a category for a specific month.  Only `budgeted` (assigned) amount can be updated.
      * Update a category for a specific month
      */
     CategoriesApi.prototype.updateMonthCategoryRaw = function (requestParameters, initOverrides) {
@@ -361,7 +547,7 @@ var CategoriesApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Update a category for a specific month.  Only `budgeted` amount can be updated.
+     * Update a category for a specific month.  Only `budgeted` (assigned) amount can be updated.
      * Update a category for a specific month
      */
     CategoriesApi.prototype.updateMonthCategory = function (budgetId, month, categoryId, data, initOverrides) {

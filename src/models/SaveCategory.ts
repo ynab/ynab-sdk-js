@@ -33,11 +33,17 @@ export interface SaveCategory {
      */
     category_group_id?: string;
     /**
-     * The goal target amount in milliunits format.  This amount can only be changed if the category already has a configured goal (goal_type != null).
+     * The goal target amount in milliunits format.  If value is specified and goal has not already been configured for category, a monthly 'Needed for Spending' goal will be created for the category with this target amount.
      * @type {number}
      * @memberof SaveCategory
      */
     goal_target?: number | null;
+    /**
+     * The goal target date in ISO format (e.g. 2016-12-01).
+     * @type {string}
+     * @memberof SaveCategory
+     */
+    goal_target_date?: string | null;
 }
 
 /**
@@ -61,6 +67,7 @@ export function SaveCategoryFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'note': json['note'] == null ? undefined : json['note'],
         'category_group_id': json['category_group_id'] == null ? undefined : json['category_group_id'],
         'goal_target': json['goal_target'] == null ? undefined : json['goal_target'],
+        'goal_target_date': json['goal_target_date'] == null ? undefined : json['goal_target_date'],
     };
 }
 
@@ -79,6 +86,7 @@ export function SaveCategoryToJSONTyped(value?: SaveCategory | null, ignoreDiscr
         'note': value['note'],
         'category_group_id': value['category_group_id'],
         'goal_target': value['goal_target'],
+        'goal_target_date': value['goal_target_date'],
     };
 }
 

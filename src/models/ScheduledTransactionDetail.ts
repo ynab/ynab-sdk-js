@@ -49,7 +49,7 @@ export interface ScheduledTransactionDetail {
     date_next: string;
     /**
      * 
-     * @type {string}
+     * @type {ScheduledTransactionDetailFrequencyEnum}
      * @memberof ScheduledTransactionDetail
      */
     frequency: ScheduledTransactionDetailFrequencyEnum;
@@ -64,7 +64,7 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    memo?: string | null;
+    memo?: string;
     /**
      * 
      * @type {TransactionFlagColor}
@@ -76,7 +76,7 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    flag_name?: string | null;
+    flag_name?: string;
     /**
      * 
      * @type {string}
@@ -88,19 +88,19 @@ export interface ScheduledTransactionDetail {
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionDetail
      */
-    transfer_account_id?: string | null;
+    transfer_account_id?: string;
     /**
      * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
      * @type {boolean}

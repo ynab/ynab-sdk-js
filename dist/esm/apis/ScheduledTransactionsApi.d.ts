@@ -33,52 +33,52 @@ export interface UpdateScheduledTransactionRequest {
 export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
     /**
      * Creates a single scheduled transaction (a transaction with a future date).
-     * Create a single scheduled transaction
+     * Create a scheduled transaction
      */
     createScheduledTransactionRaw(requestParameters: CreateScheduledTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>>;
     /**
      * Creates a single scheduled transaction (a transaction with a future date).
-     * Create a single scheduled transaction
+     * Create a scheduled transaction
      */
     createScheduledTransaction(budgetId: string, data: PostScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
     /**
      * Deletes a scheduled transaction
-     * Deletes an existing scheduled transaction
+     * Delete a scheduled transaction
      */
     deleteScheduledTransactionRaw(requestParameters: DeleteScheduledTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>>;
     /**
      * Deletes a scheduled transaction
-     * Deletes an existing scheduled transaction
+     * Delete a scheduled transaction
      */
     deleteScheduledTransaction(budgetId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
     /**
      * Returns a single scheduled transaction
-     * Single scheduled transaction
+     * Get a scheduled transaction
      */
     getScheduledTransactionByIdRaw(requestParameters: GetScheduledTransactionByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>>;
     /**
      * Returns a single scheduled transaction
-     * Single scheduled transaction
+     * Get a scheduled transaction
      */
     getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
     /**
      * Returns all scheduled transactions
-     * List scheduled transactions
+     * Get all scheduled transactions
      */
     getScheduledTransactionsRaw(requestParameters: GetScheduledTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionsResponse>>;
     /**
      * Returns all scheduled transactions
-     * List scheduled transactions
+     * Get all scheduled transactions
      */
     getScheduledTransactions(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse>;
     /**
      * Updates a single scheduled transaction
-     * Updates an existing scheduled transaction
+     * Update a scheduled transaction
      */
     updateScheduledTransactionRaw(requestParameters: UpdateScheduledTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ScheduledTransactionResponse>>;
     /**
      * Updates a single scheduled transaction
-     * Updates an existing scheduled transaction
+     * Update a scheduled transaction
      */
     updateScheduledTransaction(budgetId: string, scheduledTransactionId: string, putScheduledTransactionWrapper: PutScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
 }

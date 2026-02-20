@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BudgetDetailAllOfToJSON = exports.BudgetDetailAllOfFromJSONTyped = exports.BudgetDetailAllOfFromJSON = exports.instanceOfBudgetDetailAllOf = void 0;
+exports.instanceOfBudgetDetailAllOf = instanceOfBudgetDetailAllOf;
+exports.BudgetDetailAllOfFromJSON = BudgetDetailAllOfFromJSON;
+exports.BudgetDetailAllOfFromJSONTyped = BudgetDetailAllOfFromJSONTyped;
+exports.BudgetDetailAllOfToJSON = BudgetDetailAllOfToJSON;
 const runtime_1 = require("../runtime");
 const Account_1 = require("./Account");
 const Category_1 = require("./Category");
@@ -32,11 +35,9 @@ function instanceOfBudgetDetailAllOf(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfBudgetDetailAllOf = instanceOfBudgetDetailAllOf;
 function BudgetDetailAllOfFromJSON(json) {
     return BudgetDetailAllOfFromJSONTyped(json, false);
 }
-exports.BudgetDetailAllOfFromJSON = BudgetDetailAllOfFromJSON;
 function BudgetDetailAllOfFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -54,7 +55,6 @@ function BudgetDetailAllOfFromJSONTyped(json, ignoreDiscriminator) {
         'scheduled_subtransactions': !(0, runtime_1.exists)(json, 'scheduled_subtransactions') ? undefined : (json['scheduled_subtransactions'].map(ScheduledSubTransaction_1.ScheduledSubTransactionFromJSON)),
     };
 }
-exports.BudgetDetailAllOfFromJSONTyped = BudgetDetailAllOfFromJSONTyped;
 function BudgetDetailAllOfToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -75,4 +75,3 @@ function BudgetDetailAllOfToJSON(value) {
         'scheduled_subtransactions': value.scheduled_subtransactions === undefined ? undefined : (value.scheduled_subtransactions.map(ScheduledSubTransaction_1.ScheduledSubTransactionToJSON)),
     };
 }
-exports.BudgetDetailAllOfToJSON = BudgetDetailAllOfToJSON;

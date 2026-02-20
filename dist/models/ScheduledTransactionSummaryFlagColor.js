@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ScheduledTransactionSummaryFlagColorToJSON = exports.ScheduledTransactionSummaryFlagColorFromJSONTyped = exports.ScheduledTransactionSummaryFlagColorFromJSON = exports.instanceOfScheduledTransactionSummaryFlagColor = void 0;
+exports.instanceOfScheduledTransactionSummaryFlagColor = instanceOfScheduledTransactionSummaryFlagColor;
+exports.ScheduledTransactionSummaryFlagColorFromJSON = ScheduledTransactionSummaryFlagColorFromJSON;
+exports.ScheduledTransactionSummaryFlagColorFromJSONTyped = ScheduledTransactionSummaryFlagColorFromJSONTyped;
+exports.ScheduledTransactionSummaryFlagColorToJSON = ScheduledTransactionSummaryFlagColorToJSON;
 /**
  * Check if a given object implements the ScheduledTransactionSummaryFlagColor interface.
  */
@@ -21,16 +24,12 @@ function instanceOfScheduledTransactionSummaryFlagColor(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfScheduledTransactionSummaryFlagColor = instanceOfScheduledTransactionSummaryFlagColor;
 function ScheduledTransactionSummaryFlagColorFromJSON(json) {
     return ScheduledTransactionSummaryFlagColorFromJSONTyped(json, false);
 }
-exports.ScheduledTransactionSummaryFlagColorFromJSON = ScheduledTransactionSummaryFlagColorFromJSON;
 function ScheduledTransactionSummaryFlagColorFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.ScheduledTransactionSummaryFlagColorFromJSONTyped = ScheduledTransactionSummaryFlagColorFromJSONTyped;
 function ScheduledTransactionSummaryFlagColorToJSON(value) {
     return value;
 }
-exports.ScheduledTransactionSummaryFlagColorToJSON = ScheduledTransactionSummaryFlagColorToJSON;

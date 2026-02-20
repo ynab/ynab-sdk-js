@@ -23,13 +23,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetTransactionsByPayeeTypeEnum = exports.GetTransactionsByMonthTypeEnum = exports.GetTransactionsByCategoryTypeEnum = exports.GetTransactionsByAccountTypeEnum = exports.GetTransactionsTypeEnum = exports.TransactionsApi = void 0;
 const runtime = __importStar(require("../runtime"));
@@ -79,7 +89,7 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
     async deleteTransactionRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -108,7 +118,7 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
     async deleteTransaction(budgetId, transactionId, initOverrides) {
         const response = await this.deleteTransactionRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
@@ -116,7 +126,7 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
     async getTransactionByIdRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -145,15 +155,15 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
     async getTransactionById(budgetId, transactionId, initOverrides) {
         const response = await this.getTransactionByIdRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
     async getTransactionsRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -187,8 +197,8 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
     async getTransactions(budgetId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getTransactionsRaw({ budgetId: budgetId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
@@ -196,7 +206,7 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
     async getTransactionsByAccountRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -234,15 +244,15 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
     async getTransactionsByAccount(budgetId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getTransactionsByAccountRaw({ budgetId: budgetId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
     async getTransactionsByCategoryRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -279,16 +289,16 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.HybridTransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
     async getTransactionsByCategory(budgetId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getTransactionsByCategoryRaw({ budgetId: budgetId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
     async getTransactionsByMonthRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -322,19 +332,19 @@ class TransactionsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.HybridTransactionsResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
     async getTransactionsByMonth(budgetId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getTransactionsByMonthRaw({ budgetId: budgetId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
     async getTransactionsByPayeeRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -371,15 +381,15 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.HybridTransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
     async getTransactionsByPayee(budgetId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getTransactionsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
     async importTransactionsRaw(requestParameters, initOverrides) {
@@ -405,7 +415,7 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TransactionsImportResponseFromJSON)(jsonValue));
     }
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
     async importTransactions(budgetId, initOverrides) {
@@ -414,7 +424,7 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
     async updateTransactionRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -448,7 +458,7 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
     async updateTransaction(budgetId, transactionId, data, initOverrides) {
         const response = await this.updateTransactionRaw({ budgetId: budgetId, transactionId: transactionId, data: data }, initOverrides);

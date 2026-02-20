@@ -36,25 +36,25 @@ export interface NewTransaction {
      * @type {string}
      * @memberof NewTransaction
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      * The payee name.  If a `payee_name` value is provided and `payee_id` has a null value, the `payee_name` value will be used to resolve the payee by either (1) a matching payee rename rule (only if `import_id` is also specified) or (2) a payee with the same name or (3) creation of a new payee.
      * @type {string}
      * @memberof NewTransaction
      */
-    payee_name?: string | null;
+    payee_name?: string;
     /**
      * The category for the transaction.  To configure a split transaction, you can specify null for `category_id` and provide a `subtransactions` array as part of the transaction object.  If an existing transaction is a split, the `category_id` cannot be changed.  Credit Card Payment categories are not permitted and will be ignored if supplied.
      * @type {string}
      * @memberof NewTransaction
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      *
      * @type {string}
      * @memberof NewTransaction
      */
-    memo?: string | null;
+    memo?: string;
     /**
      *
      * @type {TransactionClearedStatus}

@@ -52,7 +52,7 @@ export interface HybridTransaction {
      * @type {string}
      * @memberof HybridTransaction
      */
-    memo?: string | null;
+    memo?: string;
     /**
      * 
      * @type {TransactionClearedStatus}
@@ -76,7 +76,7 @@ export interface HybridTransaction {
      * @type {string}
      * @memberof HybridTransaction
      */
-    flag_name?: string | null;
+    flag_name?: string;
     /**
      * 
      * @type {string}
@@ -88,52 +88,52 @@ export interface HybridTransaction {
      * @type {string}
      * @memberof HybridTransaction
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      * 
      * @type {string}
      * @memberof HybridTransaction
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      * If a transfer transaction, the account to which it transfers
      * @type {string}
      * @memberof HybridTransaction
      */
-    transfer_account_id?: string | null;
+    transfer_account_id?: string;
     /**
      * If a transfer transaction, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof HybridTransaction
      */
-    transfer_transaction_id?: string | null;
+    transfer_transaction_id?: string;
     /**
      * If transaction is matched, the id of the matched transaction
      * @type {string}
      * @memberof HybridTransaction
      */
-    matched_transaction_id?: string | null;
+    matched_transaction_id?: string;
     /**
      * If the transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof HybridTransaction
      */
-    import_id?: string | null;
+    import_id?: string;
     /**
      * If the transaction was imported, the payee name that was used when importing and before applying any payee rename rules
      * @type {string}
      * @memberof HybridTransaction
      */
-    import_payee_name?: string | null;
+    import_payee_name?: string;
     /**
      * If the transaction was imported, the original payee name as it appeared on the statement
      * @type {string}
      * @memberof HybridTransaction
      */
-    import_payee_name_original?: string | null;
+    import_payee_name_original?: string;
     /**
      * If the transaction is a debt/loan account transaction, the type of transaction
-     * @type {string}
+     * @type {HybridTransactionDebtTransactionTypeEnum}
      * @memberof HybridTransaction
      */
     debt_transaction_type?: HybridTransactionDebtTransactionTypeEnum | null;
@@ -145,7 +145,7 @@ export interface HybridTransaction {
     deleted: boolean;
     /**
      * Whether the hybrid transaction represents a regular transaction or a subtransaction
-     * @type {string}
+     * @type {HybridTransactionTypeEnum}
      * @memberof HybridTransaction
      */
     type: HybridTransactionTypeEnum;

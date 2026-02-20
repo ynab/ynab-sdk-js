@@ -23,13 +23,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MonthsApi = void 0;
 const runtime = __importStar(require("../runtime"));
@@ -39,15 +49,15 @@ const index_1 = require("../models/index");
  */
 class MonthsApi extends runtime.BaseAPI {
     /**
-     * Returns a single budget month
-     * Single budget month
+     * Returns a single plan month
+     * Get a plan month
      */
-    async getBudgetMonthRaw(requestParameters, initOverrides) {
+    async getPlanMonthRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getBudgetMonth.');
+            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonth.');
         }
         if (requestParameters.month === null || requestParameters.month === undefined) {
-            throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getBudgetMonth.');
+            throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getPlanMonth.');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -68,20 +78,20 @@ class MonthsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MonthDetailResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns a single budget month
-     * Single budget month
+     * Returns a single plan month
+     * Get a plan month
      */
-    async getBudgetMonth(budgetId, month, initOverrides) {
-        const response = await this.getBudgetMonthRaw({ budgetId: budgetId, month: month }, initOverrides);
+    async getPlanMonth(budgetId, month, initOverrides) {
+        const response = await this.getPlanMonthRaw({ budgetId: budgetId, month: month }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns all budget months
-     * List budget months
+     * Returns all plan months
+     * Get all plan months
      */
-    async getBudgetMonthsRaw(requestParameters, initOverrides) {
+    async getPlanMonthsRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getBudgetMonths.');
+            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonths.');
         }
         const queryParameters = {};
         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -105,11 +115,11 @@ class MonthsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MonthSummariesResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns all budget months
-     * List budget months
+     * Returns all plan months
+     * Get all plan months
      */
-    async getBudgetMonths(budgetId, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getBudgetMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getPlanMonths(budgetId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getPlanMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 }

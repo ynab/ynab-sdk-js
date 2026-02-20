@@ -31,8 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -68,20 +68,20 @@ var MonthsApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Returns a single budget month
-     * Single budget month
+     * Returns a single plan month
+     * Get a plan month
      */
-    MonthsApi.prototype.getBudgetMonthRaw = function (requestParameters, initOverrides) {
+    MonthsApi.prototype.getPlanMonthRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, token, tokenString, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getBudgetMonth.');
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonth.');
                         }
                         if (requestParameters.month === null || requestParameters.month === undefined) {
-                            throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getBudgetMonth.');
+                            throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getPlanMonth.');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -109,15 +109,15 @@ var MonthsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns a single budget month
-     * Single budget month
+     * Returns a single plan month
+     * Get a plan month
      */
-    MonthsApi.prototype.getBudgetMonth = function (budgetId, month, initOverrides) {
+    MonthsApi.prototype.getPlanMonth = function (budgetId, month, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getBudgetMonthRaw({ budgetId: budgetId, month: month }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPlanMonthRaw({ budgetId: budgetId, month: month }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -127,17 +127,17 @@ var MonthsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all budget months
-     * List budget months
+     * Returns all plan months
+     * Get all plan months
      */
-    MonthsApi.prototype.getBudgetMonthsRaw = function (requestParameters, initOverrides) {
+    MonthsApi.prototype.getPlanMonthsRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, token, tokenString, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getBudgetMonths.');
+                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonths.');
                         }
                         queryParameters = {};
                         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -168,15 +168,15 @@ var MonthsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all budget months
-     * List budget months
+     * Returns all plan months
+     * Get all plan months
      */
-    MonthsApi.prototype.getBudgetMonths = function (budgetId, lastKnowledgeOfServer, initOverrides) {
+    MonthsApi.prototype.getPlanMonths = function (budgetId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getBudgetMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPlanMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

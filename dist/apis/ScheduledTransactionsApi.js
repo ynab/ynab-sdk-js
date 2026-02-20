@@ -23,13 +23,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScheduledTransactionsApi = void 0;
 const runtime = __importStar(require("../runtime"));
@@ -40,7 +50,7 @@ const index_1 = require("../models/index");
 class ScheduledTransactionsApi extends runtime.BaseAPI {
     /**
      * Creates a single scheduled transaction (a transaction with a future date).
-     * Create a single scheduled transaction
+     * Create a scheduled transaction
      */
     async createScheduledTransactionRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -71,7 +81,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Creates a single scheduled transaction (a transaction with a future date).
-     * Create a single scheduled transaction
+     * Create a scheduled transaction
      */
     async createScheduledTransaction(budgetId, data, initOverrides) {
         const response = await this.createScheduledTransactionRaw({ budgetId: budgetId, data: data }, initOverrides);
@@ -79,7 +89,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Deletes a scheduled transaction
-     * Deletes an existing scheduled transaction
+     * Delete a scheduled transaction
      */
     async deleteScheduledTransactionRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -108,7 +118,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Deletes a scheduled transaction
-     * Deletes an existing scheduled transaction
+     * Delete a scheduled transaction
      */
     async deleteScheduledTransaction(budgetId, scheduledTransactionId, initOverrides) {
         const response = await this.deleteScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides);
@@ -116,7 +126,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single scheduled transaction
-     * Single scheduled transaction
+     * Get a scheduled transaction
      */
     async getScheduledTransactionByIdRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -145,7 +155,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single scheduled transaction
-     * Single scheduled transaction
+     * Get a scheduled transaction
      */
     async getScheduledTransactionById(budgetId, scheduledTransactionId, initOverrides) {
         const response = await this.getScheduledTransactionByIdRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides);
@@ -153,7 +163,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all scheduled transactions
-     * List scheduled transactions
+     * Get all scheduled transactions
      */
     async getScheduledTransactionsRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -182,7 +192,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all scheduled transactions
-     * List scheduled transactions
+     * Get all scheduled transactions
      */
     async getScheduledTransactions(budgetId, lastKnowledgeOfServer, initOverrides) {
         const response = await this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
@@ -190,7 +200,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Updates a single scheduled transaction
-     * Updates an existing scheduled transaction
+     * Update a scheduled transaction
      */
     async updateScheduledTransactionRaw(requestParameters, initOverrides) {
         if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
@@ -224,7 +234,7 @@ class ScheduledTransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Updates a single scheduled transaction
-     * Updates an existing scheduled transaction
+     * Update a scheduled transaction
      */
     async updateScheduledTransaction(budgetId, scheduledTransactionId, putScheduledTransactionWrapper, initOverrides) {
         const response = await this.updateScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId, putScheduledTransactionWrapper: putScheduledTransactionWrapper }, initOverrides);
