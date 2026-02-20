@@ -4,23 +4,23 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createTransaction**](TransactionsApi.md#createtransaction) | **POST** /budgets/{budget_id}/transactions | Create a single transaction or multiple transactions |
-| [**deleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /budgets/{budget_id}/transactions/{transaction_id} | Delete a transaction |
-| [**getTransactionById**](TransactionsApi.md#gettransactionbyid) | **GET** /budgets/{budget_id}/transactions/{transaction_id} | Get a transaction |
-| [**getTransactions**](TransactionsApi.md#gettransactions) | **GET** /budgets/{budget_id}/transactions | Get all transactions |
-| [**getTransactionsByAccount**](TransactionsApi.md#gettransactionsbyaccount) | **GET** /budgets/{budget_id}/accounts/{account_id}/transactions | Get all account transactions |
-| [**getTransactionsByCategory**](TransactionsApi.md#gettransactionsbycategory) | **GET** /budgets/{budget_id}/categories/{category_id}/transactions | Get all category transactions |
-| [**getTransactionsByMonth**](TransactionsApi.md#gettransactionsbymonth) | **GET** /budgets/{budget_id}/months/{month}/transactions | Get all plan month transactions |
-| [**getTransactionsByPayee**](TransactionsApi.md#gettransactionsbypayee) | **GET** /budgets/{budget_id}/payees/{payee_id}/transactions | Get all payee transactions |
-| [**importTransactions**](TransactionsApi.md#importtransactions) | **POST** /budgets/{budget_id}/transactions/import | Import transactions |
-| [**updateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /budgets/{budget_id}/transactions/{transaction_id} | Update a transaction |
-| [**updateTransactions**](TransactionsApi.md#updatetransactions) | **PATCH** /budgets/{budget_id}/transactions | Update multiple transactions |
+| [**createTransaction**](TransactionsApi.md#createtransaction) | **POST** /budgets/{plan_id}/transactions | Create a single transaction or multiple transactions |
+| [**deleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /budgets/{plan_id}/transactions/{transaction_id} | Delete a transaction |
+| [**getTransactionById**](TransactionsApi.md#gettransactionbyid) | **GET** /budgets/{plan_id}/transactions/{transaction_id} | Get a transaction |
+| [**getTransactions**](TransactionsApi.md#gettransactions) | **GET** /budgets/{plan_id}/transactions | Get all transactions |
+| [**getTransactionsByAccount**](TransactionsApi.md#gettransactionsbyaccount) | **GET** /budgets/{plan_id}/accounts/{account_id}/transactions | Get all account transactions |
+| [**getTransactionsByCategory**](TransactionsApi.md#gettransactionsbycategory) | **GET** /budgets/{plan_id}/categories/{category_id}/transactions | Get all category transactions |
+| [**getTransactionsByMonth**](TransactionsApi.md#gettransactionsbymonth) | **GET** /budgets/{plan_id}/months/{month}/transactions | Get all plan month transactions |
+| [**getTransactionsByPayee**](TransactionsApi.md#gettransactionsbypayee) | **GET** /budgets/{plan_id}/payees/{payee_id}/transactions | Get all payee transactions |
+| [**importTransactions**](TransactionsApi.md#importtransactions) | **POST** /budgets/{plan_id}/transactions/import | Import transactions |
+| [**updateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /budgets/{plan_id}/transactions/{transaction_id} | Update a transaction |
+| [**updateTransactions**](TransactionsApi.md#updatetransactions) | **PATCH** /budgets/{plan_id}/transactions | Update multiple transactions |
 
 
 
 ## createTransaction
 
-> SaveTransactionsResponse createTransaction(budgetId, data)
+> SaveTransactionsResponse createTransaction(planId, data)
 
 Create a single transaction or multiple transactions
 
@@ -45,7 +45,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // PostTransactionsWrapper | The transaction or transactions to create.  To create a single transaction you can specify a value for the `transaction` object and to create multiple transactions you can specify an array of `transactions`.  It is expected that you will only provide a value for one of these objects.
     data: ...,
   } satisfies CreateTransactionRequest;
@@ -67,7 +67,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **data** | [PostTransactionsWrapper](PostTransactionsWrapper.md) | The transaction or transactions to create.  To create a single transaction you can specify a value for the &#x60;transaction&#x60; object and to create multiple transactions you can specify an array of &#x60;transactions&#x60;.  It is expected that you will only provide a value for one of these objects. | |
 
 ### Return type
@@ -96,7 +96,7 @@ example().catch(console.error);
 
 ## deleteTransaction
 
-> TransactionResponse deleteTransaction(budgetId, transactionId)
+> TransactionResponse deleteTransaction(planId, transactionId)
 
 Delete a transaction
 
@@ -121,7 +121,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the transaction
     transactionId: transactionId_example,
   } satisfies DeleteTransactionRequest;
@@ -143,7 +143,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **transactionId** | `string` | The id of the transaction | [Defaults to `undefined`] |
 
 ### Return type
@@ -171,7 +171,7 @@ example().catch(console.error);
 
 ## getTransactionById
 
-> TransactionResponse getTransactionById(budgetId, transactionId)
+> TransactionResponse getTransactionById(planId, transactionId)
 
 Get a transaction
 
@@ -196,7 +196,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the transaction
     transactionId: transactionId_example,
   } satisfies GetTransactionByIdRequest;
@@ -218,7 +218,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **transactionId** | `string` | The id of the transaction | [Defaults to `undefined`] |
 
 ### Return type
@@ -246,7 +246,7 @@ example().catch(console.error);
 
 ## getTransactions
 
-> TransactionsResponse getTransactions(budgetId, sinceDate, type, lastKnowledgeOfServer)
+> TransactionsResponse getTransactions(planId, sinceDate, type, lastKnowledgeOfServer)
 
 Get all transactions
 
@@ -271,7 +271,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
     sinceDate: 2013-10-20,
     // 'uncategorized' | 'unapproved' | If specified, only transactions of the specified type will be included. \"uncategorized\" and \"unapproved\" are currently supported. (optional)
@@ -297,7 +297,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
@@ -328,7 +328,7 @@ example().catch(console.error);
 
 ## getTransactionsByAccount
 
-> TransactionsResponse getTransactionsByAccount(budgetId, accountId, sinceDate, type, lastKnowledgeOfServer)
+> TransactionsResponse getTransactionsByAccount(planId, accountId, sinceDate, type, lastKnowledgeOfServer)
 
 Get all account transactions
 
@@ -353,7 +353,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the account
     accountId: accountId_example,
     // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
@@ -381,7 +381,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **accountId** | `string` | The id of the account | [Defaults to `undefined`] |
 | **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
@@ -412,7 +412,7 @@ example().catch(console.error);
 
 ## getTransactionsByCategory
 
-> HybridTransactionsResponse getTransactionsByCategory(budgetId, categoryId, sinceDate, type, lastKnowledgeOfServer)
+> HybridTransactionsResponse getTransactionsByCategory(planId, categoryId, sinceDate, type, lastKnowledgeOfServer)
 
 Get all category transactions
 
@@ -437,7 +437,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the category
     categoryId: categoryId_example,
     // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
@@ -465,7 +465,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **categoryId** | `string` | The id of the category | [Defaults to `undefined`] |
 | **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
@@ -496,7 +496,7 @@ example().catch(console.error);
 
 ## getTransactionsByMonth
 
-> TransactionsResponse getTransactionsByMonth(budgetId, month, sinceDate, type, lastKnowledgeOfServer)
+> TransactionsResponse getTransactionsByMonth(planId, month, sinceDate, type, lastKnowledgeOfServer)
 
 Get all plan month transactions
 
@@ -521,7 +521,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The plan month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
     month: month_example,
     // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
@@ -549,7 +549,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **month** | `string` | The plan month in ISO format (e.g. 2016-12-01) (\&quot;current\&quot; can also be used to specify the current calendar month (UTC)) | [Defaults to `undefined`] |
 | **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
@@ -580,7 +580,7 @@ example().catch(console.error);
 
 ## getTransactionsByPayee
 
-> HybridTransactionsResponse getTransactionsByPayee(budgetId, payeeId, sinceDate, type, lastKnowledgeOfServer)
+> HybridTransactionsResponse getTransactionsByPayee(planId, payeeId, sinceDate, type, lastKnowledgeOfServer)
 
 Get all payee transactions
 
@@ -605,7 +605,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the payee
     payeeId: payeeId_example,
     // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
@@ -633,7 +633,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **payeeId** | `string` | The id of the payee | [Defaults to `undefined`] |
 | **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
@@ -664,7 +664,7 @@ example().catch(console.error);
 
 ## importTransactions
 
-> TransactionsImportResponse importTransactions(budgetId)
+> TransactionsImportResponse importTransactions(planId)
 
 Import transactions
 
@@ -689,7 +689,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
   } satisfies ImportTransactionsRequest;
 
   try {
@@ -709,7 +709,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -737,7 +737,7 @@ example().catch(console.error);
 
 ## updateTransaction
 
-> TransactionResponse updateTransaction(budgetId, transactionId, data)
+> TransactionResponse updateTransaction(planId, transactionId, data)
 
 Update a transaction
 
@@ -762,7 +762,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the transaction
     transactionId: transactionId_example,
     // PutTransactionWrapper | The transaction to update
@@ -786,7 +786,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **transactionId** | `string` | The id of the transaction | [Defaults to `undefined`] |
 | **data** | [PutTransactionWrapper](PutTransactionWrapper.md) | The transaction to update | |
 
@@ -815,7 +815,7 @@ example().catch(console.error);
 
 ## updateTransactions
 
-> SaveTransactionsResponse updateTransactions(budgetId, data)
+> SaveTransactionsResponse updateTransactions(planId, data)
 
 Update multiple transactions
 
@@ -840,7 +840,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // PatchTransactionsWrapper | The transactions to update. Each transaction must have either an `id` or `import_id` specified. If `id` is specified as null an `import_id` value can be provided which will allow transaction(s) to be updated by its `import_id`. If an `id` is specified, it will always be used for lookup.  You should not specify both `id` and `import_id`.  Updating an `import_id` on an existing transaction is not allowed; if an `import_id` is specified, it will only be used to lookup the transaction.
     data: ...,
   } satisfies UpdateTransactionsRequest;
@@ -862,7 +862,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **data** | [PatchTransactionsWrapper](PatchTransactionsWrapper.md) | The transactions to update. Each transaction must have either an &#x60;id&#x60; or &#x60;import_id&#x60; specified. If &#x60;id&#x60; is specified as null an &#x60;import_id&#x60; value can be provided which will allow transaction(s) to be updated by its &#x60;import_id&#x60;. If an &#x60;id&#x60; is specified, it will always be used for lookup.  You should not specify both &#x60;id&#x60; and &#x60;import_id&#x60;.  Updating an &#x60;import_id&#x60; on an existing transaction is not allowed; if an &#x60;import_id&#x60; is specified, it will only be used to lookup the transaction. | |
 
 ### Return type

@@ -7,17 +7,17 @@
 import * as runtime from '../runtime';
 import type { MoneyMovementGroupsResponse, MoneyMovementsResponse } from '../models/index';
 export interface GetMoneyMovementGroupsRequest {
-    budgetId: string;
+    planId: string;
 }
 export interface GetMoneyMovementGroupsByMonthRequest {
-    budgetId: string;
+    planId: string;
     month: string;
 }
 export interface GetMoneyMovementsRequest {
-    budgetId: string;
+    planId: string;
 }
 export interface GetMoneyMovementsByMonthRequest {
-    budgetId: string;
+    planId: string;
     month: string;
 }
 /**
@@ -33,7 +33,7 @@ export declare class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movement groups
      * Get all money movement groups
      */
-    getMoneyMovementGroups(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementGroupsResponse>;
+    getMoneyMovementGroups(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementGroupsResponse>;
     /**
      * Returns all money movement groups for a specific month
      * Get money movement groups for a plan month
@@ -43,7 +43,7 @@ export declare class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movement groups for a specific month
      * Get money movement groups for a plan month
      */
-    getMoneyMovementGroupsByMonth(budgetId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementGroupsResponse>;
+    getMoneyMovementGroupsByMonth(planId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementGroupsResponse>;
     /**
      * Returns all money movements
      * Get all money movements
@@ -53,7 +53,7 @@ export declare class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movements
      * Get all money movements
      */
-    getMoneyMovements(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementsResponse>;
+    getMoneyMovements(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementsResponse>;
     /**
      * Returns all money movements for a specific month
      * Get money movements for a plan month
@@ -63,5 +63,5 @@ export declare class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movements for a specific month
      * Get money movements for a plan month
      */
-    getMoneyMovementsByMonth(budgetId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementsResponse>;
+    getMoneyMovementsByMonth(planId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MoneyMovementsResponse>;
 }

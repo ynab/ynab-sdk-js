@@ -53,8 +53,8 @@ class PlansApi extends runtime.BaseAPI {
      * Get a plan
      */
     async getPlanByIdRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanById.');
         }
         const queryParameters = {};
         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -70,7 +70,7 @@ class PlansApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -81,8 +81,8 @@ class PlansApi extends runtime.BaseAPI {
      * Returns a single plan with all related entities.  This resource is effectively a full plan export.
      * Get a plan
      */
-    async getPlanById(budgetId, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getPlanByIdRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getPlanById(planId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getPlanByIdRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
@@ -90,8 +90,8 @@ class PlansApi extends runtime.BaseAPI {
      * Get plan settings
      */
     async getPlanSettingsByIdRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanSettingsById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanSettingsById.');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -104,7 +104,7 @@ class PlansApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/settings`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/settings`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -115,8 +115,8 @@ class PlansApi extends runtime.BaseAPI {
      * Returns settings for a plan
      * Get plan settings
      */
-    async getPlanSettingsById(budgetId, initOverrides) {
-        const response = await this.getPlanSettingsByIdRaw({ budgetId: budgetId }, initOverrides);
+    async getPlanSettingsById(planId, initOverrides) {
+        const response = await this.getPlanSettingsByIdRaw({ planId: planId }, initOverrides);
         return await response.value();
     }
     /**

@@ -53,8 +53,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Get all money movement groups
      */
     async getMoneyMovementGroupsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovementGroups.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovementGroups.');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -67,7 +67,7 @@ class MoneyMovementsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/money_movement_groups`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/money_movement_groups`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -78,8 +78,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movement groups
      * Get all money movement groups
      */
-    async getMoneyMovementGroups(budgetId, initOverrides) {
-        const response = await this.getMoneyMovementGroupsRaw({ budgetId: budgetId }, initOverrides);
+    async getMoneyMovementGroups(planId, initOverrides) {
+        const response = await this.getMoneyMovementGroupsRaw({ planId: planId }, initOverrides);
         return await response.value();
     }
     /**
@@ -87,8 +87,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Get money movement groups for a plan month
      */
     async getMoneyMovementGroupsByMonthRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovementGroupsByMonth.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovementGroupsByMonth.');
         }
         if (requestParameters.month === null || requestParameters.month === undefined) {
             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getMoneyMovementGroupsByMonth.');
@@ -104,7 +104,7 @@ class MoneyMovementsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months/{month}/money_movement_groups`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
+            path: `/budgets/{plan_id}/months/{month}/money_movement_groups`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -115,8 +115,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movement groups for a specific month
      * Get money movement groups for a plan month
      */
-    async getMoneyMovementGroupsByMonth(budgetId, month, initOverrides) {
-        const response = await this.getMoneyMovementGroupsByMonthRaw({ budgetId: budgetId, month: month }, initOverrides);
+    async getMoneyMovementGroupsByMonth(planId, month, initOverrides) {
+        const response = await this.getMoneyMovementGroupsByMonthRaw({ planId: planId, month: month }, initOverrides);
         return await response.value();
     }
     /**
@@ -124,8 +124,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Get all money movements
      */
     async getMoneyMovementsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovements.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovements.');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -138,7 +138,7 @@ class MoneyMovementsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/money_movements`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/money_movements`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -149,8 +149,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movements
      * Get all money movements
      */
-    async getMoneyMovements(budgetId, initOverrides) {
-        const response = await this.getMoneyMovementsRaw({ budgetId: budgetId }, initOverrides);
+    async getMoneyMovements(planId, initOverrides) {
+        const response = await this.getMoneyMovementsRaw({ planId: planId }, initOverrides);
         return await response.value();
     }
     /**
@@ -158,8 +158,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Get money movements for a plan month
      */
     async getMoneyMovementsByMonthRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovementsByMonth.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovementsByMonth.');
         }
         if (requestParameters.month === null || requestParameters.month === undefined) {
             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getMoneyMovementsByMonth.');
@@ -175,7 +175,7 @@ class MoneyMovementsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months/{month}/money_movements`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
+            path: `/budgets/{plan_id}/months/{month}/money_movements`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -186,8 +186,8 @@ class MoneyMovementsApi extends runtime.BaseAPI {
      * Returns all money movements for a specific month
      * Get money movements for a plan month
      */
-    async getMoneyMovementsByMonth(budgetId, month, initOverrides) {
-        const response = await this.getMoneyMovementsByMonthRaw({ budgetId: budgetId, month: month }, initOverrides);
+    async getMoneyMovementsByMonth(planId, month, initOverrides) {
+        const response = await this.getMoneyMovementsByMonthRaw({ planId: planId, month: month }, initOverrides);
         return await response.value();
     }
 }

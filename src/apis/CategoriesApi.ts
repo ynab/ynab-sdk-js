@@ -44,45 +44,45 @@ import {
 } from '../models/index';
 
 export interface CreateCategoryRequest {
-    budgetId: string;
+    planId: string;
     data: PostCategoryWrapper;
 }
 
 export interface CreateCategoryGroupRequest {
-    budgetId: string;
+    planId: string;
     data: PostCategoryGroupWrapper;
 }
 
 export interface GetCategoriesRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 
 export interface GetCategoryByIdRequest {
-    budgetId: string;
+    planId: string;
     categoryId: string;
 }
 
 export interface GetMonthCategoryByIdRequest {
-    budgetId: string;
+    planId: string;
     month: string;
     categoryId: string;
 }
 
 export interface UpdateCategoryRequest {
-    budgetId: string;
+    planId: string;
     categoryId: string;
     data: PatchCategoryWrapper;
 }
 
 export interface UpdateCategoryGroupRequest {
-    budgetId: string;
+    planId: string;
     categoryGroupId: string;
     data: PatchCategoryGroupWrapper;
 }
 
 export interface UpdateMonthCategoryRequest {
-    budgetId: string;
+    planId: string;
     month: string;
     categoryId: string;
     data: PatchMonthCategoryWrapper;
@@ -98,8 +98,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Create a category
      */
     async createCategoryRaw(requestParameters: CreateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCategoryResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling createCategory.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling createCategory.');
         }
 
         if (requestParameters.data === null || requestParameters.data === undefined) {
@@ -122,7 +122,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/categories`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/categories`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -136,8 +136,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Creates a new category
      * Create a category
      */
-    async createCategory(budgetId: string, data: PostCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse> {
-        const response = await this.createCategoryRaw({ budgetId: budgetId, data: data }, initOverrides);
+    async createCategory(planId: string, data: PostCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse> {
+        const response = await this.createCategoryRaw({ planId: planId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -146,8 +146,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Create a category group
      */
     async createCategoryGroupRaw(requestParameters: CreateCategoryGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCategoryGroupResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling createCategoryGroup.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling createCategoryGroup.');
         }
 
         if (requestParameters.data === null || requestParameters.data === undefined) {
@@ -170,7 +170,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/category_groups`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/category_groups`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -184,8 +184,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Creates a new category group
      * Create a category group
      */
-    async createCategoryGroup(budgetId: string, data: PostCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse> {
-        const response = await this.createCategoryGroupRaw({ budgetId: budgetId, data: data }, initOverrides);
+    async createCategoryGroup(planId: string, data: PostCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse> {
+        const response = await this.createCategoryGroupRaw({ planId: planId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -194,8 +194,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Get all categories
      */
     async getCategoriesRaw(requestParameters: GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoriesResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getCategories.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getCategories.');
         }
 
         const queryParameters: any = {};
@@ -216,7 +216,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/categories`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/categories`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -229,8 +229,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Returns all categories grouped by category group.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get all categories
      */
-    async getCategories(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoriesResponse> {
-        const response = await this.getCategoriesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getCategories(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoriesResponse> {
+        const response = await this.getCategoriesRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -239,8 +239,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Get a category
      */
     async getCategoryByIdRaw(requestParameters: GetCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getCategoryById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getCategoryById.');
         }
 
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
@@ -261,7 +261,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/categories/{category_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/budgets/{plan_id}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -274,8 +274,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category
      */
-    async getCategoryById(budgetId: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse> {
-        const response = await this.getCategoryByIdRaw({ budgetId: budgetId, categoryId: categoryId }, initOverrides);
+    async getCategoryById(planId: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse> {
+        const response = await this.getCategoryByIdRaw({ planId: planId, categoryId: categoryId }, initOverrides);
         return await response.value();
     }
 
@@ -284,8 +284,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Get a category for a specific plan month
      */
     async getMonthCategoryByIdRaw(requestParameters: GetMonthCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getMonthCategoryById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getMonthCategoryById.');
         }
 
         if (requestParameters.month === null || requestParameters.month === undefined) {
@@ -310,7 +310,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months/{month}/categories/{category_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/budgets/{plan_id}/months/{month}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -323,8 +323,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category for a specific plan month.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category for a specific plan month
      */
-    async getMonthCategoryById(budgetId: string, month: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse> {
-        const response = await this.getMonthCategoryByIdRaw({ budgetId: budgetId, month: month, categoryId: categoryId }, initOverrides);
+    async getMonthCategoryById(planId: string, month: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse> {
+        const response = await this.getMonthCategoryByIdRaw({ planId: planId, month: month, categoryId: categoryId }, initOverrides);
         return await response.value();
     }
 
@@ -333,8 +333,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Update a category
      */
     async updateCategoryRaw(requestParameters: UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCategoryResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updateCategory.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updateCategory.');
         }
 
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
@@ -361,7 +361,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/categories/{category_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/budgets/{plan_id}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -375,8 +375,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Update a category
      * Update a category
      */
-    async updateCategory(budgetId: string, categoryId: string, data: PatchCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse> {
-        const response = await this.updateCategoryRaw({ budgetId: budgetId, categoryId: categoryId, data: data }, initOverrides);
+    async updateCategory(planId: string, categoryId: string, data: PatchCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse> {
+        const response = await this.updateCategoryRaw({ planId: planId, categoryId: categoryId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -385,8 +385,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Update a category group
      */
     async updateCategoryGroupRaw(requestParameters: UpdateCategoryGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCategoryGroupResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updateCategoryGroup.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updateCategoryGroup.');
         }
 
         if (requestParameters.categoryGroupId === null || requestParameters.categoryGroupId === undefined) {
@@ -413,7 +413,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/category_groups/{category_group_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"category_group_id"}}`, encodeURIComponent(String(requestParameters.categoryGroupId))),
+            path: `/budgets/{plan_id}/category_groups/{category_group_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_group_id"}}`, encodeURIComponent(String(requestParameters.categoryGroupId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -427,8 +427,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Update a category group
      * Update a category group
      */
-    async updateCategoryGroup(budgetId: string, categoryGroupId: string, data: PatchCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse> {
-        const response = await this.updateCategoryGroupRaw({ budgetId: budgetId, categoryGroupId: categoryGroupId, data: data }, initOverrides);
+    async updateCategoryGroup(planId: string, categoryGroupId: string, data: PatchCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse> {
+        const response = await this.updateCategoryGroupRaw({ planId: planId, categoryGroupId: categoryGroupId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -437,8 +437,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Update a category for a specific month
      */
     async updateMonthCategoryRaw(requestParameters: UpdateMonthCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveCategoryResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updateMonthCategory.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updateMonthCategory.');
         }
 
         if (requestParameters.month === null || requestParameters.month === undefined) {
@@ -469,7 +469,7 @@ export class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months/{month}/categories/{category_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/budgets/{plan_id}/months/{month}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -483,8 +483,8 @@ export class CategoriesApi extends runtime.BaseAPI {
      * Update a category for a specific month.  Only `budgeted` (assigned) amount can be updated.
      * Update a category for a specific month
      */
-    async updateMonthCategory(budgetId: string, month: string, categoryId: string, data: PatchMonthCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse> {
-        const response = await this.updateMonthCategoryRaw({ budgetId: budgetId, month: month, categoryId: categoryId, data: data }, initOverrides);
+    async updateMonthCategory(planId: string, month: string, categoryId: string, data: PatchMonthCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse> {
+        const response = await this.updateMonthCategoryRaw({ planId: planId, month: month, categoryId: categoryId, data: data }, initOverrides);
         return await response.value();
     }
 

@@ -4,15 +4,15 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPayeeLocationById**](PayeeLocationsApi.md#getpayeelocationbyid) | **GET** /budgets/{budget_id}/payee_locations/{payee_location_id} | Get a payee location |
-| [**getPayeeLocations**](PayeeLocationsApi.md#getpayeelocations) | **GET** /budgets/{budget_id}/payee_locations | Get all payee locations |
-| [**getPayeeLocationsByPayee**](PayeeLocationsApi.md#getpayeelocationsbypayee) | **GET** /budgets/{budget_id}/payees/{payee_id}/payee_locations | Get all locations for a payee |
+| [**getPayeeLocationById**](PayeeLocationsApi.md#getpayeelocationbyid) | **GET** /budgets/{plan_id}/payee_locations/{payee_location_id} | Get a payee location |
+| [**getPayeeLocations**](PayeeLocationsApi.md#getpayeelocations) | **GET** /budgets/{plan_id}/payee_locations | Get all payee locations |
+| [**getPayeeLocationsByPayee**](PayeeLocationsApi.md#getpayeelocationsbypayee) | **GET** /budgets/{plan_id}/payees/{payee_id}/payee_locations | Get all locations for a payee |
 
 
 
 ## getPayeeLocationById
 
-> PayeeLocationResponse getPayeeLocationById(budgetId, payeeLocationId)
+> PayeeLocationResponse getPayeeLocationById(planId, payeeLocationId)
 
 Get a payee location
 
@@ -37,7 +37,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | id of payee location
     payeeLocationId: payeeLocationId_example,
   } satisfies GetPayeeLocationByIdRequest;
@@ -59,7 +59,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **payeeLocationId** | `string` | id of payee location | [Defaults to `undefined`] |
 
 ### Return type
@@ -87,7 +87,7 @@ example().catch(console.error);
 
 ## getPayeeLocations
 
-> PayeeLocationsResponse getPayeeLocations(budgetId)
+> PayeeLocationsResponse getPayeeLocations(planId)
 
 Get all payee locations
 
@@ -112,7 +112,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
   } satisfies GetPayeeLocationsRequest;
 
   try {
@@ -132,7 +132,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -159,7 +159,7 @@ example().catch(console.error);
 
 ## getPayeeLocationsByPayee
 
-> PayeeLocationsResponse getPayeeLocationsByPayee(budgetId, payeeId)
+> PayeeLocationsResponse getPayeeLocationsByPayee(planId, payeeId)
 
 Get all locations for a payee
 
@@ -184,7 +184,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | id of payee
     payeeId: payeeId_example,
   } satisfies GetPayeeLocationsByPayeeRequest;
@@ -206,7 +206,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **payeeId** | `string` | id of payee | [Defaults to `undefined`] |
 
 ### Return type

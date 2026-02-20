@@ -23,16 +23,16 @@ import {
 } from '../models/index';
 
 export interface GetPayeeLocationByIdRequest {
-    budgetId: string;
+    planId: string;
     payeeLocationId: string;
 }
 
 export interface GetPayeeLocationsRequest {
-    budgetId: string;
+    planId: string;
 }
 
 export interface GetPayeeLocationsByPayeeRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
 }
 
@@ -46,8 +46,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Get a payee location
      */
     async getPayeeLocationByIdRaw(requestParameters: GetPayeeLocationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeLocationResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocationById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPayeeLocationById.');
         }
 
         if (requestParameters.payeeLocationId === null || requestParameters.payeeLocationId === undefined) {
@@ -68,7 +68,7 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payee_locations/{payee_location_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_location_id"}}`, encodeURIComponent(String(requestParameters.payeeLocationId))),
+            path: `/budgets/{plan_id}/payee_locations/{payee_location_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_location_id"}}`, encodeURIComponent(String(requestParameters.payeeLocationId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -81,8 +81,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns a single payee location
      * Get a payee location
      */
-    async getPayeeLocationById(budgetId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse> {
-        const response = await this.getPayeeLocationByIdRaw({ budgetId: budgetId, payeeLocationId: payeeLocationId }, initOverrides);
+    async getPayeeLocationById(planId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse> {
+        const response = await this.getPayeeLocationByIdRaw({ planId: planId, payeeLocationId: payeeLocationId }, initOverrides);
         return await response.value();
     }
 
@@ -91,8 +91,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Get all payee locations
      */
     async getPayeeLocationsRaw(requestParameters: GetPayeeLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeLocationsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocations.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPayeeLocations.');
         }
 
         const queryParameters: any = {};
@@ -109,7 +109,7 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payee_locations`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -122,8 +122,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations
      * Get all payee locations
      */
-    async getPayeeLocations(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
-        const response = await this.getPayeeLocationsRaw({ budgetId: budgetId }, initOverrides);
+    async getPayeeLocations(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
+        const response = await this.getPayeeLocationsRaw({ planId: planId }, initOverrides);
         return await response.value();
     }
 
@@ -132,8 +132,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Get all locations for a payee
      */
     async getPayeeLocationsByPayeeRaw(requestParameters: GetPayeeLocationsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeLocationsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocationsByPayee.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPayeeLocationsByPayee.');
         }
 
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
@@ -154,7 +154,7 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}/payee_locations`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -167,8 +167,8 @@ export class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations for a specified payee
      * Get all locations for a payee
      */
-    async getPayeeLocationsByPayee(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
-        const response = await this.getPayeeLocationsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides);
+    async getPayeeLocationsByPayee(planId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse> {
+        const response = await this.getPayeeLocationsByPayeeRaw({ planId: planId, payeeId: payeeId }, initOverrides);
         return await response.value();
     }
 

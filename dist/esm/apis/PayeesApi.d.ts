@@ -7,15 +7,15 @@
 import * as runtime from '../runtime';
 import type { PatchPayeeWrapper, PayeeResponse, PayeesResponse, SavePayeeResponse } from '../models/index';
 export interface GetPayeeByIdRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
 }
 export interface GetPayeesRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 export interface UpdatePayeeRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
     data: PatchPayeeWrapper;
 }
@@ -32,7 +32,7 @@ export declare class PayeesApi extends runtime.BaseAPI {
      * Returns a single payee
      * Get a payee
      */
-    getPayeeById(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeResponse>;
+    getPayeeById(planId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeResponse>;
     /**
      * Returns all payees
      * Get all payees
@@ -42,7 +42,7 @@ export declare class PayeesApi extends runtime.BaseAPI {
      * Returns all payees
      * Get all payees
      */
-    getPayees(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeesResponse>;
+    getPayees(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeesResponse>;
     /**
      * Update a payee
      * Update a payee
@@ -52,5 +52,5 @@ export declare class PayeesApi extends runtime.BaseAPI {
      * Update a payee
      * Update a payee
      */
-    updatePayee(budgetId: string, payeeId: string, data: PatchPayeeWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePayeeResponse>;
+    updatePayee(planId: string, payeeId: string, data: PatchPayeeWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePayeeResponse>;
 }

@@ -77,8 +77,8 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovementGroups.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovementGroups.');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -93,7 +93,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/money_movement_groups".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/money_movement_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -109,12 +109,12 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
      * Returns all money movement groups
      * Get all money movement groups
      */
-    MoneyMovementsApi.prototype.getMoneyMovementGroups = function (budgetId, initOverrides) {
+    MoneyMovementsApi.prototype.getMoneyMovementGroups = function (planId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getMoneyMovementGroupsRaw({ budgetId: budgetId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getMoneyMovementGroupsRaw({ planId: planId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -133,8 +133,8 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovementGroupsByMonth.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovementGroupsByMonth.');
                         }
                         if (requestParameters.month === null || requestParameters.month === undefined) {
                             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getMoneyMovementGroupsByMonth.');
@@ -152,7 +152,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/months/{month}/money_movement_groups".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
+                            path: "/budgets/{plan_id}/months/{month}/money_movement_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -168,12 +168,12 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
      * Returns all money movement groups for a specific month
      * Get money movement groups for a plan month
      */
-    MoneyMovementsApi.prototype.getMoneyMovementGroupsByMonth = function (budgetId, month, initOverrides) {
+    MoneyMovementsApi.prototype.getMoneyMovementGroupsByMonth = function (planId, month, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getMoneyMovementGroupsByMonthRaw({ budgetId: budgetId, month: month }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getMoneyMovementGroupsByMonthRaw({ planId: planId, month: month }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -192,8 +192,8 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovements.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovements.');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -208,7 +208,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/money_movements".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/money_movements".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -224,12 +224,12 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
      * Returns all money movements
      * Get all money movements
      */
-    MoneyMovementsApi.prototype.getMoneyMovements = function (budgetId, initOverrides) {
+    MoneyMovementsApi.prototype.getMoneyMovements = function (planId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getMoneyMovementsRaw({ budgetId: budgetId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getMoneyMovementsRaw({ planId: planId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -248,8 +248,8 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMoneyMovementsByMonth.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMoneyMovementsByMonth.');
                         }
                         if (requestParameters.month === null || requestParameters.month === undefined) {
                             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getMoneyMovementsByMonth.');
@@ -267,7 +267,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/months/{month}/money_movements".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
+                            path: "/budgets/{plan_id}/months/{month}/money_movements".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -283,12 +283,12 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
      * Returns all money movements for a specific month
      * Get money movements for a plan month
      */
-    MoneyMovementsApi.prototype.getMoneyMovementsByMonth = function (budgetId, month, initOverrides) {
+    MoneyMovementsApi.prototype.getMoneyMovementsByMonth = function (planId, month, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getMoneyMovementsByMonthRaw({ budgetId: budgetId, month: month }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getMoneyMovementsByMonthRaw({ planId: planId, month: month }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

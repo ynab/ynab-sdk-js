@@ -4,14 +4,14 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPlanMonth**](MonthsApi.md#getplanmonth) | **GET** /budgets/{budget_id}/months/{month} | Get a plan month |
-| [**getPlanMonths**](MonthsApi.md#getplanmonths) | **GET** /budgets/{budget_id}/months | Get all plan months |
+| [**getPlanMonth**](MonthsApi.md#getplanmonth) | **GET** /budgets/{plan_id}/months/{month} | Get a plan month |
+| [**getPlanMonths**](MonthsApi.md#getplanmonths) | **GET** /budgets/{plan_id}/months | Get all plan months |
 
 
 
 ## getPlanMonth
 
-> MonthDetailResponse getPlanMonth(budgetId, month)
+> MonthDetailResponse getPlanMonth(planId, month)
 
 Get a plan month
 
@@ -36,7 +36,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The plan month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
     month: 2013-10-20,
   } satisfies GetPlanMonthRequest;
@@ -58,7 +58,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **month** | `string` | The plan month in ISO format (e.g. 2016-12-01) (\&quot;current\&quot; can also be used to specify the current calendar month (UTC)) | [Defaults to `undefined`] |
 
 ### Return type
@@ -86,7 +86,7 @@ example().catch(console.error);
 
 ## getPlanMonths
 
-> MonthSummariesResponse getPlanMonths(budgetId, lastKnowledgeOfServer)
+> MonthSummariesResponse getPlanMonths(planId, lastKnowledgeOfServer)
 
 Get all plan months
 
@@ -111,7 +111,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
     lastKnowledgeOfServer: 789,
   } satisfies GetPlanMonthsRequest;
@@ -133,7 +133,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
 ### Return type

@@ -7,11 +7,11 @@
 import * as runtime from '../runtime';
 import type { MonthDetailResponse, MonthSummariesResponse } from '../models/index';
 export interface GetPlanMonthRequest {
-    budgetId: string;
+    planId: string;
     month: string;
 }
 export interface GetPlanMonthsRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 /**
@@ -27,7 +27,7 @@ export declare class MonthsApi extends runtime.BaseAPI {
      * Returns a single plan month
      * Get a plan month
      */
-    getPlanMonth(budgetId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse>;
+    getPlanMonth(planId: string, month: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthDetailResponse>;
     /**
      * Returns all plan months
      * Get all plan months
@@ -37,5 +37,5 @@ export declare class MonthsApi extends runtime.BaseAPI {
      * Returns all plan months
      * Get all plan months
      */
-    getPlanMonths(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse>;
+    getPlanMonths(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MonthSummariesResponse>;
 }

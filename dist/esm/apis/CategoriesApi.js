@@ -77,8 +77,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createCategory.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createCategory.');
                         }
                         if (requestParameters.data === null || requestParameters.data === undefined) {
                             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createCategory.');
@@ -97,7 +97,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/categories".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/categories".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -114,12 +114,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Creates a new category
      * Create a category
      */
-    CategoriesApi.prototype.createCategory = function (budgetId, data, initOverrides) {
+    CategoriesApi.prototype.createCategory = function (planId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createCategoryRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createCategoryRaw({ planId: planId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -138,8 +138,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createCategoryGroup.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createCategoryGroup.');
                         }
                         if (requestParameters.data === null || requestParameters.data === undefined) {
                             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createCategoryGroup.');
@@ -158,7 +158,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/category_groups".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/category_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -175,12 +175,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Creates a new category group
      * Create a category group
      */
-    CategoriesApi.prototype.createCategoryGroup = function (budgetId, data, initOverrides) {
+    CategoriesApi.prototype.createCategoryGroup = function (planId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createCategoryGroupRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createCategoryGroupRaw({ planId: planId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -199,8 +199,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getCategories.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getCategories.');
                         }
                         queryParameters = {};
                         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -218,7 +218,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/categories".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/categories".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -234,12 +234,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Returns all categories grouped by category group.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get all categories
      */
-    CategoriesApi.prototype.getCategories = function (budgetId, lastKnowledgeOfServer, initOverrides) {
+    CategoriesApi.prototype.getCategories = function (planId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getCategoriesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getCategoriesRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -258,8 +258,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getCategoryById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getCategoryById.');
                         }
                         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
                             throw new runtime.RequiredError('categoryId', 'Required parameter requestParameters.categoryId was null or undefined when calling getCategoryById.');
@@ -277,7 +277,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/categories/{category_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/budgets/{plan_id}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -293,12 +293,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Returns a single category.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category
      */
-    CategoriesApi.prototype.getCategoryById = function (budgetId, categoryId, initOverrides) {
+    CategoriesApi.prototype.getCategoryById = function (planId, categoryId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getCategoryByIdRaw({ budgetId: budgetId, categoryId: categoryId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getCategoryByIdRaw({ planId: planId, categoryId: categoryId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -317,8 +317,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getMonthCategoryById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getMonthCategoryById.');
                         }
                         if (requestParameters.month === null || requestParameters.month === undefined) {
                             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getMonthCategoryById.');
@@ -339,7 +339,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/months/{month}/categories/{category_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/budgets/{plan_id}/months/{month}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -355,12 +355,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Returns a single category for a specific plan month.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category for a specific plan month
      */
-    CategoriesApi.prototype.getMonthCategoryById = function (budgetId, month, categoryId, initOverrides) {
+    CategoriesApi.prototype.getMonthCategoryById = function (planId, month, categoryId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getMonthCategoryByIdRaw({ budgetId: budgetId, month: month, categoryId: categoryId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getMonthCategoryByIdRaw({ planId: planId, month: month, categoryId: categoryId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -379,8 +379,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateCategory.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateCategory.');
                         }
                         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
                             throw new runtime.RequiredError('categoryId', 'Required parameter requestParameters.categoryId was null or undefined when calling updateCategory.');
@@ -402,7 +402,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/categories/{category_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/budgets/{plan_id}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,
@@ -419,12 +419,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Update a category
      * Update a category
      */
-    CategoriesApi.prototype.updateCategory = function (budgetId, categoryId, data, initOverrides) {
+    CategoriesApi.prototype.updateCategory = function (planId, categoryId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateCategoryRaw({ budgetId: budgetId, categoryId: categoryId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateCategoryRaw({ planId: planId, categoryId: categoryId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -443,8 +443,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateCategoryGroup.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateCategoryGroup.');
                         }
                         if (requestParameters.categoryGroupId === null || requestParameters.categoryGroupId === undefined) {
                             throw new runtime.RequiredError('categoryGroupId', 'Required parameter requestParameters.categoryGroupId was null or undefined when calling updateCategoryGroup.');
@@ -466,7 +466,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/category_groups/{category_group_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("category_group_id", "}"), encodeURIComponent(String(requestParameters.categoryGroupId))),
+                            path: "/budgets/{plan_id}/category_groups/{category_group_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_group_id", "}"), encodeURIComponent(String(requestParameters.categoryGroupId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,
@@ -483,12 +483,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Update a category group
      * Update a category group
      */
-    CategoriesApi.prototype.updateCategoryGroup = function (budgetId, categoryGroupId, data, initOverrides) {
+    CategoriesApi.prototype.updateCategoryGroup = function (planId, categoryGroupId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateCategoryGroupRaw({ budgetId: budgetId, categoryGroupId: categoryGroupId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateCategoryGroupRaw({ planId: planId, categoryGroupId: categoryGroupId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -507,8 +507,8 @@ var CategoriesApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateMonthCategory.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateMonthCategory.');
                         }
                         if (requestParameters.month === null || requestParameters.month === undefined) {
                             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling updateMonthCategory.');
@@ -533,7 +533,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/months/{month}/categories/{category_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/budgets/{plan_id}/months/{month}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,
@@ -550,12 +550,12 @@ var CategoriesApi = /** @class */ (function (_super) {
      * Update a category for a specific month.  Only `budgeted` (assigned) amount can be updated.
      * Update a category for a specific month
      */
-    CategoriesApi.prototype.updateMonthCategory = function (budgetId, month, categoryId, data, initOverrides) {
+    CategoriesApi.prototype.updateMonthCategory = function (planId, month, categoryId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateMonthCategoryRaw({ budgetId: budgetId, month: month, categoryId: categoryId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateMonthCategoryRaw({ planId: planId, month: month, categoryId: categoryId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

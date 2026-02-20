@@ -77,8 +77,8 @@ var MonthsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonth.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanMonth.');
                         }
                         if (requestParameters.month === null || requestParameters.month === undefined) {
                             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getPlanMonth.');
@@ -96,7 +96,7 @@ var MonthsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/months/{month}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
+                            path: "/budgets/{plan_id}/months/{month}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -112,12 +112,12 @@ var MonthsApi = /** @class */ (function (_super) {
      * Returns a single plan month
      * Get a plan month
      */
-    MonthsApi.prototype.getPlanMonth = function (budgetId, month, initOverrides) {
+    MonthsApi.prototype.getPlanMonth = function (planId, month, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPlanMonthRaw({ budgetId: budgetId, month: month }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPlanMonthRaw({ planId: planId, month: month }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -136,8 +136,8 @@ var MonthsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonths.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanMonths.');
                         }
                         queryParameters = {};
                         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -155,7 +155,7 @@ var MonthsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/months".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/months".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -171,12 +171,12 @@ var MonthsApi = /** @class */ (function (_super) {
      * Returns all plan months
      * Get all plan months
      */
-    MonthsApi.prototype.getPlanMonths = function (budgetId, lastKnowledgeOfServer, initOverrides) {
+    MonthsApi.prototype.getPlanMonths = function (planId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPlanMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPlanMonthsRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

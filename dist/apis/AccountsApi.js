@@ -53,8 +53,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Create an account
      */
     async createAccountRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createAccount.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createAccount.');
         }
         if (requestParameters.data === null || requestParameters.data === undefined) {
             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createAccount.');
@@ -71,7 +71,7 @@ class AccountsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/accounts`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/accounts`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -83,8 +83,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Creates a new account
      * Create an account
      */
-    async createAccount(budgetId, data, initOverrides) {
-        const response = await this.createAccountRaw({ budgetId: budgetId, data: data }, initOverrides);
+    async createAccount(planId, data, initOverrides) {
+        const response = await this.createAccountRaw({ planId: planId, data: data }, initOverrides);
         return await response.value();
     }
     /**
@@ -92,8 +92,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Get an account
      */
     async getAccountByIdRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getAccountById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getAccountById.');
         }
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId', 'Required parameter requestParameters.accountId was null or undefined when calling getAccountById.');
@@ -109,7 +109,7 @@ class AccountsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/accounts/{account_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
+            path: `/budgets/{plan_id}/accounts/{account_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -120,8 +120,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Returns a single account
      * Get an account
      */
-    async getAccountById(budgetId, accountId, initOverrides) {
-        const response = await this.getAccountByIdRaw({ budgetId: budgetId, accountId: accountId }, initOverrides);
+    async getAccountById(planId, accountId, initOverrides) {
+        const response = await this.getAccountByIdRaw({ planId: planId, accountId: accountId }, initOverrides);
         return await response.value();
     }
     /**
@@ -129,8 +129,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Get all accounts
      */
     async getAccountsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getAccounts.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getAccounts.');
         }
         const queryParameters = {};
         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -146,7 +146,7 @@ class AccountsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/accounts`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/accounts`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -157,8 +157,8 @@ class AccountsApi extends runtime.BaseAPI {
      * Returns all accounts
      * Get all accounts
      */
-    async getAccounts(budgetId, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getAccountsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getAccounts(planId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getAccountsRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 }

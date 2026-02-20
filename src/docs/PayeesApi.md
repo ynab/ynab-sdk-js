@@ -4,15 +4,15 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPayeeById**](PayeesApi.md#getpayeebyid) | **GET** /budgets/{budget_id}/payees/{payee_id} | Get a payee |
-| [**getPayees**](PayeesApi.md#getpayees) | **GET** /budgets/{budget_id}/payees | Get all payees |
-| [**updatePayee**](PayeesApi.md#updatepayee) | **PATCH** /budgets/{budget_id}/payees/{payee_id} | Update a payee |
+| [**getPayeeById**](PayeesApi.md#getpayeebyid) | **GET** /budgets/{plan_id}/payees/{payee_id} | Get a payee |
+| [**getPayees**](PayeesApi.md#getpayees) | **GET** /budgets/{plan_id}/payees | Get all payees |
+| [**updatePayee**](PayeesApi.md#updatepayee) | **PATCH** /budgets/{plan_id}/payees/{payee_id} | Update a payee |
 
 
 
 ## getPayeeById
 
-> PayeeResponse getPayeeById(budgetId, payeeId)
+> PayeeResponse getPayeeById(planId, payeeId)
 
 Get a payee
 
@@ -37,7 +37,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the payee
     payeeId: payeeId_example,
   } satisfies GetPayeeByIdRequest;
@@ -59,7 +59,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **payeeId** | `string` | The id of the payee | [Defaults to `undefined`] |
 
 ### Return type
@@ -87,7 +87,7 @@ example().catch(console.error);
 
 ## getPayees
 
-> PayeesResponse getPayees(budgetId, lastKnowledgeOfServer)
+> PayeesResponse getPayees(planId, lastKnowledgeOfServer)
 
 Get all payees
 
@@ -112,7 +112,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
     lastKnowledgeOfServer: 789,
   } satisfies GetPayeesRequest;
@@ -134,7 +134,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -162,7 +162,7 @@ example().catch(console.error);
 
 ## updatePayee
 
-> SavePayeeResponse updatePayee(budgetId, payeeId, data)
+> SavePayeeResponse updatePayee(planId, payeeId, data)
 
 Update a payee
 
@@ -187,7 +187,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the payee
     payeeId: payeeId_example,
     // PatchPayeeWrapper | The payee to update
@@ -211,7 +211,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **payeeId** | `string` | The id of the payee | [Defaults to `undefined`] |
 | **data** | [PatchPayeeWrapper](PatchPayeeWrapper.md) | The payee to update | |
 

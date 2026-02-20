@@ -77,8 +77,8 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocationById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayeeLocationById.');
                         }
                         if (requestParameters.payeeLocationId === null || requestParameters.payeeLocationId === undefined) {
                             throw new runtime.RequiredError('payeeLocationId', 'Required parameter requestParameters.payeeLocationId was null or undefined when calling getPayeeLocationById.');
@@ -96,7 +96,7 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/payee_locations/{payee_location_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("payee_location_id", "}"), encodeURIComponent(String(requestParameters.payeeLocationId))),
+                            path: "/budgets/{plan_id}/payee_locations/{payee_location_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_location_id", "}"), encodeURIComponent(String(requestParameters.payeeLocationId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -112,12 +112,12 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
      * Returns a single payee location
      * Get a payee location
      */
-    PayeeLocationsApi.prototype.getPayeeLocationById = function (budgetId, payeeLocationId, initOverrides) {
+    PayeeLocationsApi.prototype.getPayeeLocationById = function (planId, payeeLocationId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeeLocationByIdRaw({ budgetId: budgetId, payeeLocationId: payeeLocationId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeeLocationByIdRaw({ planId: planId, payeeLocationId: payeeLocationId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -136,8 +136,8 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocations.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayeeLocations.');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -152,7 +152,7 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/payee_locations".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/payee_locations".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -168,12 +168,12 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
      * Returns all payee locations
      * Get all payee locations
      */
-    PayeeLocationsApi.prototype.getPayeeLocations = function (budgetId, initOverrides) {
+    PayeeLocationsApi.prototype.getPayeeLocations = function (planId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeeLocationsRaw({ budgetId: budgetId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeeLocationsRaw({ planId: planId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -192,8 +192,8 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocationsByPayee.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayeeLocationsByPayee.');
                         }
                         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
                             throw new runtime.RequiredError('payeeId', 'Required parameter requestParameters.payeeId was null or undefined when calling getPayeeLocationsByPayee.');
@@ -211,7 +211,7 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/payees/{payee_id}/payee_locations".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
+                            path: "/budgets/{plan_id}/payees/{payee_id}/payee_locations".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -227,12 +227,12 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
      * Returns all payee locations for a specified payee
      * Get all locations for a payee
      */
-    PayeeLocationsApi.prototype.getPayeeLocationsByPayee = function (budgetId, payeeId, initOverrides) {
+    PayeeLocationsApi.prototype.getPayeeLocationsByPayee = function (planId, payeeId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPayeeLocationsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPayeeLocationsByPayeeRaw({ planId: planId, payeeId: payeeId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

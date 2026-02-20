@@ -7,14 +7,14 @@
 import * as runtime from '../runtime';
 import type { PayeeLocationResponse, PayeeLocationsResponse } from '../models/index';
 export interface GetPayeeLocationByIdRequest {
-    budgetId: string;
+    planId: string;
     payeeLocationId: string;
 }
 export interface GetPayeeLocationsRequest {
-    budgetId: string;
+    planId: string;
 }
 export interface GetPayeeLocationsByPayeeRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
 }
 /**
@@ -30,7 +30,7 @@ export declare class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns a single payee location
      * Get a payee location
      */
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse>;
+    getPayeeLocationById(planId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse>;
     /**
      * Returns all payee locations
      * Get all payee locations
@@ -40,7 +40,7 @@ export declare class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations
      * Get all payee locations
      */
-    getPayeeLocations(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
+    getPayeeLocations(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
     /**
      * Returns all payee locations for a specified payee
      * Get all locations for a payee
@@ -50,5 +50,5 @@ export declare class PayeeLocationsApi extends runtime.BaseAPI {
      * Returns all payee locations for a specified payee
      * Get all locations for a payee
      */
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(planId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
 }

@@ -4,15 +4,15 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createAccount**](AccountsApi.md#createaccount) | **POST** /budgets/{budget_id}/accounts | Create an account |
-| [**getAccountById**](AccountsApi.md#getaccountbyid) | **GET** /budgets/{budget_id}/accounts/{account_id} | Get an account |
-| [**getAccounts**](AccountsApi.md#getaccounts) | **GET** /budgets/{budget_id}/accounts | Get all accounts |
+| [**createAccount**](AccountsApi.md#createaccount) | **POST** /budgets/{plan_id}/accounts | Create an account |
+| [**getAccountById**](AccountsApi.md#getaccountbyid) | **GET** /budgets/{plan_id}/accounts/{account_id} | Get an account |
+| [**getAccounts**](AccountsApi.md#getaccounts) | **GET** /budgets/{plan_id}/accounts | Get all accounts |
 
 
 
 ## createAccount
 
-> AccountResponse createAccount(budgetId, data)
+> AccountResponse createAccount(planId, data)
 
 Create an account
 
@@ -37,7 +37,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan (\"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan)
-    budgetId: budgetId_example,
+    planId: planId_example,
     // PostAccountWrapper | The account to create.
     data: ...,
   } satisfies CreateAccountRequest;
@@ -59,7 +59,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan (\&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan) | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan (\&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan) | [Defaults to `undefined`] |
 | **data** | [PostAccountWrapper](PostAccountWrapper.md) | The account to create. | |
 
 ### Return type
@@ -87,7 +87,7 @@ example().catch(console.error);
 
 ## getAccountById
 
-> AccountResponse getAccountById(budgetId, accountId)
+> AccountResponse getAccountById(planId, accountId)
 
 Get an account
 
@@ -112,7 +112,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the account
     accountId: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
   } satisfies GetAccountByIdRequest;
@@ -134,7 +134,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **accountId** | `string` | The id of the account | [Defaults to `undefined`] |
 
 ### Return type
@@ -162,7 +162,7 @@ example().catch(console.error);
 
 ## getAccounts
 
-> AccountsResponse getAccounts(budgetId, lastKnowledgeOfServer)
+> AccountsResponse getAccounts(planId, lastKnowledgeOfServer)
 
 Get all accounts
 
@@ -187,7 +187,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
     lastKnowledgeOfServer: 789,
   } satisfies GetAccountsRequest;
@@ -209,7 +209,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
 ### Return type

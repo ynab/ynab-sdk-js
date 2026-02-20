@@ -5,7 +5,7 @@ info:
     and relies upon HTTPS for transport. We respond with meaningful HTTP
     response codes and if an error occurs, we include error details in the
     response body.  API Documentation is at https://api.ynab.com
-  version: 1.80.0
+  version: 1.81.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -77,7 +77,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}:
+  /budgets/{plan_id}:
     get:
       tags:
         - Plans
@@ -86,7 +86,7 @@ paths:
         effectively a full plan export.
       operationId: getPlanById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -114,7 +114,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/settings:
+  /budgets/{plan_id}/settings:
     get:
       tags:
         - Plans
@@ -122,7 +122,7 @@ paths:
       description: Returns settings for a plan
       operationId: getPlanSettingsById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -143,7 +143,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/accounts:
+  /budgets/{plan_id}/accounts:
     get:
       tags:
         - Accounts
@@ -151,7 +151,7 @@ paths:
       description: Returns all accounts
       operationId: getAccounts
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -186,7 +186,7 @@ paths:
       description: Creates a new account
       operationId: createAccount
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan ("last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -216,7 +216,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/accounts/{account_id}:
+  /budgets/{plan_id}/accounts/{account_id}:
     get:
       tags:
         - Accounts
@@ -224,7 +224,7 @@ paths:
       description: Returns a single account
       operationId: getAccountById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -252,7 +252,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/categories:
+  /budgets/{plan_id}/categories:
     get:
       tags:
         - Categories
@@ -262,7 +262,7 @@ paths:
         month (UTC).
       operationId: getCategories
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -297,7 +297,7 @@ paths:
       description: Creates a new category
       operationId: createCategory
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan ("last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -327,7 +327,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/categories/{category_id}:
+  /budgets/{plan_id}/categories/{category_id}:
     get:
       tags:
         - Categories
@@ -336,7 +336,7 @@ paths:
         etc.) are specific to the current plan month (UTC).
       operationId: getCategoryById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -370,7 +370,7 @@ paths:
       description: Update a category
       operationId: updateCategory
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -406,7 +406,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/months/{month}/categories/{category_id}:
+  /budgets/{plan_id}/months/{month}/categories/{category_id}:
     get:
       tags:
         - Categories
@@ -416,7 +416,7 @@ paths:
         month (UTC).
       operationId: getMonthCategoryById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -459,7 +459,7 @@ paths:
         amount can be updated.
       operationId: updateMonthCategory
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -504,7 +504,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/category_groups:
+  /budgets/{plan_id}/category_groups:
     post:
       tags:
         - Categories
@@ -512,7 +512,7 @@ paths:
       description: Creates a new category group
       operationId: createCategoryGroup
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan ("last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -542,7 +542,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/category_groups/{category_group_id}:
+  /budgets/{plan_id}/category_groups/{category_group_id}:
     patch:
       tags:
         - Categories
@@ -550,7 +550,7 @@ paths:
       description: Update a category group
       operationId: updateCategoryGroup
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -586,7 +586,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/payees:
+  /budgets/{plan_id}/payees:
     get:
       tags:
         - Payees
@@ -594,7 +594,7 @@ paths:
       description: Returns all payees
       operationId: getPayees
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -622,7 +622,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/payees/{payee_id}:
+  /budgets/{plan_id}/payees/{payee_id}:
     get:
       tags:
         - Payees
@@ -630,7 +630,7 @@ paths:
       description: Returns a single payee
       operationId: getPayeeById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -664,7 +664,7 @@ paths:
       description: Update a payee
       operationId: updatePayee
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -700,7 +700,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/payee_locations:
+  /budgets/{plan_id}/payee_locations:
     get:
       tags:
         - Payee Locations
@@ -708,7 +708,7 @@ paths:
       description: Returns all payee locations
       operationId: getPayeeLocations
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -729,7 +729,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/payee_locations/{payee_location_id}:
+  /budgets/{plan_id}/payee_locations/{payee_location_id}:
     get:
       tags:
         - Payee Locations
@@ -737,7 +737,7 @@ paths:
       description: Returns a single payee location
       operationId: getPayeeLocationById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -764,7 +764,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/payees/{payee_id}/payee_locations:
+  /budgets/{plan_id}/payees/{payee_id}/payee_locations:
     get:
       tags:
         - Payee Locations
@@ -772,7 +772,7 @@ paths:
       description: Returns all payee locations for a specified payee
       operationId: getPayeeLocationsByPayee
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -799,7 +799,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/months:
+  /budgets/{plan_id}/months:
     get:
       tags:
         - Months
@@ -807,7 +807,7 @@ paths:
       description: Returns all plan months
       operationId: getPlanMonths
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -835,7 +835,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/months/{month}:
+  /budgets/{plan_id}/months/{month}:
     get:
       tags:
         - Months
@@ -843,7 +843,7 @@ paths:
       description: Returns a single plan month
       operationId: getPlanMonth
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -872,7 +872,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/money_movements:
+  /budgets/{plan_id}/money_movements:
     get:
       tags:
         - Money Movements
@@ -880,7 +880,7 @@ paths:
       description: Returns all money movements
       operationId: getMoneyMovements
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -901,7 +901,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/months/{month}/money_movements:
+  /budgets/{plan_id}/months/{month}/money_movements:
     get:
       tags:
         - Money Movements
@@ -909,7 +909,7 @@ paths:
       description: Returns all money movements for a specific month
       operationId: getMoneyMovementsByMonth
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -938,7 +938,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/money_movement_groups:
+  /budgets/{plan_id}/money_movement_groups:
     get:
       tags:
         - Money Movements
@@ -946,7 +946,7 @@ paths:
       description: Returns all money movement groups
       operationId: getMoneyMovementGroups
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -967,7 +967,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/months/{month}/money_movement_groups:
+  /budgets/{plan_id}/months/{month}/money_movement_groups:
     get:
       tags:
         - Money Movements
@@ -975,7 +975,7 @@ paths:
       description: Returns all money movement groups for a specific month
       operationId: getMoneyMovementGroupsByMonth
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1004,7 +1004,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/transactions:
+  /budgets/{plan_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1012,7 +1012,7 @@ paths:
       description: Returns plan transactions, excluding any pending transactions
       operationId: getTransactions
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1073,7 +1073,7 @@ paths:
         (transactions with a future date) cannot be created on this endpoint.
       operationId: createTransaction
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1121,7 +1121,7 @@ paths:
       description: Updates multiple transactions, by `id` or `import_id`.
       operationId: updateTransactions
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1158,7 +1158,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/transactions/import:
+  /budgets/{plan_id}/transactions/import:
     post:
       tags:
         - Transactions
@@ -1172,7 +1172,7 @@ paths:
         this endpoint contains the transaction ids that have been imported.
       operationId: importTransactions
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1200,7 +1200,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/transactions/{transaction_id}:
+  /budgets/{plan_id}/transactions/{transaction_id}:
     get:
       tags:
         - Transactions
@@ -1208,7 +1208,7 @@ paths:
       description: Returns a single transaction
       operationId: getTransactionById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1242,7 +1242,7 @@ paths:
       description: Updates a single transaction
       operationId: updateTransaction
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1285,7 +1285,7 @@ paths:
       description: Deletes a transaction
       operationId: deleteTransaction
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1312,7 +1312,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/accounts/{account_id}/transactions:
+  /budgets/{plan_id}/accounts/{account_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1321,7 +1321,7 @@ paths:
         pending transactions
       operationId: getTransactionsByAccount
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1371,7 +1371,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/categories/{category_id}/transactions:
+  /budgets/{plan_id}/categories/{category_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1380,7 +1380,7 @@ paths:
         pending transactions
       operationId: getTransactionsByCategory
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1430,7 +1430,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/payees/{payee_id}/transactions:
+  /budgets/{plan_id}/payees/{payee_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1439,7 +1439,7 @@ paths:
         pending transactions
       operationId: getTransactionsByPayee
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1489,7 +1489,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/months/{month}/transactions:
+  /budgets/{plan_id}/months/{month}/transactions:
     get:
       tags:
         - Transactions
@@ -1498,7 +1498,7 @@ paths:
         pending transactions
       operationId: getTransactionsByMonth
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1549,7 +1549,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{budget_id}/scheduled_transactions:
+  /budgets/{plan_id}/scheduled_transactions:
     get:
       tags:
         - Scheduled Transactions
@@ -1557,7 +1557,7 @@ paths:
       description: Returns all scheduled transactions
       operationId: getScheduledTransactions
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1593,7 +1593,7 @@ paths:
         date).
       operationId: createScheduledTransaction
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1623,7 +1623,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}:
+  /budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}:
     get:
       tags:
         - Scheduled Transactions
@@ -1631,7 +1631,7 @@ paths:
       description: Returns a single scheduled transaction
       operationId: getScheduledTransactionById
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1665,7 +1665,7 @@ paths:
       description: Updates a single scheduled transaction
       operationId: updateScheduledTransaction
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is
@@ -1707,7 +1707,7 @@ paths:
       description: Deletes a scheduled transaction
       operationId: deleteScheduledTransaction
       parameters:
-        - name: budget_id
+        - name: plan_id
           in: path
           description: 'The id of the plan. "last-used" can be used to specify the last
             used plan and "default" can be used if default plan selection is

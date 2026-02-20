@@ -29,17 +29,17 @@ import {
 } from '../models/index';
 
 export interface GetPayeeByIdRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
 }
 
 export interface GetPayeesRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 
 export interface UpdatePayeeRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
     data: PatchPayeeWrapper;
 }
@@ -54,8 +54,8 @@ export class PayeesApi extends runtime.BaseAPI {
      * Get a payee
      */
     async getPayeeByIdRaw(requestParameters: GetPayeeByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getPayeeById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPayeeById.');
         }
 
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
@@ -76,7 +76,7 @@ export class PayeesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -89,8 +89,8 @@ export class PayeesApi extends runtime.BaseAPI {
      * Returns a single payee
      * Get a payee
      */
-    async getPayeeById(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeResponse> {
-        const response = await this.getPayeeByIdRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides);
+    async getPayeeById(planId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeResponse> {
+        const response = await this.getPayeeByIdRaw({ planId: planId, payeeId: payeeId }, initOverrides);
         return await response.value();
     }
 
@@ -99,8 +99,8 @@ export class PayeesApi extends runtime.BaseAPI {
      * Get all payees
      */
     async getPayeesRaw(requestParameters: GetPayeesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeesResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getPayees.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPayees.');
         }
 
         const queryParameters: any = {};
@@ -121,7 +121,7 @@ export class PayeesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/payees`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -134,8 +134,8 @@ export class PayeesApi extends runtime.BaseAPI {
      * Returns all payees
      * Get all payees
      */
-    async getPayees(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeesResponse> {
-        const response = await this.getPayeesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getPayees(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeesResponse> {
+        const response = await this.getPayeesRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -144,8 +144,8 @@ export class PayeesApi extends runtime.BaseAPI {
      * Update a payee
      */
     async updatePayeeRaw(requestParameters: UpdatePayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SavePayeeResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updatePayee.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updatePayee.');
         }
 
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
@@ -172,7 +172,7 @@ export class PayeesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -186,8 +186,8 @@ export class PayeesApi extends runtime.BaseAPI {
      * Update a payee
      * Update a payee
      */
-    async updatePayee(budgetId: string, payeeId: string, data: PatchPayeeWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePayeeResponse> {
-        const response = await this.updatePayeeRaw({ budgetId: budgetId, payeeId: payeeId, data: data }, initOverrides);
+    async updatePayee(planId: string, payeeId: string, data: PatchPayeeWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePayeeResponse> {
+        const response = await this.updatePayeeRaw({ planId: planId, payeeId: payeeId, data: data }, initOverrides);
         return await response.value();
     }
 

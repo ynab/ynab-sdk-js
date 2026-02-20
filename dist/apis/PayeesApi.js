@@ -53,8 +53,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Get a payee
      */
     async getPayeeByIdRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayeeById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayeeById.');
         }
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
             throw new runtime.RequiredError('payeeId', 'Required parameter requestParameters.payeeId was null or undefined when calling getPayeeById.');
@@ -70,7 +70,7 @@ class PayeesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -81,8 +81,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Returns a single payee
      * Get a payee
      */
-    async getPayeeById(budgetId, payeeId, initOverrides) {
-        const response = await this.getPayeeByIdRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides);
+    async getPayeeById(planId, payeeId, initOverrides) {
+        const response = await this.getPayeeByIdRaw({ planId: planId, payeeId: payeeId }, initOverrides);
         return await response.value();
     }
     /**
@@ -90,8 +90,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Get all payees
      */
     async getPayeesRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayees.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayees.');
         }
         const queryParameters = {};
         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -107,7 +107,7 @@ class PayeesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/payees`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -118,8 +118,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Returns all payees
      * Get all payees
      */
-    async getPayees(budgetId, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getPayeesRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getPayees(planId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getPayeesRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
@@ -127,8 +127,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Update a payee
      */
     async updatePayeeRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updatePayee.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updatePayee.');
         }
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
             throw new runtime.RequiredError('payeeId', 'Required parameter requestParameters.payeeId was null or undefined when calling updatePayee.');
@@ -148,7 +148,7 @@ class PayeesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -160,8 +160,8 @@ class PayeesApi extends runtime.BaseAPI {
      * Update a payee
      * Update a payee
      */
-    async updatePayee(budgetId, payeeId, data, initOverrides) {
-        const response = await this.updatePayeeRaw({ budgetId: budgetId, payeeId: payeeId, data: data }, initOverrides);
+    async updatePayee(planId, payeeId, data, initOverrides) {
+        const response = await this.updatePayeeRaw({ planId: planId, payeeId: payeeId, data: data }, initOverrides);
         return await response.value();
     }
 }

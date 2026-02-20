@@ -7,61 +7,61 @@
 import * as runtime from '../runtime';
 import type { HybridTransactionsResponse, PatchTransactionsWrapper, PostTransactionsWrapper, PutTransactionWrapper, SaveTransactionsResponse, TransactionResponse, TransactionsImportResponse, TransactionsResponse } from '../models/index';
 export interface CreateTransactionRequest {
-    budgetId: string;
+    planId: string;
     data: PostTransactionsWrapper;
 }
 export interface DeleteTransactionRequest {
-    budgetId: string;
+    planId: string;
     transactionId: string;
 }
 export interface GetTransactionByIdRequest {
-    budgetId: string;
+    planId: string;
     transactionId: string;
 }
 export interface GetTransactionsRequest {
-    budgetId: string;
+    planId: string;
     sinceDate?: string;
     type?: GetTransactionsTypeEnum;
     lastKnowledgeOfServer?: number;
 }
 export interface GetTransactionsByAccountRequest {
-    budgetId: string;
+    planId: string;
     accountId: string;
     sinceDate?: string;
     type?: GetTransactionsByAccountTypeEnum;
     lastKnowledgeOfServer?: number;
 }
 export interface GetTransactionsByCategoryRequest {
-    budgetId: string;
+    planId: string;
     categoryId: string;
     sinceDate?: string;
     type?: GetTransactionsByCategoryTypeEnum;
     lastKnowledgeOfServer?: number;
 }
 export interface GetTransactionsByMonthRequest {
-    budgetId: string;
+    planId: string;
     month: string;
     sinceDate?: string;
     type?: GetTransactionsByMonthTypeEnum;
     lastKnowledgeOfServer?: number;
 }
 export interface GetTransactionsByPayeeRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
     sinceDate?: string;
     type?: GetTransactionsByPayeeTypeEnum;
     lastKnowledgeOfServer?: number;
 }
 export interface ImportTransactionsRequest {
-    budgetId: string;
+    planId: string;
 }
 export interface UpdateTransactionRequest {
-    budgetId: string;
+    planId: string;
     transactionId: string;
     data: PutTransactionWrapper;
 }
 export interface UpdateTransactionsRequest {
-    budgetId: string;
+    planId: string;
     data: PatchTransactionsWrapper;
 }
 /**
@@ -77,7 +77,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions (transactions with a future date) cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
-    createTransaction(budgetId: string, data: PostTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse>;
+    createTransaction(planId: string, data: PostTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse>;
     /**
      * Deletes a transaction
      * Delete a transaction
@@ -87,7 +87,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Deletes a transaction
      * Delete a transaction
      */
-    deleteTransaction(budgetId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse>;
+    deleteTransaction(planId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse>;
     /**
      * Returns a single transaction
      * Get a transaction
@@ -97,7 +97,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Returns a single transaction
      * Get a transaction
      */
-    getTransactionById(budgetId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse>;
+    getTransactionById(planId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse>;
     /**
      * Returns plan transactions, excluding any pending transactions
      * Get all transactions
@@ -107,7 +107,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Returns plan transactions, excluding any pending transactions
      * Get all transactions
      */
-    getTransactions(budgetId: string, sinceDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
+    getTransactions(planId: string, sinceDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
      * Get all account transactions
@@ -117,7 +117,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified account, excluding any pending transactions
      * Get all account transactions
      */
-    getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
+    getTransactionsByAccount(planId: string, accountId: string, sinceDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
      * Get all category transactions
@@ -127,7 +127,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified category, excluding any pending transactions
      * Get all category transactions
      */
-    getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(planId: string, categoryId: string, sinceDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
      * Get all plan month transactions
@@ -137,7 +137,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified month, excluding any pending transactions
      * Get all plan month transactions
      */
-    getTransactionsByMonth(budgetId: string, month: string, sinceDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
+    getTransactionsByMonth(planId: string, month: string, sinceDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
      * Get all payee transactions
@@ -147,7 +147,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified payee, excluding any pending transactions
      * Get all payee transactions
      */
-    getTransactionsByPayee(budgetId: string, payeeId: string, sinceDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(planId: string, payeeId: string, sinceDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
     /**
      * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
@@ -157,7 +157,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
-    importTransactions(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsImportResponse>;
+    importTransactions(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsImportResponse>;
     /**
      * Updates a single transaction
      * Update a transaction
@@ -167,7 +167,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Updates a single transaction
      * Update a transaction
      */
-    updateTransaction(budgetId: string, transactionId: string, data: PutTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse>;
+    updateTransaction(planId: string, transactionId: string, data: PutTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse>;
     /**
      * Updates multiple transactions, by `id` or `import_id`.
      * Update multiple transactions
@@ -177,7 +177,7 @@ export declare class TransactionsApi extends runtime.BaseAPI {
      * Updates multiple transactions, by `id` or `import_id`.
      * Update multiple transactions
      */
-    updateTransactions(budgetId: string, data: PatchTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse>;
+    updateTransactions(planId: string, data: PatchTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse>;
 }
 /**
  * @export

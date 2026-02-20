@@ -7,11 +7,11 @@
 import * as runtime from '../runtime';
 import type { PlanDetailResponse, PlanSettingsResponse, PlanSummaryResponse } from '../models/index';
 export interface GetPlanByIdRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 export interface GetPlanSettingsByIdRequest {
-    budgetId: string;
+    planId: string;
 }
 export interface GetPlansRequest {
     includeAccounts?: boolean;
@@ -29,7 +29,7 @@ export declare class PlansApi extends runtime.BaseAPI {
      * Returns a single plan with all related entities.  This resource is effectively a full plan export.
      * Get a plan
      */
-    getPlanById(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanDetailResponse>;
+    getPlanById(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanDetailResponse>;
     /**
      * Returns settings for a plan
      * Get plan settings
@@ -39,7 +39,7 @@ export declare class PlansApi extends runtime.BaseAPI {
      * Returns settings for a plan
      * Get plan settings
      */
-    getPlanSettingsById(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanSettingsResponse>;
+    getPlanSettingsById(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanSettingsResponse>;
     /**
      * Returns plans list with summary information
      * Get all plans

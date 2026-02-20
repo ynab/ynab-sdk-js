@@ -7,38 +7,38 @@
 import * as runtime from '../runtime';
 import type { CategoriesResponse, CategoryResponse, PatchCategoryGroupWrapper, PatchCategoryWrapper, PatchMonthCategoryWrapper, PostCategoryGroupWrapper, PostCategoryWrapper, SaveCategoryGroupResponse, SaveCategoryResponse } from '../models/index';
 export interface CreateCategoryRequest {
-    budgetId: string;
+    planId: string;
     data: PostCategoryWrapper;
 }
 export interface CreateCategoryGroupRequest {
-    budgetId: string;
+    planId: string;
     data: PostCategoryGroupWrapper;
 }
 export interface GetCategoriesRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 export interface GetCategoryByIdRequest {
-    budgetId: string;
+    planId: string;
     categoryId: string;
 }
 export interface GetMonthCategoryByIdRequest {
-    budgetId: string;
+    planId: string;
     month: string;
     categoryId: string;
 }
 export interface UpdateCategoryRequest {
-    budgetId: string;
+    planId: string;
     categoryId: string;
     data: PatchCategoryWrapper;
 }
 export interface UpdateCategoryGroupRequest {
-    budgetId: string;
+    planId: string;
     categoryGroupId: string;
     data: PatchCategoryGroupWrapper;
 }
 export interface UpdateMonthCategoryRequest {
-    budgetId: string;
+    planId: string;
     month: string;
     categoryId: string;
     data: PatchMonthCategoryWrapper;
@@ -56,7 +56,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Creates a new category
      * Create a category
      */
-    createCategory(budgetId: string, data: PostCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
+    createCategory(planId: string, data: PostCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
     /**
      * Creates a new category group
      * Create a category group
@@ -66,7 +66,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Creates a new category group
      * Create a category group
      */
-    createCategoryGroup(budgetId: string, data: PostCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse>;
+    createCategoryGroup(planId: string, data: PostCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse>;
     /**
      * Returns all categories grouped by category group.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get all categories
@@ -76,7 +76,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Returns all categories grouped by category group.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get all categories
      */
-    getCategories(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoriesResponse>;
+    getCategories(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoriesResponse>;
     /**
      * Returns a single category.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category
@@ -86,7 +86,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category
      */
-    getCategoryById(budgetId: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
+    getCategoryById(planId: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
     /**
      * Returns a single category for a specific plan month.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category for a specific plan month
@@ -96,7 +96,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Returns a single category for a specific plan month.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * Get a category for a specific plan month
      */
-    getMonthCategoryById(budgetId: string, month: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
+    getMonthCategoryById(planId: string, month: string, categoryId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryResponse>;
     /**
      * Update a category
      * Update a category
@@ -106,7 +106,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Update a category
      * Update a category
      */
-    updateCategory(budgetId: string, categoryId: string, data: PatchCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
+    updateCategory(planId: string, categoryId: string, data: PatchCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
     /**
      * Update a category group
      * Update a category group
@@ -116,7 +116,7 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Update a category group
      * Update a category group
      */
-    updateCategoryGroup(budgetId: string, categoryGroupId: string, data: PatchCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse>;
+    updateCategoryGroup(planId: string, categoryGroupId: string, data: PatchCategoryGroupWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryGroupResponse>;
     /**
      * Update a category for a specific month.  Only `budgeted` (assigned) amount can be updated.
      * Update a category for a specific month
@@ -126,5 +126,5 @@ export declare class CategoriesApi extends runtime.BaseAPI {
      * Update a category for a specific month.  Only `budgeted` (assigned) amount can be updated.
      * Update a category for a specific month
      */
-    updateMonthCategory(budgetId: string, month: string, categoryId: string, data: PatchMonthCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
+    updateMonthCategory(planId: string, month: string, categoryId: string, data: PatchMonthCategoryWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveCategoryResponse>;
 }

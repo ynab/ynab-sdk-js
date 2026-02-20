@@ -53,8 +53,8 @@ class MonthsApi extends runtime.BaseAPI {
      * Get a plan month
      */
     async getPlanMonthRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonth.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanMonth.');
         }
         if (requestParameters.month === null || requestParameters.month === undefined) {
             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getPlanMonth.');
@@ -70,7 +70,7 @@ class MonthsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months/{month}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
+            path: `/budgets/{plan_id}/months/{month}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -81,8 +81,8 @@ class MonthsApi extends runtime.BaseAPI {
      * Returns a single plan month
      * Get a plan month
      */
-    async getPlanMonth(budgetId, month, initOverrides) {
-        const response = await this.getPlanMonthRaw({ budgetId: budgetId, month: month }, initOverrides);
+    async getPlanMonth(planId, month, initOverrides) {
+        const response = await this.getPlanMonthRaw({ planId: planId, month: month }, initOverrides);
         return await response.value();
     }
     /**
@@ -90,8 +90,8 @@ class MonthsApi extends runtime.BaseAPI {
      * Get all plan months
      */
     async getPlanMonthsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanMonths.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanMonths.');
         }
         const queryParameters = {};
         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -107,7 +107,7 @@ class MonthsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/months`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -118,8 +118,8 @@ class MonthsApi extends runtime.BaseAPI {
      * Returns all plan months
      * Get all plan months
      */
-    async getPlanMonths(budgetId, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getPlanMonthsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getPlanMonths(planId, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getPlanMonthsRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 }

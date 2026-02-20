@@ -4,20 +4,20 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createCategory**](CategoriesApi.md#createcategory) | **POST** /budgets/{budget_id}/categories | Create a category |
-| [**createCategoryGroup**](CategoriesApi.md#createcategorygroup) | **POST** /budgets/{budget_id}/category_groups | Create a category group |
-| [**getCategories**](CategoriesApi.md#getcategories) | **GET** /budgets/{budget_id}/categories | Get all categories |
-| [**getCategoryById**](CategoriesApi.md#getcategorybyid) | **GET** /budgets/{budget_id}/categories/{category_id} | Get a category |
-| [**getMonthCategoryById**](CategoriesApi.md#getmonthcategorybyid) | **GET** /budgets/{budget_id}/months/{month}/categories/{category_id} | Get a category for a specific plan month |
-| [**updateCategory**](CategoriesApi.md#updatecategory) | **PATCH** /budgets/{budget_id}/categories/{category_id} | Update a category |
-| [**updateCategoryGroup**](CategoriesApi.md#updatecategorygroup) | **PATCH** /budgets/{budget_id}/category_groups/{category_group_id} | Update a category group |
-| [**updateMonthCategory**](CategoriesApi.md#updatemonthcategory) | **PATCH** /budgets/{budget_id}/months/{month}/categories/{category_id} | Update a category for a specific month |
+| [**createCategory**](CategoriesApi.md#createcategory) | **POST** /budgets/{plan_id}/categories | Create a category |
+| [**createCategoryGroup**](CategoriesApi.md#createcategorygroup) | **POST** /budgets/{plan_id}/category_groups | Create a category group |
+| [**getCategories**](CategoriesApi.md#getcategories) | **GET** /budgets/{plan_id}/categories | Get all categories |
+| [**getCategoryById**](CategoriesApi.md#getcategorybyid) | **GET** /budgets/{plan_id}/categories/{category_id} | Get a category |
+| [**getMonthCategoryById**](CategoriesApi.md#getmonthcategorybyid) | **GET** /budgets/{plan_id}/months/{month}/categories/{category_id} | Get a category for a specific plan month |
+| [**updateCategory**](CategoriesApi.md#updatecategory) | **PATCH** /budgets/{plan_id}/categories/{category_id} | Update a category |
+| [**updateCategoryGroup**](CategoriesApi.md#updatecategorygroup) | **PATCH** /budgets/{plan_id}/category_groups/{category_group_id} | Update a category group |
+| [**updateMonthCategory**](CategoriesApi.md#updatemonthcategory) | **PATCH** /budgets/{plan_id}/months/{month}/categories/{category_id} | Update a category for a specific month |
 
 
 
 ## createCategory
 
-> SaveCategoryResponse createCategory(budgetId, data)
+> SaveCategoryResponse createCategory(planId, data)
 
 Create a category
 
@@ -42,7 +42,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan (\"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan)
-    budgetId: budgetId_example,
+    planId: planId_example,
     // PostCategoryWrapper | The category to create.
     data: ...,
   } satisfies CreateCategoryRequest;
@@ -64,7 +64,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan (\&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan) | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan (\&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan) | [Defaults to `undefined`] |
 | **data** | [PostCategoryWrapper](PostCategoryWrapper.md) | The category to create. | |
 
 ### Return type
@@ -92,7 +92,7 @@ example().catch(console.error);
 
 ## createCategoryGroup
 
-> SaveCategoryGroupResponse createCategoryGroup(budgetId, data)
+> SaveCategoryGroupResponse createCategoryGroup(planId, data)
 
 Create a category group
 
@@ -117,7 +117,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan (\"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan)
-    budgetId: budgetId_example,
+    planId: planId_example,
     // PostCategoryGroupWrapper | The category group to create.
     data: ...,
   } satisfies CreateCategoryGroupRequest;
@@ -139,7 +139,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan (\&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan) | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan (\&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan) | [Defaults to `undefined`] |
 | **data** | [PostCategoryGroupWrapper](PostCategoryGroupWrapper.md) | The category group to create. | |
 
 ### Return type
@@ -167,7 +167,7 @@ example().catch(console.error);
 
 ## getCategories
 
-> CategoriesResponse getCategories(budgetId, lastKnowledgeOfServer)
+> CategoriesResponse getCategories(planId, lastKnowledgeOfServer)
 
 Get all categories
 
@@ -192,7 +192,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
     lastKnowledgeOfServer: 789,
   } satisfies GetCategoriesRequest;
@@ -214,7 +214,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -242,7 +242,7 @@ example().catch(console.error);
 
 ## getCategoryById
 
-> CategoryResponse getCategoryById(budgetId, categoryId)
+> CategoryResponse getCategoryById(planId, categoryId)
 
 Get a category
 
@@ -267,7 +267,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the category
     categoryId: categoryId_example,
   } satisfies GetCategoryByIdRequest;
@@ -289,7 +289,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **categoryId** | `string` | The id of the category | [Defaults to `undefined`] |
 
 ### Return type
@@ -317,7 +317,7 @@ example().catch(console.error);
 
 ## getMonthCategoryById
 
-> CategoryResponse getMonthCategoryById(budgetId, month, categoryId)
+> CategoryResponse getMonthCategoryById(planId, month, categoryId)
 
 Get a category for a specific plan month
 
@@ -342,7 +342,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The plan month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
     month: 2013-10-20,
     // string | The id of the category
@@ -366,7 +366,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **month** | `string` | The plan month in ISO format (e.g. 2016-12-01) (\&quot;current\&quot; can also be used to specify the current calendar month (UTC)) | [Defaults to `undefined`] |
 | **categoryId** | `string` | The id of the category | [Defaults to `undefined`] |
 
@@ -395,7 +395,7 @@ example().catch(console.error);
 
 ## updateCategory
 
-> SaveCategoryResponse updateCategory(budgetId, categoryId, data)
+> SaveCategoryResponse updateCategory(planId, categoryId, data)
 
 Update a category
 
@@ -420,7 +420,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the category
     categoryId: categoryId_example,
     // PatchCategoryWrapper | The category to update
@@ -444,7 +444,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **categoryId** | `string` | The id of the category | [Defaults to `undefined`] |
 | **data** | [PatchCategoryWrapper](PatchCategoryWrapper.md) | The category to update | |
 
@@ -473,7 +473,7 @@ example().catch(console.error);
 
 ## updateCategoryGroup
 
-> SaveCategoryGroupResponse updateCategoryGroup(budgetId, categoryGroupId, data)
+> SaveCategoryGroupResponse updateCategoryGroup(planId, categoryGroupId, data)
 
 Update a category group
 
@@ -498,7 +498,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The id of the category group
     categoryGroupId: categoryGroupId_example,
     // PatchCategoryGroupWrapper | The category group to update
@@ -522,7 +522,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **categoryGroupId** | `string` | The id of the category group | [Defaults to `undefined`] |
 | **data** | [PatchCategoryGroupWrapper](PatchCategoryGroupWrapper.md) | The category group to update | |
 
@@ -551,7 +551,7 @@ example().catch(console.error);
 
 ## updateMonthCategory
 
-> SaveCategoryResponse updateMonthCategory(budgetId, month, categoryId, data)
+> SaveCategoryResponse updateMonthCategory(planId, month, categoryId, data)
 
 Update a category for a specific month
 
@@ -576,7 +576,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // string | The plan month in ISO format (e.g. 2016-12-01) (\"current\" can also be used to specify the current calendar month (UTC))
     month: 2013-10-20,
     // string | The id of the category
@@ -602,7 +602,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **month** | `string` | The plan month in ISO format (e.g. 2016-12-01) (\&quot;current\&quot; can also be used to specify the current calendar month (UTC)) | [Defaults to `undefined`] |
 | **categoryId** | `string` | The id of the category | [Defaults to `undefined`] |
 | **data** | [PatchMonthCategoryWrapper](PatchMonthCategoryWrapper.md) | The category to update.  Only &#x60;budgeted&#x60; (assigned) amount can be updated and any other fields specified will be ignored. | |

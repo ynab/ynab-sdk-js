@@ -77,8 +77,8 @@ var PlansApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanById.');
                         }
                         queryParameters = {};
                         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -96,7 +96,7 @@ var PlansApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -112,12 +112,12 @@ var PlansApi = /** @class */ (function (_super) {
      * Returns a single plan with all related entities.  This resource is effectively a full plan export.
      * Get a plan
      */
-    PlansApi.prototype.getPlanById = function (budgetId, lastKnowledgeOfServer, initOverrides) {
+    PlansApi.prototype.getPlanById = function (planId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPlanByIdRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPlanByIdRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -136,8 +136,8 @@ var PlansApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPlanSettingsById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPlanSettingsById.');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -152,7 +152,7 @@ var PlansApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/settings".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/settings".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -168,12 +168,12 @@ var PlansApi = /** @class */ (function (_super) {
      * Returns settings for a plan
      * Get plan settings
      */
-    PlansApi.prototype.getPlanSettingsById = function (budgetId, initOverrides) {
+    PlansApi.prototype.getPlanSettingsById = function (planId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPlanSettingsByIdRaw({ budgetId: budgetId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getPlanSettingsByIdRaw({ planId: planId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

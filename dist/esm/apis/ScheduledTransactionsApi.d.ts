@@ -7,23 +7,23 @@
 import * as runtime from '../runtime';
 import type { PostScheduledTransactionWrapper, PutScheduledTransactionWrapper, ScheduledTransactionResponse, ScheduledTransactionsResponse } from '../models/index';
 export interface CreateScheduledTransactionRequest {
-    budgetId: string;
+    planId: string;
     data: PostScheduledTransactionWrapper;
 }
 export interface DeleteScheduledTransactionRequest {
-    budgetId: string;
+    planId: string;
     scheduledTransactionId: string;
 }
 export interface GetScheduledTransactionByIdRequest {
-    budgetId: string;
+    planId: string;
     scheduledTransactionId: string;
 }
 export interface GetScheduledTransactionsRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 export interface UpdateScheduledTransactionRequest {
-    budgetId: string;
+    planId: string;
     scheduledTransactionId: string;
     putScheduledTransactionWrapper: PutScheduledTransactionWrapper;
 }
@@ -40,7 +40,7 @@ export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Creates a single scheduled transaction (a transaction with a future date).
      * Create a scheduled transaction
      */
-    createScheduledTransaction(budgetId: string, data: PostScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
+    createScheduledTransaction(planId: string, data: PostScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
     /**
      * Deletes a scheduled transaction
      * Delete a scheduled transaction
@@ -50,7 +50,7 @@ export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Deletes a scheduled transaction
      * Delete a scheduled transaction
      */
-    deleteScheduledTransaction(budgetId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
+    deleteScheduledTransaction(planId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
     /**
      * Returns a single scheduled transaction
      * Get a scheduled transaction
@@ -60,7 +60,7 @@ export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns a single scheduled transaction
      * Get a scheduled transaction
      */
-    getScheduledTransactionById(budgetId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
+    getScheduledTransactionById(planId: string, scheduledTransactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
     /**
      * Returns all scheduled transactions
      * Get all scheduled transactions
@@ -70,7 +70,7 @@ export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Returns all scheduled transactions
      * Get all scheduled transactions
      */
-    getScheduledTransactions(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse>;
+    getScheduledTransactions(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionsResponse>;
     /**
      * Updates a single scheduled transaction
      * Update a scheduled transaction
@@ -80,5 +80,5 @@ export declare class ScheduledTransactionsApi extends runtime.BaseAPI {
      * Updates a single scheduled transaction
      * Update a scheduled transaction
      */
-    updateScheduledTransaction(budgetId: string, scheduledTransactionId: string, putScheduledTransactionWrapper: PutScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
+    updateScheduledTransaction(planId: string, scheduledTransactionId: string, putScheduledTransactionWrapper: PutScheduledTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScheduledTransactionResponse>;
 }

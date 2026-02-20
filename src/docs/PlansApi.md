@@ -4,15 +4,15 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPlanById**](PlansApi.md#getplanbyid) | **GET** /budgets/{budget_id} | Get a plan |
-| [**getPlanSettingsById**](PlansApi.md#getplansettingsbyid) | **GET** /budgets/{budget_id}/settings | Get plan settings |
+| [**getPlanById**](PlansApi.md#getplanbyid) | **GET** /budgets/{plan_id} | Get a plan |
+| [**getPlanSettingsById**](PlansApi.md#getplansettingsbyid) | **GET** /budgets/{plan_id}/settings | Get plan settings |
 | [**getPlans**](PlansApi.md#getplans) | **GET** /budgets | Get all plans |
 
 
 
 ## getPlanById
 
-> PlanDetailResponse getPlanById(budgetId, lastKnowledgeOfServer)
+> PlanDetailResponse getPlanById(planId, lastKnowledgeOfServer)
 
 Get a plan
 
@@ -37,7 +37,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
     lastKnowledgeOfServer: 789,
   } satisfies GetPlanByIdRequest;
@@ -59,7 +59,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -87,7 +87,7 @@ example().catch(console.error);
 
 ## getPlanSettingsById
 
-> PlanSettingsResponse getPlanSettingsById(budgetId)
+> PlanSettingsResponse getPlanSettingsById(planId)
 
 Get plan settings
 
@@ -112,7 +112,7 @@ async function example() {
 
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
-    budgetId: budgetId_example,
+    planId: planId_example,
   } satisfies GetPlanSettingsByIdRequest;
 
   try {
@@ -132,7 +132,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **budgetId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 
 ### Return type
 

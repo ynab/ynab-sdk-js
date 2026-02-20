@@ -41,29 +41,29 @@ import {
 } from '../models/index';
 
 export interface CreateTransactionRequest {
-    budgetId: string;
+    planId: string;
     data: PostTransactionsWrapper;
 }
 
 export interface DeleteTransactionRequest {
-    budgetId: string;
+    planId: string;
     transactionId: string;
 }
 
 export interface GetTransactionByIdRequest {
-    budgetId: string;
+    planId: string;
     transactionId: string;
 }
 
 export interface GetTransactionsRequest {
-    budgetId: string;
+    planId: string;
     sinceDate?: string;
     type?: GetTransactionsTypeEnum;
     lastKnowledgeOfServer?: number;
 }
 
 export interface GetTransactionsByAccountRequest {
-    budgetId: string;
+    planId: string;
     accountId: string;
     sinceDate?: string;
     type?: GetTransactionsByAccountTypeEnum;
@@ -71,7 +71,7 @@ export interface GetTransactionsByAccountRequest {
 }
 
 export interface GetTransactionsByCategoryRequest {
-    budgetId: string;
+    planId: string;
     categoryId: string;
     sinceDate?: string;
     type?: GetTransactionsByCategoryTypeEnum;
@@ -79,7 +79,7 @@ export interface GetTransactionsByCategoryRequest {
 }
 
 export interface GetTransactionsByMonthRequest {
-    budgetId: string;
+    planId: string;
     month: string;
     sinceDate?: string;
     type?: GetTransactionsByMonthTypeEnum;
@@ -87,7 +87,7 @@ export interface GetTransactionsByMonthRequest {
 }
 
 export interface GetTransactionsByPayeeRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
     sinceDate?: string;
     type?: GetTransactionsByPayeeTypeEnum;
@@ -95,17 +95,17 @@ export interface GetTransactionsByPayeeRequest {
 }
 
 export interface ImportTransactionsRequest {
-    budgetId: string;
+    planId: string;
 }
 
 export interface UpdateTransactionRequest {
-    budgetId: string;
+    planId: string;
     transactionId: string;
     data: PutTransactionWrapper;
 }
 
 export interface UpdateTransactionsRequest {
-    budgetId: string;
+    planId: string;
     data: PatchTransactionsWrapper;
 }
 
@@ -119,8 +119,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Create a single transaction or multiple transactions
      */
     async createTransactionRaw(requestParameters: CreateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveTransactionsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling createTransaction.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling createTransaction.');
         }
 
         if (requestParameters.data === null || requestParameters.data === undefined) {
@@ -143,7 +143,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -157,8 +157,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions (transactions with a future date) cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
-    async createTransaction(budgetId: string, data: PostTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
-        const response = await this.createTransactionRaw({ budgetId: budgetId, data: data }, initOverrides);
+    async createTransaction(planId: string, data: PostTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
+        const response = await this.createTransactionRaw({ planId: planId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -167,8 +167,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Delete a transaction
      */
     async deleteTransactionRaw(requestParameters: DeleteTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling deleteTransaction.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling deleteTransaction.');
         }
 
         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
@@ -189,7 +189,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/{transaction_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -202,8 +202,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Deletes a transaction
      * Delete a transaction
      */
-    async deleteTransaction(budgetId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
-        const response = await this.deleteTransactionRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
+    async deleteTransaction(planId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
+        const response = await this.deleteTransactionRaw({ planId: planId, transactionId: transactionId }, initOverrides);
         return await response.value();
     }
 
@@ -212,8 +212,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Get a transaction
      */
     async getTransactionByIdRaw(requestParameters: GetTransactionByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getTransactionById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getTransactionById.');
         }
 
         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
@@ -234,7 +234,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/{transaction_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -247,8 +247,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns a single transaction
      * Get a transaction
      */
-    async getTransactionById(budgetId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
-        const response = await this.getTransactionByIdRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
+    async getTransactionById(planId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
+        const response = await this.getTransactionByIdRaw({ planId: planId, transactionId: transactionId }, initOverrides);
         return await response.value();
     }
 
@@ -257,8 +257,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Get all transactions
      */
     async getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getTransactions.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getTransactions.');
         }
 
         const queryParameters: any = {};
@@ -287,7 +287,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -300,8 +300,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns plan transactions, excluding any pending transactions
      * Get all transactions
      */
-    async getTransactions(budgetId: string, sinceDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsRaw({ budgetId: budgetId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactions(planId: string, sinceDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -310,8 +310,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Get all account transactions
      */
     async getTransactionsByAccountRaw(requestParameters: GetTransactionsByAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByAccount.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getTransactionsByAccount.');
         }
 
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
@@ -344,7 +344,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/accounts/{account_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
+            path: `/budgets/{plan_id}/accounts/{account_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -357,8 +357,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified account, excluding any pending transactions
      * Get all account transactions
      */
-    async getTransactionsByAccount(budgetId: string, accountId: string, sinceDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsByAccountRaw({ budgetId: budgetId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByAccount(planId: string, accountId: string, sinceDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -367,8 +367,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Get all category transactions
      */
     async getTransactionsByCategoryRaw(requestParameters: GetTransactionsByCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HybridTransactionsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByCategory.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getTransactionsByCategory.');
         }
 
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
@@ -401,7 +401,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/categories/{category_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/budgets/{plan_id}/categories/{category_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -414,8 +414,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified category, excluding any pending transactions
      * Get all category transactions
      */
-    async getTransactionsByCategory(budgetId: string, categoryId: string, sinceDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
-        const response = await this.getTransactionsByCategoryRaw({ budgetId: budgetId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByCategory(planId: string, categoryId: string, sinceDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
+        const response = await this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -424,8 +424,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Get all plan month transactions
      */
     async getTransactionsByMonthRaw(requestParameters: GetTransactionsByMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByMonth.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getTransactionsByMonth.');
         }
 
         if (requestParameters.month === null || requestParameters.month === undefined) {
@@ -458,7 +458,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months/{month}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
+            path: `/budgets/{plan_id}/months/{month}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -471,8 +471,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified month, excluding any pending transactions
      * Get all plan month transactions
      */
-    async getTransactionsByMonth(budgetId: string, month: string, sinceDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsByMonthRaw({ budgetId: budgetId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByMonth(planId: string, month: string, sinceDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -481,8 +481,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Get all payee transactions
      */
     async getTransactionsByPayeeRaw(requestParameters: GetTransactionsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HybridTransactionsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByPayee.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getTransactionsByPayee.');
         }
 
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
@@ -515,7 +515,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -528,8 +528,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Returns all transactions for a specified payee, excluding any pending transactions
      * Get all payee transactions
      */
-    async getTransactionsByPayee(budgetId: string, payeeId: string, sinceDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
-        const response = await this.getTransactionsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByPayee(planId: string, payeeId: string, sinceDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
+        const response = await this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
@@ -538,8 +538,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Import transactions
      */
     async importTransactionsRaw(requestParameters: ImportTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsImportResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling importTransactions.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling importTransactions.');
         }
 
         const queryParameters: any = {};
@@ -556,7 +556,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/import`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions/import`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -569,8 +569,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
-    async importTransactions(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsImportResponse> {
-        const response = await this.importTransactionsRaw({ budgetId: budgetId }, initOverrides);
+    async importTransactions(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsImportResponse> {
+        const response = await this.importTransactionsRaw({ planId: planId }, initOverrides);
         return await response.value();
     }
 
@@ -579,8 +579,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Update a transaction
      */
     async updateTransactionRaw(requestParameters: UpdateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updateTransaction.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updateTransaction.');
         }
 
         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
@@ -607,7 +607,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/{transaction_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -621,8 +621,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Updates a single transaction
      * Update a transaction
      */
-    async updateTransaction(budgetId: string, transactionId: string, data: PutTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
-        const response = await this.updateTransactionRaw({ budgetId: budgetId, transactionId: transactionId, data: data }, initOverrides);
+    async updateTransaction(planId: string, transactionId: string, data: PutTransactionWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse> {
+        const response = await this.updateTransactionRaw({ planId: planId, transactionId: transactionId, data: data }, initOverrides);
         return await response.value();
     }
 
@@ -631,8 +631,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Update multiple transactions
      */
     async updateTransactionsRaw(requestParameters: UpdateTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SaveTransactionsResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling updateTransactions.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updateTransactions.');
         }
 
         if (requestParameters.data === null || requestParameters.data === undefined) {
@@ -655,7 +655,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -669,8 +669,8 @@ export class TransactionsApi extends runtime.BaseAPI {
      * Updates multiple transactions, by `id` or `import_id`.
      * Update multiple transactions
      */
-    async updateTransactions(budgetId: string, data: PatchTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
-        const response = await this.updateTransactionsRaw({ budgetId: budgetId, data: data }, initOverrides);
+    async updateTransactions(planId: string, data: PatchTransactionsWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SaveTransactionsResponse> {
+        const response = await this.updateTransactionsRaw({ planId: planId, data: data }, initOverrides);
         return await response.value();
     }
 
