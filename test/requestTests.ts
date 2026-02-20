@@ -57,30 +57,30 @@ describe("API requests", () => {
       });
       try {
         const lastKnowledgeOfServer = 5;
-        await ynabAPI.budgets.getBudgetById(budgetId, lastKnowledgeOfServer);
+        await ynabAPI.plans.getPlanById(budgetId, lastKnowledgeOfServer);
         assert(false, "Expected the above method to throw an error");
       } catch (errorResponse: any) {
         expect(errorResponse).to.deep.equal(errorObject);
       }
     });
 
-    it("Should getBudgets and validate the request is sent correctly", async () => {
+    it("Should getPlans and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
-      const getBudgetsResponse = await callApiAndVerifyResponse(
-        () => ynabAPI.budgets.getBudgets(),
+      const getPlansResponse = await callApiAndVerifyResponse(
+        () => ynabAPI.plans.getPlans(),
         factories.budgetSummaryResponseFactory.build()
       );
       verifyRequestDetails(`${BASE_URL}/budgets`);
     });
 
-    it("Should getBudgetById and validate the request is sent correctly", async () => {
+    it("Should getPlanById and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       const lastKnowledgeOfServer = 5;
-      const getBudgetsResponse = await callApiAndVerifyResponse(
-        () => ynabAPI.budgets.getBudgetById(budgetId, lastKnowledgeOfServer),
-        factories.budgetDetailResponseFactory.build()
+      const getPlanResponse = await callApiAndVerifyResponse(
+        () => ynabAPI.plans.getPlanById(budgetId, lastKnowledgeOfServer),
+        factories.planDetailResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}?last_knowledge_of_server=${lastKnowledgeOfServer}`
@@ -181,7 +181,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       await callApiAndVerifyResponse(
-        () => ynabAPI.months.getBudgetMonths(budgetId),
+        () => ynabAPI.months.getPlanMonths(budgetId),
         factories.monthSummariesResponseFactory.build()
       );
       verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months`);
@@ -192,7 +192,7 @@ describe("API requests", () => {
 
       const budgetMonth = getUTCDateString(2017, 1, 1);
       await callApiAndVerifyResponse(
-        () => ynabAPI.months.getBudgetMonth(budgetId, budgetMonth),
+        () => ynabAPI.months.getPlanMonth(budgetId, budgetMonth),
         factories.monthDetailResponseFactory.build()
       );
       verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01-01`);
@@ -202,7 +202,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       await callApiAndVerifyResponse(
-        () => ynabAPI.months.getBudgetMonth(budgetId, "2017-01"),
+        () => ynabAPI.months.getPlanMonth(budgetId, "2017-01"),
         factories.monthDetailResponseFactory.build()
       );
       verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01`);
@@ -212,7 +212,7 @@ describe("API requests", () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
       await callApiAndVerifyResponse(
-        () => ynabAPI.months.getBudgetMonth(budgetId, "current"),
+        () => ynabAPI.months.getPlanMonth(budgetId, "current"),
         factories.monthDetailResponseFactory.build()
       );
       verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/current`);
@@ -374,7 +374,7 @@ describe("API requests", () => {
           ynabAPI.transactions.getTransactionsByMonth(
             budgetId, month
           ),
-        factories.hybridtransactionsResponseFactory.build()
+        factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
         `${BASE_URL}/budgets/${budgetId}/months/${month}/transactions`

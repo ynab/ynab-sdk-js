@@ -30,7 +30,7 @@ export interface Account {
      */
     type: AccountType;
     /**
-     * Whether this account is on budget or not
+     * Whether this account is "on budget" or not
      * @type {boolean}
      * @memberof Account
      */
@@ -48,7 +48,7 @@ export interface Account {
      */
     note?: string | null;
     /**
-     * The current balance of the account in milliunits format
+     * The current available balance of the account in milliunits format
      * @type {number}
      * @memberof Account
      */
@@ -90,7 +90,7 @@ export interface Account {
      */
     last_reconciled_at?: string | null;
     /**
-     * The original debt/loan account balance, specified in milliunits format.
+     * This field is deprecated and will always be null.
      * @type {number}
      * @memberof Account
      */
@@ -102,7 +102,7 @@ export interface Account {
      */
     debt_interest_rates?: {
         [key: string]: number;
-    } | null;
+    };
     /**
      *
      * @type {{ [key: string]: number; }}
@@ -110,7 +110,7 @@ export interface Account {
      */
     debt_minimum_payments?: {
         [key: string]: number;
-    } | null;
+    };
     /**
      *
      * @type {{ [key: string]: number; }}
@@ -118,7 +118,7 @@ export interface Account {
      */
     debt_escrow_amounts?: {
         [key: string]: number;
-    } | null;
+    };
     /**
      * Whether or not the account has been deleted.  Deleted accounts will only be included in delta requests.
      * @type {boolean}

@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoryGroupWithCategoriesAllOfToJSON = exports.CategoryGroupWithCategoriesAllOfFromJSONTyped = exports.CategoryGroupWithCategoriesAllOfFromJSON = exports.instanceOfCategoryGroupWithCategoriesAllOf = void 0;
+exports.instanceOfCategoryGroupWithCategoriesAllOf = instanceOfCategoryGroupWithCategoriesAllOf;
+exports.CategoryGroupWithCategoriesAllOfFromJSON = CategoryGroupWithCategoriesAllOfFromJSON;
+exports.CategoryGroupWithCategoriesAllOfFromJSONTyped = CategoryGroupWithCategoriesAllOfFromJSONTyped;
+exports.CategoryGroupWithCategoriesAllOfToJSON = CategoryGroupWithCategoriesAllOfToJSON;
 const Category_1 = require("./Category");
 /**
  * Check if a given object implements the CategoryGroupWithCategoriesAllOf interface.
@@ -23,11 +26,9 @@ function instanceOfCategoryGroupWithCategoriesAllOf(value) {
     isInstance = isInstance && "categories" in value;
     return isInstance;
 }
-exports.instanceOfCategoryGroupWithCategoriesAllOf = instanceOfCategoryGroupWithCategoriesAllOf;
 function CategoryGroupWithCategoriesAllOfFromJSON(json) {
     return CategoryGroupWithCategoriesAllOfFromJSONTyped(json, false);
 }
-exports.CategoryGroupWithCategoriesAllOfFromJSON = CategoryGroupWithCategoriesAllOfFromJSON;
 function CategoryGroupWithCategoriesAllOfFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -36,7 +37,6 @@ function CategoryGroupWithCategoriesAllOfFromJSONTyped(json, ignoreDiscriminator
         'categories': (json['categories'].map(Category_1.CategoryFromJSON)),
     };
 }
-exports.CategoryGroupWithCategoriesAllOfFromJSONTyped = CategoryGroupWithCategoriesAllOfFromJSONTyped;
 function CategoryGroupWithCategoriesAllOfToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -48,4 +48,3 @@ function CategoryGroupWithCategoriesAllOfToJSON(value) {
         'categories': (value.categories.map(Category_1.CategoryToJSON)),
     };
 }
-exports.CategoryGroupWithCategoriesAllOfToJSON = CategoryGroupWithCategoriesAllOfToJSON;

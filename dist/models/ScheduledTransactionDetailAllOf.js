@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ScheduledTransactionDetailAllOfToJSON = exports.ScheduledTransactionDetailAllOfFromJSONTyped = exports.ScheduledTransactionDetailAllOfFromJSON = exports.instanceOfScheduledTransactionDetailAllOf = void 0;
+exports.instanceOfScheduledTransactionDetailAllOf = instanceOfScheduledTransactionDetailAllOf;
+exports.ScheduledTransactionDetailAllOfFromJSON = ScheduledTransactionDetailAllOfFromJSON;
+exports.ScheduledTransactionDetailAllOfFromJSONTyped = ScheduledTransactionDetailAllOfFromJSONTyped;
+exports.ScheduledTransactionDetailAllOfToJSON = ScheduledTransactionDetailAllOfToJSON;
 const runtime_1 = require("../runtime");
 const ScheduledSubTransaction_1 = require("./ScheduledSubTransaction");
 /**
@@ -25,11 +28,9 @@ function instanceOfScheduledTransactionDetailAllOf(value) {
     isInstance = isInstance && "subtransactions" in value;
     return isInstance;
 }
-exports.instanceOfScheduledTransactionDetailAllOf = instanceOfScheduledTransactionDetailAllOf;
 function ScheduledTransactionDetailAllOfFromJSON(json) {
     return ScheduledTransactionDetailAllOfFromJSONTyped(json, false);
 }
-exports.ScheduledTransactionDetailAllOfFromJSON = ScheduledTransactionDetailAllOfFromJSON;
 function ScheduledTransactionDetailAllOfFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -41,7 +42,6 @@ function ScheduledTransactionDetailAllOfFromJSONTyped(json, ignoreDiscriminator)
         'subtransactions': (json['subtransactions'].map(ScheduledSubTransaction_1.ScheduledSubTransactionFromJSON)),
     };
 }
-exports.ScheduledTransactionDetailAllOfFromJSONTyped = ScheduledTransactionDetailAllOfFromJSONTyped;
 function ScheduledTransactionDetailAllOfToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -56,4 +56,3 @@ function ScheduledTransactionDetailAllOfToJSON(value) {
         'subtransactions': (value.subtransactions.map(ScheduledSubTransaction_1.ScheduledSubTransactionToJSON)),
     };
 }
-exports.ScheduledTransactionDetailAllOfToJSON = ScheduledTransactionDetailAllOfToJSON;

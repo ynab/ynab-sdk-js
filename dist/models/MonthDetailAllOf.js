@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MonthDetailAllOfToJSON = exports.MonthDetailAllOfFromJSONTyped = exports.MonthDetailAllOfFromJSON = exports.instanceOfMonthDetailAllOf = void 0;
+exports.instanceOfMonthDetailAllOf = instanceOfMonthDetailAllOf;
+exports.MonthDetailAllOfFromJSON = MonthDetailAllOfFromJSON;
+exports.MonthDetailAllOfFromJSONTyped = MonthDetailAllOfFromJSONTyped;
+exports.MonthDetailAllOfToJSON = MonthDetailAllOfToJSON;
 const Category_1 = require("./Category");
 /**
  * Check if a given object implements the MonthDetailAllOf interface.
@@ -23,11 +26,9 @@ function instanceOfMonthDetailAllOf(value) {
     isInstance = isInstance && "categories" in value;
     return isInstance;
 }
-exports.instanceOfMonthDetailAllOf = instanceOfMonthDetailAllOf;
 function MonthDetailAllOfFromJSON(json) {
     return MonthDetailAllOfFromJSONTyped(json, false);
 }
-exports.MonthDetailAllOfFromJSON = MonthDetailAllOfFromJSON;
 function MonthDetailAllOfFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -36,7 +37,6 @@ function MonthDetailAllOfFromJSONTyped(json, ignoreDiscriminator) {
         'categories': (json['categories'].map(Category_1.CategoryFromJSON)),
     };
 }
-exports.MonthDetailAllOfFromJSONTyped = MonthDetailAllOfFromJSONTyped;
 function MonthDetailAllOfToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -48,4 +48,3 @@ function MonthDetailAllOfToJSON(value) {
         'categories': (value.categories.map(Category_1.CategoryToJSON)),
     };
 }
-exports.MonthDetailAllOfToJSON = MonthDetailAllOfToJSON;

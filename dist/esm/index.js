@@ -35,15 +35,15 @@ var api = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(api.prototype, "budgets", {
+    Object.defineProperty(api.prototype, "plans", {
         /**
-         * /budgets endpoints interface
+         * /plans endpoints interface
          */
         get: function () {
-            if (!this._budgets) {
-                this._budgets = new apis.BudgetsApi(this._configuration);
+            if (!this._plans) {
+                this._plans = new apis.PlansApi(this._configuration);
             }
-            return this._budgets;
+            return this._plans;
         },
         enumerable: false,
         configurable: true

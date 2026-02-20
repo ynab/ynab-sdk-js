@@ -9,28 +9,28 @@ try {
         process.exit(1);
     }
     const ynabAPI = new ynab.API(API_KEY);
-    console.log(`Fetching budgets...`);
-    const getBudgetsResponse = await ynabAPI.budgets.getBudgets();
-    const allBudgets = getBudgetsResponse.data.budgets;
+    console.log(`Fetching plans...`);
+    const getPlansResponse = await ynabAPI.plans.getPlans();
+    const allPlans = getPlansResponse.data.budgets;
     const pollWaitTimeInMs = 5000;
-    if (allBudgets.length > 0) {
-        let budgetToFetch = null;
-        const budgetNameToFetch = "My Budget";
-        for (let tempBudget of allBudgets) {
-            if (tempBudget.name == budgetNameToFetch) {
-                budgetToFetch = tempBudget;
+    if (allPlans.length > 0) {
+        let planToFetch = null;
+        const planNameToFetch = "My Plan";
+        for (let tempPlan of allPlans) {
+            if (tempPlan.name == planNameToFetch) {
+                planToFetch = tempPlan;
                 break;
             }
         }
-        if (!budgetToFetch) {
-            throw new Error(`Could not find budget named '${budgetNameToFetch}'`);
+        if (!planToFetch) {
+            throw new Error(`Could not find plan named '${planNameToFetch}'`);
         }
-        console.log(`Fetching contents of budget: ${budgetToFetch.name} - ${budgetToFetch.id}`);
-        const budgetContents = await ynabAPI.budgets.getBudgetById(budgetToFetch.id);
-        const categories = budgetContents.data.budget.categories;
-        console.log(`Here is the budget data for the current month: `);
+        console.log(`Fetching contents of plan: ${planToFetch.name} - ${planToFetch.id}`);
+        const planContents = await ynabAPI.plans.getPlanById(planToFetch.id);
+        const categories = planContents.data.budget.categories;
+        console.log(`Here is the plan data for the current month: `);
         const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
-        const monthDetailForCurrentMonth = budgetContents.data.budget.months.find((m) => {
+        const monthDetailForCurrentMonth = planContents.data.budget.months.find((m) => {
             return m.month == currentMonthISO;
         });
         if (monthDetailForCurrentMonth) {
@@ -39,18 +39,18 @@ try {
         else {
             console.error(`Could not find monthDetail for the current month: ${currentMonthISO}`);
         }
-        let lastServerKnowledge = budgetContents.data.server_knowledge;
+        let lastServerKnowledge = planContents.data.server_knowledge;
         function queueUpPoll() {
             console.log(`Current server knowledge is: ${lastServerKnowledge}`);
             console.log(`Will poll for changes in ${pollWaitTimeInMs}ms...`);
             setTimeout(async () => {
                 console.log("Polling for changes now...");
-                const budgetChangesResponse = await ynabAPI.budgets.getBudgetById(budgetToFetch.id, lastServerKnowledge);
-                console.log(`Current server knowledge is now : ${budgetChangesResponse.data.server_knowledge}`);
-                if (budgetChangesResponse.data.server_knowledge > lastServerKnowledge) {
-                    lastServerKnowledge = budgetChangesResponse.data.server_knowledge;
+                const planChangesResponse = await ynabAPI.plans.getPlanById(planToFetch.id, lastServerKnowledge);
+                console.log(`Current server knowledge is now : ${planChangesResponse.data.server_knowledge}`);
+                if (planChangesResponse.data.server_knowledge > lastServerKnowledge) {
+                    lastServerKnowledge = planChangesResponse.data.server_knowledge;
                     console.log(`There have been some changes to the following entities: `);
-                    console.log(JSON.stringify(budgetChangesResponse.data.budget, null, 2));
+                    console.log(JSON.stringify(planChangesResponse.data.budget, null, 2));
                 }
                 else {
                     console.log("No changes found");

@@ -15,7 +15,7 @@ import { mapValues } from '../runtime';
  */
 export interface SaveMonthCategory {
     /**
-     * Budgeted amount in milliunits format
+     * Assigned (budgeted) amount in milliunits format
      * @type {number}
      * @memberof SaveMonthCategory
      */

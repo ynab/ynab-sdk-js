@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaveTransactionToJSON = exports.SaveTransactionFromJSONTyped = exports.SaveTransactionFromJSON = exports.instanceOfSaveTransaction = void 0;
+exports.instanceOfSaveTransaction = instanceOfSaveTransaction;
+exports.SaveTransactionFromJSON = SaveTransactionFromJSON;
+exports.SaveTransactionFromJSONTyped = SaveTransactionFromJSONTyped;
+exports.SaveTransactionToJSON = SaveTransactionToJSON;
 const runtime_1 = require("../runtime");
 const SaveSubTransaction_1 = require("./SaveSubTransaction");
 const TransactionClearedStatus_1 = require("./TransactionClearedStatus");
@@ -25,11 +28,9 @@ function instanceOfSaveTransaction(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfSaveTransaction = instanceOfSaveTransaction;
 function SaveTransactionFromJSON(json) {
     return SaveTransactionFromJSONTyped(json, false);
 }
-exports.SaveTransactionFromJSON = SaveTransactionFromJSON;
 function SaveTransactionFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -49,7 +50,6 @@ function SaveTransactionFromJSONTyped(json, ignoreDiscriminator) {
         'subtransactions': !(0, runtime_1.exists)(json, 'subtransactions') ? undefined : (json['subtransactions'].map(SaveSubTransaction_1.SaveSubTransactionFromJSON)),
     };
 }
-exports.SaveTransactionFromJSONTyped = SaveTransactionFromJSONTyped;
 function SaveTransactionToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -72,4 +72,3 @@ function SaveTransactionToJSON(value) {
         'subtransactions': value.subtransactions === undefined ? undefined : (value.subtransactions.map(SaveSubTransaction_1.SaveSubTransactionToJSON)),
     };
 }
-exports.SaveTransactionToJSON = SaveTransactionToJSON;

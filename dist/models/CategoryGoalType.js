@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoryGoalTypeToJSON = exports.CategoryGoalTypeFromJSONTyped = exports.CategoryGoalTypeFromJSON = exports.instanceOfCategoryGoalType = void 0;
+exports.instanceOfCategoryGoalType = instanceOfCategoryGoalType;
+exports.CategoryGoalTypeFromJSON = CategoryGoalTypeFromJSON;
+exports.CategoryGoalTypeFromJSONTyped = CategoryGoalTypeFromJSONTyped;
+exports.CategoryGoalTypeToJSON = CategoryGoalTypeToJSON;
 /**
  * Check if a given object implements the CategoryGoalType interface.
  */
@@ -21,16 +24,12 @@ function instanceOfCategoryGoalType(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfCategoryGoalType = instanceOfCategoryGoalType;
 function CategoryGoalTypeFromJSON(json) {
     return CategoryGoalTypeFromJSONTyped(json, false);
 }
-exports.CategoryGoalTypeFromJSON = CategoryGoalTypeFromJSON;
 function CategoryGoalTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.CategoryGoalTypeFromJSONTyped = CategoryGoalTypeFromJSONTyped;
 function CategoryGoalTypeToJSON(value) {
     return value;
 }
-exports.CategoryGoalTypeToJSON = CategoryGoalTypeToJSON;

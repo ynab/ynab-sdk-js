@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaveTransactionWithIdAllOfToJSON = exports.SaveTransactionWithIdAllOfFromJSONTyped = exports.SaveTransactionWithIdAllOfFromJSON = exports.instanceOfSaveTransactionWithIdAllOf = void 0;
+exports.instanceOfSaveTransactionWithIdAllOf = instanceOfSaveTransactionWithIdAllOf;
+exports.SaveTransactionWithIdAllOfFromJSON = SaveTransactionWithIdAllOfFromJSON;
+exports.SaveTransactionWithIdAllOfFromJSONTyped = SaveTransactionWithIdAllOfFromJSONTyped;
+exports.SaveTransactionWithIdAllOfToJSON = SaveTransactionWithIdAllOfToJSON;
 const runtime_1 = require("../runtime");
 /**
  * Check if a given object implements the SaveTransactionWithIdAllOf interface.
@@ -22,11 +25,9 @@ function instanceOfSaveTransactionWithIdAllOf(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfSaveTransactionWithIdAllOf = instanceOfSaveTransactionWithIdAllOf;
 function SaveTransactionWithIdAllOfFromJSON(json) {
     return SaveTransactionWithIdAllOfFromJSONTyped(json, false);
 }
-exports.SaveTransactionWithIdAllOfFromJSON = SaveTransactionWithIdAllOfFromJSON;
 function SaveTransactionWithIdAllOfFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -35,7 +36,6 @@ function SaveTransactionWithIdAllOfFromJSONTyped(json, ignoreDiscriminator) {
         'id': !(0, runtime_1.exists)(json, 'id') ? undefined : json['id'],
     };
 }
-exports.SaveTransactionWithIdAllOfFromJSONTyped = SaveTransactionWithIdAllOfFromJSONTyped;
 function SaveTransactionWithIdAllOfToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -47,4 +47,3 @@ function SaveTransactionWithIdAllOfToJSON(value) {
         'id': value.id,
     };
 }
-exports.SaveTransactionWithIdAllOfToJSON = SaveTransactionWithIdAllOfToJSON;

@@ -17,11 +17,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* tslint:disable */
 /* eslint-disable */
 __exportStar(require("./AccountsApi"), exports);
-__exportStar(require("./BudgetsApi"), exports);
 __exportStar(require("./CategoriesApi"), exports);
+__exportStar(require("./MoneyMovementsApi"), exports);
 __exportStar(require("./MonthsApi"), exports);
 __exportStar(require("./PayeeLocationsApi"), exports);
 __exportStar(require("./PayeesApi"), exports);
+__exportStar(require("./PlansApi"), exports);
 __exportStar(require("./ScheduledTransactionsApi"), exports);
 __exportStar(require("./TransactionsApi"), exports);
 __exportStar(require("./UserApi"), exports);

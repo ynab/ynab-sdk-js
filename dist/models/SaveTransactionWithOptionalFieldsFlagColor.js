@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaveTransactionWithOptionalFieldsFlagColorToJSON = exports.SaveTransactionWithOptionalFieldsFlagColorFromJSONTyped = exports.SaveTransactionWithOptionalFieldsFlagColorFromJSON = exports.instanceOfSaveTransactionWithOptionalFieldsFlagColor = void 0;
+exports.instanceOfSaveTransactionWithOptionalFieldsFlagColor = instanceOfSaveTransactionWithOptionalFieldsFlagColor;
+exports.SaveTransactionWithOptionalFieldsFlagColorFromJSON = SaveTransactionWithOptionalFieldsFlagColorFromJSON;
+exports.SaveTransactionWithOptionalFieldsFlagColorFromJSONTyped = SaveTransactionWithOptionalFieldsFlagColorFromJSONTyped;
+exports.SaveTransactionWithOptionalFieldsFlagColorToJSON = SaveTransactionWithOptionalFieldsFlagColorToJSON;
 /**
  * Check if a given object implements the SaveTransactionWithOptionalFieldsFlagColor interface.
  */
@@ -21,16 +24,12 @@ function instanceOfSaveTransactionWithOptionalFieldsFlagColor(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfSaveTransactionWithOptionalFieldsFlagColor = instanceOfSaveTransactionWithOptionalFieldsFlagColor;
 function SaveTransactionWithOptionalFieldsFlagColorFromJSON(json) {
     return SaveTransactionWithOptionalFieldsFlagColorFromJSONTyped(json, false);
 }
-exports.SaveTransactionWithOptionalFieldsFlagColorFromJSON = SaveTransactionWithOptionalFieldsFlagColorFromJSON;
 function SaveTransactionWithOptionalFieldsFlagColorFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.SaveTransactionWithOptionalFieldsFlagColorFromJSONTyped = SaveTransactionWithOptionalFieldsFlagColorFromJSONTyped;
 function SaveTransactionWithOptionalFieldsFlagColorToJSON(value) {
     return value;
 }
-exports.SaveTransactionWithOptionalFieldsFlagColorToJSON = SaveTransactionWithOptionalFieldsFlagColorToJSON;

@@ -29,11 +29,17 @@ export interface SaveCategory {
      */
     category_group_id?: string;
     /**
-     * The goal target amount in milliunits format.  This amount can only be changed if the category already has a configured goal (goal_type != null).
+     * The goal target amount in milliunits format.  If value is specified and goal has not already been configured for category, a monthly 'Needed for Spending' goal will be created for the category with this target amount.
      * @type {number}
      * @memberof SaveCategory
      */
     goal_target?: number | null;
+    /**
+     * The goal target date in ISO format (e.g. 2016-12-01).
+     * @type {string}
+     * @memberof SaveCategory
+     */
+    goal_target_date?: string | null;
 }
 /**
  * Check if a given object implements the SaveCategory interface.

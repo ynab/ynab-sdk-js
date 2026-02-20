@@ -31,8 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -69,7 +69,7 @@ var AccountsApi = /** @class */ (function (_super) {
     }
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
     AccountsApi.prototype.createAccountRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -77,8 +77,8 @@ var AccountsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createAccount.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createAccount.');
                         }
                         if (requestParameters.data === null || requestParameters.data === undefined) {
                             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createAccount.');
@@ -97,7 +97,7 @@ var AccountsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/accounts".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/accounts".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -112,14 +112,14 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
-    AccountsApi.prototype.createAccount = function (budgetId, data, initOverrides) {
+    AccountsApi.prototype.createAccount = function (planId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createAccountRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createAccountRaw({ planId: planId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -130,7 +130,7 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
     AccountsApi.prototype.getAccountByIdRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -138,8 +138,8 @@ var AccountsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getAccountById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getAccountById.');
                         }
                         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
                             throw new runtime.RequiredError('accountId', 'Required parameter requestParameters.accountId was null or undefined when calling getAccountById.');
@@ -157,7 +157,7 @@ var AccountsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/accounts/{account_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("account_id", "}"), encodeURIComponent(String(requestParameters.accountId))),
+                            path: "/budgets/{plan_id}/accounts/{account_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("account_id", "}"), encodeURIComponent(String(requestParameters.accountId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -171,14 +171,14 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
-    AccountsApi.prototype.getAccountById = function (budgetId, accountId, initOverrides) {
+    AccountsApi.prototype.getAccountById = function (planId, accountId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAccountByIdRaw({ budgetId: budgetId, accountId: accountId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getAccountByIdRaw({ planId: planId, accountId: accountId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -189,7 +189,7 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
     AccountsApi.prototype.getAccountsRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -197,8 +197,8 @@ var AccountsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getAccounts.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getAccounts.');
                         }
                         queryParameters = {};
                         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -216,7 +216,7 @@ var AccountsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/accounts".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/accounts".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -230,14 +230,14 @@ var AccountsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
-    AccountsApi.prototype.getAccounts = function (budgetId, lastKnowledgeOfServer, initOverrides) {
+    AccountsApi.prototype.getAccounts = function (planId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAccountsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getAccountsRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

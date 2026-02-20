@@ -133,7 +133,7 @@ export interface TransactionSummary {
     import_payee_name_original?: string | null;
     /**
      * If the transaction is a debt/loan account transaction, the type of transaction
-     * @type {string}
+     * @type {TransactionSummaryDebtTransactionTypeEnum}
      * @memberof TransactionSummary
      */
     debt_transaction_type?: TransactionSummaryDebtTransactionTypeEnum | null;

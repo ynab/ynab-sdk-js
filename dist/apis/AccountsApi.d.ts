@@ -7,15 +7,15 @@
 import * as runtime from '../runtime';
 import type { AccountResponse, AccountsResponse, PostAccountWrapper } from '../models/index';
 export interface CreateAccountRequest {
-    budgetId: string;
+    planId: string;
     data: PostAccountWrapper;
 }
 export interface GetAccountByIdRequest {
-    budgetId: string;
+    planId: string;
     accountId: string;
 }
 export interface GetAccountsRequest {
-    budgetId: string;
+    planId: string;
     lastKnowledgeOfServer?: number;
 }
 /**
@@ -24,32 +24,32 @@ export interface GetAccountsRequest {
 export declare class AccountsApi extends runtime.BaseAPI {
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
     createAccountRaw(requestParameters: CreateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountResponse>>;
     /**
      * Creates a new account
-     * Create a new account
+     * Create an account
      */
-    createAccount(budgetId: string, data: PostAccountWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
+    createAccount(planId: string, data: PostAccountWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
     getAccountByIdRaw(requestParameters: GetAccountByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountResponse>>;
     /**
      * Returns a single account
-     * Single account
+     * Get an account
      */
-    getAccountById(budgetId: string, accountId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
+    getAccountById(planId: string, accountId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountResponse>;
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
     getAccountsRaw(requestParameters: GetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountsResponse>>;
     /**
      * Returns all accounts
-     * Account list
+     * Get all accounts
      */
-    getAccounts(budgetId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountsResponse>;
+    getAccounts(planId: string, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountsResponse>;
 }

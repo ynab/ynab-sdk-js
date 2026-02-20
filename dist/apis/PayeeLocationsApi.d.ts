@@ -7,14 +7,14 @@
 import * as runtime from '../runtime';
 import type { PayeeLocationResponse, PayeeLocationsResponse } from '../models/index';
 export interface GetPayeeLocationByIdRequest {
-    budgetId: string;
+    planId: string;
     payeeLocationId: string;
 }
 export interface GetPayeeLocationsRequest {
-    budgetId: string;
+    planId: string;
 }
 export interface GetPayeeLocationsByPayeeRequest {
-    budgetId: string;
+    planId: string;
     payeeId: string;
 }
 /**
@@ -23,32 +23,32 @@ export interface GetPayeeLocationsByPayeeRequest {
 export declare class PayeeLocationsApi extends runtime.BaseAPI {
     /**
      * Returns a single payee location
-     * Single payee location
+     * Get a payee location
      */
     getPayeeLocationByIdRaw(requestParameters: GetPayeeLocationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeLocationResponse>>;
     /**
      * Returns a single payee location
-     * Single payee location
+     * Get a payee location
      */
-    getPayeeLocationById(budgetId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse>;
+    getPayeeLocationById(planId: string, payeeLocationId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationResponse>;
     /**
      * Returns all payee locations
-     * List payee locations
+     * Get all payee locations
      */
     getPayeeLocationsRaw(requestParameters: GetPayeeLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeLocationsResponse>>;
     /**
      * Returns all payee locations
-     * List payee locations
+     * Get all payee locations
      */
-    getPayeeLocations(budgetId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
+    getPayeeLocations(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
     /**
      * Returns all payee locations for a specified payee
-     * List locations for a payee
+     * Get all locations for a payee
      */
     getPayeeLocationsByPayeeRaw(requestParameters: GetPayeeLocationsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayeeLocationsResponse>>;
     /**
      * Returns all payee locations for a specified payee
-     * List locations for a payee
+     * Get all locations for a payee
      */
-    getPayeeLocationsByPayee(budgetId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
+    getPayeeLocationsByPayee(planId: string, payeeId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayeeLocationsResponse>;
 }

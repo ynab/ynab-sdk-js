@@ -20,11 +20,11 @@ export declare class api {
      * /user endpoints interface
      */
     get user(): apis.UserApi;
-    protected _budgets: apis.BudgetsApi;
+    protected _plans: apis.PlansApi;
     /**
-     * /budgets endpoints interface
+     * /plans endpoints interface
      */
-    get budgets(): apis.BudgetsApi;
+    get plans(): apis.PlansApi;
     protected _accounts: apis.AccountsApi;
     /**
      * /budgets/{budget_id}/accounts endpoints interface

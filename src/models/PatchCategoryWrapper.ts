@@ -8,13 +8,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SaveCategory } from './SaveCategory';
+import type { ExistingCategory } from './ExistingCategory';
 import {
-    SaveCategoryFromJSON,
-    SaveCategoryFromJSONTyped,
-    SaveCategoryToJSON,
-    SaveCategoryToJSONTyped,
-} from './SaveCategory';
+    ExistingCategoryFromJSON,
+    ExistingCategoryFromJSONTyped,
+    ExistingCategoryToJSON,
+    ExistingCategoryToJSONTyped,
+} from './ExistingCategory';
 
 /**
  * 
@@ -24,10 +24,10 @@ import {
 export interface PatchCategoryWrapper {
     /**
      * 
-     * @type {SaveCategory}
+     * @type {ExistingCategory}
      * @memberof PatchCategoryWrapper
      */
-    category: SaveCategory;
+    category: ExistingCategory;
 }
 
 /**
@@ -48,7 +48,7 @@ export function PatchCategoryWrapperFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'category': SaveCategoryFromJSON(json['category']),
+        'category': ExistingCategoryFromJSON(json['category']),
     };
 }
 
@@ -63,7 +63,7 @@ export function PatchCategoryWrapperToJSONTyped(value?: PatchCategoryWrapper | n
 
     return {
         
-        'category': SaveCategoryToJSON(value['category']),
+        'category': ExistingCategoryToJSON(value['category']),
     };
 }
 
