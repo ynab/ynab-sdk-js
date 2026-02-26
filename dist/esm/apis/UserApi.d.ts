@@ -12,12 +12,12 @@ import type { UserResponse } from '../models/index';
 export declare class UserApi extends runtime.BaseAPI {
     /**
      * Returns authenticated user information
-     * User info
+     * Get user
      */
     getUserRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>>;
     /**
      * Returns authenticated user information
-     * User info
+     * Get user
      */
     getUser(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserResponse>;
 }

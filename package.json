@@ -1,7 +1,7 @@
 {
   "name": "ynab",
   "version": "2.10.0",
-  "description": "Official JavaScript client for the YNAB API. API documentation available at https://api.ynab.com. Generated from server specification version 1.76.0",
+  "description": "Official JavaScript client for the YNAB API. API documentation available at https://api.ynab.com. Generated from server specification version 1.78.0",
   "author": "YNAB",
   "email": "api@ynab.com",
   "url": "https://api.ynab.com",
@@ -30,7 +30,7 @@
   "scripts": {
     "generate": "./scripts/generate.mjs",
     "build": "tsc -b src/ test/ examples/ && tsc -b src/tsconfig.esm.json && webpack --mode production",
-    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha --reporter spec --require ts-node/register/type-check 'test/**/*.ts'"
+    "test": "npx mocha"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
@@ -43,7 +43,7 @@
     "jsh": "0.55.0",
     "mocha": "^10.8.2",
     "ts-loader": "^8.0.2",
-    "ts-node": "10.9.1",
+    "tsx": "4.2.1",
     "typescript": "^5.9.3",
     "url": "^0.11.0",
     "webpack": "^5.74.0",

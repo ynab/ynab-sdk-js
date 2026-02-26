@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaveTransactionWithIdToJSON = exports.SaveTransactionWithIdFromJSONTyped = exports.SaveTransactionWithIdFromJSON = exports.instanceOfSaveTransactionWithId = void 0;
+exports.instanceOfSaveTransactionWithId = instanceOfSaveTransactionWithId;
+exports.SaveTransactionWithIdFromJSON = SaveTransactionWithIdFromJSON;
+exports.SaveTransactionWithIdFromJSONTyped = SaveTransactionWithIdFromJSONTyped;
+exports.SaveTransactionWithIdToJSON = SaveTransactionWithIdToJSON;
 const runtime_1 = require("../runtime");
 const SaveSubTransaction_1 = require("./SaveSubTransaction");
 const TransactionClearedStatus_1 = require("./TransactionClearedStatus");
@@ -25,11 +28,9 @@ function instanceOfSaveTransactionWithId(value) {
     let isInstance = true;
     return isInstance;
 }
-exports.instanceOfSaveTransactionWithId = instanceOfSaveTransactionWithId;
 function SaveTransactionWithIdFromJSON(json) {
     return SaveTransactionWithIdFromJSONTyped(json, false);
 }
-exports.SaveTransactionWithIdFromJSON = SaveTransactionWithIdFromJSON;
 function SaveTransactionWithIdFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -50,7 +51,6 @@ function SaveTransactionWithIdFromJSONTyped(json, ignoreDiscriminator) {
         'subtransactions': !(0, runtime_1.exists)(json, 'subtransactions') ? undefined : (json['subtransactions'].map(SaveSubTransaction_1.SaveSubTransactionFromJSON)),
     };
 }
-exports.SaveTransactionWithIdFromJSONTyped = SaveTransactionWithIdFromJSONTyped;
 function SaveTransactionWithIdToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -74,4 +74,3 @@ function SaveTransactionWithIdToJSON(value) {
         'subtransactions': value.subtransactions === undefined ? undefined : (value.subtransactions.map(SaveSubTransaction_1.SaveSubTransactionToJSON)),
     };
 }
-exports.SaveTransactionWithIdToJSON = SaveTransactionWithIdToJSON;

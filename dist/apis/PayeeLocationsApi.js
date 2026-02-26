@@ -23,13 +23,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PayeeLocationsApi = void 0;
 const runtime = __importStar(require("../runtime"));
@@ -40,11 +50,11 @@ const index_1 = require("../models/index");
 class PayeeLocationsApi extends runtime.BaseAPI {
     /**
      * Returns a single payee location
-     * Single payee location
+     * Get a payee location
      */
     async getPayeeLocationByIdRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocationById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayeeLocationById.');
         }
         if (requestParameters.payeeLocationId === null || requestParameters.payeeLocationId === undefined) {
             throw new runtime.RequiredError('payeeLocationId', 'Required parameter requestParameters.payeeLocationId was null or undefined when calling getPayeeLocationById.');
@@ -60,7 +70,7 @@ class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payee_locations/{payee_location_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_location_id"}}`, encodeURIComponent(String(requestParameters.payeeLocationId))),
+            path: `/budgets/{plan_id}/payee_locations/{payee_location_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_location_id"}}`, encodeURIComponent(String(requestParameters.payeeLocationId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -69,19 +79,19 @@ class PayeeLocationsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single payee location
-     * Single payee location
+     * Get a payee location
      */
-    async getPayeeLocationById(budgetId, payeeLocationId, initOverrides) {
-        const response = await this.getPayeeLocationByIdRaw({ budgetId: budgetId, payeeLocationId: payeeLocationId }, initOverrides);
+    async getPayeeLocationById(planId, payeeLocationId, initOverrides) {
+        const response = await this.getPayeeLocationByIdRaw({ planId: planId, payeeLocationId: payeeLocationId }, initOverrides);
         return await response.value();
     }
     /**
      * Returns all payee locations
-     * List payee locations
+     * Get all payee locations
      */
     async getPayeeLocationsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocations.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayeeLocations.');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -94,7 +104,7 @@ class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payee_locations`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -103,19 +113,19 @@ class PayeeLocationsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all payee locations
-     * List payee locations
+     * Get all payee locations
      */
-    async getPayeeLocations(budgetId, initOverrides) {
-        const response = await this.getPayeeLocationsRaw({ budgetId: budgetId }, initOverrides);
+    async getPayeeLocations(planId, initOverrides) {
+        const response = await this.getPayeeLocationsRaw({ planId: planId }, initOverrides);
         return await response.value();
     }
     /**
      * Returns all payee locations for a specified payee
-     * List locations for a payee
+     * Get all locations for a payee
      */
     async getPayeeLocationsByPayeeRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getPayeeLocationsByPayee.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getPayeeLocationsByPayee.');
         }
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
             throw new runtime.RequiredError('payeeId', 'Required parameter requestParameters.payeeId was null or undefined when calling getPayeeLocationsByPayee.');
@@ -131,7 +141,7 @@ class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}/payee_locations`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -140,10 +150,10 @@ class PayeeLocationsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all payee locations for a specified payee
-     * List locations for a payee
+     * Get all locations for a payee
      */
-    async getPayeeLocationsByPayee(budgetId, payeeId, initOverrides) {
-        const response = await this.getPayeeLocationsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId }, initOverrides);
+    async getPayeeLocationsByPayee(planId, payeeId, initOverrides) {
+        const response = await this.getPayeeLocationsByPayeeRaw({ planId: planId, payeeId: payeeId }, initOverrides);
         return await response.value();
     }
 }

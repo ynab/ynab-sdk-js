@@ -31,8 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -69,7 +69,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     }
     /**
      * Creates a single scheduled transaction (a transaction with a future date).
-     * Create a single scheduled transaction
+     * Create a scheduled transaction
      */
     ScheduledTransactionsApi.prototype.createScheduledTransactionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -77,8 +77,8 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createScheduledTransaction.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createScheduledTransaction.');
                         }
                         if (requestParameters.data === null || requestParameters.data === undefined) {
                             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createScheduledTransaction.');
@@ -97,7 +97,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/scheduled_transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/scheduled_transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -112,14 +112,14 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Creates a single scheduled transaction (a transaction with a future date).
-     * Create a single scheduled transaction
+     * Create a scheduled transaction
      */
-    ScheduledTransactionsApi.prototype.createScheduledTransaction = function (budgetId, data, initOverrides) {
+    ScheduledTransactionsApi.prototype.createScheduledTransaction = function (planId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createScheduledTransactionRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createScheduledTransactionRaw({ planId: planId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -130,7 +130,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Deletes a scheduled transaction
-     * Deletes an existing scheduled transaction
+     * Delete a scheduled transaction
      */
     ScheduledTransactionsApi.prototype.deleteScheduledTransactionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -138,8 +138,8 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling deleteScheduledTransaction.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling deleteScheduledTransaction.');
                         }
                         if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
                             throw new runtime.RequiredError('scheduledTransactionId', 'Required parameter requestParameters.scheduledTransactionId was null or undefined when calling deleteScheduledTransaction.');
@@ -157,7 +157,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            path: "/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
                             method: 'DELETE',
                             headers: headerParameters,
                             query: queryParameters,
@@ -171,14 +171,14 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Deletes a scheduled transaction
-     * Deletes an existing scheduled transaction
+     * Delete a scheduled transaction
      */
-    ScheduledTransactionsApi.prototype.deleteScheduledTransaction = function (budgetId, scheduledTransactionId, initOverrides) {
+    ScheduledTransactionsApi.prototype.deleteScheduledTransaction = function (planId, scheduledTransactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.deleteScheduledTransactionRaw({ planId: planId, scheduledTransactionId: scheduledTransactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -189,7 +189,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single scheduled transaction
-     * Single scheduled transaction
+     * Get a scheduled transaction
      */
     ScheduledTransactionsApi.prototype.getScheduledTransactionByIdRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -197,8 +197,8 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getScheduledTransactionById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getScheduledTransactionById.');
                         }
                         if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
                             throw new runtime.RequiredError('scheduledTransactionId', 'Required parameter requestParameters.scheduledTransactionId was null or undefined when calling getScheduledTransactionById.');
@@ -216,7 +216,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            path: "/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -230,14 +230,14 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single scheduled transaction
-     * Single scheduled transaction
+     * Get a scheduled transaction
      */
-    ScheduledTransactionsApi.prototype.getScheduledTransactionById = function (budgetId, scheduledTransactionId, initOverrides) {
+    ScheduledTransactionsApi.prototype.getScheduledTransactionById = function (planId, scheduledTransactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getScheduledTransactionByIdRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getScheduledTransactionByIdRaw({ planId: planId, scheduledTransactionId: scheduledTransactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -248,7 +248,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all scheduled transactions
-     * List scheduled transactions
+     * Get all scheduled transactions
      */
     ScheduledTransactionsApi.prototype.getScheduledTransactionsRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -256,8 +256,8 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getScheduledTransactions.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getScheduledTransactions.');
                         }
                         queryParameters = {};
                         if (requestParameters.lastKnowledgeOfServer !== undefined) {
@@ -275,7 +275,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/scheduled_transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/scheduled_transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -289,14 +289,14 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all scheduled transactions
-     * List scheduled transactions
+     * Get all scheduled transactions
      */
-    ScheduledTransactionsApi.prototype.getScheduledTransactions = function (budgetId, lastKnowledgeOfServer, initOverrides) {
+    ScheduledTransactionsApi.prototype.getScheduledTransactions = function (planId, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getScheduledTransactionsRaw({ budgetId: budgetId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getScheduledTransactionsRaw({ planId: planId, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -307,7 +307,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Updates a single scheduled transaction
-     * Updates an existing scheduled transaction
+     * Update a scheduled transaction
      */
     ScheduledTransactionsApi.prototype.updateScheduledTransactionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -315,8 +315,8 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateScheduledTransaction.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateScheduledTransaction.');
                         }
                         if (requestParameters.scheduledTransactionId === null || requestParameters.scheduledTransactionId === undefined) {
                             throw new runtime.RequiredError('scheduledTransactionId', 'Required parameter requestParameters.scheduledTransactionId was null or undefined when calling updateScheduledTransaction.');
@@ -338,7 +338,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            path: "/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
                             method: 'PUT',
                             headers: headerParameters,
                             query: queryParameters,
@@ -353,14 +353,14 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Updates a single scheduled transaction
-     * Updates an existing scheduled transaction
+     * Update a scheduled transaction
      */
-    ScheduledTransactionsApi.prototype.updateScheduledTransaction = function (budgetId, scheduledTransactionId, putScheduledTransactionWrapper, initOverrides) {
+    ScheduledTransactionsApi.prototype.updateScheduledTransaction = function (planId, scheduledTransactionId, putScheduledTransactionWrapper, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateScheduledTransactionRaw({ budgetId: budgetId, scheduledTransactionId: scheduledTransactionId, putScheduledTransactionWrapper: putScheduledTransactionWrapper }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateScheduledTransactionRaw({ planId: planId, scheduledTransactionId: scheduledTransactionId, putScheduledTransactionWrapper: putScheduledTransactionWrapper }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

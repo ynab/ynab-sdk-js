@@ -47,7 +47,7 @@ export interface CategoryGroupWithCategories {
      */
     deleted: boolean;
     /**
-     * Category group categories.  Amounts (budgeted, activity, balance, etc.) are specific to the current budget month (UTC).
+     * Category group categories.  Amounts (assigned, activity, available, etc.) are specific to the current plan month (UTC).
      * @type {Array<Category>}
      * @memberof CategoryGroupWithCategories
      */

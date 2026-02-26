@@ -23,13 +23,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetTransactionsByPayeeTypeEnum = exports.GetTransactionsByMonthTypeEnum = exports.GetTransactionsByCategoryTypeEnum = exports.GetTransactionsByAccountTypeEnum = exports.GetTransactionsTypeEnum = exports.TransactionsApi = void 0;
 const runtime = __importStar(require("../runtime"));
@@ -43,8 +53,8 @@ class TransactionsApi extends runtime.BaseAPI {
      * Create a single transaction or multiple transactions
      */
     async createTransactionRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createTransaction.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createTransaction.');
         }
         if (requestParameters.data === null || requestParameters.data === undefined) {
             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createTransaction.');
@@ -61,7 +71,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -73,17 +83,17 @@ class TransactionsApi extends runtime.BaseAPI {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions (transactions with a future date) cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
-    async createTransaction(budgetId, data, initOverrides) {
-        const response = await this.createTransactionRaw({ budgetId: budgetId, data: data }, initOverrides);
+    async createTransaction(planId, data, initOverrides) {
+        const response = await this.createTransactionRaw({ planId: planId, data: data }, initOverrides);
         return await response.value();
     }
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
     async deleteTransactionRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling deleteTransaction.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling deleteTransaction.');
         }
         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
             throw new runtime.RequiredError('transactionId', 'Required parameter requestParameters.transactionId was null or undefined when calling deleteTransaction.');
@@ -99,7 +109,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/{transaction_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -108,19 +118,19 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
-    async deleteTransaction(budgetId, transactionId, initOverrides) {
-        const response = await this.deleteTransactionRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
+    async deleteTransaction(planId, transactionId, initOverrides) {
+        const response = await this.deleteTransactionRaw({ planId: planId, transactionId: transactionId }, initOverrides);
         return await response.value();
     }
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
     async getTransactionByIdRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionById.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionById.');
         }
         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
             throw new runtime.RequiredError('transactionId', 'Required parameter requestParameters.transactionId was null or undefined when calling getTransactionById.');
@@ -136,7 +146,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/{transaction_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -145,19 +155,19 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
-    async getTransactionById(budgetId, transactionId, initOverrides) {
-        const response = await this.getTransactionByIdRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides);
+    async getTransactionById(planId, transactionId, initOverrides) {
+        const response = await this.getTransactionByIdRaw({ planId: planId, transactionId: transactionId }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
     async getTransactionsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactions.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactions.');
         }
         const queryParameters = {};
         if (requestParameters.sinceDate !== undefined) {
@@ -179,7 +189,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -187,20 +197,20 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
-    async getTransactions(budgetId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsRaw({ budgetId: budgetId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactions(planId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
     async getTransactionsByAccountRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByAccount.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByAccount.');
         }
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId', 'Required parameter requestParameters.accountId was null or undefined when calling getTransactionsByAccount.');
@@ -225,7 +235,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/accounts/{account_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
+            path: `/budgets/{plan_id}/accounts/{account_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -234,19 +244,19 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
-    async getTransactionsByAccount(budgetId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByAccountRaw({ budgetId: budgetId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByAccount(planId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
     async getTransactionsByCategoryRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByCategory.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByCategory.');
         }
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId', 'Required parameter requestParameters.categoryId was null or undefined when calling getTransactionsByCategory.');
@@ -271,7 +281,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/categories/{category_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/budgets/{plan_id}/categories/{category_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -279,20 +289,20 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.HybridTransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
-    async getTransactionsByCategory(budgetId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByCategoryRaw({ budgetId: budgetId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByCategory(planId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
     async getTransactionsByMonthRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByMonth.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByMonth.');
         }
         if (requestParameters.month === null || requestParameters.month === undefined) {
             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getTransactionsByMonth.');
@@ -317,28 +327,28 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/months/{month}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
+            path: `/budgets/{plan_id}/months/{month}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.HybridTransactionsResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
-    async getTransactionsByMonth(budgetId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByMonthRaw({ budgetId: budgetId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByMonth(planId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
     async getTransactionsByPayeeRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByPayee.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByPayee.');
         }
         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
             throw new runtime.RequiredError('payeeId', 'Required parameter requestParameters.payeeId was null or undefined when calling getTransactionsByPayee.');
@@ -363,7 +373,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/payees/{payee_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/budgets/{plan_id}/payees/{payee_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -371,20 +381,20 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.HybridTransactionsResponseFromJSON)(jsonValue));
     }
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
-    async getTransactionsByPayee(budgetId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByPayee(planId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
     async importTransactionsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling importTransactions.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling importTransactions.');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -397,7 +407,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/import`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions/import`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -405,20 +415,20 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TransactionsImportResponseFromJSON)(jsonValue));
     }
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
-    async importTransactions(budgetId, initOverrides) {
-        const response = await this.importTransactionsRaw({ budgetId: budgetId }, initOverrides);
+    async importTransactions(planId, initOverrides) {
+        const response = await this.importTransactionsRaw({ planId: planId }, initOverrides);
         return await response.value();
     }
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
     async updateTransactionRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateTransaction.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateTransaction.');
         }
         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
             throw new runtime.RequiredError('transactionId', 'Required parameter requestParameters.transactionId was null or undefined when calling updateTransaction.');
@@ -438,7 +448,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions/{transaction_id}`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -448,10 +458,10 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
-    async updateTransaction(budgetId, transactionId, data, initOverrides) {
-        const response = await this.updateTransactionRaw({ budgetId: budgetId, transactionId: transactionId, data: data }, initOverrides);
+    async updateTransaction(planId, transactionId, data, initOverrides) {
+        const response = await this.updateTransactionRaw({ planId: planId, transactionId: transactionId, data: data }, initOverrides);
         return await response.value();
     }
     /**
@@ -459,8 +469,8 @@ class TransactionsApi extends runtime.BaseAPI {
      * Update multiple transactions
      */
     async updateTransactionsRaw(requestParameters, initOverrides) {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateTransactions.');
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateTransactions.');
         }
         if (requestParameters.data === null || requestParameters.data === undefined) {
             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling updateTransactions.');
@@ -477,7 +487,7 @@ class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{budget_id}/transactions`.replace(`{${"budget_id"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -489,8 +499,8 @@ class TransactionsApi extends runtime.BaseAPI {
      * Updates multiple transactions, by `id` or `import_id`.
      * Update multiple transactions
      */
-    async updateTransactions(budgetId, data, initOverrides) {
-        const response = await this.updateTransactionsRaw({ budgetId: budgetId, data: data }, initOverrides);
+    async updateTransactions(planId, data, initOverrides) {
+        const response = await this.updateTransactionsRaw({ planId: planId, data: data }, initOverrides);
         return await response.value();
     }
 }

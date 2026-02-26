@@ -57,7 +57,7 @@ export interface Category {
      */
     note?: string | null;
     /**
-     * Budgeted amount in milliunits format
+     * Assigned (budgeted) amount in milliunits format
      * @type {number}
      * @memberof Category
      */
@@ -69,14 +69,14 @@ export interface Category {
      */
     activity: number;
     /**
-     * Balance in milliunits format
+     * Available balance in milliunits format
      * @type {number}
      * @memberof Category
      */
     balance: number;
     /**
      * The type of goal, if the category has a goal (TB='Target Category Balance', TBD='Target Category Balance by Date', MF='Monthly Funding', NEED='Plan Your Spending')
-     * @type {string}
+     * @type {CategoryGoalTypeEnum}
      * @memberof Category
      */
     goal_type?: CategoryGoalTypeEnum | null;
@@ -117,11 +117,17 @@ export interface Category {
      */
     goal_target?: number | null;
     /**
-     * The original target month for the goal to be completed.  Only some goal types specify this date.
+     * DEPRECATED: No longer used.  Use `goal_target_date` instead.
      * @type {string}
      * @memberof Category
      */
     goal_target_month?: string | null;
+    /**
+     * The target date for the goal to be completed.  Only some goal types specify this date.
+     * @type {string}
+     * @memberof Category
+     */
+    goal_target_date?: string | null;
     /**
      * The percentage completion of the goal
      * @type {number}
@@ -223,6 +229,7 @@ export function CategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'goal_creation_month': json['goal_creation_month'] == null ? undefined : json['goal_creation_month'],
         'goal_target': json['goal_target'] == null ? undefined : json['goal_target'],
         'goal_target_month': json['goal_target_month'] == null ? undefined : json['goal_target_month'],
+        'goal_target_date': json['goal_target_date'] == null ? undefined : json['goal_target_date'],
         'goal_percentage_complete': json['goal_percentage_complete'] == null ? undefined : json['goal_percentage_complete'],
         'goal_months_to_budget': json['goal_months_to_budget'] == null ? undefined : json['goal_months_to_budget'],
         'goal_under_funded': json['goal_under_funded'] == null ? undefined : json['goal_under_funded'],
@@ -262,6 +269,7 @@ export function CategoryToJSONTyped(value?: Category | null, ignoreDiscriminator
         'goal_creation_month': value['goal_creation_month'],
         'goal_target': value['goal_target'],
         'goal_target_month': value['goal_target_month'],
+        'goal_target_date': value['goal_target_date'],
         'goal_percentage_complete': value['goal_percentage_complete'],
         'goal_months_to_budget': value['goal_months_to_budget'],
         'goal_under_funded': value['goal_under_funded'],

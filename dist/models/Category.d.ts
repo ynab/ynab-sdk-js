@@ -53,7 +53,7 @@ export interface Category {
      */
     note?: string | null;
     /**
-     * Budgeted amount in milliunits format
+     * Assigned (budgeted) amount in milliunits format
      * @type {number}
      * @memberof Category
      */
@@ -65,14 +65,14 @@ export interface Category {
      */
     activity: number;
     /**
-     * Balance in milliunits format
+     * Available balance in milliunits format
      * @type {number}
      * @memberof Category
      */
     balance: number;
     /**
      * The type of goal, if the category has a goal (TB='Target Category Balance', TBD='Target Category Balance by Date', MF='Monthly Funding', NEED='Plan Your Spending')
-     * @type {string}
+     * @type {CategoryGoalTypeEnum}
      * @memberof Category
      */
     goal_type?: CategoryGoalTypeEnum | null;
@@ -113,11 +113,17 @@ export interface Category {
      */
     goal_target?: number | null;
     /**
-     * The original target month for the goal to be completed.  Only some goal types specify this date.
+     * DEPRECATED: No longer used.  Use `goal_target_date` instead.
      * @type {string}
      * @memberof Category
      */
     goal_target_month?: string | null;
+    /**
+     * The target date for the goal to be completed.  Only some goal types specify this date.
+     * @type {string}
+     * @memberof Category
+     */
+    goal_target_date?: string | null;
     /**
      * The percentage completion of the goal
      * @type {number}

@@ -12,7 +12,7 @@ export const userResponseFactory = Factory.makeFactory<models.UserResponse>({
   },
 });
 
-export const budgetSummaryFactory = Factory.makeFactory<models.BudgetSummary>({
+export const planSummaryFactory = Factory.makeFactory<models.PlanSummary>({
   id: Factory.each((i) => `${i}`),
   name: Factory.each((i) => `Budget ${i}`),
   last_modified_on: new Date().toISOString(),
@@ -35,10 +35,10 @@ export const budgetSummaryFactory = Factory.makeFactory<models.BudgetSummary>({
 });
 
 export const budgetSummaryResponseFactory =
-  Factory.makeFactory<models.BudgetSummaryResponse>({
+  Factory.makeFactory<models.PlanSummaryResponse>({
     data: {
-      budgets: budgetSummaryFactory.buildList(3),
-      default_budget: budgetSummaryFactory.build(),
+      budgets: planSummaryFactory.buildList(3),
+      default_budget: planSummaryFactory.build(),
     },
   });
 
@@ -478,7 +478,7 @@ export const scheduledTransactionsResponseFactory =
     }),
   });
 
-export const budgetDetailFactory = Factory.makeFactory<models.BudgetDetail>({
+export const planDetailFactory = Factory.makeFactory<models.PlanDetail>({
   id: Factory.each((i) => `${i}`),
   name: Factory.each((i) => `Budget ${i}`),
   last_modified_on: new Date().toISOString(),
@@ -507,10 +507,10 @@ export const budgetDetailFactory = Factory.makeFactory<models.BudgetDetail>({
   scheduled_subtransactions: scheduledSubTransactionFactory.buildList(5),
 });
 
-export const budgetDetailResponseFactory =
-  Factory.makeFactory<models.BudgetDetailResponse>({
+export const planDetailResponseFactory =
+  Factory.makeFactory<models.PlanDetailResponse>({
     data: Factory.makeFactory({
       server_knowledge: Factory.each((i) => i),
-      budget: budgetDetailFactory.build(),
+      budget: planDetailFactory.build(),
     }),
   });

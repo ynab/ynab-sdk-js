@@ -31,8 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -77,8 +77,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling createTransaction.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createTransaction.');
                         }
                         if (requestParameters.data === null || requestParameters.data === undefined) {
                             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createTransaction.');
@@ -97,7 +97,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -114,12 +114,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Creates a single transaction or multiple transactions.  If you provide a body containing a `transaction` object, a single transaction will be created and if you provide a body containing a `transactions` array, multiple transactions will be created.  Scheduled transactions (transactions with a future date) cannot be created on this endpoint.
      * Create a single transaction or multiple transactions
      */
-    TransactionsApi.prototype.createTransaction = function (budgetId, data, initOverrides) {
+    TransactionsApi.prototype.createTransaction = function (planId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createTransactionRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createTransactionRaw({ planId: planId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -130,7 +130,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
     TransactionsApi.prototype.deleteTransactionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -138,8 +138,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling deleteTransaction.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling deleteTransaction.');
                         }
                         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
                             throw new runtime.RequiredError('transactionId', 'Required parameter requestParameters.transactionId was null or undefined when calling deleteTransaction.');
@@ -157,7 +157,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/transactions/{transaction_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
+                            path: "/budgets/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
                             method: 'DELETE',
                             headers: headerParameters,
                             query: queryParameters,
@@ -171,14 +171,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Deletes a transaction
-     * Deletes an existing transaction
+     * Delete a transaction
      */
-    TransactionsApi.prototype.deleteTransaction = function (budgetId, transactionId, initOverrides) {
+    TransactionsApi.prototype.deleteTransaction = function (planId, transactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteTransactionRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.deleteTransactionRaw({ planId: planId, transactionId: transactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -189,7 +189,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
     TransactionsApi.prototype.getTransactionByIdRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -197,8 +197,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionById.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionById.');
                         }
                         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
                             throw new runtime.RequiredError('transactionId', 'Required parameter requestParameters.transactionId was null or undefined when calling getTransactionById.');
@@ -216,7 +216,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/transactions/{transaction_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
+                            path: "/budgets/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -230,14 +230,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns a single transaction
-     * Single transaction
+     * Get a transaction
      */
-    TransactionsApi.prototype.getTransactionById = function (budgetId, transactionId, initOverrides) {
+    TransactionsApi.prototype.getTransactionById = function (planId, transactionId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionByIdRaw({ budgetId: budgetId, transactionId: transactionId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionByIdRaw({ planId: planId, transactionId: transactionId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -247,8 +247,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
     TransactionsApi.prototype.getTransactionsRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -256,8 +256,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactions.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactions.');
                         }
                         queryParameters = {};
                         if (requestParameters.sinceDate !== undefined) {
@@ -281,7 +281,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -294,15 +294,15 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns budget transactions, excluding any pending transactions
-     * List transactions
+     * Returns plan transactions, excluding any pending transactions
+     * Get all transactions
      */
-    TransactionsApi.prototype.getTransactions = function (budgetId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactions = function (planId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsRaw({ budgetId: budgetId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -313,7 +313,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
     TransactionsApi.prototype.getTransactionsByAccountRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -321,8 +321,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByAccount.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByAccount.');
                         }
                         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
                             throw new runtime.RequiredError('accountId', 'Required parameter requestParameters.accountId was null or undefined when calling getTransactionsByAccount.');
@@ -349,7 +349,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/accounts/{account_id}/transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("account_id", "}"), encodeURIComponent(String(requestParameters.accountId))),
+                            path: "/budgets/{plan_id}/accounts/{account_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("account_id", "}"), encodeURIComponent(String(requestParameters.accountId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -363,14 +363,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * List account transactions
+     * Get all account transactions
      */
-    TransactionsApi.prototype.getTransactionsByAccount = function (budgetId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByAccount = function (planId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByAccountRaw({ budgetId: budgetId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -380,8 +380,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
     TransactionsApi.prototype.getTransactionsByCategoryRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -389,8 +389,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByCategory.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByCategory.');
                         }
                         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
                             throw new runtime.RequiredError('categoryId', 'Required parameter requestParameters.categoryId was null or undefined when calling getTransactionsByCategory.');
@@ -417,7 +417,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/categories/{category_id}/transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/budgets/{plan_id}/categories/{category_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -430,15 +430,15 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified category
-     * List category transactions, excluding any pending transactions
+     * Returns all transactions for a specified category, excluding any pending transactions
+     * Get all category transactions
      */
-    TransactionsApi.prototype.getTransactionsByCategory = function (budgetId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByCategory = function (planId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByCategoryRaw({ budgetId: budgetId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -448,8 +448,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
     TransactionsApi.prototype.getTransactionsByMonthRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -457,8 +457,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByMonth.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByMonth.');
                         }
                         if (requestParameters.month === null || requestParameters.month === undefined) {
                             throw new runtime.RequiredError('month', 'Required parameter requestParameters.month was null or undefined when calling getTransactionsByMonth.');
@@ -485,28 +485,28 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/months/{month}/transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
+                            path: "/budgets/{plan_id}/months/{month}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
                         }, initOverrides)];
                     case 3:
                         response = _a.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return HybridTransactionsResponseFromJSON(jsonValue); })];
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return TransactionsResponseFromJSON(jsonValue); })];
                 }
             });
         });
     };
     /**
-     * Returns all transactions for a specified month
-     * List transactions in month, excluding any pending transactions
+     * Returns all transactions for a specified month, excluding any pending transactions
+     * Get all plan month transactions
      */
-    TransactionsApi.prototype.getTransactionsByMonth = function (budgetId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByMonth = function (planId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByMonthRaw({ budgetId: budgetId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -516,8 +516,8 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
     TransactionsApi.prototype.getTransactionsByPayeeRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -525,8 +525,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling getTransactionsByPayee.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling getTransactionsByPayee.');
                         }
                         if (requestParameters.payeeId === null || requestParameters.payeeId === undefined) {
                             throw new runtime.RequiredError('payeeId', 'Required parameter requestParameters.payeeId was null or undefined when calling getTransactionsByPayee.');
@@ -553,7 +553,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/payees/{payee_id}/transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
+                            path: "/budgets/{plan_id}/payees/{payee_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -566,15 +566,15 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Returns all transactions for a specified payee
-     * List payee transactions, excluding any pending transactions
+     * Returns all transactions for a specified payee, excluding any pending transactions
+     * Get all payee transactions
      */
-    TransactionsApi.prototype.getTransactionsByPayee = function (budgetId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByPayee = function (planId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByPayeeRaw({ budgetId: budgetId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -584,7 +584,7 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
     TransactionsApi.prototype.importTransactionsRaw = function (requestParameters, initOverrides) {
@@ -593,8 +593,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling importTransactions.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling importTransactions.');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -609,7 +609,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/transactions/import".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/transactions/import".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -622,15 +622,15 @@ var TransactionsApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Imports available transactions on all linked accounts for the given budget.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+     * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions
      */
-    TransactionsApi.prototype.importTransactions = function (budgetId, initOverrides) {
+    TransactionsApi.prototype.importTransactions = function (planId, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.importTransactionsRaw({ budgetId: budgetId }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.importTransactionsRaw({ planId: planId }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -641,7 +641,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
     TransactionsApi.prototype.updateTransactionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -649,8 +649,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateTransaction.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateTransaction.');
                         }
                         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
                             throw new runtime.RequiredError('transactionId', 'Required parameter requestParameters.transactionId was null or undefined when calling updateTransaction.');
@@ -672,7 +672,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/transactions/{transaction_id}".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
+                            path: "/budgets/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
                             method: 'PUT',
                             headers: headerParameters,
                             query: queryParameters,
@@ -687,14 +687,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Updates a single transaction
-     * Updates an existing transaction
+     * Update a transaction
      */
-    TransactionsApi.prototype.updateTransaction = function (budgetId, transactionId, data, initOverrides) {
+    TransactionsApi.prototype.updateTransaction = function (planId, transactionId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateTransactionRaw({ budgetId: budgetId, transactionId: transactionId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateTransactionRaw({ planId: planId, transactionId: transactionId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -713,8 +713,8 @@ var TransactionsApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-                            throw new runtime.RequiredError('budgetId', 'Required parameter requestParameters.budgetId was null or undefined when calling updateTransactions.');
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling updateTransactions.');
                         }
                         if (requestParameters.data === null || requestParameters.data === undefined) {
                             throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling updateTransactions.');
@@ -733,7 +733,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{budget_id}/transactions".replace("{".concat("budget_id", "}"), encodeURIComponent(String(requestParameters.budgetId))),
+                            path: "/budgets/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,
@@ -750,12 +750,12 @@ var TransactionsApi = /** @class */ (function (_super) {
      * Updates multiple transactions, by `id` or `import_id`.
      * Update multiple transactions
      */
-    TransactionsApi.prototype.updateTransactions = function (budgetId, data, initOverrides) {
+    TransactionsApi.prototype.updateTransactions = function (planId, data, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateTransactionsRaw({ budgetId: budgetId, data: data }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateTransactionsRaw({ planId: planId, data: data }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

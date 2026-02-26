@@ -22,7 +22,7 @@ jobs:
           git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
       - uses: actions/setup-node@v6
         with:
-          node-version: 22.14
+          node-version: 24
           registry-url: "https://registry.npmjs.org"
       - run: npm install
       - run: npm run build

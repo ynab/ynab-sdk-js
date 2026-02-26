@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionDetailAllOfToJSON = exports.TransactionDetailAllOfFromJSONTyped = exports.TransactionDetailAllOfFromJSON = exports.instanceOfTransactionDetailAllOf = void 0;
+exports.instanceOfTransactionDetailAllOf = instanceOfTransactionDetailAllOf;
+exports.TransactionDetailAllOfFromJSON = TransactionDetailAllOfFromJSON;
+exports.TransactionDetailAllOfFromJSONTyped = TransactionDetailAllOfFromJSONTyped;
+exports.TransactionDetailAllOfToJSON = TransactionDetailAllOfToJSON;
 const runtime_1 = require("../runtime");
 const SubTransaction_1 = require("./SubTransaction");
 /**
@@ -25,11 +28,9 @@ function instanceOfTransactionDetailAllOf(value) {
     isInstance = isInstance && "subtransactions" in value;
     return isInstance;
 }
-exports.instanceOfTransactionDetailAllOf = instanceOfTransactionDetailAllOf;
 function TransactionDetailAllOfFromJSON(json) {
     return TransactionDetailAllOfFromJSONTyped(json, false);
 }
-exports.TransactionDetailAllOfFromJSON = TransactionDetailAllOfFromJSON;
 function TransactionDetailAllOfFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -41,7 +42,6 @@ function TransactionDetailAllOfFromJSONTyped(json, ignoreDiscriminator) {
         'subtransactions': (json['subtransactions'].map(SubTransaction_1.SubTransactionFromJSON)),
     };
 }
-exports.TransactionDetailAllOfFromJSONTyped = TransactionDetailAllOfFromJSONTyped;
 function TransactionDetailAllOfToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -56,4 +56,3 @@ function TransactionDetailAllOfToJSON(value) {
         'subtransactions': (value.subtransactions.map(SubTransaction_1.SubTransactionToJSON)),
     };
 }
-exports.TransactionDetailAllOfToJSON = TransactionDetailAllOfToJSON;
