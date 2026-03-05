@@ -71,7 +71,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/categories`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/categories`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -110,7 +110,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/category_groups`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/category_groups`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -148,7 +148,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/categories`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/categories`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -185,7 +185,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/plans/{plan_id}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -225,7 +225,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/months/{month}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/plans/{plan_id}/months/{month}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -266,7 +266,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/plans/{plan_id}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -308,7 +308,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/category_groups/{category_group_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_group_id"}}`, encodeURIComponent(String(requestParameters.categoryGroupId))),
+            path: `/plans/{plan_id}/category_groups/{category_group_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_group_id"}}`, encodeURIComponent(String(requestParameters.categoryGroupId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -353,7 +353,7 @@ class CategoriesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/months/{month}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/plans/{plan_id}/months/{month}/categories/{category_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,

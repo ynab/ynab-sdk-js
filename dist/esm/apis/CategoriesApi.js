@@ -97,7 +97,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/categories".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/categories".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -158,7 +158,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/category_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/category_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -218,7 +218,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/categories".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/categories".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -277,7 +277,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/plans/{plan_id}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -339,7 +339,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/months/{month}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/plans/{plan_id}/months/{month}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -402,7 +402,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/plans/{plan_id}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,
@@ -466,7 +466,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/category_groups/{category_group_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_group_id", "}"), encodeURIComponent(String(requestParameters.categoryGroupId))),
+                            path: "/plans/{plan_id}/category_groups/{category_group_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_group_id", "}"), encodeURIComponent(String(requestParameters.categoryGroupId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,
@@ -533,7 +533,7 @@ var CategoriesApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/months/{month}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/plans/{plan_id}/months/{month}/categories/{category_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,

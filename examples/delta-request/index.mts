@@ -16,7 +16,7 @@ try {
 
   console.log(`Fetching plans...`);
   const getPlansResponse = await ynabAPI.plans.getPlans();
-  const allPlans = getPlansResponse.data.budgets;
+  const allPlans = getPlansResponse.data.plans;
 
   const pollWaitTimeInMs = 5000;
 
@@ -39,11 +39,11 @@ try {
       planToFetch.id
     );
 
-    const categories = planContents.data.budget.categories;
+    const categories = planContents.data.plan.categories;
 
     console.log(`Here is the plan data for the current month: `);
     const currentMonthISO = ynab.utils.getCurrentMonthInISOFormat();
-    const monthDetailForCurrentMonth = planContents.data.budget.months.find(
+    const monthDetailForCurrentMonth = planContents.data.plan.months.find(
       (m) => {
         return m.month == currentMonthISO;
       }
@@ -78,7 +78,7 @@ try {
             `There have been some changes to the following entities: `
           );
           console.log(
-            JSON.stringify(planChangesResponse.data.budget, null, 2)
+            JSON.stringify(planChangesResponse.data.plan, null, 2)
           );
         } else {
           console.log("No changes found");

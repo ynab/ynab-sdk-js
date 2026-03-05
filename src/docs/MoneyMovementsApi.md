@@ -4,10 +4,10 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getMoneyMovementGroups**](MoneyMovementsApi.md#getmoneymovementgroups) | **GET** /budgets/{plan_id}/money_movement_groups | Get all money movement groups |
-| [**getMoneyMovementGroupsByMonth**](MoneyMovementsApi.md#getmoneymovementgroupsbymonth) | **GET** /budgets/{plan_id}/months/{month}/money_movement_groups | Get money movement groups for a plan month |
-| [**getMoneyMovements**](MoneyMovementsApi.md#getmoneymovements) | **GET** /budgets/{plan_id}/money_movements | Get all money movements |
-| [**getMoneyMovementsByMonth**](MoneyMovementsApi.md#getmoneymovementsbymonth) | **GET** /budgets/{plan_id}/months/{month}/money_movements | Get money movements for a plan month |
+| [**getMoneyMovementGroups**](MoneyMovementsApi.md#getmoneymovementgroups) | **GET** /plans/{plan_id}/money_movement_groups | Get all money movement groups |
+| [**getMoneyMovementGroupsByMonth**](MoneyMovementsApi.md#getmoneymovementgroupsbymonth) | **GET** /plans/{plan_id}/months/{month}/money_movement_groups | Get money movement groups for a plan month |
+| [**getMoneyMovements**](MoneyMovementsApi.md#getmoneymovements) | **GET** /plans/{plan_id}/money_movements | Get all money movements |
+| [**getMoneyMovementsByMonth**](MoneyMovementsApi.md#getmoneymovementsbymonth) | **GET** /plans/{plan_id}/months/{month}/money_movements | Get money movements for a plan month |
 
 
 

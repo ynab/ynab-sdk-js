@@ -11,7 +11,7 @@ import { PlanDetailFromJSON, PlanDetailToJSON, } from './PlanDetail';
  * Check if a given object implements the PlanDetailResponseData interface.
  */
 export function instanceOfPlanDetailResponseData(value) {
-    if (!('budget' in value) || value['budget'] === undefined)
+    if (!('plan' in value) || value['plan'] === undefined)
         return false;
     if (!('server_knowledge' in value) || value['server_knowledge'] === undefined)
         return false;
@@ -25,7 +25,7 @@ export function PlanDetailResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'budget': PlanDetailFromJSON(json['budget']),
+        'plan': PlanDetailFromJSON(json['plan']),
         'server_knowledge': json['server_knowledge'],
     };
 }
@@ -38,7 +38,7 @@ export function PlanDetailResponseDataToJSONTyped(value, ignoreDiscriminator) {
         return value;
     }
     return {
-        'budget': PlanDetailToJSON(value['budget']),
+        'plan': PlanDetailToJSON(value['plan']),
         'server_knowledge': value['server_knowledge'],
     };
 }

@@ -40,7 +40,7 @@ describe("API requests", () => {
     });
   });
 
-  describe("/budgets", () => {
+  describe("/plans", () => {
     it("Should throw the response it is sent back with a status of 400", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -71,7 +71,7 @@ describe("API requests", () => {
         () => ynabAPI.plans.getPlans(),
         factories.budgetSummaryResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets`);
+      verifyRequestDetails(`${BASE_URL}/plans`);
     });
 
     it("Should getPlanById and validate the request is sent correctly", async () => {
@@ -83,12 +83,12 @@ describe("API requests", () => {
         factories.planDetailResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}?last_knowledge_of_server=${lastKnowledgeOfServer}`
+        `${BASE_URL}/plans/${budgetId}?last_knowledge_of_server=${lastKnowledgeOfServer}`
       );
     });
   });
 
-  describe("/budgets/accounts", () => {
+  describe("/plans/accounts", () => {
     it("Should getAccounts and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -96,7 +96,7 @@ describe("API requests", () => {
         () => ynabAPI.accounts.getAccounts(budgetId),
         factories.accountsResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/accounts`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/accounts`);
     });
 
     it("Should getAccountById and validate the request is sent correctly", async () => {
@@ -108,7 +108,7 @@ describe("API requests", () => {
         factories.accountResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}`
+        `${BASE_URL}/plans/${budgetId}/accounts/${accountId}`
       );
     });
 
@@ -125,7 +125,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/accounts`,
+        `${BASE_URL}/plans/${budgetId}/accounts`,
         API_KEY,
         1,
         "POST"
@@ -142,14 +142,14 @@ describe("API requests", () => {
         factories.accountResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${encodeURIComponent(
+        `${BASE_URL}/plans/${encodeURIComponent(
           budgetId
         )}/accounts/${encodeURIComponent(accountId)}`
       );
     });
   });
 
-  describe("/budgets/categories", () => {
+  describe("/plans/categories", () => {
     it("Should getCategories and validate the request is sent correctly", async () => {
       const mockResponse = factories.categoriesResponseFactory.build();
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
@@ -159,7 +159,7 @@ describe("API requests", () => {
         () => ynabAPI.categories.getCategories(budgetId),
         mockResponse
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/categories`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/categories`);
     });
 
     it("Should getCategoryById and validate the request is sent correctly", async () => {
@@ -171,12 +171,12 @@ describe("API requests", () => {
         factories.categoryResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}`
+        `${BASE_URL}/plans/${budgetId}/categories/${categoryId}`
       );
     });
   });
 
-  describe("/budgets/months", () => {
+  describe("/plans/months", () => {
     it("Should getBudgetMonths and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -184,7 +184,7 @@ describe("API requests", () => {
         () => ynabAPI.months.getPlanMonths(budgetId),
         factories.monthSummariesResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/months`);
     });
 
     it("Should getBudgetMonth and validate the request is sent correctly", async () => {
@@ -195,7 +195,7 @@ describe("API requests", () => {
         () => ynabAPI.months.getPlanMonth(budgetId, budgetMonth),
         factories.monthDetailResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01-01`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/months/2017-01-01`);
     });
 
     it("Should getBudgetMonth with a string param and validate the request is sent correctly", async () => {
@@ -205,7 +205,7 @@ describe("API requests", () => {
         () => ynabAPI.months.getPlanMonth(budgetId, "2017-01"),
         factories.monthDetailResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/2017-01`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/months/2017-01`);
     });
 
     it("Should getBudgetMonth with a string param of 'current' and validate the request is sent correctly", async () => {
@@ -215,11 +215,11 @@ describe("API requests", () => {
         () => ynabAPI.months.getPlanMonth(budgetId, "current"),
         factories.monthDetailResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/months/current`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/months/current`);
     });
   });
 
-  describe("/budgets/payees", () => {
+  describe("/plans/payees", () => {
     it("Should getPayees and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -227,7 +227,7 @@ describe("API requests", () => {
         () => ynabAPI.payees.getPayees(budgetId),
         factories.payeesResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/payees`);
     });
 
     it("Should getPayeeById and validate the request is sent correctly", async () => {
@@ -238,11 +238,11 @@ describe("API requests", () => {
         () => ynabAPI.payees.getPayeeById(budgetId, payeeId),
         factories.payeeResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payees/${payeeId}`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/payees/${payeeId}`);
     });
   });
 
-  describe("/budgets/payee_locations", () => {
+  describe("/plans/payee_locations", () => {
     it("Should getPayeeLocations and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -250,7 +250,7 @@ describe("API requests", () => {
         () => ynabAPI.payeeLocations.getPayeeLocations(budgetId),
         factories.payeeLocationsResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/payee_locations`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/payee_locations`);
     });
 
     it("Should getPayeeLocationById and validate the request is sent correctly", async () => {
@@ -266,12 +266,12 @@ describe("API requests", () => {
         factories.payeeLocationResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/payee_locations/${payeeLocationId}`
+        `${BASE_URL}/plans/${budgetId}/payee_locations/${payeeLocationId}`
       );
     });
   });
 
-  describe("/budgets/transactions", () => {
+  describe("/plans/transactions", () => {
     it("Should getTransactions and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -279,7 +279,7 @@ describe("API requests", () => {
         () => ynabAPI.transactions.getTransactions(budgetId),
         factories.transactionsResponseFactory.build()
       );
-      verifyRequestDetails(`${BASE_URL}/budgets/${budgetId}/transactions`);
+      verifyRequestDetails(`${BASE_URL}/plans/${budgetId}/transactions`);
     });
 
     it("Should getTransactionsByType and validate the request is sent correctly", async () => {
@@ -291,7 +291,7 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions?type=uncategorized`
+        `${BASE_URL}/plans/${budgetId}/transactions?type=uncategorized`
       );
     });
 
@@ -304,7 +304,7 @@ describe("API requests", () => {
         factories.transactionResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`
+        `${BASE_URL}/plans/${budgetId}/transactions/${transactionId}`
       );
     });
 
@@ -323,7 +323,7 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}/transactions?since_date=2017-01-01`
+        `${BASE_URL}/plans/${budgetId}/accounts/${accountId}/transactions?since_date=2017-01-01`
       );
     });
 
@@ -342,7 +342,7 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/accounts/${accountId}/transactions?since_date=${sinceDate}`
+        `${BASE_URL}/plans/${budgetId}/accounts/${accountId}/transactions?since_date=${sinceDate}`
       );
     });
 
@@ -361,7 +361,7 @@ describe("API requests", () => {
         factories.hybridtransactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}/transactions?since_date=2017-01-01`
+        `${BASE_URL}/plans/${budgetId}/categories/${categoryId}/transactions?since_date=2017-01-01`
       );
     });
 
@@ -377,7 +377,7 @@ describe("API requests", () => {
         factories.transactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/months/${month}/transactions`
+        `${BASE_URL}/plans/${budgetId}/months/${month}/transactions`
       );
     });
 
@@ -397,7 +397,7 @@ describe("API requests", () => {
         factories.hybridtransactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/categories/${categoryId}/transactions?since_date=${sinceDate}`
+        `${BASE_URL}/plans/${budgetId}/categories/${categoryId}/transactions?since_date=${sinceDate}`
       );
     });
 
@@ -413,7 +413,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions`,
+        `${BASE_URL}/plans/${budgetId}/transactions`,
         API_KEY,
         1,
         "POST"
@@ -432,7 +432,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions`,
+        `${BASE_URL}/plans/${budgetId}/transactions`,
         API_KEY,
         1,
         "POST"
@@ -451,7 +451,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions`,
+        `${BASE_URL}/plans/${budgetId}/transactions`,
         API_KEY,
         1,
         "POST"
@@ -472,7 +472,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`,
+        `${BASE_URL}/plans/${budgetId}/transactions/${transactionId}`,
         API_KEY,
         1,
         "PUT"
@@ -491,7 +491,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions`,
+        `${BASE_URL}/plans/${budgetId}/transactions`,
         API_KEY,
         1,
         "PATCH"
@@ -506,7 +506,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions/import`,
+        `${BASE_URL}/plans/${budgetId}/transactions/import`,
         API_KEY,
         1,
         "POST"
@@ -522,7 +522,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/transactions/${transactionId}`,
+        `${BASE_URL}/plans/${budgetId}/transactions/${transactionId}`,
         API_KEY,
         1,
         "DELETE"
@@ -530,7 +530,7 @@ describe("API requests", () => {
     });
   });
 
-  describe("/budgets/scheduled_transactions", () => {
+  describe("/plans/scheduled_transactions", () => {
     it("Should getScheduledTransactions and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
@@ -539,7 +539,7 @@ describe("API requests", () => {
         factories.scheduledTransactionsResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`
+        `${BASE_URL}/plans/${budgetId}/scheduled_transactions`
       );
     });
 
@@ -556,7 +556,7 @@ describe("API requests", () => {
         factories.scheduledTransactionDetailResponseFactory.build()
       );
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions/${scheduledTransactionId}`
+        `${BASE_URL}/plans/${budgetId}/scheduled_transactions/${scheduledTransactionId}`
       );
     });
 
@@ -572,7 +572,7 @@ describe("API requests", () => {
       );
 
       verifyRequestDetails(
-        `${BASE_URL}/budgets/${budgetId}/scheduled_transactions`,
+        `${BASE_URL}/plans/${budgetId}/scheduled_transactions`,
         API_KEY,
         1,
         "POST"

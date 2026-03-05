@@ -4,8 +4,8 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPlanMonth**](MonthsApi.md#getplanmonth) | **GET** /budgets/{plan_id}/months/{month} | Get a plan month |
-| [**getPlanMonths**](MonthsApi.md#getplanmonths) | **GET** /budgets/{plan_id}/months | Get all plan months |
+| [**getPlanMonth**](MonthsApi.md#getplanmonth) | **GET** /plans/{plan_id}/months/{month} | Get a plan month |
+| [**getPlanMonths**](MonthsApi.md#getplanmonths) | **GET** /plans/{plan_id}/months | Get all plan months |
 
 
 

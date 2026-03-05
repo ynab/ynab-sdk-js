@@ -6,8 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`budgets` | [Array&lt;PlanSummary&gt;](PlanSummary.md)
-`default_budget` | [PlanSummary](PlanSummary.md)
+`plans` | [Array&lt;PlanSummary&gt;](PlanSummary.md)
+`default_plan` | [PlanSummary](PlanSummary.md)
 
 ## Example
 
@@ -16,8 +16,8 @@ import type { PlanSummaryResponseData } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "budgets": null,
-  "default_budget": null,
+  "plans": null,
+  "default_plan": null,
 } satisfies PlanSummaryResponseData
 
 console.log(example)

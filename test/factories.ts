@@ -37,8 +37,8 @@ export const planSummaryFactory = Factory.makeFactory<models.PlanSummary>({
 export const budgetSummaryResponseFactory =
   Factory.makeFactory<models.PlanSummaryResponse>({
     data: {
-      budgets: planSummaryFactory.buildList(3),
-      default_budget: planSummaryFactory.build(),
+      plans: planSummaryFactory.buildList(3),
+      default_plan: planSummaryFactory.build(),
     },
   });
 
@@ -511,6 +511,6 @@ export const planDetailResponseFactory =
   Factory.makeFactory<models.PlanDetailResponse>({
     data: Factory.makeFactory({
       server_knowledge: Factory.each((i) => i),
-      budget: planDetailFactory.build(),
+      plan: planDetailFactory.build(),
     }),
   });

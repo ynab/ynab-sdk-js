@@ -16,7 +16,7 @@ export interface PlanDetailResponseData {
      * @type {PlanDetail}
      * @memberof PlanDetailResponseData
      */
-    budget: PlanDetail;
+    plan: PlanDetail;
     /**
      * The knowledge of the server
      * @type {number}

@@ -27,20 +27,20 @@ export interface PlanSummaryResponseData {
      * @type {Array<PlanSummary>}
      * @memberof PlanSummaryResponseData
      */
-    budgets: Array<PlanSummary>;
+    plans: Array<PlanSummary>;
     /**
      * 
      * @type {PlanSummary}
      * @memberof PlanSummaryResponseData
      */
-    default_budget?: PlanSummary;
+    default_plan?: PlanSummary;
 }
 
 /**
  * Check if a given object implements the PlanSummaryResponseData interface.
  */
 export function instanceOfPlanSummaryResponseData(value: object): value is PlanSummaryResponseData {
-    if (!('budgets' in value) || value['budgets'] === undefined) return false;
+    if (!('plans' in value) || value['plans'] === undefined) return false;
     return true;
 }
 
@@ -54,8 +54,8 @@ export function PlanSummaryResponseDataFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'budgets': ((json['budgets'] as Array<any>).map(PlanSummaryFromJSON)),
-        'default_budget': json['default_budget'] == null ? undefined : PlanSummaryFromJSON(json['default_budget']),
+        'plans': ((json['plans'] as Array<any>).map(PlanSummaryFromJSON)),
+        'default_plan': json['default_plan'] == null ? undefined : PlanSummaryFromJSON(json['default_plan']),
     };
 }
 
@@ -70,8 +70,8 @@ export function PlanSummaryResponseDataToJSONTyped(value?: PlanSummaryResponseDa
 
     return {
         
-        'budgets': ((value['budgets'] as Array<any>).map(PlanSummaryToJSON)),
-        'default_budget': PlanSummaryToJSON(value['default_budget']),
+        'plans': ((value['plans'] as Array<any>).map(PlanSummaryToJSON)),
+        'default_plan': PlanSummaryToJSON(value['default_plan']),
     };
 }
 

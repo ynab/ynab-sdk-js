@@ -93,7 +93,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/money_movement_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/money_movement_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -152,7 +152,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/months/{month}/money_movement_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
+                            path: "/plans/{plan_id}/months/{month}/money_movement_groups".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -208,7 +208,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/money_movements".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/money_movements".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -267,7 +267,7 @@ var MoneyMovementsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/months/{month}/money_movements".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
+                            path: "/plans/{plan_id}/months/{month}/money_movements".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,

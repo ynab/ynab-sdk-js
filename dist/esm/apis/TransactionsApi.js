@@ -97,7 +97,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -157,7 +157,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
+                            path: "/plans/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
                             method: 'DELETE',
                             headers: headerParameters,
                             query: queryParameters,
@@ -216,7 +216,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
+                            path: "/plans/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -281,7 +281,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -349,7 +349,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/accounts/{account_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("account_id", "}"), encodeURIComponent(String(requestParameters.accountId))),
+                            path: "/plans/{plan_id}/accounts/{account_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("account_id", "}"), encodeURIComponent(String(requestParameters.accountId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -417,7 +417,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/categories/{category_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
+                            path: "/plans/{plan_id}/categories/{category_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("category_id", "}"), encodeURIComponent(String(requestParameters.categoryId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -485,7 +485,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/months/{month}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
+                            path: "/plans/{plan_id}/months/{month}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("month", "}"), encodeURIComponent(String(requestParameters.month))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -553,7 +553,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/payees/{payee_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
+                            path: "/plans/{plan_id}/payees/{payee_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -609,7 +609,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/transactions/import".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/transactions/import".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -672,7 +672,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
+                            path: "/plans/{plan_id}/transactions/{transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("transaction_id", "}"), encodeURIComponent(String(requestParameters.transactionId))),
                             method: 'PUT',
                             headers: headerParameters,
                             query: queryParameters,
@@ -733,7 +733,7 @@ var TransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'PATCH',
                             headers: headerParameters,
                             query: queryParameters,
