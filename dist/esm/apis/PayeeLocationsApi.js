@@ -96,7 +96,7 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/payee_locations/{payee_location_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_location_id", "}"), encodeURIComponent(String(requestParameters.payeeLocationId))),
+                            path: "/plans/{plan_id}/payee_locations/{payee_location_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_location_id", "}"), encodeURIComponent(String(requestParameters.payeeLocationId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -152,7 +152,7 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/payee_locations".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/payee_locations".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -211,7 +211,7 @@ var PayeeLocationsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/payees/{payee_id}/payee_locations".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
+                            path: "/plans/{plan_id}/payees/{payee_id}/payee_locations".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("payee_id", "}"), encodeURIComponent(String(requestParameters.payeeId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,

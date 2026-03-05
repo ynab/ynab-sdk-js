@@ -88,7 +88,7 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/scheduled_transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/scheduled_transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -134,7 +134,7 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+            path: `/plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -179,7 +179,7 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+            path: `/plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -224,7 +224,7 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/scheduled_transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/scheduled_transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -275,7 +275,7 @@ export class ScheduledTransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+            path: `/plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"scheduled_transaction_id"}}`, encodeURIComponent(String(requestParameters.scheduledTransactionId))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

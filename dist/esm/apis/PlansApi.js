@@ -96,7 +96,7 @@ var PlansApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -152,7 +152,7 @@ var PlansApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/settings".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/settings".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -208,7 +208,7 @@ var PlansApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets",
+                            path: "/plans",
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,

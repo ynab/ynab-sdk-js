@@ -27,7 +27,7 @@ export interface PlanDetailResponseData {
      * @type {PlanDetail}
      * @memberof PlanDetailResponseData
      */
-    budget: PlanDetail;
+    plan: PlanDetail;
     /**
      * The knowledge of the server
      * @type {number}
@@ -40,7 +40,7 @@ export interface PlanDetailResponseData {
  * Check if a given object implements the PlanDetailResponseData interface.
  */
 export function instanceOfPlanDetailResponseData(value: object): value is PlanDetailResponseData {
-    if (!('budget' in value) || value['budget'] === undefined) return false;
+    if (!('plan' in value) || value['plan'] === undefined) return false;
     if (!('server_knowledge' in value) || value['server_knowledge'] === undefined) return false;
     return true;
 }
@@ -55,7 +55,7 @@ export function PlanDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'budget': PlanDetailFromJSON(json['budget']),
+        'plan': PlanDetailFromJSON(json['plan']),
         'server_knowledge': json['server_knowledge'],
     };
 }
@@ -71,7 +71,7 @@ export function PlanDetailResponseDataToJSONTyped(value?: PlanDetailResponseData
 
     return {
         
-        'budget': PlanDetailToJSON(value['budget']),
+        'plan': PlanDetailToJSON(value['plan']),
         'server_knowledge': value['server_knowledge'],
     };
 }

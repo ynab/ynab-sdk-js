@@ -18,7 +18,7 @@ const PlanDetail_1 = require("./PlanDetail");
  * Check if a given object implements the PlanDetailResponseData interface.
  */
 function instanceOfPlanDetailResponseData(value) {
-    if (!('budget' in value) || value['budget'] === undefined)
+    if (!('plan' in value) || value['plan'] === undefined)
         return false;
     if (!('server_knowledge' in value) || value['server_knowledge'] === undefined)
         return false;
@@ -32,7 +32,7 @@ function PlanDetailResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'budget': (0, PlanDetail_1.PlanDetailFromJSON)(json['budget']),
+        'plan': (0, PlanDetail_1.PlanDetailFromJSON)(json['plan']),
         'server_knowledge': json['server_knowledge'],
     };
 }
@@ -44,7 +44,7 @@ function PlanDetailResponseDataToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'budget': (0, PlanDetail_1.PlanDetailToJSON)(value['budget']),
+        'plan': (0, PlanDetail_1.PlanDetailToJSON)(value['plan']),
         'server_knowledge': value['server_knowledge'],
     };
 }

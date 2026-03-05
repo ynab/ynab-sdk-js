@@ -4,14 +4,14 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createCategory**](CategoriesApi.md#createcategory) | **POST** /budgets/{plan_id}/categories | Create a category |
-| [**createCategoryGroup**](CategoriesApi.md#createcategorygroup) | **POST** /budgets/{plan_id}/category_groups | Create a category group |
-| [**getCategories**](CategoriesApi.md#getcategories) | **GET** /budgets/{plan_id}/categories | Get all categories |
-| [**getCategoryById**](CategoriesApi.md#getcategorybyid) | **GET** /budgets/{plan_id}/categories/{category_id} | Get a category |
-| [**getMonthCategoryById**](CategoriesApi.md#getmonthcategorybyid) | **GET** /budgets/{plan_id}/months/{month}/categories/{category_id} | Get a category for a specific plan month |
-| [**updateCategory**](CategoriesApi.md#updatecategory) | **PATCH** /budgets/{plan_id}/categories/{category_id} | Update a category |
-| [**updateCategoryGroup**](CategoriesApi.md#updatecategorygroup) | **PATCH** /budgets/{plan_id}/category_groups/{category_group_id} | Update a category group |
-| [**updateMonthCategory**](CategoriesApi.md#updatemonthcategory) | **PATCH** /budgets/{plan_id}/months/{month}/categories/{category_id} | Update a category for a specific month |
+| [**createCategory**](CategoriesApi.md#createcategory) | **POST** /plans/{plan_id}/categories | Create a category |
+| [**createCategoryGroup**](CategoriesApi.md#createcategorygroup) | **POST** /plans/{plan_id}/category_groups | Create a category group |
+| [**getCategories**](CategoriesApi.md#getcategories) | **GET** /plans/{plan_id}/categories | Get all categories |
+| [**getCategoryById**](CategoriesApi.md#getcategorybyid) | **GET** /plans/{plan_id}/categories/{category_id} | Get a category |
+| [**getMonthCategoryById**](CategoriesApi.md#getmonthcategorybyid) | **GET** /plans/{plan_id}/months/{month}/categories/{category_id} | Get a category for a specific plan month |
+| [**updateCategory**](CategoriesApi.md#updatecategory) | **PATCH** /plans/{plan_id}/categories/{category_id} | Update a category |
+| [**updateCategoryGroup**](CategoriesApi.md#updatecategorygroup) | **PATCH** /plans/{plan_id}/category_groups/{category_group_id} | Update a category group |
+| [**updateMonthCategory**](CategoriesApi.md#updatemonthcategory) | **PATCH** /plans/{plan_id}/months/{month}/categories/{category_id} | Update a category for a specific month |
 
 
 

@@ -4,9 +4,9 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createAccount**](AccountsApi.md#createaccount) | **POST** /budgets/{plan_id}/accounts | Create an account |
-| [**getAccountById**](AccountsApi.md#getaccountbyid) | **GET** /budgets/{plan_id}/accounts/{account_id} | Get an account |
-| [**getAccounts**](AccountsApi.md#getaccounts) | **GET** /budgets/{plan_id}/accounts | Get all accounts |
+| [**createAccount**](AccountsApi.md#createaccount) | **POST** /plans/{plan_id}/accounts | Create an account |
+| [**getAccountById**](AccountsApi.md#getaccountbyid) | **GET** /plans/{plan_id}/accounts/{account_id} | Get an account |
+| [**getAccounts**](AccountsApi.md#getaccounts) | **GET** /plans/{plan_id}/accounts | Get all accounts |
 
 
 

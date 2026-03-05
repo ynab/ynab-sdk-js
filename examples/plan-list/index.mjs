@@ -4,7 +4,7 @@ const ynabAPI = new ynab.API(accessToken);
 console.log(`Fetching plans...`);
 try {
     const plansResponse = await ynabAPI.plans.getPlans();
-    const plans = plansResponse.data.budgets;
+    const plans = plansResponse.data.plans;
     console.log(`This user has ${plans.length} plans.`);
     console.log(`\
 ===========

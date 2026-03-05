@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`budget` | [PlanDetail](PlanDetail.md)
+`plan` | [PlanDetail](PlanDetail.md)
 `server_knowledge` | number
 
 ## Example
@@ -16,7 +16,7 @@ import type { PlanDetailResponseData } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "budget": null,
+  "plan": null,
   "server_knowledge": null,
 } satisfies PlanDetailResponseData
 

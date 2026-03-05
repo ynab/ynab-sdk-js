@@ -5,7 +5,7 @@ info:
     and relies upon HTTPS for transport. We respond with meaningful HTTP
     response codes and if an error occurs, we include error details in the
     response body.  API Documentation is at https://api.ynab.com
-  version: 1.78.0
+  version: 1.79.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -51,7 +51,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserResponse"
-  /budgets:
+  /plans:
     get:
       tags:
         - Plans
@@ -77,7 +77,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}:
+  /plans/{plan_id}:
     get:
       tags:
         - Plans
@@ -114,7 +114,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/settings:
+  /plans/{plan_id}/settings:
     get:
       tags:
         - Plans
@@ -143,7 +143,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/accounts:
+  /plans/{plan_id}/accounts:
     get:
       tags:
         - Accounts
@@ -216,7 +216,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/accounts/{account_id}:
+  /plans/{plan_id}/accounts/{account_id}:
     get:
       tags:
         - Accounts
@@ -252,7 +252,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/categories:
+  /plans/{plan_id}/categories:
     get:
       tags:
         - Categories
@@ -327,7 +327,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/categories/{category_id}:
+  /plans/{plan_id}/categories/{category_id}:
     get:
       tags:
         - Categories
@@ -406,7 +406,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/months/{month}/categories/{category_id}:
+  /plans/{plan_id}/months/{month}/categories/{category_id}:
     get:
       tags:
         - Categories
@@ -504,7 +504,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/category_groups:
+  /plans/{plan_id}/category_groups:
     post:
       tags:
         - Categories
@@ -542,7 +542,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/category_groups/{category_group_id}:
+  /plans/{plan_id}/category_groups/{category_group_id}:
     patch:
       tags:
         - Categories
@@ -586,7 +586,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/payees:
+  /plans/{plan_id}/payees:
     get:
       tags:
         - Payees
@@ -622,7 +622,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/payees/{payee_id}:
+  /plans/{plan_id}/payees/{payee_id}:
     get:
       tags:
         - Payees
@@ -700,7 +700,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/payee_locations:
+  /plans/{plan_id}/payee_locations:
     get:
       tags:
         - Payee Locations
@@ -729,7 +729,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/payee_locations/{payee_location_id}:
+  /plans/{plan_id}/payee_locations/{payee_location_id}:
     get:
       tags:
         - Payee Locations
@@ -764,7 +764,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/payees/{payee_id}/payee_locations:
+  /plans/{plan_id}/payees/{payee_id}/payee_locations:
     get:
       tags:
         - Payee Locations
@@ -799,7 +799,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/months:
+  /plans/{plan_id}/months:
     get:
       tags:
         - Months
@@ -835,7 +835,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/months/{month}:
+  /plans/{plan_id}/months/{month}:
     get:
       tags:
         - Months
@@ -872,7 +872,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/money_movements:
+  /plans/{plan_id}/money_movements:
     get:
       tags:
         - Money Movements
@@ -901,7 +901,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/months/{month}/money_movements:
+  /plans/{plan_id}/months/{month}/money_movements:
     get:
       tags:
         - Money Movements
@@ -938,7 +938,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/money_movement_groups:
+  /plans/{plan_id}/money_movement_groups:
     get:
       tags:
         - Money Movements
@@ -967,7 +967,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/months/{month}/money_movement_groups:
+  /plans/{plan_id}/months/{month}/money_movement_groups:
     get:
       tags:
         - Money Movements
@@ -1004,7 +1004,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/transactions:
+  /plans/{plan_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1158,7 +1158,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/transactions/import:
+  /plans/{plan_id}/transactions/import:
     post:
       tags:
         - Transactions
@@ -1200,7 +1200,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/transactions/{transaction_id}:
+  /plans/{plan_id}/transactions/{transaction_id}:
     get:
       tags:
         - Transactions
@@ -1312,7 +1312,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/accounts/{account_id}/transactions:
+  /plans/{plan_id}/accounts/{account_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1371,7 +1371,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/categories/{category_id}/transactions:
+  /plans/{plan_id}/categories/{category_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1430,7 +1430,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/payees/{payee_id}/transactions:
+  /plans/{plan_id}/payees/{payee_id}/transactions:
     get:
       tags:
         - Transactions
@@ -1489,7 +1489,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/months/{month}/transactions:
+  /plans/{plan_id}/months/{month}/transactions:
     get:
       tags:
         - Transactions
@@ -1549,7 +1549,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /budgets/{plan_id}/scheduled_transactions:
+  /plans/{plan_id}/scheduled_transactions:
     get:
       tags:
         - Scheduled Transactions
@@ -1623,7 +1623,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       x-codegen-request-body-name: data
-  /budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}:
+  /plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id}:
     get:
       tags:
         - Scheduled Transactions
@@ -1827,14 +1827,14 @@ components:
       properties:
         data:
           required:
-            - budgets
+            - plans
           type: object
           properties:
-            budgets:
+            plans:
               type: array
               items:
                 $ref: "#/components/schemas/PlanSummary"
-            default_budget:
+            default_plan:
               allOf:
                 - $ref: "#/components/schemas/PlanSummary"
               nullable: true
@@ -1879,11 +1879,11 @@ components:
       properties:
         data:
           required:
-            - budget
+            - plan
             - server_knowledge
           type: object
           properties:
-            budget:
+            plan:
               $ref: "#/components/schemas/PlanDetail"
             server_knowledge:
               type: integer

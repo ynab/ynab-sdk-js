@@ -16,13 +16,13 @@ export interface PlanSummaryResponseData {
      * @type {Array<PlanSummary>}
      * @memberof PlanSummaryResponseData
      */
-    budgets: Array<PlanSummary>;
+    plans: Array<PlanSummary>;
     /**
      *
      * @type {PlanSummary}
      * @memberof PlanSummaryResponseData
      */
-    default_budget?: PlanSummary;
+    default_plan?: PlanSummary;
 }
 /**
  * Check if a given object implements the PlanSummaryResponseData interface.

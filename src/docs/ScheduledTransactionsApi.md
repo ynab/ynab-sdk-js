@@ -4,11 +4,11 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createScheduledTransaction**](ScheduledTransactionsApi.md#createscheduledtransaction) | **POST** /budgets/{plan_id}/scheduled_transactions | Create a scheduled transaction |
-| [**deleteScheduledTransaction**](ScheduledTransactionsApi.md#deletescheduledtransaction) | **DELETE** /budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id} | Delete a scheduled transaction |
-| [**getScheduledTransactionById**](ScheduledTransactionsApi.md#getscheduledtransactionbyid) | **GET** /budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id} | Get a scheduled transaction |
-| [**getScheduledTransactions**](ScheduledTransactionsApi.md#getscheduledtransactions) | **GET** /budgets/{plan_id}/scheduled_transactions | Get all scheduled transactions |
-| [**updateScheduledTransaction**](ScheduledTransactionsApi.md#updatescheduledtransaction) | **PUT** /budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id} | Update a scheduled transaction |
+| [**createScheduledTransaction**](ScheduledTransactionsApi.md#createscheduledtransaction) | **POST** /plans/{plan_id}/scheduled_transactions | Create a scheduled transaction |
+| [**deleteScheduledTransaction**](ScheduledTransactionsApi.md#deletescheduledtransaction) | **DELETE** /plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id} | Delete a scheduled transaction |
+| [**getScheduledTransactionById**](ScheduledTransactionsApi.md#getscheduledtransactionbyid) | **GET** /plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id} | Get a scheduled transaction |
+| [**getScheduledTransactions**](ScheduledTransactionsApi.md#getscheduledtransactions) | **GET** /plans/{plan_id}/scheduled_transactions | Get all scheduled transactions |
+| [**updateScheduledTransaction**](ScheduledTransactionsApi.md#updatescheduledtransaction) | **PUT** /plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id} | Update a scheduled transaction |
 
 
 

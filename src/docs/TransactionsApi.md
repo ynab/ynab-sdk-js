@@ -4,17 +4,17 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createTransaction**](TransactionsApi.md#createtransaction) | **POST** /budgets/{plan_id}/transactions | Create a single transaction or multiple transactions |
-| [**deleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /budgets/{plan_id}/transactions/{transaction_id} | Delete a transaction |
-| [**getTransactionById**](TransactionsApi.md#gettransactionbyid) | **GET** /budgets/{plan_id}/transactions/{transaction_id} | Get a transaction |
-| [**getTransactions**](TransactionsApi.md#gettransactions) | **GET** /budgets/{plan_id}/transactions | Get all transactions |
-| [**getTransactionsByAccount**](TransactionsApi.md#gettransactionsbyaccount) | **GET** /budgets/{plan_id}/accounts/{account_id}/transactions | Get all account transactions |
-| [**getTransactionsByCategory**](TransactionsApi.md#gettransactionsbycategory) | **GET** /budgets/{plan_id}/categories/{category_id}/transactions | Get all category transactions |
-| [**getTransactionsByMonth**](TransactionsApi.md#gettransactionsbymonth) | **GET** /budgets/{plan_id}/months/{month}/transactions | Get all plan month transactions |
-| [**getTransactionsByPayee**](TransactionsApi.md#gettransactionsbypayee) | **GET** /budgets/{plan_id}/payees/{payee_id}/transactions | Get all payee transactions |
-| [**importTransactions**](TransactionsApi.md#importtransactions) | **POST** /budgets/{plan_id}/transactions/import | Import transactions |
-| [**updateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /budgets/{plan_id}/transactions/{transaction_id} | Update a transaction |
-| [**updateTransactions**](TransactionsApi.md#updatetransactions) | **PATCH** /budgets/{plan_id}/transactions | Update multiple transactions |
+| [**createTransaction**](TransactionsApi.md#createtransaction) | **POST** /plans/{plan_id}/transactions | Create a single transaction or multiple transactions |
+| [**deleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /plans/{plan_id}/transactions/{transaction_id} | Delete a transaction |
+| [**getTransactionById**](TransactionsApi.md#gettransactionbyid) | **GET** /plans/{plan_id}/transactions/{transaction_id} | Get a transaction |
+| [**getTransactions**](TransactionsApi.md#gettransactions) | **GET** /plans/{plan_id}/transactions | Get all transactions |
+| [**getTransactionsByAccount**](TransactionsApi.md#gettransactionsbyaccount) | **GET** /plans/{plan_id}/accounts/{account_id}/transactions | Get all account transactions |
+| [**getTransactionsByCategory**](TransactionsApi.md#gettransactionsbycategory) | **GET** /plans/{plan_id}/categories/{category_id}/transactions | Get all category transactions |
+| [**getTransactionsByMonth**](TransactionsApi.md#gettransactionsbymonth) | **GET** /plans/{plan_id}/months/{month}/transactions | Get all plan month transactions |
+| [**getTransactionsByPayee**](TransactionsApi.md#gettransactionsbypayee) | **GET** /plans/{plan_id}/payees/{payee_id}/transactions | Get all payee transactions |
+| [**importTransactions**](TransactionsApi.md#importtransactions) | **POST** /plans/{plan_id}/transactions/import | Import transactions |
+| [**updateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /plans/{plan_id}/transactions/{transaction_id} | Update a transaction |
+| [**updateTransactions**](TransactionsApi.md#updatetransactions) | **PATCH** /plans/{plan_id}/transactions | Update multiple transactions |
 
 
 

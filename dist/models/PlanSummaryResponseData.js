@@ -18,7 +18,7 @@ const PlanSummary_1 = require("./PlanSummary");
  * Check if a given object implements the PlanSummaryResponseData interface.
  */
 function instanceOfPlanSummaryResponseData(value) {
-    if (!('budgets' in value) || value['budgets'] === undefined)
+    if (!('plans' in value) || value['plans'] === undefined)
         return false;
     return true;
 }
@@ -30,8 +30,8 @@ function PlanSummaryResponseDataFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'budgets': (json['budgets'].map(PlanSummary_1.PlanSummaryFromJSON)),
-        'default_budget': json['default_budget'] == null ? undefined : (0, PlanSummary_1.PlanSummaryFromJSON)(json['default_budget']),
+        'plans': (json['plans'].map(PlanSummary_1.PlanSummaryFromJSON)),
+        'default_plan': json['default_plan'] == null ? undefined : (0, PlanSummary_1.PlanSummaryFromJSON)(json['default_plan']),
     };
 }
 function PlanSummaryResponseDataToJSON(json) {
@@ -42,7 +42,7 @@ function PlanSummaryResponseDataToJSONTyped(value, ignoreDiscriminator = false) 
         return value;
     }
     return {
-        'budgets': (value['budgets'].map(PlanSummary_1.PlanSummaryToJSON)),
-        'default_budget': (0, PlanSummary_1.PlanSummaryToJSON)(value['default_budget']),
+        'plans': (value['plans'].map(PlanSummary_1.PlanSummaryToJSON)),
+        'default_plan': (0, PlanSummary_1.PlanSummaryToJSON)(value['default_plan']),
     };
 }

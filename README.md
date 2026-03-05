@@ -70,7 +70,7 @@ const ynabAPI = new ynab.API(accessToken);
 
 (async function() {
   const plansResponse = await ynabAPI.plans.getPlans();
-  const plans = plansResponse.data.budgets;
+  const plans = plansResponse.data.plans;
   for (let plan of plans) {
     console.log(`Plan Name: ${plan.name}`);
   }

@@ -143,7 +143,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -189,7 +189,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/plans/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -234,7 +234,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/plans/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -287,7 +287,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -344,7 +344,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/accounts/{account_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
+            path: `/plans/{plan_id}/accounts/{account_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"account_id"}}`, encodeURIComponent(String(requestParameters.accountId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -401,7 +401,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/categories/{category_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
+            path: `/plans/{plan_id}/categories/{category_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"category_id"}}`, encodeURIComponent(String(requestParameters.categoryId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -458,7 +458,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/months/{month}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
+            path: `/plans/{plan_id}/months/{month}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"month"}}`, encodeURIComponent(String(requestParameters.month))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -515,7 +515,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/payees/{payee_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/plans/{plan_id}/payees/{payee_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -556,7 +556,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/transactions/import`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/transactions/import`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -607,7 +607,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/plans/{plan_id}/transactions/{transaction_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"transaction_id"}}`, encodeURIComponent(String(requestParameters.transactionId))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -655,7 +655,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/transactions`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,

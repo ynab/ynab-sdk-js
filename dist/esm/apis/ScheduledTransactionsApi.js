@@ -97,7 +97,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/scheduled_transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/scheduled_transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'POST',
                             headers: headerParameters,
                             query: queryParameters,
@@ -157,7 +157,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            path: "/plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
                             method: 'DELETE',
                             headers: headerParameters,
                             query: queryParameters,
@@ -216,7 +216,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            path: "/plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -275,7 +275,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/scheduled_transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            path: "/plans/{plan_id}/scheduled_transactions".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
                             method: 'GET',
                             headers: headerParameters,
                             query: queryParameters,
@@ -338,7 +338,7 @@ var ScheduledTransactionsApi = /** @class */ (function (_super) {
                         }
                         _a.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/budgets/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
+                            path: "/plans/{plan_id}/scheduled_transactions/{scheduled_transaction_id}".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))).replace("{".concat("scheduled_transaction_id", "}"), encodeURIComponent(String(requestParameters.scheduledTransactionId))),
                             method: 'PUT',
                             headers: headerParameters,
                             query: queryParameters,

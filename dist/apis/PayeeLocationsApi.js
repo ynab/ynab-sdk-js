@@ -70,7 +70,7 @@ class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/payee_locations/{payee_location_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_location_id"}}`, encodeURIComponent(String(requestParameters.payeeLocationId))),
+            path: `/plans/{plan_id}/payee_locations/{payee_location_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_location_id"}}`, encodeURIComponent(String(requestParameters.payeeLocationId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -104,7 +104,7 @@ class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -141,7 +141,7 @@ class PayeeLocationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/budgets/{plan_id}/payees/{payee_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
+            path: `/plans/{plan_id}/payees/{payee_id}/payee_locations`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))).replace(`{${"payee_id"}}`, encodeURIComponent(String(requestParameters.payeeId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

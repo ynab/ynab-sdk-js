@@ -11,7 +11,7 @@ import { PlanSummaryFromJSON, PlanSummaryToJSON, } from './PlanSummary';
  * Check if a given object implements the PlanSummaryResponseData interface.
  */
 export function instanceOfPlanSummaryResponseData(value) {
-    if (!('budgets' in value) || value['budgets'] === undefined)
+    if (!('plans' in value) || value['plans'] === undefined)
         return false;
     return true;
 }
@@ -23,8 +23,8 @@ export function PlanSummaryResponseDataFromJSONTyped(json, ignoreDiscriminator) 
         return json;
     }
     return {
-        'budgets': (json['budgets'].map(PlanSummaryFromJSON)),
-        'default_budget': json['default_budget'] == null ? undefined : PlanSummaryFromJSON(json['default_budget']),
+        'plans': (json['plans'].map(PlanSummaryFromJSON)),
+        'default_plan': json['default_plan'] == null ? undefined : PlanSummaryFromJSON(json['default_plan']),
     };
 }
 export function PlanSummaryResponseDataToJSON(json) {
@@ -36,7 +36,7 @@ export function PlanSummaryResponseDataToJSONTyped(value, ignoreDiscriminator) {
         return value;
     }
     return {
-        'budgets': (value['budgets'].map(PlanSummaryToJSON)),
-        'default_budget': PlanSummaryToJSON(value['default_budget']),
+        'plans': (value['plans'].map(PlanSummaryToJSON)),
+        'default_plan': PlanSummaryToJSON(value['default_plan']),
     };
 }
