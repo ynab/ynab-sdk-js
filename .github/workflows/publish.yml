@@ -14,7 +14,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           token: ${{ secrets.GH_API_TOKEN }}
       - name: Setup git repo
@@ -23,7 +23,7 @@ jobs:
         run: |
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
           node-version: 24
           registry-url: "https://registry.npmjs.org"
@@ -43,19 +43,19 @@ jobs:
         run: |
           npm set //registry.npmjs.org/:_authToken ${{ secrets.NODE_AUTH_TOKEN }}
           npm publish
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: failure()
         with:
           name: npm-logs
           path: ~/.npm/_logs
       - name: Create a Release
         id: create-release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
         with:
           tag_name: ${{ steps.push.outputs.tag-name }}
           generate_release_notes: true
       - name: Comment on PRs with link to release they are included in
-        uses: actions/github-script@v6
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
         env:
           RELEASE_ID: ${{ steps.create-release.outputs.id }}
         with:
