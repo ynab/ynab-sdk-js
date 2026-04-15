@@ -24,6 +24,12 @@ Name | Type
 `debt_minimum_payments` | { [key: string]: number; }
 `debt_escrow_amounts` | { [key: string]: number; }
 `deleted` | boolean
+`balance_formatted` | string
+`balance_currency` | number
+`cleared_balance_formatted` | string
+`cleared_balance_currency` | number
+`uncleared_balance_formatted` | string
+`uncleared_balance_currency` | number
 
 ## Example
 
@@ -50,6 +56,12 @@ const example = {
   "debt_minimum_payments": null,
   "debt_escrow_amounts": null,
   "deleted": null,
+  "balance_formatted": null,
+  "balance_currency": null,
+  "cleared_balance_formatted": null,
+  "cleared_balance_currency": null,
+  "uncleared_balance_formatted": null,
+  "uncleared_balance_currency": null,
 } satisfies Account
 
 console.log(example)

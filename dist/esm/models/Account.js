@@ -59,6 +59,12 @@ export function AccountFromJSONTyped(json, ignoreDiscriminator) {
         'debt_minimum_payments': json['debt_minimum_payments'] == null ? undefined : json['debt_minimum_payments'],
         'debt_escrow_amounts': json['debt_escrow_amounts'] == null ? undefined : json['debt_escrow_amounts'],
         'deleted': json['deleted'],
+        'balance_formatted': json['balance_formatted'] == null ? undefined : json['balance_formatted'],
+        'balance_currency': json['balance_currency'] == null ? undefined : json['balance_currency'],
+        'cleared_balance_formatted': json['cleared_balance_formatted'] == null ? undefined : json['cleared_balance_formatted'],
+        'cleared_balance_currency': json['cleared_balance_currency'] == null ? undefined : json['cleared_balance_currency'],
+        'uncleared_balance_formatted': json['uncleared_balance_formatted'] == null ? undefined : json['uncleared_balance_formatted'],
+        'uncleared_balance_currency': json['uncleared_balance_currency'] == null ? undefined : json['uncleared_balance_currency'],
     };
 }
 export function AccountToJSON(json) {
@@ -88,5 +94,11 @@ export function AccountToJSONTyped(value, ignoreDiscriminator) {
         'debt_minimum_payments': value['debt_minimum_payments'],
         'debt_escrow_amounts': value['debt_escrow_amounts'],
         'deleted': value['deleted'],
+        'balance_formatted': value['balance_formatted'],
+        'balance_currency': value['balance_currency'],
+        'cleared_balance_formatted': value['cleared_balance_formatted'],
+        'cleared_balance_currency': value['cleared_balance_currency'],
+        'uncleared_balance_formatted': value['uncleared_balance_formatted'],
+        'uncleared_balance_currency': value['uncleared_balance_currency'],
     };
 }

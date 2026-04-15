@@ -128,6 +128,18 @@ export interface TransactionDetail {
      */
     deleted: boolean;
     /**
+     * The transaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    amount_formatted?: string;
+    /**
+     * The transaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof TransactionDetail
+     */
+    amount_currency?: number;
+    /**
      *
      * @type {string}
      * @memberof TransactionDetail

@@ -57,7 +57,7 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    memo?: string | null;
+    memo?: string;
     /**
      * 
      * @type {TransactionFlagColor}
@@ -69,7 +69,7 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    flag_name?: string | null;
+    flag_name?: string;
     /**
      * 
      * @type {string}
@@ -81,25 +81,37 @@ export interface ScheduledTransactionSummary {
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      * If a transfer, the account_id which the scheduled transaction transfers to
      * @type {string}
      * @memberof ScheduledTransactionSummary
      */
-    transfer_account_id?: string | null;
+    transfer_account_id?: string;
     /**
      * Whether or not the scheduled transaction has been deleted.  Deleted scheduled transactions will only be included in delta requests.
      * @type {boolean}
      * @memberof ScheduledTransactionSummary
      */
     deleted: boolean;
+    /**
+     * The scheduled transaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof ScheduledTransactionSummary
+     */
+    amount_formatted?: string;
+    /**
+     * The scheduled transaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof ScheduledTransactionSummary
+     */
+    amount_currency?: number;
 }
 
 
@@ -161,6 +173,8 @@ export function ScheduledTransactionSummaryFromJSONTyped(json: any, ignoreDiscri
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
         'transfer_account_id': json['transfer_account_id'] == null ? undefined : json['transfer_account_id'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 
@@ -188,6 +202,8 @@ export function ScheduledTransactionSummaryToJSONTyped(value?: ScheduledTransact
         'category_id': value['category_id'],
         'transfer_account_id': value['transfer_account_id'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }
 

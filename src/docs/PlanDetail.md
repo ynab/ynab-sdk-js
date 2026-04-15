@@ -13,16 +13,16 @@ Name | Type
 `last_month` | string
 `date_format` | [DateFormat](DateFormat.md)
 `currency_format` | [CurrencyFormat](CurrencyFormat.md)
-`accounts` | [Array&lt;Account&gt;](Account.md)
+`accounts` | [Array&lt;AccountBase&gt;](AccountBase.md)
 `payees` | [Array&lt;Payee&gt;](Payee.md)
 `payee_locations` | [Array&lt;PayeeLocation&gt;](PayeeLocation.md)
 `category_groups` | [Array&lt;CategoryGroup&gt;](CategoryGroup.md)
-`categories` | [Array&lt;Category&gt;](Category.md)
-`months` | [Array&lt;MonthDetail&gt;](MonthDetail.md)
-`transactions` | [Array&lt;TransactionSummary&gt;](TransactionSummary.md)
-`subtransactions` | [Array&lt;SubTransaction&gt;](SubTransaction.md)
-`scheduled_transactions` | [Array&lt;ScheduledTransactionSummary&gt;](ScheduledTransactionSummary.md)
-`scheduled_subtransactions` | [Array&lt;ScheduledSubTransaction&gt;](ScheduledSubTransaction.md)
+`categories` | [Array&lt;CategoryBase&gt;](CategoryBase.md)
+`months` | [Array&lt;MonthDetailBase&gt;](MonthDetailBase.md)
+`transactions` | [Array&lt;TransactionSummaryBase&gt;](TransactionSummaryBase.md)
+`subtransactions` | [Array&lt;SubTransactionBase&gt;](SubTransactionBase.md)
+`scheduled_transactions` | [Array&lt;ScheduledTransactionSummaryBase&gt;](ScheduledTransactionSummaryBase.md)
+`scheduled_subtransactions` | [Array&lt;ScheduledSubTransactionBase&gt;](ScheduledSubTransactionBase.md)
 
 ## Example
 

@@ -13,7 +13,7 @@ exports.SaveAccountFromJSON = SaveAccountFromJSON;
 exports.SaveAccountFromJSONTyped = SaveAccountFromJSONTyped;
 exports.SaveAccountToJSON = SaveAccountToJSON;
 exports.SaveAccountToJSONTyped = SaveAccountToJSONTyped;
-const AccountType_1 = require("./AccountType");
+const SaveAccountType_1 = require("./SaveAccountType");
 /**
  * Check if a given object implements the SaveAccount interface.
  */
@@ -35,7 +35,7 @@ function SaveAccountFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'name': json['name'],
-        'type': (0, AccountType_1.AccountTypeFromJSON)(json['type']),
+        'type': (0, SaveAccountType_1.SaveAccountTypeFromJSON)(json['type']),
         'balance': json['balance'],
     };
 }
@@ -48,7 +48,7 @@ function SaveAccountToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'name': value['name'],
-        'type': (0, AccountType_1.AccountTypeToJSON)(value['type']),
+        'type': (0, SaveAccountType_1.SaveAccountTypeToJSON)(value['type']),
         'balance': value['balance'],
     };
 }

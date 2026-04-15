@@ -11,6 +11,7 @@ Name | Type
 `category_group_id` | string
 `goal_target` | number
 `goal_target_date` | string
+`goal_needs_whole_amount` | boolean
 
 ## Example
 
@@ -24,6 +25,7 @@ const example = {
   "category_group_id": null,
   "goal_target": null,
   "goal_target_date": null,
+  "goal_needs_whole_amount": null,
 } satisfies SaveCategory
 
 console.log(example)

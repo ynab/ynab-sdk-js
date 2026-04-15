@@ -76,6 +76,8 @@ function TransactionSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'import_payee_name_original': json['import_payee_name_original'] == null ? undefined : json['import_payee_name_original'],
         'debt_transaction_type': json['debt_transaction_type'] == null ? undefined : json['debt_transaction_type'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 function TransactionSummaryToJSON(json) {
@@ -105,5 +107,7 @@ function TransactionSummaryToJSONTyped(value, ignoreDiscriminator = false) {
         'import_payee_name_original': value['import_payee_name_original'],
         'debt_transaction_type': value['debt_transaction_type'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }

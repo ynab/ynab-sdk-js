@@ -108,6 +108,18 @@ export interface ScheduledTransactionDetail {
      */
     deleted: boolean;
     /**
+     * The scheduled transaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    amount_formatted?: string;
+    /**
+     * The scheduled transaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof ScheduledTransactionDetail
+     */
+    amount_currency?: number;
+    /**
      * 
      * @type {string}
      * @memberof ScheduledTransactionDetail
@@ -194,6 +206,8 @@ export function ScheduledTransactionDetailFromJSONTyped(json: any, ignoreDiscrim
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
         'transfer_account_id': json['transfer_account_id'] == null ? undefined : json['transfer_account_id'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
         'account_name': json['account_name'],
         'payee_name': json['payee_name'] == null ? undefined : json['payee_name'],
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
@@ -225,6 +239,8 @@ export function ScheduledTransactionDetailToJSONTyped(value?: ScheduledTransacti
         'category_id': value['category_id'],
         'transfer_account_id': value['transfer_account_id'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
         'account_name': value['account_name'],
         'payee_name': value['payee_name'],
         'category_name': value['category_name'],

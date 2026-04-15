@@ -58,7 +58,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import * as runtime from '../runtime';
-import { PatchPayeeWrapperToJSON, PayeeResponseFromJSON, PayeesResponseFromJSON, SavePayeeResponseFromJSON, } from '../models/index';
+import { PatchPayeeWrapperToJSON, PayeeResponseFromJSON, PayeesResponseFromJSON, PostPayeeWrapperToJSON, SavePayeeResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -67,6 +67,67 @@ var PayeesApi = /** @class */ (function (_super) {
     function PayeesApi() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Creates a new payee
+     * Create a payee
+     */
+    PayeesApi.prototype.createPayeeRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, token, tokenString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+                            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createPayee.');
+                        }
+                        if (requestParameters.data === null || requestParameters.data === undefined) {
+                            throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createPayee.');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Accept'] = 'application/json';
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.accessToken)) return [3 /*break*/, 2];
+                        token = this.configuration.accessToken;
+                        return [4 /*yield*/, token("bearer", [])];
+                    case 1:
+                        tokenString = _a.sent();
+                        if (tokenString) {
+                            headerParameters["Authorization"] = "Bearer ".concat(tokenString);
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/plans/{plan_id}/payees".replace("{".concat("plan_id", "}"), encodeURIComponent(String(requestParameters.planId))),
+                            method: 'POST',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: PostPayeeWrapperToJSON(requestParameters.data),
+                        }, initOverrides)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return SavePayeeResponseFromJSON(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Creates a new payee
+     * Create a payee
+     */
+    PayeesApi.prototype.createPayee = function (planId, data, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.createPayeeRaw({ planId: planId, data: data }, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     /**
      * Returns a single payee
      * Get a payee

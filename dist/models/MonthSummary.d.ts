@@ -21,7 +21,7 @@ export interface MonthSummary {
      * @type {string}
      * @memberof MonthSummary
      */
-    note?: string | null;
+    note?: string;
     /**
      * The total amount of transactions categorized to 'Inflow: Ready to Assign' in the month
      * @type {number}
@@ -51,13 +51,61 @@ export interface MonthSummary {
      * @type {number}
      * @memberof MonthSummary
      */
-    age_of_money?: number | null;
+    age_of_money?: number;
     /**
      * Whether or not the month has been deleted.  Deleted months will only be included in delta requests.
      * @type {boolean}
      * @memberof MonthSummary
      */
     deleted: boolean;
+    /**
+     * The total income formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    income_formatted?: string;
+    /**
+     * The total income as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    income_currency?: number;
+    /**
+     * The total amount assigned formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    budgeted_formatted?: string;
+    /**
+     * The total amount assigned as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    budgeted_currency?: number;
+    /**
+     * The total activity amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    activity_formatted?: string;
+    /**
+     * The total activity amount as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    activity_currency?: number;
+    /**
+     * The available amount for 'Ready to Assign' formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    to_be_budgeted_formatted?: string;
+    /**
+     * The available amount for 'Ready to Assign' as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    to_be_budgeted_currency?: number;
 }
 /**
  * Check if a given object implements the MonthSummary interface.

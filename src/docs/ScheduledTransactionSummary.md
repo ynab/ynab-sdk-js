@@ -19,6 +19,8 @@ Name | Type
 `category_id` | string
 `transfer_account_id` | string
 `deleted` | boolean
+`amount_formatted` | string
+`amount_currency` | number
 
 ## Example
 
@@ -40,6 +42,8 @@ const example = {
   "category_id": null,
   "transfer_account_id": null,
   "deleted": null,
+  "amount_formatted": null,
+  "amount_currency": null,
 } satisfies ScheduledTransactionSummary
 
 console.log(example)

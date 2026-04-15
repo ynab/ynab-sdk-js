@@ -15,6 +15,8 @@ Name | Type
 `from_category_id` | string
 `to_category_id` | string
 `amount` | number
+`amount_formatted` | string
+`amount_currency` | number
 
 ## Example
 
@@ -32,6 +34,8 @@ const example = {
   "from_category_id": null,
   "to_category_id": null,
   "amount": null,
+  "amount_formatted": null,
+  "amount_currency": null,
 } satisfies MoneyMovement
 
 console.log(example)

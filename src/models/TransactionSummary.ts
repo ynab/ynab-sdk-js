@@ -52,7 +52,7 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    memo?: string | null;
+    memo?: string;
     /**
      * 
      * @type {TransactionClearedStatus}
@@ -76,7 +76,7 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    flag_name?: string | null;
+    flag_name?: string;
     /**
      * 
      * @type {string}
@@ -88,49 +88,49 @@ export interface TransactionSummary {
      * @type {string}
      * @memberof TransactionSummary
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      * 
      * @type {string}
      * @memberof TransactionSummary
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      * If a transfer transaction, the account to which it transfers
      * @type {string}
      * @memberof TransactionSummary
      */
-    transfer_account_id?: string | null;
+    transfer_account_id?: string;
     /**
      * If a transfer transaction, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof TransactionSummary
      */
-    transfer_transaction_id?: string | null;
+    transfer_transaction_id?: string;
     /**
      * If transaction is matched, the id of the matched transaction
      * @type {string}
      * @memberof TransactionSummary
      */
-    matched_transaction_id?: string | null;
+    matched_transaction_id?: string;
     /**
      * If the transaction was imported, this field is a unique (by account) import identifier.  If this transaction was imported through File Based Import or Direct Import and not through the API, the import_id will have the format: 'YNAB:[milliunit_amount]:[iso_date]:[occurrence]'.  For example, a transaction dated 2015-12-30 in the amount of -$294.23 USD would have an import_id of 'YNAB:-294230:2015-12-30:1'.  If a second transaction on the same account was imported and had the same date and same amount, its import_id would be 'YNAB:-294230:2015-12-30:2'.
      * @type {string}
      * @memberof TransactionSummary
      */
-    import_id?: string | null;
+    import_id?: string;
     /**
      * If the transaction was imported, the payee name that was used when importing and before applying any payee rename rules
      * @type {string}
      * @memberof TransactionSummary
      */
-    import_payee_name?: string | null;
+    import_payee_name?: string;
     /**
      * If the transaction was imported, the original payee name as it appeared on the statement
      * @type {string}
      * @memberof TransactionSummary
      */
-    import_payee_name_original?: string | null;
+    import_payee_name_original?: string;
     /**
      * If the transaction is a debt/loan account transaction, the type of transaction
      * @type {TransactionSummaryDebtTransactionTypeEnum}
@@ -143,6 +143,18 @@ export interface TransactionSummary {
      * @memberof TransactionSummary
      */
     deleted: boolean;
+    /**
+     * The transaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof TransactionSummary
+     */
+    amount_formatted?: string;
+    /**
+     * The transaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof TransactionSummary
+     */
+    amount_currency?: number;
 }
 
 
@@ -205,6 +217,8 @@ export function TransactionSummaryFromJSONTyped(json: any, ignoreDiscriminator: 
         'import_payee_name_original': json['import_payee_name_original'] == null ? undefined : json['import_payee_name_original'],
         'debt_transaction_type': json['debt_transaction_type'] == null ? undefined : json['debt_transaction_type'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 
@@ -238,6 +252,8 @@ export function TransactionSummaryToJSONTyped(value?: TransactionSummary | null,
         'import_payee_name_original': value['import_payee_name_original'],
         'debt_transaction_type': value['debt_transaction_type'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }
 

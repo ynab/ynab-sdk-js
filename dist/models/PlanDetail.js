@@ -13,17 +13,17 @@ exports.PlanDetailFromJSON = PlanDetailFromJSON;
 exports.PlanDetailFromJSONTyped = PlanDetailFromJSONTyped;
 exports.PlanDetailToJSON = PlanDetailToJSON;
 exports.PlanDetailToJSONTyped = PlanDetailToJSONTyped;
+const MonthDetailBase_1 = require("./MonthDetailBase");
 const PayeeLocation_1 = require("./PayeeLocation");
-const Account_1 = require("./Account");
-const ScheduledTransactionSummary_1 = require("./ScheduledTransactionSummary");
-const Category_1 = require("./Category");
+const CategoryBase_1 = require("./CategoryBase");
 const CurrencyFormat_1 = require("./CurrencyFormat");
 const DateFormat_1 = require("./DateFormat");
-const SubTransaction_1 = require("./SubTransaction");
-const MonthDetail_1 = require("./MonthDetail");
+const SubTransactionBase_1 = require("./SubTransactionBase");
+const ScheduledSubTransactionBase_1 = require("./ScheduledSubTransactionBase");
+const ScheduledTransactionSummaryBase_1 = require("./ScheduledTransactionSummaryBase");
+const TransactionSummaryBase_1 = require("./TransactionSummaryBase");
 const Payee_1 = require("./Payee");
-const ScheduledSubTransaction_1 = require("./ScheduledSubTransaction");
-const TransactionSummary_1 = require("./TransactionSummary");
+const AccountBase_1 = require("./AccountBase");
 const CategoryGroup_1 = require("./CategoryGroup");
 /**
  * Check if a given object implements the PlanDetail interface.
@@ -50,16 +50,16 @@ function PlanDetailFromJSONTyped(json, ignoreDiscriminator) {
         'last_month': json['last_month'] == null ? undefined : json['last_month'],
         'date_format': json['date_format'] == null ? undefined : (0, DateFormat_1.DateFormatFromJSON)(json['date_format']),
         'currency_format': json['currency_format'] == null ? undefined : (0, CurrencyFormat_1.CurrencyFormatFromJSON)(json['currency_format']),
-        'accounts': json['accounts'] == null ? undefined : (json['accounts'].map(Account_1.AccountFromJSON)),
+        'accounts': json['accounts'] == null ? undefined : (json['accounts'].map(AccountBase_1.AccountBaseFromJSON)),
         'payees': json['payees'] == null ? undefined : (json['payees'].map(Payee_1.PayeeFromJSON)),
         'payee_locations': json['payee_locations'] == null ? undefined : (json['payee_locations'].map(PayeeLocation_1.PayeeLocationFromJSON)),
         'category_groups': json['category_groups'] == null ? undefined : (json['category_groups'].map(CategoryGroup_1.CategoryGroupFromJSON)),
-        'categories': json['categories'] == null ? undefined : (json['categories'].map(Category_1.CategoryFromJSON)),
-        'months': json['months'] == null ? undefined : (json['months'].map(MonthDetail_1.MonthDetailFromJSON)),
-        'transactions': json['transactions'] == null ? undefined : (json['transactions'].map(TransactionSummary_1.TransactionSummaryFromJSON)),
-        'subtransactions': json['subtransactions'] == null ? undefined : (json['subtransactions'].map(SubTransaction_1.SubTransactionFromJSON)),
-        'scheduled_transactions': json['scheduled_transactions'] == null ? undefined : (json['scheduled_transactions'].map(ScheduledTransactionSummary_1.ScheduledTransactionSummaryFromJSON)),
-        'scheduled_subtransactions': json['scheduled_subtransactions'] == null ? undefined : (json['scheduled_subtransactions'].map(ScheduledSubTransaction_1.ScheduledSubTransactionFromJSON)),
+        'categories': json['categories'] == null ? undefined : (json['categories'].map(CategoryBase_1.CategoryBaseFromJSON)),
+        'months': json['months'] == null ? undefined : (json['months'].map(MonthDetailBase_1.MonthDetailBaseFromJSON)),
+        'transactions': json['transactions'] == null ? undefined : (json['transactions'].map(TransactionSummaryBase_1.TransactionSummaryBaseFromJSON)),
+        'subtransactions': json['subtransactions'] == null ? undefined : (json['subtransactions'].map(SubTransactionBase_1.SubTransactionBaseFromJSON)),
+        'scheduled_transactions': json['scheduled_transactions'] == null ? undefined : (json['scheduled_transactions'].map(ScheduledTransactionSummaryBase_1.ScheduledTransactionSummaryBaseFromJSON)),
+        'scheduled_subtransactions': json['scheduled_subtransactions'] == null ? undefined : (json['scheduled_subtransactions'].map(ScheduledSubTransactionBase_1.ScheduledSubTransactionBaseFromJSON)),
     };
 }
 function PlanDetailToJSON(json) {
@@ -77,15 +77,15 @@ function PlanDetailToJSONTyped(value, ignoreDiscriminator = false) {
         'last_month': value['last_month'],
         'date_format': (0, DateFormat_1.DateFormatToJSON)(value['date_format']),
         'currency_format': (0, CurrencyFormat_1.CurrencyFormatToJSON)(value['currency_format']),
-        'accounts': value['accounts'] == null ? undefined : (value['accounts'].map(Account_1.AccountToJSON)),
+        'accounts': value['accounts'] == null ? undefined : (value['accounts'].map(AccountBase_1.AccountBaseToJSON)),
         'payees': value['payees'] == null ? undefined : (value['payees'].map(Payee_1.PayeeToJSON)),
         'payee_locations': value['payee_locations'] == null ? undefined : (value['payee_locations'].map(PayeeLocation_1.PayeeLocationToJSON)),
         'category_groups': value['category_groups'] == null ? undefined : (value['category_groups'].map(CategoryGroup_1.CategoryGroupToJSON)),
-        'categories': value['categories'] == null ? undefined : (value['categories'].map(Category_1.CategoryToJSON)),
-        'months': value['months'] == null ? undefined : (value['months'].map(MonthDetail_1.MonthDetailToJSON)),
-        'transactions': value['transactions'] == null ? undefined : (value['transactions'].map(TransactionSummary_1.TransactionSummaryToJSON)),
-        'subtransactions': value['subtransactions'] == null ? undefined : (value['subtransactions'].map(SubTransaction_1.SubTransactionToJSON)),
-        'scheduled_transactions': value['scheduled_transactions'] == null ? undefined : (value['scheduled_transactions'].map(ScheduledTransactionSummary_1.ScheduledTransactionSummaryToJSON)),
-        'scheduled_subtransactions': value['scheduled_subtransactions'] == null ? undefined : (value['scheduled_subtransactions'].map(ScheduledSubTransaction_1.ScheduledSubTransactionToJSON)),
+        'categories': value['categories'] == null ? undefined : (value['categories'].map(CategoryBase_1.CategoryBaseToJSON)),
+        'months': value['months'] == null ? undefined : (value['months'].map(MonthDetailBase_1.MonthDetailBaseToJSON)),
+        'transactions': value['transactions'] == null ? undefined : (value['transactions'].map(TransactionSummaryBase_1.TransactionSummaryBaseToJSON)),
+        'subtransactions': value['subtransactions'] == null ? undefined : (value['subtransactions'].map(SubTransactionBase_1.SubTransactionBaseToJSON)),
+        'scheduled_transactions': value['scheduled_transactions'] == null ? undefined : (value['scheduled_transactions'].map(ScheduledTransactionSummaryBase_1.ScheduledTransactionSummaryBaseToJSON)),
+        'scheduled_subtransactions': value['scheduled_subtransactions'] == null ? undefined : (value['scheduled_subtransactions'].map(ScheduledSubTransactionBase_1.ScheduledSubTransactionBaseToJSON)),
     };
 }

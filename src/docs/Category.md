@@ -32,6 +32,20 @@ Name | Type
 `goal_overall_left` | number
 `goal_snoozed_at` | string
 `deleted` | boolean
+`balance_formatted` | string
+`balance_currency` | number
+`activity_formatted` | string
+`activity_currency` | number
+`budgeted_formatted` | string
+`budgeted_currency` | number
+`goal_target_formatted` | string
+`goal_target_currency` | number
+`goal_under_funded_formatted` | string
+`goal_under_funded_currency` | number
+`goal_overall_funded_formatted` | string
+`goal_overall_funded_currency` | number
+`goal_overall_left_formatted` | string
+`goal_overall_left_currency` | number
 
 ## Example
 
@@ -66,6 +80,20 @@ const example = {
   "goal_overall_left": null,
   "goal_snoozed_at": null,
   "deleted": null,
+  "balance_formatted": null,
+  "balance_currency": null,
+  "activity_formatted": null,
+  "activity_currency": null,
+  "budgeted_formatted": null,
+  "budgeted_currency": null,
+  "goal_target_formatted": null,
+  "goal_target_currency": null,
+  "goal_under_funded_formatted": null,
+  "goal_under_funded_currency": null,
+  "goal_overall_funded_formatted": null,
+  "goal_overall_funded_currency": null,
+  "goal_overall_left_formatted": null,
+  "goal_overall_left_currency": null,
 } satisfies Category
 
 console.log(example)

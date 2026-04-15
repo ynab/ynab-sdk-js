@@ -60,6 +60,54 @@ export interface MonthDetail {
      */
     deleted: boolean;
     /**
+     * The total income formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    income_formatted?: string;
+    /**
+     * The total income as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    income_currency?: number;
+    /**
+     * The total amount assigned formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    budgeted_formatted?: string;
+    /**
+     * The total amount assigned as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    budgeted_currency?: number;
+    /**
+     * The total activity amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    activity_formatted?: string;
+    /**
+     * The total activity amount as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    activity_currency?: number;
+    /**
+     * The available amount for 'Ready to Assign' formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    to_be_budgeted_formatted?: string;
+    /**
+     * The available amount for 'Ready to Assign' as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    to_be_budgeted_currency?: number;
+    /**
      * The plan month categories.  Amounts (budgeted, activity, balance, etc.) are specific to the {month} parameter specified.
      * @type {Array<Category>}
      * @memberof MonthDetail

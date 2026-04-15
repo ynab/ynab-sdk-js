@@ -37,49 +37,61 @@ export interface SubTransaction {
      * @type {string}
      * @memberof SubTransaction
      */
-    memo?: string | null;
+    memo?: string;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    payee_name?: string | null;
+    payee_name?: string;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      * 
      * @type {string}
      * @memberof SubTransaction
      */
-    category_name?: string | null;
+    category_name?: string;
     /**
      * If a transfer, the account_id which the subtransaction transfers to
      * @type {string}
      * @memberof SubTransaction
      */
-    transfer_account_id?: string | null;
+    transfer_account_id?: string;
     /**
      * If a transfer, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof SubTransaction
      */
-    transfer_transaction_id?: string | null;
+    transfer_transaction_id?: string;
     /**
      * Whether or not the subtransaction has been deleted.  Deleted subtransactions will only be included in delta requests.
      * @type {boolean}
      * @memberof SubTransaction
      */
     deleted: boolean;
+    /**
+     * The subtransaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof SubTransaction
+     */
+    amount_formatted?: string;
+    /**
+     * The subtransaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof SubTransaction
+     */
+    amount_currency?: number;
 }
 
 /**
@@ -114,6 +126,8 @@ export function SubTransactionFromJSONTyped(json: any, ignoreDiscriminator: bool
         'transfer_account_id': json['transfer_account_id'] == null ? undefined : json['transfer_account_id'],
         'transfer_transaction_id': json['transfer_transaction_id'] == null ? undefined : json['transfer_transaction_id'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 
@@ -139,6 +153,8 @@ export function SubTransactionToJSONTyped(value?: SubTransaction | null, ignoreD
         'transfer_account_id': value['transfer_account_id'],
         'transfer_transaction_id': value['transfer_transaction_id'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }
 

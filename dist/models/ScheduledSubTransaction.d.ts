@@ -33,43 +33,55 @@ export interface ScheduledSubTransaction {
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    memo?: string | null;
+    memo?: string;
     /**
      *
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      *
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    payee_name?: string | null;
+    payee_name?: string;
     /**
      *
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      *
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    category_name?: string | null;
+    category_name?: string;
     /**
      * If a transfer, the account_id which the scheduled subtransaction transfers to
      * @type {string}
      * @memberof ScheduledSubTransaction
      */
-    transfer_account_id?: string | null;
+    transfer_account_id?: string;
     /**
      * Whether or not the scheduled subtransaction has been deleted. Deleted scheduled subtransactions will only be included in delta requests.
      * @type {boolean}
      * @memberof ScheduledSubTransaction
      */
     deleted: boolean;
+    /**
+     * The scheduled subtransaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof ScheduledSubTransaction
+     */
+    amount_formatted?: string;
+    /**
+     * The scheduled subtransaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof ScheduledSubTransaction
+     */
+    amount_currency?: number;
 }
 /**
  * Check if a given object implements the ScheduledSubTransaction interface.

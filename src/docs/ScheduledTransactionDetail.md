@@ -19,6 +19,8 @@ Name | Type
 `category_id` | string
 `transfer_account_id` | string
 `deleted` | boolean
+`amount_formatted` | string
+`amount_currency` | number
 `account_name` | string
 `payee_name` | string
 `category_name` | string
@@ -44,6 +46,8 @@ const example = {
   "category_id": null,
   "transfer_account_id": null,
   "deleted": null,
+  "amount_formatted": null,
+  "amount_currency": null,
   "account_name": null,
   "payee_name": null,
   "category_name": null,

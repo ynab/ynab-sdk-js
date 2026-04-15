@@ -57,7 +57,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    note?: string | null;
+    note?: string;
     /**
      * The current available balance of the account in milliunits format
      * @type {number}
@@ -81,7 +81,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    transfer_payee_id: string | null;
+    transfer_payee_id: string;
     /**
      * Whether or not the account is linked to a financial institution for automatic transaction import.
      * @type {boolean}
@@ -99,13 +99,13 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    last_reconciled_at?: string | null;
+    last_reconciled_at?: string;
     /**
      * This field is deprecated and will always be null.
      * @type {number}
      * @memberof Account
      */
-    debt_original_balance?: number | null;
+    debt_original_balance?: number;
     /**
      * 
      * @type {{ [key: string]: number; }}
@@ -130,6 +130,42 @@ export interface Account {
      * @memberof Account
      */
     deleted: boolean;
+    /**
+     * The current available balance of the account formatted in the plan's currency format
+     * @type {string}
+     * @memberof Account
+     */
+    balance_formatted?: string;
+    /**
+     * The current available balance of the account as a decimal currency amount
+     * @type {number}
+     * @memberof Account
+     */
+    balance_currency?: number;
+    /**
+     * The current cleared balance of the account formatted in the plan's currency format
+     * @type {string}
+     * @memberof Account
+     */
+    cleared_balance_formatted?: string;
+    /**
+     * The current cleared balance of the account as a decimal currency amount
+     * @type {number}
+     * @memberof Account
+     */
+    cleared_balance_currency?: number;
+    /**
+     * The current uncleared balance of the account formatted in the plan's currency format
+     * @type {string}
+     * @memberof Account
+     */
+    uncleared_balance_formatted?: string;
+    /**
+     * The current uncleared balance of the account as a decimal currency amount
+     * @type {number}
+     * @memberof Account
+     */
+    uncleared_balance_currency?: number;
 }
 
 
@@ -179,6 +215,12 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
         'debt_minimum_payments': json['debt_minimum_payments'] == null ? undefined : json['debt_minimum_payments'],
         'debt_escrow_amounts': json['debt_escrow_amounts'] == null ? undefined : json['debt_escrow_amounts'],
         'deleted': json['deleted'],
+        'balance_formatted': json['balance_formatted'] == null ? undefined : json['balance_formatted'],
+        'balance_currency': json['balance_currency'] == null ? undefined : json['balance_currency'],
+        'cleared_balance_formatted': json['cleared_balance_formatted'] == null ? undefined : json['cleared_balance_formatted'],
+        'cleared_balance_currency': json['cleared_balance_currency'] == null ? undefined : json['cleared_balance_currency'],
+        'uncleared_balance_formatted': json['uncleared_balance_formatted'] == null ? undefined : json['uncleared_balance_formatted'],
+        'uncleared_balance_currency': json['uncleared_balance_currency'] == null ? undefined : json['uncleared_balance_currency'],
     };
 }
 
@@ -211,6 +253,12 @@ export function AccountToJSONTyped(value?: Account | null, ignoreDiscriminator: 
         'debt_minimum_payments': value['debt_minimum_payments'],
         'debt_escrow_amounts': value['debt_escrow_amounts'],
         'deleted': value['deleted'],
+        'balance_formatted': value['balance_formatted'],
+        'balance_currency': value['balance_currency'],
+        'cleared_balance_formatted': value['cleared_balance_formatted'],
+        'cleared_balance_currency': value['cleared_balance_currency'],
+        'uncleared_balance_formatted': value['uncleared_balance_formatted'],
+        'uncleared_balance_currency': value['uncleared_balance_currency'],
     };
 }
 

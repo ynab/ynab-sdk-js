@@ -14,6 +14,14 @@ Name | Type
 `to_be_budgeted` | number
 `age_of_money` | number
 `deleted` | boolean
+`income_formatted` | string
+`income_currency` | number
+`budgeted_formatted` | string
+`budgeted_currency` | number
+`activity_formatted` | string
+`activity_currency` | number
+`to_be_budgeted_formatted` | string
+`to_be_budgeted_currency` | number
 
 ## Example
 
@@ -30,6 +38,14 @@ const example = {
   "to_be_budgeted": null,
   "age_of_money": null,
   "deleted": null,
+  "income_formatted": null,
+  "income_currency": null,
+  "budgeted_formatted": null,
+  "budgeted_currency": null,
+  "activity_formatted": null,
+  "activity_currency": null,
+  "to_be_budgeted_formatted": null,
+  "to_be_budgeted_currency": null,
 } satisfies MonthSummary
 
 console.log(example)

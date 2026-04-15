@@ -17,6 +17,8 @@ Name | Type
 `transfer_account_id` | string
 `transfer_transaction_id` | string
 `deleted` | boolean
+`amount_formatted` | string
+`amount_currency` | number
 
 ## Example
 
@@ -36,6 +38,8 @@ const example = {
   "transfer_account_id": null,
   "transfer_transaction_id": null,
   "deleted": null,
+  "amount_formatted": null,
+  "amount_currency": null,
 } satisfies SubTransaction
 
 console.log(example)

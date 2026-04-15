@@ -38,6 +38,8 @@ export function ScheduledSubTransactionFromJSONTyped(json, ignoreDiscriminator) 
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
         'transfer_account_id': json['transfer_account_id'] == null ? undefined : json['transfer_account_id'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 export function ScheduledSubTransactionToJSON(json) {
@@ -59,5 +61,7 @@ export function ScheduledSubTransactionToJSONTyped(value, ignoreDiscriminator) {
         'category_name': value['category_name'],
         'transfer_account_id': value['transfer_account_id'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }

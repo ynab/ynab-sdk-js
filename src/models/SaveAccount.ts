@@ -8,13 +8,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AccountType } from './AccountType';
+import type { SaveAccountType } from './SaveAccountType';
 import {
-    AccountTypeFromJSON,
-    AccountTypeFromJSONTyped,
-    AccountTypeToJSON,
-    AccountTypeToJSONTyped,
-} from './AccountType';
+    SaveAccountTypeFromJSON,
+    SaveAccountTypeFromJSONTyped,
+    SaveAccountTypeToJSON,
+    SaveAccountTypeToJSONTyped,
+} from './SaveAccountType';
 
 /**
  * 
@@ -30,10 +30,10 @@ export interface SaveAccount {
     name: string;
     /**
      * 
-     * @type {AccountType}
+     * @type {SaveAccountType}
      * @memberof SaveAccount
      */
-    type: AccountType;
+    type: SaveAccountType;
     /**
      * The current balance of the account in milliunits format
      * @type {number}
@@ -65,7 +65,7 @@ export function SaveAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'name': json['name'],
-        'type': AccountTypeFromJSON(json['type']),
+        'type': SaveAccountTypeFromJSON(json['type']),
         'balance': json['balance'],
     };
 }
@@ -82,7 +82,7 @@ export function SaveAccountToJSONTyped(value?: SaveAccount | null, ignoreDiscrim
     return {
         
         'name': value['name'],
-        'type': AccountTypeToJSON(value['type']),
+        'type': SaveAccountTypeToJSON(value['type']),
         'balance': value['balance'],
     };
 }

@@ -74,6 +74,8 @@ function ScheduledTransactionSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
         'transfer_account_id': json['transfer_account_id'] == null ? undefined : json['transfer_account_id'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 function ScheduledTransactionSummaryToJSON(json) {
@@ -97,5 +99,7 @@ function ScheduledTransactionSummaryToJSONTyped(value, ignoreDiscriminator = fal
         'category_id': value['category_id'],
         'transfer_account_id': value['transfer_account_id'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }
