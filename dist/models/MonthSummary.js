@@ -47,6 +47,14 @@ function MonthSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'to_be_budgeted': json['to_be_budgeted'],
         'age_of_money': json['age_of_money'] == null ? undefined : json['age_of_money'],
         'deleted': json['deleted'],
+        'income_formatted': json['income_formatted'] == null ? undefined : json['income_formatted'],
+        'income_currency': json['income_currency'] == null ? undefined : json['income_currency'],
+        'budgeted_formatted': json['budgeted_formatted'] == null ? undefined : json['budgeted_formatted'],
+        'budgeted_currency': json['budgeted_currency'] == null ? undefined : json['budgeted_currency'],
+        'activity_formatted': json['activity_formatted'] == null ? undefined : json['activity_formatted'],
+        'activity_currency': json['activity_currency'] == null ? undefined : json['activity_currency'],
+        'to_be_budgeted_formatted': json['to_be_budgeted_formatted'] == null ? undefined : json['to_be_budgeted_formatted'],
+        'to_be_budgeted_currency': json['to_be_budgeted_currency'] == null ? undefined : json['to_be_budgeted_currency'],
     };
 }
 function MonthSummaryToJSON(json) {
@@ -65,5 +73,13 @@ function MonthSummaryToJSONTyped(value, ignoreDiscriminator = false) {
         'to_be_budgeted': value['to_be_budgeted'],
         'age_of_money': value['age_of_money'],
         'deleted': value['deleted'],
+        'income_formatted': value['income_formatted'],
+        'income_currency': value['income_currency'],
+        'budgeted_formatted': value['budgeted_formatted'],
+        'budgeted_currency': value['budgeted_currency'],
+        'activity_formatted': value['activity_formatted'],
+        'activity_currency': value['activity_currency'],
+        'to_be_budgeted_formatted': value['to_be_budgeted_formatted'],
+        'to_be_budgeted_currency': value['to_be_budgeted_currency'],
     };
 }

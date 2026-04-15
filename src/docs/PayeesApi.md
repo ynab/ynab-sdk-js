@@ -4,10 +4,86 @@ All URIs are relative to *https://api.ynab.com/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**createPayee**](PayeesApi.md#createpayee) | **POST** /plans/{plan_id}/payees | Create a payee |
 | [**getPayeeById**](PayeesApi.md#getpayeebyid) | **GET** /plans/{plan_id}/payees/{payee_id} | Get a payee |
 | [**getPayees**](PayeesApi.md#getpayees) | **GET** /plans/{plan_id}/payees | Get all payees |
 | [**updatePayee**](PayeesApi.md#updatepayee) | **PATCH** /plans/{plan_id}/payees/{payee_id} | Update a payee |
 
+
+
+## createPayee
+
+> SavePayeeResponse createPayee(planId, data)
+
+Create a payee
+
+Creates a new payee
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PayeesApi,
+} from '';
+import type { CreatePayeeRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: bearer
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PayeesApi(config);
+
+  const body = {
+    // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
+    planId: planId_example,
+    // PostPayeeWrapper | The payee to create
+    data: ...,
+  } satisfies CreatePayeeRequest;
+
+  try {
+    const data = await api.createPayee(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
+| **data** | [PostPayeeWrapper](PostPayeeWrapper.md) | The payee to create | |
+
+### Return type
+
+[**SavePayeeResponse**](SavePayeeResponse.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The payee was successfully created |  -  |
+| **400** | The request could not be understood due to malformed syntax or validation error(s) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## getPayeeById

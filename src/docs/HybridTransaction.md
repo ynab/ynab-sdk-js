@@ -25,6 +25,8 @@ Name | Type
 `import_payee_name_original` | string
 `debt_transaction_type` | string
 `deleted` | boolean
+`amount_formatted` | string
+`amount_currency` | number
 `type` | string
 `parent_transaction_id` | string
 `account_name` | string
@@ -57,6 +59,8 @@ const example = {
   "import_payee_name_original": null,
   "debt_transaction_type": null,
   "deleted": null,
+  "amount_formatted": null,
+  "amount_currency": null,
   "type": null,
   "parent_transaction_id": null,
   "account_name": null,

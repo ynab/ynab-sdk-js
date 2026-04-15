@@ -49,6 +49,45 @@ const index_1 = require("../models/index");
  */
 class PayeesApi extends runtime.BaseAPI {
     /**
+     * Creates a new payee
+     * Create a payee
+     */
+    async createPayeeRaw(requestParameters, initOverrides) {
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId', 'Required parameter requestParameters.planId was null or undefined when calling createPayee.');
+        }
+        if (requestParameters.data === null || requestParameters.data === undefined) {
+            throw new runtime.RequiredError('data', 'Required parameter requestParameters.data was null or undefined when calling createPayee.');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Accept'] = 'application/json';
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/plans/{plan_id}/payees`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.PostPayeeWrapperToJSON)(requestParameters.data),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SavePayeeResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Creates a new payee
+     * Create a payee
+     */
+    async createPayee(planId, data, initOverrides) {
+        const response = await this.createPayeeRaw({ planId: planId, data: data }, initOverrides);
+        return await response.value();
+    }
+    /**
      * Returns a single payee
      * Get a payee
      */

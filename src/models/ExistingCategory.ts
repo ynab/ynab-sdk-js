@@ -33,7 +33,7 @@ export interface ExistingCategory {
      */
     category_group_id?: string;
     /**
-     * The goal target amount in milliunits format.  If value is specified and goal has not already been configured for category, a monthly 'Needed for Spending' goal will be created for the category with this target amount.
+     * The goal target amount in milliunits format.  If value is specified and goal has not already been configured for category, a monthly goal will be created for the category with this target amount.  If goal_type is not specified, it will default to 'NEED' or 'MF' for Credit Card Payment categories.
      * @type {number}
      * @memberof ExistingCategory
      */
@@ -44,6 +44,12 @@ export interface ExistingCategory {
      * @memberof ExistingCategory
      */
     goal_target_date?: string;
+    /**
+     * Whether the goal requires the full target amount each period. Only supported for 'NEED' goals. When true, the goal is configured as 'Set aside another...'. When false, the goal is configured as 'Refill up to...'.
+     * @type {boolean}
+     * @memberof ExistingCategory
+     */
+    goal_needs_whole_amount?: boolean;
 }
 
 /**
@@ -68,6 +74,7 @@ export function ExistingCategoryFromJSONTyped(json: any, ignoreDiscriminator: bo
         'category_group_id': json['category_group_id'] == null ? undefined : json['category_group_id'],
         'goal_target': json['goal_target'] == null ? undefined : json['goal_target'],
         'goal_target_date': json['goal_target_date'] == null ? undefined : json['goal_target_date'],
+        'goal_needs_whole_amount': json['goal_needs_whole_amount'] == null ? undefined : json['goal_needs_whole_amount'],
     };
 }
 
@@ -87,6 +94,7 @@ export function ExistingCategoryToJSONTyped(value?: ExistingCategory | null, ign
         'category_group_id': value['category_group_id'],
         'goal_target': value['goal_target'],
         'goal_target_date': value['goal_target_date'],
+        'goal_needs_whole_amount': value['goal_needs_whole_amount'],
     };
 }
 

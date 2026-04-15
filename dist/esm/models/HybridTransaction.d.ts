@@ -127,6 +127,18 @@ export interface HybridTransaction {
      */
     deleted: boolean;
     /**
+     * The transaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof HybridTransaction
+     */
+    amount_formatted?: string;
+    /**
+     * The transaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof HybridTransaction
+     */
+    amount_currency?: number;
+    /**
      * Whether the hybrid transaction represents a regular transaction or a subtransaction
      * @type {HybridTransactionTypeEnum}
      * @memberof HybridTransaction

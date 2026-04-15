@@ -33,49 +33,61 @@ export interface SubTransaction {
      * @type {string}
      * @memberof SubTransaction
      */
-    memo?: string | null;
+    memo?: string;
     /**
      *
      * @type {string}
      * @memberof SubTransaction
      */
-    payee_id?: string | null;
+    payee_id?: string;
     /**
      *
      * @type {string}
      * @memberof SubTransaction
      */
-    payee_name?: string | null;
+    payee_name?: string;
     /**
      *
      * @type {string}
      * @memberof SubTransaction
      */
-    category_id?: string | null;
+    category_id?: string;
     /**
      *
      * @type {string}
      * @memberof SubTransaction
      */
-    category_name?: string | null;
+    category_name?: string;
     /**
      * If a transfer, the account_id which the subtransaction transfers to
      * @type {string}
      * @memberof SubTransaction
      */
-    transfer_account_id?: string | null;
+    transfer_account_id?: string;
     /**
      * If a transfer, the id of transaction on the other side of the transfer
      * @type {string}
      * @memberof SubTransaction
      */
-    transfer_transaction_id?: string | null;
+    transfer_transaction_id?: string;
     /**
      * Whether or not the subtransaction has been deleted.  Deleted subtransactions will only be included in delta requests.
      * @type {boolean}
      * @memberof SubTransaction
      */
     deleted: boolean;
+    /**
+     * The subtransaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof SubTransaction
+     */
+    amount_formatted?: string;
+    /**
+     * The subtransaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof SubTransaction
+     */
+    amount_currency?: number;
 }
 /**
  * Check if a given object implements the SubTransaction interface.

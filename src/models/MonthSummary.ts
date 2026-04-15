@@ -25,7 +25,7 @@ export interface MonthSummary {
      * @type {string}
      * @memberof MonthSummary
      */
-    note?: string | null;
+    note?: string;
     /**
      * The total amount of transactions categorized to 'Inflow: Ready to Assign' in the month
      * @type {number}
@@ -55,13 +55,61 @@ export interface MonthSummary {
      * @type {number}
      * @memberof MonthSummary
      */
-    age_of_money?: number | null;
+    age_of_money?: number;
     /**
      * Whether or not the month has been deleted.  Deleted months will only be included in delta requests.
      * @type {boolean}
      * @memberof MonthSummary
      */
     deleted: boolean;
+    /**
+     * The total income formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    income_formatted?: string;
+    /**
+     * The total income as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    income_currency?: number;
+    /**
+     * The total amount assigned formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    budgeted_formatted?: string;
+    /**
+     * The total amount assigned as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    budgeted_currency?: number;
+    /**
+     * The total activity amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    activity_formatted?: string;
+    /**
+     * The total activity amount as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    activity_currency?: number;
+    /**
+     * The available amount for 'Ready to Assign' formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthSummary
+     */
+    to_be_budgeted_formatted?: string;
+    /**
+     * The available amount for 'Ready to Assign' as a decimal currency amount
+     * @type {number}
+     * @memberof MonthSummary
+     */
+    to_be_budgeted_currency?: number;
 }
 
 /**
@@ -95,6 +143,14 @@ export function MonthSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'to_be_budgeted': json['to_be_budgeted'],
         'age_of_money': json['age_of_money'] == null ? undefined : json['age_of_money'],
         'deleted': json['deleted'],
+        'income_formatted': json['income_formatted'] == null ? undefined : json['income_formatted'],
+        'income_currency': json['income_currency'] == null ? undefined : json['income_currency'],
+        'budgeted_formatted': json['budgeted_formatted'] == null ? undefined : json['budgeted_formatted'],
+        'budgeted_currency': json['budgeted_currency'] == null ? undefined : json['budgeted_currency'],
+        'activity_formatted': json['activity_formatted'] == null ? undefined : json['activity_formatted'],
+        'activity_currency': json['activity_currency'] == null ? undefined : json['activity_currency'],
+        'to_be_budgeted_formatted': json['to_be_budgeted_formatted'] == null ? undefined : json['to_be_budgeted_formatted'],
+        'to_be_budgeted_currency': json['to_be_budgeted_currency'] == null ? undefined : json['to_be_budgeted_currency'],
     };
 }
 
@@ -117,6 +173,14 @@ export function MonthSummaryToJSONTyped(value?: MonthSummary | null, ignoreDiscr
         'to_be_budgeted': value['to_be_budgeted'],
         'age_of_money': value['age_of_money'],
         'deleted': value['deleted'],
+        'income_formatted': value['income_formatted'],
+        'income_currency': value['income_currency'],
+        'budgeted_formatted': value['budgeted_formatted'],
+        'budgeted_currency': value['budgeted_currency'],
+        'activity_formatted': value['activity_formatted'],
+        'activity_currency': value['activity_currency'],
+        'to_be_budgeted_formatted': value['to_be_budgeted_formatted'],
+        'to_be_budgeted_currency': value['to_be_budgeted_currency'],
     };
 }
 

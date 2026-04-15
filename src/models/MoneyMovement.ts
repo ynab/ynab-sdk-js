@@ -25,49 +25,61 @@ export interface MoneyMovement {
      * @type {string}
      * @memberof MoneyMovement
      */
-    month?: string | null;
+    month?: string;
     /**
      * The date/time the money movement was processed on the server in ISO format (e.g. 2024-01-01T12:00:00Z)
      * @type {string}
      * @memberof MoneyMovement
      */
-    moved_at?: string | null;
+    moved_at?: string;
     /**
      * 
      * @type {string}
      * @memberof MoneyMovement
      */
-    note?: string | null;
+    note?: string;
     /**
      * The id of the money movement group this movement belongs to
      * @type {string}
      * @memberof MoneyMovement
      */
-    money_movement_group_id?: string | null;
+    money_movement_group_id?: string;
     /**
      * The id of the user who performed the money movement
      * @type {string}
      * @memberof MoneyMovement
      */
-    performed_by_user_id?: string | null;
+    performed_by_user_id?: string;
     /**
      * The id of the category the money was moved from
      * @type {string}
      * @memberof MoneyMovement
      */
-    from_category_id?: string | null;
+    from_category_id?: string;
     /**
      * The id of the category the money was moved to
      * @type {string}
      * @memberof MoneyMovement
      */
-    to_category_id?: string | null;
+    to_category_id?: string;
     /**
      * The amount of the money movement in milliunits format
      * @type {number}
      * @memberof MoneyMovement
      */
     amount: number;
+    /**
+     * The money movement amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof MoneyMovement
+     */
+    amount_formatted?: string;
+    /**
+     * The money movement amount as a decimal currency amount
+     * @type {number}
+     * @memberof MoneyMovement
+     */
+    amount_currency?: number;
 }
 
 /**
@@ -98,6 +110,8 @@ export function MoneyMovementFromJSONTyped(json: any, ignoreDiscriminator: boole
         'from_category_id': json['from_category_id'] == null ? undefined : json['from_category_id'],
         'to_category_id': json['to_category_id'] == null ? undefined : json['to_category_id'],
         'amount': json['amount'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 
@@ -121,6 +135,8 @@ export function MoneyMovementToJSONTyped(value?: MoneyMovement | null, ignoreDis
         'from_category_id': value['from_category_id'],
         'to_category_id': value['to_category_id'],
         'amount': value['amount'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }
 

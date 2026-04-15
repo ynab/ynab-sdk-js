@@ -46,7 +46,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    note?: string | null;
+    note?: string;
     /**
      * The current available balance of the account in milliunits format
      * @type {number}
@@ -70,7 +70,7 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    transfer_payee_id: string | null;
+    transfer_payee_id: string;
     /**
      * Whether or not the account is linked to a financial institution for automatic transaction import.
      * @type {boolean}
@@ -88,13 +88,13 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    last_reconciled_at?: string | null;
+    last_reconciled_at?: string;
     /**
      * This field is deprecated and will always be null.
      * @type {number}
      * @memberof Account
      */
-    debt_original_balance?: number | null;
+    debt_original_balance?: number;
     /**
      *
      * @type {{ [key: string]: number; }}
@@ -125,6 +125,42 @@ export interface Account {
      * @memberof Account
      */
     deleted: boolean;
+    /**
+     * The current available balance of the account formatted in the plan's currency format
+     * @type {string}
+     * @memberof Account
+     */
+    balance_formatted?: string;
+    /**
+     * The current available balance of the account as a decimal currency amount
+     * @type {number}
+     * @memberof Account
+     */
+    balance_currency?: number;
+    /**
+     * The current cleared balance of the account formatted in the plan's currency format
+     * @type {string}
+     * @memberof Account
+     */
+    cleared_balance_formatted?: string;
+    /**
+     * The current cleared balance of the account as a decimal currency amount
+     * @type {number}
+     * @memberof Account
+     */
+    cleared_balance_currency?: number;
+    /**
+     * The current uncleared balance of the account formatted in the plan's currency format
+     * @type {string}
+     * @memberof Account
+     */
+    uncleared_balance_formatted?: string;
+    /**
+     * The current uncleared balance of the account as a decimal currency amount
+     * @type {number}
+     * @memberof Account
+     */
+    uncleared_balance_currency?: number;
 }
 /**
  * Check if a given object implements the Account interface.

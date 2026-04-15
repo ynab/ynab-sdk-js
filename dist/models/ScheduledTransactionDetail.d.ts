@@ -91,6 +91,18 @@ export interface ScheduledTransactionDetail {
      */
     deleted: boolean;
     /**
+     * The scheduled transaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof ScheduledTransactionDetail
+     */
+    amount_formatted?: string;
+    /**
+     * The scheduled transaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof ScheduledTransactionDetail
+     */
+    amount_currency?: number;
+    /**
      *
      * @type {string}
      * @memberof ScheduledTransactionDetail

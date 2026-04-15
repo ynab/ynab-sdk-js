@@ -25,6 +25,7 @@ export function NewCategoryFromJSONTyped(json, ignoreDiscriminator) {
         'category_group_id': json['category_group_id'] == null ? undefined : json['category_group_id'],
         'goal_target': json['goal_target'] == null ? undefined : json['goal_target'],
         'goal_target_date': json['goal_target_date'] == null ? undefined : json['goal_target_date'],
+        'goal_needs_whole_amount': json['goal_needs_whole_amount'] == null ? undefined : json['goal_needs_whole_amount'],
     };
 }
 export function NewCategoryToJSON(json) {
@@ -41,5 +42,6 @@ export function NewCategoryToJSONTyped(value, ignoreDiscriminator) {
         'category_group_id': value['category_group_id'],
         'goal_target': value['goal_target'],
         'goal_target_date': value['goal_target_date'],
+        'goal_needs_whole_amount': value['goal_needs_whole_amount'],
     };
 }

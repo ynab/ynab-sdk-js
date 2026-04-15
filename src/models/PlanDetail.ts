@@ -8,6 +8,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { MonthDetailBase } from './MonthDetailBase';
+import {
+    MonthDetailBaseFromJSON,
+    MonthDetailBaseFromJSONTyped,
+    MonthDetailBaseToJSON,
+    MonthDetailBaseToJSONTyped,
+} from './MonthDetailBase';
 import type { PayeeLocation } from './PayeeLocation';
 import {
     PayeeLocationFromJSON,
@@ -15,27 +22,13 @@ import {
     PayeeLocationToJSON,
     PayeeLocationToJSONTyped,
 } from './PayeeLocation';
-import type { Account } from './Account';
+import type { CategoryBase } from './CategoryBase';
 import {
-    AccountFromJSON,
-    AccountFromJSONTyped,
-    AccountToJSON,
-    AccountToJSONTyped,
-} from './Account';
-import type { ScheduledTransactionSummary } from './ScheduledTransactionSummary';
-import {
-    ScheduledTransactionSummaryFromJSON,
-    ScheduledTransactionSummaryFromJSONTyped,
-    ScheduledTransactionSummaryToJSON,
-    ScheduledTransactionSummaryToJSONTyped,
-} from './ScheduledTransactionSummary';
-import type { Category } from './Category';
-import {
-    CategoryFromJSON,
-    CategoryFromJSONTyped,
-    CategoryToJSON,
-    CategoryToJSONTyped,
-} from './Category';
+    CategoryBaseFromJSON,
+    CategoryBaseFromJSONTyped,
+    CategoryBaseToJSON,
+    CategoryBaseToJSONTyped,
+} from './CategoryBase';
 import type { CurrencyFormat } from './CurrencyFormat';
 import {
     CurrencyFormatFromJSON,
@@ -50,20 +43,34 @@ import {
     DateFormatToJSON,
     DateFormatToJSONTyped,
 } from './DateFormat';
-import type { SubTransaction } from './SubTransaction';
+import type { SubTransactionBase } from './SubTransactionBase';
 import {
-    SubTransactionFromJSON,
-    SubTransactionFromJSONTyped,
-    SubTransactionToJSON,
-    SubTransactionToJSONTyped,
-} from './SubTransaction';
-import type { MonthDetail } from './MonthDetail';
+    SubTransactionBaseFromJSON,
+    SubTransactionBaseFromJSONTyped,
+    SubTransactionBaseToJSON,
+    SubTransactionBaseToJSONTyped,
+} from './SubTransactionBase';
+import type { ScheduledSubTransactionBase } from './ScheduledSubTransactionBase';
 import {
-    MonthDetailFromJSON,
-    MonthDetailFromJSONTyped,
-    MonthDetailToJSON,
-    MonthDetailToJSONTyped,
-} from './MonthDetail';
+    ScheduledSubTransactionBaseFromJSON,
+    ScheduledSubTransactionBaseFromJSONTyped,
+    ScheduledSubTransactionBaseToJSON,
+    ScheduledSubTransactionBaseToJSONTyped,
+} from './ScheduledSubTransactionBase';
+import type { ScheduledTransactionSummaryBase } from './ScheduledTransactionSummaryBase';
+import {
+    ScheduledTransactionSummaryBaseFromJSON,
+    ScheduledTransactionSummaryBaseFromJSONTyped,
+    ScheduledTransactionSummaryBaseToJSON,
+    ScheduledTransactionSummaryBaseToJSONTyped,
+} from './ScheduledTransactionSummaryBase';
+import type { TransactionSummaryBase } from './TransactionSummaryBase';
+import {
+    TransactionSummaryBaseFromJSON,
+    TransactionSummaryBaseFromJSONTyped,
+    TransactionSummaryBaseToJSON,
+    TransactionSummaryBaseToJSONTyped,
+} from './TransactionSummaryBase';
 import type { Payee } from './Payee';
 import {
     PayeeFromJSON,
@@ -71,20 +78,13 @@ import {
     PayeeToJSON,
     PayeeToJSONTyped,
 } from './Payee';
-import type { ScheduledSubTransaction } from './ScheduledSubTransaction';
+import type { AccountBase } from './AccountBase';
 import {
-    ScheduledSubTransactionFromJSON,
-    ScheduledSubTransactionFromJSONTyped,
-    ScheduledSubTransactionToJSON,
-    ScheduledSubTransactionToJSONTyped,
-} from './ScheduledSubTransaction';
-import type { TransactionSummary } from './TransactionSummary';
-import {
-    TransactionSummaryFromJSON,
-    TransactionSummaryFromJSONTyped,
-    TransactionSummaryToJSON,
-    TransactionSummaryToJSONTyped,
-} from './TransactionSummary';
+    AccountBaseFromJSON,
+    AccountBaseFromJSONTyped,
+    AccountBaseToJSON,
+    AccountBaseToJSONTyped,
+} from './AccountBase';
 import type { CategoryGroup } from './CategoryGroup';
 import {
     CategoryGroupFromJSON,
@@ -143,10 +143,10 @@ export interface PlanDetail {
     currency_format?: CurrencyFormat;
     /**
      * 
-     * @type {Array<Account>}
+     * @type {Array<AccountBase>}
      * @memberof PlanDetail
      */
-    accounts?: Array<Account>;
+    accounts?: Array<AccountBase>;
     /**
      * 
      * @type {Array<Payee>}
@@ -167,40 +167,40 @@ export interface PlanDetail {
     category_groups?: Array<CategoryGroup>;
     /**
      * 
-     * @type {Array<Category>}
+     * @type {Array<CategoryBase>}
      * @memberof PlanDetail
      */
-    categories?: Array<Category>;
+    categories?: Array<CategoryBase>;
     /**
      * 
-     * @type {Array<MonthDetail>}
+     * @type {Array<MonthDetailBase>}
      * @memberof PlanDetail
      */
-    months?: Array<MonthDetail>;
+    months?: Array<MonthDetailBase>;
     /**
      * 
-     * @type {Array<TransactionSummary>}
+     * @type {Array<TransactionSummaryBase>}
      * @memberof PlanDetail
      */
-    transactions?: Array<TransactionSummary>;
+    transactions?: Array<TransactionSummaryBase>;
     /**
      * 
-     * @type {Array<SubTransaction>}
+     * @type {Array<SubTransactionBase>}
      * @memberof PlanDetail
      */
-    subtransactions?: Array<SubTransaction>;
+    subtransactions?: Array<SubTransactionBase>;
     /**
      * 
-     * @type {Array<ScheduledTransactionSummary>}
+     * @type {Array<ScheduledTransactionSummaryBase>}
      * @memberof PlanDetail
      */
-    scheduled_transactions?: Array<ScheduledTransactionSummary>;
+    scheduled_transactions?: Array<ScheduledTransactionSummaryBase>;
     /**
      * 
-     * @type {Array<ScheduledSubTransaction>}
+     * @type {Array<ScheduledSubTransactionBase>}
      * @memberof PlanDetail
      */
-    scheduled_subtransactions?: Array<ScheduledSubTransaction>;
+    scheduled_subtransactions?: Array<ScheduledSubTransactionBase>;
 }
 
 /**
@@ -229,16 +229,16 @@ export function PlanDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'last_month': json['last_month'] == null ? undefined : json['last_month'],
         'date_format': json['date_format'] == null ? undefined : DateFormatFromJSON(json['date_format']),
         'currency_format': json['currency_format'] == null ? undefined : CurrencyFormatFromJSON(json['currency_format']),
-        'accounts': json['accounts'] == null ? undefined : ((json['accounts'] as Array<any>).map(AccountFromJSON)),
+        'accounts': json['accounts'] == null ? undefined : ((json['accounts'] as Array<any>).map(AccountBaseFromJSON)),
         'payees': json['payees'] == null ? undefined : ((json['payees'] as Array<any>).map(PayeeFromJSON)),
         'payee_locations': json['payee_locations'] == null ? undefined : ((json['payee_locations'] as Array<any>).map(PayeeLocationFromJSON)),
         'category_groups': json['category_groups'] == null ? undefined : ((json['category_groups'] as Array<any>).map(CategoryGroupFromJSON)),
-        'categories': json['categories'] == null ? undefined : ((json['categories'] as Array<any>).map(CategoryFromJSON)),
-        'months': json['months'] == null ? undefined : ((json['months'] as Array<any>).map(MonthDetailFromJSON)),
-        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(TransactionSummaryFromJSON)),
-        'subtransactions': json['subtransactions'] == null ? undefined : ((json['subtransactions'] as Array<any>).map(SubTransactionFromJSON)),
-        'scheduled_transactions': json['scheduled_transactions'] == null ? undefined : ((json['scheduled_transactions'] as Array<any>).map(ScheduledTransactionSummaryFromJSON)),
-        'scheduled_subtransactions': json['scheduled_subtransactions'] == null ? undefined : ((json['scheduled_subtransactions'] as Array<any>).map(ScheduledSubTransactionFromJSON)),
+        'categories': json['categories'] == null ? undefined : ((json['categories'] as Array<any>).map(CategoryBaseFromJSON)),
+        'months': json['months'] == null ? undefined : ((json['months'] as Array<any>).map(MonthDetailBaseFromJSON)),
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(TransactionSummaryBaseFromJSON)),
+        'subtransactions': json['subtransactions'] == null ? undefined : ((json['subtransactions'] as Array<any>).map(SubTransactionBaseFromJSON)),
+        'scheduled_transactions': json['scheduled_transactions'] == null ? undefined : ((json['scheduled_transactions'] as Array<any>).map(ScheduledTransactionSummaryBaseFromJSON)),
+        'scheduled_subtransactions': json['scheduled_subtransactions'] == null ? undefined : ((json['scheduled_subtransactions'] as Array<any>).map(ScheduledSubTransactionBaseFromJSON)),
     };
 }
 
@@ -260,16 +260,16 @@ export function PlanDetailToJSONTyped(value?: PlanDetail | null, ignoreDiscrimin
         'last_month': value['last_month'],
         'date_format': DateFormatToJSON(value['date_format']),
         'currency_format': CurrencyFormatToJSON(value['currency_format']),
-        'accounts': value['accounts'] == null ? undefined : ((value['accounts'] as Array<any>).map(AccountToJSON)),
+        'accounts': value['accounts'] == null ? undefined : ((value['accounts'] as Array<any>).map(AccountBaseToJSON)),
         'payees': value['payees'] == null ? undefined : ((value['payees'] as Array<any>).map(PayeeToJSON)),
         'payee_locations': value['payee_locations'] == null ? undefined : ((value['payee_locations'] as Array<any>).map(PayeeLocationToJSON)),
         'category_groups': value['category_groups'] == null ? undefined : ((value['category_groups'] as Array<any>).map(CategoryGroupToJSON)),
-        'categories': value['categories'] == null ? undefined : ((value['categories'] as Array<any>).map(CategoryToJSON)),
-        'months': value['months'] == null ? undefined : ((value['months'] as Array<any>).map(MonthDetailToJSON)),
-        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(TransactionSummaryToJSON)),
-        'subtransactions': value['subtransactions'] == null ? undefined : ((value['subtransactions'] as Array<any>).map(SubTransactionToJSON)),
-        'scheduled_transactions': value['scheduled_transactions'] == null ? undefined : ((value['scheduled_transactions'] as Array<any>).map(ScheduledTransactionSummaryToJSON)),
-        'scheduled_subtransactions': value['scheduled_subtransactions'] == null ? undefined : ((value['scheduled_subtransactions'] as Array<any>).map(ScheduledSubTransactionToJSON)),
+        'categories': value['categories'] == null ? undefined : ((value['categories'] as Array<any>).map(CategoryBaseToJSON)),
+        'months': value['months'] == null ? undefined : ((value['months'] as Array<any>).map(MonthDetailBaseToJSON)),
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(TransactionSummaryBaseToJSON)),
+        'subtransactions': value['subtransactions'] == null ? undefined : ((value['subtransactions'] as Array<any>).map(SubTransactionBaseToJSON)),
+        'scheduled_transactions': value['scheduled_transactions'] == null ? undefined : ((value['scheduled_transactions'] as Array<any>).map(ScheduledTransactionSummaryBaseToJSON)),
+        'scheduled_subtransactions': value['scheduled_subtransactions'] == null ? undefined : ((value['scheduled_subtransactions'] as Array<any>).map(ScheduledSubTransactionBaseToJSON)),
     };
 }
 

@@ -33,6 +33,8 @@ export function MoneyMovementFromJSONTyped(json, ignoreDiscriminator) {
         'from_category_id': json['from_category_id'] == null ? undefined : json['from_category_id'],
         'to_category_id': json['to_category_id'] == null ? undefined : json['to_category_id'],
         'amount': json['amount'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
     };
 }
 export function MoneyMovementToJSON(json) {
@@ -53,5 +55,7 @@ export function MoneyMovementToJSONTyped(value, ignoreDiscriminator) {
         'from_category_id': value['from_category_id'],
         'to_category_id': value['to_category_id'],
         'amount': value['amount'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
     };
 }

@@ -13,6 +13,7 @@ import type {
   PatchPayeeWrapper,
   PayeeResponse,
   PayeesResponse,
+  PostPayeeWrapper,
   SavePayeeResponse,
 } from '../models/index';
 import {
@@ -24,9 +25,16 @@ import {
     PayeeResponseToJSON,
     PayeesResponseFromJSON,
     PayeesResponseToJSON,
+    PostPayeeWrapperFromJSON,
+    PostPayeeWrapperToJSON,
     SavePayeeResponseFromJSON,
     SavePayeeResponseToJSON,
 } from '../models/index';
+
+export interface CreatePayeeRequest {
+    planId: string;
+    data: PostPayeeWrapper;
+}
 
 export interface GetPayeeByIdRequest {
     planId: string;
@@ -48,6 +56,54 @@ export interface UpdatePayeeRequest {
  * 
  */
 export class PayeesApi extends runtime.BaseAPI {
+
+    /**
+     * Creates a new payee
+     * Create a payee
+     */
+    async createPayeeRaw(requestParameters: CreatePayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SavePayeeResponse>> {
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling createPayee.');
+        }
+
+        if (requestParameters.data === null || requestParameters.data === undefined) {
+            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling createPayee.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+        headerParameters['Accept'] = 'application/json';
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/plans/{plan_id}/payees`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PostPayeeWrapperToJSON(requestParameters.data),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SavePayeeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates a new payee
+     * Create a payee
+     */
+    async createPayee(planId: string, data: PostPayeeWrapper, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SavePayeeResponse> {
+        const response = await this.createPayeeRaw({ planId: planId, data: data }, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Returns a single payee

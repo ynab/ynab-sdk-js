@@ -151,6 +151,18 @@ export interface TransactionDetail {
      */
     deleted: boolean;
     /**
+     * The transaction amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof TransactionDetail
+     */
+    amount_formatted?: string;
+    /**
+     * The transaction amount as a decimal currency amount
+     * @type {number}
+     * @memberof TransactionDetail
+     */
+    amount_currency?: number;
+    /**
      * 
      * @type {string}
      * @memberof TransactionDetail
@@ -238,6 +250,8 @@ export function TransactionDetailFromJSONTyped(json: any, ignoreDiscriminator: b
         'import_payee_name_original': json['import_payee_name_original'] == null ? undefined : json['import_payee_name_original'],
         'debt_transaction_type': json['debt_transaction_type'] == null ? undefined : json['debt_transaction_type'],
         'deleted': json['deleted'],
+        'amount_formatted': json['amount_formatted'] == null ? undefined : json['amount_formatted'],
+        'amount_currency': json['amount_currency'] == null ? undefined : json['amount_currency'],
         'account_name': json['account_name'],
         'payee_name': json['payee_name'] == null ? undefined : json['payee_name'],
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
@@ -275,6 +289,8 @@ export function TransactionDetailToJSONTyped(value?: TransactionDetail | null, i
         'import_payee_name_original': value['import_payee_name_original'],
         'debt_transaction_type': value['debt_transaction_type'],
         'deleted': value['deleted'],
+        'amount_formatted': value['amount_formatted'],
+        'amount_currency': value['amount_currency'],
         'account_name': value['account_name'],
         'payee_name': value['payee_name'],
         'category_name': value['category_name'],

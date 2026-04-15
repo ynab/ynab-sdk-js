@@ -71,6 +71,54 @@ export interface MonthDetail {
      */
     deleted: boolean;
     /**
+     * The total income formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    income_formatted?: string;
+    /**
+     * The total income as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    income_currency?: number;
+    /**
+     * The total amount assigned formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    budgeted_formatted?: string;
+    /**
+     * The total amount assigned as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    budgeted_currency?: number;
+    /**
+     * The total activity amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    activity_formatted?: string;
+    /**
+     * The total activity amount as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    activity_currency?: number;
+    /**
+     * The available amount for 'Ready to Assign' formatted in the plan's currency format
+     * @type {string}
+     * @memberof MonthDetail
+     */
+    to_be_budgeted_formatted?: string;
+    /**
+     * The available amount for 'Ready to Assign' as a decimal currency amount
+     * @type {number}
+     * @memberof MonthDetail
+     */
+    to_be_budgeted_currency?: number;
+    /**
      * The plan month categories.  Amounts (budgeted, activity, balance, etc.) are specific to the {month} parameter specified.
      * @type {Array<Category>}
      * @memberof MonthDetail
@@ -110,6 +158,14 @@ export function MonthDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'to_be_budgeted': json['to_be_budgeted'],
         'age_of_money': json['age_of_money'] == null ? undefined : json['age_of_money'],
         'deleted': json['deleted'],
+        'income_formatted': json['income_formatted'] == null ? undefined : json['income_formatted'],
+        'income_currency': json['income_currency'] == null ? undefined : json['income_currency'],
+        'budgeted_formatted': json['budgeted_formatted'] == null ? undefined : json['budgeted_formatted'],
+        'budgeted_currency': json['budgeted_currency'] == null ? undefined : json['budgeted_currency'],
+        'activity_formatted': json['activity_formatted'] == null ? undefined : json['activity_formatted'],
+        'activity_currency': json['activity_currency'] == null ? undefined : json['activity_currency'],
+        'to_be_budgeted_formatted': json['to_be_budgeted_formatted'] == null ? undefined : json['to_be_budgeted_formatted'],
+        'to_be_budgeted_currency': json['to_be_budgeted_currency'] == null ? undefined : json['to_be_budgeted_currency'],
         'categories': ((json['categories'] as Array<any>).map(CategoryFromJSON)),
     };
 }
@@ -133,6 +189,14 @@ export function MonthDetailToJSONTyped(value?: MonthDetail | null, ignoreDiscrim
         'to_be_budgeted': value['to_be_budgeted'],
         'age_of_money': value['age_of_money'],
         'deleted': value['deleted'],
+        'income_formatted': value['income_formatted'],
+        'income_currency': value['income_currency'],
+        'budgeted_formatted': value['budgeted_formatted'],
+        'budgeted_currency': value['budgeted_currency'],
+        'activity_formatted': value['activity_formatted'],
+        'activity_currency': value['activity_currency'],
+        'to_be_budgeted_formatted': value['to_be_budgeted_formatted'],
+        'to_be_budgeted_currency': value['to_be_budgeted_currency'],
         'categories': ((value['categories'] as Array<any>).map(CategoryToJSON)),
     };
 }

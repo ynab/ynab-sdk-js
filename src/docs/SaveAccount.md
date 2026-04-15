@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `name` | string
-`type` | [AccountType](AccountType.md)
+`type` | [SaveAccountType](SaveAccountType.md)
 `balance` | number
 
 ## Example

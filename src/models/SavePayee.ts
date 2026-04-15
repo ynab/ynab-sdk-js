@@ -15,7 +15,7 @@ import { mapValues } from '../runtime';
  */
 export interface SavePayee {
     /**
-     * The name of the payee. The name must be a maximum of 500 characters.
+     * The name of the payee.
      * @type {string}
      * @memberof SavePayee
      */

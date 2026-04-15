@@ -45,13 +45,13 @@ export interface Category {
      * @type {string}
      * @memberof Category
      */
-    original_category_group_id?: string | null;
+    original_category_group_id?: string;
     /**
      *
      * @type {string}
      * @memberof Category
      */
-    note?: string | null;
+    note?: string;
     /**
      * Assigned (budgeted) amount in milliunits format
      * @type {number}
@@ -81,91 +81,175 @@ export interface Category {
      * @type {boolean}
      * @memberof Category
      */
-    goal_needs_whole_amount?: boolean | null;
+    goal_needs_whole_amount?: boolean;
     /**
      * A day offset modifier for the goal's due date. When goal_cadence is 2 (Weekly), this value specifies which day of the week the goal is due (0 = Sunday, 6 = Saturday). Otherwise, this value specifies which day of the month the goal is due (1 = 1st, 31 = 31st, null = Last day of Month).
      * @type {number}
      * @memberof Category
      */
-    goal_day?: number | null;
+    goal_day?: number;
     /**
      * The goal cadence. Value in range 0-14. There are two subsets of these values which behave differently. For values 0, 1, 2, and 13, the goal's due date repeats every goal_cadence * goal_cadence_frequency, where 0 = None, 1 = Monthly, 2 = Weekly, and 13 = Yearly. For example, goal_cadence 1 with goal_cadence_frequency 2 means the goal is due every other month. For values 3-12 and 14, goal_cadence_frequency is ignored and the goal's due date repeats every goal_cadence, where 3 = Every 2 Months, 4 = Every 3 Months, ..., 12 = Every 11 Months, and 14 = Every 2 Years.
      * @type {number}
      * @memberof Category
      */
-    goal_cadence?: number | null;
+    goal_cadence?: number;
     /**
      * The goal cadence frequency. When goal_cadence is 0, 1, 2, or 13, a goal's due date repeats every goal_cadence * goal_cadence_frequency. For example, goal_cadence 1 with goal_cadence_frequency 2 means the goal is due every other month.  When goal_cadence is 3-12 or 14, goal_cadence_frequency is ignored.
      * @type {number}
      * @memberof Category
      */
-    goal_cadence_frequency?: number | null;
+    goal_cadence_frequency?: number;
     /**
      * The month a goal was created
      * @type {string}
      * @memberof Category
      */
-    goal_creation_month?: string | null;
+    goal_creation_month?: string;
     /**
      * The goal target amount in milliunits
      * @type {number}
      * @memberof Category
      */
-    goal_target?: number | null;
+    goal_target?: number;
     /**
      * DEPRECATED: No longer used.  Use `goal_target_date` instead.
      * @type {string}
      * @memberof Category
      */
-    goal_target_month?: string | null;
+    goal_target_month?: string;
     /**
      * The target date for the goal to be completed.  Only some goal types specify this date.
      * @type {string}
      * @memberof Category
      */
-    goal_target_date?: string | null;
+    goal_target_date?: string;
     /**
      * The percentage completion of the goal
      * @type {number}
      * @memberof Category
      */
-    goal_percentage_complete?: number | null;
+    goal_percentage_complete?: number;
     /**
      * The number of months, including the current month, left in the current goal period.
      * @type {number}
      * @memberof Category
      */
-    goal_months_to_budget?: number | null;
+    goal_months_to_budget?: number;
     /**
      * The amount of funding still needed in the current month to stay on track towards completing the goal within the current goal period. This amount will generally correspond to the 'Underfunded' amount in the web and mobile clients except when viewing a category with a Needed for Spending Goal in a future month.  The web and mobile clients will ignore any funding from a prior goal period when viewing category with a Needed for Spending Goal in a future month.
      * @type {number}
      * @memberof Category
      */
-    goal_under_funded?: number | null;
+    goal_under_funded?: number;
     /**
      * The total amount funded towards the goal within the current goal period.
      * @type {number}
      * @memberof Category
      */
-    goal_overall_funded?: number | null;
+    goal_overall_funded?: number;
     /**
      * The amount of funding still needed to complete the goal within the current goal period.
      * @type {number}
      * @memberof Category
      */
-    goal_overall_left?: number | null;
+    goal_overall_left?: number;
     /**
      * The date/time the goal was snoozed.  If the goal is not snoozed, this will be null.
      * @type {string}
      * @memberof Category
      */
-    goal_snoozed_at?: string | null;
+    goal_snoozed_at?: string;
     /**
      * Whether or not the category has been deleted.  Deleted categories will only be included in delta requests.
      * @type {boolean}
      * @memberof Category
      */
     deleted: boolean;
+    /**
+     * Available balance of the category formatted in the plan's currency format
+     * @type {string}
+     * @memberof Category
+     */
+    balance_formatted?: string;
+    /**
+     * Available balance of the category as a decimal currency amount
+     * @type {number}
+     * @memberof Category
+     */
+    balance_currency?: number;
+    /**
+     * Activity of the category formatted in the plan's currency format
+     * @type {string}
+     * @memberof Category
+     */
+    activity_formatted?: string;
+    /**
+     * Activity of the category as a decimal currency amount
+     * @type {number}
+     * @memberof Category
+     */
+    activity_currency?: number;
+    /**
+     * Assigned (budgeted) amount of the category formatted in the plan's currency format
+     * @type {string}
+     * @memberof Category
+     */
+    budgeted_formatted?: string;
+    /**
+     * Assigned (budgeted) amount of the category as a decimal currency amount
+     * @type {number}
+     * @memberof Category
+     */
+    budgeted_currency?: number;
+    /**
+     * The goal target amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof Category
+     */
+    goal_target_formatted?: string | null;
+    /**
+     * The goal target amount as a decimal currency amount
+     * @type {number}
+     * @memberof Category
+     */
+    goal_target_currency?: number | null;
+    /**
+     * The goal underfunded amount formatted in the plan's currency format
+     * @type {string}
+     * @memberof Category
+     */
+    goal_under_funded_formatted?: string | null;
+    /**
+     * The goal underfunded amount as a decimal currency amount
+     * @type {number}
+     * @memberof Category
+     */
+    goal_under_funded_currency?: number | null;
+    /**
+     * The total amount funded towards the goal formatted in the plan's currency format
+     * @type {string}
+     * @memberof Category
+     */
+    goal_overall_funded_formatted?: string | null;
+    /**
+     * The total amount funded towards the goal as a decimal currency amount
+     * @type {number}
+     * @memberof Category
+     */
+    goal_overall_funded_currency?: number | null;
+    /**
+     * The amount of funding still needed to complete the goal formatted in the plan's currency format
+     * @type {string}
+     * @memberof Category
+     */
+    goal_overall_left_formatted?: string | null;
+    /**
+     * The amount of funding still needed to complete the goal as a decimal currency amount
+     * @type {number}
+     * @memberof Category
+     */
+    goal_overall_left_currency?: number | null;
 }
 /**
  * @export
