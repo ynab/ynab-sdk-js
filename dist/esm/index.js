@@ -139,6 +139,19 @@ var api = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(api.prototype, "money_movements", {
+        /**
+         * /plans/{plan_id}/money_movements endpoints interface
+         */
+        get: function () {
+            if (!this._moneyMovements) {
+                this._moneyMovements = new apis.MoneyMovementsApi(this._configuration);
+            }
+            return this._moneyMovements;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return api;
 }());
 export { api };
