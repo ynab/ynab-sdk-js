@@ -60,4 +60,9 @@ export declare class api {
      * /budgets/{budget_id}/scheduled_transactions endpoints interface
      */
     get scheduledTransactions(): apis.ScheduledTransactionsApi;
+    protected _moneyMovements: apis.MoneyMovementsApi;
+    /**
+     * /plans/{plan_id}/money_movements endpoints interface
+     */
+    get money_movements(): apis.MoneyMovementsApi;
 }
