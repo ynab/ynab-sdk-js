@@ -579,6 +579,59 @@ describe("API requests", () => {
       );
     });
   });
+
+  describe("/plans/money_movements", () => {
+    const planId = "planId-1234";
+
+    it("Should getMoneyMovements and validate the request is sent correctly", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      await callApiAndVerifyResponse(
+        () => ynabAPI.money_movements.getMoneyMovements(planId),
+        factories.moneyMovementsResponseFactory.build()
+      );
+      verifyRequestDetails(`${BASE_URL}/plans/${planId}/money_movements`);
+    });
+
+    it("Should getMoneyMovementsByMonth and validate the request is sent correctly", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const month = "2024-01-01";
+      await callApiAndVerifyResponse(
+        () => ynabAPI.money_movements.getMoneyMovementsByMonth(planId, month),
+        factories.moneyMovementsResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/plans/${planId}/months/${month}/money_movements`
+      );
+    });
+
+    it("Should getMoneyMovementGroups and validate the request is sent correctly", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      await callApiAndVerifyResponse(
+        () => ynabAPI.money_movements.getMoneyMovementGroups(planId),
+        factories.moneyMovementGroupsResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/plans/${planId}/money_movement_groups`
+      );
+    });
+
+    it("Should getMoneyMovementGroupsByMonth and validate the request is sent correctly", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const month = "2024-01-01";
+      await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.money_movements.getMoneyMovementGroupsByMonth(planId, month),
+        factories.moneyMovementGroupsResponseFactory.build()
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/plans/${planId}/months/${month}/money_movement_groups`
+      );
+    });
+  });
 });
 
 async function callApiAndVerifyResponse<ResponseType>(
