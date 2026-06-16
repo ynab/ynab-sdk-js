@@ -129,4 +129,15 @@ export class api {
     }
     return this._scheduledTransactions;
   }
+
+  protected _moneyMovements: apis.MoneyMovementsApi;
+  /**
+   * /plans/{plan_id}/money_movements endpoints interface
+   */
+  public get money_movements(): apis.MoneyMovementsApi {
+    if (!this._moneyMovements) {
+      this._moneyMovements = new apis.MoneyMovementsApi(this._configuration);
+    }
+    return this._moneyMovements;
+  }
 }

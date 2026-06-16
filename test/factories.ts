@@ -514,3 +514,34 @@ export const planDetailResponseFactory =
       plan: planDetailFactory.build(),
     }),
   });
+
+export const moneyMovementFactory = Factory.makeFactory<models.MoneyMovement>({
+  id: Factory.each((i) => `id #${i}`),
+  amount: Factory.each((i) => i * 1000),
+  month: "2024-01-01",
+  from_category_id: Factory.each((i) => `from_category_id #${i}`),
+  to_category_id: Factory.each((i) => `to_category_id #${i}`),
+});
+
+export const moneyMovementsResponseFactory =
+  Factory.makeFactory<models.MoneyMovementsResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      money_movements: moneyMovementFactory.buildList(3),
+    }),
+  });
+
+export const moneyMovementGroupFactory =
+  Factory.makeFactory<models.MoneyMovementGroup>({
+    id: Factory.each((i) => `id #${i}`),
+    group_created_at: "2024-01-01T12:00:00Z",
+    month: "2024-01-01",
+  });
+
+export const moneyMovementGroupsResponseFactory =
+  Factory.makeFactory<models.MoneyMovementGroupsResponse>({
+    data: Factory.makeFactory({
+      server_knowledge: Factory.each((i) => i),
+      money_movement_groups: moneyMovementGroupFactory.buildList(3),
+    }),
+  });
