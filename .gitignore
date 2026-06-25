@@ -1,2 +1,4 @@
 node_modules/
 *.tsbuildinfo
+.socket-scans/
+.socket.facts.json
