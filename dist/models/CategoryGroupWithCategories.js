@@ -24,6 +24,8 @@ function instanceOfCategoryGroupWithCategories(value) {
         return false;
     if (!('hidden' in value) || value['hidden'] === undefined)
         return false;
+    if (!('internal' in value) || value['internal'] === undefined)
+        return false;
     if (!('deleted' in value) || value['deleted'] === undefined)
         return false;
     if (!('categories' in value) || value['categories'] === undefined)
@@ -41,6 +43,7 @@ function CategoryGroupWithCategoriesFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
         'name': json['name'],
         'hidden': json['hidden'],
+        'internal': json['internal'],
         'deleted': json['deleted'],
         'categories': (json['categories'].map(Category_1.CategoryFromJSON)),
     };
@@ -56,6 +59,7 @@ function CategoryGroupWithCategoriesToJSONTyped(value, ignoreDiscriminator = fal
         'id': value['id'],
         'name': value['name'],
         'hidden': value['hidden'],
+        'internal': value['internal'],
         'deleted': value['deleted'],
         'categories': (value['categories'].map(Category_1.CategoryToJSON)),
     };

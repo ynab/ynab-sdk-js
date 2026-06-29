@@ -21,6 +21,7 @@ export interface GetTransactionByIdRequest {
 export interface GetTransactionsRequest {
     planId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -28,6 +29,7 @@ export interface GetTransactionsByAccountRequest {
     planId: string;
     accountId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByAccountTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -35,6 +37,7 @@ export interface GetTransactionsByCategoryRequest {
     planId: string;
     categoryId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByCategoryTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -42,6 +45,7 @@ export interface GetTransactionsByMonthRequest {
     planId: string;
     month: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByMonthTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -49,6 +53,7 @@ export interface GetTransactionsByPayeeRequest {
     planId: string;
     payeeId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByPayeeTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -100,54 +105,54 @@ export declare class TransactionsApi extends runtime.BaseAPI {
     getTransactionById(planId: string, transactionId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionResponse>;
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
     getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>>;
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
-    getTransactions(planId: string, sinceDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
+    getTransactions(planId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
     getTransactionsByAccountRaw(requestParameters: GetTransactionsByAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>>;
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
-    getTransactionsByAccount(planId: string, accountId: string, sinceDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
+    getTransactionsByAccount(planId: string, accountId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
     getTransactionsByCategoryRaw(requestParameters: GetTransactionsByCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HybridTransactionsResponse>>;
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
-    getTransactionsByCategory(planId: string, categoryId: string, sinceDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
+    getTransactionsByCategory(planId: string, categoryId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
     getTransactionsByMonthRaw(requestParameters: GetTransactionsByMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>>;
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
-    getTransactionsByMonth(planId: string, month: string, sinceDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
+    getTransactionsByMonth(planId: string, month: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse>;
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
     getTransactionsByPayeeRaw(requestParameters: GetTransactionsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HybridTransactionsResponse>>;
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
-    getTransactionsByPayee(planId: string, payeeId: string, sinceDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
+    getTransactionsByPayee(planId: string, payeeId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse>;
     /**
      * Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \"Import\" on each account in the web application or tapping the \"New Transactions\" banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
      * Import transactions

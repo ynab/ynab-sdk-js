@@ -16,6 +16,8 @@ export function instanceOfCategoryGroup(value) {
         return false;
     if (!('hidden' in value) || value['hidden'] === undefined)
         return false;
+    if (!('internal' in value) || value['internal'] === undefined)
+        return false;
     if (!('deleted' in value) || value['deleted'] === undefined)
         return false;
     return true;
@@ -31,6 +33,7 @@ export function CategoryGroupFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
         'name': json['name'],
         'hidden': json['hidden'],
+        'internal': json['internal'],
         'deleted': json['deleted'],
     };
 }
@@ -46,6 +49,7 @@ export function CategoryGroupToJSONTyped(value, ignoreDiscriminator) {
         'id': value['id'],
         'name': value['name'],
         'hidden': value['hidden'],
+        'internal': value['internal'],
         'deleted': value['deleted'],
     };
 }

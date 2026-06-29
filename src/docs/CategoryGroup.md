@@ -9,6 +9,7 @@ Name | Type
 `id` | string
 `name` | string
 `hidden` | boolean
+`internal` | boolean
 `deleted` | boolean
 
 ## Example
@@ -21,6 +22,7 @@ const example = {
   "id": null,
   "name": null,
   "hidden": null,
+  "internal": null,
   "deleted": null,
 } satisfies CategoryGroup
 

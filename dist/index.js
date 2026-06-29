@@ -143,6 +143,15 @@ class api {
         }
         return this._scheduledTransactions;
     }
+    /**
+     * /plans/{plan_id}/money_movements endpoints interface
+     */
+    get money_movements() {
+        if (!this._moneyMovements) {
+            this._moneyMovements = new apis.MoneyMovementsApi(this._configuration);
+        }
+        return this._moneyMovements;
+    }
 }
 exports.api = api;
 exports.API = api;

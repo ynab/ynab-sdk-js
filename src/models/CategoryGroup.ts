@@ -33,6 +33,12 @@ export interface CategoryGroup {
      */
     hidden: boolean;
     /**
+     * Whether or not the category group is internal
+     * @type {boolean}
+     * @memberof CategoryGroup
+     */
+    internal: boolean;
+    /**
      * Whether or not the category group has been deleted.  Deleted category groups will only be included in delta requests.
      * @type {boolean}
      * @memberof CategoryGroup
@@ -47,6 +53,7 @@ export function instanceOfCategoryGroup(value: object): value is CategoryGroup {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('hidden' in value) || value['hidden'] === undefined) return false;
+    if (!('internal' in value) || value['internal'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;
 }
@@ -64,6 +71,7 @@ export function CategoryGroupFromJSONTyped(json: any, ignoreDiscriminator: boole
         'id': json['id'],
         'name': json['name'],
         'hidden': json['hidden'],
+        'internal': json['internal'],
         'deleted': json['deleted'],
     };
 }
@@ -82,6 +90,7 @@ export function CategoryGroupToJSONTyped(value?: CategoryGroup | null, ignoreDis
         'id': value['id'],
         'name': value['name'],
         'hidden': value['hidden'],
+        'internal': value['internal'],
         'deleted': value['deleted'],
     };
 }

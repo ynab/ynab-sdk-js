@@ -11,6 +11,7 @@ Name | Type
 `category_group_name` | string
 `name` | string
 `hidden` | boolean
+`internal` | boolean
 `original_category_group_id` | string
 `note` | string
 `budgeted` | number
@@ -45,6 +46,7 @@ const example = {
   "category_group_name": null,
   "name": null,
   "hidden": null,
+  "internal": null,
   "original_category_group_id": null,
   "note": null,
   "budgeted": null,

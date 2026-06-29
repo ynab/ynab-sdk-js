@@ -41,6 +41,12 @@ export interface Category {
      */
     hidden: boolean;
     /**
+     * Whether or not the category is internal
+     * @type {boolean}
+     * @memberof Category
+     */
+    internal: boolean;
+    /**
      * DEPRECATED: No longer used.  Value will always be null.
      * @type {string}
      * @memberof Category

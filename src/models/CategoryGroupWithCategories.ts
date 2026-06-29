@@ -41,6 +41,12 @@ export interface CategoryGroupWithCategories {
      */
     hidden: boolean;
     /**
+     * Whether or not the category group is internal
+     * @type {boolean}
+     * @memberof CategoryGroupWithCategories
+     */
+    internal: boolean;
+    /**
      * Whether or not the category group has been deleted.  Deleted category groups will only be included in delta requests.
      * @type {boolean}
      * @memberof CategoryGroupWithCategories
@@ -61,6 +67,7 @@ export function instanceOfCategoryGroupWithCategories(value: object): value is C
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('hidden' in value) || value['hidden'] === undefined) return false;
+    if (!('internal' in value) || value['internal'] === undefined) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     if (!('categories' in value) || value['categories'] === undefined) return false;
     return true;
@@ -79,6 +86,7 @@ export function CategoryGroupWithCategoriesFromJSONTyped(json: any, ignoreDiscri
         'id': json['id'],
         'name': json['name'],
         'hidden': json['hidden'],
+        'internal': json['internal'],
         'deleted': json['deleted'],
         'categories': ((json['categories'] as Array<any>).map(CategoryFromJSON)),
     };
@@ -98,6 +106,7 @@ export function CategoryGroupWithCategoriesToJSONTyped(value?: CategoryGroupWith
         'id': value['id'],
         'name': value['name'],
         'hidden': value['hidden'],
+        'internal': value['internal'],
         'deleted': value['deleted'],
         'categories': ((value['categories'] as Array<any>).map(CategoryToJSON)),
     };

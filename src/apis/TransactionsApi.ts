@@ -58,6 +58,7 @@ export interface GetTransactionByIdRequest {
 export interface GetTransactionsRequest {
     planId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -66,6 +67,7 @@ export interface GetTransactionsByAccountRequest {
     planId: string;
     accountId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByAccountTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -74,6 +76,7 @@ export interface GetTransactionsByCategoryRequest {
     planId: string;
     categoryId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByCategoryTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -82,6 +85,7 @@ export interface GetTransactionsByMonthRequest {
     planId: string;
     month: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByMonthTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -90,6 +94,7 @@ export interface GetTransactionsByPayeeRequest {
     planId: string;
     payeeId: string;
     sinceDate?: string;
+    untilDate?: string;
     type?: GetTransactionsByPayeeTypeEnum;
     lastKnowledgeOfServer?: number;
 }
@@ -254,7 +259,7 @@ export class TransactionsApi extends runtime.BaseAPI {
 
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
     async getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -265,6 +270,10 @@ export class TransactionsApi extends runtime.BaseAPI {
 
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
 
         if (requestParameters.type !== undefined) {
@@ -298,16 +307,16 @@ export class TransactionsApi extends runtime.BaseAPI {
 
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
-    async getTransactions(planId: string, sinceDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactions(planId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
     async getTransactionsByAccountRaw(requestParameters: GetTransactionsByAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -322,6 +331,10 @@ export class TransactionsApi extends runtime.BaseAPI {
 
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
 
         if (requestParameters.type !== undefined) {
@@ -355,16 +368,16 @@ export class TransactionsApi extends runtime.BaseAPI {
 
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
-    async getTransactionsByAccount(planId: string, accountId: string, sinceDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByAccount(planId: string, accountId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByAccountTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
     async getTransactionsByCategoryRaw(requestParameters: GetTransactionsByCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HybridTransactionsResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -379,6 +392,10 @@ export class TransactionsApi extends runtime.BaseAPI {
 
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
 
         if (requestParameters.type !== undefined) {
@@ -412,16 +429,16 @@ export class TransactionsApi extends runtime.BaseAPI {
 
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
-    async getTransactionsByCategory(planId: string, categoryId: string, sinceDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
-        const response = await this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByCategory(planId: string, categoryId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByCategoryTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
+        const response = await this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
     async getTransactionsByMonthRaw(requestParameters: GetTransactionsByMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -436,6 +453,10 @@ export class TransactionsApi extends runtime.BaseAPI {
 
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
 
         if (requestParameters.type !== undefined) {
@@ -469,16 +490,16 @@ export class TransactionsApi extends runtime.BaseAPI {
 
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
-    async getTransactionsByMonth(planId: string, month: string, sinceDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
-        const response = await this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByMonth(planId: string, month: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByMonthTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsResponse> {
+        const response = await this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
     async getTransactionsByPayeeRaw(requestParameters: GetTransactionsByPayeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HybridTransactionsResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -493,6 +514,10 @@ export class TransactionsApi extends runtime.BaseAPI {
 
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
 
         if (requestParameters.type !== undefined) {
@@ -526,10 +551,10 @@ export class TransactionsApi extends runtime.BaseAPI {
 
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
-    async getTransactionsByPayee(planId: string, payeeId: string, sinceDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
-        const response = await this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByPayee(planId: string, payeeId: string, sinceDate?: string, untilDate?: string, type?: GetTransactionsByPayeeTypeEnum, lastKnowledgeOfServer?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HybridTransactionsResponse> {
+        const response = await this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
 

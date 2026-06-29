@@ -9,6 +9,7 @@ Name | Type
 `id` | string
 `name` | string
 `hidden` | boolean
+`internal` | boolean
 `deleted` | boolean
 `categories` | [Array&lt;Category&gt;](Category.md)
 
@@ -22,6 +23,7 @@ const example = {
   "id": null,
   "name": null,
   "hidden": null,
+  "internal": null,
   "deleted": null,
   "categories": null,
 } satisfies CategoryGroupWithCategories

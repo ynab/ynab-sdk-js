@@ -28,6 +28,8 @@ export function instanceOfCategoryBase(value) {
         return false;
     if (!('hidden' in value) || value['hidden'] === undefined)
         return false;
+    if (!('internal' in value) || value['internal'] === undefined)
+        return false;
     if (!('budgeted' in value) || value['budgeted'] === undefined)
         return false;
     if (!('activity' in value) || value['activity'] === undefined)
@@ -51,6 +53,7 @@ export function CategoryBaseFromJSONTyped(json, ignoreDiscriminator) {
         'category_group_name': json['category_group_name'] == null ? undefined : json['category_group_name'],
         'name': json['name'],
         'hidden': json['hidden'],
+        'internal': json['internal'],
         'original_category_group_id': json['original_category_group_id'] == null ? undefined : json['original_category_group_id'],
         'note': json['note'] == null ? undefined : json['note'],
         'budgeted': json['budgeted'],
@@ -88,6 +91,7 @@ export function CategoryBaseToJSONTyped(value, ignoreDiscriminator) {
         'category_group_name': value['category_group_name'],
         'name': value['name'],
         'hidden': value['hidden'],
+        'internal': value['internal'],
         'original_category_group_id': value['original_category_group_id'],
         'note': value['note'],
         'budgeted': value['budgeted'],

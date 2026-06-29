@@ -248,7 +248,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
     TransactionsApi.prototype.getTransactionsRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -262,6 +262,9 @@ var TransactionsApi = /** @class */ (function (_super) {
                         queryParameters = {};
                         if (requestParameters.sinceDate !== undefined) {
                             queryParameters['since_date'] = requestParameters.sinceDate;
+                        }
+                        if (requestParameters.untilDate !== undefined) {
+                            queryParameters['until_date'] = requestParameters.untilDate;
                         }
                         if (requestParameters.type !== undefined) {
                             queryParameters['type'] = requestParameters.type;
@@ -295,14 +298,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
-    TransactionsApi.prototype.getTransactions = function (planId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactions = function (planId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -313,7 +316,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
     TransactionsApi.prototype.getTransactionsByAccountRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -330,6 +333,9 @@ var TransactionsApi = /** @class */ (function (_super) {
                         queryParameters = {};
                         if (requestParameters.sinceDate !== undefined) {
                             queryParameters['since_date'] = requestParameters.sinceDate;
+                        }
+                        if (requestParameters.untilDate !== undefined) {
+                            queryParameters['until_date'] = requestParameters.untilDate;
                         }
                         if (requestParameters.type !== undefined) {
                             queryParameters['type'] = requestParameters.type;
@@ -363,14 +369,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
-    TransactionsApi.prototype.getTransactionsByAccount = function (planId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByAccount = function (planId, accountId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -381,7 +387,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
     TransactionsApi.prototype.getTransactionsByCategoryRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -398,6 +404,9 @@ var TransactionsApi = /** @class */ (function (_super) {
                         queryParameters = {};
                         if (requestParameters.sinceDate !== undefined) {
                             queryParameters['since_date'] = requestParameters.sinceDate;
+                        }
+                        if (requestParameters.untilDate !== undefined) {
+                            queryParameters['until_date'] = requestParameters.untilDate;
                         }
                         if (requestParameters.type !== undefined) {
                             queryParameters['type'] = requestParameters.type;
@@ -431,14 +440,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
-    TransactionsApi.prototype.getTransactionsByCategory = function (planId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByCategory = function (planId, categoryId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -449,7 +458,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
     TransactionsApi.prototype.getTransactionsByMonthRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -466,6 +475,9 @@ var TransactionsApi = /** @class */ (function (_super) {
                         queryParameters = {};
                         if (requestParameters.sinceDate !== undefined) {
                             queryParameters['since_date'] = requestParameters.sinceDate;
+                        }
+                        if (requestParameters.untilDate !== undefined) {
+                            queryParameters['until_date'] = requestParameters.untilDate;
                         }
                         if (requestParameters.type !== undefined) {
                             queryParameters['type'] = requestParameters.type;
@@ -499,14 +511,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
-    TransactionsApi.prototype.getTransactionsByMonth = function (planId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByMonth = function (planId, month, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -517,7 +529,7 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
     TransactionsApi.prototype.getTransactionsByPayeeRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
@@ -534,6 +546,9 @@ var TransactionsApi = /** @class */ (function (_super) {
                         queryParameters = {};
                         if (requestParameters.sinceDate !== undefined) {
                             queryParameters['since_date'] = requestParameters.sinceDate;
+                        }
+                        if (requestParameters.untilDate !== undefined) {
+                            queryParameters['until_date'] = requestParameters.untilDate;
                         }
                         if (requestParameters.type !== undefined) {
                             queryParameters['type'] = requestParameters.type;
@@ -567,14 +582,14 @@ var TransactionsApi = /** @class */ (function (_super) {
     };
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
-    TransactionsApi.prototype.getTransactionsByPayee = function (planId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
+    TransactionsApi.prototype.getTransactionsByPayee = function (planId, payeeId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
