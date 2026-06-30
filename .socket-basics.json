@@ -1,0 +1,3 @@
+{
+  "javascript_disabled_rules": "js-code-injection-eval,js-hardcoded-secret"
+}
