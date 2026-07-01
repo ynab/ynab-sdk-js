@@ -163,7 +163,7 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
     async getTransactionsRaw(requestParameters, initOverrides) {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -172,6 +172,9 @@ class TransactionsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
         if (requestParameters.type !== undefined) {
             queryParameters['type'] = requestParameters.type;
@@ -198,15 +201,15 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns plan transactions, excluding any pending transactions
-     * Get all transactions
+     * Get transactions
      */
-    async getTransactions(planId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactions(planId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsRaw({ planId: planId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
     async getTransactionsByAccountRaw(requestParameters, initOverrides) {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -218,6 +221,9 @@ class TransactionsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
         if (requestParameters.type !== undefined) {
             queryParameters['type'] = requestParameters.type;
@@ -244,15 +250,15 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all transactions for a specified account, excluding any pending transactions
-     * Get all account transactions
+     * Get account transactions
      */
-    async getTransactionsByAccount(planId, accountId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByAccount(planId, accountId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByAccountRaw({ planId: planId, accountId: accountId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
     async getTransactionsByCategoryRaw(requestParameters, initOverrides) {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -264,6 +270,9 @@ class TransactionsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
         if (requestParameters.type !== undefined) {
             queryParameters['type'] = requestParameters.type;
@@ -290,15 +299,15 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all transactions for a specified category, excluding any pending transactions
-     * Get all category transactions
+     * Get category transactions
      */
-    async getTransactionsByCategory(planId, categoryId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByCategory(planId, categoryId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByCategoryRaw({ planId: planId, categoryId: categoryId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
     async getTransactionsByMonthRaw(requestParameters, initOverrides) {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -310,6 +319,9 @@ class TransactionsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
         if (requestParameters.type !== undefined) {
             queryParameters['type'] = requestParameters.type;
@@ -336,15 +348,15 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all transactions for a specified month, excluding any pending transactions
-     * Get all plan month transactions
+     * Get plan month transactions
      */
-    async getTransactionsByMonth(planId, month, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByMonth(planId, month, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByMonthRaw({ planId: planId, month: month, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
     async getTransactionsByPayeeRaw(requestParameters, initOverrides) {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -356,6 +368,9 @@ class TransactionsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters.sinceDate !== undefined) {
             queryParameters['since_date'] = requestParameters.sinceDate;
+        }
+        if (requestParameters.untilDate !== undefined) {
+            queryParameters['until_date'] = requestParameters.untilDate;
         }
         if (requestParameters.type !== undefined) {
             queryParameters['type'] = requestParameters.type;
@@ -382,10 +397,10 @@ class TransactionsApi extends runtime.BaseAPI {
     }
     /**
      * Returns all transactions for a specified payee, excluding any pending transactions
-     * Get all payee transactions
+     * Get payee transactions
      */
-    async getTransactionsByPayee(planId, payeeId, sinceDate, type, lastKnowledgeOfServer, initOverrides) {
-        const response = await this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
+    async getTransactionsByPayee(planId, payeeId, sinceDate, untilDate, type, lastKnowledgeOfServer, initOverrides) {
+        const response = await this.getTransactionsByPayeeRaw({ planId: planId, payeeId: payeeId, sinceDate: sinceDate, untilDate: untilDate, type: type, lastKnowledgeOfServer: lastKnowledgeOfServer }, initOverrides);
         return await response.value();
     }
     /**

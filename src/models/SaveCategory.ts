@@ -27,7 +27,7 @@ export interface SaveCategory {
      */
     note?: string | null;
     /**
-     * 
+     * The id of the category group to which this category belongs.  An internal category group may not be specified.
      * @type {string}
      * @memberof SaveCategory
      */

@@ -5,7 +5,7 @@ info:
     and relies upon HTTPS for transport. We respond with meaningful HTTP
     response codes and if an error occurs, we include error details in the
     response body.  API Documentation is at https://api.ynab.com
-  version: 1.83.0
+  version: 1.85.0
 servers:
   - url: https://api.ynab.com/v1
 security:
@@ -1045,7 +1045,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: Get all transactions
+      summary: Get transactions
       description: Returns plan transactions, excluding any pending transactions
       operationId: getTransactions
       parameters:
@@ -1060,6 +1060,14 @@ paths:
         - name: since_date
           in: query
           description: If specified, only transactions on or after this date will be
+            included.  The date should be ISO formatted (e.g. 2016-12-30).
+            Defaults to one year ago when not specified.
+          schema:
+            type: string
+            format: date
+        - name: until_date
+          in: query
+          description: If specified, only transactions on or before this date will be
             included.  The date should be ISO formatted (e.g. 2016-12-30).
           schema:
             type: string
@@ -1353,7 +1361,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: Get all account transactions
+      summary: Get account transactions
       description: Returns all transactions for a specified account, excluding any
         pending transactions
       operationId: getTransactionsByAccount
@@ -1375,6 +1383,14 @@ paths:
         - name: since_date
           in: query
           description: If specified, only transactions on or after this date will be
+            included.  The date should be ISO formatted (e.g. 2016-12-30).
+            Defaults to one year ago when not specified.
+          schema:
+            type: string
+            format: date
+        - name: until_date
+          in: query
+          description: If specified, only transactions on or before this date will be
             included.  The date should be ISO formatted (e.g. 2016-12-30).
           schema:
             type: string
@@ -1412,7 +1428,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: Get all category transactions
+      summary: Get category transactions
       description: Returns all transactions for a specified category, excluding any
         pending transactions
       operationId: getTransactionsByCategory
@@ -1434,6 +1450,14 @@ paths:
         - name: since_date
           in: query
           description: If specified, only transactions on or after this date will be
+            included.  The date should be ISO formatted (e.g. 2016-12-30).
+            Defaults to one year ago when not specified.
+          schema:
+            type: string
+            format: date
+        - name: until_date
+          in: query
+          description: If specified, only transactions on or before this date will be
             included.  The date should be ISO formatted (e.g. 2016-12-30).
           schema:
             type: string
@@ -1471,7 +1495,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: Get all payee transactions
+      summary: Get payee transactions
       description: Returns all transactions for a specified payee, excluding any
         pending transactions
       operationId: getTransactionsByPayee
@@ -1493,6 +1517,14 @@ paths:
         - name: since_date
           in: query
           description: If specified, only transactions on or after this date will be
+            included.  The date should be ISO formatted (e.g. 2016-12-30).
+            Defaults to one year ago when not specified.
+          schema:
+            type: string
+            format: date
+        - name: until_date
+          in: query
+          description: If specified, only transactions on or before this date will be
             included.  The date should be ISO formatted (e.g. 2016-12-30).
           schema:
             type: string
@@ -1530,7 +1562,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: Get all plan month transactions
+      summary: Get plan month transactions
       description: Returns all transactions for a specified month, excluding any
         pending transactions
       operationId: getTransactionsByMonth
@@ -1553,6 +1585,13 @@ paths:
         - name: since_date
           in: query
           description: If specified, only transactions on or after this date will be
+            included.  The date should be ISO formatted (e.g. 2016-12-30).
+          schema:
+            type: string
+            format: date
+        - name: until_date
+          in: query
+          description: If specified, only transactions on or before this date will be
             included.  The date should be ISO formatted (e.g. 2016-12-30).
           schema:
             type: string
@@ -2235,6 +2274,7 @@ components:
       required:
         - deleted
         - hidden
+        - internal
         - id
         - name
       type: object
@@ -2247,6 +2287,9 @@ components:
         hidden:
           type: boolean
           description: Whether or not the category group is hidden
+        internal:
+          type: boolean
+          description: Whether or not the category group is internal
         deleted:
           type: boolean
           description: Whether or not the category group has been deleted.  Deleted
@@ -2259,6 +2302,7 @@ components:
         - category_group_id
         - deleted
         - hidden
+        - internal
         - id
         - name
       type: object
@@ -2276,6 +2320,9 @@ components:
         hidden:
           type: boolean
           description: Whether or not the category is hidden
+        internal:
+          type: boolean
+          description: Whether or not the category is internal
         original_category_group_id:
           type:
             - string
@@ -3191,6 +3238,7 @@ components:
         category_group_id:
           type: string
           format: uuid
+          description: The id of the category group to which this category belongs.  An internal category group may not be specified.
         goal_target:
           type:
             - integer

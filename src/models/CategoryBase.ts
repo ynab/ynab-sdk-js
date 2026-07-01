@@ -45,6 +45,12 @@ export interface CategoryBase {
      */
     hidden: boolean;
     /**
+     * Whether or not the category is internal
+     * @type {boolean}
+     * @memberof CategoryBase
+     */
+    internal: boolean;
+    /**
      * DEPRECATED: No longer used.  Value will always be null.
      * @type {string}
      * @memberof CategoryBase
@@ -194,6 +200,7 @@ export function instanceOfCategoryBase(value: object): value is CategoryBase {
     if (!('category_group_id' in value) || value['category_group_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('hidden' in value) || value['hidden'] === undefined) return false;
+    if (!('internal' in value) || value['internal'] === undefined) return false;
     if (!('budgeted' in value) || value['budgeted'] === undefined) return false;
     if (!('activity' in value) || value['activity'] === undefined) return false;
     if (!('balance' in value) || value['balance'] === undefined) return false;
@@ -216,6 +223,7 @@ export function CategoryBaseFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'category_group_name': json['category_group_name'] == null ? undefined : json['category_group_name'],
         'name': json['name'],
         'hidden': json['hidden'],
+        'internal': json['internal'],
         'original_category_group_id': json['original_category_group_id'] == null ? undefined : json['original_category_group_id'],
         'note': json['note'] == null ? undefined : json['note'],
         'budgeted': json['budgeted'],
@@ -256,6 +264,7 @@ export function CategoryBaseToJSONTyped(value?: CategoryBase | null, ignoreDiscr
         'category_group_name': value['category_group_name'],
         'name': value['name'],
         'hidden': value['hidden'],
+        'internal': value['internal'],
         'original_category_group_id': value['original_category_group_id'],
         'note': value['note'],
         'budgeted': value['budgeted'],

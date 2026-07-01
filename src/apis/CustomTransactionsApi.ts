@@ -38,6 +38,7 @@ export class CustomTransactionsApi extends TransactionsApi {
     return this.getTransactions(
       budgetId,
       undefined,
+      undefined,
       type,
       lastKnowledgeOfServer,
       options

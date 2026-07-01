@@ -7,11 +7,11 @@ All URIs are relative to *https://api.ynab.com/v1*
 | [**createTransaction**](TransactionsApi.md#createtransaction) | **POST** /plans/{plan_id}/transactions | Create a single transaction or multiple transactions |
 | [**deleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /plans/{plan_id}/transactions/{transaction_id} | Delete a transaction |
 | [**getTransactionById**](TransactionsApi.md#gettransactionbyid) | **GET** /plans/{plan_id}/transactions/{transaction_id} | Get a transaction |
-| [**getTransactions**](TransactionsApi.md#gettransactions) | **GET** /plans/{plan_id}/transactions | Get all transactions |
-| [**getTransactionsByAccount**](TransactionsApi.md#gettransactionsbyaccount) | **GET** /plans/{plan_id}/accounts/{account_id}/transactions | Get all account transactions |
-| [**getTransactionsByCategory**](TransactionsApi.md#gettransactionsbycategory) | **GET** /plans/{plan_id}/categories/{category_id}/transactions | Get all category transactions |
-| [**getTransactionsByMonth**](TransactionsApi.md#gettransactionsbymonth) | **GET** /plans/{plan_id}/months/{month}/transactions | Get all plan month transactions |
-| [**getTransactionsByPayee**](TransactionsApi.md#gettransactionsbypayee) | **GET** /plans/{plan_id}/payees/{payee_id}/transactions | Get all payee transactions |
+| [**getTransactions**](TransactionsApi.md#gettransactions) | **GET** /plans/{plan_id}/transactions | Get transactions |
+| [**getTransactionsByAccount**](TransactionsApi.md#gettransactionsbyaccount) | **GET** /plans/{plan_id}/accounts/{account_id}/transactions | Get account transactions |
+| [**getTransactionsByCategory**](TransactionsApi.md#gettransactionsbycategory) | **GET** /plans/{plan_id}/categories/{category_id}/transactions | Get category transactions |
+| [**getTransactionsByMonth**](TransactionsApi.md#gettransactionsbymonth) | **GET** /plans/{plan_id}/months/{month}/transactions | Get plan month transactions |
+| [**getTransactionsByPayee**](TransactionsApi.md#gettransactionsbypayee) | **GET** /plans/{plan_id}/payees/{payee_id}/transactions | Get payee transactions |
 | [**importTransactions**](TransactionsApi.md#importtransactions) | **POST** /plans/{plan_id}/transactions/import | Import transactions |
 | [**updateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /plans/{plan_id}/transactions/{transaction_id} | Update a transaction |
 | [**updateTransactions**](TransactionsApi.md#updatetransactions) | **PATCH** /plans/{plan_id}/transactions | Update multiple transactions |
@@ -246,9 +246,9 @@ example().catch(console.error);
 
 ## getTransactions
 
-> TransactionsResponse getTransactions(planId, sinceDate, type, lastKnowledgeOfServer)
+> TransactionsResponse getTransactions(planId, sinceDate, untilDate, type, lastKnowledgeOfServer)
 
-Get all transactions
+Get transactions
 
 Returns plan transactions, excluding any pending transactions
 
@@ -272,8 +272,10 @@ async function example() {
   const body = {
     // string | The id of the plan. \"last-used\" can be used to specify the last used plan and \"default\" can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan).
     planId: planId_example,
-    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. (optional)
     sinceDate: 2013-10-20,
+    // string | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    untilDate: 2013-10-20,
     // 'uncategorized' | 'unapproved' | If specified, only transactions of the specified type will be included. \"uncategorized\" and \"unapproved\" are currently supported. (optional)
     type: type_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
@@ -298,7 +300,8 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
-| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
+| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. | [Optional] [Defaults to `undefined`] |
+| **untilDate** | `string` | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
@@ -328,9 +331,9 @@ example().catch(console.error);
 
 ## getTransactionsByAccount
 
-> TransactionsResponse getTransactionsByAccount(planId, accountId, sinceDate, type, lastKnowledgeOfServer)
+> TransactionsResponse getTransactionsByAccount(planId, accountId, sinceDate, untilDate, type, lastKnowledgeOfServer)
 
-Get all account transactions
+Get account transactions
 
 Returns all transactions for a specified account, excluding any pending transactions
 
@@ -356,8 +359,10 @@ async function example() {
     planId: planId_example,
     // string | The id of the account
     accountId: accountId_example,
-    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. (optional)
     sinceDate: 2013-10-20,
+    // string | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    untilDate: 2013-10-20,
     // 'uncategorized' | 'unapproved' | If specified, only transactions of the specified type will be included. \"uncategorized\" and \"unapproved\" are currently supported. (optional)
     type: type_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
@@ -383,7 +388,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **accountId** | `string` | The id of the account | [Defaults to `undefined`] |
-| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
+| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. | [Optional] [Defaults to `undefined`] |
+| **untilDate** | `string` | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
@@ -412,9 +418,9 @@ example().catch(console.error);
 
 ## getTransactionsByCategory
 
-> HybridTransactionsResponse getTransactionsByCategory(planId, categoryId, sinceDate, type, lastKnowledgeOfServer)
+> HybridTransactionsResponse getTransactionsByCategory(planId, categoryId, sinceDate, untilDate, type, lastKnowledgeOfServer)
 
-Get all category transactions
+Get category transactions
 
 Returns all transactions for a specified category, excluding any pending transactions
 
@@ -440,8 +446,10 @@ async function example() {
     planId: planId_example,
     // string | The id of the category
     categoryId: categoryId_example,
-    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. (optional)
     sinceDate: 2013-10-20,
+    // string | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    untilDate: 2013-10-20,
     // 'uncategorized' | 'unapproved' | If specified, only transactions of the specified type will be included. \"uncategorized\" and \"unapproved\" are currently supported. (optional)
     type: type_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
@@ -467,7 +475,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **categoryId** | `string` | The id of the category | [Defaults to `undefined`] |
-| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
+| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. | [Optional] [Defaults to `undefined`] |
+| **untilDate** | `string` | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
@@ -496,9 +505,9 @@ example().catch(console.error);
 
 ## getTransactionsByMonth
 
-> TransactionsResponse getTransactionsByMonth(planId, month, sinceDate, type, lastKnowledgeOfServer)
+> TransactionsResponse getTransactionsByMonth(planId, month, sinceDate, untilDate, type, lastKnowledgeOfServer)
 
-Get all plan month transactions
+Get plan month transactions
 
 Returns all transactions for a specified month, excluding any pending transactions
 
@@ -526,6 +535,8 @@ async function example() {
     month: month_example,
     // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
     sinceDate: 2013-10-20,
+    // string | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    untilDate: 2013-10-20,
     // 'uncategorized' | 'unapproved' | If specified, only transactions of the specified type will be included. \"uncategorized\" and \"unapproved\" are currently supported. (optional)
     type: type_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
@@ -552,6 +563,7 @@ example().catch(console.error);
 | **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **month** | `string` | The plan month in ISO format (e.g. 2016-12-01) (\&quot;current\&quot; can also be used to specify the current calendar month (UTC)) | [Defaults to `undefined`] |
 | **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
+| **untilDate** | `string` | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 
@@ -580,9 +592,9 @@ example().catch(console.error);
 
 ## getTransactionsByPayee
 
-> HybridTransactionsResponse getTransactionsByPayee(planId, payeeId, sinceDate, type, lastKnowledgeOfServer)
+> HybridTransactionsResponse getTransactionsByPayee(planId, payeeId, sinceDate, untilDate, type, lastKnowledgeOfServer)
 
-Get all payee transactions
+Get payee transactions
 
 Returns all transactions for a specified payee, excluding any pending transactions
 
@@ -608,8 +620,10 @@ async function example() {
     planId: planId_example,
     // string | The id of the payee
     payeeId: payeeId_example,
-    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    // string | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. (optional)
     sinceDate: 2013-10-20,
+    // string | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). (optional)
+    untilDate: 2013-10-20,
     // 'uncategorized' | 'unapproved' | If specified, only transactions of the specified type will be included. \"uncategorized\" and \"unapproved\" are currently supported. (optional)
     type: type_example,
     // number | The starting server knowledge.  If provided, only entities that have changed since `last_knowledge_of_server` will be included. (optional)
@@ -635,7 +649,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **planId** | `string` | The id of the plan. \&quot;last-used\&quot; can be used to specify the last used plan and \&quot;default\&quot; can be used if default plan selection is enabled (see: https://api.ynab.com/#oauth-default-plan). | [Defaults to `undefined`] |
 | **payeeId** | `string` | The id of the payee | [Defaults to `undefined`] |
-| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
+| **sinceDate** | `string` | If specified, only transactions on or after this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). Defaults to one year ago when not specified. | [Optional] [Defaults to `undefined`] |
+| **untilDate** | `string` | If specified, only transactions on or before this date will be included.  The date should be ISO formatted (e.g. 2016-12-30). | [Optional] [Defaults to `undefined`] |
 | **type** | `uncategorized`, `unapproved` | If specified, only transactions of the specified type will be included. \&quot;uncategorized\&quot; and \&quot;unapproved\&quot; are currently supported. | [Optional] [Defaults to `undefined`] [Enum: uncategorized, unapproved] |
 | **lastKnowledgeOfServer** | `number` | The starting server knowledge.  If provided, only entities that have changed since &#x60;last_knowledge_of_server&#x60; will be included. | [Optional] [Defaults to `undefined`] |
 

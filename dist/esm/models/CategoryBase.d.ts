@@ -41,6 +41,12 @@ export interface CategoryBase {
      */
     hidden: boolean;
     /**
+     * Whether or not the category is internal
+     * @type {boolean}
+     * @memberof CategoryBase
+     */
+    internal: boolean;
+    /**
      * DEPRECATED: No longer used.  Value will always be null.
      * @type {string}
      * @memberof CategoryBase

@@ -23,6 +23,6 @@ const openApiSpec = yaml.load(readFile(openApiSpecFileName));
 const serverSpecVersion = openApiSpec.info.version;
 const packageFile = JSON.parse(readFile("./package.json"));
 packageFile.description = `Official JavaScript client for the YNAB API. API documentation available at https://api.ynab.com. Generated from server specification version ${serverSpecVersion}`;
-writeFile("./package.json", JSON.stringify(packageFile, null, 2));
+writeFile("./package.json", JSON.stringify(packageFile, null, 2) + "\n");
 
 echo.green("Success!");

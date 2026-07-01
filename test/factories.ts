@@ -87,6 +87,7 @@ export const categoryFactory = Factory.makeFactory<models.Category>({
   name: Factory.each((i) => `Name ${i}`),
   category_group_id: Factory.each((i) => `CategoryGroupID#${i}`),
   hidden: false,
+  internal: false,
   note: Factory.each((i) => `Note#${i}`),
   budgeted: Factory.each((i) => i * 1000),
   activity: Factory.each((i) => i * 1000),
@@ -104,6 +105,7 @@ export const categoryGroupWithCategoriesFactory =
     id: Factory.each((i) => `ID#${i}`),
     name: Factory.each((i) => `Name ${i}`),
     hidden: false,
+    internal: false,
     categories: categoryFactory.buildList(3),
     deleted: false,
   });
