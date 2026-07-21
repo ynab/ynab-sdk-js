@@ -51,5 +51,8 @@
   },
   "dependencies": {
     "fetch-ponyfill": "^7.1.0"
+  },
+  "overrides": {
+    "brace-expansion": "2.1.2"
   }
 }
