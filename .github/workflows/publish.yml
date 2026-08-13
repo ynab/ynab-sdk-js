@@ -55,7 +55,7 @@ jobs:
           path: ~/.npm/_logs
       - name: Create a Release
         id: create-release
-        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
+        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
         with:
           tag_name: ${{ steps.push.outputs.tag-name }}
           generate_release_notes: true
