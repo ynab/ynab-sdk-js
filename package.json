@@ -36,7 +36,7 @@
     "@types/chai": "^4.2.12",
     "@types/fetch-mock": "^7.3.2",
     "@types/mocha": "^8.0.2",
-    "@types/node": "^22.19.11",
+    "@types/node": "^26.1.2",
     "chai": "^4.2.0",
     "fetch-mock": "^9.10.6",
     "js-yaml": "^5.2.3",
