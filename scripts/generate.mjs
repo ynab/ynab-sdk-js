@@ -1,8 +1,25 @@
-#!/usr/bin/env -S npx ts-node
+#!/usr/bin/env -S npx tsx
 import "jsh";
 import yaml from "js-yaml";
 
+usage(`\
+Usage:
+  ${$0} [version_type]
+
+Example:
+  ${$0} patch
+
+Generates the API client from the latest OpenAPI spec and bumps the package
+version.  version_type is major, minor, or patch and defaults to minor.\
+`);
+
 const openApiSpecFileName = "open_api_spec.yaml";
+
+const versionType = $1 || "minor";
+if (!["major", "minor", "patch"].includes(versionType)) {
+  echo.red(`Invalid version type: ${versionType}`);
+  usage.printAndExit();
+}
 
 echo("Downloading latest YNAB API OpenAPI spec...");
 exec(
@@ -24,5 +41,8 @@ const serverSpecVersion = openApiSpec.info.version;
 const packageFile = JSON.parse(readFile("./package.json"));
 packageFile.description = `Official JavaScript client for the YNAB API. API documentation available at https://api.ynab.com. Generated from server specification version ${serverSpecVersion}`;
 writeFile("./package.json", JSON.stringify(packageFile, null, 2) + "\n");
+
+echo(`Bumping package version (${versionType})...`);
+exec(`npm version ${versionType} --no-git-tag-version`);
 
 echo.green("Success!");
