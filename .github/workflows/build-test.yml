@@ -2,11 +2,25 @@ name: Build and Test
 
 on: push
 jobs:
+  # Tests run through tsx, which strips types without checking them.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+      - name: Install Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v6
+        with:
+          node-version-file: .tool-versions
+      - name: npm install
+        run: npm install
+      - name: npm run build
+        run: npm run build
+
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20, 22, 24]
+        node-version: [22, 24, 26]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
       - name: Install Node.js ${{ matrix.node-version }}
