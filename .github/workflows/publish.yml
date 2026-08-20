@@ -60,7 +60,7 @@ jobs:
           tag_name: ${{ steps.push.outputs.tag-name }}
           generate_release_notes: true
       - name: Comment on PRs with link to release they are included in
-        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           RELEASE_ID: ${{ steps.create-release.outputs.id }}
         with:
