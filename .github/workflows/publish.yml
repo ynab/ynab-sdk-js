@@ -1,15 +1,6 @@
 name: Publish
 on:
   workflow_dispatch:
-    inputs:
-      version_type:
-        type: choice
-        description: Version type
-        default: minor
-        options:
-        - major
-        - minor
-        - patch
 
 permissions:
   id-token: write # Required for OIDC
@@ -22,11 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
-        with:
-          token: ${{ secrets.GH_API_TOKEN }}
       - name: Setup git repo
-        env:
-          GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
         run: |
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
@@ -34,20 +21,32 @@ jobs:
         with:
           node-version: 24
           registry-url: "https://registry.npmjs.org"
+      - name: Resolve version to publish
+        id: version
+        run: |
+          version=$(npm pkg get version | tr -d '"')
+          echo "version=${version}" >> $GITHUB_OUTPUT
+          echo "tag-name=v${version}" >> $GITHUB_OUTPUT
+      - name: Verify the release tag does not already exist
+        env:
+          TAG_NAME: ${{ steps.version.outputs.tag-name }}
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG_NAME}" >/dev/null 2>&1; then
+            echo "::error::Tag ${TAG_NAME} already exists. Bump the version in package.json first."
+            exit 1
+          fi
       - run: npm install
       - run: npm run build
       - run: npm run test
-      - name: Bump Version
-        run: |
-          git add dist/*
-          npm version ${{ github.event.inputs.version_type }} --force -m "Version %s"
       - name: Publish to npm
         run: npm publish
-      - name: Push release commit and tag to GitHub
-        id: push
+      - name: Tag the release commit
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG_NAME: ${{ steps.version.outputs.tag-name }}
         run: |
-          git push --tags
-          echo "tag-name=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+          git tag -a "${TAG_NAME}" -m "Version ${VERSION}"
+          git push origin "${TAG_NAME}"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: failure()
         with:
@@ -57,7 +56,7 @@ jobs:
         id: create-release
         uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
         with:
-          tag_name: ${{ steps.push.outputs.tag-name }}
+          tag_name: ${{ steps.version.outputs.tag-name }}
           generate_release_notes: true
       - name: Comment on PRs with link to release they are included in
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
