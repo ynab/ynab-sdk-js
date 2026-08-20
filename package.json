@@ -38,7 +38,7 @@
     "@types/mocha": "^8.0.2",
     "@types/node": "^26.1.2",
     "chai": "^4.2.0",
-    "fetch-mock": "^9.10.6",
+    "fetch-mock": "^12.6.0",
     "js-yaml": "^5.2.3",
     "jsh": "0.55.0",
     "mocha": "^11.8.0",
