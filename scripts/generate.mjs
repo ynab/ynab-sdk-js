@@ -1,6 +1,6 @@
 #!/usr/bin/env -S npx ts-node
 import "jsh";
-import yaml from "js-yaml";
+import * as yaml from "js-yaml";
 
 const openApiSpecFileName = "open_api_spec.yaml";
 
