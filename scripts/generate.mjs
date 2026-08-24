@@ -1,6 +1,6 @@
 #!/usr/bin/env -S npx tsx
 import "jsh";
-import yaml from "js-yaml";
+import * as yaml from "js-yaml";
 
 usage(`\
 Usage:
