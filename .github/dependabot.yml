@@ -24,8 +24,3 @@ updates:
     open-pull-requests-limit: 3
     cooldown:
       default-days: 7
-    allow:
-      - dependency-name: "*"
-        update-types:
-          - "version-update:semver-minor"
-          - "version-update:semver-patch"
