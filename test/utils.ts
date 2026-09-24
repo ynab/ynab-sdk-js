@@ -15,6 +15,14 @@ describe("utilities", () => {
     });
   });
 
+  describe("getCurrentDateInISOFormat", () => {
+    it("Returns today date as YYYY-MM-DD without a time component", () => {
+      const currentDate = utils.getCurrentDateInISOFormat();
+      expect(currentDate).to.match(/^\d{4}-\d{2}-\d{2}$/);
+      expect(currentDate).to.not.contain("T");
+    });
+  });
+
   describe("convertFromISODateString", () => {
     it("Converts an ISO formatted date string to a JS date object", () => {
       let date = "2015-12-30";
