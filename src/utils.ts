@@ -14,7 +14,7 @@ export default {
     let isoLocalDateString = new Date(
       currentDate.getTime() - currentDate.getTimezoneOffset() * 60000
     ).toISOString();
-    return isoLocalDateString;
+    return isoLocalDateString.substr(0, 10);
   },
 
   /**
