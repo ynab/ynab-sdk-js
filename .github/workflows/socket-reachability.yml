@@ -1,0 +1,21 @@
+name: Socket Full Application Reachability
+
+on:
+  push:
+    # TODO before merge: remove add-socket-reachability, which is only here to test the workflow pre-merge.
+    branches: [main, add-socket-reachability]
+  # Socket replaces a full application result older than 7 days with the next GitHub App scan,
+  # so re-run weekly even when nothing has merged.
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+
+jobs:
+  socket-reachability:
+    # Run from @main for the same reasons as socket-basics.yml: we control ynab-sast-scanner, and it pins its own dependencies.
+    # TODO before merge: point this back at @main once ynab-sast-scanner's add-socket-reachability-workflow branch is merged.
+    uses: ynab/ynab-sast-scanner/.github/workflows/socket-reachability.yml@add-socket-reachability-workflow
+    with:
+      node-version: "24.18.0"
+    secrets:
+      SOCKET_SECURITY_API_KEY: ${{ secrets.SOCKET_SECURITY_API_KEY }}
