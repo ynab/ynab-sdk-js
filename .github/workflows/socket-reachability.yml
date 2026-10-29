@@ -4,9 +4,9 @@ on:
   push:
     branches: [main]
   # Socket replaces a full application result older than 7 days with the next GitHub App scan,
-  # so re-run weekly even when nothing has merged.
+  # so re-run twice a week (Monday and Thursday) even when nothing has merged.
   schedule:
-    - cron: "17 9 * * 1"
+    - cron: "17 9 * * 1,4"
   workflow_dispatch:
 
 jobs:
