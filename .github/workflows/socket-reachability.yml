@@ -1,0 +1,19 @@
+name: Socket Full Application Reachability
+
+on:
+  push:
+    branches: [main]
+  # Socket replaces a full application result older than 7 days with the next GitHub App scan,
+  # so re-run twice a week (Monday and Thursday) even when nothing has merged.
+  schedule:
+    - cron: "17 9 * * 1,4"
+  workflow_dispatch:
+
+jobs:
+  socket-reachability:
+    # Run from @main for the same reasons as socket-basics.yml: we control ynab-sast-scanner, and it pins its own dependencies.
+    uses: ynab/ynab-sast-scanner/.github/workflows/socket-reachability.yml@main
+    with:
+      node-version: "24.18.0"
+    secrets:
+      SOCKET_SECURITY_API_KEY: ${{ secrets.SOCKET_SECURITY_API_KEY }}
