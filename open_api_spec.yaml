@@ -1,24 +1,38 @@
 openapi: 3.1.1
 info:
   title: YNAB API Endpoints
-  description: Our API uses a REST based design, leverages the JSON data format,
-    and relies upon HTTPS for transport. We respond with meaningful HTTP
-    response codes and if an error occurs, we include error details in the
-    response body.  API Documentation is at https://api.ynab.com
-  version: 1.85.0
+  description: |-
+    Our API uses a REST based design, leverages the JSON data format, and relies upon HTTPS for transport. We respond with meaningful HTTP response codes and if an error occurs, we include error details in the response body.
+
+    Read the [API Documentation](https://api.ynab.com) for more information about the API, including how to obtain an access token and how to use it to make requests.
+  version: 1.88.0
 servers:
   - url: https://api.ynab.com/v1
 security:
   - bearer: []
 tags:
   - name: User
+    description: The currently authenticated user
   - name: Plans
+    description: Plans are the top-level container for your YNAB data; accounts,
+      categories, payees, and transactions all belong to a plan. Most endpoints
+      require a plan_id, which can be obtained from "Get all plans".
+      Alternatively, "last-used" can be used in place of a plan_id to specify
+      the most recently used plan, and "default" can be used if [default plan
+      selection](https://api.ynab.com/#oauth-default-plan) is enabled.
   - name: Accounts
-    description: The accounts for a plan
+    description: The accounts for a plan. Every transaction belongs to an account,
+      and an account is either "on budget", where its activity is categorized
+      and planned, or a tracking account, where only its balance is tracked
+      (see the on_budget flag).
   - name: Categories
-    description: The categories for a plan
+    description: The categories for a plan, organized into category groups.
+      Category amounts (assigned, activity, available) are specific to a month,
+      and can be read and updated through the month-scoped category endpoints.
   - name: Payees
-    description: The payees for a plan
+    description: The payees for a plan. Transfers between accounts are represented
+      with special transfer payees; a payee with transfer_account_id set is the
+      transfer payee for that account.
   - name: Payee Locations
     description: When you enter a transaction and specify a payee on the YNAB mobile
       apps, the GPS coordinates for that location are stored, with your
@@ -31,11 +45,20 @@ tags:
       Assign, Age of Money and category (assigned / activity / available)
       amounts are available.
   - name: Money Movements
-    description: The money movements for a plan
+    description: Money movements record money moved between two categories, or
+      between a category and Ready to Assign, within a plan month. Movements
+      performed together as a single action are linked by a money movement
+      group.
   - name: Transactions
-    description: The transactions for a plan
+    description: The transactions for a plan. Transaction amounts are specified in
+      [milliunits format](https://api.ynab.com/#formats). Split transactions
+      are represented with subtransactions, and transfers between accounts are
+      represented with transfer payees.
   - name: Scheduled Transactions
-    description: The scheduled transactions for a plan
+    description: The scheduled transactions for a plan; upcoming and recurring
+      transactions that have not yet been entered into an account. Each has a
+      frequency along with the first and next dates it will occur (date_first
+      and date_next).
 paths:
   /user:
     get:
@@ -1189,7 +1212,7 @@ paths:
               $ref: "#/components/schemas/PatchTransactionsWrapper"
         required: true
       responses:
-        "209":
+        "200":
           description: The transactions were successfully updated
           content:
             application/json:
@@ -1208,14 +1231,12 @@ paths:
       tags:
         - Transactions
       summary: Import transactions
-      description: Imports available transactions on all linked accounts for the given
-        plan.  Linked accounts allow transactions to be imported directly from a
-        specified financial institution and this endpoint initiates that
-        import.  Sending a request to this endpoint is the equivalent of
-        clicking "Import" on each account in the web application or tapping the
-        "New Transactions" banner in the mobile applications.  The response for
-        this endpoint contains the transaction ids that have been imported.
+      description: "DEPRECATED: This endpoint is no longer needed because YNAB now
+        automatically imports transactions on linked accounts.  Requests are
+        still accepted for backwards compatibility but no import is performed
+        and the response will always contain an empty list of transaction ids."
       operationId: importTransactions
+      deprecated: true
       parameters:
         - name: plan_id
           in: path
@@ -1227,13 +1248,7 @@ paths:
             type: string
       responses:
         "200":
-          description: The request was successful but there were no transactions to import
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TransactionsImportResponse"
-        "201":
-          description: One or more transactions were imported successfully
+          description: The request was successful.  No transactions are imported.
           content:
             application/json:
               schema:
@@ -2882,7 +2897,9 @@ components:
           type: array
           description: An array of subtransactions to configure a transaction as a split.
             Updating `subtransactions` on an existing split transaction is not
-            supported.
+            supported and will return an error.  Splits are not allowed on
+            tracking accounts or on transfers between on-budget accounts; a
+            transfer to a tracking account can be a split.
           items:
             $ref: "#/components/schemas/SaveSubTransaction"
     SaveSubTransaction:
@@ -3246,21 +3263,35 @@ components:
           description: The goal target amount in milliunits format.  If value is specified
             and goal has not already been configured for category, a monthly goal
             will be created for the category with this target amount.  If goal_type is
-            not specified, it will default to 'NEED' or 'MF' for Credit Card Payment categories.
+            not specified, it will default to 'NEED', or to 'MF' for Credit Card Payment categories and
+            'DEBT' for categories paired to a loan account.
+            When updating a category, passing null removes any existing target.
           format: int64
         goal_target_date:
           type:
             - string
             - "null"
-          description: The goal target date in ISO format (e.g. 2016-12-01).
+          description: The goal target date in ISO format (e.g. 2016-12-01). Not supported for categories
+            paired to a loan account.
           format: date
         goal_needs_whole_amount:
           type:
             - boolean
             - "null"
-          description: Whether the goal requires the full target amount each period. Only supported for 'NEED' goals.
+          description: Whether the goal requires the full target amount each period. Only supported for 'NEED' goals,
+            and not supported for Credit Card Payment categories or categories paired to a loan account.
             When true, the goal is configured as 'Set aside another...'.
             When false, the goal is configured as 'Refill up to...'.
+        goal_frequency:
+          type: string
+          enum:
+            - monthly
+            - weekly
+            - yearly
+          description: When specified, configures a recurring 'NEED' target of goal_target that repeats at this
+            frequency, replacing any existing target. Requires goal_target. Cannot be combined with goal_target_date
+            and is not supported for Credit Card Payment categories or categories paired to a loan account.
+            Omit to leave an existing target's cadence unchanged.
     ExistingCategory:
       allOf:
         - $ref: "#/components/schemas/SaveCategory"
