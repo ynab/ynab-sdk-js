@@ -12,6 +12,7 @@ Name | Type
 `goal_target` | number
 `goal_target_date` | string
 `goal_needs_whole_amount` | boolean
+`goal_frequency` | string
 
 ## Example
 
@@ -26,6 +27,7 @@ const example = {
   "goal_target": null,
   "goal_target_date": null,
   "goal_needs_whole_amount": null,
+  "goal_frequency": null,
 } satisfies NewCategory
 
 console.log(example)
