@@ -561,6 +561,7 @@ export class TransactionsApi extends runtime.BaseAPI {
     /**
      * DEPRECATED: This endpoint is no longer needed because YNAB now automatically imports transactions on linked accounts.  Requests are still accepted for backwards compatibility but no import is performed and the response will always contain an empty list of transaction ids.
      * Import transactions
+     * @deprecated
      */
     async importTransactionsRaw(requestParameters: ImportTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransactionsImportResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -593,6 +594,7 @@ export class TransactionsApi extends runtime.BaseAPI {
     /**
      * DEPRECATED: This endpoint is no longer needed because YNAB now automatically imports transactions on linked accounts.  Requests are still accepted for backwards compatibility but no import is performed and the response will always contain an empty list of transaction ids.
      * Import transactions
+     * @deprecated
      */
     async importTransactions(planId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransactionsImportResponse> {
         const response = await this.importTransactionsRaw({ planId: planId }, initOverrides);
