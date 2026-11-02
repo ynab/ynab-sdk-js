@@ -338,6 +338,21 @@ describe("API requests", () => {
       );
     });
 
+    it("Should getTransactionById and keep a null memo as null", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      fetchMock.once("*", {
+        body: {
+          data: {
+            transaction: factories.transactionFactory.build({ memo: null }),
+          },
+        },
+      });
+      const response = await ynabAPI.transactions.getTransactionById(budgetId, "TransactionId");
+
+      expect(response.data.transaction.memo).to.equal(null);
+    });
+
     it("Should getTransactionsByAccount and validate the request is sent correctly", async () => {
       const ynabAPI = new ynab.API(API_KEY, BASE_URL);
 
