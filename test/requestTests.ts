@@ -174,6 +174,36 @@ describe("API requests", () => {
         `${BASE_URL}/plans/${budgetId}/categories/${categoryId}`
       );
     });
+
+    it("Should updateCategory and send goal_frequency in the request body", async () => {
+      const ynabAPI = new ynab.API(API_KEY, BASE_URL);
+
+      const categoryId = "DummyCategoryId";
+      await callApiAndVerifyResponse(
+        () =>
+          ynabAPI.categories.updateCategory(budgetId, categoryId, {
+            category: {
+              goal_target: 50000,
+              goal_frequency: ynab.ExistingCategoryGoalFrequencyEnum.Weekly,
+            },
+          }),
+        {
+          data: {
+            category: factories.categoryFactory.build(),
+            server_knowledge: 1,
+          },
+        }
+      );
+      verifyRequestDetails(
+        `${BASE_URL}/plans/${budgetId}/categories/${categoryId}`,
+        API_KEY,
+        1,
+        "PATCH"
+      );
+      expect(JSON.parse(<string>(<unknown>fetchMock.lastOptions()!.body))).to.deep.equal({
+        category: { goal_target: 50000, goal_frequency: "weekly" },
+      });
+    });
   });
 
   describe("/plans/months", () => {
