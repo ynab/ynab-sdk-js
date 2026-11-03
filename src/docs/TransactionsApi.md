@@ -683,7 +683,7 @@ example().catch(console.error);
 
 Import transactions
 
-Imports available transactions on all linked accounts for the given plan.  Linked accounts allow transactions to be imported directly from a specified financial institution and this endpoint initiates that import.  Sending a request to this endpoint is the equivalent of clicking \&quot;Import\&quot; on each account in the web application or tapping the \&quot;New Transactions\&quot; banner in the mobile applications.  The response for this endpoint contains the transaction ids that have been imported.
+DEPRECATED: This endpoint is no longer needed because YNAB now automatically imports transactions on linked accounts.  Requests are still accepted for backwards compatibility but no import is performed and the response will always contain an empty list of transaction ids.
 
 ### Example
 
@@ -743,8 +743,7 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The request was successful but there were no transactions to import |  -  |
-| **201** | One or more transactions were imported successfully |  -  |
+| **200** | The request was successful.  No transactions are imported. |  -  |
 | **400** | The request could not be understood due to malformed syntax or validation error(s) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -897,7 +896,7 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **209** | The transactions were successfully updated |  -  |
+| **200** | The transactions were successfully updated |  -  |
 | **400** | The request could not be understood due to malformed syntax or validation error(s). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
