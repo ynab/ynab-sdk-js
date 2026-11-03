@@ -11,7 +11,7 @@ export default {
     getCurrentDateInISOFormat: function () {
         var currentDate = new Date();
         var isoLocalDateString = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000).toISOString();
-        return isoLocalDateString;
+        return isoLocalDateString.substr(0, 10);
     },
     /**
      * Converts an ISO 8601 formatted string to a JS date object

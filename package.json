@@ -49,9 +49,6 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^5.0.1"
   },
-  "dependencies": {
-    "fetch-ponyfill": "^7.1.0"
-  },
   "overrides": {
     "brace-expansion": "2.1.2"
   }
