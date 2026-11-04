@@ -23,7 +23,7 @@ Then, depending upon your usage context, add a reference to it:
 const ynab = require("ynab");
 ```
 
-Tested against Node 22 and later. Older versions may still work, but aren't tested.
+Requires Node 22 or later.
 
 ### ESM / TypeScript
 

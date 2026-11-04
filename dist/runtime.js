@@ -13,14 +13,6 @@ exports.exists = exists;
 exports.querystring = querystring;
 exports.mapValues = mapValues;
 exports.canConsumeForm = canConsumeForm;
-// Polyfill fetch globally - this makes it easier to override with modules like fetch-mock.
-const fetchPonyfill = require("fetch-ponyfill")();
-if (!globalThis.fetch) {
-    globalThis.fetch = fetchPonyfill.fetch;
-    globalThis.Response = fetchPonyfill.Response;
-    globalThis.Headers = fetchPonyfill.Headers;
-    globalThis.Request = fetchPonyfill.Request;
-}
 exports.BASE_PATH = "https://api.ynab.com/v1".replace(/\/+$/, "");
 class Configuration {
     constructor(configuration = {}) {
